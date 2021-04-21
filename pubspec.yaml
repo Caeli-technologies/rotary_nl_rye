@@ -17,6 +17,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+authors:
+  - Ruben Talstra <info@caeli-tech.com>
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -28,6 +31,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  font_awesome_flutter: any         # any is love <3
+  get_version: any                  # any is love <3
+  division: any                     # any is love <3
+  logger: any                       # any is love <3
 
 dev_dependencies:
   flutter_test:

@@ -1,113 +1,294 @@
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:division/division.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(Main());
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      home: Scaffold(
+        body: SafeArea(child: UserPage()),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class UserPage extends StatelessWidget {
+  final contentStyle = (BuildContext context) => ParentStyle()
+    ..overflow.scrollable()
+    ..padding(vertical: 30, horizontal: 20)
+    ..minHeight(MediaQuery.of(context).size.height - (2 * 30));
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  final titleStyle = TxtStyle()
+    ..bold()
+    ..fontSize(32)
+    ..margin(bottom: 20)
+    ..alignmentContent.centerLeft();
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Parent(
+      style: contentStyle(context),
+      child: Column(
+        children: <Widget>[
+          Txt('User settings', style: titleStyle),
+          UserCard(),
+          ActionsRow(),
+          Settings(),
+        ],
+      ),
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class UserCard extends StatelessWidget {
+  Widget _buildUserRow() {
+    return Row(
+      children: <Widget>[
+        Parent(style: userImageStyle, child: Icon(Icons.account_circle)),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Txt('Rein Gundersen Bentdal', style: nameTextStyle),
+            SizedBox(height: 5),
+            Txt('Creative builder', style: nameDescriptionTextStyle)
+          ],
+        )
+      ],
+    );
+  }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  Widget _buildUserStats() {
+    return Parent(
+      style: userStatsStyle,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          _buildUserStatsItem('846', 'Collect'),
+          _buildUserStatsItem('51', 'Attention'),
+          _buildUserStatsItem('267', 'Track'),
+          _buildUserStatsItem('39', 'Coupons'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUserStatsItem(String value, String text) {
+    final TxtStyle textStyle = TxtStyle()
+      ..fontSize(20)
+      ..textColor(Colors.white);
+    return Column(
+      children: <Widget>[
+        Txt(value, style: textStyle),
+        SizedBox(height: 5),
+        Txt(text, style: nameDescriptionTextStyle),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Parent(
+      style: userCardStyle,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[_buildUserRow(), _buildUserStats()],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  //Styling
+
+  final ParentStyle userCardStyle = ParentStyle()
+    ..height(175)
+    ..padding(horizontal: 20.0, vertical: 10)
+    ..alignment.center()
+    ..background.hex('#3977FF')
+    ..borderRadius(all: 20.0)
+    ..elevation(10, color: hex('#3977FF'));
+
+  final ParentStyle userImageStyle = ParentStyle()
+    ..height(50)
+    ..width(50)
+    ..margin(right: 10.0)
+    ..borderRadius(all: 30)
+    ..background.hex('ffffff');
+
+  final ParentStyle userStatsStyle = ParentStyle()..margin(vertical: 10.0);
+
+  final TxtStyle nameTextStyle = TxtStyle()
+    ..textColor(Colors.white)
+    ..fontSize(18)
+    ..fontWeight(FontWeight.w600);
+
+  final TxtStyle nameDescriptionTextStyle = TxtStyle()
+    ..textColor(Colors.white.withOpacity(0.6))
+    ..fontSize(12);
+}
+
+class ActionsRow extends StatelessWidget {
+  Widget _buildActionsItem(String title, IconData icon) {
+    return Parent(
+      style: actionsItemStyle,
+      child: Column(
+        children: <Widget>[
+          Parent(
+            style: actionsItemIconStyle,
+            child: Icon(icon, size: 20, color: Color(0xFF42526F)),
+          ),
+          Txt(title, style: actionsItemTextStyle)
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        _buildActionsItem('Wallet', Icons.attach_money),
+        _buildActionsItem('Delivery', Icons.card_giftcard),
+        _buildActionsItem('Message', Icons.message),
+        _buildActionsItem('Service', Icons.room_service),
+      ],
+    );
+  }
+
+  final ParentStyle actionsItemIconStyle = ParentStyle()
+    ..alignmentContent.center()
+    ..width(50)
+    ..height(50)
+    ..margin(bottom: 5)
+    ..borderRadius(all: 30)
+    ..background.hex('#F6F5F8')
+    ..ripple(true);
+
+  final ParentStyle actionsItemStyle = ParentStyle()..margin(vertical: 20.0);
+
+  final TxtStyle actionsItemTextStyle = TxtStyle()
+    ..textColor(Colors.black.withOpacity(0.8))
+    ..fontSize(12);
+}
+
+class Settings extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        SettingsItem(Icons.location_on, hex('#8D7AEE'), 'Address',
+            'Ensure your harvesting address'),
+        SettingsItem(
+            Icons.lock, hex('#F468B7'), 'Privacy', 'System permission change'),
+        SettingsItem(
+            Icons.menu, hex('#FEC85C'), 'General', 'Basic functional settings'),
+        SettingsItem(Icons.notifications, hex('#5FD0D3'), 'Notifications',
+            'Take over the news in time'),
+        SettingsItem(
+          Icons.question_answer,
+          hex('#BFACAA'),
+          'app version',
+          'test',
+        ),
+      ],
+    );
+  }
+}
+
+class SettingsItem extends StatefulWidget {
+  SettingsItem(this.icon, this.iconBgColor, this.title, this.description);
+
+  final IconData icon;
+  final Color iconBgColor;
+  final String title;
+  final String description;
+
+  @override
+  _SettingsItemState createState() => _SettingsItemState();
+}
+
+class _SettingsItemState extends State<SettingsItem> {
+  bool pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Parent(
+      style: settingsItemStyle(pressed),
+      gesture: Gestures()
+        ..isTap((isTapped) => setState(() => pressed = isTapped)),
+      child: Row(
+        children: <Widget>[
+          Parent(
+            style: settingsItemIconStyle(widget.iconBgColor),
+            child: Icon(widget.icon, color: Colors.white, size: 20),
+          ),
+          SizedBox(width: 10),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Txt(widget.title, style: itemTitleTextStyle),
+              SizedBox(height: 5),
+              Txt(widget.description, style: itemDescriptionTextStyle),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  final settingsItemStyle = (pressed) => ParentStyle()
+    ..elevation(pressed ? 0 : 50, color: Colors.grey)
+    ..scale(pressed ? 0.95 : 1.0)
+    ..alignmentContent.center()
+    ..height(70)
+    ..margin(vertical: 10)
+    ..borderRadius(all: 15)
+    ..background.hex('#ffffff')
+    ..ripple(true)
+    ..animate(150, Curves.easeOut);
+
+  final settingsItemIconStyle = (Color color) => ParentStyle()
+    ..background.color(color)
+    ..margin(left: 15)
+    ..padding(all: 12)
+    ..borderRadius(all: 30);
+
+  final TxtStyle itemTitleTextStyle = TxtStyle()
+    ..bold()
+    ..fontSize(16);
+
+  final TxtStyle itemDescriptionTextStyle = TxtStyle()
+    ..textColor(Colors.black26)
+    ..bold()
+    ..fontSize(12);
+}
+
+var logger = Logger(
+  filter: null, // Use the default LogFilter (-> only log in debug mode)
+  printer: PrettyPrinter(), // Use the PrettyPrinter to format and print log
+  output: null, // Use the default LogOutput (-> send everything to console)
+);
+
+var loggerNoStack = Logger(
+  printer: PrettyPrinter(methodCount: 0),
+);
+
+void demo() {
+  logger.d("Log message with 2 methods");
+
+  loggerNoStack.i("Info message");
+
+  loggerNoStack.w("Just a warning!");
+
+  logger.e("Error! Something bad happened", "Test Error");
+
+  loggerNoStack.v({"key": 5, "value": "something"});
+
+  logger.wtf("What a terrible failure log");
+
+  print("Test\nTest2");
 }
