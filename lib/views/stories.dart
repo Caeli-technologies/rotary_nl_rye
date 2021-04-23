@@ -12,7 +12,22 @@ class InnerTab extends StatelessWidget {
     "Bandung",
     "Malang"
   ];
-  final List<double> stars = [4, 3, 5, 5, 4, 5];
+  final List<String> departures = [
+    "12 april 2014",
+    "13 mei 2015",
+    "14 juni 2016",
+    "15 julli 2017",
+    "16 augustus 2018",
+    "17 september 2019"
+  ];
+  final List<String> arivals = [
+    "18 november 2015",
+    "19 decemeber 2016",
+    "20 januarie 2017",
+    "21 fabuarie 2018",
+    "22 maart 2019",
+    "23 april 2020"
+  ];
   final List<String> images = [
     "assets/3.PNG",
     "assets/2.PNG",
@@ -20,6 +35,14 @@ class InnerTab extends StatelessWidget {
     "assets/2.PNG",
     "assets/2.PNG",
     "assets/3.PNG"
+  ];
+  final List<String> texts = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh."
   ];
 
   @override
@@ -57,7 +80,7 @@ class InnerTab extends StatelessWidget {
             ],
           ),
           Container(
-            height: 700,
+            height: 640,
             margin: EdgeInsets.only(left: 20, top: 15, right: 20),
             child: TabBarView(children: [
               ListView.builder(
@@ -70,17 +93,21 @@ class InnerTab extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => More(
-                                    title: titles[index],
-                                    rating: stars[index],
                                     image: images[index],
+                                    title: titles[index],
+                                    text: texts[index],
+                                    departure: departures[index],
+                                    arival: arivals[index],
                                   )),
                         ),
                         child: Container(
                           padding: EdgeInsets.only(bottom: 10),
                           child: TravelCard(
-                            title: titles[index],
-                            rating: stars[index],
                             images: images[index],
+                            title: titles[index],
+                            text: texts[index],
+                            departure: departures[index],
+                            arival: arivals[index],
                           ),
                         ),
                       ),
@@ -104,32 +131,29 @@ class InnerTab extends StatelessWidget {
 }
 
 class TravelCard extends StatelessWidget {
-  final double rating;
-  final String title, images;
+  final String title, text, images, departure, arival;
 
-  TravelCard({this.rating, this.title, this.images});
+  TravelCard({this.departure, this.text, this.arival, this.title, this.images});
 
   @override
   Widget build(BuildContext context) {
-    double r = rating;
-
     return Container(
       decoration: BoxDecoration(
           color: Color.fromRGBO(247, 247, 249, 1),
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
-          height: 80,
+          height: 120,
           child: Container(
             child: Row(
               children: <Widget>[
                 SizedBox(
-                    height: 80,
+                    height: 120,
                     child: ClipRRect(
                       borderRadius: new BorderRadius.circular(14.0),
                       child: Image.asset(images),
                     )),
                 SizedBox(
-                  height: 80,
+                  height: 120,
                   child: Container(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,78 +162,65 @@ class TravelCard extends StatelessWidget {
                         padding: EdgeInsets.only(left: 10, top: 12),
                         child: Text(
                           title,
-                          textScaleFactor: 1,
+                          textScaleFactor: 1.2,
                           style: TextStyle(
                             color: Color.fromRGBO(19, 33, 70, 1),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      Align(
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, top: 0, right: 40),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.planeDeparture,
-                                    color: Colors.indigo[100],
-                                    size: 15,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 5),
-                                    child: Text(
-                                      "18 augustus",
-                                      textScaleFactor: 1.2,
-                                      style:
-                                          TextStyle(color: Colors.indigo[100]),
-                                    ),
-                                  )
-                                ],
+                      Container(
+                        padding: EdgeInsets.only(left: 10, top: 4),
+                        child: Row(
+                          children: <Widget>[
+                            FaIcon(
+                              FontAwesomeIcons.planeDeparture,
+                              color: Colors.indigo[100],
+                              size: 15,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 5),
+                              child: Text(
+                                departure,
+                                textScaleFactor: 1.1,
+                                style: TextStyle(color: Colors.indigo[100]),
                               ),
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.only(left: 5, right: 5),
-                                    child: Text(
-                                      "-",
-                                      textScaleFactor: 1.2,
-                                      style:
-                                          TextStyle(color: Colors.indigo[100]),
-                                    ),
-                                  )
-                                ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            FaIcon(
+                              FontAwesomeIcons.planeArrival,
+                              color: Colors.indigo[100],
+                              size: 15,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 5),
+                              child: Text(
+                                arival,
+                                textScaleFactor: 1.1,
+                                style: TextStyle(color: Colors.indigo[100]),
                               ),
-                              Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.planeArrival,
-                                    color: Colors.indigo[100],
-                                    size: 15,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 5),
-                                    child: Text(
-                                      "2 julli",
-                                      textScaleFactor: 1.2,
-                                      style:
-                                          TextStyle(color: Colors.indigo[100]),
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 4),
-                        child: Text(
-                          "Kota Denpasar merupakan \nkota terbesar kedua di willayah..",
-                          textScaleFactor: 0.7,
-                          style: TextStyle(color: Colors.grey),
+                        child: SizedBox(
+                          width: 200.0,
+                          child: Text(text,
+                              textScaleFactor: 0.7,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                              style: TextStyle(color: Colors.grey)),
                         ),
                       )
                     ],

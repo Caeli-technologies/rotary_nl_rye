@@ -5,27 +5,29 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:rotary_nl_rye/views/stories.dart';
 
+// ignore: must_be_immutable
 class More extends StatelessWidget {
-  String title, image;
-  double rating;
+  String title, text, image, arival, departure;
 
-  More({this.title, this.image, this.rating});
+  More({this.title, this.text, this.image, this.arival, this.departure});
 
   @override
   Widget build(BuildContext context) {
     return MainContainer(
       title: title,
-      rating: rating,
+      text: text,
+      departure: departure,
+      arival: arival,
       image: image,
     );
   }
 }
 
 class MainContainer extends StatelessWidget {
-  final String title, image;
-  final double rating;
+  final String image, title, text, arival, departure;
 
-  MainContainer({this.title, this.image, this.rating});
+  MainContainer(
+      {this.image, this.title, this.text, this.arival, this.departure});
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,20 @@ class MainContainer extends StatelessWidget {
                       ),
                     ),
                     Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        padding: EdgeInsets.only(left: 40, top: 5),
+                        child: Text(
+                          "naam",
+                          textScaleFactor: 1,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
                       alignment: Alignment.topLeft,
                       child: Container(
                         padding: EdgeInsets.only(left: 40, top: 15, right: 40),
@@ -114,29 +130,13 @@ class MainContainer extends StatelessWidget {
                             Row(
                               children: <Widget>[
                                 FaIcon(
-                                  FontAwesomeIcons.heart,
-                                  color: Colors.red,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    rating.toString(),
-                                    textScaleFactor: 1.2,
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                FaIcon(
                                   FontAwesomeIcons.planeDeparture,
                                   color: Colors.indigo[100],
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    "2 jam",
+                                    departure,
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Colors.indigo[100]),
                                   ),
@@ -152,7 +152,7 @@ class MainContainer extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    "2 jam",
+                                    arival,
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Colors.indigo[100]),
                                   ),
@@ -162,7 +162,7 @@ class MainContainer extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -177,34 +177,33 @@ class MainContainer extends StatelessWidget {
                     children: <Widget>[
                       TabBar(
                         indicatorSize: TabBarIndicatorSize.tab,
-                        indicator: CircleTabIndicator(
-                            color: Color.fromRGBO(57, 182, 245, 1), radius: 2),
+                        indicator: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(50), // Creates border
+                            color: Colors.blue[100]),
                         unselectedLabelColor: Colors.indigo[100],
                         labelColor: Color.fromRGBO(57, 182, 245, 1),
                         indicatorColor: Colors.transparent,
                         labelStyle: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold),
                         tabs: [
-                          Container(height: 30, child: Tab(text: "City 1")),
+                          Container(child: Tab(text: "City 1")),
                           Container(
-                              height: 30,
                               child: Tab(
-                                text: "City 2",
-                              )),
+                            text: "City 2",
+                          )),
                         ],
+                        labelPadding: EdgeInsets.all(0),
                       ),
                       Container(
                         constraints:
-                            BoxConstraints(minHeight: 100, minWidth: 100),
+                            BoxConstraints(minHeight: 200, minWidth: 100),
                         height: 400,
-                        margin: EdgeInsets.only(left: 20, top: 5, right: 20),
+                        margin: EdgeInsets.only(left: 20, right: 20),
                         child: TabBarView(children: [
-                          ListView(children: [
-                            Text(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh."),
-                          ]),
+                          ListView(children: [Text(text)]),
                           Center(
-                            child: Text("Text Description"),
+                            child: Text("tesssstttt"),
                           )
                         ]),
                       )
