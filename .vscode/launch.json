@@ -5,10 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "rotary_nl_rye",
+            "name": "rotary_nl_rye_debug",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug"
+        },
+        {
+            "name": "rotary_nl_rye_release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
         }
     ]
 }

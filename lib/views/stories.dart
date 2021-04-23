@@ -1,6 +1,6 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/data/more.dart';
 
 class InnerTab extends StatelessWidget {
@@ -145,31 +145,65 @@ class TravelCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10, top: 4),
+                      Align(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 10, top: 0, right: 40),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              SmoothStarRating(
-                                  allowHalfRating: false,
-                                  onRatingChanged: (v) {
-                                    r = v;
-                                  },
-                                  starCount: 5,
-                                  rating: rating,
-                                  size: 10.0,
-                                  color: Colors.orange,
-                                  borderColor: Colors.orange,
-                                  spacing: 0.0),
-                              Container(
-                                padding: EdgeInsets.only(left: 4),
-                                child: Text(
-                                  rating.toInt().toString(),
-                                  textScaleFactor: 0.8,
-                                  style: TextStyle(color: Colors.orange),
-                                ),
+                              Row(
+                                children: <Widget>[
+                                  FaIcon(
+                                    FontAwesomeIcons.planeDeparture,
+                                    color: Colors.indigo[100],
+                                    size: 15,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 5),
+                                    child: Text(
+                                      "18 augustus",
+                                      textScaleFactor: 1.2,
+                                      style:
+                                          TextStyle(color: Colors.indigo[100]),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(left: 5, right: 5),
+                                    child: Text(
+                                      "-",
+                                      textScaleFactor: 1.2,
+                                      style:
+                                          TextStyle(color: Colors.indigo[100]),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  FaIcon(
+                                    FontAwesomeIcons.planeArrival,
+                                    color: Colors.indigo[100],
+                                    size: 15,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 5),
+                                    child: Text(
+                                      "2 julli",
+                                      textScaleFactor: 1.2,
+                                      style:
+                                          TextStyle(color: Colors.indigo[100]),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
-                          )),
+                          ),
+                        ),
+                      ),
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 4),
                         child: Text(

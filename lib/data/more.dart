@@ -35,7 +35,7 @@ class MainContainer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 4,
+              flex: 3,
               child: Container(
                 width: double.infinity,
                 color: Color.fromRGBO(247, 247, 249, 1),
@@ -123,22 +123,6 @@ class MainContainer extends StatelessWidget {
                                     rating.toString(),
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Colors.red),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                FaIcon(
-                                  FontAwesomeIcons.cloudSun,
-                                  color: Colors.indigo[100],
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    "25 ℃",
-                                    textScaleFactor: 1.2,
-                                    style: TextStyle(color: Colors.indigo[100]),
                                   ),
                                 )
                               ],
