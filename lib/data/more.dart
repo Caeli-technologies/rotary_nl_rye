@@ -7,27 +7,42 @@ import 'package:rotary_nl_rye/views/stories.dart';
 
 // ignore: must_be_immutable
 class More extends StatelessWidget {
-  String title, text, image, arival, departure;
+  String country, name, text1, text2, image, arrivalDate, departureDate;
 
-  More({this.title, this.text, this.image, this.arival, this.departure});
+  More(
+      {this.country,
+      this.name,
+      this.text1,
+      this.text2,
+      this.image,
+      this.arrivalDate,
+      this.departureDate});
 
   @override
   Widget build(BuildContext context) {
     return MainContainer(
-      title: title,
-      text: text,
-      departure: departure,
-      arival: arival,
+      country: country,
+      text1: text1,
+      text2: text2,
+      name: name,
+      departureDate: departureDate,
+      arrivalDate: arrivalDate,
       image: image,
     );
   }
 }
 
 class MainContainer extends StatelessWidget {
-  final String image, title, text, arival, departure;
+  final String image, name, country, text1, text2, arrivalDate, departureDate;
 
   MainContainer(
-      {this.image, this.title, this.text, this.arival, this.departure});
+      {this.image,
+      this.name,
+      this.country,
+      this.text1,
+      this.text2,
+      this.arrivalDate,
+      this.departureDate});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +112,7 @@ class MainContainer extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.only(left: 40, top: 20),
                         child: Text(
-                          title,
+                          country,
                           textScaleFactor: 2,
                           style: TextStyle(
                             color: Color.fromRGBO(19, 33, 70, 1),
@@ -111,7 +126,7 @@ class MainContainer extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.only(left: 40, top: 5),
                         child: Text(
-                          "naam",
+                          name,
                           textScaleFactor: 1,
                           style: TextStyle(
                             color: Colors.grey,
@@ -136,7 +151,7 @@ class MainContainer extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    departure,
+                                    departureDate,
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Colors.indigo[100]),
                                   ),
@@ -152,7 +167,7 @@ class MainContainer extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    arival,
+                                    arrivalDate,
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Colors.indigo[100]),
                                   ),
@@ -201,10 +216,8 @@ class MainContainer extends StatelessWidget {
                         height: 400,
                         margin: EdgeInsets.only(left: 20, right: 20),
                         child: TabBarView(children: [
-                          ListView(children: [Text(text)]),
-                          Center(
-                            child: Text("tesssstttt"),
-                          )
+                          ListView(children: [Text(text1)]),
+                          ListView(children: [Text(text2)])
                         ]),
                       )
                     ],
