@@ -11,17 +11,24 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black87),
-      ),
       body: ListView(
         padding: const EdgeInsets.only(top: 60),
         children: [
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: Text(
+              'Vragen?',
+              textScaleFactor: 2.4,
+              style: TextStyle(
+                  color: Color.fromRGBO(19, 33, 70, 1),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
           ExpansionTile(
-            leading: Icon(FontAwesomeIcons.sign),
+            leading: Icon(FontAwesomeIcons.question),
             title: Text("Expansion Title"),
             subtitle: Text("  Sub Title's"),
             children: <Widget>[
@@ -39,7 +46,7 @@ class _QuestionPageState extends State<QuestionPage> {
             ],
           ),
           ExpansionTile(
-            leading: Icon(FontAwesomeIcons.sign),
+            leading: Icon(FontAwesomeIcons.question),
             title: Text("Expansion Title"),
             subtitle: Text("  Sub Title's"),
             children: <Widget>[
