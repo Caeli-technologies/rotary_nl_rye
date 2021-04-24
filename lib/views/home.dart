@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/views/question.dart';
 import 'package:rotary_nl_rye/views/stories.dart';
 import 'package:rotary_nl_rye/views/settings.dart';
+import 'package:rotary_nl_rye/views/aboutpage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -104,9 +105,7 @@ class _HomePageState extends State<HomePage> {
               //FAQ
               QuestionPage(),
               //about us
-              Center(
-                child: Text("4"),
-              ),
+              AboutPage(),
               //settings
               SettingsPage(),
             ],
