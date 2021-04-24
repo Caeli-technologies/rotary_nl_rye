@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:rotary_nl_rye/views/doctor_info.dart';
 import 'package:rotary_nl_rye/views/question.dart';
 import 'package:rotary_nl_rye/views/stories.dart';
 
@@ -104,7 +103,9 @@ class _HomePageState extends State<HomePage> {
               //FAQ
               QuestionPage(),
               //about us
-              DoctorsInfo(),
+              Center(
+                child: Text("4"),
+              ),
               //settings
               Center(
                 child: Text("5"),
