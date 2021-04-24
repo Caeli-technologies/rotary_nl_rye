@@ -208,7 +208,7 @@ class TravelCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 4),
                         child: SizedBox(
-                          width: 200.0,
+                          width: 1.0,
                           child: Text(text1,
                               textScaleFactor: 0.7,
                               maxLines: 3,
