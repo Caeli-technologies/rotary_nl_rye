@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 authors:
   - Ruben Talstra <info@caeli-tech.com>
+  - Jannik Norden <dev.janniknorden@gmail.com>
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -48,7 +49,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.9.0"
 
 flutter_icons:
-  image_path: "icon/icon.png" 
+  image_path: "icon/icon.jpg" 
   android: true
   ios: true
 
