@@ -28,8 +28,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: 'x'
-          channel: 'stable'
+          flutter-version: '>=2.12.0 <3.0.0'
       - run: flutter pub get
       - run: flutter test
       - run: flutter build appbundle
