@@ -18,13 +18,14 @@ class _HomePageState extends State<HomePage> {
 
     Device.width = MediaQuery.of(context).size.width;
     Device.height = MediaQuery.of(context).size.height;
-    Device.brightnessValue = MediaQuery.of(context).platformBrightness;
+    Device.isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    Palette.instance;
 
     return DefaultTabController(
         length: 5,
         child: Scaffold(
           bottomNavigationBar: Container(
-            color: Device.brightnessValue == Brightness.dark ? Colors.grey[800] : Colors.grey[100],
+            color: Palette.tabBarBgColor,
             child: TabBar(
                 tabs: [
                   Container(
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                       child: Tab(icon: FaIcon(FontAwesomeIcons.cog, size: 35))),
                 ],
                 unselectedLabelColor: Colors.indigo[100],
-                labelColor: Colors.indigo[800],
+                labelColor: Palette.main,
                 indicatorColor: Colors.transparent),
           ),
           body: TabBarView(
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       'Mau \nLiburan \nKemana, bos?',
                       textScaleFactor: 2.4,
                       style: TextStyle(
-                          color: Color.fromRGBO(19, 33, 70, 1),
+                          color: Palette.main,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                       'Verhalen van Exchange studenten',
                       textScaleFactor: 2.4,
                       style: TextStyle(
-                          color: Color.fromRGBO(19, 33, 70, 1),
+                          color: Palette.main,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

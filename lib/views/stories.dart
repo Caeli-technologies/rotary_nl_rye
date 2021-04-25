@@ -41,9 +41,9 @@ class _InnerTabState extends State<InnerTab> {
           TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicator: CircleTabIndicator(
-                color: Color.fromRGBO(57, 182, 245, 1), radius: 2),
+                color: Palette.accentColor, radius: 2),
             unselectedLabelColor: Colors.indigo[100],
-            labelColor: Color.fromRGBO(57, 182, 245, 1),
+            labelColor: Palette.accentColor,
             indicatorColor: Colors.transparent,
             labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             tabs: [

@@ -1,7 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/views/prop.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 Icon(
                   Icons.person,
-                  color: Color.fromRGBO(57, 182, 245, 1),
+                  color: Palette.accentColor,
                 ),
                 SizedBox(
                   width: 8,
@@ -59,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 Icon(
                   Icons.volume_up_outlined,
-                  color: Color.fromRGBO(57, 182, 245, 1),
+                  color: Palette.accentColor,
                 ),
                 SizedBox(
                   width: 8,
@@ -127,7 +127,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ],
                 ),
                 actions: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },

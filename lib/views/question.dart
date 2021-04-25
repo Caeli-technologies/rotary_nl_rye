@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/views/prop.dart';
 
 class QuestionPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _QuestionPageState extends State<QuestionPage> {
               'Vragen?',
               textScaleFactor: 2.4,
               style: TextStyle(
-                  color: Color.fromRGBO(19, 33, 70, 1),
+                  color: Palette.main,
                   fontWeight: FontWeight.bold),
             ),
           ),
