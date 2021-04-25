@@ -18,11 +18,10 @@ class _QuestionPageState extends State<QuestionPage> {
           Container(
             margin: EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              'Vragen?',
+              'Questions?',
               textScaleFactor: 2.4,
-              style: TextStyle(
-                  color: Palette.indigo,
-                  fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
             ),
           ),
           SizedBox(

@@ -40,8 +40,8 @@ class _InnerTabState extends State<InnerTab> {
         children: <Widget>[
           TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
-            indicator: CircleTabIndicator(
-                color: Palette.accentColor, radius: 2),
+            indicator:
+                CircleTabIndicator(color: Palette.accentColor, radius: 2),
             unselectedLabelColor: Palette.lightIndigo,
             labelColor: Palette.accentColor,
             indicatorColor: Colors.transparent,
@@ -56,7 +56,7 @@ class _InnerTabState extends State<InnerTab> {
               Container(
                   height: 30,
                   child: Tab(
-                    text: "geen idee",
+                    text: "no idee",
                   )),
               Container(
                   height: 30,
