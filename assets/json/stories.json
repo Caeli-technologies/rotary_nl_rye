@@ -1,7 +1,7 @@
 {
     "stories": [
         {
-            "images": "assets/3.PNG",
+            "images": "assets/image/3.PNG",
             "country": "Bali",
             "name": "Ruben",
             "departureDate": "12 april 2014",
@@ -10,7 +10,7 @@
             "text2": "debug"
         },
         {
-            "images": "assets/2.PNG",
+            "images": "assets/image/2.PNG",
             "country": "Bukittinggi",
             "name": "Ruben",
             "departureDate": "13 mei 2015",
@@ -19,7 +19,7 @@
             "text2": "debug"
         },
         {
-            "images": "assets/3.PNG",
+            "images": "assets/image/3.PNG",
             "country": "Yogyakarta",
             "name": "Ruben",
             "departureDate": "14 juni 2016",
@@ -28,7 +28,7 @@
             "text2": "debug"
         },
         {
-            "images": "assets/2.PNG",
+            "images": "assets/image/2.PNG",
             "country": "Bogor",
             "name": "Ruben",
             "departureDate": "15 julli 2017",
@@ -37,7 +37,7 @@
             "text2": "debug"
         },
         {
-            "images": "assets/2.PNG",
+            "images": "assets/image/2.PNG",
             "country": "Bandung",
             "name": "Ruben",
             "departureDate": "16 augustus 2018",
@@ -46,7 +46,7 @@
             "text2": "debug"
         },
         {
-            "images": "assets/3.PNG",
+            "images": "assets/image/3.PNG",
             "country": "Malang",
             "name": "Ruben",
             "departureDate": "17 september 2019",

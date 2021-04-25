@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/main.dart';
 
 import 'package:rotary_nl_rye/views/question.dart';
 import 'package:rotary_nl_rye/views/stories.dart';
@@ -15,10 +16,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-
     Device.width = MediaQuery.of(context).size.width;
     Device.height = MediaQuery.of(context).size.height;
-    Device.isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    Device.isDark =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     Palette.instance;
 
     return DefaultTabController(
@@ -67,7 +68,8 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Palette.grey),
                         ),
                         CircleAvatar(
-                          backgroundImage: ExactAssetImage('assets/1.PNG'),
+                          backgroundImage:
+                              ExactAssetImage('assets/image/1.PNG'),
                           minRadius: 20,
                           maxRadius: 20,
                         )
@@ -80,8 +82,7 @@ class _HomePageState extends State<HomePage> {
                       'Mau \nLiburan \nKemana, bos?',
                       textScaleFactor: 2.4,
                       style: TextStyle(
-                          color: Palette.indigo,
-                          fontWeight: FontWeight.bold),
+                          color: Palette.indigo, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -94,11 +95,10 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     margin: EdgeInsets.only(left: 20, top: 60, right: 20),
                     child: Text(
-                      'Verhalen van Exchange studenten',
+                      DemoLocalizations.of(context).trans('storiesHomeHeader'),
                       textScaleFactor: 2.4,
                       style: TextStyle(
-                          color: Palette.indigo,
-                          fontWeight: FontWeight.bold),
+                          color: Palette.indigo, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
