@@ -104,6 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
             scale: 0.7,
             child: CupertinoSwitch(
               value: isActive,
+              activeColor: Palette.accentColor,
               onChanged: (bool val) {},
             ))
       ],
