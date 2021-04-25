@@ -47,7 +47,7 @@ class _AboutPageState extends State<AboutPage> {
               child: Text('Create Data'),
               color: Colors.redAccent,
               onPressed: () {
-                getList();
+                //getList();
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
