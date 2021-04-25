@@ -43,6 +43,7 @@ dependencies:
   firebase_auth: ^1.1.1
   firebase_analytics: ^8.0.1
   firebase_database: any
+  translator: ^0.1.7
 
   
 dev_dependencies:
