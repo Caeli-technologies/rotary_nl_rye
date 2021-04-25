@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/views/prop.dart';
 
 // ignore: must_be_immutable
 class More extends StatelessWidget {
@@ -45,7 +46,6 @@ class MainContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Container(
         child: Column(
           children: <Widget>[
@@ -53,7 +53,7 @@ class MainContainer extends StatelessWidget {
               flex: 3,
               child: Container(
                 width: double.infinity,
-                color: Color.fromRGBO(247, 247, 249, 1),
+                color: Palette.themeShadeColor,
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -79,12 +79,12 @@ class MainContainer extends StatelessWidget {
                             },
                             child: new Icon(
                               Icons.arrow_back,
-                              color: Color.fromRGBO(57, 182, 245, 1),
+                              color: Palette.accentColor,
                               size: 30.0,
                             ),
                             shape: new CircleBorder(),
                             elevation: 2.0,
-                            fillColor: Colors.white,
+                            fillColor: Palette.themeShadeColor,
                             padding: const EdgeInsets.all(5.0),
                           ),
                         ),
@@ -99,7 +99,7 @@ class MainContainer extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(247, 247, 249, 1),
+                    color: Palette.themeShadeColor,
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(40.0),
                         bottomRight: Radius.circular(40.0))),
@@ -113,7 +113,7 @@ class MainContainer extends StatelessWidget {
                           country,
                           textScaleFactor: 2,
                           style: TextStyle(
-                            color: Color.fromRGBO(19, 33, 70, 1),
+                            color: Palette.indigo,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -127,7 +127,7 @@ class MainContainer extends StatelessWidget {
                           name,
                           textScaleFactor: 1,
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Palette.grey,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -144,14 +144,14 @@ class MainContainer extends StatelessWidget {
                               children: <Widget>[
                                 FaIcon(
                                   FontAwesomeIcons.planeDeparture,
-                                  color: Colors.indigo[100],
+                                  color: Palette.lightIndigo,
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
                                     departureDate,
                                     textScaleFactor: 1.2,
-                                    style: TextStyle(color: Colors.indigo[100]),
+                                    style: TextStyle(color: Palette.lightIndigo),
                                   ),
                                 )
                               ],
@@ -160,14 +160,14 @@ class MainContainer extends StatelessWidget {
                               children: <Widget>[
                                 FaIcon(
                                   FontAwesomeIcons.planeArrival,
-                                  color: Colors.indigo[100],
+                                  color: Palette.lightIndigo,
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
                                     arrivalDate,
                                     textScaleFactor: 1.2,
-                                    style: TextStyle(color: Colors.indigo[100]),
+                                    style: TextStyle(color: Palette.lightIndigo),
                                   ),
                                 )
                               ],
@@ -193,9 +193,9 @@ class MainContainer extends StatelessWidget {
                         indicator: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(50), // Creates border
-                            color: Colors.blue[100]),
-                        unselectedLabelColor: Colors.indigo[100],
-                        labelColor: Color.fromRGBO(57, 182, 245, 1),
+                            color: Palette.lightIndigo),
+                        unselectedLabelColor: Palette.lightIndigo,
+                        labelColor: Palette.accentColor,
                         indicatorColor: Colors.transparent,
                         labelStyle: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold),

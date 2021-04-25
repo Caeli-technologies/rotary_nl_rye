@@ -15,9 +15,11 @@ class Palette {
   Palette._();
   static final Palette _instance = Palette._();
 
-  static Color main = 0 as Color;
-  static Color tabBarBgColor = 0 as Color;
+  static Color indigo = 0 as Color;
+  static Color themeShadeColor = 0 as Color;
   static Color accentColor = 0 as Color;
+  static Color grey = 0 as Color;
+  static Color lightIndigo = 0 as Color;
 
   static Palette get instance {
     _instance.set();
@@ -26,14 +28,16 @@ class Palette {
 
   set() {
     accentColor = Color.fromRGBO(57, 182, 245, 1);
+    grey = Colors.grey[600]!;
+    lightIndigo = Colors.indigo[100]!;
 
     if (Device.isDark) {
-      main = Colors.indigo[400]!;
-      tabBarBgColor = Colors.grey[800]!;
+      indigo = Colors.indigo[400]!;
+      themeShadeColor = Colors.grey[800]!;
     }
     else {
-      main = Colors.indigo[800]!;
-      tabBarBgColor = Colors.grey[100]!;
+      indigo = Colors.indigo[800]!;
+      themeShadeColor = Colors.grey[100]!;
     }
   }
 }

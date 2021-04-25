@@ -42,7 +42,7 @@ class _InnerTabState extends State<InnerTab> {
             indicatorSize: TabBarIndicatorSize.tab,
             indicator: CircleTabIndicator(
                 color: Palette.accentColor, radius: 2),
-            unselectedLabelColor: Colors.indigo[100],
+            unselectedLabelColor: Palette.lightIndigo,
             labelColor: Palette.accentColor,
             indicatorColor: Colors.transparent,
             labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -135,7 +135,7 @@ class TravelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Color.fromRGBO(247, 247, 249, 1),
+          color: Palette.themeShadeColor,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
           height: 120,
@@ -160,7 +160,7 @@ class TravelCard extends StatelessWidget {
                           country,
                           textScaleFactor: 1.2,
                           style: TextStyle(
-                            color: Color.fromRGBO(19, 33, 70, 1),
+                            color: Palette.indigo,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -171,7 +171,7 @@ class TravelCard extends StatelessWidget {
                           children: <Widget>[
                             FaIcon(
                               FontAwesomeIcons.planeDeparture,
-                              color: Colors.indigo[100],
+                              color: Palette.lightIndigo,
                               size: 15,
                             ),
                             Container(
@@ -179,7 +179,7 @@ class TravelCard extends StatelessWidget {
                               child: Text(
                                 departureDate,
                                 textScaleFactor: 1.1,
-                                style: TextStyle(color: Colors.indigo[100]),
+                                style: TextStyle(color: Palette.lightIndigo),
                               ),
                             )
                           ],
@@ -193,7 +193,7 @@ class TravelCard extends StatelessWidget {
                           children: <Widget>[
                             FaIcon(
                               FontAwesomeIcons.planeArrival,
-                              color: Colors.indigo[100],
+                              color: Palette.lightIndigo,
                               size: 15,
                             ),
                             Container(
@@ -201,7 +201,7 @@ class TravelCard extends StatelessWidget {
                               child: Text(
                                 arrivalDate,
                                 textScaleFactor: 1.1,
-                                style: TextStyle(color: Colors.indigo[100]),
+                                style: TextStyle(color: Palette.lightIndigo),
                               ),
                             )
                           ],
@@ -216,7 +216,7 @@ class TravelCard extends StatelessWidget {
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
-                              style: TextStyle(color: Colors.grey)),
+                              style: TextStyle(color: Palette.grey)),
                         ),
                       )
                     ],

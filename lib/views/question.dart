@@ -21,7 +21,7 @@ class _QuestionPageState extends State<QuestionPage> {
               'Vragen?',
               textScaleFactor: 2.4,
               style: TextStyle(
-                  color: Palette.main,
+                  color: Palette.indigo,
                   fontWeight: FontWeight.bold),
             ),
           ),

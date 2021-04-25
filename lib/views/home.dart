@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         length: 5,
         child: Scaffold(
           bottomNavigationBar: Container(
-            color: Palette.tabBarBgColor,
+            color: Palette.themeShadeColor,
             child: TabBar(
                 tabs: [
                   Container(
@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> {
                       height: 90,
                       child: Tab(icon: FaIcon(FontAwesomeIcons.cog, size: 35))),
                 ],
-                unselectedLabelColor: Colors.indigo[100],
-                labelColor: Palette.main,
+                unselectedLabelColor: Palette.lightIndigo,
+                labelColor: Palette.indigo,
                 indicatorColor: Colors.transparent),
           ),
           body: TabBarView(
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'Hai, Ulul!',
                           textScaleFactor: 1,
-                          style: TextStyle(color: Colors.grey[400]),
+                          style: TextStyle(color: Palette.grey),
                         ),
                         CircleAvatar(
                           backgroundImage: ExactAssetImage('assets/1.PNG'),
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       'Mau \nLiburan \nKemana, bos?',
                       textScaleFactor: 2.4,
                       style: TextStyle(
-                          color: Palette.main,
+                          color: Palette.indigo,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                       'Verhalen van Exchange studenten',
                       textScaleFactor: 2.4,
                       style: TextStyle(
-                          color: Palette.main,
+                          color: Palette.indigo,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
