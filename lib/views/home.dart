@@ -18,12 +18,13 @@ class _HomePageState extends State<HomePage> {
 
     Device.width = MediaQuery.of(context).size.width;
     Device.height = MediaQuery.of(context).size.height;
+    Device.brightnessValue = MediaQuery.of(context).platformBrightness;
 
     return DefaultTabController(
         length: 5,
         child: Scaffold(
           bottomNavigationBar: Container(
-            color: Colors.grey[100],
+            color: Device.brightnessValue == Brightness.dark ? Colors.grey[800] : Colors.grey[100],
             child: TabBar(
                 tabs: [
                   Container(
