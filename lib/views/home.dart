@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/views/question.dart';
 import 'package:rotary_nl_rye/views/stories.dart';
 import 'package:rotary_nl_rye/views/settings.dart';
+import 'package:rotary_nl_rye/views/prop.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,6 +15,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
+    Device.width = MediaQuery.of(context).size.width;
+    Device.height = MediaQuery.of(context).size.height;
+
     return DefaultTabController(
         length: 5,
         child: Scaffold(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/data/more.dart';
+import 'package:rotary_nl_rye/views/prop.dart';
 
 class InnerTab extends StatefulWidget {
   @override
@@ -64,14 +65,14 @@ class _InnerTabState extends State<InnerTab> {
             ],
           ),
           Container(
-            height: 640,
-            margin: EdgeInsets.only(left: 20, top: 15, right: 20),
+            height: Device.height - 277,
+            margin: EdgeInsets.only(left: 20, right: 20),
             child: TabBarView(children: [
               ListView.builder(
                   itemCount: _stories.length,
                   itemBuilder: (BuildContext ctxt, int index) {
                     return Transform.translate(
-                      offset: Offset(0, -24),
+                      offset: Offset(0, -10),
                       child: GestureDetector(
                         onTap: () => Navigator.push(
                           context,
@@ -208,7 +209,7 @@ class TravelCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 4),
                         child: SizedBox(
-                          width: 1.0,
+                          width: Device.width - 240,
                           child: Text(text1,
                               textScaleFactor: 0.7,
                               maxLines: 3,
