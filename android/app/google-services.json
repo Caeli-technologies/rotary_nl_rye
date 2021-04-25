@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "262138864903",
-    "project_id": "home-network-278018",
-    "storage_bucket": "home-network-278018.appspot.com"
+    "project_number": "472986347166",
+    "project_id": "rotary-nl-rye",
+    "storage_bucket": "rotary-nl-rye.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:262138864903:android:02f3202e544db9970b51a2",
+        "mobilesdk_app_id": "1:472986347166:android:fb5f5b45e6039e2dcebd8f",
         "android_client_info": {
           "package_name": "com.caelitechnologies.rotary_nl_rye"
         }
       },
       "oauth_client": [
         {
-          "client_id": "262138864903-5o21to5cg7j15r17gk97tip1duseue36.apps.googleusercontent.com",
+          "client_id": "472986347166-5afmt4fh4p6deaq3ck7lg25lrdajhh4f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDlW2Mo2OOg7golgmYxxsgr3Lj22P7LZj0"
+          "current_key": "AIzaSyBSquTO3PUB8-IG3gvZby0wcRxW3-GmxFg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "262138864903-5o21to5cg7j15r17gk97tip1duseue36.apps.googleusercontent.com",
+              "client_id": "472986347166-5afmt4fh4p6deaq3ck7lg25lrdajhh4f.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "262138864903-1ti76v2h8t5vbb23toirvb45r6j1397u.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.caelitechnologies.rotary-nl-rye"
-              }
             }
           ]
         }
