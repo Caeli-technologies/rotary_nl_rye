@@ -6,7 +6,8 @@ import 'package:rotary_nl_rye/views/prop.dart';
 
 // ignore: must_be_immutable
 class More extends StatelessWidget {
-  String country, name, text1, text2, image, arrivalDate, departureDate;
+  String country, name, text1, text2, image;
+  int arrivalDate, departureDate;
 
   More(
       {this.country,
@@ -32,7 +33,8 @@ class More extends StatelessWidget {
 }
 
 class MainContainer extends StatelessWidget {
-  final String image, name, country, text1, text2, arrivalDate, departureDate;
+  final String image, name, country, text1, text2;
+  final int arrivalDate, departureDate;
 
   MainContainer(
       {this.image,
@@ -149,7 +151,7 @@ class MainContainer extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    departureDate,
+                                    Device.convert(departureDate),
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Palette.lightIndigo),
                                   ),
@@ -165,7 +167,7 @@ class MainContainer extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    arrivalDate,
+                                    Device.convert(arrivalDate),
                                     textScaleFactor: 1.2,
                                     style: TextStyle(color: Palette.lightIndigo),
                                   ),

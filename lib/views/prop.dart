@@ -9,6 +9,32 @@ class Device {
   static double width = 0;
   static double height = 0;
   static bool isDark = false;
+
+  static String convert(int millisecondsSinceEpoch){
+    String result = "";
+
+    List months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+
+    result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).day.toString();
+    result += " ";
+    result += months[DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).month];
+    result += " ";
+    result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).year.toString();
+
+    return result;
+  }
 }
 
 class Palette {

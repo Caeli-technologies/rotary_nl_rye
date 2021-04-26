@@ -1,9 +1,8 @@
 // @dart=2.9
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/data/database_helper.dart';
 import 'package:rotary_nl_rye/data/more.dart';
 import 'package:rotary_nl_rye/views/prop.dart';
 
@@ -15,13 +14,12 @@ class InnerTab extends StatefulWidget {
 class _InnerTabState extends State<InnerTab> {
   List _stories = [];
 
-  // Fetch content from the json file
+  // Fetch content from the DB
   Future readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/json/stories.json');
-    final data = await json.decode(response);
+    List<Map<String, dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
+
     setState(() {
-      _stories = data["stories"];
+      _stories = queryRows;
     });
   }
 
@@ -79,20 +77,19 @@ class _InnerTabState extends State<InnerTab> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => More(
-                                    image: _stories[index]["images"],
+                                    image: _stories[index]["image"],
                                     country: _stories[index]["country"],
                                     name: _stories[index]["name"],
                                     text1: _stories[index]["text1"],
                                     text2: _stories[index]["text2"],
-                                    departureDate: _stories[index]
-                                        ["departureDate"],
+                                    departureDate: _stories[index]["departureDate"],
                                     arrivalDate: _stories[index]["arrivalDate"],
                                   )),
                         ),
                         child: Container(
                           padding: EdgeInsets.only(bottom: 10),
                           child: TravelCard(
-                            images: _stories[index]["images"],
+                            image: _stories[index]["image"],
                             country: _stories[index]["country"],
                             text1: _stories[index]["text1"],
                             text2: _stories[index]["text2"],
@@ -104,7 +101,23 @@ class _InnerTabState extends State<InnerTab> {
                     );
                   }),
               Container(
-                child: Text("2"),
+                child: FlatButton(
+                    child: Text("Hallo"),
+                    onPressed: () async {
+                  int id = await DatabaseHelper.instance.insert({
+                    DatabaseHelper.storyImage: "assets/image/3.PNG",
+                    DatabaseHelper.storyCountry: "Bali",
+                    DatabaseHelper.storyName: "Ruben",
+                    DatabaseHelper.storyDepartureDate:
+                        DateTime.now().millisecondsSinceEpoch,
+                    DatabaseHelper.storyArrivalDate:
+                        DateTime.now().millisecondsSinceEpoch + 3600 * 2,
+                    DatabaseHelper.storyText1: "frfgefe greg regergerger",
+                    DatabaseHelper.storyText2: "debug",
+                  });
+                  print(id);
+                }
+                ),
               ),
               Center(
                 child: Text("3"),
@@ -121,7 +134,8 @@ class _InnerTabState extends State<InnerTab> {
 }
 
 class TravelCard extends StatelessWidget {
-  final String country, text1, text2, images, departureDate, arrivalDate;
+  final String country, text1, text2, image;
+  final int departureDate, arrivalDate;
 
   TravelCard(
       {this.departureDate,
@@ -129,7 +143,7 @@ class TravelCard extends StatelessWidget {
       this.text2,
       this.arrivalDate,
       this.country,
-      this.images});
+      this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +160,7 @@ class TravelCard extends StatelessWidget {
                     height: 120,
                     child: ClipRRect(
                       borderRadius: new BorderRadius.circular(14.0),
-                      child: Image.asset(images),
+                      child: Image.asset(image),
                     )),
                 SizedBox(
                   height: 120,
@@ -177,7 +191,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                departureDate,
+                                Device.convert(departureDate),
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),
@@ -199,7 +213,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                arrivalDate,
+                                Device.convert(arrivalDate),
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),
