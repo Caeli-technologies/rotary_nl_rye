@@ -73,14 +73,10 @@ class _InnerTabState extends State<InnerTab> {
               FutureBuilder(
                   future: dbRef.once(),
                   builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+                    //_stories.clear();
+
                     if (snapshot.hasData) {
-                      _stories.clear();
-                      //print(snapshot.data.value);
                       _stories = snapshot.data.value;
-                      /*Map<dynamic, dynamic> values = snapshot.data.value;
-                      values.forEach((key, values) {
-                        _stories.add(values);
-                      });*/
                     }
                     return new ListView.builder(
                         itemCount: _stories.length,
