@@ -175,7 +175,6 @@ class TravelCard extends StatelessWidget {
                                 color: Palette.lightIndigo,
                                 size: 15,
                               ),
-                              //changes here
                               Container(
                                 margin: EdgeInsets.only(left: 5),
                                 child: Text(
