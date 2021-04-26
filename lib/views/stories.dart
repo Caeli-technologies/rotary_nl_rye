@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,11 +13,13 @@ class InnerTab extends StatefulWidget {
 }
 
 class _InnerTabState extends State<InnerTab> {
+  final dbRef = FirebaseDatabase.instance.reference().child("stories");
   List _stories = [];
 
-  // Fetch content from the DB
-  Future readJson() async {
-    List<Map<String, dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
+  // Fetch content from the local DB
+  Future readDB() async {
+    List<Map<String, dynamic>> queryRows =
+        await DatabaseHelper.instance.queryAll();
 
     setState(() {
       _stories = queryRows;
@@ -26,7 +29,7 @@ class _InnerTabState extends State<InnerTab> {
   @override
   void initState() {
     super.initState();
-    readJson();
+    //readFirebase();
   }
 
   @override
@@ -67,57 +70,72 @@ class _InnerTabState extends State<InnerTab> {
             height: Device.height - 277,
             margin: EdgeInsets.only(left: 20, right: 20),
             child: TabBarView(children: [
-              ListView.builder(
-                  itemCount: _stories.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return Transform.translate(
-                      offset: Offset(0, -10),
-                      child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => More(
-                                    image: _stories[index]["image"],
-                                    country: _stories[index]["country"],
-                                    name: _stories[index]["name"],
-                                    text1: _stories[index]["text1"],
-                                    text2: _stories[index]["text2"],
-                                    departureDate: _stories[index]["departureDate"],
-                                    arrivalDate: _stories[index]["arrivalDate"],
-                                  )),
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: TravelCard(
-                            image: _stories[index]["image"],
-                            country: _stories[index]["country"],
-                            text1: _stories[index]["text1"],
-                            text2: _stories[index]["text2"],
-                            departureDate: _stories[index]["departureDate"],
-                            arrivalDate: _stories[index]["arrivalDate"],
-                          ),
-                        ),
-                      ),
-                    );
+              FutureBuilder(
+                  future: dbRef.once(),
+                  builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      _stories.clear();
+                      //print(snapshot.data.value);
+                      _stories = snapshot.data.value;
+                      /*Map<dynamic, dynamic> values = snapshot.data.value;
+                      values.forEach((key, values) {
+                        _stories.add(values);
+                      });*/
+                    }
+                    return new ListView.builder(
+                        itemCount: _stories.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return Transform.translate(
+                            offset: Offset(0, -10),
+                            child: GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => More(
+                                          image: _stories[index]["images"],
+                                          country: _stories[index]["country"],
+                                          name: _stories[index]["name"],
+                                          text1: _stories[index]["text1"],
+                                          text2: _stories[index]["text2"],
+                                          departureDate: _stories[index]
+                                              ["departureDate"],
+                                          arrivalDate: _stories[index]
+                                              ["arrivalDate"],
+                                        )),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TravelCard(
+                                  image: _stories[index]["images"],
+                                  country: _stories[index]["country"],
+                                  text1: _stories[index]["text1"],
+                                  text2: _stories[index]["text2"],
+                                  departureDate: _stories[index]
+                                      ["departureDate"],
+                                  arrivalDate: _stories[index]["arrivalDate"],
+                                ),
+                              ),
+                            ),
+                          );
+                        });
                   }),
               Container(
                 child: FlatButton(
                     child: Text("Hallo"),
                     onPressed: () async {
-                  int id = await DatabaseHelper.instance.insert({
-                    DatabaseHelper.storyImage: "assets/image/3.PNG",
-                    DatabaseHelper.storyCountry: "Bali",
-                    DatabaseHelper.storyName: "Ruben",
-                    DatabaseHelper.storyDepartureDate:
-                        DateTime.now().millisecondsSinceEpoch,
-                    DatabaseHelper.storyArrivalDate:
-                        DateTime.now().millisecondsSinceEpoch + 3600 * 2,
-                    DatabaseHelper.storyText1: "frfgefe greg regergerger",
-                    DatabaseHelper.storyText2: "debug",
-                  });
-                  print(id);
-                }
-                ),
+                      int id = await DatabaseHelper.instance.insert({
+                        DatabaseHelper.storyImage: "assets/image/3.PNG",
+                        DatabaseHelper.storyCountry: "Bali",
+                        DatabaseHelper.storyName: "Ruben",
+                        DatabaseHelper.storyDepartureDate:
+                            DateTime.now().millisecondsSinceEpoch,
+                        DatabaseHelper.storyArrivalDate:
+                            DateTime.now().millisecondsSinceEpoch + 3600 * 2,
+                        DatabaseHelper.storyText1: "frfgefe greg regergerger",
+                        DatabaseHelper.storyText2: "debug",
+                      });
+                      print(id);
+                    }),
               ),
               Center(
                 child: Text("3"),
