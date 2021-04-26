@@ -150,8 +150,9 @@ class MainContainer extends StatelessWidget {
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
                                     departureDate,
-                                    textScaleFactor: 1.2,
-                                    style: TextStyle(color: Palette.lightIndigo),
+                                    textScaleFactor: 1,
+                                    style:
+                                        TextStyle(color: Palette.lightIndigo),
                                   ),
                                 )
                               ],
@@ -166,8 +167,10 @@ class MainContainer extends StatelessWidget {
                                   margin: EdgeInsets.only(left: 5),
                                   child: Text(
                                     arrivalDate,
-                                    textScaleFactor: 1.2,
-                                    style: TextStyle(color: Palette.lightIndigo),
+                                    textScaleFactor: 1,
+                                    style: TextStyle(
+                                      color: Palette.lightIndigo,
+                                    ),
                                   ),
                                 )
                               ],
@@ -211,7 +214,7 @@ class MainContainer extends StatelessWidget {
                       Container(
                         constraints:
                             BoxConstraints(minHeight: 200, minWidth: 100),
-                        height: 400,
+                        height: Device.height - 400,
                         margin: EdgeInsets.only(left: 20, right: 20),
                         child: TabBarView(children: [
                           ListView(children: [Text(text1)]),

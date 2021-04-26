@@ -148,79 +148,84 @@ class TravelCard extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(14.0),
                       child: Image.asset(images),
                     )),
-                SizedBox(
-                  height: 120,
-                  child: Container(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(left: 10, top: 12),
-                        child: Text(
-                          country,
-                          textScaleFactor: 1.2,
-                          style: TextStyle(
-                            color: Palette.indigo,
-                            fontWeight: FontWeight.bold,
+                Expanded(
+                  child: SizedBox(
+                    height: 120,
+                    child: Container(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(left: 10, top: 12),
+                          child: Text(
+                            country,
+                            textScaleFactor: 1.2,
+                            style: TextStyle(
+                              color: Palette.indigo,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10, top: 4),
-                        child: Row(
-                          children: <Widget>[
-                            FaIcon(
-                              FontAwesomeIcons.planeDeparture,
-                              color: Palette.lightIndigo,
-                              size: 15,
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: Text(
-                                departureDate,
-                                textScaleFactor: 1.1,
-                                style: TextStyle(color: Palette.lightIndigo),
+                        Container(
+                          padding: EdgeInsets.only(left: 10, top: 4),
+                          child: Row(
+                            children: <Widget>[
+                              FaIcon(
+                                FontAwesomeIcons.planeDeparture,
+                                color: Palette.lightIndigo,
+                                size: 15,
                               ),
-                            )
-                          ],
+                              //changes here
+                              Container(
+                                margin: EdgeInsets.only(left: 5),
+                                child: Text(
+                                  departureDate,
+                                  textScaleFactor: 0.9,
+                                  style: TextStyle(color: Palette.lightIndigo),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(
-                          left: 10,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            FaIcon(
-                              FontAwesomeIcons.planeArrival,
-                              color: Palette.lightIndigo,
-                              size: 15,
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: Text(
-                                arrivalDate,
-                                textScaleFactor: 1.1,
-                                style: TextStyle(color: Palette.lightIndigo),
+                        Container(
+                          padding: EdgeInsets.only(
+                            left: 10,
+                          ),
+                          child: Row(
+                            children: <Widget>[
+                              FaIcon(
+                                FontAwesomeIcons.planeArrival,
+                                color: Palette.lightIndigo,
+                                size: 15,
                               ),
-                            )
-                          ],
+                              Container(
+                                margin: EdgeInsets.only(left: 5),
+                                child: Text(
+                                  arrivalDate,
+                                  textScaleFactor: 0.9,
+                                  style: TextStyle(color: Palette.lightIndigo),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10, top: 4),
-                        child: SizedBox(
-                          width: Device.width - 240,
-                          child: Text(text1,
-                              textScaleFactor: 0.7,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: false,
-                              style: TextStyle(color: Palette.grey)),
-                        ),
-                      )
-                    ],
-                  )),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 10, top: 4),
+                            child: SizedBox(
+                              width: Device.width - 240,
+                              child: Text(text1,
+                                  textScaleFactor: 0.7,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
+                                  style: TextStyle(color: Palette.grey)),
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
+                  ),
                 ),
               ],
             ),
