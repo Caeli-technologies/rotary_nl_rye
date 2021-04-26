@@ -6,6 +6,7 @@ import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/views/question.dart';
 import 'package:rotary_nl_rye/views/stories.dart';
 import 'package:rotary_nl_rye/views/settings.dart';
+import 'package:rotary_nl_rye/views/aboutpage.dart';
 import 'package:rotary_nl_rye/views/prop.dart';
 
 class HomePage extends StatefulWidget {
@@ -110,9 +111,7 @@ class _HomePageState extends State<HomePage> {
               //FAQ
               QuestionPage(),
               //about us
-              Center(
-                child: Text("4"),
-              ),
+              AboutPage(),
               //settings
               SettingsPage(),
             ],
