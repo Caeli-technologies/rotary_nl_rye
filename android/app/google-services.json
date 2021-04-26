@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "472986347166",
+    "firebase_url": "https://rotary-nl-rye-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "rotary-nl-rye",
     "storage_bucket": "rotary-nl-rye.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "472986347166-5afmt4fh4p6deaq3ck7lg25lrdajhh4f.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "472986347166-k6qidcpg9ihth7msdo0d1qshco0bh0rn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.caelitechnologies.rotary-nl-rye"
+              }
             }
           ]
         }
