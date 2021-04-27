@@ -29,7 +29,7 @@ class Device {
 
     result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).day.toString();
     result += " ";
-    result += months[DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).month];
+    result += months[DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).month - 1];
     result += " ";
     result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).year.toString();
 
