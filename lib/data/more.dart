@@ -51,47 +51,45 @@ class MainContainer extends StatelessWidget {
       body: Container(
         child: Column(
           children: <Widget>[
-            Expanded(
-              flex: 3,
+            Container(
+              width: double.infinity,
+              color: Palette.themeShadeColor,
               child: Container(
-                width: double.infinity,
-                color: Palette.themeShadeColor,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(40.0),
-                          bottomRight: Radius.circular(40.0)),
-                      image: DecorationImage(
-                        image: AssetImage(image),
-                        fit: BoxFit.cover,
-                      )),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(left: 30, top: 40),
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40.0)),
-                          child: RawMaterialButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: new Icon(
-                              Icons.arrow_back,
-                              color: Palette.accentColor,
-                              size: 30.0,
-                            ),
-                            shape: new CircleBorder(),
-                            elevation: 2.0,
-                            fillColor: Palette.themeShadeColor,
-                            padding: const EdgeInsets.all(5.0),
+                height: Device.height * 0.3,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(40.0),
+                        bottomRight: Radius.circular(40.0)),
+                    image: DecorationImage(
+                      image: AssetImage(image),
+                      fit: BoxFit.cover,
+                    )),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(left: 30, top: 40),
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40.0)),
+                        child: RawMaterialButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: new Icon(
+                            Icons.arrow_back,
+                            color: Palette.accentColor,
+                            size: 30.0,
                           ),
+                          shape: new CircleBorder(),
+                          elevation: 2.0,
+                          fillColor: Palette.themeShadeColor,
+                          padding: const EdgeInsets.all(5.0),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
