@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/views/prop.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _QuestionPageState extends State<QuestionPage> {
           Container(
             margin: EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              'Questions?',
+              DemoLocalizations.of(context).trans('questionTitle'),
               textScaleFactor: 2.4,
               style:
                   TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),

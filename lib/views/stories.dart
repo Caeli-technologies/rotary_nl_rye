@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/data/database_helper.dart';
 import 'package:rotary_nl_rye/data/more.dart';
+import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/views/prop.dart';
 
 class InnerTab extends StatefulWidget {
@@ -48,21 +49,21 @@ class _InnerTabState extends State<InnerTab> {
             indicatorColor: Colors.transparent,
             labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             tabs: [
-              Container(height: 30, child: Tab(text: "Stories")),
+              Container(height: 30, child: Tab(text: DemoLocalizations.of(context).trans('storiesTabBar1'))),
               Container(
                   height: 30,
                   child: Tab(
-                    text: "info",
+                    text: DemoLocalizations.of(context).trans('storiesTabBar2'),
                   )),
               Container(
                   height: 30,
                   child: Tab(
-                    text: "no idee",
+                    text: DemoLocalizations.of(context).trans('storiesTabBar3'),
                   )),
               Container(
                   height: 30,
                   child: Tab(
-                    text: "????",
+                    text: DemoLocalizations.of(context).trans('storiesTabBar4'),
                   )),
             ],
           ),
@@ -115,23 +116,8 @@ class _InnerTabState extends State<InnerTab> {
                           );
                         });
                   }),
-              Container(
-                child: FlatButton(
-                    child: Text("Hallo"),
-                    onPressed: () async {
-                      int id = await DatabaseHelper.instance.insert({
-                        DatabaseHelper.storyImage: "assets/image/3.PNG",
-                        DatabaseHelper.storyCountry: "Bali",
-                        DatabaseHelper.storyName: "Ruben",
-                        DatabaseHelper.storyDepartureDate:
-                            DateTime.now().millisecondsSinceEpoch,
-                        DatabaseHelper.storyArrivalDate:
-                            DateTime.now().millisecondsSinceEpoch + 3600 * 2,
-                        DatabaseHelper.storyText1: "frfgefe greg regergerger",
-                        DatabaseHelper.storyText2: "debug",
-                      });
-                      print(id);
-                    }),
+              Center(
+                child: Text("2"),
               ),
               Center(
                 child: Text("3"),
