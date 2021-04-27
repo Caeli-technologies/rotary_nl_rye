@@ -55,7 +55,7 @@ class MainContainer extends StatelessWidget {
               width: double.infinity,
               color: Palette.themeShadeColor,
               child: Container(
-                height: Device.height * 0.3,
+                height: Device.height * 0.25,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(40.0),
@@ -204,15 +204,15 @@ class MainContainer extends StatelessWidget {
                         Container(child: Tab(text: "City 1")),
                         Container(
                             child: Tab(
-                          text: "City 2",
+                          text: "City 2"
                         )),
                       ],
                       labelPadding: EdgeInsets.all(0),
                     ),
                     Container(
                       constraints:
-                          BoxConstraints(minHeight: 200, minWidth: 100),
-                      height: 400,
+                          BoxConstraints(minHeight: Device.height * 0.25, minWidth: Device.height * 0.2),
+                      height: Device.height * 0.5,
                       margin: EdgeInsets.only(left: 20, right: 20),
                       child: TabBarView(children: [
                         ListView(children: [Text(text1)]),
