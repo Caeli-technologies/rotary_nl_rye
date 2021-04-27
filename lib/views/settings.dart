@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/views/prop.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Container(
               margin: EdgeInsets.only(right: 20),
               child: Text(
-                'Settings',
+                DemoLocalizations.of(context).trans('settingsTitle'),
                 textScaleFactor: 2.4,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -37,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   width: 8,
                 ),
                 Text(
-                  "Account",
+                  DemoLocalizations.of(context).trans('account'),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -49,9 +50,9 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "Social"),
-            buildAccountOptionRow(context, "Language"),
-            buildAccountOptionRow(context, "Privacy and security"),
+            buildAccountOptionRow(context, DemoLocalizations.of(context).trans('social')),
+            buildAccountOptionRow(context, DemoLocalizations.of(context).trans('language')),
+            buildAccountOptionRow(context, DemoLocalizations.of(context).trans('privacyAndSecurity')),
             SizedBox(
               height: 40,
             ),
@@ -65,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   width: 8,
                 ),
                 Text(
-                  "Notifications",
+                  DemoLocalizations.of(context).trans('notifications'),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -77,9 +78,9 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildNotificationOptionRow("New for you", true),
-            buildNotificationOptionRow("Account activity", true),
-            buildNotificationOptionRow("Opportunity", false),
+            buildNotificationOptionRow(DemoLocalizations.of(context).trans('new4You'), true),
+            buildNotificationOptionRow(DemoLocalizations.of(context).trans('accountActivity'), true),
+            buildNotificationOptionRow(DemoLocalizations.of(context).trans('opportunity'), false),
             SizedBox(
               height: 50,
             ),

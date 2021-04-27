@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          'Hai, Ulul!',
+                          DemoLocalizations.of(context).trans('homeWelcomeMessage'),
                           textScaleFactor: 1,
                           style: TextStyle(color: Palette.grey),
                         ),
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     margin: EdgeInsets.only(left: 20, top: 10, right: 20),
                     child: Text(
-                      'Mau \nLiburan \nKemana, bos?',
+                      DemoLocalizations.of(context).trans('homeTitle'),
                       textScaleFactor: 2.4,
                       style: TextStyle(
                           color: Palette.indigo, fontWeight: FontWeight.bold),
