@@ -44,7 +44,8 @@ class Device {
   }
 
   static Future<List> readDB() async {
-    print("Reading DB ...");
+    print("Started reading from DB");
+
     // table names
     final _storiesTableName = "stories";
     final _updateTableName = "update";
@@ -69,36 +70,55 @@ class Device {
     int timeNow = DateTime.now().millisecondsSinceEpoch;
     int oneDay = 86400000;
 
-    // updates data
-    fbTable.asStream().forEach((element) async {
-      bool isStoriesTable = (element.key == _storiesTableName);
-      if (isStoriesTable && (timeNow - lastUpdate) > oneDay) {
-        // clears lastUpdateTime
-        print("Clearing $_storiesTableName table");
+    Future<void> clearStories() async {
+      print("Started clearing $_storiesTableName table");
+      await localDbInstance.reCreateStoriesTable();
+      print("Finished clearing $_storiesTableName table");
+    }
 
-        await localDbInstance.reCreateStoriesTable().then((value) {
-          // fetches data from firebase and stores it in local db
-          print("Fetching data from firebase $_storiesTableName table");
+    Future<bool> fetchDataFromFirebase() async {
+      print("Started fetching data from firebase $_storiesTableName table");
+      bool temp = false;
 
-          List tempList = element.value as List;
-          tempList.forEach((listItem) async {
-            await localDbInstance.insert(_storiesTableName, Map<String, dynamic>.from(listItem));
-          });
+      fbTable.asStream().forEach((element) {
+        List tempList = element.value as List;
+        tempList.forEach((listItem) async {
+          await localDbInstance.insert(
+              _storiesTableName, Map<String, dynamic>.from(listItem));
         });
+        temp = (element.key == _storiesTableName);
+      });
+      print("Finished fetching data from firebase $_storiesTableName table");
+      return temp;
+    }
 
-        // set lastUpdateTime
-        print("Update lastUpdatedTime to " + DateTime.now().toString());
+    Future<void> setLastUpdateTime() async {
+      print("Started updating lastUpdatedTime");
 
-        int firstId = 1;
-        await localDbInstance.update(_updateTableName, firstId, {DatabaseHelper.updateLast: timeNow});
-      }
-    });
+      int firstId = 1;
+      await localDbInstance.update(
+          _updateTableName, firstId, {DatabaseHelper.updateLast: timeNow});
+      print("Finished updating lastUpdatedTime");
+    }
 
-    // fetches data from local db
-    print("Fetching data from local db $_storiesTableName table");
+    Future<List> fetchLocalData() async {
+      print("Started fetching data from local db $_storiesTableName table");
+      final data = await localDbInstance.queryAll(_storiesTableName);
 
-    List<Map<String, dynamic>> queryRows = await localDbInstance.queryAll(_storiesTableName);
+      print("Finished fetching data from local db $_storiesTableName table");
+      return data;
+    }
 
+    List queryRows = await fetchLocalData();
+
+    if ((timeNow - lastUpdate) > oneDay) {
+      await clearStories();
+      await fetchDataFromFirebase();
+      await setLastUpdateTime();
+      queryRows = await fetchLocalData();
+    }
+
+    print("Finished reading from DB");
     return queryRows;
   }
 }

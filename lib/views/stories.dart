@@ -78,41 +78,50 @@ class _InnerTabState extends State<InnerTab> {
                     if (snapshot.hasData) {
                       _stories = snapshot.data;
                     }
-
-                    return new ListView.builder(
-                  itemCount: _stories.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return Transform.translate(
-                      offset: Offset(0, -10),
-                      child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => More(
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return new ListView.builder(
+                          itemCount: _stories.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return Transform.translate(
+                              offset: Offset(0, -10),
+                              child: GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => More(
+                                            image: _stories[index]["images"],
+                                            country: _stories[index]["country"],
+                                            name: _stories[index]["name"],
+                                            text1: _stories[index]["text1"],
+                                            text2: _stories[index]["text2"],
+                                            departureDate: _stories[index]
+                                                ["departureDate"],
+                                            arrivalDate: _stories[index]
+                                                ["arrivalDate"],
+                                          )),
+                                ),
+                                child: Container(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: TravelCard(
                                     image: _stories[index]["images"],
                                     country: _stories[index]["country"],
-                                    name: _stories[index]["name"],
                                     text1: _stories[index]["text1"],
                                     text2: _stories[index]["text2"],
                                     departureDate: _stories[index]
                                         ["departureDate"],
                                     arrivalDate: _stories[index]["arrivalDate"],
-                                  )),
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: TravelCard(
-                            image: _stories[index]["images"],
-                            country: _stories[index]["country"],
-                            text1: _stories[index]["text1"],
-                            text2: _stories[index]["text2"],
-                            departureDate: _stories[index]["departureDate"],
-                            arrivalDate: _stories[index]["arrivalDate"],
-                          ),
-                        ),
-                      ),
-                    );
-                    });
+                                  ),
+                                ),
+                              ),
+                            );
+                          });
+                    } else {
+                      return Center(
+                          child: Container(
+                              width: Device.width * 0.4,
+                              height: Device.width * 0.4,
+                              child: CircularProgressIndicator()));
+                    }
                   }),
               Center(
                 child: Text("2"),

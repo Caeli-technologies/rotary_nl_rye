@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
 
-  static final _dbName = "test_v1.25.db";
+  static final _dbName = "test_v1.47.db";
   static final _dbVersion = 1;
   static final _storiesTableName = "stories";
   static final _updateTableName = "update";
@@ -68,6 +68,7 @@ class DatabaseHelper {
       "$storyText1" TEXT NOT NULL,
       "$storyText2" TEXT NOT NULL);
     ''');
+    print("Created table $_storiesTableName");
   }
 
   Future createUpdateTable(Database db) async{
