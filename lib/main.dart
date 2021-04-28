@@ -142,7 +142,8 @@ class MyApp extends StatelessWidget {
 }
 
 void main() async {
+  runApp(new MyApp());
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(new MyApp());
 }

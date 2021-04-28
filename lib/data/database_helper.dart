@@ -6,14 +6,16 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
 
-  static final _dbName = "test_v1.0.db";
+  static final _dbName = "test_v1.25.db";
   static final _dbVersion = 1;
-  static final _tableName = "stories";
+  static final _storiesTableName = "stories";
+  static final _updateTableName = "update";
+  static final _idName = "_id";
 
   // stories columns
-  static final storyId = "_id";
+  static final _storyId = _idName;
   static final storyName = "name";
-  static final storyImage = "image";
+  static final storyImage = "images";
   static final storyCountry = "country";
 
   static final storyArrivalDate = "arrivalDate";
@@ -21,8 +23,9 @@ class DatabaseHelper {
   static final storyText1 = "text1";
   static final storyText2 = "text2";
 
-  // event appearance
-  static final eventColor = "color";
+  // update columns
+  static final _updateId = _idName;
+  static final updateLast = "lastUpdate";
 
   //making it a singleton class
   DatabaseHelper._privateConstructor();
@@ -31,7 +34,7 @@ class DatabaseHelper {
   static Database _database = null as Database;
 
   Future<Database> get database async {
-    if(_database != null)
+    if(_database != null as Database)
       return _database;
 
     _database = await _initiateDatabase();
@@ -40,44 +43,74 @@ class DatabaseHelper {
   }
 
   _initiateDatabase() async {
+    print("Initiate local db");
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, _dbName);
     return await openDatabase(path, version: _dbVersion, onCreate: _onCreate);
   }
 
   Future _onCreate(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE $_tableName(    
-      $storyId INTEGER PRIMARY KEY,
-      $storyName TEXT NOT NULL,
-      $storyImage TEXT NOT NULL,
-      $storyCountry TEXT NOT NULL,
+    await createStoriesTable(db);
+    await createUpdateTable(db);
+  }
 
-      $storyArrivalDate INTEGER,
-      $storyDepartureDate INTEGER,
-      $storyText1 TEXT NOT NULL,
-      $storyText2 TEXT NOT NULL);
+  Future createStoriesTable(Database db) async{
+    print("Create table $_storiesTableName");
+    await db.execute('''
+      CREATE TABLE "$_storiesTableName"(    
+      "$_storyId" INTEGER PRIMARY KEY,
+      "$storyName" TEXT NOT NULL,
+      "$storyImage" TEXT NOT NULL,
+      "$storyCountry" TEXT NOT NULL,
+
+      "$storyArrivalDate" INTEGER NOT NULL,
+      "$storyDepartureDate" INTEGER NOT NULL,
+      "$storyText1" TEXT NOT NULL,
+      "$storyText2" TEXT NOT NULL);
     ''');
   }
 
-  Future<int> insert(Map<String, dynamic> row) async {
-    Database db = await instance.database;
-    return await db.insert(_tableName, row);
+  Future createUpdateTable(Database db) async{
+    print("Create table $_updateTableName");
+    await db.execute('''
+      CREATE TABLE "$_updateTableName"(
+      "$_updateId" INTEGER PRIMARY KEY,
+      "$updateLast" INTEGER NOT NULL);
+    ''');
   }
 
-  Future<List<Map<String, dynamic>>> queryAll() async {
+  Future<int> insert(String table, Map<String, dynamic> row) async {
     Database db = await instance.database;
-    return await db.query(_tableName);
+    return await db.insert(table, row);
   }
 
-  Future<int> update(Map<String, dynamic> row) async {
+  Future<List<Map<String, dynamic>>> queryAll(String table) async {
     Database db = await instance.database;
-    int id = row[storyId];
-    return await db.update(_tableName, row, where: '$storyId = ?', whereArgs: [id]);
+    if(await hasItems(table)) {
+      return await db.query(table);
+    }
+    return [];
   }
 
-  Future<int> delete(int id) async {
+  Future<int> update(String table, int id, Map<String, dynamic> row) async {
     Database db = await instance.database;
-    return await db.delete(_tableName, where: '$storyId = ?', whereArgs:  [id]);
+    return await db.update(table, row, where: '"$_idName" = ?', whereArgs: [id]);
+  }
+
+  Future<bool> hasItems(String table) async {
+    Database db = await instance.database;
+    final firstEntry = await db.query(table, where: '"$_idName" = ?', whereArgs:  [1]);
+    return firstEntry.isNotEmpty;
+  }
+
+  Future<int> delete(String table, int id) async {
+    Database db = await instance.database;
+    return await db.delete(table, where: '"$_idName" = ?', whereArgs:  [id]);
+  }
+
+  Future reCreateStoriesTable() async {
+    Database db = await instance.database;
+    await db.execute('DROP TABLE "$_storiesTableName"');
+    createStoriesTable(db);
   }
 }

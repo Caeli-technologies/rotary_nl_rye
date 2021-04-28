@@ -1,9 +1,7 @@
 // @dart=2.9
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/data/database_helper.dart';
 import 'package:rotary_nl_rye/data/more.dart';
 import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/views/prop.dart';
@@ -14,23 +12,22 @@ class InnerTab extends StatefulWidget {
 }
 
 class _InnerTabState extends State<InnerTab> {
-  final dbRef = FirebaseDatabase.instance.reference().child("stories");
   List _stories = [];
 
-  // Fetch content from the local DB
-  Future readDB() async {
-    List<Map<String, dynamic>> queryRows =
-        await DatabaseHelper.instance.queryAll();
-
-    setState(() {
-      _stories = queryRows;
-    });
+  List data = [];
+  void getData() async {
+    data = await Device.readDB();
   }
 
   @override
   void initState() {
     super.initState();
-    //readFirebase();
+
+    // updates list data
+    /*setState(() {
+      print("setState");
+      _stories = data;
+    });*/
   }
 
   @override
@@ -49,7 +46,11 @@ class _InnerTabState extends State<InnerTab> {
             indicatorColor: Colors.transparent,
             labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             tabs: [
-              Container(height: 30, child: Tab(text: DemoLocalizations.of(context).trans('storiesTabBar1'))),
+              Container(
+                  height: 30,
+                  child: Tab(
+                      text: DemoLocalizations.of(context)
+                          .trans('storiesTabBar1'))),
               Container(
                   height: 30,
                   child: Tab(
@@ -72,49 +73,46 @@ class _InnerTabState extends State<InnerTab> {
             margin: EdgeInsets.only(left: 20, right: 20),
             child: TabBarView(children: [
               FutureBuilder(
-                  future: dbRef.once(),
-                  builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
-                    //_stories.clear();
-
+                  future: Device.readDB(),
+                  builder: (context, AsyncSnapshot<List> snapshot) {
                     if (snapshot.hasData) {
-                      _stories = snapshot.data.value;
+                      _stories = snapshot.data;
                     }
+
                     return new ListView.builder(
-                        itemCount: _stories.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          return Transform.translate(
-                            offset: Offset(0, -10),
-                            child: GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => More(
-                                          image: _stories[index]["images"],
-                                          country: _stories[index]["country"],
-                                          name: _stories[index]["name"],
-                                          text1: _stories[index]["text1"],
-                                          text2: _stories[index]["text2"],
-                                          departureDate: _stories[index]
-                                              ["departureDate"],
-                                          arrivalDate: _stories[index]
-                                              ["arrivalDate"],
-                                        )),
-                              ),
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: TravelCard(
-                                  image: _stories[index]["images"],
-                                  country: _stories[index]["country"],
-                                  text1: _stories[index]["text1"],
-                                  text2: _stories[index]["text2"],
-                                  departureDate: _stories[index]
-                                      ["departureDate"],
-                                  arrivalDate: _stories[index]["arrivalDate"],
-                                ),
-                              ),
-                            ),
-                          );
-                        });
+                  itemCount: _stories.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return Transform.translate(
+                      offset: Offset(0, -10),
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => More(
+                                    image: _stories[index]["images"],
+                                    country: _stories[index]["country"],
+                                    name: _stories[index]["name"],
+                                    text1: _stories[index]["text1"],
+                                    text2: _stories[index]["text2"],
+                                    departureDate: _stories[index]
+                                        ["departureDate"],
+                                    arrivalDate: _stories[index]["arrivalDate"],
+                                  )),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TravelCard(
+                            image: _stories[index]["images"],
+                            country: _stories[index]["country"],
+                            text1: _stories[index]["text1"],
+                            text2: _stories[index]["text2"],
+                            departureDate: _stories[index]["departureDate"],
+                            arrivalDate: _stories[index]["arrivalDate"],
+                          ),
+                        ),
+                      ),
+                    );
+                    });
                   }),
               Center(
                 child: Text("2"),
