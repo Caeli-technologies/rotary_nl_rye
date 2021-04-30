@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/data/more.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/more.dart';
+import 'package:rotary_nl_rye/features/stories/domain/repositories/fromprop.dart';
 import 'package:rotary_nl_rye/main.dart';
-import 'package:rotary_nl_rye/views/prop.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
 
 class InnerTab extends StatefulWidget {
   @override
@@ -16,18 +18,12 @@ class _InnerTabState extends State<InnerTab> {
 
   List data = [];
   void getData() async {
-    data = await Device.readDB();
+    data = await Data.readDB();
   }
 
   @override
   void initState() {
     super.initState();
-
-    // updates list data
-    /*setState(() {
-      print("setState");
-      _stories = data;
-    });*/
   }
 
   @override
@@ -73,7 +69,7 @@ class _InnerTabState extends State<InnerTab> {
             margin: EdgeInsets.only(left: 20, right: 20),
             child: TabBarView(children: [
               FutureBuilder(
-                  future: Device.readDB(),
+                  future: Data.readDB(),
                   builder: (context, AsyncSnapshot<List> snapshot) {
                     if (snapshot.hasData) {
                       _stories = snapshot.data;

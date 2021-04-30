@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/views/prop.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
 
 // ignore: must_be_immutable
 class More extends StatelessWidget {

@@ -4,9 +4,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class DatabaseHelper {
+class LocalDB {
 
-  static final _dbName = "test_v1.47.db";
+  static final _dbName = "test_v1.48.db";
   static final _dbVersion = 1;
   static final _storiesTableName = "stories";
   static final _updateTableName = "update";
@@ -28,8 +28,8 @@ class DatabaseHelper {
   static final updateLast = "lastUpdate";
 
   //making it a singleton class
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  LocalDB._privateConstructor();
+  static final LocalDB instance = LocalDB._privateConstructor();
 
   static Database _database = null as Database;
 

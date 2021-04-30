@@ -1,13 +1,13 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/main.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/question.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/settings.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/stories.dart';
 
-import 'package:rotary_nl_rye/views/question.dart';
-import 'package:rotary_nl_rye/views/stories.dart';
-import 'package:rotary_nl_rye/views/settings.dart';
-import 'package:rotary_nl_rye/views/aboutpage.dart';
-import 'package:rotary_nl_rye/views/prop.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/aboutpage.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
             child: TabBar(
                 tabs: [
                   Container(
-                      height: 90, child: Tab(icon: Icon(Icons.home, size: 35))),
+                      height: 90, child: Tab(icon: FaIcon(Icons.home, size: 35))),
                   Container(
                       height: 90,
                       child: Tab(
-                          icon: FaIcon(FontAwesomeIcons.newspaper, size: 35))),
+                          icon: Icon(FontAwesomeIcons.newspaper, size: 35))),
                   Container(
                       height: 90,
                       child: Tab(
