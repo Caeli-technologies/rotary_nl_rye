@@ -8,7 +8,6 @@ class FirebaseDB {
     Map result = {};
 
     await firebaseDbRef.once().asStream().forEach((element) {
-      print(element.value);
       result = element.value as Map;
     });
 

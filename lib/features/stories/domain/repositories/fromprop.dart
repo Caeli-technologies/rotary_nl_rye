@@ -1,25 +1,24 @@
-import 'package:rotary_nl_rye/features/stories/data/datasources/firebase.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/local.dart';
+// @dart = 2.9
+import '../../data/datasources/firebase.dart';
+import '../../data/datasources/local.dart';
 
 class Data {
   static Future<List> readDB() async {
     print("Started reading from DB");
 
-// table names
+    // table names
     final _storiesTableName = "stories";
     final _updateTableName = "update";
 
     final localDbInstance = LocalDB.instance;
 
-// fetch content from the local DB / firebase
-    bool dbHasData = await localDbInstance.hasItems(_updateTableName);
+    bool updateTableHasData = await localDbInstance.hasItems(_updateTableName);
 
-// times
-    int lastUpdate = 0;
-    if (!dbHasData) {
-      await localDbInstance
-          .insert(_updateTableName, {LocalDB.updateLast: 1});
+    if (!updateTableHasData) {
+      await localDbInstance.insert(_updateTableName, {LocalDB.updateLast: 1});
     }
+
+    int lastUpdate = 0;
 
     final updateTableData = await localDbInstance.queryAll(_updateTableName);
     lastUpdate = updateTableData[0][LocalDB.updateLast];
@@ -27,38 +26,22 @@ class Data {
     int timeNow = DateTime.now().millisecondsSinceEpoch;
     int oneDay = 86400000;
 
-    Future<void> clearStories() async {
-      print("Started clearing $_storiesTableName table");
-      await localDbInstance.reCreateStoriesTable();
-      print("Finished clearing $_storiesTableName table");
-    }
+    List queryRows = await localDbInstance.queryAll(_storiesTableName);
 
-    Future<void> setLastUpdateTime() async {
-      print("Started updating lastUpdatedTime");
-
-      int firstId = 1;
-      await localDbInstance.update(
-          _updateTableName, firstId, {LocalDB.updateLast: timeNow});
-      print("Finished updating lastUpdatedTime");
-    }
-
-    Future<List> fetchLocalData() async {
-      print("Started fetching data from local db $_storiesTableName table");
-      final data = await localDbInstance.queryAll(_storiesTableName);
-
-      print("Finished fetching data from local db $_storiesTableName table");
-      return data;
-    }
-
-    List queryRows = await fetchLocalData();
-
+    /// overwrite queryRows, if since the lastUpdate 24h passed and internet access is available
     if ((timeNow - lastUpdate) > oneDay) {
-      await clearStories();
       queryRows = await FirebaseDB.getTable(_storiesTableName);
-      await setLastUpdateTime();
+      /// check if data was fetched
+      if (queryRows.toString() != "[]") {
+        /// clears stories table
+        await localDbInstance.reCreateStoriesTable();
+        // TODO Insert data into local db
+        /// sets last update time
+        int firstId = 1;
+        await localDbInstance.update(_updateTableName, firstId, {LocalDB.updateLast: timeNow});
+      }
     }
 
-    print(queryRows);
     print("Finished reading from DB");
     return queryRows;
   }

@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
+import 'package:rotary_nl_rye/core/usecases/usecase.dart';
 import 'package:rotary_nl_rye/features/stories/domain/entities/story.dart';
 import 'package:rotary_nl_rye/features/stories/domain/repositories/stories_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,13 +20,11 @@ void main() {
 
   final List<Story> tStories = [];
 
-  test(
-    'should get stories from the repository',
-      () async {
+  test('should get stories from the repository', () async {
         // arrange
         when(mockStoriesRepository.getStories()).thenAnswer((_) async => Right(tStories));
         // act
-        final result = await usecase.execute();
+        final result = await usecase(NoParams());
         // assert
         expect(result, Right(tStories));
         verify(mockStoriesRepository.getStories());
