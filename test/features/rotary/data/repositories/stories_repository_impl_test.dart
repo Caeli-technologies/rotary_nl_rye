@@ -3,33 +3,40 @@ import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rotary_nl_rye/core/error/exceptions.dart';
 import 'package:rotary_nl_rye/core/error/failures.dart';
-import 'package:rotary_nl_rye/core/platform/network_info.dart';
+import 'package:rotary_nl_rye/core/network/network_info.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/stories_local_data_source.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/stories_remote_data_source.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/update_loca_data_source.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/story_model.dart';
+import 'package:rotary_nl_rye/features/stories/data/models/update_model.dart';
 import 'package:rotary_nl_rye/features/stories/data/repositories/stories_respository_impl.dart';
 import 'package:rotary_nl_rye/features/stories/domain/entities/story.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class MockRemoteDataSource extends Mock implements StoriesRemoteDataSource {}
+class MockStoriesRemoteDataSource extends Mock implements StoriesRemoteDataSource {}
 
-class MockLocalDataSource extends Mock implements StoriesLocalDataSource {}
+class MockStoriesLocalDataSource extends Mock implements StoriesLocalDataSource {}
+
+class MockUpdateLocalDataSource extends Mock implements UpdateLocalDataSource {}
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
   StoriesRepositoryImpl repository;
-  MockRemoteDataSource mockRemoteDataSource;
-  MockLocalDataSource mockLocalDataSource;
+  MockStoriesRemoteDataSource mockStoriesRemoteDataSource;
+  MockStoriesLocalDataSource mockStoriesLocalDataSource;
+  MockUpdateLocalDataSource mockUpdateLocalDataSource;
   MockNetworkInfo mockNetworkInfo;
 
   setUp(() {
-    mockRemoteDataSource = MockRemoteDataSource();
-    mockLocalDataSource = MockLocalDataSource();
+    mockStoriesRemoteDataSource = MockStoriesRemoteDataSource();
+    mockStoriesLocalDataSource = MockStoriesLocalDataSource();
+    mockUpdateLocalDataSource = MockUpdateLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
     repository = StoriesRepositoryImpl(
-        remoteDataSource: mockRemoteDataSource,
-        localDataSource: mockLocalDataSource,
+        storiesRemoteDataSource: mockStoriesRemoteDataSource,
+        storiesLocalDataSource: mockStoriesLocalDataSource,
+        updateLocalDataSource: mockUpdateLocalDataSource,
         networkInfo: mockNetworkInfo);
   });
 
@@ -67,11 +74,12 @@ void main() {
     group('device is online', () {
       setUp(() {
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockUpdateLocalDataSource.timeSpanIsGreaterThen24h).thenAnswer((_) async => true);
       });
 
       test('should return remote data when the call to remote data source was successful', () async {
         // arrange
-        when(mockRemoteDataSource.getStories()).thenAnswer((_) async => tStoriesModel);
+        when(mockStoriesRemoteDataSource.getStories()).thenAnswer((_) async => tStoriesModel);
         // act
         final result = await repository.getStories();
         // assert
@@ -80,20 +88,20 @@ void main() {
 
       test('should cache the data locally when the call to remote data source was successful', () async {
         // arrange
-        when(mockRemoteDataSource.getStories()).thenAnswer((_) async => tStoriesModel);
+        when(mockStoriesRemoteDataSource.getStories()).thenAnswer((_) async => tStoriesModel);
         // act
         await repository.getStories();
         // assert
-        verify(mockLocalDataSource.cacheStories(tStoriesModel));
+        verify(mockStoriesLocalDataSource.cacheStories(tStoriesModel));
       });
 
       test('should return server failure when the call to remote data source was unsuccessful', () async {
         // arrange
-        when(mockRemoteDataSource.getStories()).thenThrow(ServerException());
+        when(mockStoriesRemoteDataSource.getStories()).thenThrow(ServerException());
         // act
         final result = await repository.getStories();
         // assert
-        verifyZeroInteractions(mockLocalDataSource);
+        verifyZeroInteractions(mockStoriesLocalDataSource);
         expect(result, equals(Left(ServerFailure())));
       });
     });
@@ -105,13 +113,35 @@ void main() {
 
       test('should return a last locally cashed data when cached data is present', () async {
         // arrange
-        when(mockLocalDataSource.getStories()).thenAnswer((_) async => tStoriesModel);
+        when(mockStoriesLocalDataSource.getStories()).thenAnswer((_) async => tStoriesModel);
         // act
         final result = await repository.getStories();
         // assert
-        verifyZeroInteractions(mockRemoteDataSource);
+        verifyZeroInteractions(mockStoriesRemoteDataSource);
+        verify(mockStoriesLocalDataSource.getStories());
         expect(result, equals(Right(tStories)));
       });
+
+      test('should return ChacheFailure when there is no cached data is present', () async {
+        // arrange
+        when(mockStoriesLocalDataSource.getStories()).thenThrow(CacheException());
+        // act
+        final result = await repository.getStories();
+        // assert
+        verifyZeroInteractions(mockStoriesRemoteDataSource);
+        verify(mockStoriesLocalDataSource.getStories());
+        expect(result, equals(Left(CacheFailure())));
+      });
+    });
+  });
+
+  group('getUpdate', () {
+    test('should cache the data locally when the call to remote data source was successful', () async {
+      // act
+      final result = await repository.cacheUpdate();
+      // assert
+      verify(mockUpdateLocalDataSource.cacheUpdate(any));
+      expect(result, equals(Right(null)));
     });
   });
 }
