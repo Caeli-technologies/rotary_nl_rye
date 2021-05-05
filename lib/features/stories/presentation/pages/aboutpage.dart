@@ -33,8 +33,9 @@ class _AboutPageState extends State<AboutPage> {
           ),
           ExpansionTile(
             leading: Icon(FontAwesomeIcons.question),
-            title: Text("Expansion Title"),
-            subtitle: Text("  Sub Title's"),
+            title: Text("Something like the more page."),
+            subtitle:
+                Text("when you click on it you will go to a profile page"),
             children: <Widget>[
               Text(
                 "In Children use can use any flutter Widget",
@@ -48,25 +49,7 @@ class _AboutPageState extends State<AboutPage> {
                     "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
               )
             ],
-          ),
-          ExpansionTile(
-            leading: Icon(FontAwesomeIcons.question),
-            title: Text("Expansion Title"),
-            subtitle: Text("  Sub Title's"),
-            children: <Widget>[
-              Text(
-                "In Children use can use any flutter Widget",
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Text(
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
-              )
-            ],
-          ),
+          )
         ],
       ),
     );
