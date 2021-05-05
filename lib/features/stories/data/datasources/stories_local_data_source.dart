@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:rotary_nl_rye/core/error/exceptions.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/story_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,6 +13,8 @@ abstract class StoriesLocalDataSource {
   Future<void> cacheStories(List<StoryModel> storiesToCache);
 }
 
+const CACHED_STORIES = 'CACHED_STORIES';
+
 class StoriesLocalDataSourceImpl implements StoriesLocalDataSource {
   final SharedPreferences sharedPreferences;
 
@@ -19,14 +22,17 @@ class StoriesLocalDataSourceImpl implements StoriesLocalDataSource {
 
   @override
   Future<List<StoryModel>> getStories() {
-    final jsonString = sharedPreferences.getString('CACHED_STORIES');
-    final tempList = json.decode(jsonString!);
-    final List<StoryModel> tStoriesModels = [];
-    tempList.forEach((element) {
-      tStoriesModels.add(StoryModel.fromJson(element));
-    });
+    final jsonString = sharedPreferences.getString(CACHED_STORIES);
+    if (jsonString != null ) {
+      final tempList = json.decode(jsonString);
+      final List<StoryModel> tStoriesModels = [];
+      tempList.forEach((element) {
+        tStoriesModels.add(StoryModel.fromJson(element));
+      });
 
-    return Future.value(tStoriesModels);
+      return Future.value(tStoriesModels);
+    }
+    throw CacheException();
   }
 
   @override
