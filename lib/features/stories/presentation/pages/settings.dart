@@ -23,7 +23,8 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Text(
                 DemoLocalizations.of(context).trans('settingsTitle'),
                 textScaleFactor: 2.4,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Palette.indigo, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -51,9 +52,12 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, DemoLocalizations.of(context).trans('social')),
-            buildAccountOptionRow(context, DemoLocalizations.of(context).trans('language')),
-            buildAccountOptionRow(context, DemoLocalizations.of(context).trans('privacyAndSecurity')),
+            buildAccountOptionRow(
+                context, DemoLocalizations.of(context).trans('social')),
+            buildAccountOptionRow(
+                context, DemoLocalizations.of(context).trans('language')),
+            buildAccountOptionRow(context,
+                DemoLocalizations.of(context).trans('privacyAndSecurity')),
             SizedBox(
               height: 40,
             ),
@@ -79,9 +83,12 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildNotificationOptionRow(DemoLocalizations.of(context).trans('new4You'), true),
-            buildNotificationOptionRow(DemoLocalizations.of(context).trans('accountActivity'), true),
-            buildNotificationOptionRow(DemoLocalizations.of(context).trans('opportunity'), false),
+            buildNotificationOptionRow(
+                DemoLocalizations.of(context).trans('new4You'), true),
+            buildNotificationOptionRow(
+                DemoLocalizations.of(context).trans('accountActivity'), true),
+            buildNotificationOptionRow(
+                DemoLocalizations.of(context).trans('opportunity'), false),
             SizedBox(
               height: 50,
             ),
@@ -98,9 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
         Text(
           title,
           style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Palette.grey),
+              fontSize: 18, fontWeight: FontWeight.w500, color: Palette.grey),
         ),
         Transform.scale(
             scale: 0.7,
