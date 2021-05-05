@@ -23,7 +23,7 @@ class StoriesLocalDataSourceImpl implements StoriesLocalDataSource {
   @override
   Future<List<StoryModel>> getStories() {
     final jsonString = sharedPreferences.getString(CACHED_STORIES);
-    if (jsonString != null ) {
+    if (jsonString != null) {
       final tempList = json.decode(jsonString);
       final List<StoryModel> tStoriesModels = [];
       tempList.forEach((element) {
