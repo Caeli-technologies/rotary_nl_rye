@@ -29,7 +29,7 @@ class _InnerTabState extends State<InnerTab> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 2, //length: 4,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -52,6 +52,7 @@ class _InnerTabState extends State<InnerTab> {
                   child: Tab(
                     text: DemoLocalizations.of(context).trans('storiesTabBar2'),
                   )),
+/*
               Container(
                   height: 30,
                   child: Tab(
@@ -62,6 +63,7 @@ class _InnerTabState extends State<InnerTab> {
                   child: Tab(
                     text: DemoLocalizations.of(context).trans('storiesTabBar4'),
                   )),
+*/
             ],
           ),
           Container(
@@ -121,13 +123,15 @@ class _InnerTabState extends State<InnerTab> {
                   }),
               Center(
                 child: Text("2"),
-              ),
+              )
+/*              
               Center(
                 child: Text("3"),
               ),
               Center(
                 child: Text("4"),
               )
+*/
             ]),
           )
         ],
