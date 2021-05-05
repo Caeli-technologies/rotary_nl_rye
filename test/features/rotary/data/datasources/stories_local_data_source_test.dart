@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:matcher/matcher.dart';
 import 'package:rotary_nl_rye/core/error/exceptions.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/stories_local_data_source.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/story_model.dart';
@@ -30,9 +31,11 @@ void main() {
       tStoriesModels.add(StoryModel.fromJson(element));
     });
 
-    test('should return List<Stories> from SharedPreferences when there is one in the cache', () async {
+    test(
+        'should return List<Stories> from SharedPreferences when there is one in the cache', () async {
       // arrange
-      when(mockSharedPreferences.getString(any)).thenReturn(fixture('stories_cached.json'));
+      when(mockSharedPreferences.getString(any)).thenReturn(
+          fixture('stories_cached.json'));
       // act
       final result = await dataSource.getStories();
       // assert
@@ -40,7 +43,8 @@ void main() {
       expect(result, equals(tStoriesModels));
     });
 
-    test('should throw CacheException when there is not a cached value', () async {
+    test(
+        'should throw CacheException when there is not a cached value', () async {
       // arrange
       when(mockSharedPreferences.getString(any)).thenReturn(null);
       // act
@@ -51,29 +55,28 @@ void main() {
   });
 
   group('cacheStories', () {
-    final tempList = json.decode(fixture('stories_cached.json'));
     final List<StoryModel> tStoriesModels = [];
-    tempList.forEach((element) {
-      tStoriesModels.add(StoryModel.fromJson(element));
-    });
 
-    test('should return List<Stories> from SharedPreferences when there is one in the cache', () async {
-      // arrange
-      when(mockSharedPreferences.getString(any)).thenReturn(fixture('stories_cached.json'));
-      // act
-      final result = await dataSource.getStories();
-      // assert
-      verify(mockSharedPreferences.getString(CACHED_STORIES));
-      expect(result, equals(tStoriesModels));
-    });
+    final temp = StoryModel(
+        country: "Bali",
+        arrivalDate: 1632261600000,
+        departureDate: 1632261600000,
+        imagePath: "assets/image/3.PNG",
+        studentName: "Ruben",
+        text1: "Hi",
+        text2: "test"
+    );
 
-    test('should throw CacheException when there is not a cached value', () async {
-      // arrange
-      when(mockSharedPreferences.getString(any)).thenReturn(null);
+    tStoriesModels.add(temp);
+    tStoriesModels.add(temp);
+
+    test('should call SharedPreferences to cache the data', () async {
       // act
-      final call = dataSource.getStories;
+      dataSource.cacheStories(tStoriesModels);
       // assert
-      expect(call, throwsA(isA<CacheException>()));
+      final expectedJsonString = json.encode(tStoriesModels);
+      verify(mockSharedPreferences.setString(
+          CACHED_STORIES, expectedJsonString));
     });
   });
 }

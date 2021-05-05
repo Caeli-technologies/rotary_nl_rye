@@ -37,7 +37,6 @@ class StoriesLocalDataSourceImpl implements StoriesLocalDataSource {
 
   @override
   Future<void> cacheStories(List<StoryModel> storiesToCache) {
-    // TODO: implement cacheStories
-    throw UnimplementedError();
+    return sharedPreferences.setString(CACHED_STORIES, json.encode(storiesToCache));
   }
 }

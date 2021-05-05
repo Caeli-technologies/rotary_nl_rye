@@ -6,7 +6,7 @@ import 'package:rotary_nl_rye/core/error/failures.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/stories_local_data_source.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/stories_remote_data_source.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/update_loca_data_source.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/update_local_data_source.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/story_model.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/update_model.dart';
 import 'package:rotary_nl_rye/features/stories/data/repositories/stories_respository_impl.dart';
@@ -95,6 +95,13 @@ void main() {
         verify(mockStoriesLocalDataSource.cacheStories(tStoriesModel));
       });
 
+      test('should cache the update data locally when the call to remote data source was successful', () async {
+        // act
+        await repository.getStories();
+        // assert
+        verify(mockUpdateLocalDataSource.cacheUpdate());
+      });
+
       test('should return server failure when the call to remote data source was unsuccessful', () async {
         // arrange
         when(mockStoriesRemoteDataSource.getStories()).thenThrow(ServerException());
@@ -132,16 +139,6 @@ void main() {
         verify(mockStoriesLocalDataSource.getStories());
         expect(result, equals(Left(CacheFailure())));
       });
-    });
-  });
-
-  group('getUpdate', () {
-    test('should cache the data locally when the call to remote data source was successful', () async {
-      // act
-      final result = await repository.cacheUpdate();
-      // assert
-      verify(mockUpdateLocalDataSource.cacheUpdate(any));
-      expect(result, equals(Right(null)));
     });
   });
 }

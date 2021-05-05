@@ -16,7 +16,7 @@ void main() {
     test(
         'should return valid model from Json', () async {
       // arrange
-      final Map<String, dynamic> jsonMap = json.decode(fixture('last_update.json'));
+      final Map<String, dynamic> jsonMap = json.decode(fixture('update_cached.json'));
       // act
       final result = UpdateModel.fromJson(jsonMap);
       // assert

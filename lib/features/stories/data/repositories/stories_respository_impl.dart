@@ -1,8 +1,7 @@
 // @dart=2.9
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/update_loca_data_source.dart';
-import 'package:rotary_nl_rye/features/stories/data/models/update_model.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/update_local_data_source.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
@@ -31,6 +30,7 @@ class StoriesRepositoryImpl implements StoriesRepository {
       try {
         final remoteStories = await storiesRemoteDataSource.getStories();
         storiesLocalDataSource.cacheStories(remoteStories);
+        updateLocalDataSource.cacheUpdate();
         return Right(remoteStories);
       } on ServerException {
         return Left(ServerFailure());
@@ -40,17 +40,6 @@ class StoriesRepositoryImpl implements StoriesRepository {
     try {
       final localStories = await storiesLocalDataSource.getStories();
       return Right(localStories);
-    } on CacheException {
-      return Left(CacheFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> cacheUpdate() async {
-    try {
-      final update = new UpdateModel(lastUpdate: DateTime.now().millisecondsSinceEpoch);
-      await updateLocalDataSource.cacheUpdate(update);
-      return Right(null);
     } on CacheException {
       return Left(CacheFailure());
     }

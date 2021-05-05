@@ -21,10 +21,4 @@ class UpdateModel extends Equatable {
       'lastUpdate': lastUpdate
     };
   }
-
-  final int oneDay = 86400000;
-
-  bool get timeSpanIsLongerThan24h {
-    return ((DateTime.now().millisecondsSinceEpoch - lastUpdate) > oneDay);
-  }
 }
