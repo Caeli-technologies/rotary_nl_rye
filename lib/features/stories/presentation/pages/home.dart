@@ -31,7 +31,8 @@ class _HomePageState extends State<HomePage> {
             child: TabBar(
                 tabs: [
                   Container(
-                      height: 90, child: Tab(icon: FaIcon(Icons.home, size: 35))),
+                      height: 90,
+                      child: Tab(icon: FaIcon(Icons.home, size: 35))),
                   Container(
                       height: 90,
                       child: Tab(
@@ -64,7 +65,8 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          DemoLocalizations.of(context).trans('homeWelcomeMessage'),
+                          DemoLocalizations.of(context)
+                              .trans('homeWelcomeMessage'),
                           textScaleFactor: 1,
                           style: TextStyle(color: Palette.grey),
                         ),
@@ -111,7 +113,25 @@ class _HomePageState extends State<HomePage> {
               //FAQ
               QuestionPage(),
               //about us
-              AboutPage(),
+              ListView(
+                physics: NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(0),
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 20, top: 60, right: 20),
+                    child: Text(
+                      'Contact page',
+                      textScaleFactor: 2.4,
+                      style: TextStyle(
+                          color: Palette.indigo, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 15),
+                    child: AboutPage(),
+                  ),
+                ],
+              ),
               //settings
               SettingsPage(),
             ],
