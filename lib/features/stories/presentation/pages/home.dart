@@ -113,25 +113,7 @@ class _HomePageState extends State<HomePage> {
               //FAQ
               QuestionPage(),
               //about us
-              ListView(
-                physics: NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(0),
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 20, top: 60, right: 20),
-                    child: Text(
-                      'Contact page',
-                      textScaleFactor: 2.4,
-                      style: TextStyle(
-                          color: Palette.indigo, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 15),
-                    child: AboutPage(),
-                  ),
-                ],
-              ),
+              AboutPage(),
               //settings
               SettingsPage(),
             ],
