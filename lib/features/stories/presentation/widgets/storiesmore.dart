@@ -172,29 +172,15 @@ class MainContainer extends StatelessWidget {
                           ))),
                 ]),
               ),
-              Center(
+
+              //TODO, the text and images all on one scroll page thats going up when you go up.
+
+              Align(
                 child: DefaultTabController(
-                  length: 2,
+                  length: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      TabBar(
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        indicator: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(50), // Creates border
-                            color: Palette.lightIndigo),
-                        unselectedLabelColor: Palette.lightIndigo,
-                        labelColor: Palette.accentColor,
-                        indicatorColor: Colors.transparent,
-                        labelStyle: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                        tabs: [
-                          Container(child: Tab(text: "City 1")),
-                          Container(child: Tab(text: "City 2")),
-                        ],
-                        labelPadding: EdgeInsets.all(0),
-                      ),
                       Container(
                         constraints: BoxConstraints(
                             minHeight: Device.height * 0.25,
@@ -202,8 +188,7 @@ class MainContainer extends StatelessWidget {
                         height: Device.height * 0.4,
                         margin: EdgeInsets.only(left: 20, right: 20),
                         child: TabBarView(children: [
-                          ListView(children: [Text(text1)]),
-                          ListView(children: [Text(text2)])
+                          ListView(children: [Text(text1)])
                         ]),
                       )
                     ],
