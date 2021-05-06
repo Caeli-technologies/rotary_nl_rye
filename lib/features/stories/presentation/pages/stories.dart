@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/more.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/widgets/storiesmore.dart';
 import 'package:rotary_nl_rye/features/stories/domain/repositories/fromprop.dart';
 import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
