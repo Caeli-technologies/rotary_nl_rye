@@ -1,8 +1,9 @@
 // @dart=2.9
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
-import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -11,6 +12,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  var slider1 = true;
+  var slider2 = true;
+  var slider3 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,11 +89,68 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 10,
             ),
             buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('new4You'), true),
+                DemoLocalizations.of(context).trans('new4You'),
+                Platform.isIOS
+                    ? CupertinoSwitch(
+                        activeColor: Palette.accentColor,
+                        value: slider1,
+                        onChanged: (value) {
+                          setState(() {
+                            slider1 = value;
+                          });
+                        },
+                      )
+                    : Switch(
+                        activeColor: Palette.accentColor,
+                        value: slider1,
+                        onChanged: (value) {
+                          setState(() {
+                            slider1 = value;
+                          });
+                        },
+                      )),
             buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('accountActivity'), true),
+                DemoLocalizations.of(context).trans('accountActivity'),
+                Platform.isIOS
+                    ? CupertinoSwitch(
+                        activeColor: Palette.accentColor,
+                        value: slider2,
+                        onChanged: (value) {
+                          setState(() {
+                            slider2 = value;
+                          });
+                        },
+                      )
+                    : Switch(
+                        activeColor: Palette.accentColor,
+                        value: slider2,
+                        onChanged: (value) {
+                          setState(() {
+                            slider2 = value;
+                          });
+                        },
+                      )),
             buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('opportunity'), false),
+                DemoLocalizations.of(context).trans('opportunity'),
+                Platform.isIOS
+                    ? CupertinoSwitch(
+                        activeColor: Palette.accentColor,
+                        value: slider3,
+                        onChanged: (value) {
+                          setState(() {
+                            slider3 = value;
+                          });
+                        },
+                      )
+                    : Switch(
+                        activeColor: Palette.accentColor,
+                        value: slider3,
+                        onChanged: (value) {
+                          setState(() {
+                            slider3 = value;
+                          });
+                        },
+                      )),
             SizedBox(
               height: 50,
             ),
@@ -98,7 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Row buildNotificationOptionRow(String title, bool isActive) {
+  Row buildNotificationOptionRow(String title, Widget aSwitch) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -107,13 +169,7 @@ class _SettingsPageState extends State<SettingsPage> {
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.w500, color: Palette.grey),
         ),
-        Transform.scale(
-            scale: 0.7,
-            child: CupertinoSwitch(
-              value: isActive,
-              activeColor: Palette.accentColor,
-              onChanged: (bool val) {},
-            ))
+        Transform.scale(scale: 0.7, child: aSwitch)
       ],
     );
   }
