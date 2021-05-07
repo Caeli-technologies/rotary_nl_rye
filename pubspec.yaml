@@ -51,6 +51,7 @@ dependencies:
   equatable: ^2.0.0
   data_connection_checker: ^0.3.4
   shared_preferences: ^2.0.5
+  bloc: ^7.0.0
 
   
 dev_dependencies:

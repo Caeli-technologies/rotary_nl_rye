@@ -51,6 +51,7 @@ class Palette {
   static Color accentColor = 0 as Color;
   static Color grey = 0 as Color;
   static Color lightIndigo = 0 as Color;
+  static Color imageBackgroundColor = 0 as Color;
 
   static Palette get instance {
     _instance.set();
@@ -61,6 +62,7 @@ class Palette {
     accentColor = Color.fromRGBO(57, 182, 245, 1);
     grey = Colors.grey[600]!;
     lightIndigo = Colors.indigo[100]!;
+    imageBackgroundColor = Color.fromRGBO(70, 197, 212, 1);
 
     if (Device.isDark) {
       indigo = Colors.indigo[400]!;

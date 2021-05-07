@@ -42,7 +42,7 @@ class _AboutPageState extends State<AboutPage> {
                   width: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
-                    color: Colors.black, //fill the image still needs to chagnge
+                    color: Color.fromRGBO(70, 197, 212, 1), //fill the image still needs to chagnge
                   ),
                   child: Image.asset(
                     'assets/image/1.PNG',
@@ -65,7 +65,7 @@ class _AboutPageState extends State<AboutPage> {
               trailing: Icon(
                 Icons.keyboard_arrow_right,
                 size: 30,
-                color: Theme.of(context).primaryColor,
+                color: Palette.indigo,
               ),
             ),
           )
