@@ -1,8 +1,12 @@
 // @dart=2.9
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -38,7 +42,7 @@ class _AboutPageState extends State<AboutPage> {
                   width: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
-                    color: Palette.imageBackgroundColor, //fill the image still needs to chagnge
+                    color: Colors.black, //fill the image still needs to chagnge
                   ),
                   child: Image.asset(
                     'assets/image/1.PNG',
@@ -61,7 +65,7 @@ class _AboutPageState extends State<AboutPage> {
               trailing: Icon(
                 Icons.keyboard_arrow_right,
                 size: 30,
-                color: Palette.indigo,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           )

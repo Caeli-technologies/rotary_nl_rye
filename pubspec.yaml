@@ -53,6 +53,7 @@ dependencies:
   shared_preferences: ^2.0.5
   bloc: ^7.0.0
   flutter_swiper: ^1.1.6
+  flutter_svg: ^0.22.0
 
   
 dev_dependencies:
