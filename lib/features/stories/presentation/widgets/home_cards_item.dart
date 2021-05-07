@@ -50,8 +50,20 @@ class HomeCardsItem extends StatelessWidget {
             ],
           ),
         ),
-        onTap: () => print(description),
-      ),
+        onTap: () => showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(description),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Close")),
+              ],
+            );
+          }))
     );
   }
 }
