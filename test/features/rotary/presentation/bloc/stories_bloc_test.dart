@@ -77,5 +77,18 @@ void main() {
       bloc.add(BGetStories());
     });
 
+    test('should emit [Loading, Error] with a proper message for the error when getting data fails', () async {
+      // arrange
+      when(mockGetStories(any)).thenAnswer((_) async => (Left(CacheFailure())));
+      // assert later
+      final expected = [
+        //Empty(),
+        Loading(),
+        Error(message: CACHE_FAILURE_MESSAGE)
+      ];
+      expectLater(bloc.stream, emitsInOrder(expected));
+      // act
+      bloc.add(BGetStories());
+    });
   });
 }

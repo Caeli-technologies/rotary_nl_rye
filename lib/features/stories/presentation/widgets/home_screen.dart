@@ -5,6 +5,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/models/carousel_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/widgets/home_cards_item.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: ClampingScrollPhysics(),
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(left: 10, top: 10, right: 10),
+              margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 15),
               child: Text(
                 'here somes a nice image of Rotary International',
                 textScaleFactor: 2.4,
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(left: 16, bottom: 24),
               child: Text(
                 'Hi, NAME Some information for you!',
-                style: TextStyle(fontSize: 16, color: Color(0xFF23374D)),
+                style: TextStyle(fontSize: 16, color: Palette.lightIndigo),
               ),
             ),
             Container(
@@ -99,8 +100,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: _current == index
-                                      ? Color(0xFF2C53B1)
-                                      : Color(0xFFB4B0B0)),
+                                      ? Palette.accentColor
+                                      : Palette.grey),
                             );
                           },
                         ),
@@ -116,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(left: 16, top: 24, bottom: 12),
               child: Text(
                 'Let\'s Take a look (text still need to change!',
-                style: TextStyle(fontSize: 12, color: Color(0xFF23374D)),
+                style: TextStyle(fontSize: 12, color: Palette.lightIndigo),
               ),
             ),
             Container(
@@ -125,98 +126,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(right: 8),
-                          padding: EdgeInsets.only(left: 16),
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(12),
-                            border:
-                                Border.all(color: Color(0xFFE8E8F3), width: 1),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        new BorderRadius.circular(40.0),
-                                    child: Image.asset('assets/image/1.PNG'),
-                                  )),
-                              Padding(
-                                padding: EdgeInsets.only(left: 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      'Flight',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF23374D)),
-                                    ),
-                                    Text(
-                                      'Feel freedom',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0xFF8E8E8E)),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 8),
-                          padding: EdgeInsets.only(left: 16),
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(12),
-                            border:
-                                Border.all(color: Color(0xFFE8E8F3), width: 1),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        new BorderRadius.circular(40.0),
-                                    child: Image.asset('assets/image/1.PNG'),
-                                  )),
-                              Padding(
-                                padding: EdgeInsets.only(left: 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      'Trains',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF23374D)),
-                                    ),
-                                    Text(
-                                      'Intercity',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0xFF8E8E8E)),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
+                      HomeCardsItem(
+                          picturePath: 'assets/image/1.PNG',
+                          title: 'Flight',
+                          description: 'Feel freedom'),
+                      HomeCardsItem(
+                          picturePath: 'assets/image/2.PNG',
+                          title: 'Trains',
+                          description: 'Intercity'),
                     ],
                   ),
                   SizedBox(
@@ -224,98 +141,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Row(
                     children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(right: 8),
-                          padding: EdgeInsets.only(left: 16),
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(12),
-                            border:
-                                Border.all(color: Color(0xFFE8E8F3), width: 1),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        new BorderRadius.circular(40.0),
-                                    child: Image.asset('assets/image/1.PNG'),
-                                  )),
-                              Padding(
-                                padding: EdgeInsets.only(left: 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      'Hotel',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF23374D)),
-                                    ),
-                                    Text(
-                                      'Let\'s take a break',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0xFF8E8E8E)),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 8),
-                          padding: EdgeInsets.only(left: 16),
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(12),
-                            border:
-                                Border.all(color: Color(0xFFE8E8F3), width: 1),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        new BorderRadius.circular(40.0),
-                                    child: Image.asset('assets/image/1.PNG'),
-                                  )),
-                              Padding(
-                                padding: EdgeInsets.only(left: 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      'Car Rental',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF23374D)),
-                                    ),
-                                    Text(
-                                      'Around the city',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0xFF8E8E8E)),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
+                      HomeCardsItem(
+                          picturePath: 'assets/image/3.PNG',
+                          title: 'Hotel',
+                          description: 'Let\'s take a break'),
+                      HomeCardsItem(
+                          picturePath: 'assets/image/1.PNG',
+                          title: 'Car Rental',
+                          description: 'Around the city'),
                     ],
                   ),
                 ],

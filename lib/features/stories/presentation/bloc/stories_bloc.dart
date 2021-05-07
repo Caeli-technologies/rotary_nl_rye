@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:rotary_nl_rye/core/error/failures.dart';
 import 'package:rotary_nl_rye/core/usecases/usecase.dart';
 import 'package:rotary_nl_rye/features/stories/domain/entities/story.dart';
 import 'package:rotary_nl_rye/features/stories/domain/usecases/get_stories.dart';
@@ -27,7 +28,21 @@ class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
       yield Loading();
       final failureOrStories = await getStories(NoParams());
 
-      yield failureOrStories.fold((failure) => Error(message: SERVER_FAILURE_MESSAGE), (stories) => Loaded(stories: stories));
+      yield failureOrStories.fold(
+              (failure) => Error(message: _mapFailureToMessage(failure)),
+              (stories) => Loaded(stories: stories)
+      );
+    }
+  }
+
+  String _mapFailureToMessage(Failure failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return SERVER_FAILURE_MESSAGE;
+      case CacheFailure:
+        return CACHE_FAILURE_MESSAGE;
+      default:
+        return 'Unexpected error';
     }
   }
 }
