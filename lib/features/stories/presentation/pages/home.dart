@@ -8,6 +8,7 @@ import 'package:rotary_nl_rye/features/stories/presentation/pages/stories.dart';
 
 import 'package:rotary_nl_rye/features/stories/presentation/pages/aboutpage.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/widgets/home_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -56,31 +57,15 @@ class _HomePageState extends State<HomePage> {
           ),
           body: TabBarView(
             children: [
+              //home
+              HomeScreen(),
+              /*      
               ListView(
+                physics: NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(0),
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 20, top: 40, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          DemoLocalizations.of(context)
-                              .trans('homeWelcomeMessage'),
-                          textScaleFactor: 1,
-                          style: TextStyle(color: Palette.grey),
-                        ),
-                        CircleAvatar(
-                          backgroundImage:
-                              ExactAssetImage('assets/image/1.PNG'),
-                          minRadius: 20,
-                          maxRadius: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, top: 10, right: 20),
+                    margin: EdgeInsets.only(left: 20, top: 60, right: 20),
                     child: Text(
                       DemoLocalizations.of(context).trans('homeTitle'),
                       textScaleFactor: 2.4,
@@ -88,8 +73,13 @@ class _HomePageState extends State<HomePage> {
                           color: Palette.indigo, fontWeight: FontWeight.bold),
                     ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(top: 15),
+                    child: HomeScreen(),
+                  ),
                 ],
               ),
+            */
               //stories
               ListView(
                 physics: NeverScrollableScrollPhysics(),

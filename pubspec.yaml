@@ -52,6 +52,7 @@ dependencies:
   data_connection_checker: ^0.3.4
   shared_preferences: ^2.0.5
   bloc: ^7.0.0
+  flutter_swiper: ^1.1.6
 
   
 dev_dependencies:
