@@ -4,12 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class HomeCardsItem extends StatelessWidget {
-  final String picturePath, iconHome, title, description;
+  final String title, description;
+  final IconData icon;
 
   HomeCardsItem(
-      {required this.picturePath,
-      required this.title,
-      required this.iconHome,
+      {required this.title,
+      required this.icon,
       required this.description});
 
   @override
@@ -35,7 +35,7 @@ class HomeCardsItem extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(bottom: 16),
                       child: FaIcon(
-                        FontAwesomeIcons.plane,
+                        icon,
                         color: Palette.lightIndigo,
                         size: 35,
                       ),

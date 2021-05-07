@@ -135,13 +135,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: <Widget>[
                       HomeCardsItem(
-                          picturePath: 'assets/image/1.PNG',
-                          iconHome: 'planeDeparture',
+                          icon: FontAwesomeIcons.list,
                           title: 'Program',
                           description: 'Feel freedom'),
                       HomeCardsItem(
-                          picturePath: 'assets/image/2.PNG',
-                          iconHome: 'planeDeparture',
+                          icon: FontAwesomeIcons.city,
                           title: 'Inbounds',
                           description: 'Intercity'),
                     ],
@@ -152,13 +150,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: <Widget>[
                       HomeCardsItem(
-                          picturePath: 'assets/image/3.PNG',
-                          iconHome: 'planeDeparture',
+                          icon: FontAwesomeIcons.mailBulk,
                           title: 'Application',
                           description: 'Let\'s take a break'),
                       HomeCardsItem(
-                          picturePath: 'assets/image/1.PNG',
-                          iconHome: 'planeDeparture',
+                          icon: FontAwesomeIcons.question,
                           title: 'not sure',
                           description: 'Around the city'),
                     ],
