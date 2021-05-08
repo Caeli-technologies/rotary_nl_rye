@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             */
-              //stories
+              // stories
               ListView(
                 physics: NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(0),

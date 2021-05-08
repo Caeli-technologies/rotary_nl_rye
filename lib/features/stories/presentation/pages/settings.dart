@@ -20,8 +20,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
+          padding: EdgeInsets.only(left: 16, top: 60, right: 16),
           children: [
             Container(
               margin: EdgeInsets.only(right: 20),
