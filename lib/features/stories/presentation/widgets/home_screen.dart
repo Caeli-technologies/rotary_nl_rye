@@ -137,11 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       HomeCardsItem(
                           icon: FontAwesomeIcons.list,
                           title: 'Program',
-                          description: 'Feel freedom'),
+                          description: 'information to apply and more things'),
                       HomeCardsItem(
-                          icon: FontAwesomeIcons.city,
-                          title: 'Inbounds',
-                          description: 'Intercity'),
+                          icon: FontAwesomeIcons.reply,
+                          title: 'Outbound',
+                          description:
+                              'students that are going to a diffrent country'),
                     ],
                   ),
                   SizedBox(
@@ -150,13 +151,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: <Widget>[
                       HomeCardsItem(
-                          icon: FontAwesomeIcons.mailBulk,
-                          title: 'Application',
-                          description: 'Let\'s take a break'),
+                          icon: FontAwesomeIcons.share,
+                          title: 'Inbound',
+                          description:
+                              'people that are going to the netherlands'),
                       HomeCardsItem(
-                          icon: FontAwesomeIcons.question,
-                          title: 'not sure',
-                          description: 'Around the city'),
+                          icon: FontAwesomeIcons.redoAlt,
+                          title: 'Rebound',
+                          description: 'rebound page'),
                     ],
                   ),
                 ],
