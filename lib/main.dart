@@ -6,6 +6,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'features/stories/data/datasources/languages.dart';
 import 'features/stories/presentation/pages/home.dart';
+import 'injection_container.dart' as di;
+
+void main() async {
+  runApp(new MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await di.init();
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -64,11 +73,4 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
     );
   }
-}
-
-void main() async {
-  runApp(new MyApp());
-
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
 }

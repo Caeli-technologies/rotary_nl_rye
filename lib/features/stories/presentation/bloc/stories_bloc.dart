@@ -18,8 +18,6 @@ class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
 
   final GetStories getStories;
 
-  get initialState => Empty();
-
   @override
   Stream<StoriesState> mapEventToState(
     StoriesEvent event,
