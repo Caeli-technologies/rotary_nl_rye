@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/models/carousel_model.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/home_cards_item.dart';
 
@@ -30,15 +32,14 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: ClampingScrollPhysics(),
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 15),
-              child: Text(
-                'here somes a nice image of Rotary International',
-                textScaleFactor: 2.4,
-                style: TextStyle(
-                    color: Palette.indigo, fontWeight: FontWeight.bold),
-              ),
-            ),
-            // Promos Section
+                height: 90,
+                margin:
+                    EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 40),
+                child: SvgPicture.asset(
+                    'assets/image/rotary_rye_nl_logo_home.svg')),
+
+            // idk if we need this but i will keep it for now
+/*
             Padding(
               padding: EdgeInsets.only(left: 16, bottom: 24),
               child: Text(
@@ -46,6 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontSize: 16, color: Palette.lightIndigo),
               ),
             ),
+*/
+
+            // Slider images
             Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(left: 16, right: 16),
@@ -84,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 12,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Row(
                         children: map<Widget>(
@@ -110,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Service Section
+/* 
             Padding(
               padding: EdgeInsets.only(left: 16, top: 24, bottom: 12),
               child: Text(
@@ -118,6 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontSize: 12, color: Palette.lightIndigo),
               ),
             ),
+*/
+            SizedBox(
+              height: 24,
+            ),
+            // navigator buttons
             Container(
               margin: EdgeInsets.only(left: 16, right: 16),
               child: Column(
@@ -125,13 +134,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: <Widget>[
                       HomeCardsItem(
-                          picturePath: 'assets/image/1.PNG',
-                          title: 'Flight',
-                          description: 'Feel freedom'),
+                          icon: FontAwesomeIcons.list,
+                          title: 'Program',
+                          description: 'information to apply and more things'),
                       HomeCardsItem(
-                          picturePath: 'assets/image/2.PNG',
-                          title: 'Trains',
-                          description: 'Intercity'),
+                          icon: FontAwesomeIcons.reply,
+                          title: 'Outbound',
+                          description:
+                              'students that are going to a diffrent country'),
                     ],
                   ),
                   SizedBox(
@@ -140,13 +150,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: <Widget>[
                       HomeCardsItem(
-                          picturePath: 'assets/image/3.PNG',
-                          title: 'Hotel',
-                          description: 'Let\'s take a break'),
+                          icon: FontAwesomeIcons.share,
+                          title: 'Inbound',
+                          description:
+                              'people that are going to the netherlands'),
                       HomeCardsItem(
-                          picturePath: 'assets/image/1.PNG',
-                          title: 'Car Rental',
-                          description: 'Around the city'),
+                          icon: FontAwesomeIcons.redoAlt,
+                          title: 'Rebound',
+                          description: 'rebound page'),
                     ],
                   ),
                 ],

@@ -133,6 +133,7 @@ class _HomePageState extends State<HomePage> {
               //FAQ
               QuestionPage(),
               //about us
+              //AboutPage(),
               AboutPage(),
               //settings
               SettingsPage(),
