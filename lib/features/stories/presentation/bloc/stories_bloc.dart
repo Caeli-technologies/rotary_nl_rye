@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -14,7 +15,7 @@ const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
 
 class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
-  StoriesBloc({required this.getStories}) : super(Empty());
+  StoriesBloc({this.getStories}) : super(Empty());
 
   final GetStories getStories;
 
@@ -23,13 +24,14 @@ class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
     StoriesEvent event,
   ) async* {
     if (event is BGetStories) {
-      yield Loading();
+      if(state is! Loaded) {
+        yield Loading();
+      }
       final failureOrStories = await getStories(NoParams());
 
       yield failureOrStories.fold(
-              (failure) => Error(message: _mapFailureToMessage(failure)),
-              (stories) => Loaded(stories: stories)
-      );
+          (failure) => Error(message: _mapFailureToMessage(failure)),
+          (stories) => Loaded(stories: stories));
     }
   }
 

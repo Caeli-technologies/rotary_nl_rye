@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
 import 'package:rotary_nl_rye/features/stories/data/datasources/stories_local_data_source.dart';
@@ -33,7 +34,9 @@ Future<void> init() async {
   ));
   
   // Data Sources
-  sl.registerLazySingleton<StoriesRemoteDataSource>(() => StoriesRemoteDataSourceImpl());
+  sl.registerLazySingleton<StoriesRemoteDataSource>(() => StoriesRemoteDataSourceImpl(
+      firebaseDatabase: sl()
+  ));
   sl.registerLazySingleton<StoriesLocalDataSource>(() => StoriesLocalDataSourceImpl(
       sharedPreferences: sl()
   ));
@@ -48,4 +51,7 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => DataConnectionChecker());
+
+  final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
+  sl.registerLazySingleton(() => firebaseDatabase);
 }

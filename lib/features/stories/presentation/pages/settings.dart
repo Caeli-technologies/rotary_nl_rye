@@ -1,8 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
-import 'package:rotary_nl_rye/main.dart';
+import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class SettingsPage extends StatefulWidget {

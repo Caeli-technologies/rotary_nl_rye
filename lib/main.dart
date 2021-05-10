@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'features/stories/data/datasources/languages.dart';
+import 'core/lang/languages.dart';
 import 'features/stories/presentation/pages/home.dart';
 import 'injection_container.dart' as di;
 

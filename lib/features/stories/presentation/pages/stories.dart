@@ -1,28 +1,31 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
+import 'package:rotary_nl_rye/core/lang/languages.dart';
+import 'package:rotary_nl_rye/features/stories/domain/entities/story.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/bloc/stories_bloc.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/storiesmore.dart';
-import 'package:rotary_nl_rye/features/stories/domain/repositories/fromprop.dart';
-import 'package:rotary_nl_rye/main.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class InnerTab extends StatefulWidget {
+  final stories;
+
+  InnerTab({this.stories});
+
   @override
-  _InnerTabState createState() => _InnerTabState();
+  _InnerTabState createState() => _InnerTabState(stories);
 }
 
 class _InnerTabState extends State<InnerTab> {
-  List _stories = [];
+  final List<Story> _stories;
 
-  List data = [];
-  void getData() async {
-    data = await Data.readDB();
-  }
+  _InnerTabState(this._stories);
 
   @override
   void initState() {
+    BlocProvider.of<StoriesBloc>(context).add(BGetStories());
     super.initState();
   }
 
@@ -70,56 +73,36 @@ class _InnerTabState extends State<InnerTab> {
             height: Device.height - 277,
             margin: EdgeInsets.only(left: 20, right: 20),
             child: TabBarView(children: [
-              FutureBuilder(
-                  future: Data.readDB(),
-                  builder: (context, AsyncSnapshot<List> snapshot) {
-                    if (snapshot.hasData) {
-                      _stories = snapshot.data;
-                    }
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      return new ListView.builder(
-                          itemCount: _stories.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return Transform.translate(
-                              offset: Offset(0, -10),
-                              child: GestureDetector(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => More(
-                                            image: _stories[index]["images"],
-                                            country: _stories[index]["country"],
-                                            name: _stories[index]["name"],
-                                            text1: _stories[index]["text1"],
-                                            text2: _stories[index]["text2"],
-                                            departureDate: _stories[index]
-                                                ["departureDate"],
-                                            arrivalDate: _stories[index]
-                                                ["arrivalDate"],
-                                          )),
-                                ),
-                                child: Container(
-                                  padding: EdgeInsets.only(bottom: 10),
-                                  child: TravelCard(
-                                    image: _stories[index]["images"],
-                                    country: _stories[index]["country"],
-                                    text1: _stories[index]["text1"],
-                                    text2: _stories[index]["text2"],
-                                    departureDate: _stories[index]
-                                        ["departureDate"],
-                                    arrivalDate: _stories[index]["arrivalDate"],
-                                  ),
-                                ),
-                              ),
-                            );
-                          });
-                    } else {
-                      return Center(
-                          child: Container(
-                              width: Device.width * 0.4,
-                              height: Device.width * 0.4,
-                              child: CircularProgressIndicator()));
-                    }
+              ListView.builder(
+                  itemCount: _stories.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    return Transform.translate(
+                      offset: Offset(0, -10),
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => More(
+                                  image: _stories[index].imagePath,
+                                  country: _stories[index].country,
+                                  name: _stories[index].studentName,
+                                  text1: _stories[index].text1,
+                                  text2: _stories[index].text2,
+                                  departureDate: _stories[index].departureDate,
+                                  arrivalDate: _stories[index].arrivalDate)),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TravelCard(
+                              image: _stories[index].imagePath,
+                              country: _stories[index].country,
+                              text1: _stories[index].text1,
+                              text2: _stories[index].text2,
+                              departureDate: _stories[index].departureDate,
+                              arrivalDate: _stories[index].arrivalDate),
+                        ),
+                      ),
+                    );
                   }),
               Center(
                 child: Text("2"),

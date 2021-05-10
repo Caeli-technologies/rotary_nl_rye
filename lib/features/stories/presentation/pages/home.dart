@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/bloc/stories_bloc.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/question.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/settings.dart';
 
 import 'package:rotary_nl_rye/features/stories/presentation/pages/aboutpage.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/stories.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/home_screen.dart';
 import 'package:rotary_nl_rye/injection_container.dart';
 
@@ -83,8 +85,9 @@ class _HomePageState extends State<HomePage> {
               ),
             */
               //stories
-              BlocBuilder<StoriesBloc, StoriesState>(builder: (context, state) {
-                BlocProvider.of<StoriesBloc>(context).add(BGetStories());
+              BlocBuilder<StoriesBloc, StoriesState>(
+                  builder: (context, state) {
+                    BlocProvider.of<StoriesBloc>(context).add(BGetStories());
                 if (state is Empty) {
                   return Center(
                     child: Text("Waiting"),
@@ -101,8 +104,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
                 if (state is Loaded) {
-                  return Text("");
-                    /*ListView(
+                  return ListView(
                     physics: NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(0),
                     children: [
@@ -119,10 +121,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 15),
-                        child: InnerTab(),
+                        child: InnerTab(stories: state.stories)
                       ),
                     ],
-                  );*/
+                  );
                 }
                 return Center(
                   child: Text("Something went wrong"),
