@@ -89,12 +89,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Row(
                     children: <Widget>[
-                      HomeCardsItem(
+                      HomeCardItem(
                           icon: FontAwesomeIcons.calendarAlt,
                           title: 'Calandar',
                           description:
                               'people that are going to the netherlands'),
-                      HomeCardsItem(
+                      HomeCardItem(
                           icon: FontAwesomeIcons.newspaper,
                           title: 'News',
                           description: 'rebound page'),
