@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
                 height: 90,
                 margin:
-                    EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 40),
+                    EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 10),
                 child: SvgPicture.asset(
                     'assets/image/rotary_rye_nl_logo_home.svg')),
 

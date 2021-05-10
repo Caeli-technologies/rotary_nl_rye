@@ -21,7 +21,7 @@ class _AboutPageState extends State<AboutPage> {
           Container(
             margin: EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              'About page. still needs a name',
+              'Contact List',
               textScaleFactor: 2.4,
               style:
                   TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -49,12 +49,12 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
               ),
-              title: Text('test',
+              title: Text('Ruben Talstra',
                   style: TextStyle(
                     color: Palette.indigo,
                   )),
               subtitle: Text(
-                'test',
+                'My fuction XD is a Dev i think',
                 style: TextStyle(
                   color: Palette.indigo,
                 ),
