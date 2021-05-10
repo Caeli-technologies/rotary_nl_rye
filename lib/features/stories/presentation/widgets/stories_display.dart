@@ -1,27 +1,27 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/lang/languages.dart';
-import 'package:rotary_nl_rye/features/stories/domain/entities/story.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/bloc/stories_bloc.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/storiesmore.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 
-class InnerTab extends StatefulWidget {
+import '../../../../core/lang/languages.dart';
+import '../../../../core/prop.dart';
+import '../../domain/entities/story.dart';
+import '../bloc/stories_bloc.dart';
+import '../pages/stories_details_page.dart';
+
+class StoriesDisplay extends StatefulWidget {
   final stories;
 
-  InnerTab({this.stories});
+  StoriesDisplay({this.stories});
 
   @override
-  _InnerTabState createState() => _InnerTabState(stories);
+  _StoriesDisplayState createState() => _StoriesDisplayState(stories);
 }
 
-class _InnerTabState extends State<InnerTab> {
+class _StoriesDisplayState extends State<StoriesDisplay> {
   final List<Story> _stories;
 
-  _InnerTabState(this._stories);
+  _StoriesDisplayState(this._stories);
 
   @override
   void initState() {
@@ -31,30 +31,47 @@ class _InnerTabState extends State<InnerTab> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2, //length: 4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          TabBar(
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicator:
-                CircleTabIndicator(color: Palette.accentColor, radius: 2),
-            unselectedLabelColor: Palette.lightIndigo,
-            labelColor: Palette.accentColor,
-            indicatorColor: Colors.transparent,
-            labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            tabs: [
-              Container(
-                  height: 30,
-                  child: Tab(
-                      text: DemoLocalizations.of(context)
-                          .trans('storiesTabBar1'))),
-              Container(
-                  height: 30,
-                  child: Tab(
-                    text: DemoLocalizations.of(context).trans('storiesTabBar2'),
-                  )),
+    return ListView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(0),
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 20, top: 60, right: 20),
+          child: Text(
+            DemoLocalizations.of(context).trans('storiesHomeHeader'),
+            textScaleFactor: 2.4,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+            margin: EdgeInsets.only(top: 15),
+            child: DefaultTabController(
+              length: 2, //length: 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  TabBar(
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: CircleTabIndicator(
+                        color: Palette.accentColor, radius: 2),
+                    unselectedLabelColor: Palette.lightIndigo,
+                    labelColor: Palette.accentColor,
+                    indicatorColor: Colors.transparent,
+                    labelStyle:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    tabs: [
+                      Container(
+                          height: 30,
+                          child: Tab(
+                              text: DemoLocalizations.of(context)
+                                  .trans('storiesTabBar1'))),
+                      Container(
+                          height: 30,
+                          child: Tab(
+                            text: DemoLocalizations.of(context)
+                                .trans('storiesTabBar2'),
+                          )),
 /*
               Container(
                   height: 30,
@@ -67,47 +84,50 @@ class _InnerTabState extends State<InnerTab> {
                     text: DemoLocalizations.of(context).trans('storiesTabBar4'),
                   )),
 */
-            ],
-          ),
-          Container(
-            height: Device.height - 277,
-            margin: EdgeInsets.only(left: 20, right: 20),
-            child: TabBarView(children: [
-              ListView.builder(
-                  itemCount: _stories.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return Transform.translate(
-                      offset: Offset(0, -10),
-                      child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => More(
-                                  image: _stories[index].imagePath,
-                                  country: _stories[index].country,
-                                  name: _stories[index].studentName,
-                                  text1: _stories[index].text1,
-                                  text2: _stories[index].text2,
-                                  departureDate: _stories[index].departureDate,
-                                  arrivalDate: _stories[index].arrivalDate)),
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: TravelCard(
-                              image: _stories[index].imagePath,
-                              country: _stories[index].country,
-                              text1: _stories[index].text1,
-                              text2: _stories[index].text2,
-                              departureDate: _stories[index].departureDate,
-                              arrivalDate: _stories[index].arrivalDate),
-                        ),
-                      ),
-                    );
-                  }),
-              Center(
-                child: Text("2"),
-              )
-/*              
+                    ],
+                  ),
+                  Container(
+                    height: Device.height - 277,
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    child: TabBarView(children: [
+                      ListView.builder(
+                          itemCount: _stories.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return Transform.translate(
+                              offset: Offset(0, -10),
+                              child: GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => StoriesDetails(
+                                          image: _stories[index].imagePath,
+                                          country: _stories[index].country,
+                                          name: _stories[index].studentName,
+                                          text1: _stories[index].text1,
+                                          text2: _stories[index].text2,
+                                          departureDate:
+                                              _stories[index].departureDate,
+                                          arrivalDate:
+                                              _stories[index].arrivalDate)),
+                                ),
+                                child: Container(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: TravelCard(
+                                      image: _stories[index].imagePath,
+                                      country: _stories[index].country,
+                                      text1: _stories[index].text1,
+                                      text2: _stories[index].text2,
+                                      departureDate:
+                                          _stories[index].departureDate,
+                                      arrivalDate: _stories[index].arrivalDate),
+                                ),
+                              ),
+                            );
+                          }),
+                      Center(
+                        child: Text("2"),
+                      )
+/*
               Center(
                 child: Text("3"),
               ),
@@ -115,10 +135,12 @@ class _InnerTabState extends State<InnerTab> {
                 child: Text("4"),
               )
 */
-            ]),
-          )
-        ],
-      ),
+                    ]),
+                  )
+                ],
+              ),
+            )),
+      ],
     );
   }
 }

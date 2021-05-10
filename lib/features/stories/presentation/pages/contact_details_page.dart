@@ -5,11 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 // ignore: must_be_immutable
-class More extends StatelessWidget {
+class ContactDetails extends StatelessWidget {
   String country, name, text1, text2, image;
   int arrivalDate, departureDate;
 
-  More(
+  ContactDetails(
       {this.country,
       this.name,
       this.text1,

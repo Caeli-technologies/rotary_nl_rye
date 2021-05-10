@@ -1,17 +1,16 @@
 // @dart=2.9
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-class AboutPage extends StatefulWidget {
+class ContactPage extends StatefulWidget {
   @override
-  _AboutPageState createState() => _AboutPageState();
+  _ContactPageState createState() => _ContactPageState();
 }
 
 //TODO needs to look like the story page. nut then only for contacts of the organication and Rotex (https://rotex.org/who-we-are/)
 
-class _AboutPageState extends State<AboutPage> {
+class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

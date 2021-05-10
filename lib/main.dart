@@ -1,11 +1,12 @@
 // @dart=2.9
 import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/lang/languages.dart';
-import 'features/stories/presentation/pages/home.dart';
+import 'features/stories/presentation/pages/page_navigator.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: PageNavigator(),
     );
   }
 }
