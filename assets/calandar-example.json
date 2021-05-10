@@ -1,0 +1,34 @@
+{
+    "kind": "calendar#event",
+    "etag": "\"3120543513264000\"",
+    "id": "0oelnms9g1qs5s16gunv3c45co",
+    "status": "confirmed",
+    "htmlLink": "https://www.google.com/calendar/event?eid=MG9lbG5tczlnMXFzNXMxNmd1bnYzYzQ1Y28gcnllLm5ldGhlcmxhbmRzQG0",
+    "created": "2019-06-09T19:45:12.000Z",
+    "updated": "2019-06-11T16:49:16.632Z",
+    "summary": "Farewell Party",
+    "description": "\nOp 22 juni 's morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./",
+    "location": "Agorabaan 3, 8224 JS Lelystad, Nederland",
+    "creator": {
+        "email": "hpl.vanmontfort@gmail.com"
+    },
+    "organizer": {
+        "email": "rye.netherlands@gmail.com",
+        "self": true
+    },
+    "start": {
+        "dateTime": "2019-06-22T17:30:00+02:00"
+    },
+    "end": {
+        "dateTime": "2019-06-22T19:30:00+02:00"
+    },
+    "transparency": "transparent",
+    "iCalUID": "0oelnms9g1qs5s16gunv3c45co@google.com",
+    "sequence": 1,
+    "extendedProperties": {
+        "private": {
+            "everyoneDeclinedDismissed": "-1"
+        }
+    },
+    "eventType": "default"
+}
