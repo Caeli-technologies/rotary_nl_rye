@@ -38,6 +38,7 @@ class StoriesLocalDataSourceImpl implements StoriesLocalDataSource {
 
   @override
   Future<void> cacheStories(List<StoryModel> storiesToCache) {
-    return sharedPreferences.setString(CACHED_STORIES, json.encode(storiesToCache));
+    return sharedPreferences.setString(
+        CACHED_STORIES, json.encode(storiesToCache));
   }
 }

@@ -24,7 +24,7 @@ class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
     StoriesEvent event,
   ) async* {
     if (event is BGetStories) {
-      if(state is! Loaded) {
+      if (state is! Loaded) {
         yield Loading();
       }
       final failureOrStories = await getStories(NoParams());

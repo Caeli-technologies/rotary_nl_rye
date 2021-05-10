@@ -84,6 +84,22 @@ class _HomePageState extends State<HomePage> {
                           description: 'rebound page'),
                     ],
                   ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      HomeCardsItem(
+                          icon: FontAwesomeIcons.calendarAlt,
+                          title: 'Calandar',
+                          description:
+                              'people that are going to the netherlands'),
+                      HomeCardsItem(
+                          icon: FontAwesomeIcons.newspaper,
+                          title: 'News',
+                          description: 'rebound page'),
+                    ],
+                  ),
                 ],
               ),
             ),

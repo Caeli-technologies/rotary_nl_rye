@@ -26,7 +26,8 @@ class StoriesRepositoryImpl implements StoriesRepository {
 
   @override
   Future<Either<Failure, List<Story>>> getStories() async {
-    if(await networkInfo.isConnected && await updateLocalDataSource.timeSpanIsGreaterThen24h) {
+    if (await networkInfo.isConnected &&
+        await updateLocalDataSource.timeSpanIsGreaterThen24h) {
       try {
         print("Fetch from remote");
         final remoteStories = await storiesRemoteDataSource.getStories();
