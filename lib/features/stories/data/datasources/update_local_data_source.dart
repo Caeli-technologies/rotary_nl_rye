@@ -28,7 +28,8 @@ class UpdateLocalDataSourceImpl implements UpdateLocalDataSource {
     final jsonString = sharedPreferences.getString(CACHED_UPDATE);
     if (jsonString != null) {
       final updateModel = UpdateModel.fromJson(json.decode(jsonString));
-      final timeSpanIsGreaterThen24h = (timeNow - updateModel.lastUpdate) > oneDay;
+      final timeSpanIsGreaterThen24h =
+          (timeNow - updateModel.lastUpdate) > oneDay;
       return Future.value(timeSpanIsGreaterThen24h);
     }
     return Future.value(true);
@@ -36,7 +37,9 @@ class UpdateLocalDataSourceImpl implements UpdateLocalDataSource {
 
   @override
   Future<void> cacheUpdate() {
-    final updateToCache = UpdateModel(lastUpdate: DateTime.now().millisecondsSinceEpoch);
-    return sharedPreferences.setString(CACHED_UPDATE, json.encode(updateToCache));
+    final updateToCache =
+        UpdateModel(lastUpdate: DateTime.now().millisecondsSinceEpoch);
+    return sharedPreferences.setString(
+        CACHED_UPDATE, json.encode(updateToCache));
   }
 }

@@ -12,15 +12,13 @@ import 'package:rotary_nl_rye/features/stories/domain/usecases/get_stories.dart'
 import 'package:rotary_nl_rye/features/stories/presentation/bloc/stories_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
- // service locator
+// service locator
 final sl = GetIt.instance;
 
 Future<void> init() async {
   /// Features - Stories
   // Bloc
-  sl.registerFactory(() => StoriesBloc(
-      getStories: sl()
-  ));
+  sl.registerFactory(() => StoriesBloc(getStories: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => GetStories(sl()));
@@ -30,19 +28,15 @@ Future<void> init() async {
       storiesRemoteDataSource: sl(),
       storiesLocalDataSource: sl(),
       updateLocalDataSource: sl(),
-      networkInfo: sl()
-  ));
-  
+      networkInfo: sl()));
+
   // Data Sources
-  sl.registerLazySingleton<StoriesRemoteDataSource>(() => StoriesRemoteDataSourceImpl(
-      firebaseDatabase: sl()
-  ));
-  sl.registerLazySingleton<StoriesLocalDataSource>(() => StoriesLocalDataSourceImpl(
-      sharedPreferences: sl()
-  ));
-  sl.registerLazySingleton<UpdateLocalDataSource>(() => UpdateLocalDataSourceImpl(
-      sharedPreferences: sl()
-  ));
+  sl.registerLazySingleton<StoriesRemoteDataSource>(
+      () => StoriesRemoteDataSourceImpl(firebaseDatabase: sl()));
+  sl.registerLazySingleton<StoriesLocalDataSource>(
+      () => StoriesLocalDataSourceImpl(sharedPreferences: sl()));
+  sl.registerLazySingleton<UpdateLocalDataSource>(
+      () => UpdateLocalDataSourceImpl(sharedPreferences: sl()));
 
   /// Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

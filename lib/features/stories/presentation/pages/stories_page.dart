@@ -14,23 +14,22 @@ class StoriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => sl<StoriesBloc>(),
-      child: BlocBuilder<StoriesBloc, StoriesState>(
-          builder: (context, state) {
-            BlocProvider.of<StoriesBloc>(context).add(BGetStories());
-            if (state is Empty) {
-              return WaitingDisplay();
-            }
-            if (state is Error) {
-              return ErrorDisplay(message: state.message);
-            }
-            if (state is Loading) {
-              return LoadingDisplay();
-            }
-            if (state is Loaded) {
-              return StoriesDisplay(stories: state.stories);
-            }
-            return ErrorDisplay(message: "Something went wrong");
-          }),
+      child: BlocBuilder<StoriesBloc, StoriesState>(builder: (context, state) {
+        BlocProvider.of<StoriesBloc>(context).add(BGetStories());
+        if (state is Empty) {
+          return WaitingDisplay();
+        }
+        if (state is Error) {
+          return ErrorDisplay(message: state.message);
+        }
+        if (state is Loading) {
+          return LoadingDisplay();
+        }
+        if (state is Loaded) {
+          return StoriesDisplay(stories: state.stories);
+        }
+        return ErrorDisplay(message: "Something went wrong");
+      }),
     );
   }
 }

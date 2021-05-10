@@ -9,9 +9,6 @@ class IconTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 90,
-        child: Tab(icon: FaIcon(iconData, size: 35))
-    );
+    return Container(height: 90, child: Tab(icon: FaIcon(iconData, size: 35)));
   }
 }

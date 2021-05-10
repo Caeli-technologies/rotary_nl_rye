@@ -27,8 +27,7 @@ class StoriesRemoteDataSourceImpl implements StoriesRemoteDataSource {
       tempList = table[STORIES_TABLE];
     });
 
-    if(tempList.toString() != "[]")
-    {
+    if (tempList.toString() != "[]") {
       List<StoryModel> storiesList = [];
       tempList.forEach((element) {
         var temp = element as LinkedHashMap;
