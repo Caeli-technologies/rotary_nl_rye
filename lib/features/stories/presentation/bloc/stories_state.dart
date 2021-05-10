@@ -1,3 +1,4 @@
+// @dart=2.9
 part of 'stories_bloc.dart';
 
 abstract class StoriesState extends Equatable {
@@ -17,7 +18,7 @@ class Loading extends StoriesState {
 class Loaded extends StoriesState {
   final List<Story> stories;
 
-  Loaded({required this.stories});
+  Loaded({this.stories});
 
   @override
   List<Object> get props => [stories];
@@ -28,7 +29,7 @@ class Error extends StoriesState {
 
   // TODO log errors
 
-  Error({required this.message});
+  Error({this.message});
 
   @override
   List<Object> get props => [message];

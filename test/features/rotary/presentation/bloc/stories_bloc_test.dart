@@ -21,7 +21,7 @@ void main() {
 
   test('initialState should be Empty', () {
     // assert
-    expect(bloc.initialState, equals(Empty()));
+    expect(bloc.state, equals(Empty()));
   });
 
   group('GetStories', () {
@@ -54,7 +54,6 @@ void main() {
       when(mockGetStories(any)).thenAnswer((_) async => (Right(tStories)));
       // assert later
       final expected = [
-        //Empty(),
         Loading(),
         Loaded(stories: tStories)
       ];
@@ -68,7 +67,6 @@ void main() {
       when(mockGetStories(any)).thenAnswer((_) async => (Left(ServerFailure())));
       // assert later
       final expected = [
-        //Empty(),
         Loading(),
         Error(message: SERVER_FAILURE_MESSAGE)
       ];

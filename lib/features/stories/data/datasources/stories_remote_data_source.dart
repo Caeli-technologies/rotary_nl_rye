@@ -1,9 +1,9 @@
 // @dart=2.9
+import 'dart:collection';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:rotary_nl_rye/core/error/exceptions.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/story_model.dart';
-
-import '../../domain/entities/story.dart';
 
 abstract class StoriesRemoteDataSource {
   /// Fetches stories data from firebase.
@@ -20,19 +20,19 @@ class StoriesRemoteDataSourceImpl implements StoriesRemoteDataSource {
   StoriesRemoteDataSourceImpl({this.firebaseDatabase});
 
   @override
-  Future<List<StoryModel>> getStories() {
-    List<Map<String, dynamic>> tempList = [];
-    firebaseDatabase.reference().once().asStream().forEach((element) async {
-      if(element.key == STORIES_TABLE) {
-        tempList = await element.value as List<Map<String, dynamic>>;
-      }
+  Future<List<StoryModel>> getStories() async {
+    List tempList = [];
+    await firebaseDatabase.reference().once().asStream().forEach((element) {
+      final table = element.value as Map;
+      tempList = table[STORIES_TABLE];
     });
 
-    if(tempList != [])
+    if(tempList.toString() != "[]")
     {
-      List<StoryModel> storiesList;
+      List<StoryModel> storiesList = [];
       tempList.forEach((element) {
-        storiesList.add(StoryModel.fromJson(element));
+        var temp = element as LinkedHashMap;
+        storiesList.add(StoryModel.fromJson(temp.cast()));
       });
       return Future.value(storiesList);
     }

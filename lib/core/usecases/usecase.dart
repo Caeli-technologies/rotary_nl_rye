@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import '../error/failures.dart';

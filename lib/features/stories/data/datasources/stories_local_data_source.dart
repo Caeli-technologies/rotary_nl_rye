@@ -22,9 +22,10 @@ class StoriesLocalDataSourceImpl implements StoriesLocalDataSource {
 
   @override
   Future<List<StoryModel>> getStories() {
+    // TODO issue with null value
     final jsonString = sharedPreferences.getString(CACHED_STORIES);
     if (jsonString != null) {
-      final tempList = json.decode(jsonString);
+      final List tempList = json.decode(jsonString);
       final List<StoryModel> tStoriesModels = [];
       tempList.forEach((element) {
         tStoriesModels.add(StoryModel.fromJson(element));

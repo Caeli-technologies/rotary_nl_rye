@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rotary_nl_rye/features/stories/data/models/update_model.dart';
-import 'package:rotary_nl_rye/features/stories/data/models/story_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
