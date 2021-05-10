@@ -62,10 +62,14 @@ class _HomePageState extends State<HomePage> {
                           title: 'Program',
                           description: 'information to apply and more things'),
                       HomeCardItem(
-                          icon: FontAwesomeIcons.reply,
-                          title: 'Outbound',
+                          icon: FontAwesomeIcons.newspaper,
+                          title: 'News',
+                          description: 'rebound page'),
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.calendarAlt,
+                          title: 'Calandar',
                           description:
-                              'students that are going to a diffrent country'),
+                              'people that are going to the netherlands'),
                     ],
                   ),
                   SizedBox(
@@ -73,6 +77,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Row(
                     children: <Widget>[
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.reply,
+                          title: 'Outbound',
+                          description:
+                              'students that are going to a diffrent country'),
                       HomeCardItem(
                           icon: FontAwesomeIcons.share,
                           title: 'Inbound',
@@ -81,22 +90,6 @@ class _HomePageState extends State<HomePage> {
                       HomeCardItem(
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
-                          description: 'rebound page'),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.calendarAlt,
-                          title: 'Calandar',
-                          description:
-                              'people that are going to the netherlands'),
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.newspaper,
-                          title: 'News',
                           description: 'rebound page'),
                     ],
                   ),
