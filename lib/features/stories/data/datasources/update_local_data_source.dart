@@ -31,7 +31,7 @@ class UpdateLocalDataSourceImpl implements UpdateLocalDataSource {
       final timeSpanIsGreaterThen24h = (timeNow - updateModel.lastUpdate) > oneDay;
       return Future.value(timeSpanIsGreaterThen24h);
     }
-    throw CacheException();
+    return Future.value(true);
   }
 
   @override
