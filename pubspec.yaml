@@ -57,6 +57,10 @@ dependencies:
   flutter_bloc: ^7.0.0
   flutter_svg: ^0.22.0
 
+  #add later when we are ready 
+  # https://pub.dev/packages/flutter_local_notifications#general-setup // needs come config in ios part and android files
+  # flutter_local_notifications: ^5.0.0+4
+
   
 dev_dependencies:
   flutter_test:
