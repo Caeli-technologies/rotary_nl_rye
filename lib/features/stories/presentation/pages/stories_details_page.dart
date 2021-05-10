@@ -106,7 +106,7 @@ class MainContainer extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.topLeft,
                     child: Container(
                       padding: EdgeInsets.only(left: 40, top: 5),
                       child: Text(
@@ -173,7 +173,7 @@ class MainContainer extends StatelessWidget {
                 ]),
               ),
 
-              //TODO, the text and images all on one scroll page thats going up when you go up.
+              //TODO, the text and images all on one scroll page that's going up when you go up.
 
               Align(
                 child: DefaultTabController(

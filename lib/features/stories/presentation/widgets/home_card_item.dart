@@ -3,11 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-class HomeCardsItem extends StatelessWidget {
+class HomeCardItem extends StatelessWidget {
   final String title, description;
   final IconData icon;
 
-  HomeCardsItem(
+  HomeCardItem(
       {required this.title,
       required this.icon,
       required this.description});

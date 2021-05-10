@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../widgets/home_cards_item.dart';
-import 'models/carousel_model.dart';
+import '../widgets/carousel_display.dart';
+import '../widgets/home_card_item.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,11 +21,11 @@ class _HomePageState extends State<HomePage> {
           physics: ClampingScrollPhysics(),
           children: <Widget>[
             Container(
-                height: 90,
-                margin:
-                    EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 10),
-                child: SvgPicture.asset(
-                    'assets/image/rotary_rye_nl_logo_home.svg')),
+              height: 90,
+              margin: EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 10),
+              child:
+                  SvgPicture.asset('assets/image/rotary_rye_nl_logo_home.svg'),
+            ),
 
             // idk if we need this but i will keep it for now
 /*
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             // Slider images
             Carousel(),
 
-/* 
+/*
             Padding(
               padding: EdgeInsets.only(left: 16, top: 24, bottom: 12),
               child: Text(
@@ -50,21 +50,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 */
-            SizedBox(
-              height: 24,
-            ),
             // navigator buttons
             Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
+              margin: EdgeInsets.only(top: 24, left: 16, right: 16),
               child: Column(
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      HomeCardsItem(
+                      HomeCardItem(
                           icon: FontAwesomeIcons.list,
                           title: 'Program',
                           description: 'information to apply and more things'),
-                      HomeCardsItem(
+                      HomeCardItem(
                           icon: FontAwesomeIcons.reply,
                           title: 'Outbound',
                           description:
@@ -76,12 +73,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Row(
                     children: <Widget>[
-                      HomeCardsItem(
+                      HomeCardItem(
                           icon: FontAwesomeIcons.share,
                           title: 'Inbound',
                           description:
                               'people that are going to the netherlands'),
-                      HomeCardsItem(
+                      HomeCardItem(
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
                           description: 'rebound page'),

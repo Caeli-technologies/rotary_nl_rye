@@ -2,13 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../../../core/prop.dart';
-
-class CarouselModel {
-  final String image;
-
-  CarouselModel({this.image});
-}
+import '../../../../core/prop.dart';
 
 class Carousel extends StatefulWidget {
   @override
@@ -99,4 +93,10 @@ class _CarouselState extends State<Carousel> {
       ),
     );
   }
+}
+
+class CarouselModel {
+  final String image;
+
+  CarouselModel({this.image});
 }

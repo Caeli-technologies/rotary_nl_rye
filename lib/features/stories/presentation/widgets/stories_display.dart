@@ -45,33 +45,24 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
           ),
         ),
         Container(
+          decoration: BoxDecoration(
+                      color: Palette.themeCardShadeColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+          height: 50,
+          margin: EdgeInsets.only(left: 20, top: 15, right: 20),
+          width: Device.width,
+          child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text("Search...", style: TextStyle(color: Palette.grey),))),
+        ),
+        Container(
             margin: EdgeInsets.only(top: 15),
-            child: DefaultTabController(
-              length: 2, //length: 4,
-              child: Column(
+            child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  TabBar(
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: CircleTabIndicator(
-                        color: Palette.accentColor, radius: 2),
-                    unselectedLabelColor: Palette.lightIndigo,
-                    labelColor: Palette.accentColor,
-                    indicatorColor: Colors.transparent,
-                    labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    tabs: [
-                      Container(
-                          height: 30,
-                          child: Tab(
-                              text: DemoLocalizations.of(context)
-                                  .trans('storiesTabBar1'))),
-                      Container(
-                          height: 30,
-                          child: Tab(
-                            text: DemoLocalizations.of(context)
-                                .trans('storiesTabBar2'),
-                          )),
 /*
               Container(
                   height: 30,
@@ -84,62 +75,45 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                     text: DemoLocalizations.of(context).trans('storiesTabBar4'),
                   )),
 */
-                    ],
-                  ),
                   Container(
                     height: Device.height - 277,
                     margin: EdgeInsets.only(left: 20, right: 20),
-                    child: TabBarView(children: [
-                      ListView.builder(
-                          itemCount: _stories.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return Transform.translate(
-                              offset: Offset(0, -10),
-                              child: GestureDetector(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => StoriesDetails(
-                                          image: _stories[index].imagePath,
-                                          country: _stories[index].country,
-                                          name: _stories[index].studentName,
-                                          text1: _stories[index].text1,
-                                          text2: _stories[index].text2,
-                                          departureDate:
-                                              _stories[index].departureDate,
-                                          arrivalDate:
-                                              _stories[index].arrivalDate)),
-                                ),
-                                child: Container(
-                                  padding: EdgeInsets.only(bottom: 10),
-                                  child: TravelCard(
-                                      image: _stories[index].imagePath,
-                                      country: _stories[index].country,
-                                      text1: _stories[index].text1,
-                                      text2: _stories[index].text2,
-                                      departureDate:
-                                          _stories[index].departureDate,
-                                      arrivalDate: _stories[index].arrivalDate),
-                                ),
+                    child: ListView.builder(
+                        itemCount: _stories.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return Transform.translate(
+                            offset: Offset(0, -10),
+                            child: GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => StoriesDetails(
+                                        image: _stories[index].imagePath,
+                                        country: _stories[index].country,
+                                        name: _stories[index].studentName,
+                                        text1: _stories[index].text1,
+                                        text2: _stories[index].text2,
+                                        departureDate:
+                                            _stories[index].departureDate,
+                                        arrivalDate:
+                                            _stories[index].arrivalDate)),
                               ),
-                            );
-                          }),
-                      Center(
-                        child: Text("2"),
-                      )
-/*
-              Center(
-                child: Text("3"),
-              ),
-              Center(
-                child: Text("4"),
-              )
-*/
-                    ]),
-                  )
-                ],
-              ),
-            )),
+                              child: Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TravelCard(
+                                    image: _stories[index].imagePath,
+                                    country: _stories[index].country,
+                                    text1: _stories[index].text1,
+                                    text2: _stories[index].text2,
+                                    departureDate:
+                                        _stories[index].departureDate,
+                                    arrivalDate: _stories[index].arrivalDate),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ])),
       ],
     );
   }
