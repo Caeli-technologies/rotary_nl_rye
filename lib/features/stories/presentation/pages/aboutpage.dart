@@ -1,12 +1,8 @@
 // @dart=2.9
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AboutPage extends StatefulWidget {
   @override

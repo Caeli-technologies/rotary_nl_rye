@@ -1,9 +1,9 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/languages.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/models/carousel_model.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/home_cards_item.dart';
 
