@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                           description: 'rebound page'),
                       HomeCardItem(
                           icon: FontAwesomeIcons.calendarAlt,
-                          title: 'Calandar',
+                          title: 'Calendar',
                           description:
                               'people that are going to the netherlands'),
                     ],
