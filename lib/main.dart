@@ -22,6 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        const DemoLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('en', 'GB'),
@@ -48,22 +53,14 @@ class MyApp extends StatelessWidget {
         const Locale('ar', 'AE'),
         const Locale('he', 'IL'),
       ],
-      localizationsDelegates: [
-        const DemoLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
       localeResolutionCallback:
           (Locale locale, Iterable<Locale> supportedLocales) {
         for (Locale supportedLocale in supportedLocales) {
-          if (!Platform.isIOS) {
-            if (supportedLocale.languageCode == locale.languageCode ||
-                supportedLocale.countryCode == locale.countryCode) {
-              return supportedLocale;
-            }
+          if (supportedLocale.languageCode == locale.languageCode ||
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
           }
         }
-
         return supportedLocales.first;
       },
       theme: ThemeData.light(), // Provide light theme.
