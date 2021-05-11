@@ -33,7 +33,7 @@ target 'Runner' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
-  pod 'Firebase/Messaging'
+  # pod 'Firebase/Messaging'
 
   use_modular_headers!
 
