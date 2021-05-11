@@ -45,7 +45,7 @@ dependencies:
   firebase_auth: ^1.1.1
   firebase_analytics: ^8.0.1
   firebase_database: ^6.1.2
-  firebase_storage: ^8.0.5 #https://medium.com/swlh/uploading-images-to-cloud-storage-using-flutter-130ac41741b2
+  firebase_storage: ^8.0.5 #TODO https://medium.com/swlh/uploading-images-to-cloud-storage-using-flutter-130ac41741b2
   translator: ^0.1.7
   dartz: ^0.9.2
   mockito: ^5.0.7
