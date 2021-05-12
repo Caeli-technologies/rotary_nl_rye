@@ -12,7 +12,7 @@ class PersonDetails extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 10),
+          margin: EdgeInsets.only(left: 10, top: 5),
           width: 40,
           height: 40,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),

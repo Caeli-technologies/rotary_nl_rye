@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/contact_person_details_page.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/widgets/stories_display.dart';
 
 class ContactPage extends StatefulWidget {
   @override
@@ -14,10 +15,12 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
+    return DefaultTabController(
+      length: 2, //length: 4,
+      child: ListView(
+        physics: NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.only(top: 60),
-        children: [
+        children: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 20, right: 20),
             child: Text(
@@ -27,12 +30,53 @@ class _ContactPageState extends State<ContactPage> {
                   TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) => PersonTile(
-              person: personList[index],
-            ),
-            itemCount: personList.length,
+          SizedBox(
+            height: 20,
+          ),
+          TabBar(
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicator:
+                CircleTabIndicator(color: Palette.accentColor, radius: 2),
+            unselectedLabelColor: Palette.lightIndigo,
+            labelColor: Palette.accentColor,
+            indicatorColor: Colors.transparent,
+            labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            tabs: [
+              Container(height: 30, child: Tab(text: 'Organization')),
+              Container(
+                  height: 30,
+                  child: Tab(
+                    text: 'Rotex',
+                  )),
+/*
+              Container(
+                  height: 30,
+                  child: Tab(
+                    text: DemoLocalizations.of(context).trans('storiesTabBar3'),
+                  )),
+              Container(
+                  height: 30,
+                  child: Tab(
+                    text: DemoLocalizations.of(context).trans('storiesTabBar4'),
+                  )),
+*/
+            ],
+          ),
+          Container(
+            height: Device.height - 277,
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: TabBarView(children: [
+              ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => PersonTile(
+                  person: personList[index],
+                ),
+                itemCount: personList.length,
+              ),
+              Center(
+                child: Text("2"),
+              )
+            ]),
           )
         ],
       ),
@@ -130,13 +174,13 @@ List<Person> personList = [
       email: "ruben@example.com",
       phoneNumber: "888 444 7676",
       exchangeInfo: {
-        "place": "Japan",
+        "place": "Canada",
         "travelDates": ["March 2020", "May 2020"]
       }),
   Person(
       name: "_Bnkn_",
       role: "Flutter Dev",
-      place: "U.S",
+      place: "Germany",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "assets/image/2.PNG",
