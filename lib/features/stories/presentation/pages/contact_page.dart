@@ -73,8 +73,12 @@ class _ContactPageState extends State<ContactPage> {
                 ),
                 itemCount: personList.length,
               ),
-              Center(
-                child: Text("2"),
+              ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => PersonTile(
+                  person: personList[index],
+                ),
+                itemCount: personList.length,
               )
             ]),
           )
@@ -226,4 +230,17 @@ List<Person> personList = [
       email: "believer@example.com",
       phoneNumber: "888 444 7676",
       exchangeInfo: {}),
+  Person(
+      name: "Yvan",
+      role: "Flutter Dev",
+      place: "Nice Place",
+      bio:
+          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+      imageUrl: "assets/image/2.PNG",
+      email: "yvan@example.com",
+      phoneNumber: "888 444 7676",
+      exchangeInfo: {
+        "place": "Japan",
+        "travelDates": ["March 2020", "May 2020"]
+      }),
 ];

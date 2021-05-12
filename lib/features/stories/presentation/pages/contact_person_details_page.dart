@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'contact_page.dart';
 
 class PersonDetails extends StatelessWidget {
@@ -41,14 +42,89 @@ class PersonDetails extends StatelessWidget {
               Container(
                 child: CircleAvatar(
                   backgroundImage: AssetImage(person.imageUrl),
-                  radius: 125,
+                  radius: 100,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Palette.themeShadeColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(40.0),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      person.name,
+                      textAlign: TextAlign.center,
+                      textScaleFactor: 2,
+                      style: TextStyle(
+                        color: Palette.indigo,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    IntrinsicHeight(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              person.role,
+                              textAlign: TextAlign.center,
+                            ),
+                            VerticalDivider(
+                              thickness: 2,
+                              width: 20,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              person.place,
+                              textAlign: TextAlign.center,
+                            )
+                          ]),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.phone),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(person.phoneNumber),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.email),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(person.email)
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               Text(
-                person.name,
+                "About",
                 textAlign: TextAlign.center,
                 textScaleFactor: 2,
                 style: TextStyle(
@@ -56,55 +132,8 @@ class PersonDetails extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              IntrinsicHeight(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(
-                    person.role,
-                    textAlign: TextAlign.center,
-                  ),
-                  VerticalDivider(
-                    thickness: 2,
-                    width: 20,
-                    color: Colors.grey,
-                  ),
-                  Text(
-                    person.place,
-                    textAlign: TextAlign.center,
-                  )
-                ]),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.phone),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(person.phoneNumber)
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.email),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(person.email)
-                ],
-              ),
-              SizedBox(
-                height: 20,
+              Divider(
+                thickness: 2,
               ),
               Text(person.bio),
               SizedBox(
