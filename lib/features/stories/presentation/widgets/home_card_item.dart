@@ -1,16 +1,18 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/countries.dart';
 
 class HomeCardItem extends StatelessWidget {
   final String title, description;
   final IconData icon;
 
   HomeCardItem(
-      {required this.title,
-      required this.icon,
-      required this.description});
+      {this.title,
+      this.icon,
+      this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +52,10 @@ class HomeCardItem extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () => showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text(description),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text("Close")),
-                    ],
-                  );
-                })));
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CountriesPage()),
+            )
+            ));
   }
 }
