@@ -13,7 +13,7 @@ class BottomNavigatorBar extends StatelessWidget {
       child: TabBar(
           tabs: [
             IconTab(iconData: FontAwesomeIcons.home),
-            IconTab(iconData: FontAwesomeIcons.book),
+            IconTab(iconData: FontAwesomeIcons.userFriends),
             IconTab(iconData: FontAwesomeIcons.question),
             IconTab(iconData: FontAwesomeIcons.addressCard),
             IconTab(iconData: FontAwesomeIcons.cog)

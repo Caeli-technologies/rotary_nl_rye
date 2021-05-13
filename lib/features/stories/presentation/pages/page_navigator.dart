@@ -32,6 +32,10 @@ class _PageNavigatorState extends State<PageNavigator> {
           children: [
             // home
             HomePage(),
+            //TODO still need to add and move the StoriesPage() to the rebound button
+            // About the organization page
+            //AboutPage(),
+
             // stories
             StoriesPage(),
             // FAQ
