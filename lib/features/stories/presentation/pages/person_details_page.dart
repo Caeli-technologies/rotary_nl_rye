@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'contact_page.dart';
 
 class PersonDetails extends StatelessWidget {
-  final Person person;
+  final person;
   const PersonDetails({required this.person});
   @override
   Widget build(BuildContext context) {
@@ -74,7 +72,7 @@ class PersonDetails extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              person.role,
+                              person.description,
                               textAlign: TextAlign.center,
                             ),
                             VerticalDivider(
@@ -139,11 +137,12 @@ class PersonDetails extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              person.exchangeInfo.length == 0
+              // TODO optional params
+              /*person.exchangeInfo.length == null
                   ? SizedBox.shrink()
                   : Text(
                       "Travelled to: ${person.exchangeInfo["place"]} between ${person.exchangeInfo["travelDates"][0]}-${person.exchangeInfo["travelDates"][1]}")
-            ],
+            */],
           ),
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/contributors_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -152,7 +153,57 @@ class _SettingsPageState extends State<SettingsPage> {
                         },
                       )),
             SizedBox(
-              height: 50,
+              height: 40,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.code,
+                  color: Palette.accentColor,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Development",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Divider(
+              height: 15,
+              thickness: 2,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ContributorsPage()),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Contributors",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Palette.grey,
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Palette.grey,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
