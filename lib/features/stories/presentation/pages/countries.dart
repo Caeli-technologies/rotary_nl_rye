@@ -68,6 +68,6 @@ List<Country> countries = [
       name: "Germany", imageUrl: "assets/icons/flags/de.svg", description: ""),
   Country(name: "USA", imageUrl: "assets/icons/flags/us.svg", description: ""),
   Country(
-      name: "Brazil", imageUrl: "assets/icons/flags/br.svg", description: ""),
+      name: "Brazil", imageUrl: "assets/icons/flags/bm.svg", description: ""),
   Country(name: "Japan", imageUrl: "assets/icons/flags/jp.svg", description: "")
 ];

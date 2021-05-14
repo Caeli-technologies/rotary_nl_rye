@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/models/contributor.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/story_page.dart';
@@ -40,9 +41,11 @@ class ExchangeStudentsPage extends StatelessWidget {
           padding: EdgeInsets.only(left: 15, right: 15),
           child: ListView(shrinkWrap: true, children: [
             Container(
-              child: CircleAvatar(
-                backgroundImage: AssetImage(person.imageUrl),
-                radius: 100,
+              child: SvgPicture.asset(
+                person.imageUrl,
+                height: 60,
+                width: 60,
+                fit: BoxFit.contain,
               ),
             ),
             SizedBox(
@@ -83,8 +86,7 @@ class ExchangeStudentsPage extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) => ImageListTile(
-                  item: exchangeStudents[index],
-                  descriptionPage: StoryPage()),
+                  item: exchangeStudents[index], descriptionPage: StoryPage()),
               itemCount: exchangeStudents.length,
             ),
           ]),
@@ -100,7 +102,7 @@ List<Contributor> exchangeStudents = [
     description: "Flutter Dev",
     place: "Netherlands",
     bio:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/1.PNG",
     email: "ruben@example.com",
     phoneNumber: "888 444 7676",
@@ -110,7 +112,7 @@ List<Contributor> exchangeStudents = [
     description: "Flutter Dev",
     place: "Germany",
     bio:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/2.PNG",
     email: "bnkn@example.com",
     phoneNumber: "888 444 7676",
@@ -120,7 +122,7 @@ List<Contributor> exchangeStudents = [
     description: "Flutter Dev",
     place: "Germany",
     bio:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/3.PNG",
     email: "sceptile@example.com",
     phoneNumber: "888 444 7676",
@@ -130,7 +132,7 @@ List<Contributor> exchangeStudents = [
     description: "Flutter Dev",
     place: "France",
     bio:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/1.PNG",
     email: "tonann@example.com",
     phoneNumber: "888 444 7676",
@@ -140,7 +142,7 @@ List<Contributor> exchangeStudents = [
     description: "Flutter Dev",
     place: "India",
     bio:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/2.PNG",
     email: "believer@example.com",
     phoneNumber: "888 444 7676",
@@ -150,7 +152,7 @@ List<Contributor> exchangeStudents = [
     description: "Flutter Dev",
     place: "Nice Place",
     bio:
-    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/2.PNG",
     email: "yvan@example.com",
     phoneNumber: "888 444 7676",
