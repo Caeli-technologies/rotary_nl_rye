@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class ImageListTile extends StatelessWidget {
@@ -33,7 +34,7 @@ class ImageListTile extends StatelessWidget {
               color: Palette
                   .imageBackgroundColor, //fill the image still needs to chagnge
             ),
-            child: Image.asset(
+            child: SvgPicture.asset(
               item.imageUrl,
               height: 50,
               width: 50,
