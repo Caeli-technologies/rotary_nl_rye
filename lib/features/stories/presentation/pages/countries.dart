@@ -47,7 +47,7 @@ class _CountriesPageState extends State<CountriesPage> {
           margin: EdgeInsets.only(left: 20, right: 20),
           child: ListView.builder(
             shrinkWrap: true,
-            itemBuilder: (context, index) => ImageListTile(
+            itemBuilder: (context, index) => SVGListTile(
                 item: countries[index],
                 descriptionPage:
                     ExchangeStudentsPage(person: countries[index])),
@@ -68,6 +68,6 @@ List<Country> countries = [
       name: "Germany", imageUrl: "assets/icons/flags/de.svg", description: ""),
   Country(name: "USA", imageUrl: "assets/icons/flags/us.svg", description: ""),
   Country(
-      name: "Brazil", imageUrl: "assets/icons/flags/bm.svg", description: ""),
+      name: "Brazil", imageUrl: "assets/icons/flags/br.svg", description: ""),
   Country(name: "Japan", imageUrl: "assets/icons/flags/jp.svg", description: "")
 ];
