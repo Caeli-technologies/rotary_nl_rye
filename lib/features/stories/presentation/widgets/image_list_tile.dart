@@ -25,15 +25,9 @@ class SVGListTile extends StatelessWidget {
         },
         contentPadding: EdgeInsets.all(0),
         leading: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(40)),
           child: Container(
             height: 55,
             width: 55,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: Palette
-                  .imageBackgroundColor, //fill the image still needs to chagnge
-            ),
             child: SvgPicture.asset(
               item.imageUrl,
               height: 50,

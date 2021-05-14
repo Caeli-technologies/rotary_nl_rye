@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/models/country.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/image_list_tile.dart';
@@ -41,12 +42,18 @@ class _CountriesPageState extends State<CountriesPage> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
+          title: Text(
+            "Countries",
+            textScaleFactor: 1.4,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Container(
-          height: Device.height - 277,
+          height: Device.height - 170,
           margin: EdgeInsets.only(left: 20, right: 20),
           child: ListView.builder(
-            shrinkWrap: true,
+            shrinkWrap: false,
             itemBuilder: (context, index) => SVGListTile(
                 item: countries[index],
                 descriptionPage:
