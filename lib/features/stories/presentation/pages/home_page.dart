@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/countries.dart';
 
 import '../widgets/carousel_display.dart';
 import '../widgets/home_card_item.dart';
@@ -60,16 +61,22 @@ class _HomePageState extends State<HomePage> {
                       HomeCardItem(
                           icon: FontAwesomeIcons.list,
                           title: 'Program',
-                          description: 'information to apply and more things'),
+                          description: 'information to apply and more things',
+                          pushTo: null
+                      ),
                       HomeCardItem(
                           icon: FontAwesomeIcons.newspaper,
                           title: 'News',
-                          description: 'rebound page'),
+                          description: 'rebound page',
+                          pushTo: null
+                      ),
                       HomeCardItem(
                           icon: FontAwesomeIcons.calendarAlt,
                           title: 'Calendar',
                           description:
-                              'people that are going to the netherlands'),
+                              'people that are going to the netherlands',
+                          pushTo: null
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -81,16 +88,22 @@ class _HomePageState extends State<HomePage> {
                           icon: FontAwesomeIcons.reply,
                           title: 'Outbound',
                           description:
-                              'students that are going to a diffrent country'),
+                              'students that are going to a diffrent country',
+                          pushTo: null
+                      ),
                       HomeCardItem(
                           icon: FontAwesomeIcons.share,
                           title: 'Inbound',
                           description:
-                              'people that are going to the netherlands'),
+                              'people that are going to the netherlands',
+                          pushTo: null
+                      ),
                       HomeCardItem(
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
-                          description: 'rebound page'),
+                          description: 'rebound page',
+                          pushTo: CountriesPage()
+                      ),
                     ],
                   ),
                   SizedBox(

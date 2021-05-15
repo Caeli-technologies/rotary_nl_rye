@@ -47,6 +47,8 @@ android {
         applicationId "com.caelitechnologies.rotary_nl_rye"
         minSdkVersion 16
         targetSdkVersion 30
+        // TODO before release ensure to shrink file size and delete multiDex (https://developer.android.com/studio/build/multidex)
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -65,5 +67,6 @@ flutter {
 }
 
 dependencies {
+    implementation "androidx.multidex:multidex:2.0.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
