@@ -63,7 +63,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                 Container(
                     child: CircleAvatar(
                   child: Image.asset("assets/image/2.PNG"),
-                  radius: 100,
+                  radius: 70,
                 )),
                 SizedBox(
                   height: 20,
