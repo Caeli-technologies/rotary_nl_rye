@@ -68,13 +68,51 @@ class _CountriesPageState extends State<CountriesPage> {
 
 List<Country> countries = [
   Country(
-      name: "France", imageUrl: "assets/icons/flags/fr.svg", description: ""),
+      name: "Canada", imageUrl: "assets/icons/flags/ca.svg", description: ""),
+  Country(
+      name: "Mexico", imageUrl: "assets/icons/flags/mx.svg", description: ""),
+  Country(name: "Peru", imageUrl: "assets/icons/flags/pe.svg", description: ""),
+  Country(
+      name: "Ecuador", imageUrl: "assets/icons/flags/ec.svg", description: ""),
+  Country(
+      name: "Chili", imageUrl: "assets/icons/flags/cl.svg", description: ""),
+  Country(
+      name: "Argentina",
+      imageUrl: "assets/icons/flags/ar.svg",
+      description: ""),
+  Country(
+      name: "South Africa",
+      imageUrl: "assets/icons/flags/za.svg",
+      description: ""),
+  Country(
+      name: "New Zealand",
+      imageUrl: "assets/icons/flags/nz.svg",
+      description: ""),
+  Country(
+      name: "Indonesia",
+      imageUrl: "assets/icons/flags/id.svg",
+      description: ""),
+  Country(
+      name: "Thailand", imageUrl: "assets/icons/flags/th.svg", description: ""),
+  Country(
+      name: "United States of America",
+      imageUrl: "assets/icons/flags/us.svg",
+      description: ""),
   Country(
       name: "India", imageUrl: "assets/icons/flags/in.svg", description: ""),
   Country(
-      name: "Germany", imageUrl: "assets/icons/flags/de.svg", description: ""),
-  Country(name: "USA", imageUrl: "assets/icons/flags/us.svg", description: ""),
+      name: "Taiwan", imageUrl: "assets/icons/flags/tw.svg", description: ""),
+  Country(
+      name: "Finland", imageUrl: "assets/icons/flags/fi.svg", description: ""),
   Country(
       name: "Brazil", imageUrl: "assets/icons/flags/br.svg", description: ""),
+  Country(
+      name: "South Korea",
+      imageUrl: "assets/icons/flags/kr.svg",
+      description: ""),
+  Country(
+      name: "Colombia", imageUrl: "assets/icons/flags/co.svg", description: ""),
+  Country(
+      name: "Italy", imageUrl: "assets/icons/flags/it.svg", description: ""),
   Country(name: "Japan", imageUrl: "assets/icons/flags/jp.svg", description: "")
 ];
