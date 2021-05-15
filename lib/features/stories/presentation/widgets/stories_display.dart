@@ -100,36 +100,39 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                 Divider(
                   thickness: 2,
                 ),
-                ListView.builder(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.only(top: 10),
-                    itemCount: _stories.length,
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      return GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => StoriesDetails(
-                                  image: _stories[index].imagePath,
-                                  country: _stories[index].country,
-                                  name: _stories[index].studentName,
-                                  text1: _stories[index].text1,
-                                  text2: _stories[index].text2,
-                                  departureDate: _stories[index].departureDate,
-                                  arrivalDate: _stories[index].arrivalDate)),
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: TravelCard(
-                              image: _stories[index].imagePath,
-                              country: _stories[index].country,
-                              text1: _stories[index].text1,
-                              text2: _stories[index].text2,
-                              departureDate: _stories[index].departureDate,
-                              arrivalDate: _stories[index].arrivalDate),
-                        ),
-                      );
-                    }),
+                Container(
+                  height: Device.height - 405,
+                  child: ListView.builder(
+                      padding: EdgeInsets.only(top: 10),
+                      itemCount: _stories.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => StoriesDetails(
+                                    image: _stories[index].imagePath,
+                                    country: _stories[index].country,
+                                    name: _stories[index].studentName,
+                                    text1: _stories[index].text1,
+                                    text2: _stories[index].text2,
+                                    departureDate:
+                                        _stories[index].departureDate,
+                                    arrivalDate: _stories[index].arrivalDate)),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: TravelCard(
+                                image: _stories[index].imagePath,
+                                country: _stories[index].country,
+                                text1: _stories[index].text1,
+                                text2: _stories[index].text2,
+                                departureDate: _stories[index].departureDate,
+                                arrivalDate: _stories[index].arrivalDate),
+                          ),
+                        );
+                      }),
+                )
               ])),
         ));
   }

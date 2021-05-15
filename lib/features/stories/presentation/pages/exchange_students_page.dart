@@ -83,12 +83,16 @@ class ExchangeStudentsPage extends StatelessWidget {
             Divider(
               thickness: 2,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemBuilder: (context, index) => ImageListTile(
-                  item: exchangeStudents[index], descriptionPage: StoriesPage(),),
-              itemCount: exchangeStudents.length,
-            ),
+            Container(
+              height: Device.height - 265,
+              child: ListView.builder(
+                itemBuilder: (context, index) => ImageListTile(
+                  item: exchangeStudents[index],
+                  descriptionPage: StoriesPage(),
+                ),
+                itemCount: exchangeStudents.length,
+              ),
+            )
           ]),
         ),
       ),
