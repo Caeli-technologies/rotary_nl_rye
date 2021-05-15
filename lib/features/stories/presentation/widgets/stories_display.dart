@@ -76,14 +76,14 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   )),
 */
                   Container(
-                    height: Device.height - 277,
-                    margin: EdgeInsets.only(left: 20, right: 20),
+                    // TODO delete height property
+                    height: Device.height - 217,
+
                     child: ListView.builder(
+                        padding: EdgeInsets.only(top: 10, left: 20, right: 20),
                         itemCount: _stories.length,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          return Transform.translate(
-                            offset: Offset(0, -10),
-                            child: GestureDetector(
+                          return GestureDetector(
                               onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -109,7 +109,6 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                         _stories[index].departureDate,
                                     arrivalDate: _stories[index].arrivalDate),
                               ),
-                            ),
                           );
                         }),
                   ),

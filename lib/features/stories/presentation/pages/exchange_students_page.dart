@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/models/contributor.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/story_page.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_page.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/image_list_tile.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
@@ -86,7 +86,7 @@ class ExchangeStudentsPage extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) => ImageListTile(
-                  item: exchangeStudents[index], descriptionPage: StoryPage()),
+                  item: exchangeStudents[index], descriptionPage: Scaffold(body: StoriesPage(),)),
               itemCount: exchangeStudents.length,
             ),
           ]),
