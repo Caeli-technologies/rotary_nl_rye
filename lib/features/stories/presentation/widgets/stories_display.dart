@@ -101,7 +101,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   thickness: 2,
                 ),
                 Container(
-                  height: Device.height - 405,
+                  height: Device.height - 370,
                   child: ListView.builder(
                       padding: EdgeInsets.only(top: 10),
                       itemCount: _stories.length,
