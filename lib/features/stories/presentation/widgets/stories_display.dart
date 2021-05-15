@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/lang/languages.dart';
 import '../../../../core/prop.dart';
 import '../../domain/entities/story.dart';
 import '../bloc/stories_bloc.dart';
@@ -31,90 +30,108 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(0),
-      children: [
-        Container(
-          margin: EdgeInsets.only(left: 20, top: 60, right: 20),
-          child: Text(
-            DemoLocalizations.of(context).trans('storiesHomeHeader'),
-            textScaleFactor: 2.4,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: Container(
+            margin: EdgeInsets.only(left: 10, top: 5),
+            width: 40,
+            height: 40,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+            child: RawMaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Icon(
+                Icons.arrow_back,
+                color: Palette.accentColor,
+                size: 30.0,
+              ),
+              shape: new CircleBorder(),
+              elevation: 2.0,
+              fillColor: Palette.themeShadeColor,
+              padding: const EdgeInsets.all(5.0),
+            ),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-                      color: Palette.themeCardShadeColor,
-                      borderRadius: BorderRadius.circular(12),
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: ListView(shrinkWrap: true, children: [
+                Container(
+                    child: CircleAvatar(
+                  child: Image.asset("assets/image/2.PNG"),
+                  radius: 100,
+                )),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.themeShadeColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(40.0),
                     ),
-          height: 50,
-          margin: EdgeInsets.only(left: 20, top: 15, right: 20),
-          width: Device.width,
-          child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Text("Search...", style: TextStyle(color: Palette.grey),))),
-        ),
-        Container(
-            margin: EdgeInsets.only(top: 15),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-/*
-              Container(
-                  height: 30,
-                  child: Tab(
-                    text: DemoLocalizations.of(context).trans('storiesTabBar3'),
-                  )),
-              Container(
-                  height: 30,
-                  child: Tab(
-                    text: DemoLocalizations.of(context).trans('storiesTabBar4'),
-                  )),
-*/
-                  Container(
-                    // TODO delete height property
-                    height: Device.height - 217,
-
-                    child: ListView.builder(
-                        padding: EdgeInsets.only(top: 10, left: 20, right: 20),
-                        itemCount: _stories.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          return GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => StoriesDetails(
-                                        image: _stories[index].imagePath,
-                                        country: _stories[index].country,
-                                        name: _stories[index].studentName,
-                                        text1: _stories[index].text1,
-                                        text2: _stories[index].text2,
-                                        departureDate:
-                                            _stories[index].departureDate,
-                                        arrivalDate:
-                                            _stories[index].arrivalDate)),
-                              ),
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: TravelCard(
-                                    image: _stories[index].imagePath,
-                                    country: _stories[index].country,
-                                    text1: _stories[index].text1,
-                                    text2: _stories[index].text2,
-                                    departureDate:
-                                        _stories[index].departureDate,
-                                    arrivalDate: _stories[index].arrivalDate),
-                              ),
-                          );
-                        }),
                   ),
-                ])),
-      ],
-    );
+                  child: Text(
+                    "Some random dude",
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 2,
+                    style: TextStyle(
+                      color: Palette.indigo,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Stories",
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 2,
+                  style: TextStyle(
+                    color: Palette.indigo,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                ListView.builder(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(top: 10),
+                    itemCount: _stories.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StoriesDetails(
+                                  image: _stories[index].imagePath,
+                                  country: _stories[index].country,
+                                  name: _stories[index].studentName,
+                                  text1: _stories[index].text1,
+                                  text2: _stories[index].text2,
+                                  departureDate: _stories[index].departureDate,
+                                  arrivalDate: _stories[index].arrivalDate)),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TravelCard(
+                              image: _stories[index].imagePath,
+                              country: _stories[index].country,
+                              text1: _stories[index].text1,
+                              text2: _stories[index].text2,
+                              departureDate: _stories[index].departureDate,
+                              arrivalDate: _stories[index].arrivalDate),
+                        ),
+                      );
+                    }),
+              ])),
+        ));
   }
 }
 

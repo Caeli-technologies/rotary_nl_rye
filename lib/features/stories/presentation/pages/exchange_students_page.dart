@@ -7,8 +7,8 @@ import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_page.d
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/image_list_tile.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
-  final person;
-  const ExchangeStudentsPage({this.person});
+  final country;
+  const ExchangeStudentsPage({this.country});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +42,7 @@ class ExchangeStudentsPage extends StatelessWidget {
           child: ListView(shrinkWrap: true, children: [
             Container(
               child: SvgPicture.asset(
-                person.imageUrl,
+                country.imageUrl,
                 height: 60,
                 width: 60,
                 fit: BoxFit.contain,
@@ -59,7 +59,7 @@ class ExchangeStudentsPage extends StatelessWidget {
                 ),
               ),
               child: Text(
-                person.name,
+                country.name,
                 textAlign: TextAlign.center,
                 textScaleFactor: 2,
                 style: TextStyle(
@@ -86,7 +86,7 @@ class ExchangeStudentsPage extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) => ImageListTile(
-                  item: exchangeStudents[index], descriptionPage: Scaffold(body: StoriesPage(),)),
+                  item: exchangeStudents[index], descriptionPage: StoriesPage(),),
               itemCount: exchangeStudents.length,
             ),
           ]),

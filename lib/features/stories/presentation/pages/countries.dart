@@ -54,7 +54,7 @@ class _CountriesPageState extends State<CountriesPage> {
             itemBuilder: (context, index) => SVGListTile(
                 item: countries[index],
                 descriptionPage:
-                    ExchangeStudentsPage(person: countries[index])),
+                    ExchangeStudentsPage(country: countries[index])),
             itemCount: countries.length,
           ),
         ),
