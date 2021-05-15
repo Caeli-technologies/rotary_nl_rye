@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-class StoryPage extends StatefulWidget {
+class AboutPage extends StatefulWidget {
   @override
-  _StoryPageState createState() => _StoryPageState();
+  _AboutPageState createState() => _AboutPageState();
 }
 
-class _StoryPageState extends State<StoryPage> {
+class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +36,6 @@ class _StoryPageState extends State<StoryPage> {
             ),
           ),
         ),
-        body: Text("Story"));
+        body: Text("About place holder page"));
   }
 }
