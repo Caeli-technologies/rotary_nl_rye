@@ -1,6 +1,5 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/about_page.dart';
 
 import '../../../../core/prop.dart';
 import '../widgets/bottom_navigation_bar.dart';
@@ -8,6 +7,7 @@ import 'contact_page.dart';
 import 'home_page.dart';
 import 'question_page.dart';
 import 'settings_page.dart';
+import 'about_page.dart';
 
 class PageNavigator extends StatefulWidget {
   @override
