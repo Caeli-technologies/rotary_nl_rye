@@ -62,8 +62,8 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
               child: ListView(shrinkWrap: true, children: [
                 Container(
                     child: CircleAvatar(
-                  child: Image.asset("assets/image/2.PNG"),
-                  radius: 70,
+                  radius: 50.0,
+                  backgroundImage: AssetImage("assets/image/1.PNG"),
                 )),
                 SizedBox(
                   height: 20,
@@ -75,18 +75,49 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                       Radius.circular(40.0),
                     ),
                   ),
-                  child: Text(
-                    "Some random dude",
-                    textAlign: TextAlign.center,
-                    textScaleFactor: 2,
-                    style: TextStyle(
-                      color: Palette.indigo,
-                      fontWeight: FontWeight.bold,
+                  child: Column(children: <Widget>[
+                    Text(
+                      "Ruben Talstra",
+                      textAlign: TextAlign.center,
+                      textScaleFactor: 2,
+                      style: TextStyle(
+                        color: Palette.indigo,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                            padding: EdgeInsets.only(
+                                left: 40, top: 10, right: 40, bottom: 10),
+                            child: Wrap(
+                              runSpacing: 15.0,
+                              spacing: 30.0,
+                              children: <Widget>[
+                                Text(
+                                  "Sponsor District 1590",
+                                  textAlign: TextAlign.center,
+                                  textScaleFactor: 1,
+                                  style: TextStyle(
+                                    color: Palette.indigo,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "Host District 7820",
+                                  textAlign: TextAlign.center,
+                                  textScaleFactor: 1,
+                                  style: TextStyle(
+                                    color: Palette.indigo,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ))),
+                  ]),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Text(
                   "Stories",
@@ -101,7 +132,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   thickness: 2,
                 ),
                 Container(
-                  height: Device.height - 370,
+                  height: Device.height - 395,
                   child: ListView.builder(
                       padding: EdgeInsets.only(top: 10),
                       itemCount: _stories.length,
