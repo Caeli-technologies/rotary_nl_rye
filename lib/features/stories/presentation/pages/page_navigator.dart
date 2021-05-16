@@ -7,7 +7,7 @@ import 'contact_page.dart';
 import 'home_page.dart';
 import 'question_page.dart';
 import 'settings_page.dart';
-import 'stories_page.dart';
+import 'about_page.dart';
 
 class PageNavigator extends StatefulWidget {
   @override
@@ -32,12 +32,8 @@ class _PageNavigatorState extends State<PageNavigator> {
           children: [
             // home
             HomePage(),
-            //TODO still need to add and move the StoriesPage() to the rebound button
             // About the organization page
-            //AboutPage(),
-
-            // stories
-            StoriesPage(),
+            AboutPage(),
             // FAQ
             QuestionPage(),
             // about us
