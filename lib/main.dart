@@ -14,7 +14,8 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  GetData(collection: "/countries/MswAY4E5FR3r4LBNSdrB/exchangeStudents").call();
+  GetData(collection: "/countries/MswAY4E5FR3r4LBNSdrB/exchangeStudents")
+      .call();
   await di.init();
 }
 

@@ -62,21 +62,18 @@ class _HomePageState extends State<HomePage> {
                           icon: FontAwesomeIcons.list,
                           title: 'Program',
                           description: 'information to apply and more things',
-                          pushTo: null
-                      ),
+                          pushTo: null),
                       HomeCardItem(
                           icon: FontAwesomeIcons.newspaper,
                           title: 'News',
                           description: 'rebound page',
-                          pushTo: null
-                      ),
+                          pushTo: null),
                       HomeCardItem(
                           icon: FontAwesomeIcons.calendarAlt,
                           title: 'Calendar',
                           description:
                               'people that are going to the netherlands',
-                          pushTo: null
-                      ),
+                          pushTo: null),
                     ],
                   ),
                   SizedBox(
@@ -89,21 +86,18 @@ class _HomePageState extends State<HomePage> {
                           title: 'Outbound',
                           description:
                               'students that are going to a diffrent country',
-                          pushTo: null
-                      ),
+                          pushTo: null),
                       HomeCardItem(
                           icon: FontAwesomeIcons.share,
                           title: 'Inbound',
                           description:
                               'people that are going to the netherlands',
-                          pushTo: null
-                      ),
+                          pushTo: null),
                       HomeCardItem(
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
                           description: 'rebound page',
-                          pushTo: CountriesPage()
-                      ),
+                          pushTo: CountriesPage()),
                     ],
                   ),
                   SizedBox(
