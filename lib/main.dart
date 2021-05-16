@@ -1,9 +1,9 @@
 // @dart=2.9
-import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/firestore.dart';
 
 import 'core/lang/languages.dart';
 import 'features/stories/presentation/pages/page_navigator.dart';
@@ -14,6 +14,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  GetData(collection: "/countries/MswAY4E5FR3r4LBNSdrB/exchangeStudents").call();
   await di.init();
 }
 

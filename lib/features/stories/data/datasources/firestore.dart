@@ -1,13 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class GetUserName {
-  final String collection, documentId;
+class GetData {
+  final String collection;
 
-  GetUserName(this.documentId, this.collection);
+  GetData({required this.collection});
 
   void call() {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection(collection);
-    final document = users.doc(documentId).get();
+    FirebaseFirestore.instance
+        .collection(collection)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(doc['name']);
+        print(doc.id);
+      });
+    });
   }
 }
