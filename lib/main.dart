@@ -3,10 +3,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/firestore.dart';
+import 'package:rotary_nl_rye/core/data/datasource/firestore.dart';
 
 import 'core/lang/languages.dart';
-import 'features/stories/presentation/pages/page_navigator.dart';
+import 'core/presentation/widgets/page_navigator.dart';
 import 'injection_container.dart' as di;
 
 void main() async {

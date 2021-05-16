@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/contributors_page.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
