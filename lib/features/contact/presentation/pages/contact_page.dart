@@ -13,11 +13,12 @@ class ContactPage extends StatefulWidget {
 }
 
 //TODO needs to look like the story page. nut then only for contacts of the organication and Rotex (https://rotex.org/who-we-are/)
-
 class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -28,56 +29,58 @@ class _ContactPageState extends State<ContactPage> {
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
-        ),
-        body: DefaultTabController(
-          length: 2, //length: 4,
-          child: ListView(
-            physics: NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.only(top: 10),
-            children: <Widget>[
-              TabBar(
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicator:
-                    CircleTabIndicator(color: Palette.accentColor, radius: 2),
-                unselectedLabelColor: Palette.lightIndigo,
-                labelColor: Palette.accentColor,
-                indicatorColor: Colors.transparent,
-                labelStyle:
-                    TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                tabs: [
-                  Container(height: 30, child: Tab(text: 'Organization')),
-                  Container(
-                      height: 30,
-                      child: Tab(
-                        text: 'Rotex',
-                      )),
-                ],
+          bottom: TabBar(
+            labelColor: const Color(0xff525c6e),
+            unselectedLabelColor: const Color(0xffacb3bf),
+            indicatorPadding: EdgeInsets.all(0.0),
+            indicatorWeight: 4.0,
+            labelPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            indicator: ShapeDecoration(
+                shape: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 0,
+                        style: BorderStyle.solid)),
+                gradient: LinearGradient(
+                    colors: [Color(0xff0081ff), Color(0xff01ff80)])),
+            tabs: <Widget>[
+              Container(
+                height: 40,
+                alignment: Alignment.center,
+                color: Palette.themeContactTabShadeColor,
+                child: Text("Organization"),
               ),
               Container(
-                height: Device.height - 277,
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: TabBarView(children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => ImageListTile(
-                        item: personList[index],
-                        descriptionPage:
-                            PersonDetails(person: personList[index])),
-                    itemCount: personList.length,
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => ImageListTile(
-                        item: personList[index],
-                        descriptionPage:
-                            PersonDetails(person: personList[index])),
-                    itemCount: personList.length,
-                  )
-                ]),
-              )
+                height: 40,
+                alignment: Alignment.center,
+                color: Palette.themeContactTabShadeColor,
+                child: Text("Rotex"),
+              ),
             ],
           ),
-        ));
+        ),
+        body: Container(
+          height: Device.height - 277,
+          margin: EdgeInsets.only(left: 20, right: 20),
+          child: TabBarView(children: [
+            ListView.builder(
+              shrinkWrap: false,
+              itemBuilder: (context, index) => ImageListTile(
+                  item: personList[index],
+                  descriptionPage: PersonDetails(person: personList[index])),
+              itemCount: personList.length,
+            ),
+            ListView.builder(
+              shrinkWrap: false,
+              itemBuilder: (context, index) => ImageListTile(
+                  item: personList[index],
+                  descriptionPage: PersonDetails(person: personList[index])),
+              itemCount: personList.length,
+            )
+          ]),
+        ),
+      ),
+    );
   }
 }
 
