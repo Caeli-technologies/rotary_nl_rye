@@ -1,11 +1,9 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/prop.dart';
 import '../../domain/entities/story.dart';
-import '../bloc/stories_bloc.dart';
 import '../pages/stories_details_page.dart';
 
 class StoriesDisplay extends StatefulWidget {
@@ -24,7 +22,6 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   @override
   void initState() {
-    BlocProvider.of<StoriesBloc>(context).add(BGetStories());
     super.initState();
   }
 

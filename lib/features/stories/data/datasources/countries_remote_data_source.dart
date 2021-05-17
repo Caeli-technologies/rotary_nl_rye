@@ -16,7 +16,6 @@ class CountriesRemoteDataSourceImpl implements CountriesRemoteDataSource {
     // docs to countries
     docs.forEach((document) {
       countries.add(new CountryModel.fromDoc(document));
-      print(CountryModel.fromDoc(document));
     });
 
     return Future.value(countries);

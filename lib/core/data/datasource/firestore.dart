@@ -8,14 +8,18 @@ class FbRemote {
   Future<List> get() async {
     List<QueryDocumentSnapshot> documents = [];
 
-    await FirebaseFirestore.instance
-        .collection(collection)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      documents = querySnapshot.docs;
-    });
-
-    return Future.value(documents);
-    //throw ServerException();
+    try {
+      final ds = await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.cache)).then((QuerySnapshot querySnapshot) {
+        documents = querySnapshot.docs;
+      });
+      if (ds == null) {
+        FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.server)).then((QuerySnapshot querySnapshot) {
+          documents = querySnapshot.docs;
+        });
+      }
+      return ds;
+    } catch (_) {
+      return [];
+    }
   }
 }
