@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 16,
                   ),
-
+/*
                   ElevatedButton(
                     child: new Text('Add badge'),
                     onPressed: () {
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         _removeBadge();
                       }),
-
+*/
                 ],
               ),
             ),
