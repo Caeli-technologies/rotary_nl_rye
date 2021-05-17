@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   initState() {
     super.initState();
     initPlatformState();
+    _removeBadge();
   }
 
   initPlatformState() async {
