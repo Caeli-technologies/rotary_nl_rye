@@ -9,10 +9,10 @@ class FbRemote {
     List<QueryDocumentSnapshot> documents = [];
 
     try {
-      final ds = await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.cache)).then((QuerySnapshot querySnapshot) {
+      await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.cache)).then((QuerySnapshot querySnapshot) {
         documents = querySnapshot.docs;
       });
-      if (ds == null) {
+      if (documents == []) {
         print('from remote');
         FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.server)).then((QuerySnapshot querySnapshot) {
           documents = querySnapshot.docs;
