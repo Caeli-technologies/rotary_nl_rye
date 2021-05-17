@@ -91,13 +91,16 @@ class _NewsPageState extends State<NewsPage> {
                                                   pdfUrl: _stories[index]
                                                       ["pdf"])),
                                         ),
+
+//TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
+
                                         child: Container(
                                           padding: EdgeInsets.only(bottom: 10),
                                           child: TravelCard(
                                             image: _stories[index]["images"],
-                                            country: _stories[index]["country"],
-                                            text1: _stories[index]["text1"],
-                                            text2: _stories[index]["text2"],
+                                            title: _stories[index]["title"],
+                                            description: _stories[index]
+                                                ["description"],
                                           ),
                                         ),
                                       ),
@@ -110,9 +113,9 @@ class _NewsPageState extends State<NewsPage> {
 }
 
 class TravelCard extends StatelessWidget {
-  final String country, text1, text2, image;
+  final String title, description, image;
 
-  TravelCard({this.text1, this.text2, this.country, this.image});
+  TravelCard({this.title, this.description, this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -139,20 +142,27 @@ class TravelCard extends StatelessWidget {
                     children: <Widget>[
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 12),
-                        child: Text(
-                          country,
-                          textScaleFactor: 1.2,
-                          style: TextStyle(
-                            color: Palette.indigo,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: SizedBox(
+                          width: Device.width - 240,
+                          child: Text(title,
+                              textScaleFactor: 1.2,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                              style: TextStyle(
+                                color: Palette.indigo,
+                                fontWeight: FontWeight.bold,
+                              )),
                         ),
+                      ),
+                      SizedBox(
+                        height: 5,
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 4),
                         child: SizedBox(
                           width: Device.width - 240,
-                          child: Text(text1,
+                          child: Text(description,
                               textScaleFactor: 0.7,
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,

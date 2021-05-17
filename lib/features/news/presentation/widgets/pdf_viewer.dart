@@ -26,7 +26,7 @@ class _PDFPageState extends State<PDFPage> {
   @override
   void initState() {
     super.initState();
-    loadDocument(1);
+    loadDocument(0); // 0 = local fetch | 1 = web fetch
   }
 
   loadDocument(value) async {
@@ -35,7 +35,10 @@ class _PDFPageState extends State<PDFPage> {
       title = "Loading";
     });
     if (value == 1) {
-      document = await PDFDocument.fromURL(pdfUrl);
+      // [VERBOSE-2:ui_dart_state.cc(186)] Unhandled Exception: NoSuchMethodError: The getter 'length' was called on null.
+      // Receiver: null
+      // Tried calling: length
+      document = await PDFDocument.fromURL(pdfUrl); // not yet working
     } else {
       document = await PDFDocument.fromAsset(
           'assets/pdf_test/nieuwsbrief-zomer-2020.pdf');
