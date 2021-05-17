@@ -5,11 +5,19 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:pdf_viewer_jk/pdf_viewer_jk.dart';
 
 class PDFPage extends StatefulWidget {
+  String pdfUrl;
+
+  PDFPage({this.pdfUrl});
+
   @override
   _PDFPageState createState() => _PDFPageState();
 }
 
 class _PDFPageState extends State<PDFPage> {
+  final String pdfUrl;
+
+  _PDFPageState({this.pdfUrl});
+
   bool _isLoading = true;
   PDFDocument document;
   String title = "Loading";
@@ -26,8 +34,7 @@ class _PDFPageState extends State<PDFPage> {
       title = "Loading";
     });
     if (value == 1) {
-      document = await PDFDocument.fromURL(
-          "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf");
+      document = await PDFDocument.fromURL(pdfUrl);
     } else {
       document = await PDFDocument.fromAsset('assets/sample.pdf');
     }
