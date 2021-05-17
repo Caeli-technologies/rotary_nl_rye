@@ -20,22 +20,20 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        centerTitle: false,
+        title: Text(
+          DemoLocalizations.of(context).trans('settingsTitle'),
+          textScaleFactor: 1.7,
+          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Container(
         child: ListView(
-          padding: EdgeInsets.only(left: 16, top: 60, right: 16),
+          padding: EdgeInsets.only(left: 16, top: 15, right: 16),
           children: [
-            Container(
-              margin: EdgeInsets.only(right: 20),
-              child: Text(
-                DemoLocalizations.of(context).trans('settingsTitle'),
-                textScaleFactor: 2.4,
-                style: TextStyle(
-                    color: Palette.indigo, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
             Row(
               children: [
                 Icon(
