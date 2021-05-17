@@ -14,6 +14,7 @@ class _AboutPageState extends State<AboutPage> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
+          /*
           leading: Container(
             margin: EdgeInsets.only(left: 10, top: 5),
             width: 40,
@@ -34,6 +35,13 @@ class _AboutPageState extends State<AboutPage> {
               fillColor: Palette.themeShadeColor,
               padding: const EdgeInsets.all(5.0),
             ),
+          ),
+        */
+          title: Text(
+            "About Us",
+            textScaleFactor: 1.4,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
         body: Text("About place holder page"));
