@@ -11,14 +11,14 @@ class FbRemote {
     try {
       await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.cache)).then((QuerySnapshot querySnapshot) {
         documents = querySnapshot.docs;
+        print('from cache');
       });
-      if (documents == []) {
-        print('from remote');
-        FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.server)).then((QuerySnapshot querySnapshot) {
+      if (documents.toString() == '[]') {
+        await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.server)).then((QuerySnapshot querySnapshot) {
           documents = querySnapshot.docs;
+          print('from remote');
         });
       }
-      print('from cache');
       return documents;
     } catch (_) {
       return [];

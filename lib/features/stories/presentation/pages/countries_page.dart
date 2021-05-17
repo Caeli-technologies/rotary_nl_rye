@@ -13,6 +13,7 @@ class CountriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CountriesBloc, CountriesState>(builder: (context, state) {
         BlocProvider.of<CountriesBloc>(context).add(BGetCountries());
+        print(state);
         if (state is Empty) {
           return WaitingDisplay();
         }
