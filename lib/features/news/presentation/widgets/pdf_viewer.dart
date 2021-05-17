@@ -26,7 +26,7 @@ class _PDFPageState extends State<PDFPage> {
   @override
   void initState() {
     super.initState();
-    loadDocument(0); // 0 = local fetch | 1 = web fetch
+    loadDocument(1); // 0 = local fetch | 1 = web fetch
   }
 
   loadDocument(value) async {
