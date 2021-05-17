@@ -38,7 +38,10 @@ class _PDFPageState extends State<PDFPage> {
       // [VERBOSE-2:ui_dart_state.cc(186)] Unhandled Exception: NoSuchMethodError: The getter 'length' was called on null.
       // Receiver: null
       // Tried calling: length
-      document = await PDFDocument.fromURL(pdfUrl); // not yet working
+
+      // document = await PDFDocument.fromURL(pdfUrl); // not yet working
+      document = await PDFDocument.fromURL(
+          "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf"); // works
     } else {
       document = await PDFDocument.fromAsset(
           'assets/pdf_test/nieuwsbrief-zomer-2020.pdf');
