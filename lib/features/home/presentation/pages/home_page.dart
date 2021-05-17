@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException {
       appBadgeSupported = 'Failed to get badge support.';
     }
-    print("Badge supported: $_appBadgeSupported\n");
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
@@ -48,6 +47,8 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _appBadgeSupported = appBadgeSupported;
     });
+
+    print("Badge supported: $_appBadgeSupported\n");
   }
 
   @override
