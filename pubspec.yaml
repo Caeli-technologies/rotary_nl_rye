@@ -97,6 +97,7 @@ flutter:
      - assets/icons/flags/
      - assets/lang/
      - assets/test/
+     - assets/pdf_test/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

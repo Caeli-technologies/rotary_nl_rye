@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:pdf_viewer_jk/pdf_viewer_jk.dart';
 
+// ignore: must_be_immutable
 class PDFPage extends StatefulWidget {
   String pdfUrl;
 
@@ -36,7 +37,8 @@ class _PDFPageState extends State<PDFPage> {
     if (value == 1) {
       document = await PDFDocument.fromURL(pdfUrl);
     } else {
-      document = await PDFDocument.fromAsset('assets/sample.pdf');
+      document = await PDFDocument.fromAsset(
+          'assets/pdf_test/nieuwsbrief-zomer-2020.pdf');
     }
     setState(() {
       title = (value == 1) ? "Loaded From Url" : "Loaded From Assets";

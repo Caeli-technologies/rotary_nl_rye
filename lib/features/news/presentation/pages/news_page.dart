@@ -76,7 +76,7 @@ class _NewsPageState extends State<NewsPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Container(
-                              height: Device.height - 277,
+                              height: Device.height - 170,
                               margin: EdgeInsets.only(left: 10, right: 10),
                               child: ListView.builder(
                                   itemCount: _stories.length,
