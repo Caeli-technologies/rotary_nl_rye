@@ -13,11 +13,13 @@ class FbRemote {
         documents = querySnapshot.docs;
       });
       if (ds == null) {
+        print('from remote');
         FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.server)).then((QuerySnapshot querySnapshot) {
           documents = querySnapshot.docs;
         });
       }
-      return ds;
+      print('from cache');
+      return documents;
     } catch (_) {
       return [];
     }
