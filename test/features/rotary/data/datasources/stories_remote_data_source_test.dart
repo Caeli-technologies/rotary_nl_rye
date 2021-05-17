@@ -2,7 +2,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rotary_nl_rye/features/stories/data/datasources/stories_remote_data_source.dart';
+import 'package:rotary_nl_rye/features/stories/data/datasources/different.dart';
 
 class MockFirebaseDatabase extends Mock implements FirebaseDatabase {}
 

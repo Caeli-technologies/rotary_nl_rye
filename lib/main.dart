@@ -2,21 +2,31 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:rotary_nl_rye/core/data/datasource/firestore.dart';
 
 import 'core/lang/languages.dart';
 import 'core/presentation/widgets/page_navigator.dart';
+import 'features/stories/presentation/bloc/countries_bloc.dart';
+import 'features/stories/presentation/bloc/stories_bloc.dart';
 import 'injection_container.dart' as di;
+import 'injection_container.dart';
 
 void main() async {
-  runApp(new MyApp());
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  GetData(collection: "/countries/MswAY4E5FR3r4LBNSdrB/exchangeStudents")
-      .call();
   await di.init();
+
+  runApp(MultiBlocProvider(
+      providers: [
+        BlocProvider<CountriesBloc>(
+          create: (_) => sl<CountriesBloc>(),
+        ),
+        BlocProvider<StoriesBloc>(
+          create: (_) => sl<StoriesBloc>(),
+        ),
+      ],
+  child: new MyApp()));
 }
 
 class MyApp extends StatelessWidget {

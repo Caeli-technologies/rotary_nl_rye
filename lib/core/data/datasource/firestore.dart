@@ -1,19 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class GetData {
+class FbRemote {
   final String collection;
 
-  GetData({required this.collection});
+  FbRemote({required this.collection});
 
-  void call() {
-    FirebaseFirestore.instance
+  Future<List> get() async {
+    List<QueryDocumentSnapshot> documents = [];
+
+    await FirebaseFirestore.instance
         .collection(collection)
         .get()
         .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        print(doc['name']);
-        print(doc.id);
-      });
+      documents = querySnapshot.docs;
     });
+
+    return Future.value(documents);
+    //throw ServerException();
   }
 }

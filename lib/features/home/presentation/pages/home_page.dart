@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
@@ -9,8 +10,6 @@ import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page
 
 import '../../../home/presentation/widgets/home_card_item.dart';
 import '../widgets/carousel_display.dart';
-
-import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -141,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 16,
                   ),
-/*
+
                   ElevatedButton(
                     child: new Text('Add badge'),
                     onPressed: () {
@@ -153,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         _removeBadge();
                       }),
-*/
+
                 ],
               ),
             ),

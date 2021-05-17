@@ -7,8 +7,8 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/story.dart';
 import '../../domain/repositories/stories_repository.dart';
+import '../datasources/different.dart';
 import '../datasources/stories_local_data_source.dart';
-import '../datasources/stories_remote_data_source.dart';
 import '../datasources/update_local_data_source.dart';
 
 class StoriesRepositoryImpl implements StoriesRepository {
