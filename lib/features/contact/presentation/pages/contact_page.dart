@@ -50,18 +50,6 @@ class _ContactPageState extends State<ContactPage> {
                   child: Tab(
                     text: 'Rotex',
                   )),
-/*
-              Container(
-                  height: 30,
-                  child: Tab(
-                    text: DemoLocalizations.of(context).trans('storiesTabBar3'),
-                  )),
-              Container(
-                  height: 30,
-                  child: Tab(
-                    text: DemoLocalizations.of(context).trans('storiesTabBar4'),
-                  )),
-*/
             ],
           ),
           Container(
@@ -71,17 +59,15 @@ class _ContactPageState extends State<ContactPage> {
               ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) => ImageListTile(
-                  item: personList[index],
-                  descriptionPage: PersonDetails(person: personList[index])
-                ),
+                    item: personList[index],
+                    descriptionPage: PersonDetails(person: personList[index])),
                 itemCount: personList.length,
               ),
               ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) => ImageListTile(
                     item: personList[index],
-                    descriptionPage: PersonDetails(person: personList[index])
-                ),
+                    descriptionPage: PersonDetails(person: personList[index])),
                 itemCount: personList.length,
               )
             ]),
