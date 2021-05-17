@@ -58,8 +58,9 @@ dependencies:
   flutter_bloc: ^7.0.0
   flutter_svg: ^0.22.0
   cloud_firestore: ^2.1.0
-  pdf_viewer_jk: any
-  get_version: ^0.2.2
+  pdf_viewer_jk: any # https://pub.dev/packages/pdf_viewer_jk
+  get_version: ^0.2.2 # https://pub.dev/packages/get_version
+  url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
 
 
   # this is notification addon // please add only when ready!
