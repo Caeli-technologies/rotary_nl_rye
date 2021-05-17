@@ -60,7 +60,7 @@ class _ContactPageState extends State<ContactPage> {
           ),
         ),
         body: Container(
-          height: Device.height - 277,
+          //height: Device.height - 277,
           margin: EdgeInsets.only(left: 20, right: 20),
           child: TabBarView(children: [
             ListView.builder(

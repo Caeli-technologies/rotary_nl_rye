@@ -59,6 +59,7 @@ dependencies:
   flutter_svg: ^0.22.0
   cloud_firestore: ^2.1.0
   pdf_viewer_jk: any
+  get_version: ^0.2.2
 
 
   # this is notification addon // please add only when ready!
