@@ -17,16 +17,15 @@ Future<void> getData() async {
 
   data = json.decode(response.body);
 
+/*
   setState(() {
     _title = data["items"]["kind"];
   });
-
+*/
   print("${response.statusCode}");
   print("${response.body}");
   print("$_title");
 }
-
-void setState(Null Function() param0) {}
 
 /// Example event class.
 class Event {

@@ -25,6 +25,8 @@ class _TableEventsState extends State<TableEvents> {
   @override
   void initState() {
     super.initState();
+    _selectedDay = _focusedDay;
+    _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
     getData();
 /* Testing 
     final String defaultLocale = Platform.localeName;
@@ -33,9 +35,6 @@ class _TableEventsState extends State<TableEvents> {
     print(clockString); // 07:18 AM
     print(defaultLocale);
 */
-
-    _selectedDay = _focusedDay;
-    _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
 
   @override
