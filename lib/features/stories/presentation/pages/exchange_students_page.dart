@@ -35,6 +35,11 @@ class ExchangeStudentsPage extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
           ),
         ),
+        title: Text(
+          country.name,
+          textScaleFactor: 1.4,
+          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -59,25 +64,13 @@ class ExchangeStudentsPage extends StatelessWidget {
                 ),
               ),
               child: Text(
-                country.name,
+                "Exchange Students",
                 textAlign: TextAlign.center,
                 textScaleFactor: 2,
                 style: TextStyle(
                   color: Palette.indigo,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Exchange Students",
-              textAlign: TextAlign.center,
-              textScaleFactor: 2,
-              style: TextStyle(
-                color: Palette.indigo,
-                fontWeight: FontWeight.bold,
               ),
             ),
             Divider(

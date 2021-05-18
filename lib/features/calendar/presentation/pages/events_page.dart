@@ -151,17 +151,71 @@ class _TableEventsState extends State<TableEvents> {
                   itemCount: value.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
+                      padding: EdgeInsets.all(8.0),
                       child: ListTile(
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
+                        leading: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.pink.shade100,
+                                        spreadRadius: 0.1,
+                                        blurRadius: 25.0,
+                                        offset: Offset(0.0, 1.0)),
+                                    BoxShadow(
+                                        color: Colors.white,
+                                        spreadRadius: 0.1,
+                                        blurRadius: 25.0,
+                                        offset: Offset(0.0, 1.0))
+                                  ]),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    "https://yt3.ggpht.com/ytc/AAUvwni_LdnpDi-SOIhjp4Kxo2l_yVBoYsfdDCpUM5VDzg=s900-c-k-c0x00ffffff-no-rj",
+                                    width: 50.0,
+                                    height: 50.0,
+                                  ))),
+                        ),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              '${value[index].title}',
+                              style: TextStyle(
+                                  inherit: true,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16.0),
+                            ),
+                            Text("${value[index].description}",
+                                style: TextStyle(
+                                    inherit: true,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16.0)),
+                          ],
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text("Some more nice text XD",
+                                  style: TextStyle(
+                                      inherit: true,
+                                      fontSize: 14.0,
+                                      color: Colors.black45)),
+                              Text("${value[index].date}",
+                                  style: TextStyle(
+                                      inherit: true,
+                                      fontSize: 14.0,
+                                      color: Colors.black45)),
+                            ],
+                          ),
+                        ),
+                        onTap: () => print(
+                            '${value[index].title} - ${value[index].title}'),
                       ),
                     );
                   },

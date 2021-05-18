@@ -4,12 +4,9 @@ import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
 class Event {
-  final String title;
+  String title, description, date;
 
-  const Event(this.title);
-
-  @override
-  String toString() => title;
+  Event(this.title, this.description, this.date);
 }
 
 /// Example events.
@@ -20,16 +17,21 @@ class Event {
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: getHashCode,
-)..addAll(_kEventSource);
-
-final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
-    key: (item) => DateTime.utc(2020, 10, item * 5),
-    value: (item) => List.generate(
-        item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
-  ..addAll({
+)..addAll({
     DateTime.now(): [
-      Event('Today\'s Event 1'),
-      Event('Today\'s Event 2'),
+      Event('Today\'s Event 1', 'test', "18 may 2021"),
+      Event('Today\'s Event 2', 'test', "18 may 2021"),
+    ],
+    DateTime.utc(2021, 05, 19): [
+      Event('Today\'s Event 3', 'test', "19 may 2021"),
+      Event('Today\'s Event 4', 'test', "19 may 2021"),
+    ],
+    DateTime.utc(2021, 05, 20): [
+      Event('Today\'s Event 3', 'test', "20 may 2021"),
+      Event('Today\'s Event 4', 'test', "20 may 2021"),
+      Event('Today\'s Event 4', 'test', "20 may 2021"),
+      Event('Today\'s Event 4', 'test', "20 may 2021"),
+      Event('Today\'s Event 4', 'test', "20 may 2021"),
     ],
   });
 

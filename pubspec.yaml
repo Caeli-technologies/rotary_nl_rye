@@ -61,7 +61,7 @@ dependencies:
   pdf_viewer_jk: any # https://pub.dev/packages/pdf_viewer_jk
   get_version: ^0.2.2 # https://pub.dev/packages/get_version
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
-  # share: ^2.0.1 # native share https://pub.dev/packages/share
+  share: ^2.0.1 # native share https://pub.dev/packages/share
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
 
 

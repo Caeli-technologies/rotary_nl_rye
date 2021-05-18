@@ -8,6 +8,7 @@ import 'package:get_version/get_version.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
+import 'package:share/share.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -99,6 +100,18 @@ class _SettingsPageState extends State<SettingsPage> {
           textScaleFactor: 1.7,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              CupertinoIcons.share,
+              color: Palette.indigo,
+            ),
+            onPressed: () {
+              Share.share('check out my website https://example.com',
+                  subject: 'Look what I made!');
+            },
+          )
+        ],
       ),
       body: Container(
         child: ListView(
