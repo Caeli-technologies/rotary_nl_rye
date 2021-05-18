@@ -1,6 +1,32 @@
 import 'dart:collection';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:table_calendar/table_calendar.dart';
+
+late Map data;
+late String _title;
+
+Future<void> getData() async {
+  http.Response response = await http.get(
+    Uri.parse(
+        "https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY"),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  );
+
+  data = json.decode(response.body);
+
+  setState(() {
+    _title = data["items"]["kind"];
+  });
+
+  print("${response.statusCode}");
+  print("${response.body}");
+  print("$_title");
+}
+
+void setState(Null Function() param0) {}
 
 /// Example event class.
 class Event {
@@ -33,7 +59,7 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
     ],
-    DateTime.utc(2021, 05, 19): [
+    DateTime.parse("2021-05-19 15:32:36.773915"): [
       Event(
           'Today\'s Event 3',
           'test',

@@ -25,9 +25,9 @@ class _TableEventsState extends State<TableEvents> {
   @override
   void initState() {
     super.initState();
-
-    final String defaultLocale = Platform.localeName;
+    getData();
 /* Testing 
+    final String defaultLocale = Platform.localeName;
     final clockString = DateFormat.yMMMMd(defaultLocale)
         .format(DateTime.parse('2019-06-22T19:30:00+02:00'));
     print(clockString); // 07:18 AM
