@@ -70,6 +70,7 @@ class ImageListTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
         onTap: () {
+          print("Student Desc");
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => descriptionPage),

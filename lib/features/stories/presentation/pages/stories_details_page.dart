@@ -175,24 +175,11 @@ class MainContainer extends StatelessWidget {
 
               //TODO, the text and images all on one scroll page that's going up when you go up.
 
-              Align(
-                child: DefaultTabController(
-                  length: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        constraints: BoxConstraints(
-                            minHeight: Device.height * 0.25,
-                            minWidth: Device.height * 0.2),
-                        height: Device.height * 0.4,
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        child: TabBarView(children: [
-                          ListView(children: [Text(text1)])
-                        ]),
-                      )
-                    ],
-                  ),
+              Expanded(
+                child: Container(
+                  margin:
+                      EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+                  child: ListView(children: [Text(text1)]),
                 ),
               ),
             ],
