@@ -29,10 +29,10 @@ Future<void> getData() async {
 
 /// Example event class.
 class Event {
-  String title, description, location, startDate, endDate;
+  String title, description, location, creator, organizer, startDate, endDate;
 
-  Event(this.title, this.description, this.location, this.startDate,
-      this.endDate);
+  Event(this.title, this.description, this.location, this.creator,
+      this.organizer, this.startDate, this.endDate);
 }
 
 /// Example events.
@@ -49,12 +49,16 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
           'Farewell Party',
           'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
       Event(
           'Farewell Party',
           'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
     ],
@@ -63,12 +67,16 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
           'Today\'s Event 3',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
       Event(
           'Today\'s Event 4',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
     ],
@@ -77,30 +85,40 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
           'Today\'s Event 3',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
       Event(
           'Today\'s Event 4',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
       Event(
           'Today\'s Event 4',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
       Event(
           'Today\'s Event 4',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
       Event(
           'Today\'s Event 4',
           'test',
           "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "clasine.scheepers@gmail.com",
+          "rye.netherlands@gmail.com",
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
     ],

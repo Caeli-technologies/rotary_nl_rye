@@ -233,12 +233,15 @@ class _TableEventsState extends State<TableEvents> {
                           showDialog(
                               context: context,
                               builder: (context) => DialogPage1(
-                                  title: value[index].title,
-                                  description: value[index].description,
-                                  location: value[index].location,
-                                  startDate: value[index].startDate,
-                                  endDate: value[index].endDate,
-                                  defaultLocale: defaultLocale));
+                                    title: value[index].title,
+                                    description: value[index].description,
+                                    location: value[index].location,
+                                    startDate: value[index].startDate,
+                                    endDate: value[index].endDate,
+                                    organizer: value[index].organizer,
+                                    creator: value[index].creator,
+                                    defaultLocale: defaultLocale,
+                                  ));
                         },
                       ),
                     );
@@ -254,7 +257,14 @@ class _TableEventsState extends State<TableEvents> {
 }
 
 class DialogPage1 extends StatelessWidget {
-  final String description, title, startDate, endDate, location, defaultLocale;
+  final String description,
+      title,
+      startDate,
+      endDate,
+      location,
+      creator,
+      organizer,
+      defaultLocale;
 
   DialogPage1({
     required this.description,
@@ -262,6 +272,8 @@ class DialogPage1 extends StatelessWidget {
     required this.startDate,
     required this.endDate,
     required this.location,
+    required this.creator,
+    required this.organizer,
     required this.defaultLocale,
   });
 
@@ -339,19 +351,44 @@ class DialogPage1 extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 0.0),
+                  padding: const EdgeInsets.only(bottom: 0.0),
                   child: FaIcon(
                     FontAwesomeIcons.calendarDay,
                     color: Palette.lightIndigo,
                     size: 20,
                   ),
                 ),
-                const Expanded(
-                  child: const Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
-                    child: const Text(
-                      'Popup window is like a dialog box that gains complete focus when it appears on screen.',
-                      style: const TextStyle(fontSize: 12.0),
+                Expanded(
+                  child: ListTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          organizer,
+                          style: TextStyle(
+                              inherit: true,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14.0),
+                        ),
+                      ],
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 0.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            child: Text("Created by: $creator",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: false,
+                                style: TextStyle(
+                                    inherit: true,
+                                    fontSize: 12.0,
+                                    color: Colors.black45)),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
