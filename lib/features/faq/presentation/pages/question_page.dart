@@ -1,0 +1,69 @@
+// @dart=2.9
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/lang/languages.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+
+class QuestionPage extends StatefulWidget {
+  @override
+  _QuestionPageState createState() => _QuestionPageState();
+}
+
+class _QuestionPageState extends State<QuestionPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          centerTitle: false,
+          title: Text(
+            DemoLocalizations.of(context).trans('questionTitle'),
+            textScaleFactor: 1.7,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+          ),
+        ),
+        body: ListView(
+          //padding: const EdgeInsets.only(top: 60),
+          children: [
+            ExpansionTile(
+              leading: Icon(FontAwesomeIcons.question),
+              title: Text("Expansion Title"),
+              subtitle: Text("  Sub Title's"),
+              children: <Widget>[
+                Text(
+                  "In Children use can use any flutter Widget",
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text(
+                      "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+                )
+              ],
+            ),
+            ExpansionTile(
+              leading: Icon(FontAwesomeIcons.question),
+              title: Text("Expansion Title"),
+              subtitle: Text("  Sub Title's"),
+              children: <Widget>[
+                Text(
+                  "In Children use can use any flutter Widget",
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text(
+                      "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+                )
+              ],
+            ),
+          ],
+        ));
+  }
+}

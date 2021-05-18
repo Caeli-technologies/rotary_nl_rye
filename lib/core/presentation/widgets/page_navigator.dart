@@ -1,13 +1,13 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 
-import '../../../../core/prop.dart';
-import '../widgets/bottom_navigation_bar.dart';
-import 'contact_page.dart';
-import 'home_page.dart';
-import 'question_page.dart';
-import 'settings_page.dart';
-import 'stories_page.dart';
+import '../../../features/about/presentation/pages/about_page.dart';
+import '../../../features/contact/presentation/pages/contact_page.dart';
+import '../../../features/faq/presentation/pages/question_page.dart';
+import '../../../features/home/presentation/pages/home_page.dart';
+import '../../../features/settings/presentation/pages/settings_page.dart';
+import '../../prop.dart';
+import 'bottom_navigation_bar.dart';
 
 class PageNavigator extends StatefulWidget {
   @override
@@ -32,12 +32,8 @@ class _PageNavigatorState extends State<PageNavigator> {
           children: [
             // home
             HomePage(),
-            //TODO still need to add and move the StoriesPage() to the rebound button
             // About the organization page
-            //AboutPage(),
-
-            // stories
-            StoriesPage(),
+            AboutPage(),
             // FAQ
             QuestionPage(),
             // about us

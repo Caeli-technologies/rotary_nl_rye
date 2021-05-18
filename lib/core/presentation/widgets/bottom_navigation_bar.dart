@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/icon_tab.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/icon_tab.dart';
 
-import '../../../../core/prop.dart';
+import '../../prop.dart';
 
 class BottomNavigatorBar extends StatelessWidget {
   @override

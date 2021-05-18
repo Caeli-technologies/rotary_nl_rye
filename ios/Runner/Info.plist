@@ -10,10 +10,15 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleLocalizations</key>
 	<array>
-    	<string>en</string>
-    	<string>nl</string>
+		<string>en</string>
+		<string>nl</string>
 		<string>de</string>
-	</array>	
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>https</string>
+  <string>http</string>
+</array>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

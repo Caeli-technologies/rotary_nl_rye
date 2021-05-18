@@ -40,12 +40,6 @@ class SVGListTile extends StatelessWidget {
             style: TextStyle(
               color: Palette.indigo,
             )),
-        subtitle: Text(
-          item.description,
-          style: TextStyle(
-            color: Palette.indigo,
-          ),
-        ),
         trailing: Icon(
           Icons.keyboard_arrow_right,
           size: 30,

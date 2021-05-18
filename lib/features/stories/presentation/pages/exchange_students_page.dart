@@ -1,14 +1,14 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/models/contributor.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/story_page.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/image_list_tile.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_page.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
-  final person;
-  const ExchangeStudentsPage({this.person});
+  final country;
+  const ExchangeStudentsPage({this.country});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +42,7 @@ class ExchangeStudentsPage extends StatelessWidget {
           child: ListView(shrinkWrap: true, children: [
             Container(
               child: SvgPicture.asset(
-                person.imageUrl,
+                country.imageUrl,
                 height: 60,
                 width: 60,
                 fit: BoxFit.contain,
@@ -59,7 +59,7 @@ class ExchangeStudentsPage extends StatelessWidget {
                 ),
               ),
               child: Text(
-                person.name,
+                country.name,
                 textAlign: TextAlign.center,
                 textScaleFactor: 2,
                 style: TextStyle(
@@ -83,12 +83,16 @@ class ExchangeStudentsPage extends StatelessWidget {
             Divider(
               thickness: 2,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemBuilder: (context, index) => ImageListTile(
-                  item: exchangeStudents[index], descriptionPage: StoryPage()),
-              itemCount: exchangeStudents.length,
-            ),
+            Container(
+              height: Device.height - 265,
+              child: ListView.builder(
+                itemBuilder: (context, index) => ImageListTile(
+                  item: exchangeStudents[index],
+                  descriptionPage: StoriesPage(),
+                ),
+                itemCount: exchangeStudents.length,
+              ),
+            )
           ]),
         ),
       ),

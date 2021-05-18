@@ -1,11 +1,11 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/models/contributor.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/image_list_tile.dart';
 
-import 'person_details_page.dart';
+import '../../../../core/presentation/pages/person_details_page.dart';
 
 class ContributorsPage extends StatefulWidget {
   @override

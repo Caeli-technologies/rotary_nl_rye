@@ -48,6 +48,7 @@ class Palette {
 
   static Color indigo = 0 as Color;
   static Color themeShadeColor = 0 as Color;
+  static Color themeContactTabShadeColor = 0 as Color;
   static Color themeCardShadeColor = 0 as Color;
   static Color accentColor = 0 as Color;
   static Color grey = 0 as Color;
@@ -68,10 +69,12 @@ class Palette {
     if (Device.isDark) {
       indigo = Colors.indigo[400]!;
       themeShadeColor = Colors.grey[800]!;
+      themeContactTabShadeColor = Colors.grey[850]!;
       themeCardShadeColor = Colors.grey[800]!;
     } else {
       indigo = Colors.indigo[800]!;
       themeShadeColor = Colors.grey[100]!;
+      themeContactTabShadeColor = Colors.grey[50]!;
       themeCardShadeColor = Colors.grey[200]!;
     }
   }

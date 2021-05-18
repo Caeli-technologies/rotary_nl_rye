@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/countries.dart';
 
 class HomeCardItem extends StatelessWidget {
   final String title, description;
   final IconData icon;
+  final pushTo;
 
-  HomeCardItem(
-      {this.title,
-      this.icon,
-      this.description});
+  HomeCardItem({this.title, this.icon, this.description, this.pushTo});
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +49,13 @@ class HomeCardItem extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CountriesPage()),
-            )
-            ));
+            onTap: () {
+              if (pushTo != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => pushTo),
+                );
+              }
+            }));
   }
 }

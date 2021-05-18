@@ -1,19 +1,35 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/lang/languages.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/models/country.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/image_list_tile.dart';
 
-import 'exchange_students_page.dart';
+import '../../../../core/prop.dart';
+import '../../domain/entities/country.dart';
+import '../bloc/countries_bloc.dart';
+import '../pages/exchange_students_page.dart';
 
-class CountriesPage extends StatefulWidget {
+class CountriesDisplay extends StatefulWidget {
+  final countries;
+
+  CountriesDisplay({this.countries});
+
   @override
-  _CountriesPageState createState() => _CountriesPageState();
+  _CountriesDisplayState createState() => _CountriesDisplayState(countries);
 }
 
-class _CountriesPageState extends State<CountriesPage> {
+class _CountriesDisplayState extends State<CountriesDisplay> {
+  final List<Country> _countries;
+
+  _CountriesDisplayState(this._countries);
+
+  @override
+  void initState() {
+    BlocProvider.of<CountriesBloc>(context).add(BGetCountries());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     {
@@ -22,7 +38,7 @@ class _CountriesPageState extends State<CountriesPage> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
+            margin: EdgeInsets.only(left: 10, top: 5, bottom: 5),
             width: 40,
             height: 40,
             decoration:
@@ -50,31 +66,16 @@ class _CountriesPageState extends State<CountriesPage> {
           ),
         ),
         body: Container(
-          height: Device.height - 170,
-          margin: EdgeInsets.only(left: 20, right: 20),
           child: ListView.builder(
-            shrinkWrap: false,
+            padding: EdgeInsets.only(left: 20, right: 20),
             itemBuilder: (context, index) => SVGListTile(
-                item: countries[index],
+                item: _countries[index],
                 descriptionPage:
-                    ExchangeStudentsPage(person: countries[index])),
-            itemCount: countries.length,
+                    ExchangeStudentsPage(country: _countries[index])),
+            itemCount: _countries.length//_countries != null ? _countries.length : 0,
           ),
         ),
       );
     }
   }
 }
-
-List<Country> countries = [
-  Country(
-      name: "France", imageUrl: "assets/icons/flags/fr.svg", description: ""),
-  Country(
-      name: "India", imageUrl: "assets/icons/flags/in.svg", description: ""),
-  Country(
-      name: "Germany", imageUrl: "assets/icons/flags/de.svg", description: ""),
-  Country(name: "USA", imageUrl: "assets/icons/flags/us.svg", description: ""),
-  Country(
-      name: "Brazil", imageUrl: "assets/icons/flags/br.svg", description: ""),
-  Country(name: "Japan", imageUrl: "assets/icons/flags/jp.svg", description: "")
-];
