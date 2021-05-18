@@ -4,9 +4,10 @@ import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
 class Event {
-  String title, description, date;
+  String title, description, location, startDate, endDate;
 
-  Event(this.title, this.description, this.date);
+  Event(this.title, this.description, this.location, this.startDate,
+      this.endDate);
 }
 
 /// Example events.
@@ -22,22 +23,61 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
       Event(
           'Farewell Party',
           'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
-          "18 may 2021"),
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
       Event(
           'Farewell Party',
           'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
-          "18 may 2021"),
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
     ],
     DateTime.utc(2021, 05, 19): [
-      Event('Today\'s Event 3', 'test', "19 may 2021"),
-      Event('Today\'s Event 4', 'test', "19 may 2021"),
+      Event(
+          'Today\'s Event 3',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
+      Event(
+          'Today\'s Event 4',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
     ],
     DateTime.utc(2021, 05, 20): [
-      Event('Today\'s Event 3', 'test', "20 may 2021"),
-      Event('Today\'s Event 4', 'test', "20 may 2021"),
-      Event('Today\'s Event 4', 'test', "20 may 2021"),
-      Event('Today\'s Event 4', 'test', "20 may 2021"),
-      Event('Today\'s Event 4', 'test', "20 may 2021"),
+      Event(
+          'Today\'s Event 3',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
+      Event(
+          'Today\'s Event 4',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
+      Event(
+          'Today\'s Event 4',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
+      Event(
+          'Today\'s Event 4',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
+      Event(
+          'Today\'s Event 4',
+          'test',
+          "Agorabaan 3, 8224 JS Lelystad, Nederland",
+          "2019-06-22T17:30:00+02:00",
+          "2019-06-22T19:30:00+02:00"),
     ],
   });
 

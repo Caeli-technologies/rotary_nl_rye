@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:intl/intl.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -22,6 +25,14 @@ class _TableEventsState extends State<TableEvents> {
   @override
   void initState() {
     super.initState();
+
+    final String defaultLocale = Platform.localeName;
+/* Testing 
+    final clockString = DateFormat.yMMMMd(defaultLocale)
+        .format(DateTime.parse('2019-06-22T19:30:00+02:00'));
+    print(clockString); // 07:18 AM
+    print(defaultLocale);
+*/
 
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
@@ -147,6 +158,7 @@ class _TableEventsState extends State<TableEvents> {
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: _selectedEvents,
               builder: (context, value, _) {
+                final String defaultLocale = Platform.localeName;
                 return ListView.builder(
                   itemCount: value.length,
                   itemBuilder: (context, index) {
@@ -189,7 +201,9 @@ class _TableEventsState extends State<TableEvents> {
                                   fontWeight: FontWeight.w700,
                                   fontSize: 16.0),
                             ),
-                            Text("${value[index].date}",
+                            Text(
+                                DateFormat.yMMMMd(defaultLocale).format(
+                                    DateTime.parse(value[index].startDate)),
                                 style: TextStyle(
                                     inherit: true,
                                     fontSize: 14.0,
@@ -215,8 +229,18 @@ class _TableEventsState extends State<TableEvents> {
                             ],
                           ),
                         ),
-                        onTap: () => print(
-                            '${value[index].title} - ${value[index].title}'),
+                        //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => DialogPage1(
+                                  title: value[index].title,
+                                  description: value[index].description,
+                                  location: value[index].location,
+                                  startDate: value[index].startDate,
+                                  endDate: value[index].endDate,
+                                  defaultLocale: defaultLocale));
+                        },
                       ),
                     );
                   },
@@ -226,6 +250,125 @@ class _TableEventsState extends State<TableEvents> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DialogPage1 extends StatelessWidget {
+  final String description, title, startDate, endDate, location, defaultLocale;
+
+  DialogPage1({
+    required this.description,
+    required this.title,
+    required this.startDate,
+    required this.endDate,
+    required this.location,
+    required this.defaultLocale,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final date =
+        DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(startDate));
+    final weekDay =
+        DateFormat.EEEE(defaultLocale).format(DateTime.parse(startDate));
+    final startTime =
+        DateFormat.jm(defaultLocale).format(DateTime.parse(startDate));
+    final endTime =
+        DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
+
+    return new AlertDialog(
+      title: Text(title),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "$weekDay, $date | $startTime - $endTime",
+            style: const TextStyle(color: Colors.black87, fontSize: 12.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 0.0),
+                  child: FaIcon(
+                    FontAwesomeIcons.mapMarkerAlt,
+                    color: Palette.lightIndigo,
+                    size: 20,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12.0),
+                    child: Text(
+                      location,
+                      style: TextStyle(fontSize: 12.0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 0.0),
+                  child: FaIcon(
+                    FontAwesomeIcons.alignLeft,
+                    color: Palette.lightIndigo,
+                    size: 20,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12.0),
+                    child: Text(
+                      description,
+                      style: TextStyle(fontSize: 12.0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0),
+                  child: FaIcon(
+                    FontAwesomeIcons.calendarDay,
+                    color: Palette.lightIndigo,
+                    size: 20,
+                  ),
+                ),
+                const Expanded(
+                  child: const Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: const Text(
+                      'Popup window is like a dialog box that gains complete focus when it appears on screen.',
+                      style: const TextStyle(fontSize: 12.0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        new TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Okay, got it!'),
+        ),
+      ],
     );
   }
 }
