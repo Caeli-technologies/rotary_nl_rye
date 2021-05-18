@@ -161,7 +161,7 @@ class _TableEventsState extends State<TableEvents> {
                                   borderRadius: BorderRadius.circular(8.0),
                                   boxShadow: [
                                     BoxShadow(
-                                        color: Colors.pink.shade100,
+                                        color: Colors.grey.shade400,
                                         spreadRadius: 0.1,
                                         blurRadius: 25.0,
                                         offset: Offset(0.0, 1.0)),
