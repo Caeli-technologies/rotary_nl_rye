@@ -19,8 +19,14 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: getHashCode,
 )..addAll({
     DateTime.now(): [
-      Event('Today\'s Event 1', 'test', "18 may 2021"),
-      Event('Today\'s Event 2', 'test', "18 may 2021"),
+      Event(
+          'Farewell Party',
+          'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
+          "18 may 2021"),
+      Event(
+          'Farewell Party',
+          'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
+          "18 may 2021"),
     ],
     DateTime.utc(2021, 05, 19): [
       Event('Today\'s Event 3', 'test', "19 may 2021"),

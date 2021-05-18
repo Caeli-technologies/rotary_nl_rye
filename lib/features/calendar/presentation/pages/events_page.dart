@@ -174,7 +174,7 @@ class _TableEventsState extends State<TableEvents> {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: Image.network(
-                                    "https://yt3.ggpht.com/ytc/AAUvwni_LdnpDi-SOIhjp4Kxo2l_yVBoYsfdDCpUM5VDzg=s900-c-k-c0x00ffffff-no-rj",
+                                    "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
                                     width: 50.0,
                                     height: 50.0,
                                   ))),
@@ -189,11 +189,11 @@ class _TableEventsState extends State<TableEvents> {
                                   fontWeight: FontWeight.w700,
                                   fontSize: 16.0),
                             ),
-                            Text("${value[index].description}",
+                            Text("${value[index].date}",
                                 style: TextStyle(
                                     inherit: true,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16.0)),
+                                    fontSize: 14.0,
+                                    color: Colors.black45)),
                           ],
                         ),
                         subtitle: Padding(
@@ -201,16 +201,17 @@ class _TableEventsState extends State<TableEvents> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text("Some more nice text XD",
-                                  style: TextStyle(
-                                      inherit: true,
-                                      fontSize: 14.0,
-                                      color: Colors.black45)),
-                              Text("${value[index].date}",
-                                  style: TextStyle(
-                                      inherit: true,
-                                      fontSize: 14.0,
-                                      color: Colors.black45)),
+                              SizedBox(
+                                width: Device.width - 150,
+                                child: Text("${value[index].description}",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                    style: TextStyle(
+                                        inherit: true,
+                                        fontSize: 14.0,
+                                        color: Colors.black45)),
+                              ),
                             ],
                           ),
                         ),
