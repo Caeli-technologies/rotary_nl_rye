@@ -363,13 +363,11 @@ class DialogPage1 extends StatelessWidget {
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          organizer,
-                          style: TextStyle(
-                              inherit: true,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14.0),
-                        ),
+                        Text(organizer,
+                            style: TextStyle(
+                                inherit: true,
+                                fontSize: 14.0,
+                                color: Colors.black)),
                       ],
                     ),
                     subtitle: Padding(
