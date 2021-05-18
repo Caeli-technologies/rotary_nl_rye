@@ -1,6 +1,8 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:http/http.dart' as http;
+import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 late Map data;
@@ -15,16 +17,9 @@ Future<void> getData() async {
     },
   );
 
-  data = json.decode(response.body);
-
-/*
-  setState(() {
-    _title = data["items"]["kind"];
-  });
-*/
-  print("${response.statusCode}");
-  print("${response.body}");
-  print("$_title");
+  var result = json.decode(response.body);
+  var events = EventResult.fromJson(result).events;
+  events.forEach((event) => print(event));
 }
 
 /// Example event class.
