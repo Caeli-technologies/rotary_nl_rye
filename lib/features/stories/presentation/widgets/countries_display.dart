@@ -67,13 +67,14 @@ class _CountriesDisplayState extends State<CountriesDisplay> {
         ),
         body: Container(
           child: ListView.builder(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            itemBuilder: (context, index) => SVGListTile(
-                item: _countries[index],
-                descriptionPage:
-                    ExchangeStudentsPage(country: _countries[index])),
-            itemCount: _countries.length//_countries != null ? _countries.length : 0,
-          ),
+              padding: EdgeInsets.only(left: 20, right: 20),
+              itemBuilder: (context, index) => SVGListTile(
+                  item: _countries[index],
+                  descriptionPage:
+                      ExchangeStudentsPage(country: _countries[index])),
+              itemCount: _countries
+                  .length //_countries != null ? _countries.length : 0,
+              ),
         ),
       );
     }

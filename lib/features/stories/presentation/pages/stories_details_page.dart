@@ -94,7 +94,7 @@ class MainContainer extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Container(
-                      padding: EdgeInsets.only(left: 40, top: 20),
+                      padding: EdgeInsets.only(left: 40, top: 30),
                       child: Text(
                         country,
                         textScaleFactor: 2,
@@ -123,7 +123,7 @@ class MainContainer extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       child: Container(
                           padding: EdgeInsets.only(
-                              left: 40, top: 15, right: 40, bottom: 20),
+                              left: 40, top: 15, right: 40, bottom: 10),
                           child: Wrap(
                             runSpacing: 15.0,
                             spacing: 30.0,
@@ -178,7 +178,7 @@ class MainContainer extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin:
-                      EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+                      EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
                   child: ListView(children: [Text(text1)]),
                 ),
               ),
