@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
+import 'information/long_term_exchange.dart';
+
 class ProgramPage extends StatefulWidget {
   @override
   _ProgramPageState createState() => _ProgramPageState();
@@ -72,8 +74,12 @@ class _ProgramPageState extends State<ProgramPage> {
                 thickness: 2,
               ),
 
-              buildProgramOptionRow(context, "Long Term Exchange Program",
-                  "Year Exchange", FontAwesomeIcons.hashtag, null),
+              buildProgramOptionRow(
+                  context,
+                  "Long Term Exchange Program",
+                  "Year Exchange",
+                  FontAwesomeIcons.hashtag,
+                  LongTermExchangeProgramPage()),
               SizedBox(
                 height: 10,
               ),
