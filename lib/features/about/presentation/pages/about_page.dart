@@ -85,6 +85,23 @@ class _AboutPageState extends State<AboutPage> {
                   style: TextStyle(color: Colors.black, fontSize: 16.0),
                 ),
               ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+                child: Text(
+                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                ),
+              ),
+
+              // the end
+              SizedBox(
+                height: 20,
+              ),
             ],
           )
         ],
