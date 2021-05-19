@@ -91,7 +91,7 @@ class _ProgramPageState extends State<ProgramPage> {
               ),
               buildProgramOptionRow(context, "FAMILY TO FAMILY",
                   "Exchange between families", FontAwesomeIcons.hashtag, null),
-              buildProgramOptionRow(context, "CAMPS & TOURS", "Summercamps",
+              buildProgramOptionRow(context, "CAMPS & TOURS", "Summer Camps",
                   FontAwesomeIcons.hashtag, null),
               buildProgramOptionRow(
                   context,
