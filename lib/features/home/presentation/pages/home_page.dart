@@ -5,7 +5,9 @@ import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
+import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/program/presentation/pages/program_page.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
@@ -125,13 +127,13 @@ class _HomePageState extends State<HomePage> {
                           title: 'Outbound',
                           description:
                               'students that are going to a diffrent country',
-                          pushTo: null),
+                          pushTo: OutboundPage()),
                       HomeCardItem(
                           icon: FontAwesomeIcons.share,
                           title: 'Inbound',
                           description:
                               'people that are going to the netherlands',
-                          pushTo: null),
+                          pushTo: InboundPage()),
                       HomeCardItem(
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
