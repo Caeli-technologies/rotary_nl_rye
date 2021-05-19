@@ -3,7 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
+import 'information/camps_tours.dart';
+import 'information/family_to_family.dart';
 import 'information/long_term_exchange.dart';
+import 'information/ngse.dart';
 
 class ProgramPage extends StatefulWidget {
   @override
@@ -95,16 +98,20 @@ class _ProgramPageState extends State<ProgramPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildProgramOptionRow(context, "FAMILY TO FAMILY",
-                  "Exchange between families", FontAwesomeIcons.hashtag, null),
+              buildProgramOptionRow(
+                  context,
+                  "FAMILY TO FAMILY",
+                  "Exchange between families",
+                  FontAwesomeIcons.hashtag,
+                  FamilyToFamilyProgramPage()),
               buildProgramOptionRow(context, "CAMPS & TOURS", "Summer Camps",
-                  FontAwesomeIcons.hashtag, null),
+                  FontAwesomeIcons.hashtag, CampsAndToursProgramPage()),
               buildProgramOptionRow(
                   context,
                   "NGSE",
                   "New Generations Service Exchange",
                   FontAwesomeIcons.hashtag,
-                  null),
+                  NGSEProgramPage()),
               // the end
               SizedBox(
                 height: 20,
