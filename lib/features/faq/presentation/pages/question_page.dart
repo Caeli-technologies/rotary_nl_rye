@@ -1,8 +1,9 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/faq/presentation/widgets/question_card_item.dart';
 
 class QuestionPage extends StatefulWidget {
   @override
@@ -26,43 +27,35 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
         body: ListView(
           //padding: const EdgeInsets.only(top: 60),
-          children: [
-            ExpansionTile(
-              leading: Icon(FontAwesomeIcons.question),
-              title: Text("Expansion Title"),
-              subtitle: Text("  Sub Title's"),
-              children: <Widget>[
-                Text(
-                  "In Children use can use any flutter Widget",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: Text(
-                      "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
-                )
-              ],
-            ),
-            ExpansionTile(
-              leading: Icon(FontAwesomeIcons.question),
-              title: Text("Expansion Title"),
-              subtitle: Text("  Sub Title's"),
-              children: <Widget>[
-                Text(
-                  "In Children use can use any flutter Widget",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: Text(
-                      "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
-                )
-              ],
-            ),
+          children: <Widget>[
+            QuestionCardItem(
+                icon: FontAwesomeIcons.question,
+                title: "Expansion Title",
+                subtitle: "  Sub Title's",
+                cardTitle: "In Children use can use any flutter Widget",
+                cardText:
+                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            QuestionCardItem(
+                icon: FontAwesomeIcons.question,
+                title: "Expansion Title",
+                subtitle: "  Sub Title's",
+                cardTitle: "In Children use can use any flutter Widget",
+                cardText:
+                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            QuestionCardItem(
+                icon: FontAwesomeIcons.question,
+                title: "Expansion Title",
+                subtitle: "  Sub Title's",
+                cardTitle: "In Children use can use any flutter Widget",
+                cardText:
+                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            QuestionCardItem(
+                icon: FontAwesomeIcons.question,
+                title: "Expansion Title",
+                subtitle: "  Sub Title's",
+                cardTitle: "In Children use can use any flutter Widget",
+                cardText:
+                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
           ],
         ));
   }
