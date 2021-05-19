@@ -94,8 +94,8 @@ class _SocialPageState extends State<SocialPage> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       imageUrl,
-                      width: 50.0,
-                      height: 50.0,
+                      width: 55.0,
+                      height: 55.0,
                     ))),
           ),
           title: Row(

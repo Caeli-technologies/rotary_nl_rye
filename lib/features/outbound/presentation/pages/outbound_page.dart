@@ -42,7 +42,7 @@ class _OutboundPageState extends State<OutboundPage> {
         ),
       ),
       body: ListView(
-        shrinkWrap: false,
+        shrinkWrap: true,
         scrollDirection: Axis.vertical,
         children: <Widget>[
           Column(
