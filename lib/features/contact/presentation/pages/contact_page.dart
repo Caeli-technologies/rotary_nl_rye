@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/person_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -29,6 +30,16 @@ class _ContactPageState extends State<ContactPage> {
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
+//TODO  need a search function to it :)
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: FaIcon(
+                FontAwesomeIcons.search,
+                color: Palette.lightIndigo,
+              ),
+            )
+          ],
           bottom: TabBar(
             labelColor: const Color(0xff525c6e),
             unselectedLabelColor: const Color(0xffacb3bf),
