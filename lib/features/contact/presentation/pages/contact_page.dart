@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/person_details_page.dart';
+import 'package:rotary_nl_rye/core/presentation/pages/person_details_page_test.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/models/person.dart';
@@ -78,7 +79,7 @@ class _ContactPageState extends State<ContactPage> {
               shrinkWrap: false,
               itemBuilder: (context, index) => ImageListTile(
                   item: personList[index],
-                  descriptionPage: PersonDetails(person: personList[index])),
+                  descriptionPage: PersonDetails1(person: personList[index])),
               itemCount: personList.length,
             ),
             ListView.builder(

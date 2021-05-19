@@ -9,6 +9,7 @@ import 'package:get_version/get_version.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:share/share.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -139,11 +140,13 @@ class _SettingsPageState extends State<SettingsPage> {
             buildAccountOptionRow(
                 context,
                 DemoLocalizations.of(context).trans('social'),
-                FontAwesomeIcons.hashtag),
+                FontAwesomeIcons.hashtag,
+                SocialPage()),
             buildAccountOptionRow(
                 context,
                 DemoLocalizations.of(context).trans('privacyAndSecurity'),
-                FontAwesomeIcons.shieldAlt),
+                FontAwesomeIcons.shieldAlt,
+                null),
             buildNotificationOptionRow(
                 DemoLocalizations.of(context).trans('new4You'),
                 Platform.isIOS
@@ -265,7 +268,11 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   GestureDetector buildAccountOptionRow(
-      BuildContext context, String title, IconData icon) {
+    BuildContext context,
+    String title,
+    IconData icon,
+    pushTo,
+  ) {
     return GestureDetector(
         child: Container(
       padding: EdgeInsets.zero,
@@ -296,8 +303,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
-
-        //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
+        /*
         onTap: () {
           showDialog(
               context: context,
@@ -321,6 +327,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   ],
                 );
               });
+        },
+*/
+        onTap: () {
+          if (pushTo != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pushTo),
+            );
+          }
         },
       ),
     ));
