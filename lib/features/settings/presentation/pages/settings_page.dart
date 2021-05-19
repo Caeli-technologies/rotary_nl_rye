@@ -143,25 +143,7 @@ class _SettingsPageState extends State<SettingsPage> {
             buildAccountOptionRow(
                 context,
                 DemoLocalizations.of(context).trans('privacyAndSecurity'),
-                FontAwesomeIcons.userSecret),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                Text(
-                  'Something else :)',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
+                FontAwesomeIcons.shieldAlt),
             buildNotificationOptionRow(
                 DemoLocalizations.of(context).trans('new4You'),
                 Platform.isIOS
@@ -183,50 +165,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           });
                         },
                       )),
-            buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('accountActivity'),
-                Platform.isIOS
-                    ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
-                        value: slider2,
-                        onChanged: (value) {
-                          setState(() {
-                            slider2 = value;
-                          });
-                        },
-                      )
-                    : Switch(
-                        activeColor: Palette.accentColor,
-                        value: slider2,
-                        onChanged: (value) {
-                          setState(() {
-                            slider2 = value;
-                          });
-                        },
-                      )),
-            buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('opportunity'),
-                Platform.isIOS
-                    ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
-                        value: slider3,
-                        onChanged: (value) {
-                          setState(() {
-                            slider3 = value;
-                          });
-                        },
-                      )
-                    : Switch(
-                        activeColor: Palette.accentColor,
-                        value: slider3,
-                        onChanged: (value) {
-                          setState(() {
-                            slider3 = value;
-                          });
-                        },
-                      )),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Row(
               children: [
@@ -250,7 +190,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: FaIcon(
                       FontAwesomeIcons.code,
                       color: Palette.lightIndigo,
-                      size: 25,
                     ),
                   ),
                 ),
@@ -298,18 +237,15 @@ class _SettingsPageState extends State<SettingsPage> {
     return Container(
       padding: EdgeInsets.zero,
       child: ListTile(
-/*
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Container(
             child: FaIcon(
-              FontAwesomeIcons.ad,
+              FontAwesomeIcons.bell,
               color: Palette.lightIndigo,
-              size: 35,
             ),
           ),
         ),
-*/
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -340,7 +276,6 @@ class _SettingsPageState extends State<SettingsPage> {
             child: FaIcon(
               icon,
               color: Palette.lightIndigo,
-              size: 35,
             ),
           ),
         ),
