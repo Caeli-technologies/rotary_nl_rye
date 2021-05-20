@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FamilyToFamilyProgramPage extends StatefulWidget {
   @override
@@ -265,10 +267,52 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  'Aanmelden doe je via de site van Rotary Youth Exchange. Hier maak je eerst een account aan. Daarna kun je aanmelden onder "Outbound"/ "familie naar familie" / "registreren".\n\nZodra je het registratieformulier hebt aangemaakt ontvang je een email met daarin alle instructies. Deze instructies dienen nauwgezet opgevolgd te worden. Pas dan beginnen wij met het zoeken van een geweldige match voor jou.\n\nHeb je vragen stel ze bij voorkeur per mail, klik op de namen bij “family to family” op de contact pagina.',
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
-                ),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 13),
+                        children: [
+                      TextSpan(
+                        text: 'Aanmelden',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch("https://www.rotary.nl/yep/aanmelden/");
+                          },
+                      ),
+                      TextSpan(
+                        text:
+                            ' Doe je via de site van Rotary Youth Exchange. Hier maak je eerst een account aan. Daarna kun je aanmelden onder "Outbound"/ "familie naar familie" / "registreren".\n\nZodra je het registratieformulier hebt aangemaakt ontvang je een email met daarin alle instructies. Deze instructies dienen nauwgezet opgevolgd te worden. Pas dan beginnen wij met het zoeken van een geweldige match voor jou.',
+                      ),
+                    ])),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 13),
+                        children: [
+                      TextSpan(
+                        text:
+                            'Heb je vragen stel ze bij voorkeur per mail, klik op de namen bij “family to family” op de ',
+                      ),
+                      TextSpan(
+                        text: 'contact',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch("https://www.rotary.nl/yep/contact/");
+                          },
+                      ),
+                      TextSpan(
+                        text: ' pagina.',
+                      ),
+                    ])),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),

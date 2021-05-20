@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class LongTermExchangeProgramPage extends StatefulWidget {
@@ -136,10 +138,26 @@ https://github.com/sarbagyastha/youtube_player_flutter/tree/master/packages/yout
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  "Voor de datum van deze dagen zie de agenda.", //TODO click to calendar
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
-                ),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 13),
+                        children: [
+                      TextSpan(
+                        text: 'Voor de datum van deze dagen zie de ',
+                      ),
+                      TextSpan(
+                        text: 'agenda',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch(
+                                "https://www.rotary.nl/yep/agenda/"); //TODO click to calendar in app
+                          },
+                      ),
+                    ])),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
@@ -223,17 +241,30 @@ https://github.com/sarbagyastha/youtube_player_flutter/tree/master/packages/yout
                       fontWeight: FontWeight.bold),
                 ),
               ),
-
-              /// need to make this interactive when you click on the email
-              ///
-              /// the text still needs to change
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  "Zie aanmelden (zie menu balk bovenaan deze pagina). Inlichtingen bij de coördinator van het programma Barbara Tusveld mailto:longtermchair@rotaryyep.nl",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
-                ),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 13),
+                        children: [
+                      TextSpan(
+                        text:
+                            'Zie aanmelden (zie menu balk bovenaan deze pagina). Inlichtingen bij de coördinator van het programma Barbara Tusveld ',
+                      ),
+                      TextSpan(
+                        text: 'longtermchair@rotaryyep.nl.',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch("mailto:longtermchair@rotaryyep.nl");
+                          },
+                      ),
+                    ])),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
