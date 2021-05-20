@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class LongTermExchangeProgramPage extends StatefulWidget {
   @override
@@ -76,11 +77,24 @@ class _LongTermExchangeProgramPageState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Text(
                   "Een diploma is geen vereiste om je op te geven; je kunt ook je schoolprogramma onderbreken. Soms is dat zelfs een voordeel. In het buitenland worden namelijk vaak strenge leeftijdsgrenzen gesteld om tot een school te worden toegelaten. En om deel te kunnen nemen aan de schoolsporten is het soms beter om nog geen diploma te hebben.",
                   style: TextStyle(color: Colors.black, fontSize: 13.0),
                 ),
+              ),
+              YoutubePlayer(
+                controller: YoutubePlayerController(
+                  initialVideoId: 'OdGPRRJ2AfY', //Add videoID.
+                  flags: YoutubePlayerFlags(
+                    hideControls: false,
+                    controlsVisibleAtStart: true,
+                    autoPlay: false,
+                    mute: false,
+                  ),
+                ),
+                showVideoProgressIndicator: true,
+                progressIndicatorColor: Colors.blue,
               ),
 
               /// youtube video needs to be here

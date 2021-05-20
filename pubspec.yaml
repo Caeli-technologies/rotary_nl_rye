@@ -63,7 +63,7 @@ dependencies:
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
   share: ^2.0.1 # native share https://pub.dev/packages/share
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
-  # youtube_player_flutter: ^8.0.0
+  youtube_player_flutter: ^8.0.0
 
 
   # this is notification addon // please add only when ready!
