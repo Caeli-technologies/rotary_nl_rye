@@ -45,7 +45,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.caelitechnologies.rotary_nl_rye"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         // TODO before release ensure to shrink file size and delete multiDex (https://developer.android.com/studio/build/multidex)
         multiDexEnabled true
