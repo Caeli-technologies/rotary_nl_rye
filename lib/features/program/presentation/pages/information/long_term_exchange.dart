@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
+import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -153,8 +155,11 @@ https://github.com/sarbagyastha/youtube_player_flutter/tree/master/packages/yout
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch(
-                                "https://www.rotary.nl/yep/agenda/"); //TODO click to calendar in app
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CalendarPage()),
+                            ); //TODO click to calendar in app
                           },
                       ),
                     ])),

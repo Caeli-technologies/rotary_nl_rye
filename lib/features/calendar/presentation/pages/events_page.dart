@@ -7,12 +7,12 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../data/utils.dart';
 
-class TableEvents extends StatefulWidget {
+class CalendarPage extends StatefulWidget {
   @override
-  _TableEventsState createState() => _TableEventsState();
+  _CalendarPageState createState() => _CalendarPageState();
 }
 
-class _TableEventsState extends State<TableEvents> {
+class _CalendarPageState extends State<CalendarPage> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode

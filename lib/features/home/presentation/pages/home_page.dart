@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                           title: 'Calendar',
                           description:
                               'people that are going to the netherlands',
-                          pushTo: TableEvents()),
+                          pushTo: CalendarPage()),
                     ],
                   ),
                   SizedBox(

@@ -60,7 +60,47 @@ class _OutboundPageState extends State<OutboundPage> {
                 height: 15,
                 thickness: 2,
               ),
-
+              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
+                  FontAwesomeIcons.pencilAlt, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
+                  FontAwesomeIcons.exclamation, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(
+                  context,
+                  "Wat moet ik doen voor de selectiedag",
+                  FontAwesomeIcons.voteYea,
+                  null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(
+                  context,
+                  "Wat moet ik doen voor het selectieweekend",
+                  FontAwesomeIcons.clipboardCheck,
+                  null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(
+                  context,
+                  "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
+                  FontAwesomeIcons.globe,
+                  null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Hoe bereid ik me voor",
+                  FontAwesomeIcons.toolbox, null),
               // the end
               SizedBox(
                 height: 20,
@@ -70,5 +110,57 @@ class _OutboundPageState extends State<OutboundPage> {
         ],
       ),
     );
+  }
+
+  GestureDetector buildOutboundOptionRow(
+    BuildContext context,
+    String title,
+    IconData icon,
+    pushTo,
+  ) {
+    return GestureDetector(
+        child: Padding(
+      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+      child: ListTile(
+        leading: Padding(
+          padding: EdgeInsets.zero,
+          child: Container(
+            child: FaIcon(
+              icon,
+              color: Palette.lightIndigo,
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 120,
+              child: Text(title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Palette.grey,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Palette.grey,
+            ),
+          ],
+        ),
+        onTap: () {
+          if (pushTo != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pushTo),
+            );
+          }
+        },
+      ),
+    ));
   }
 }

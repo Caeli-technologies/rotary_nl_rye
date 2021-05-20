@@ -60,7 +60,30 @@ class _InboundPageState extends State<InboundPage> {
                 height: 15,
                 thickness: 2,
               ),
-
+              buildInboundOptionRow(context, "Welcome in Nederland",
+                  FontAwesomeIcons.doorOpen, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(
+                  context, "To learn Netherlands", FontAwesomeIcons.flag, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(context, "Your Travel to the Netherlands",
+                  FontAwesomeIcons.passport, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(context, "Insurance and Permit ",
+                  FontAwesomeIcons.umbrella, null),
+              // the end
+              SizedBox(
+                height: 20,
+              ),
               // the end
               SizedBox(
                 height: 20,
@@ -70,5 +93,57 @@ class _InboundPageState extends State<InboundPage> {
         ],
       ),
     );
+  }
+
+  GestureDetector buildInboundOptionRow(
+    BuildContext context,
+    String title,
+    IconData icon,
+    pushTo,
+  ) {
+    return GestureDetector(
+        child: Padding(
+      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+      child: ListTile(
+        leading: Padding(
+          padding: EdgeInsets.zero,
+          child: Container(
+            child: FaIcon(
+              icon,
+              color: Palette.lightIndigo,
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 120,
+              child: Text(title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Palette.grey,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Palette.grey,
+            ),
+          ],
+        ),
+        onTap: () {
+          if (pushTo != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pushTo),
+            );
+          }
+        },
+      ),
+    ));
   }
 }
