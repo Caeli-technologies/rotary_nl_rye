@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'information/camps_tours.dart';
 import 'information/family_to_family.dart';
@@ -55,14 +57,104 @@ class _ProgramPageState extends State<ProgramPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  "Interesse?",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "Wil je:",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "- Andere culturen leren?",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Text(
+                  "- Een andere taal leren,",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Text(
+                  "- Vrienden krijgen over de hele wereld",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Text(
+                  "- Ambasseur van Nederland zijn voor Rotary",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 6.0),
+                child: Text(
+                  "Ben je tussen 15 en 18½ jaar oud op het moment van vertrek. \nSociaal en avontuurlijk, flexibel en klaar om het bekende achter je te laten en nieuwe dingen te ontdekken?",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 6.0),
+                child: Text(
+                  "Dan zit je bij ons goed! Met de steun van Rotary kunnen gemiddeld meer dan 40 jongeren deelnemen aan de jaarlijkse uitwisseling en ruim 50 jongeren aan onze zomerkampen en korte uitwisselingen.",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 6.0),
+                child: Text(
+                  "Ben je ouder maakt niet uit. Met de New Generation Service Exchange kun je deelnemen tussen de 18 en 30 jaar.",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 13),
+                        children: [
+                      TextSpan(
+                        text:
+                            'Deelname aan ons exchange programma is niet gebonden aan het Rotary clublidmaatschap van een ouder. Jongeren die willen deelnemen aan een uitwisseling kunnen zich opgeven via het emailadres: ',
+                      ),
+                      TextSpan(
+                        text: 'interesse@rotaryyep.nl',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch("mailto:interesse@rotaryyep.nl");
+                          },
+                      ),
+                      TextSpan(
+                        text:
+                            ' Er is wel een selectieprocedure. Van de ouders wordt gevraagd om hun huis op te stellen om jonge buitenlanders voor minimaal 3- maanden in hun gezin op te nemen.',
+                      ),
+                    ])),
+              ),
+
               SizedBox(
-                height: 40,
+                height: 20,
               ),
               Row(
                 children: [
@@ -114,7 +206,7 @@ class _ProgramPageState extends State<ProgramPage> {
                   NGSEProgramPage()),
               // the end
               SizedBox(
-                height: 20,
+                height: 40,
               ),
             ],
           )
