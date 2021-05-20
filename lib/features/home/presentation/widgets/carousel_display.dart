@@ -64,19 +64,18 @@ class _CarouselState extends State<Carousel> {
                   ),
                   child: Align(
                     alignment: Alignment.bottomRight,
-//                      alignment: const Alignment(1.0, 1.0),
                     child: Container(
-                      // We use this Container to create a black box that wraps the white text so that the user can read the text even when the image is white
-                      width: Device.width - 120,
                       height: 45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.black54),
-                      //color: Colors.black38,
                       padding: EdgeInsets.all(10),
-                      child: Text(
-                        carousels[index].text,
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      child: FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Text(
+                          carousels[index].text,
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
