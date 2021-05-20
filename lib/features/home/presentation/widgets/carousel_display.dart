@@ -63,12 +63,12 @@ class _CarouselState extends State<Carousel> {
                         fit: BoxFit.cover),
                   ),
                   child: Align(
-                    alignment: Alignment.bottomRight,
+                    alignment: Alignment.bottomLeft,
                     child: Container(
                       height: 45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.black54),
+                          color: Colors.blue.shade900),
                       padding: EdgeInsets.all(10),
                       child: FittedBox(
                         fit: BoxFit.fitHeight,
