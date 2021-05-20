@@ -57,7 +57,7 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
     ],
-    DateTime.parse("2021-05-20 15:32:36.773915"): [
+    DateTime.parse("2021-05-21 15:32:36.773915"): [
       Event(
           'Today\'s Event 3',
           'test',
@@ -75,7 +75,7 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
           "2019-06-22T17:30:00+02:00",
           "2019-06-22T19:30:00+02:00"),
     ],
-    DateTime.utc(2021, 05, 21): [
+    DateTime.utc(2021, 05, 22): [
       Event(
           'Today\'s Event 3',
           'test',

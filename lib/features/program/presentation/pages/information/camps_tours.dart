@@ -68,7 +68,25 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 ),
               ),
 
-              // the end
+              // the end dont touch XD
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Center(
+                  child: Image.asset(
+                    'assets/image/rotary_blue.png',
+                    height: 55.0,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Center(
+                  child: Text(
+                    'Update: 26 augustus 2019',
+                    style: TextStyle(color: Color(0xFF777777)),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 60,
               ),

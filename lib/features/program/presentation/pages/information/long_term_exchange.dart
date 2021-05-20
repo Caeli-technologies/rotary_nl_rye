@@ -282,7 +282,25 @@ https://github.com/sarbagyastha/youtube_player_flutter/tree/master/packages/yout
                   style: TextStyle(color: Colors.black, fontSize: 13.0),
                 ),
               ),
-              // the end
+              // the end dont touch XD
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Center(
+                  child: Image.asset(
+                    'assets/image/rotary_blue.png',
+                    height: 55.0,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Center(
+                  child: Text(
+                    'Update: 20 juli 2020',
+                    style: TextStyle(color: Color(0xFF777777)),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 60,
               ),

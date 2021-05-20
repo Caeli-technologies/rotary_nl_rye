@@ -33,8 +33,8 @@ class _AboutPageState extends State<AboutPage> {
                 padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                 child: Container(
                     child: ClipRRect(
-                  child: Image.network(
-                    "https://clubrunner.blob.core.windows.net/00000000740/ThemeLogos/en-ca/LightBG_t2021enlockuprgb.png",
+                  child: Image.asset(
+                    "assets/image/rotary_opens_opportunities_logo.png",
                   ),
                 )),
               ),
