@@ -6,6 +6,8 @@ import 'package:rotary_nl_rye/core/prop.dart';
 
 class PersonDetails1 extends StatelessWidget {
   final person;
+  PersonDetails1({required this.person});
+
   final List<String> box1 = ['some', 'thing', 'can', 'here'];
   final List<String> data1 = [
     '1',
@@ -14,7 +16,6 @@ class PersonDetails1 extends StatelessWidget {
     '4'
   ]; //TODO change to font awesome icons :)
 
-  PersonDetails1({required this.person});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
