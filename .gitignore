@@ -32,6 +32,7 @@
 /build/
 /android/app/google-services.json
 /ios/Runner/GoogleService-Info.plist
+pubspec.lock
 
 # Web related
 lib/generated_plugin_registrant.dart
