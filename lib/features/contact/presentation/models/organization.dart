@@ -2,6 +2,7 @@ import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_ti
 
 class Organization extends ImageListTileItem {
   final String name;
+  final String rotarian;
   final String role;
   final String bio;
   final String district;
@@ -14,6 +15,7 @@ class Organization extends ImageListTileItem {
   final Map<String, dynamic> exchangeInfo;
   Organization(
       {required this.name,
+      required this.rotarian,
       required this.role,
       required this.bio,
       required this.district,
