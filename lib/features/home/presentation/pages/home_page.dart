@@ -29,67 +29,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     initPlatformState();
     _removeBadge();
-
-    // just a test
-    var jsonSource = """
-  {
-   "items": [
-{
-   "kind": "calendar#event",
-   "id": "1je584h0gd75qdp89n8ulej3tf",
-   "status": "confirmed",
-   "htmlLink": "https://www.google.com/calendar/event?eid=MWplNTg0aDBnZDc1cWRwODluOHVsZWozdGYgcnllLm5ldGhlcmxhbmRzQG0",
-   "created": "2020-02-25T19:58:44.000Z",
-   "updated": "2020-02-25T19:58:44.968Z",
-   "summary": "Long Term Exchange Studenten",
-   "description": "aankomst 7 nieuwe exchange (inbound) studenten in Nederland",
-   "creator": {
-    "email": "hpl.vanmontfort@gmail.com"
-   },
-   "organizer": {
-    "email": "rye.netherlands@gmail.com",
-    "self": true
-   },
-   "start": {
-    "date": "2020-06-16"
-   },
-   "end": {
-    "date": "2020-06-20"
-   },
-   "transparency": "transparent",
-   "iCalUID": "1je584h0gd75qdp89n8ulej3tf@google.com",
-   "sequence": 0,
-   "eventType": "default"
   }
-    ]
-    }
-  """;
-    print(convertJsonToDateMap(jsonSource));
-// can be delete
-  }
-
-  /// just a test but it works :)
-
-  Map<DateTime, List> convertJsonToDateMap(String jsonSource) {
-    var json = jsonDecode(jsonSource);
-    var jsonEvents = json['items'];
-    Map<DateTime, List<String>> events = {};
-    for (var event in jsonEvents) {
-      var date = parseDate(event['start']['date']);
-      events.putIfAbsent(date, () => <String>[]);
-      events[date].add(event['summary']);
-      events[date].add(event['description']);
-      events[date].add(event['start']['date']);
-    }
-    return events;
-  }
-
-  DateTime parseDate(String date) {
-    var parts = date.split('-').map(int.tryParse).toList();
-    return DateTime(parts[0], parts[1], parts[2]);
-  }
-
-  /// just a test
 
   initPlatformState() async {
     String appBadgeSupported;
