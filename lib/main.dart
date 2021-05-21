@@ -17,16 +17,14 @@ void main() async {
   await Firebase.initializeApp();
   await di.init();
 
-  runApp(MultiBlocProvider(
-      providers: [
-        BlocProvider<CountriesBloc>(
-          create: (_) => sl<CountriesBloc>(),
-        ),
-        BlocProvider<StoriesBloc>(
-          create: (_) => sl<StoriesBloc>(),
-        ),
-      ],
-  child: new MyApp()));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<CountriesBloc>(
+      create: (_) => sl<CountriesBloc>(),
+    ),
+    BlocProvider<StoriesBloc>(
+      create: (_) => sl<StoriesBloc>(),
+    ),
+  ], child: new MyApp()));
 }
 
 class MyApp extends StatelessWidget {

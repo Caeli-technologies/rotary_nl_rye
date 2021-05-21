@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +9,7 @@ class SVGListTile extends StatelessWidget {
   const SVGListTile({
     this.descriptionPage,
     this.item,
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,7 @@ class ImageListTile extends StatelessWidget {
   const ImageListTile({
     this.descriptionPage,
     this.item,
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -115,7 +114,7 @@ class ContactListTile extends StatelessWidget {
   const ContactListTile({
     this.contactDetailsPage,
     this.item,
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
