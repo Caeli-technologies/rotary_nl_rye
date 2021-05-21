@@ -29,6 +29,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     initPlatformState();
     _removeBadge();
+
+    // just a test
     var jsonSource = """
   {
    "items": [
@@ -63,6 +65,7 @@ class _HomePageState extends State<HomePage> {
     }
   """;
     print(convertJsonToDateMap(jsonSource));
+// can be delete
   }
 
   /// just a test but it works :)
@@ -128,29 +131,9 @@ class _HomePageState extends State<HomePage> {
                   SvgPicture.asset('assets/image/rotary_rye_nl_logo_home.svg'),
             ),
 
-            // idk if we need this but i will keep it for now
-/*
-            Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 24),
-              child: Text(
-                'Hi, NAME Some information for you!',
-                style: TextStyle(fontSize: 16, color: Palette.lightIndigo),
-              ),
-            ),
-*/
-
             // Slider images
             Carousel(),
 
-/*
-            Padding(
-              padding: EdgeInsets.only(left: 16, top: 24, bottom: 12),
-              child: Text(
-                'Let\'s Take a look (text still need to change!',
-                style: TextStyle(fontSize: 12, color: Palette.lightIndigo),
-              ),
-            ),
-*/
             // navigator buttons
             Container(
               margin: EdgeInsets.only(top: 24, left: 16, right: 16),
