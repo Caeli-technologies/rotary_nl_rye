@@ -17,7 +17,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
       label: const Text('????'),
     ),
     new DataColumn(
-      label: const Text('price (indication)'),
+      label: SizedBox(
+        width: Device.width - 280,
+        child: Text('price (indication)',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            style: TextStyle(inherit: true)),
+      ),
     ),
   ];
 
@@ -238,8 +245,9 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                   style: TextStyle(color: Colors.black, fontSize: 13.0),
                 ),
               ),
-
+//table
               DataTable(columns: cols2, rows: rows2),
+// end table
               Padding(
                 padding: const EdgeInsets.only(top: 0.0),
                 child: Text(
