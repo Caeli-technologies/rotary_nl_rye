@@ -64,7 +64,7 @@ class ImageListTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
         onTap: () {
-          print("Student Desc");
+          print(item.name);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => descriptionPage),
@@ -110,10 +110,10 @@ class ImageListTile extends StatelessWidget {
 }
 
 class ContactListTile extends StatelessWidget {
-  final descriptionPage;
+  final contactDetailsPage;
   final item;
   const ContactListTile({
-    this.descriptionPage,
+    this.contactDetailsPage,
     this.item,
     Key key,
   }) : super(key: key);
@@ -123,10 +123,10 @@ class ContactListTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
         onTap: () {
-          print("Student Desc");
+          print(item.name);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => descriptionPage),
+            MaterialPageRoute(builder: (context) => contactDetailsPage),
           );
         },
         contentPadding: EdgeInsets.all(0),

@@ -38,7 +38,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   english_words: ^3.1.5
-  smooth_star_rating: 1.0.3
   bottom_navy_bar: ^5.6.0
   font_awesome_flutter: 9.0.0
   firebase_core: ^1.0.4
@@ -46,7 +45,7 @@ dependencies:
   firebase_analytics: ^8.0.1
   firebase_database: ^6.1.2
   firebase_storage: ^8.0.5 #TODO https://medium.com/swlh/uploading-images-to-cloud-storage-using-flutter-130ac41741b2
-  translator: ^0.1.7
+  translator: ^0.1.7       #TODO add https://pub.dev/packages/translator
   dartz: ^0.9.2
   mockito: ^5.0.7
   equatable: ^2.0.0
