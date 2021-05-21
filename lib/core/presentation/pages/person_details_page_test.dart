@@ -7,7 +7,12 @@ import 'package:rotary_nl_rye/core/prop.dart';
 class PersonDetails1 extends StatelessWidget {
   final person;
   final List<String> box1 = ['some', 'thing', 'can', 'here'];
-  final List<String> data1 = ['1', '2', '3', '4'];
+  final List<String> data1 = [
+    '1',
+    '2',
+    '3',
+    '4'
+  ]; //TODO change to font awesome icons :)
 
   PersonDetails1({required this.person});
   @override
@@ -183,8 +188,8 @@ class PersonDetails1 extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(35.0),
                             border: Border.all(
-                                color: Colors.red.shade100, width: 5),
-                            color: Colors.red[400]),
+                                color: Colors.blue.shade100, width: 5),
+                            color: Colors.blue[400]),
                         child: Center(
                           child: Row(
                             children: <Widget>[
@@ -198,7 +203,7 @@ class PersonDetails1 extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 25.0),
                                 child: Text(
-                                  'something',
+                                  'Send a e-mail',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18.0),
                                 ),
