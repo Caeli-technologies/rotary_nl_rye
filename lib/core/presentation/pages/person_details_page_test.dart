@@ -1,6 +1,7 @@
 //TODO this is just a test. maybe we can build on this.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class PersonDetails1 extends StatelessWidget {
@@ -12,38 +13,31 @@ class PersonDetails1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
-            [
-          SliverAppBar(
-            leading: Container(
-              margin: EdgeInsets.only(left: 10, top: 10),
-              width: 40,
-              height: 40,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-              child: RawMaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: new Icon(
-                  Icons.arrow_back,
-                  color: Palette.accentColor,
-                  size: 30.0,
-                ),
-                shape: new CircleBorder(),
-                elevation: 2.0,
-                fillColor: Palette.themeShadeColor,
-                padding: const EdgeInsets.all(5.0),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: Container(
+            margin: EdgeInsets.only(left: 10, top: 5),
+            width: 40,
+            height: 40,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+            child: RawMaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Icon(
+                Icons.arrow_back,
+                color: Palette.accentColor,
+                size: 30.0,
               ),
+              shape: new CircleBorder(),
+              elevation: 2.0,
+              fillColor: Palette.themeShadeColor,
+              padding: const EdgeInsets.all(5.0),
             ),
-            expandedHeight: Device.height * 0.25,
-            flexibleSpace: Image.asset(
-              person.imageUrl,
-              fit: BoxFit.cover,
-            ),
-          )
-        ],
+          ),
+        ),
         body: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
@@ -51,6 +45,12 @@ class PersonDetails1 extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Container(
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(person.imageUrl),
+                    radius: 50,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                   child: Row(
@@ -65,11 +65,10 @@ class PersonDetails1 extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 20.0),
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                          size: 25.0,
-                        ),
+                        child: SvgPicture.asset(
+                            'assets/icons/custom/rotary-logo-icon.svg',
+                            color: Color(0xFFf7a81b),
+                            height: 30),
                       )
                     ],
                   ),
@@ -80,6 +79,14 @@ class PersonDetails1 extends StatelessWidget {
                   child: Text(
                     "function + District",
                     style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 15.0, left: 30.0, bottom: 0.0),
+                  child: Text(
+                    "Hobbies",
+                    style: TextStyle(color: Colors.grey[600], fontSize: 18.0),
                   ),
                 ),
                 Padding(
@@ -206,8 +213,6 @@ class PersonDetails1 extends StatelessWidget {
               ],
             )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

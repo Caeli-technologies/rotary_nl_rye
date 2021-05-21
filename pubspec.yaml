@@ -101,6 +101,7 @@ flutter:
   assets:
      - assets/image/
      - assets/icons/flags/
+     - assets/icons/custom/
      - assets/lang/
      - assets/test/
   #   - images/a_dot_burr.jpeg

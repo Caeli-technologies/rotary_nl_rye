@@ -142,7 +142,8 @@ class PersonDetails extends StatelessWidget {
                   ? SizedBox.shrink()
                   : Text(
                       "Travelled to: ${person.exchangeInfo["place"]} between ${person.exchangeInfo["travelDates"][0]}-${person.exchangeInfo["travelDates"][1]}")
-            */],
+            */
+            ],
           ),
         ),
       ),
