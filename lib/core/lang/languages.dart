@@ -17,19 +17,19 @@ class DemoLocalizations {
 
   Future<bool> load() async {
     String data = await rootBundle.loadString(
-        'assets/lang/${this.locale.languageCode}-${this.locale.countryCode}.json');
+        'assets/lang/${locale.languageCode}-${locale.countryCode}.json');
     Map<String, dynamic> _result = json.decode(data);
 
-    this._sentences = new Map();
+    _sentences = {};
     _result.forEach((String key, dynamic value) {
-      this._sentences[key] = value.toString();
+      _sentences[key] = value.toString();
     });
 
     return true;
   }
 
   String trans(String key) {
-    return this._sentences[key];
+    return _sentences[key];
   }
 }
 
@@ -62,13 +62,13 @@ class DemoLocalizationsDelegate
     if (locale == null || isSupported(locale) == false) {
       debugPrint('*app_locale_delegate* fallback to locale ');
 
-      locale = Locale('en', 'US'); // fallback to default language
+      locale = const Locale('en', 'US'); // fallback to default language
     }
 
-    DemoLocalizations localizations = new DemoLocalizations(locale);
+    DemoLocalizations localizations = DemoLocalizations(locale);
     await localizations.load();
 
-    print("Load ${locale.languageCode}-${locale.countryCode}");
+    debugPrint('Load ${locale.languageCode}-${locale.countryCode}');
 
     return localizations;
   }

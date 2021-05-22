@@ -18,9 +18,17 @@ class HomeCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: GestureDetector(
+            onTap: () {
+              if (pushTo != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => pushTo),
+                );
+              }
+            },
             child: Container(
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(left: 5, right: 5),
+              margin: const EdgeInsets.only(left: 5, right: 5),
               height: 120,
               decoration: BoxDecoration(
                 color: Palette.themeCardShadeColor,
@@ -35,7 +43,7 @@ class HomeCardItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.only(bottom: 16),
+                          margin: const EdgeInsets.only(bottom: 16),
                           child: FaIcon(
                             icon,
                             color: Palette.lightIndigo,
@@ -51,14 +59,6 @@ class HomeCardItem extends StatelessWidget {
                   )
                 ],
               ),
-            ),
-            onTap: () {
-              if (pushTo != null) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => pushTo),
-                );
-              }
-            }));
+            )));
   }
 }

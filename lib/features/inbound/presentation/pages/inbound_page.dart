@@ -16,7 +16,7 @@ class _InboundPageState extends State<InboundPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
+          margin: const EdgeInsets.only(left: 10, top: 5),
           width: 40,
           height: 40,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
@@ -24,19 +24,19 @@ class _InboundPageState extends State<InboundPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: new Icon(
+            shape: const CircleBorder(),
+            elevation: 2.0,
+            fillColor: Palette.themeShadeColor,
+            padding: const EdgeInsets.all(5.0),
+            child: Icon(
               Icons.arrow_back,
               color: Palette.accentColor,
               size: 30.0,
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
           ),
         ),
         title: Text(
-          "Inbound",
+          'Inbound',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -48,46 +48,29 @@ class _InboundPageState extends State<InboundPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
                 child: Text(
-                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+                  'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
                   style: TextStyle(color: Colors.black, fontSize: 16.0),
                 ),
               ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Welcome in Nederland",
+              const Divider(height: 15, thickness: 2),
+              buildInboundOptionRow(context, 'Welcome in Nederland',
                   FontAwesomeIcons.doorOpen, null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
+              const Divider(height: 15, thickness: 2),
               buildInboundOptionRow(
-                  context, "To learn Netherlands", FontAwesomeIcons.flag, null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Your Travel to the Netherlands",
+                  context, 'To learn Netherlands', FontAwesomeIcons.flag, null),
+              const Divider(height: 15, thickness: 2),
+              buildInboundOptionRow(context, 'Your Travel to the Netherlands',
                   FontAwesomeIcons.passport, null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Insurance and Permit ",
+              const Divider(height: 15, thickness: 2),
+              buildInboundOptionRow(context, 'Insurance and Permit ',
                   FontAwesomeIcons.umbrella, null),
               // the end
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               // the end
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
             ],
           )
         ],
@@ -103,7 +86,7 @@ class _InboundPageState extends State<InboundPage> {
   ) {
     return GestureDetector(
         child: Padding(
-      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
       child: ListTile(
         leading: Padding(
           padding: EdgeInsets.zero,
@@ -129,10 +112,7 @@ class _InboundPageState extends State<InboundPage> {
                     fontWeight: FontWeight.w500,
                   )),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
-            ),
+            Icon(Icons.arrow_forward_ios, color: Palette.grey),
           ],
         ),
         onTap: () {

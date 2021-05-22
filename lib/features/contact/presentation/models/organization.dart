@@ -1,11 +1,14 @@
 import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_tile_item.dart';
 
 class Organization extends ImageListTileItem {
+  @override
   final String name;
   final String rotarian;
   final String role;
   final String bio;
   final String district;
+
+  @override
   final String imageUrl;
   final String email1;
   final String email2;

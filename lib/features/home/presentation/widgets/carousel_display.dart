@@ -13,12 +13,12 @@ class _CarouselState extends State<Carousel> {
   int _current = 0;
 
   List<CarouselModel> carousels = [
-    CarouselModel(image: "assets/image/1.PNG", text: "Social actief zijn"),
+    CarouselModel(image: 'assets/image/1.PNG', text: 'Social actief zijn'),
     CarouselModel(
-        image: "assets/image/2.PNG", text: "Vergroten van je Horizon"),
-    CarouselModel(image: "assets/image/3.PNG", text: "Nieuwe vrienden maken"),
+        image: 'assets/image/2.PNG', text: 'Vergroten van je Horizon'),
+    CarouselModel(image: 'assets/image/3.PNG', text: 'Nieuwe vrienden maken'),
     CarouselModel(
-        image: "assets/image/2.PNG", text: "Jezelf nog beter leren kennen")
+        image: 'assets/image/2.PNG', text: 'Jezelf nog beter leren kennen')
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -33,7 +33,7 @@ class _CarouselState extends State<Carousel> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      margin: EdgeInsets.only(left: 16, right: 16),
+      margin: const EdgeInsets.only(left: 16, right: 16),
       width: MediaQuery.of(context).size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,12 +68,13 @@ class _CarouselState extends State<Carousel> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.blue.shade900),
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: FittedBox(
                         fit: BoxFit.fitHeight,
                         child: Text(
                           carousels[index].text,
-                          style: TextStyle(fontSize: 15, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 15, color: Colors.white),
                         ),
                       ),
                     ),
@@ -82,9 +83,7 @@ class _CarouselState extends State<Carousel> {
               },
             ),
           ),
-          SizedBox(
-            height: 12,
-          ),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -96,7 +95,7 @@ class _CarouselState extends State<Carousel> {
                       alignment: Alignment.centerLeft,
                       height: 6,
                       width: 6,
-                      margin: EdgeInsets.only(right: 8),
+                      margin: const EdgeInsets.only(right: 8),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _current == index

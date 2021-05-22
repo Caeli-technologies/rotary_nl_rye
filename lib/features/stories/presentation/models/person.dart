@@ -1,10 +1,13 @@
 import 'image_list_tile_item.dart';
 
 class Person extends ImageListTileItem {
+  @override
   final String name;
+  @override
   final String description;
   final String bio;
   final String place;
+  @override
   final String imageUrl;
   final String email;
   final String phoneNumber;

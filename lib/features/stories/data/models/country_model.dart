@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../domain/entities/country.dart';
 
 class CountryModel extends Country {
+  @override
   final String id, name, imageUrl;
 
   CountryModel({required this.id, required this.name, required this.imageUrl})

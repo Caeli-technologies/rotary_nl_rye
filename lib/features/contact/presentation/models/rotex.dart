@@ -1,13 +1,16 @@
 import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_tile_item.dart';
 
 class Rotex extends ImageListTileItem {
+  @override
   final String name;
   final String rotarian;
   final String role;
   final String district;
+  @override
   final String description;
   final String bio;
   final String place;
+  @override
   final String imageUrl;
   final String email;
   final String phoneNumber;

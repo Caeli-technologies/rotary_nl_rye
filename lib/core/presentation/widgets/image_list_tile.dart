@@ -14,7 +14,7 @@ class SVGListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
         onTap: () {
           Navigator.push(
@@ -22,7 +22,7 @@ class SVGListTile extends StatelessWidget {
             MaterialPageRoute(builder: (context) => descriptionPage),
           );
         },
-        contentPadding: EdgeInsets.all(0),
+        contentPadding: EdgeInsets.zero,
         leading: ClipRRect(
           child: Container(
             height: 55,
@@ -60,18 +60,18 @@ class ImageListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
         onTap: () {
-          print(item.name);
+          debugPrint(item.name);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => descriptionPage),
           );
         },
-        contentPadding: EdgeInsets.all(0),
+        contentPadding: EdgeInsets.zero,
         leading: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(40)),
+          borderRadius: BorderRadius.circular(40),
           child: Container(
             height: 55,
             width: 55,
@@ -119,18 +119,18 @@ class ContactListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
         onTap: () {
-          print(item.name);
+          debugPrint(item.name);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => contactDetailsPage),
           );
         },
-        contentPadding: EdgeInsets.all(0),
+        contentPadding: EdgeInsets.zero,
         leading: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(40)),
+          borderRadius: const BorderRadius.all(Radius.circular(40)),
           child: Container(
             height: 55,
             width: 55,

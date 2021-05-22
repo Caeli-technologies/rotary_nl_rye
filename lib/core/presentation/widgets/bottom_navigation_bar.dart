@@ -12,11 +12,11 @@ class BottomNavigatorBar extends StatelessWidget {
       color: Palette.themeShadeColor,
       child: TabBar(
           tabs: [
-            IconTab(iconData: FontAwesomeIcons.home),
-            IconTab(iconData: FontAwesomeIcons.userFriends),
-            IconTab(iconData: FontAwesomeIcons.question),
-            IconTab(iconData: FontAwesomeIcons.addressBook),
-            IconTab(iconData: FontAwesomeIcons.cog)
+            const IconTab(iconData: FontAwesomeIcons.home),
+            const IconTab(iconData: FontAwesomeIcons.userFriends),
+            const IconTab(iconData: FontAwesomeIcons.question),
+            const IconTab(iconData: FontAwesomeIcons.addressBook),
+            const IconTab(iconData: FontAwesomeIcons.cog)
           ],
           unselectedLabelColor: Palette.lightIndigo,
           labelColor: Palette.indigo,

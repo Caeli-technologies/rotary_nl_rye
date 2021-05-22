@@ -21,7 +21,7 @@ class _PDFPageState extends State<PDFPage> {
 
   bool _isLoading = true;
   PDFDocument document;
-  String title = "Loading";
+  String title = 'Loading';
 
   @override
   void initState() {
@@ -29,10 +29,10 @@ class _PDFPageState extends State<PDFPage> {
     loadDocument(1); // 0 = local fetch | 1 = web fetch
   }
 
-  loadDocument(value) async {
+  Future<void> loadDocument(value) async {
     setState(() {
       _isLoading = true;
-      title = "Loading";
+      title = 'Loading';
     });
     if (value == 1) {
       // [VERBOSE-2:ui_dart_state.cc(186)] Unhandled Exception: NoSuchMethodError: The getter 'length' was called on null.
@@ -41,13 +41,13 @@ class _PDFPageState extends State<PDFPage> {
 
       // document = await PDFDocument.fromURL(pdfUrl); // not yet working
       document = await PDFDocument.fromURL(
-          "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf"); // works
+          'https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf'); // works
     } else {
       document = await PDFDocument.fromAsset(
           'assets/pdf_test/nieuwsbrief-zomer-2020.pdf');
     }
     setState(() {
-      title = (value == 1) ? "Loaded From Url" : "Loaded From Assets";
+      title = (value == 1) ? 'Loaded From Url' : 'Loaded From Assets';
       _isLoading = false;
     });
   }
@@ -59,7 +59,7 @@ class _PDFPageState extends State<PDFPage> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
+            margin: const EdgeInsets.only(left: 10, top: 5),
             width: 40,
             height: 40,
             decoration:
@@ -68,21 +68,21 @@ class _PDFPageState extends State<PDFPage> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: new Icon(
+              shape: const CircleBorder(),
+              elevation: 2.0,
+              fillColor: Palette.themeShadeColor,
+              padding: const EdgeInsets.all(5.0),
+              child: Icon(
                 Icons.arrow_back,
                 color: Palette.accentColor,
                 size: 30.0,
               ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
             ),
           ),
         ),
         body: Center(
             child: _isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : PDFViewer(
                     document: document,
                     zoomSteps: 1,

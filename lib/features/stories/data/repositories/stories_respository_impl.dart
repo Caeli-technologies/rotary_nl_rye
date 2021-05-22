@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -29,10 +30,10 @@ class StoriesRepositoryImpl implements StoriesRepository {
     if (await networkInfo.isConnected &&
         await updateLocalDataSource.timeSpanIsGreaterThen24h) {
       try {
-        print("Fetch from remote");
-        final remoteStories = await storiesRemoteDataSource.getStories();
-        storiesLocalDataSource.cacheStories(remoteStories);
-        updateLocalDataSource.cacheUpdate();
+        debugPrint('Fetch from remote');
+        var remoteStories = await storiesRemoteDataSource.getStories();
+        await storiesLocalDataSource.cacheStories(remoteStories);
+        await updateLocalDataSource.cacheUpdate();
         return Right(remoteStories);
       } on ServerException {
         return Left(ServerFailure());
@@ -40,7 +41,7 @@ class StoriesRepositoryImpl implements StoriesRepository {
     }
 
     try {
-      final localStories = await storiesLocalDataSource.getStories();
+      var localStories = await storiesLocalDataSource.getStories();
       return Right(localStories);
     } on CacheException {
       return Left(CacheFailure());

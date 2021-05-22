@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class FbRemote {
   final String collection;
@@ -9,14 +10,22 @@ class FbRemote {
     List<QueryDocumentSnapshot> documents = [];
 
     try {
-      await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.cache)).then((QuerySnapshot querySnapshot) {
+      await FirebaseFirestore.instance
+          .collection(collection)
+          .orderBy('name')
+          .get(const GetOptions(source: Source.cache))
+          .then((QuerySnapshot querySnapshot) {
         documents = querySnapshot.docs;
-        print('from cache');
+        debugPrint('from cache');
       });
       if (documents.toString() == '[]') {
-        await FirebaseFirestore.instance.collection(collection).orderBy('name').get(GetOptions(source: Source.server)).then((QuerySnapshot querySnapshot) {
+        await FirebaseFirestore.instance
+            .collection(collection)
+            .orderBy('name')
+            .get(const GetOptions(source: Source.server))
+            .then((QuerySnapshot querySnapshot) {
           documents = querySnapshot.docs;
-          print('from remote');
+          debugPrint('from remote');
         });
       }
       return documents;

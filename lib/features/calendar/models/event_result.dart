@@ -2,7 +2,6 @@
 //
 //     final eventResult = eventResultFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 EventResult eventResultFromJson(String str) =>
@@ -15,32 +14,32 @@ class EventResult {
     required this.events,
   });
 
-  List<Event> events = [];
+  List<MyEvent> events = [];
 
   EventResult.fromJson(Map<String, dynamic> json) {
     if (json['items'] != null) {
       json['items'].forEach((v) {
-        events.add(new Event.fromJson(v));
+        events.add(MyEvent.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() => {
-        "items": List<dynamic>.from(events.map((x) => x.toJson())),
+        'items': List<dynamic>.from(events.map((x) => x.toJson())),
       };
 }
 
 // String title, description, location, creator, organizer, startDate, endDate;
-class Event {
-  Event({
+class MyEvent {
+  MyEvent({
     required this.id,
-    required this.status,
+    this.status,
     required this.htmlLink,
     required this.created,
     required this.updated,
-    required this.summary,
-    required this.description,
-    required this.location,
+    this.summary,
+    this.description,
+    this.location,
     required this.creator,
     required this.organizer,
     required this.start,
@@ -48,46 +47,46 @@ class Event {
   });
 
   String id;
-  String status;
+  String? status;
   String htmlLink;
   DateTime created;
   DateTime updated;
-  String summary;
-  String description;
-  String location;
+  String? summary;
+  String? description;
+  String? location;
   Creator creator;
   Creator organizer;
   End start;
   End end;
 
-  factory Event.fromJson(Map<String, dynamic> json) => Event(
-        id: json["id"],
-        status: json["status"],
-        htmlLink: json["htmlLink"],
-        created: DateTime.parse(json["created"]),
-        updated: DateTime.parse(json["updated"]),
-        summary: json["summary"],
-        description: json["description"],
-        location: json["location"],
-        creator: Creator.fromJson(json["creator"]),
-        organizer: Creator.fromJson(json["organizer"]),
-        start: End.fromJson(json["start"]),
-        end: End.fromJson(json["end"]),
+  factory MyEvent.fromJson(Map<String, dynamic> json) => MyEvent(
+        id: json['id'],
+        status: json['status'],
+        htmlLink: json['htmlLink'],
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated']),
+        summary: json['summary'],
+        description: json['description'],
+        location: json['location'],
+        creator: Creator.fromJson(json['creator']),
+        organizer: Creator.fromJson(json['organizer']),
+        start: End.fromJson(json['start']),
+        end: End.fromJson(json['end']),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "status": status,
-        "htmlLink": htmlLink,
-        "created": created.toIso8601String(),
-        "updated": updated.toIso8601String(),
-        "summary": summary,
-        "description": description,
-        "location": location,
-        "creator": creator.toJson(),
-        "organizer": organizer.toJson(),
-        "start": start.toString(),
-        "end": end.toString(),
+        'id': id,
+        'status': status,
+        'htmlLink': htmlLink,
+        'created': created.toIso8601String(),
+        'updated': updated.toIso8601String(),
+        'summary': summary,
+        'description': description,
+        'location': location,
+        'creator': creator.toJson(),
+        'organizer': organizer.toJson(),
+        'start': start.toString(),
+        'end': end.toString(),
       };
 }
 
@@ -98,24 +97,19 @@ class Creator {
 
   String email;
 
-  factory Creator.fromJson(Map<String, dynamic> json) => Creator(
-        email: json["email"],
-      );
+  factory Creator.fromJson(Map<String, dynamic> json) =>
+      Creator(email: json['email']);
 
-  Map<String, dynamic> toJson() => {
-        "email": email,
-      };
+  Map<String, dynamic> toJson() => {'email': email};
 }
 
 class End {
-  End({
-    required this.dateTime,
-  });
+  End({required this.dateTime});
 
   String dateTime;
 
   factory End.fromJson(Map<String, dynamic> json) => End(
-        dateTime: json["dateTime"].toString(),
+        dateTime: json['dateTime'].toString(),
       );
 
   // Map<String, dynamic> toJson() => {
