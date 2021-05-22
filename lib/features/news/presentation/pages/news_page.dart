@@ -2,10 +2,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
-
-import '../../../../core/lang/languages.dart';
 import '../../../../core/prop.dart';
 
 class NewsPage extends StatefulWidget {
@@ -18,12 +15,9 @@ class _NewsPageState extends State<NewsPage> {
 
   // Fetch content from the json file
   Future readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/test/news.json');
-    final data = await json.decode(response);
-    setState(() {
-      _stories = data["news"];
-    });
+    String response = await rootBundle.loadString('assets/test/news.json');
+    var data = await json.decode(response);
+    setState(() => _stories = data['news']);
   }
 
   @override
@@ -39,7 +33,7 @@ class _NewsPageState extends State<NewsPage> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
+            margin: const EdgeInsets.only(left: 10, top: 5),
             width: 40,
             height: 40,
             decoration:
@@ -48,19 +42,19 @@ class _NewsPageState extends State<NewsPage> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: new Icon(
+              shape: const CircleBorder(),
+              elevation: 2.0,
+              fillColor: Palette.themeShadeColor,
+              padding: const EdgeInsets.all(5.0),
+              child: Icon(
                 Icons.arrow_back,
                 color: Palette.accentColor,
                 size: 30.0,
               ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
             ),
           ),
           title: Text(
-            "News",
+            'News',
             textScaleFactor: 1.4,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -68,39 +62,41 @@ class _NewsPageState extends State<NewsPage> {
         ),
         body: SingleChildScrollView(
             child: Padding(
-                padding: EdgeInsets.only(left: 15, right: 15),
+                padding: const EdgeInsets.only(left: 15, right: 15),
                 child: ListView(shrinkWrap: true, children: [
                   Container(
-                      margin: EdgeInsets.only(top: 15),
+                      margin: const EdgeInsets.only(top: 15),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Container(
                               height: Device.height - 170,
-                              margin: EdgeInsets.only(left: 10, right: 10),
+                              margin:
+                                  const EdgeInsets.only(left: 10, right: 10),
                               child: ListView.builder(
                                   itemCount: _stories.length,
                                   itemBuilder: (BuildContext ctxt, int index) {
                                     return Transform.translate(
-                                      offset: Offset(0, -10),
+                                      offset: const Offset(0, -10),
                                       child: GestureDetector(
                                         onTap: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => PDFPage(
                                                   pdfUrl: _stories[index]
-                                                      ["pdf"])),
+                                                      ['pdf'])),
                                         ),
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
                                         child: Container(
-                                          padding: EdgeInsets.only(bottom: 10),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 10),
                                           child: TravelCard(
-                                            image: _stories[index]["images"],
-                                            title: _stories[index]["title"],
+                                            image: _stories[index]['images'],
+                                            title: _stories[index]['title'],
                                             description: _stories[index]
-                                                ["description"],
+                                                ['description'],
                                           ),
                                         ),
                                       ),
@@ -122,7 +118,7 @@ class TravelCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Palette.themeShadeColor,
-          borderRadius: BorderRadius.all(Radius.circular(14))),
+          borderRadius: const BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
           height: 120,
           child: Container(
@@ -131,7 +127,7 @@ class TravelCard extends StatelessWidget {
                 SizedBox(
                     height: 120,
                     child: ClipRRect(
-                      borderRadius: new BorderRadius.circular(14.0),
+                      borderRadius: BorderRadius.circular(14.0),
                       child: Image.asset(image),
                     )),
                 SizedBox(
@@ -141,7 +137,7 @@ class TravelCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.only(left: 10, top: 12),
+                        padding: const EdgeInsets.only(left: 10, top: 12),
                         child: SizedBox(
                           width: Device.width - 240,
                           child: Text(title,
@@ -155,11 +151,9 @@ class TravelCard extends StatelessWidget {
                               )),
                         ),
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
                       Container(
-                        padding: EdgeInsets.only(left: 10, top: 4),
+                        padding: const EdgeInsets.only(left: 10, top: 4),
                         child: SizedBox(
                           width: Device.width - 240,
                           child: Text(description,
@@ -202,7 +196,7 @@ class _CirclePainter extends BoxPainter {
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
-    final Offset circleOffset =
+    Offset circleOffset =
         offset + Offset(cfg.size.width / 2, cfg.size.height - radius);
     canvas.drawCircle(circleOffset, radius, _paint);
   }

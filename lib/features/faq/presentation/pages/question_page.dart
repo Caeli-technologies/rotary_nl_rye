@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/lang/languages.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/faq/presentation/widgets/question_card_item.dart';
 
@@ -31,32 +30,32 @@ class _QuestionPageState extends State<QuestionPage> {
           children: <Widget>[
             QuestionCardItem(
                 icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
+                title: 'Expansion Title',
                 subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
+                cardTitle: 'In Children use can use any flutter Widget',
                 cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+                    'Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked'),
             QuestionCardItem(
                 icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
+                title: 'Expansion Title',
                 subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
+                cardTitle: 'In Children use can use any flutter Widget',
                 cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+                    'Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked'),
             QuestionCardItem(
                 icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
+                title: 'Expansion Title',
                 subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
+                cardTitle: 'In Children use can use any flutter Widget',
                 cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+                    'Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked'),
             QuestionCardItem(
                 icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
+                title: 'Expansion Title',
                 subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
+                cardTitle: 'In Children use can use any flutter Widget',
                 cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+                    'Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked'),
           ],
         ));
   }

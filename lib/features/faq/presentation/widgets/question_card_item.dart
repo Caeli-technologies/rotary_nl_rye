@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 
 class QuestionCardItem extends StatelessWidget {
   final String title, subtitle, cardTitle, cardText;
@@ -22,11 +21,9 @@ class QuestionCardItem extends StatelessWidget {
       children: <Widget>[
         Text(
           cardTitle,
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
-        SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Center(
           child: Text(cardText),
         )

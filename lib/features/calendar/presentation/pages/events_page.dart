@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
-
+import 'dart:io';
 import '../../data/utils.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -13,7 +13,7 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  late final ValueNotifier<List<Event>> _selectedEvents;
+  bool _pageLoading = true;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
@@ -21,41 +21,48 @@ class _CalendarPageState extends State<CalendarPage> {
   DateTime? _selectedDay;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
+  final List<MyEvent> _todayEvents = [];
+  // ignore: unused_field
+  late List<MyEvent> _myEvent; // TODO: Use otherwise remove
+
+  Future _updateCalendar() async {
+    await getData().then((value) => setState(() => _myEvent = value));
+    setState(() => _pageLoading = false);
+  }
 
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-    _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
-    getData();
+    // _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
+    _updateCalendar();
 /* Testing 
     final String defaultLocale = Platform.localeName;
     final clockString = DateFormat.yMMMMd(defaultLocale)
         .format(DateTime.parse('2019-06-22T19:30:00+02:00'));
-    print(clockString); // 07:18 AM
-    print(defaultLocale);
+    debugPrint(clockString); // 07:18 AM
+    debugPrint(defaultLocale);
 */
   }
 
   @override
   void dispose() {
-    _selectedEvents.dispose();
     super.dispose();
   }
 
-  List<Event> _getEventsForDay(DateTime day) {
+  List<MyEvent> _getEventsForDay(DateTime day) {
     // Implementation example
     return kEvents[day] ?? [];
   }
 
-  List<Event> _getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
-    final days = daysInRange(start, end);
+  // List<Event> _getEventsForRange(DateTime start, DateTime end) {
+  //   // Implementation example
+  //   final days = daysInRange(start, end);
 
-    return [
-      for (final d in days) ..._getEventsForDay(d),
-    ];
-  }
+  //   return [
+  //     for (final d in days) ..._getEventsForDay(d),
+  //   ];
+  // }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     if (!isSameDay(_selectedDay, selectedDay)) {
@@ -67,7 +74,7 @@ class _CalendarPageState extends State<CalendarPage> {
         _rangeSelectionMode = RangeSelectionMode.toggledOff;
       });
 
-      _selectedEvents.value = _getEventsForDay(selectedDay);
+      // _selectedEvents.value = _getEventsForDay(selectedDay);
     }
   }
 
@@ -82,11 +89,11 @@ class _CalendarPageState extends State<CalendarPage> {
 
     // `start` or `end` could be null
     if (start != null && end != null) {
-      _selectedEvents.value = _getEventsForRange(start, end);
+      // _selectedEvents.value = _getEventsForRange(start, end);
     } else if (start != null) {
-      _selectedEvents.value = _getEventsForDay(start);
+      // _selectedEvents.value = _getEventsForDay(start);
     } else if (end != null) {
-      _selectedEvents.value = _getEventsForDay(end);
+      // _selectedEvents.value = _getEventsForDay(end);
     }
   }
 
@@ -97,163 +104,177 @@ class _CalendarPageState extends State<CalendarPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
+          margin: const EdgeInsets.only(left: 10, top: 5),
           width: 40,
           height: 40,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
           child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
+            onPressed: () => Navigator.pop(context),
+            shape: const CircleBorder(),
+            elevation: 2.0,
+            fillColor: Palette.themeShadeColor,
+            padding: const EdgeInsets.all(5.0),
+            child: Icon(
               Icons.arrow_back,
               color: Palette.accentColor,
               size: 30.0,
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
           ),
         ),
         title: Text(
-          "Calendar",
+          'Calendar',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(
-        children: [
-          TableCalendar<Event>(
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
-            focusedDay: _focusedDay,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            rangeStartDay: _rangeStart,
-            rangeEndDay: _rangeEnd,
-            calendarFormat: _calendarFormat,
-            rangeSelectionMode: _rangeSelectionMode,
-            eventLoader: _getEventsForDay,
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarStyle: CalendarStyle(
-              // Use `CalendarStyle` to customize the UI
-              outsideDaysVisible: false,
-            ),
-            onDaySelected: _onDaySelected,
-            onRangeSelected: _onRangeSelected,
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
-              }
-            },
-            onPageChanged: (focusedDay) {
-              _focusedDay = focusedDay;
-            },
-          ),
-          const SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                final String defaultLocale = Platform.localeName;
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(8.0),
-                      child: ListTile(
-                        leading: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.shade400,
-                                        spreadRadius: 0.1,
-                                        blurRadius: 25.0,
-                                        offset: Offset(0.0, 1.0)),
-                                    BoxShadow(
-                                        color: Colors.white,
-                                        spreadRadius: 0.1,
-                                        blurRadius: 25.0,
-                                        offset: Offset(0.0, 1.0))
-                                  ]),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
-                                    width: 50.0,
-                                    height: 50.0,
-                                  ))),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              '${value[index].title}',
-                              style: TextStyle(
-                                  inherit: true,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16.0),
-                            ),
-                            Text(
-                                DateFormat.yMMMMd(defaultLocale).format(
-                                    DateTime.parse(value[index].startDate)),
-                                style: TextStyle(
-                                    inherit: true,
-                                    fontSize: 14.0,
-                                    color: Colors.black45)),
-                          ],
-                        ),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              SizedBox(
-                                width: Device.width - 150,
-                                child: Text("${value[index].description}",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: false,
-                                    style: TextStyle(
-                                        inherit: true,
-                                        fontSize: 14.0,
-                                        color: Colors.black45)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) => DialogPage1(
-                                    title: value[index].title,
-                                    description: value[index].description,
-                                    location: value[index].location,
-                                    startDate: value[index].startDate,
-                                    endDate: value[index].endDate,
-                                    organizer: value[index].organizer,
-                                    creator: value[index].creator,
-                                    defaultLocale: defaultLocale,
-                                  ));
-                        },
-                      ),
-                    );
+      body: _pageLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                TableCalendar<MyEvent>(
+                  firstDay: kFirstDay,
+                  lastDay: kLastDay,
+                  focusedDay: _focusedDay,
+                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                  rangeStartDay: _rangeStart,
+                  rangeEndDay: _rangeEnd,
+                  calendarFormat: _calendarFormat,
+                  rangeSelectionMode: _rangeSelectionMode,
+                  eventLoader: (date) => _getEventsForDay(_selectedDay!),
+                  startingDayOfWeek: StartingDayOfWeek.monday,
+                  calendarStyle: const CalendarStyle(
+                    // Use `CalendarStyle` to customize the UI
+                    outsideDaysVisible: false,
+                  ),
+                  onDaySelected: _onDaySelected,
+                  onRangeSelected: _onRangeSelected,
+                  onFormatChanged: (format) {
+                    if (_calendarFormat != format) {
+                      setState(() => _calendarFormat = format);
+                    }
                   },
-                );
-              },
+                  onPageChanged: (focusedDay) => _focusedDay = focusedDay,
+                ),
+                const SizedBox(height: 8.0),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _todayEvents.isEmpty ? 1 : _todayEvents.length,
+                    itemBuilder: (context, i) {
+                      String defaultLocale = Platform.localeName;
+                      if (_todayEvents.isNotEmpty) {
+                        return _myEventTile(
+                          context: context,
+                          defaultLocale: defaultLocale,
+                          endDate: _todayEvents[i].end.dateTime,
+                          startDate: _todayEvents[i].start.dateTime,
+                          title: _todayEvents[i].summary,
+                          description: _todayEvents[i].description,
+                          creator: _todayEvents[i].creator,
+                          location: _todayEvents[i].location,
+                          organizer: _todayEvents[i].organizer,
+                        );
+                      } else {
+                        return const Center(child: Text('No events found'));
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
+}
+
+Widget _myEventTile({
+  // Utils
+  required BuildContext context,
+  required dynamic defaultLocale,
+  // Required Fields
+  required String endDate,
+  creator,
+  organizer,
+  startDate,
+  location,
+  title,
+  description,
+}) {
+  return Container(
+    padding: const EdgeInsets.all(8.0),
+    child: ListTile(
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.shade400,
+                      spreadRadius: 0.1,
+                      blurRadius: 25.0,
+                      offset: const Offset(0.0, 1.0)),
+                  const BoxShadow(
+                      color: Colors.white,
+                      spreadRadius: 0.1,
+                      blurRadius: 25.0,
+                      offset: Offset(0.0, 1.0))
+                ]),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
+                  width: 50.0,
+                  height: 50.0,
+                ))),
+      ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            title,
+            style: const TextStyle(
+                inherit: true, fontWeight: FontWeight.w700, fontSize: 16.0),
+          ),
+          Text(
+              DateFormat.yMMMMd(defaultLocale)
+                  .format(DateTime.parse(startDate)),
+              style: const TextStyle(
+                  inherit: true, fontSize: 14.0, color: Colors.black45)),
+        ],
+      ),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 150,
+              child: Text(description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: const TextStyle(
+                      inherit: true, fontSize: 14.0, color: Colors.black45)),
+            ),
+          ],
+        ),
+      ),
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (context) => DialogPage1(
+                  title: title,
+                  description: description,
+                  location: location!,
+                  startDate: startDate,
+                  endDate: endDate,
+                  organizer: organizer,
+                  creator: creator,
+                  defaultLocale: defaultLocale,
+                ));
+      },
+    ),
+  );
 }
 
 class DialogPage1 extends StatelessWidget {
@@ -279,23 +300,22 @@ class DialogPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date =
+    var date =
         DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(startDate));
-    final weekDay =
+    var weekDay =
         DateFormat.EEEE(defaultLocale).format(DateTime.parse(startDate));
-    final startTime =
+    var startTime =
         DateFormat.jm(defaultLocale).format(DateTime.parse(startDate));
-    final endTime =
-        DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
+    var endTime = DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
 
-    return new AlertDialog(
+    return AlertDialog(
       title: Text(title),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "$weekDay, $date | $startTime - $endTime",
+            '$weekDay, $date | $startTime - $endTime',
             style: const TextStyle(color: Colors.black87, fontSize: 12.0),
           ),
           Padding(
@@ -312,10 +332,10 @@ class DialogPage1 extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 12.0),
+                    padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
                       location,
-                      style: TextStyle(fontSize: 12.0),
+                      style: const TextStyle(fontSize: 12.0),
                     ),
                   ),
                 ),
@@ -336,10 +356,10 @@ class DialogPage1 extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 12.0),
+                    padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
                       description,
-                      style: TextStyle(fontSize: 12.0),
+                      style: const TextStyle(fontSize: 12.0),
                     ),
                   ),
                 ),
@@ -364,7 +384,7 @@ class DialogPage1 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(organizer,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 inherit: true,
                                 fontSize: 14.0,
                                 color: Colors.black)),
@@ -376,11 +396,11 @@ class DialogPage1 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           SizedBox(
-                            child: Text("Created by: $creator",
+                            child: Text('Created by: $creator',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: false,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     inherit: true,
                                     fontSize: 12.0,
                                     color: Colors.black45)),
@@ -396,10 +416,8 @@ class DialogPage1 extends StatelessWidget {
         ],
       ),
       actions: <Widget>[
-        new TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
           child: const Text('Okay, got it!'),
         ),
       ],
