@@ -214,12 +214,16 @@ class _CalendarPageState extends State<CalendarPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text(
-                                      '${value[index].summary}',
-                                      style: TextStyle(
-                                          inherit: true,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 16.0),
+                                    SizedBox(
+                                      width: Device.width - 260,
+                                      child: Text("${value[index].summary}",
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              inherit: true,
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.w700)),
                                     ),
                                     Text(
                                         "${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}",
