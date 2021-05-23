@@ -23,13 +23,13 @@ class _CalendarPageState extends State<CalendarPage> {
   DateTime? _selectedDay;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
-
+  late Future<LinkedHashMap<DateTime, List<Events>>> getEvents;
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
-
+    getEvents = getData();
 /* Testing
     final String defaultLocale = Platform.localeName;
     final clockString = DateFormat.yMMMMd(defaultLocale)
@@ -47,6 +47,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   LinkedHashMap<DateTime, List<Events>> kEvents =
       LinkedHashMap<DateTime, List<Events>>();
+
   List<Events> _getEventsForDay(DateTime day) {
     // Implementation example
     return kEvents[day] ?? [];
@@ -131,7 +132,7 @@ class _CalendarPageState extends State<CalendarPage> {
           ),
         ),
         body: FutureBuilder(
-            future: getData(),
+            future: getEvents,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
@@ -416,15 +417,17 @@ class DialogPage1 extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          SizedBox(
-                            child: Text("Created by: $creator",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: false,
-                                style: TextStyle(
-                                    inherit: true,
-                                    fontSize: 12.0,
-                                    color: Colors.black45)),
+                          Expanded(
+                            child: SizedBox(
+                              child: Text("Created by: $creator",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: false,
+                                  style: TextStyle(
+                                      inherit: true,
+                                      fontSize: 12.0,
+                                      color: Colors.black45)),
+                            ),
                           ),
                         ],
                       ),
