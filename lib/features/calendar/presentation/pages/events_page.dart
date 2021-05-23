@@ -174,114 +174,120 @@ class _CalendarPageState extends State<CalendarPage> {
                     child: ValueListenableBuilder<List<Events>>(
                       valueListenable: _selectedEvents,
                       builder: (context, value, _) {
-                        final String defaultLocale = Platform.localeName;
                         return ListView.builder(
-                          itemCount: value.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: ListTile(
-                                leading: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.grey.shade400,
-                                                spreadRadius: 0.1,
-                                                blurRadius: 25.0,
-                                                offset: Offset(0.0, 1.0)),
-                                            BoxShadow(
-                                                color: Colors.white,
-                                                spreadRadius: 0.1,
-                                                blurRadius: 25.0,
-                                                offset: Offset(0.0, 1.0))
-                                          ]),
-                                      child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
-                                            width: 50.0,
-                                            height: 50.0,
-                                          ))),
-                                ),
-                                title: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    SizedBox(
-                                      width: Device.width - 260,
-                                      child: Text("${value[index].summary}",
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          softWrap: false,
-                                          style: TextStyle(
-                                              inherit: true,
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.w700)),
+                            itemCount: value.isEmpty ? 1 : value.length,
+                            itemBuilder: (context, index) {
+                              final String defaultLocale = Platform.localeName;
+                              if (value.isNotEmpty) {
+                                return Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: ListTile(
+                                    leading: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 4.0),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.grey.shade400,
+                                                    spreadRadius: 0.1,
+                                                    blurRadius: 25.0,
+                                                    offset: Offset(0.0, 1.0)),
+                                                BoxShadow(
+                                                    color: Colors.white,
+                                                    spreadRadius: 0.1,
+                                                    blurRadius: 25.0,
+                                                    offset: Offset(0.0, 1.0))
+                                              ]),
+                                          child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
+                                                width: 50.0,
+                                                height: 50.0,
+                                              ))),
                                     ),
-                                    Text(
-                                        "${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}",
-                                        style: TextStyle(
-                                            inherit: true,
-                                            fontSize: 14.0,
-                                            color: Colors.black45)),
-                                  ],
-                                ),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      SizedBox(
-                                        width: Device.width - 150,
-                                        child: Text(
-                                            value[index].description ??
-                                                'there is no description',
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            softWrap: false,
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: Device.width - 260,
+                                          child: Text("${value[index].summary}",
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              softWrap: false,
+                                              style: TextStyle(
+                                                  inherit: true,
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.w700)),
+                                        ),
+                                        Text(
+                                            "${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}",
                                             style: TextStyle(
                                                 inherit: true,
                                                 fontSize: 14.0,
                                                 color: Colors.black45)),
+                                      ],
+                                    ),
+                                    subtitle: Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          SizedBox(
+                                            width: Device.width - 150,
+                                            child: Text(
+                                                value[index].description ??
+                                                    'there is no description',
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
+                                                style: TextStyle(
+                                                    inherit: true,
+                                                    fontSize: 14.0,
+                                                    color: Colors.black45)),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
+                                    //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => DialogPage1(
+                                                title: value[index].summary,
+                                                description:
+                                                    value[index].description,
+                                                location: value[index].location,
+                                                startDate: value[index]
+                                                    .start
+                                                    .dateTime
+                                                    .toString(),
+                                                endDate: value[index]
+                                                    .end
+                                                    .dateTime
+                                                    .toString(),
+                                                organizer: value[index]
+                                                    .organizer
+                                                    .email,
+                                                creator:
+                                                    value[index].creator.email,
+                                                defaultLocale: defaultLocale,
+                                              ));
+                                    },
                                   ),
-                                ),
-                                //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
-                                onTap: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => DialogPage1(
-                                            title: value[index].summary,
-                                            description:
-                                                value[index].description,
-                                            location: value[index].location,
-                                            startDate: value[index]
-                                                .start
-                                                .dateTime
-                                                .toString(),
-                                            endDate: value[index]
-                                                .end
-                                                .dateTime
-                                                .toString(),
-                                            organizer:
-                                                value[index].organizer.email,
-                                            creator: value[index].creator.email,
-                                            defaultLocale: defaultLocale,
-                                          ));
-                                },
-                              ),
-                            );
-                          },
-                        );
+                                );
+                              } else {
+                                return const Center(
+                                    child: Text('No events found'));
+                              }
+                            });
                       },
                     ),
                   ),
