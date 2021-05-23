@@ -1,5 +1,6 @@
-import 'dart:convert';
 import 'dart:collection';
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -49,23 +50,23 @@ final kEvents = LinkedHashMap<DateTime, List<MyEvent>>(
   hashCode: getHashCode,
 )..addAll(_kEventSource);
 
-final _kEventSource = {
-  for (var item in List.generate(50, (index) => index))
-    DateTime.utc(2020, 10, item * 5): List.generate(
-      item % 4 + 1,
-      (index) => MyEvent(
-        id: '06ofid1vnh443vjd29p9o6btos',
-        htmlLink:
-            'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-        created: DateTime.now(),
-        updated: DateTime.now(),
-        creator: Creator(email: 'example@example.com'),
-        organizer: Creator(email: 'example@example.com'),
-        start: End(dateTime: '2012-09-05T07:00:00+02:00'),
-        end: End(dateTime: '2012-09-05T07:00:00+02:00'),
-      ),
-    )
-};
+final _kEventSource = _events; //{
+//   for (var item in List.generate(50, (index) => index))
+//     DateTime.utc(2020, 10, item * 5): List.generate(
+//       item % 4 + 1,
+//       (index) => MyEvent(
+//         id: '06ofid1vnh443vjd29p9o6btos',
+//         htmlLink:
+//             'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+//         created: DateTime.now(),
+//         updated: DateTime.now(),
+//         creator: Creator(email: 'example@example.com'),
+//         organizer: Creator(email: 'example@example.com'),
+//         start: End(dateTime: '2012-09-05T07:00:00+02:00'),
+//         end: End(dateTime: '2012-09-05T07:00:00+02:00'),
+//       ),
+//     )
+// };
 // ..addAll({
 // DateTime.now(): [
 // Event(
@@ -86,6 +87,12 @@ final _kEventSource = {
 //     "2019-06-22T19:30:00+02:00"),
 // ],
 // });
+Map<DateTime, List<MyEvent>> get _events {
+  var x = {
+    for (var x in _results) DateTime.parse(x.start.toString()): [x]
+  };
+  return x;
+}
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
