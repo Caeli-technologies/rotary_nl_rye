@@ -242,7 +242,8 @@ class _CalendarPageState extends State<CalendarPage> {
                                       SizedBox(
                                         width: Device.width - 150,
                                         child: Text(
-                                            "${value[index].description}",
+                                            value[index].description ??
+                                                'there is no description',
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             softWrap: false,
@@ -348,7 +349,7 @@ class DialogPage1 extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0),
                     child: Text(
-                      location ?? '',
+                      location ?? 'there is no location',
                       style: TextStyle(fontSize: 12.0),
                     ),
                   ),
@@ -372,7 +373,7 @@ class DialogPage1 extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0),
                     child: Text(
-                      description ?? "",
+                      description ?? 'there is no description',
                       style: TextStyle(fontSize: 12.0),
                     ),
                   ),
