@@ -15,12 +15,12 @@ class EventResult {
     required this.events,
   });
 
-  List<Event> events = [];
+  List<Events> events = [];
 
   EventResult.fromJson(Map<String, dynamic> json) {
     if (json['items'] != null) {
       json['items'].forEach((v) {
-        events.add(new Event.fromJson(v));
+        events.add(new Events.fromJson(v));
       });
     }
   }
@@ -31,8 +31,8 @@ class EventResult {
 }
 
 // String title, description, location, creator, organizer, startDate, endDate;
-class Event {
-  Event({
+class Events {
+  Events({
     required this.id,
     required this.status,
     required this.htmlLink,
@@ -60,7 +60,7 @@ class Event {
   End start;
   End end;
 
-  factory Event.fromJson(Map<String, dynamic> json) => Event(
+  factory Events.fromJson(Map<String, dynamic> json) => Events(
         id: json["id"],
         status: json["status"],
         htmlLink: json["htmlLink"],
@@ -112,11 +112,10 @@ class End {
     required this.dateTime,
   });
 
-  String dateTime;
-
-  factory End.fromJson(Map<String, dynamic> json) => End(
-        dateTime: json["dateTime"].toString(),
-      );
+  DateTime dateTime;
+  factory End.fromJson(Map<String, dynamic> json) {
+    return End(dateTime: DateTime.parse(json["dateTime"] ?? json["date"]));
+  }
 
   // Map<String, dynamic> toJson() => {
   //       "dateTime": dateTime.toIso8601String(),
