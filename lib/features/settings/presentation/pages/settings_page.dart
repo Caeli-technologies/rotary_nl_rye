@@ -4,10 +4,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_version/get_version.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:share/share.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -107,8 +109,11 @@ class _SettingsPageState extends State<SettingsPage> {
               color: Palette.indigo,
             ),
             onPressed: () {
-              Share.share('check out my website https://example.com',
-                  subject: 'Look what I made!');
+              Share.share(
+                  Platform.isIOS
+                      ? 'Apple app store link https://example.com'
+                      : 'android play store link https://example.com',
+                  subject: 'look at this nice app :)');
             },
           )
         ],
@@ -119,13 +124,6 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Row(
               children: [
-                Icon(
-                  Icons.person,
-                  color: Palette.accentColor,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
                 Text(
                   DemoLocalizations.of(context).trans('account'),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -140,36 +138,15 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 10,
             ),
             buildAccountOptionRow(
-                context, DemoLocalizations.of(context).trans('social')),
+                context,
+                DemoLocalizations.of(context).trans('social'),
+                FontAwesomeIcons.hashtag,
+                SocialPage()),
             buildAccountOptionRow(
-                context, DemoLocalizations.of(context).trans('language')),
-            buildAccountOptionRow(context,
-                DemoLocalizations.of(context).trans('privacyAndSecurity')),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.volume_up_outlined,
-                  color: Palette.accentColor,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  DemoLocalizations.of(context).trans('notifications'),
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
+                context,
+                DemoLocalizations.of(context).trans('privacyAndSecurity'),
+                FontAwesomeIcons.shieldAlt,
+                null),
             buildNotificationOptionRow(
                 DemoLocalizations.of(context).trans('new4You'),
                 Platform.isIOS
@@ -191,60 +168,11 @@ class _SettingsPageState extends State<SettingsPage> {
                           });
                         },
                       )),
-            buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('accountActivity'),
-                Platform.isIOS
-                    ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
-                        value: slider2,
-                        onChanged: (value) {
-                          setState(() {
-                            slider2 = value;
-                          });
-                        },
-                      )
-                    : Switch(
-                        activeColor: Palette.accentColor,
-                        value: slider2,
-                        onChanged: (value) {
-                          setState(() {
-                            slider2 = value;
-                          });
-                        },
-                      )),
-            buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('opportunity'),
-                Platform.isIOS
-                    ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
-                        value: slider3,
-                        onChanged: (value) {
-                          setState(() {
-                            slider3 = value;
-                          });
-                        },
-                      )
-                    : Switch(
-                        activeColor: Palette.accentColor,
-                        value: slider3,
-                        onChanged: (value) {
-                          setState(() {
-                            slider3 = value;
-                          });
-                        },
-                      )),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Row(
               children: [
-                Icon(
-                  Icons.code,
-                  color: Palette.accentColor,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
                 Text(
                   "Development",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -255,21 +183,22 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 15,
               thickness: 2,
             ),
-            SizedBox(
-              height: 10,
-            ),
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ContributorsPage()),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
+                child: Container(
+              padding: EdgeInsets.zero,
+              child: ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: Container(
+                    child: FaIcon(
+                      FontAwesomeIcons.code,
+                      color: Palette.lightIndigo,
+                    ),
+                  ),
+                ),
+                title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     Text(
                       "Contributors",
                       style: TextStyle(
@@ -284,63 +213,82 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ],
                 ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ContributorsPage()),
+                  );
+                },
               ),
+            )),
+            SizedBox(
+              height: 20,
             ),
-            Text(
-              'App version: $_projectVersion ($_projectCode)',
-              style: TextStyle(color: Color(0xFF777777)),
-            ),
+            Center(
+              child: Text(
+                'App version: $_projectVersion ($_projectCode)',
+                style: TextStyle(color: Color(0xFF777777)),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Row buildNotificationOptionRow(String title, Widget aSwitch) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.w500, color: Palette.grey),
+  Container buildNotificationOptionRow(String title, Widget aSwitch) {
+    return Container(
+      padding: EdgeInsets.zero,
+      child: ListTile(
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
+          child: Container(
+            child: FaIcon(
+              FontAwesomeIcons.bell,
+              color: Palette.lightIndigo,
+            ),
+          ),
         ),
-        Transform.scale(scale: 0.7, child: aSwitch)
-      ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Palette.grey,
+              ),
+            ),
+            Transform.scale(scale: 1, child: aSwitch)
+          ],
+        ),
+      ),
     );
   }
 
-  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+  GestureDetector buildAccountOptionRow(
+    BuildContext context,
+    String title,
+    IconData icon,
+    pushTo,
+  ) {
     return GestureDetector(
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Option 1"),
-                    Text("Option 2"),
-                    Text("Option 3"),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("Close")),
-                ],
-              );
-            });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
+        child: Container(
+      padding: EdgeInsets.zero,
+      child: ListTile(
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
+          child: Container(
+            child: FaIcon(
+              icon,
+              color: Palette.lightIndigo,
+            ),
+          ),
+        ),
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children: <Widget>[
             Text(
               title,
               style: TextStyle(
@@ -355,7 +303,41 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
+        /*
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(title),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Option 1"),
+                      Text("Option 2"),
+                      Text("Option 3"),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("Close")),
+                  ],
+                );
+              });
+        },
+*/
+        onTap: () {
+          if (pushTo != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pushTo),
+            );
+          }
+        },
       ),
-    );
+    ));
   }
 }

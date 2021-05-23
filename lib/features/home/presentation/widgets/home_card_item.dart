@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +8,11 @@ class HomeCardItem extends StatelessWidget {
   final IconData icon;
   final pushTo;
 
-  HomeCardItem({this.title, this.icon, this.description, this.pushTo});
+  HomeCardItem(
+      {required this.title,
+      required this.icon,
+      required this.description,
+      this.pushTo});
 
   @override
   Widget build(BuildContext context) {

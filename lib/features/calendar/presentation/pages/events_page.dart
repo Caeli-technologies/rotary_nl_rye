@@ -9,12 +9,12 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../models/event_result.dart';
 import '../../data/utils.dart';
 
-class TableEvents extends StatefulWidget {
+class CalendarPage extends StatefulWidget {
   @override
-  _TableEventsState createState() => _TableEventsState();
+  _CalendarPageState createState() => _CalendarPageState();
 }
 
-class _TableEventsState extends State<TableEvents> {
+class _CalendarPageState extends State<CalendarPage> {
   late final ValueNotifier<List<Events>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
@@ -45,6 +45,8 @@ class _TableEventsState extends State<TableEvents> {
     super.dispose();
   }
 
+  LinkedHashMap<DateTime, List<Events>> kEvents =
+      LinkedHashMap<DateTime, List<Events>>();
   List<Events> _getEventsForDay(DateTime day) {
     // Implementation example
     return kEvents[day] ?? [];
@@ -94,6 +96,8 @@ class _TableEventsState extends State<TableEvents> {
 
   @override
   Widget build(BuildContext context) {
+    print("Initial kEvents is empty becuase its null.");
+    print(kEvents.length);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -130,8 +134,11 @@ class _TableEventsState extends State<TableEvents> {
             future: getData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               }
+              kEvents = snapshot.data as LinkedHashMap<DateTime, List<Events>>;
+              print("Got data for kEvents");
+              print(kEvents.length);
               return Column(
                 children: [
                   TableCalendar<Events>(

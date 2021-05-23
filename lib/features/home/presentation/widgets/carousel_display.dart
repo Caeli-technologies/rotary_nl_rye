@@ -1,6 +1,6 @@
-// @dart=2.9
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 import '../../../../core/prop.dart';
 
@@ -13,9 +13,12 @@ class _CarouselState extends State<Carousel> {
   int _current = 0;
 
   List<CarouselModel> carousels = [
-    CarouselModel(image: "assets/image/1.PNG"),
-    CarouselModel(image: "assets/image/2.PNG"),
-    CarouselModel(image: "assets/image/3.PNG")
+    CarouselModel(image: "assets/image/1.PNG", text: "Social actief zijn"),
+    CarouselModel(
+        image: "assets/image/2.PNG", text: "Vergroten van je Horizon"),
+    CarouselModel(image: "assets/image/3.PNG", text: "Nieuwe vrienden maken"),
+    CarouselModel(
+        image: "assets/image/2.PNG", text: "Jezelf nog beter leren kennen")
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -28,7 +31,6 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(left: 16, right: 16),
@@ -58,6 +60,23 @@ class _CarouselState extends State<Carousel> {
                           carousels[index].image,
                         ),
                         fit: BoxFit.cover),
+                  ),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.blue.shade900),
+                      padding: EdgeInsets.all(5),
+                      child: FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Text(
+                          carousels[index].text,
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ),
                 );
               },
@@ -96,7 +115,7 @@ class _CarouselState extends State<Carousel> {
 }
 
 class CarouselModel {
-  final String image;
+  final String image, text;
 
-  CarouselModel({this.image});
+  CarouselModel({required this.image, required this.text});
 }

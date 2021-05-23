@@ -15,7 +15,7 @@ class BottomNavigatorBar extends StatelessWidget {
             IconTab(iconData: FontAwesomeIcons.home),
             IconTab(iconData: FontAwesomeIcons.userFriends),
             IconTab(iconData: FontAwesomeIcons.question),
-            IconTab(iconData: FontAwesomeIcons.addressCard),
+            IconTab(iconData: FontAwesomeIcons.addressBook),
             IconTab(iconData: FontAwesomeIcons.cog)
           ],
           unselectedLabelColor: Palette.lightIndigo,

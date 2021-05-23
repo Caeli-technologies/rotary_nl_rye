@@ -39,22 +39,22 @@ class DemoLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) => [
-    'en',
-    'fr',
-    'de',
-    'nl',
-    'dk',
-    'no',
-    'pl',
-    'it',
-    'se',
-    'zh',
-    'si',
-    'es',
-    'id',
-    'ar',
-    'he'
-  ].contains(locale.languageCode);
+        'en',
+        'fr',
+        'de',
+        'nl',
+        'dk',
+        'no',
+        'pl',
+        'it',
+        'se',
+        'zh',
+        'si',
+        'es',
+        'id',
+        'ar',
+        'he'
+      ].contains(locale.languageCode);
 
   @override
   Future<DemoLocalizations> load(Locale locale) async {

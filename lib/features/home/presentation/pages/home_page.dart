@@ -1,11 +1,13 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
+import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
+import 'package:rotary_nl_rye/features/program/presentation/pages/program_page.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
 import '../../../home/presentation/widgets/home_card_item.dart';
@@ -66,29 +68,9 @@ class _HomePageState extends State<HomePage> {
                   SvgPicture.asset('assets/image/rotary_rye_nl_logo_home.svg'),
             ),
 
-            // idk if we need this but i will keep it for now
-/*
-            Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 24),
-              child: Text(
-                'Hi, NAME Some information for you!',
-                style: TextStyle(fontSize: 16, color: Palette.lightIndigo),
-              ),
-            ),
-*/
-
             // Slider images
             Carousel(),
 
-/*
-            Padding(
-              padding: EdgeInsets.only(left: 16, top: 24, bottom: 12),
-              child: Text(
-                'Let\'s Take a look (text still need to change!',
-                style: TextStyle(fontSize: 12, color: Palette.lightIndigo),
-              ),
-            ),
-*/
             // navigator buttons
             Container(
               margin: EdgeInsets.only(top: 24, left: 16, right: 16),
@@ -100,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                           icon: FontAwesomeIcons.list,
                           title: 'Program',
                           description: 'information to apply and more things',
-                          pushTo: null),
+                          pushTo: ProgramPage()),
                       HomeCardItem(
                           icon: FontAwesomeIcons.newspaper,
                           title: 'News',
@@ -111,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                           title: 'Calendar',
                           description:
                               'people that are going to the netherlands',
-                          pushTo: TableEvents()),
+                          pushTo: CalendarPage()),
                     ],
                   ),
                   SizedBox(
@@ -124,13 +106,13 @@ class _HomePageState extends State<HomePage> {
                           title: 'Outbound',
                           description:
                               'students that are going to a diffrent country',
-                          pushTo: null),
+                          pushTo: OutboundPage()),
                       HomeCardItem(
                           icon: FontAwesomeIcons.share,
                           title: 'Inbound',
                           description:
                               'people that are going to the netherlands',
-                          pushTo: null),
+                          pushTo: InboundPage()),
                       HomeCardItem(
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
