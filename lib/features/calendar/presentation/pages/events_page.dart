@@ -34,7 +34,7 @@ class _CalendarPageState extends State<CalendarPage> {
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-    // _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
+    //_selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
     _updateCalendar();
 /* Testing 
     final String defaultLocale = Platform.localeName;
@@ -149,9 +149,9 @@ class _CalendarPageState extends State<CalendarPage> {
                   onDaySelected: _onDaySelected,
                   onRangeSelected: _onRangeSelected,
                   onFormatChanged: (format) {
-                    if (_calendarFormat != format) {
-                      setState(() => _calendarFormat = format);
-                    }
+                    setState(() {
+                      _calendarFormat = format;
+                    });
                   },
                   onPageChanged: (focusedDay) => _focusedDay = focusedDay,
                 ),
@@ -165,8 +165,8 @@ class _CalendarPageState extends State<CalendarPage> {
                         return _myEventTile(
                           context: context,
                           defaultLocale: defaultLocale,
-                          endDate: _todayEvents[i].end.dateTime,
-                          startDate: _todayEvents[i].start.dateTime,
+                          endDate: _todayEvents[i].end.toString(),
+                          startDate: _todayEvents[i].start.toString(),
                           title: _todayEvents[i].summary,
                           description: _todayEvents[i].description,
                           creator: _todayEvents[i].creator,
