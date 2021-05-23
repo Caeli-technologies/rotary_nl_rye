@@ -344,7 +344,7 @@ class DialogPage1 extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0),
                     child: Text(
-                      location,
+                      location ?? '',
                       style: TextStyle(fontSize: 12.0),
                     ),
                   ),
@@ -368,7 +368,7 @@ class DialogPage1 extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0),
                     child: Text(
-                      description,
+                      description ?? "",
                       style: TextStyle(fontSize: 12.0),
                     ),
                   ),
