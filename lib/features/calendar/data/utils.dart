@@ -6,6 +6,7 @@ import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 late Map<String, dynamic> data;
+//late String _title;
 late List<Events> events;
 late LinkedHashMap<DateTime, List<Events>> eventsData;
 var eventsHashMap = LinkedHashMap<DateTime, List<Events>>();
@@ -39,18 +40,13 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
       eventsHashMap[event.start.dateTime]!.add(event);
     }
   });
+
   final kEvents = LinkedHashMap<DateTime, List<Events>>(
     equals: isSameDay,
     hashCode: getHashCode,
   )..addAll(eventsHashMap);
   return kEvents;
 }
-
-/// Example events.
-///
-/// API calandar: https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY
-///
-/// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
 
 // final LinkedHashMap<DateTime, List<Events>> kEvents =
 //     LinkedHashMap<DateTime, List<Events>>(
