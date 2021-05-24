@@ -299,21 +299,14 @@ class _CalendarPageState extends State<CalendarPage> {
 }
 
 class DialogPage1 extends StatelessWidget {
-  final String description,
-      title,
-      startDate,
-      endDate,
-      location,
-      creator,
-      organizer,
-      defaultLocale;
-
+  final String startDate, endDate, creator, organizer, defaultLocale;
+  final String? description, title, location;
   DialogPage1({
-    required this.description,
-    required this.title,
+    this.description,
+    this.title,
     required this.startDate,
     required this.endDate,
-    required this.location,
+    this.location,
     required this.creator,
     required this.organizer,
     required this.defaultLocale,
@@ -331,7 +324,7 @@ class DialogPage1 extends StatelessWidget {
         DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
 
     return new AlertDialog(
-      title: Text(title),
+      title: Text(title ?? 'there is no Title'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

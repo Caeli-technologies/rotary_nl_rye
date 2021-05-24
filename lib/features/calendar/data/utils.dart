@@ -10,13 +10,19 @@ late List<Events> events;
 late LinkedHashMap<DateTime, List<Events>> eventsData;
 var eventsHashMap = LinkedHashMap<DateTime, List<Events>>();
 Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
-  http.Response response = await http.get(
-    Uri.parse(
-        "https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY"),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  );
+  http.Response? response;
+   try {
+     response = await http.get(
+       Uri.parse(
+           'https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY'),
+       headers: {
+         'Content-Type': 'application/json',
+       },
+     );
+   } catch (e) {
+     print(e);
+     throw 'unable to parse calendar api';
+   }
 
   data = json.decode(response.body);
   events = EventResult.fromJson(data).events;

@@ -38,9 +38,9 @@ class Events {
     required this.htmlLink,
     required this.created,
     required this.updated,
-    required this.summary,
-    required this.description,
-    required this.location,
+    this.summary,
+    this.description,
+    this.location,
     required this.creator,
     required this.organizer,
     required this.start,
@@ -52,9 +52,9 @@ class Events {
   String htmlLink;
   DateTime created;
   DateTime updated;
-  String summary;
-  String description;
-  String location;
+  String? summary;
+  String? description;
+  String? location;
   Creator creator;
   Creator organizer;
   End start;
