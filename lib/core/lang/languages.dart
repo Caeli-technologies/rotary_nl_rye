@@ -59,7 +59,7 @@ class DemoLocalizationsDelegate
     DemoLocalizations localizations = new DemoLocalizations(locale);
     await localizations.load();
 
-    print("Load ${locale.languageCode}-${locale.countryCode}");
+    print("Load ${locale.languageCode}");
 
     return localizations;
   }
