@@ -84,27 +84,24 @@ class Events {
         "location": location,
         "creator": creator.toJson(),
         "organizer": organizer.toJson(),
-        "start": start.dateTime.toString(),
-        "end": end.dateTime.toString(),
+        "start": start.toString(),
+        "end": end.toString(),
       };
 }
 
 class Creator {
-  Creator({required this.email, this.displayName, this.self});
+  Creator({
+    required this.email,
+  });
 
   String email;
-  String? displayName;
-  
 
   factory Creator.fromJson(Map<String, dynamic> json) => Creator(
-      email: json["email"],
-      displayName: json["displayName"] ?? (json["email"].toString().split("@")),
-      
+        email: json["email"],
+      );
 
   Map<String, dynamic> toJson() => {
         "email": email,
-        "displayName": displayName,
-        
       };
 }
 
@@ -115,9 +112,7 @@ class End {
 
   DateTime dateTime;
   factory End.fromJson(Map<String, dynamic> json) {
-    return End(
-        dateTime: DateTime.parse(json["date"] ??
-            json["dateTime"]);
+    return End(dateTime: DateTime.parse(json["dateTime"] ?? json["date"]));
   }
 
   // Map<String, dynamic> toJson() => {
