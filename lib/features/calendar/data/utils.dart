@@ -30,11 +30,11 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   //This is n^2 in time. Find a better implementation?
   events.forEach((event) {
     eventsHashMap.clear();
-    //   eventsHashMap[event.start.dateTime] = [event];
-    //if a day has more than one event the above implementation will replace the existing event
+    // eventsHashMap[event.start.dateTime] = [event];
+    // to prevent replacement of events
     if (!eventsHashMap.containsKey(event.start.dateTime)) {
       eventsHashMap[event.start.dateTime] =
-          []; //this line is to avoid null error and initialize the list
+          []; // to prevent initialisation error
       eventsHashMap[event.start.dateTime]!.add(event);
     } else {
       eventsHashMap[event.start.dateTime]!.add(event);
