@@ -2,7 +2,6 @@
 //
 //     final eventResult = eventResultFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 EventResult eventResultFromJson(String str) =>
@@ -86,24 +85,27 @@ class Events {
         "location": location,
         "creator": creator.toJson(),
         "organizer": organizer.toJson(),
-        "start": start.toString(),
-        "end": end.toString(),
+        "start": start.dateTime.toString(),
+        "end": end.dateTime.toString(),
       };
 }
 
 class Creator {
-  Creator({
-    required this.email,
-  });
+  Creator({required this.email, this.displayName, this.self});
 
   String email;
+  String? displayName;
+  bool? self;
 
   factory Creator.fromJson(Map<String, dynamic> json) => Creator(
-        email: json["email"],
-      );
+      email: json["email"],
+      displayName: json["displayName"] ?? (json["email"].toString().split("@")),
+      self: json["self"] ?? true);
 
   Map<String, dynamic> toJson() => {
         "email": email,
+        "displayName": displayName,
+        "self": self,
       };
 }
 
@@ -114,7 +116,9 @@ class End {
 
   DateTime dateTime;
   factory End.fromJson(Map<String, dynamic> json) {
-    return End(dateTime: DateTime.parse(json["dateTime"] ?? json["date"]));
+    return End(
+        dateTime: DateTime.parse(json["date"] ??
+            (json["dateTime"].toString().replaceAll('+', '-'))));
   }
 
   // Map<String, dynamic> toJson() => {

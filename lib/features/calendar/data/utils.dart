@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -27,7 +28,15 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   events = EventResult.fromJson(data).events;
   //This is n^2 in time. Find a better implementation?
   events.forEach((event) {
-    eventsHashMap[event.start.dateTime] = [event];
+    // eventsHashMap[event.start.dateTime] = [event];
+    // to prevent replacement of events
+    if (!eventsHashMap.containsKey(event.start.dateTime)) {
+      eventsHashMap[event.start.dateTime] =
+          []; // to prevent initialisation error
+      eventsHashMap[event.start.dateTime]!.add(event);
+    } else {
+      eventsHashMap[event.start.dateTime]!.add(event);
+    }
   });
   final kEvents = LinkedHashMap<DateTime, List<Events>>(
     equals: isSameDay,
