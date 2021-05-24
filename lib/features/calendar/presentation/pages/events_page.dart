@@ -16,6 +16,7 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   late final ValueNotifier<List<Events>> _selectedEvents;
+  final String localLanguage = Platform.localeName;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
@@ -146,6 +147,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     firstDay: kFirstDay,
                     lastDay: kLastDay,
                     focusedDay: _focusedDay,
+                    locale: localLanguage,
                     selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                     rangeStartDay: _rangeStart,
                     rangeEndDay: _rangeEnd,
@@ -314,14 +316,49 @@ class DialogPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date =
+    final startFullDate =
         DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(startDate));
-    final weekDay =
+    final endFullDate =
+        DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(endDate));
+    final startWeekDay =
         DateFormat.EEEE(defaultLocale).format(DateTime.parse(startDate));
+    final endWeekDay =
+        DateFormat.EEEE(defaultLocale).format(DateTime.parse(endDate));
     final startTime =
         DateFormat.jm(defaultLocale).format(DateTime.parse(startDate));
     final endTime =
         DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
+
+    // Widget _detectMultipleDays() {
+    //   if (startFullDate == endFullDate) {
+    //     return SizedBox.shrink();
+    //   } else {
+    //     return Padding(
+    //       padding: const EdgeInsets.only(top: 5.0, bottom: 16),
+    //       child: Row(
+    //         children: <Widget>[
+    //           Padding(
+    //             padding: const EdgeInsets.only(bottom: 0.0),
+    //             child: FaIcon(
+    //               FontAwesomeIcons.clock,
+    //               color: Palette.lightIndigo,
+    //               size: 20,
+    //             ),
+    //           ),
+    //           Expanded(
+    //             child: Padding(
+    //               padding: EdgeInsets.only(left: 12.0),
+    //               child: Text(
+    //                 '$startTime - $endTime',
+    //                 style: const TextStyle(fontSize: 12.0),
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     );
+    //   }
+    // }
 
     return new AlertDialog(
       title: Text(title ?? 'there is no Title'),
@@ -330,9 +367,12 @@ class DialogPage1 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "$weekDay, $date | $startTime - $endTime",
+            startTime == endTime
+                ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                : "$startWeekDay, $startFullDate | $startTime - $endTime",
             style: const TextStyle(color: Colors.black87, fontSize: 12.0),
           ),
+          // _detectMultipleDays(),
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Row(

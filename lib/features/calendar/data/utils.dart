@@ -62,5 +62,5 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
 }
 
 final kNow = DateTime.now();
-final kFirstDay = DateTime(kNow.year, kNow.month - 12, kNow.day);
-final kLastDay = DateTime(kNow.year, kNow.month + 12, kNow.day);
+final kFirstDay = DateTime(kNow.year, kNow.month - 24, kNow.day);
+final kLastDay = DateTime(kNow.year, kNow.month + 24, kNow.day);

@@ -38,16 +38,10 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: [
-        const Locale('en', 'US'),
-        const Locale('en', 'GB'),
-        const Locale('fr', 'FR'),
-        const Locale('de', 'DE'),
-        const Locale('dk', 'DK'),
-        const Locale('no', 'NO'),
-        const Locale('nl', 'NL'),
-        const Locale('sv', 'SE'),
-        const Locale('it', 'IT'),
-        const Locale('pl', 'PL'),
+        const Locale('en', ''),
+        const Locale('nl', ''),
+        const Locale('de', ''),
+        const Locale('pt', ''),
         const Locale.fromSubtags(
             languageCode: 'zh',
             scriptCode: 'Hans',
@@ -56,18 +50,12 @@ class MyApp extends StatelessWidget {
             languageCode: 'zh',
             scriptCode: 'Hant',
             countryCode: 'TW'), // 'zh_Hant_TW'
-        const Locale('si', 'SI'),
-        const Locale('es', 'ES'),
-        const Locale('id', 'ID'),
-        const Locale('he', 'IL'),
-        const Locale('ar', 'AE'),
-        const Locale('he', 'IL'),
+        const Locale('es', ''),
       ],
       localeResolutionCallback:
           (Locale locale, Iterable<Locale> supportedLocales) {
         for (Locale supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode ||
-              supportedLocale.countryCode == locale.countryCode) {
+          if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }

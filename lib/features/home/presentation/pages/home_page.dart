@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       HomeCardItem(
                           icon: FontAwesomeIcons.list,
-                          title: 'Program',
+                          title: 'Programs',
                           description: 'information to apply and more things',
                           pushTo: ProgramPage()),
                       HomeCardItem(

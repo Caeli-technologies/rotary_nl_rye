@@ -16,8 +16,8 @@ class DemoLocalizations {
   Map<String, String> _sentences;
 
   Future<bool> load() async {
-    String data = await rootBundle.loadString(
-        'assets/lang/${this.locale.languageCode}-${this.locale.countryCode}.json');
+    String data = await rootBundle
+        .loadString('assets/lang/${this.locale.languageCode}.json');
     Map<String, dynamic> _result = json.decode(data);
 
     this._sentences = new Map();
@@ -40,20 +40,11 @@ class DemoLocalizationsDelegate
   @override
   bool isSupported(Locale locale) => [
         'en',
-        'fr',
         'de',
         'nl',
-        'dk',
-        'no',
-        'pl',
-        'it',
-        'se',
+        'pt',
         'zh',
-        'si',
         'es',
-        'id',
-        'ar',
-        'he'
       ].contains(locale.languageCode);
 
   @override
@@ -62,7 +53,7 @@ class DemoLocalizationsDelegate
     if (locale == null || isSupported(locale) == false) {
       debugPrint('*app_locale_delegate* fallback to locale ');
 
-      locale = Locale('en', 'US'); // fallback to default language
+      locale = Locale('en', ''); // fallback to default language
     }
 
     DemoLocalizations localizations = new DemoLocalizations(locale);
