@@ -13,12 +13,18 @@ class _CarouselState extends State<Carousel> {
   int _current = 0;
 
   List<CarouselModel> carousels = [
-    CarouselModel(image: "assets/image/1.PNG", text: "Social actief zijn"),
     CarouselModel(
-        image: "assets/image/2.PNG", text: "Vergroten van je Horizon"),
-    CarouselModel(image: "assets/image/3.PNG", text: "Nieuwe vrienden maken"),
+        image: "assets/image/homepage/welcom_to_the_netherlands_abbi.jpg",
+        text: "Social actief zijn"),
     CarouselModel(
-        image: "assets/image/2.PNG", text: "Jezelf nog beter leren kennen")
+        image: "assets/image/homepage/together.jpg",
+        text: "Vergroten van je Horizon"),
+    CarouselModel(
+        image: "assets/image/homepage/barbara_with_students.jpg",
+        text: "Nieuwe vrienden maken"),
+    CarouselModel(
+        image: "assets/image/homepage/saying_goodby.jpg",
+        text: "Jezelf nog beter leren kennen")
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -41,7 +47,7 @@ class _CarouselState extends State<Carousel> {
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 190,
+            height: 220,
             child: Swiper(
               onIndexChanged: (index) {
                 setState(() {

@@ -152,7 +152,23 @@ class _ProgramPageState extends State<ProgramPage> {
                       ),
                     ])),
               ),
-
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Promo Video ",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildProgramOptionRow(context, "Promo Video", "For everyone",
+                  FontAwesomeIcons.hashtag, null),
               SizedBox(
                 height: 20,
               ),

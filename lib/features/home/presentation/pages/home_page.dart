@@ -7,7 +7,7 @@ import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.d
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
-import 'package:rotary_nl_rye/features/program/presentation/pages/program_page.dart';
+import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
 import '../../../home/presentation/widgets/home_card_item.dart';

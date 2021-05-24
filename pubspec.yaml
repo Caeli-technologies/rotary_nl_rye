@@ -103,6 +103,7 @@ flutter:
      - assets/image/
      # - assets/image/contact/rotex/
      # - assets/image/contact/organization/
+     - assets/image/homepage/
      - assets/icons/flags/
      - assets/icons/custom/
      - assets/lang/

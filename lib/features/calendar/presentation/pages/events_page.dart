@@ -141,6 +141,7 @@ class _CalendarPageState extends State<CalendarPage> {
               kEvents = snapshot.data as LinkedHashMap<DateTime, List<Events>>;
               print("Got data for kEvents");
               print(kEvents.length);
+              print(localLanguage);
               return Column(
                 children: [
                   TableCalendar<Events>(
@@ -158,7 +159,16 @@ class _CalendarPageState extends State<CalendarPage> {
                     calendarStyle: CalendarStyle(
                       // Use `CalendarStyle` to customize the UI
                       outsideDaysVisible: false,
+                      //TODO change colour dark mode
+                      markerDecoration: const BoxDecoration(
+                          color: Colors.red, shape: BoxShape.circle),
                     ),
+                    //TODO add this to the lang files
+                    availableCalendarFormats: const {
+                      CalendarFormat.month: 'Month',
+                      CalendarFormat.twoWeeks: '2 weeks',
+                      CalendarFormat.week: 'Week'
+                    },
                     onDaySelected: _onDaySelected,
                     onRangeSelected: _onRangeSelected,
                     onFormatChanged: (format) {
@@ -288,7 +298,8 @@ class _CalendarPageState extends State<CalendarPage> {
                                 );
                               } else {
                                 return const Center(
-                                    child: Text('No events found'));
+                                    child: Text(
+                                        'No events found')); //TODO add to lang file
                               }
                             });
                       },
