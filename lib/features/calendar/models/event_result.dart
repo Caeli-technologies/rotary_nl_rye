@@ -91,14 +91,18 @@ class MyEvent {
 }
 
 class Creator {
-  Creator({
-    required this.email,
-  });
+  Creator({required this.email, this.displayName, this.self});
 
   String email;
+  String? displayName;
+  bool? self;
 
-  factory Creator.fromJson(Map<String, dynamic> json) =>
-      Creator(email: json['email']);
+  factory Creator.fromJson(Map<String, dynamic> json) => Creator(
+        email: json['email'],
+        displayName:
+            json['displayName'] ?? ((json['email']).toString().split('@')[0]),
+        self: json['self'] ?? true,
+      );
 
   Map<String, dynamic> toJson() => {'email': email};
 }
@@ -106,10 +110,11 @@ class Creator {
 class End {
   End({required this.dateTime});
 
-  String dateTime;
+  DateTime dateTime;
 
   factory End.fromJson(Map<String, dynamic> json) => End(
-        dateTime: json['dateTime'].toString(),
+        dateTime: DateTime.parse(
+            (json['date'] ?? json['dateTime'].toString().replaceAll('+', '-'))),
       );
 
   // Map<String, dynamic> toJson() => {
