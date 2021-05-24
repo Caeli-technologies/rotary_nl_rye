@@ -24,7 +24,8 @@ class _ContributorsPageState extends State<ContributorsPage> {
             margin: EdgeInsets.only(left: 10, top: 5),
             width: 40,
             height: 40,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
             child: RawMaterialButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -116,6 +117,16 @@ List<Contributor> contributors = [
         "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl: "assets/image/2.PNG",
     email: "yvan@example.com",
+    phoneNumber: "888 444 7676",
+  ),
+  Contributor(
+    name: "Frosted Fox",
+    description: "Flutter Dev",
+    place: "Netherlands",
+    bio:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    imageUrl: "assets/image/1.PNG",
+    email: "frostedfox@example.com",
     phoneNumber: "888 444 7676",
   )
 ];
