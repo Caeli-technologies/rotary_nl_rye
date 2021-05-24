@@ -1,13 +1,12 @@
 import 'dart:collection';
 import 'dart:convert';
 
-
 import 'package:http/http.dart' as http;
 import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 late Map<String, dynamic> data;
-late String _title;
+//late String _title;
 late List<Events> events;
 late LinkedHashMap<DateTime, List<Events>> eventsData;
 var eventsHashMap = LinkedHashMap<DateTime, List<Events>>();
@@ -30,8 +29,17 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   events = EventResult.fromJson(data).events;
   //This is n^2 in time. Find a better implementation?
   events.forEach((event) {
-    eventsHashMap[event.start.dateTime] = [event];
+    //   eventsHashMap[event.start.dateTime] = [event];
+    //if a day has more than one event the above implementation will replace the existing event
+    if (!eventsHashMap.containsKey(event.start.dateTime)) {
+      eventsHashMap[event.start.dateTime] =
+          []; //this line is to avoid null error and initialize the list
+      eventsHashMap[event.start.dateTime]!.add(event);
+    } else {
+      eventsHashMap[event.start.dateTime]!.add(event);
+    }
   });
+
   final kEvents = LinkedHashMap<DateTime, List<Events>>(
     equals: isSameDay,
     hashCode: getHashCode,
@@ -39,25 +47,11 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   return kEvents;
 }
 
-/// Example event class.
-// class Event {
-//   String title, description, location, creator, organizer, startDate, endDate;
-//
-//   Event(this.title, this.description, this.location, this.creator,
-//       this.organizer, this.startDate, this.endDate);
-// }
-
 /// Example events.
 ///
 /// API calandar: https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY
 ///
 /// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
-
-// final LinkedHashMap<DateTime, List<Events>> kEvents =
-//     LinkedHashMap<DateTime, List<Events>>(
-//   equals: isSameDay,
-//   hashCode: getHashCode,
-// )..addAll(eventsHashMap);
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;

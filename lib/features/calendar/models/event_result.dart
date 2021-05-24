@@ -2,7 +2,6 @@
 //
 //     final eventResult = eventResultFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 EventResult eventResultFromJson(String str) =>
@@ -34,7 +33,7 @@ class EventResult {
 class Events {
   Events({
     required this.id,
-    this.status,
+    required this.status,
     required this.htmlLink,
     required this.created,
     required this.updated,
@@ -86,8 +85,8 @@ class Events {
         "location": location,
         "creator": creator.toJson(),
         "organizer": organizer.toJson(),
-        "start": start.toString(),
-        "end": end.toString(),
+        "start": start.dateTime.toString().replaceAll('-', '+'),
+        "end": end.dateTime.toString().replaceAll('-', '+'),
       };
 }
 
@@ -105,9 +104,8 @@ class Creator {
         self: json['self'] ?? true,
       );
 
-  Map<String, dynamic> toJson() => {
-        "email": email,
-      };
+  Map<String, dynamic> toJson() =>
+      {"email": email, "displayName": displayName, "self": self};
 }
 
 class End {
@@ -120,7 +118,7 @@ class End {
             (json['date'] ?? json['dateTime'].toString().replaceAll('+', '-'))),
       );
 
-  // Map<String, dynamic> toJson() => {
-  //       "dateTime": dateTime.toIso8601String(),
-  //     };
+  Map<String, dynamic> toJson() => {
+        "dateTime": dateTime.toString().replaceAll('-', '+'),
+      };
 }
