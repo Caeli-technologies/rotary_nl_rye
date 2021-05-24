@@ -4,73 +4,58 @@ import 'package:http/http.dart' as http;
 import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-late Map data;
+late Map<String, dynamic> data;
 late String _title;
+late List<Events> events;
+late LinkedHashMap<DateTime, List<Events>> eventsData;
+var eventsHashMap = LinkedHashMap<DateTime, List<Events>>();
+Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
+  http.Response? response;
+   try {
+     response = await http.get(
+       Uri.parse(
+           'https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY'),
+       headers: {
+         'Content-Type': 'application/json',
+       },
+     );
+   } catch (e) {
+     print(e);
+     throw 'unable to parse calendar api';
+   }
 
-Future<void> getData() async {
-  http.Response response = await http.get(
-    Uri.parse(
-        "https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY"),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  );
-
-  var result = json.decode(response.body);
-  var events = EventResult.fromJson(result).events;
-  events.forEach((event) => print(event));
+  data = json.decode(response.body);
+  events = EventResult.fromJson(data).events;
+  //This is n^2 in time. Find a better implementation?
+  events.forEach((event) {
+    eventsHashMap[event.start.dateTime] = [event];
+  });
+  final kEvents = LinkedHashMap<DateTime, List<Events>>(
+    equals: isSameDay,
+    hashCode: getHashCode,
+  )..addAll(eventsHashMap);
+  return kEvents;
 }
 
 /// Example event class.
-class Event {
-  String title, description, location, creator, organizer, startDate, endDate;
-
-  Event(this.title, this.description, this.location, this.creator,
-      this.organizer, this.startDate, this.endDate);
-}
+// class Event {
+//   String title, description, location, creator, organizer, startDate, endDate;
+//
+//   Event(this.title, this.description, this.location, this.creator,
+//       this.organizer, this.startDate, this.endDate);
+// }
 
 /// Example events.
 ///
 /// API calandar: https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY
 ///
 /// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
-final kEvents = LinkedHashMap<DateTime, List<Event>>(
-  equals: isSameDay,
-  hashCode: getHashCode,
-)..addAll(_kEventSource);
 
-final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
-    key: (item) => DateTime.utc(2020, 10, item * 5),
-    value: (item) => List.generate(
-        item % 4 + 1,
-        (index) => Event(
-            'Farewell Party',
-            'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
-            "Agorabaan 3, 8224 JS Lelystad, Nederland",
-            "clasine.scheepers@gmail.com",
-            "rye.netherlands@gmail.com",
-            "2019-06-22T17:30:00+02:00",
-            "2019-06-22T19:30:00+02:00")))
-  ..addAll({
-    DateTime.now(): [
-      Event(
-          'Farewell Party',
-          'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
-          "Agorabaan 3, 8224 JS Lelystad, Nederland",
-          "clasine.scheepers@gmail.com",
-          "rye.netherlands@gmail.com",
-          "2019-06-22T17:30:00+02:00",
-          "2019-06-22T19:30:00+02:00"),
-      Event(
-          'Farewell Party',
-          'Op 22 juni \'s morgens is er in de Kubus Lelystad ook een Infomarkt RYE\nTheaterzaal ‘de Kubus’Tevens Benefietavond ShelterBox, ROTEX in samenwerking met de MDJC (Rotary Youth Exchange)\n\nzie https://www.rotary.nl/yep/nieuws/farewell-party-en-fundraisingsdag-in-lelystad-op-22-juni./',
-          "Agorabaan 3, 8224 JS Lelystad, Nederland",
-          "clasine.scheepers@gmail.com",
-          "rye.netherlands@gmail.com",
-          "2019-06-22T17:30:00+02:00",
-          "2019-06-22T19:30:00+02:00"),
-    ],
-  });
+// final LinkedHashMap<DateTime, List<Events>> kEvents =
+//     LinkedHashMap<DateTime, List<Events>>(
+//   equals: isSameDay,
+//   hashCode: getHashCode,
+// )..addAll(eventsHashMap);
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
