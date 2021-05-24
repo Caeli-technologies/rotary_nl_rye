@@ -1,5 +1,6 @@
 //TODO this is just a test. maybe we can build on this.
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -56,18 +57,22 @@ class PersonDetails1 extends StatelessWidget {
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20),
                 child: Row(
                   children: <Widget>[
-                    Container(
-                      width: 60,
+                    CachedNetworkImage(
                       height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              "https://media-exp1.licdn.com/dms/image/C4D03AQGY6xrR83N4Pg/profile-displayphoto-shrink_200_200/0/1580677901828?e=1626307200&v=beta&t=9V-IXaMzC-VG2aS9iyPPXAnxENt49dTf5hVeC2RVdMw"),
-                          fit: BoxFit.cover,
+                      width: 60,
+                      imageUrl: person.imageUrl,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     const SizedBox(width: 10.0),
                     Expanded(
