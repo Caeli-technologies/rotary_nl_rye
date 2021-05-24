@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -128,24 +129,24 @@ class ContactListTile extends StatelessWidget {
             MaterialPageRoute(builder: (context) => contactDetailsPage),
           );
         },
-        contentPadding: EdgeInsets.zero,
-        leading: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(40)),
-          child: Container(
-            height: 55,
-            width: 55,
+
+        contentPadding: EdgeInsets.all(0),
+        leading: CachedNetworkImage(
+          height: 55,
+          width: 55,
+          imageUrl: item.imageUrl,
+          imageBuilder: (context, imageProvider) => Container(
+
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: Palette
-                  .imageBackgroundColor, //fill the image still needs to chagnge
-            ),
-            child: Image.asset(
-              item.imageUrl,
-              height: 50,
-              width: 50,
-              fit: BoxFit.contain,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
         title: Text(item.name,
             style: TextStyle(

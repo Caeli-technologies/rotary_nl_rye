@@ -6,7 +6,6 @@ import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 late Map<String, dynamic> data;
-//late String _title;
 late List<Events> events;
 late LinkedHashMap<DateTime, List<Events>> eventsData;
 var eventsHashMap = LinkedHashMap<DateTime, List<Events>>();
