@@ -149,11 +149,13 @@ class ContactListTile extends StatelessWidget {
         title: Text(item.name,
             style: TextStyle(
               color: Palette.indigo,
+              fontWeight: FontWeight.w600,
             )),
         subtitle: Text(
           item.role,
           style: TextStyle(
-            color: Palette.indigo,
+            fontWeight: FontWeight.w500,
+            color: Palette.grey,
           ),
         ),
         trailing: Icon(
