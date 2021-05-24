@@ -1,13 +1,14 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../../models/event_result.dart';
+
 import '../../data/utils.dart';
+import '../../models/event_result.dart';
 
 class CalendarPage extends StatefulWidget {
   @override

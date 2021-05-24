@@ -13,9 +13,9 @@ class ContactSearch extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
       IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
-            query = "";
+            query = '';
           })
     ];
   }
@@ -23,10 +23,8 @@ class ContactSearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        });
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () => Navigator.pop(context));
   }
 
   @override

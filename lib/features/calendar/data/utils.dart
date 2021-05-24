@@ -1,5 +1,7 @@
 import 'dart:collection';
 import 'dart:convert';
+
+
 import 'package:http/http.dart' as http;
 import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -11,18 +13,18 @@ late LinkedHashMap<DateTime, List<Events>> eventsData;
 var eventsHashMap = LinkedHashMap<DateTime, List<Events>>();
 Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   http.Response? response;
-   try {
-     response = await http.get(
-       Uri.parse(
-           'https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY'),
-       headers: {
-         'Content-Type': 'application/json',
-       },
-     );
-   } catch (e) {
-     print(e);
-     throw 'unable to parse calendar api';
-   }
+  try {
+    response = await http.get(
+      Uri.parse(
+          'https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+  } catch (e) {
+    print(e);
+    throw 'unable to parse calendar api';
+  }
 
   data = json.decode(response.body);
   events = EventResult.fromJson(data).events;

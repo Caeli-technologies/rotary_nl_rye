@@ -11,23 +11,23 @@ import '../widgets/countries_display.dart';
 class CountriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CountriesBloc, CountriesState>(builder: (context, state) {
-        BlocProvider.of<CountriesBloc>(context).add(BGetCountries());
-        print(state);
-        if (state is Empty) {
-          return WaitingDisplay();
-        }
-        if (state is Error) {
-          return ErrorDisplay(message: state.message);
-        }
-        if (state is Loading) {
-          return LoadingDisplay();
-        }
-        if (state is Loaded) {
-          return CountriesDisplay(countries: state.countries);
-        }
-        return ErrorDisplay(message: "Something went wrong");
+    return BlocBuilder<CountriesBloc, CountriesState>(
+        builder: (context, state) {
+      BlocProvider.of<CountriesBloc>(context).add(BGetCountries());
+      debugPrint(state.toString());
+      if (state is Empty) {
+        return WaitingDisplay();
       }
-    );
+      if (state is Error) {
+        return ErrorDisplay(message: state.message);
+      }
+      if (state is Loading) {
+        return LoadingDisplay();
+      }
+      if (state is Loaded) {
+        return CountriesDisplay(countries: state.countries);
+      }
+      return const ErrorDisplay(message: 'Something went wrong');
+    });
   }
 }

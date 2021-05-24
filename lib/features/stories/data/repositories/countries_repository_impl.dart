@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -16,8 +17,8 @@ class CountriesRepositoryImpl implements CountriesRepository {
   @override
   Future<Either<Failure, List<Country>>> getCountries() async {
     try {
-      print("Fetch data");
-      final data = await countriesRemoteDataSource.getCountries();
+      debugPrint('Fetch data');
+      var data = await countriesRemoteDataSource.getCountries();
       return Right(data);
     } on ServerException {
       return Left(ServerFailure());

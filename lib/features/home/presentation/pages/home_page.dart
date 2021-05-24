@@ -5,11 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
-import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart'; // TODO: Migrate non-null safety files
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/program/presentation/pages/program_page.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
-
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart'; //TODO: Migrate non-null safety files
 import '../../../home/presentation/widgets/home_card_item.dart';
 import '../widgets/carousel_display.dart';
 
@@ -22,13 +23,13 @@ class _HomePageState extends State<HomePage> {
   String _appBadgeSupported = 'Unknown';
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     initPlatformState();
     _removeBadge();
   }
 
-  initPlatformState() async {
+  Future<void> initPlatformState() async {
     String appBadgeSupported;
     try {
       bool res = await FlutterAppBadger.isAppBadgeSupported();
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       _appBadgeSupported = appBadgeSupported;
     });
 
-    print("Badge supported: $_appBadgeSupported\n");
+    debugPrint('Badge supported: $_appBadgeSupported\n');
   }
 
   @override
@@ -59,11 +60,12 @@ class _HomePageState extends State<HomePage> {
       // Body
       body: Container(
         child: ListView(
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           children: <Widget>[
             Container(
               height: 90,
-              margin: EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 10),
+              margin: const EdgeInsets.only(
+                  left: 16, right: 16, bottom: 24, top: 10),
               child:
                   SvgPicture.asset('assets/image/rotary_rye_nl_logo_home.svg'),
             ),
@@ -73,7 +75,7 @@ class _HomePageState extends State<HomePage> {
 
             // navigator buttons
             Container(
-              margin: EdgeInsets.only(top: 24, left: 16, right: 16),
+              margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
               child: Column(
                 children: <Widget>[
                   Row(
@@ -96,9 +98,7 @@ class _HomePageState extends State<HomePage> {
                           pushTo: CalendarPage()),
                     ],
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Row(
                     children: <Widget>[
                       HomeCardItem(
@@ -120,9 +120,7 @@ class _HomePageState extends State<HomePage> {
                           pushTo: CountriesPage()),
                     ],
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
 /*
                   ElevatedButton(
                     child: new Text('Add badge'),
@@ -145,9 +143,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _addBadge() {
-    FlutterAppBadger.updateBadgeCount(1);
-  }
 
   void _removeBadge() {
     FlutterAppBadger.removeBadge();

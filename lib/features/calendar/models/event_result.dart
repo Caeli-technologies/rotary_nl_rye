@@ -34,7 +34,7 @@ class EventResult {
 class Events {
   Events({
     required this.id,
-    required this.status,
+    this.status,
     required this.htmlLink,
     required this.created,
     required this.updated,
@@ -92,14 +92,17 @@ class Events {
 }
 
 class Creator {
-  Creator({
-    required this.email,
-  });
+  Creator({required this.email, this.displayName, this.self});
 
   String email;
+  String? displayName;
+  bool? self;
 
   factory Creator.fromJson(Map<String, dynamic> json) => Creator(
-        email: json["email"],
+        email: json['email'],
+        displayName:
+            json['displayName'] ?? ((json['email']).toString().split('@')[0]),
+        self: json['self'] ?? true,
       );
 
   Map<String, dynamic> toJson() => {
@@ -108,14 +111,14 @@ class Creator {
 }
 
 class End {
-  End({
-    required this.dateTime,
-  });
+  End({required this.dateTime});
 
   DateTime dateTime;
-  factory End.fromJson(Map<String, dynamic> json) {
-    return End(dateTime: DateTime.parse(json["dateTime"] ?? json["date"]));
-  }
+
+  factory End.fromJson(Map<String, dynamic> json) => End(
+        dateTime: DateTime.parse(
+            (json['date'] ?? json['dateTime'].toString().replaceAll('+', '-'))),
+      );
 
   // Map<String, dynamic> toJson() => {
   //       "dateTime": dateTime.toIso8601String(),

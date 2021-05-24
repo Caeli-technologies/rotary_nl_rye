@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class PersonDetails1 extends StatelessWidget {
@@ -24,7 +23,7 @@ class PersonDetails1 extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
+          margin: const EdgeInsets.only(left: 10, top: 5),
           width: 40,
           height: 40,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
@@ -32,15 +31,15 @@ class PersonDetails1 extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: new Icon(
+            shape: const CircleBorder(),
+            elevation: 2.0,
+            fillColor: Palette.themeShadeColor,
+            padding: const EdgeInsets.all(5.0),
+            child: Icon(
               Icons.arrow_back,
               color: Palette.accentColor,
               size: 30.0,
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
           ),
         ),
       ),
@@ -59,12 +58,12 @@ class PersonDetails1 extends StatelessWidget {
                     Container(
                       width: 60,
                       height: 60,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image: NetworkImage(
-                              "https://media-exp1.licdn.com/dms/image/C4D03AQGY6xrR83N4Pg/profile-displayphoto-shrink_200_200/0/1580677901828?e=1626307200&v=beta&t=9V-IXaMzC-VG2aS9iyPPXAnxENt49dTf5hVeC2RVdMw"),
+                              'https://media-exp1.licdn.com/dms/image/C4D03AQGY6xrR83N4Pg/profile-displayphoto-shrink_200_200/0/1580677901828?e=1626307200&v=beta&t=9V-IXaMzC-VG2aS9iyPPXAnxENt49dTf5hVeC2RVdMw'),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -85,17 +84,17 @@ class PersonDetails1 extends StatelessWidget {
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       softWrap: false,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         inherit: true,
                                         fontSize: 22.0,
                                         fontWeight: FontWeight.bold,
                                       )),
                                 ),
                                 person.rotarian == 'no'
-                                    ? SizedBox.shrink()
+                                    ? const SizedBox.shrink()
                                     : SvgPicture.asset(
                                         'assets/icons/custom/rotary-logo-icon.svg',
-                                        color: Color(0xFFf7a81b),
+                                        color: const Color(0xFFf7a81b),
                                         height: 30),
                               ],
                             ),
@@ -138,7 +137,7 @@ class PersonDetails1 extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 30.0),
                 child: Text(
-                  "District ${person.district}",
+                  'District ${person.district}',
                   style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
                 ),
               ),
@@ -146,7 +145,7 @@ class PersonDetails1 extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 15.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "Hobbies",
+                  'Hobbies',
                   style: TextStyle(color: Colors.grey[600], fontSize: 18.0),
                 ),
               ),
@@ -182,7 +181,7 @@ class PersonDetails1 extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(box1[index],
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 16.0)),
                                           Padding(
@@ -190,7 +189,7 @@ class PersonDetails1 extends StatelessWidget {
                                                 const EdgeInsets.only(top: 8.0),
                                             child: Text(
                                               data1[index],
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 16.0),
                                             ),
@@ -214,7 +213,7 @@ class PersonDetails1 extends StatelessWidget {
                     const EdgeInsets.only(left: 40.0, right: 35.0, top: 20.0),
                 child: Text(
                   person.bio,
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  style: const TextStyle(color: Colors.black, fontSize: 16.0),
                 ),
               ),
               Padding(
@@ -230,7 +229,7 @@ class PersonDetails1 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30.0),
                         color: Colors.grey[200],
                       ),
-                      child: Center(
+                      child: const Center(
                           child: Icon(
                         Icons.present_to_all,
                         color: Colors.black,
@@ -248,15 +247,15 @@ class PersonDetails1 extends StatelessWidget {
                       child: Center(
                         child: Row(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 25.0),
                               child: Icon(
                                 Icons.call,
                                 color: Colors.white,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 25.0),
                               child: Text(
                                 'Send a e-mail',
                                 style: TextStyle(

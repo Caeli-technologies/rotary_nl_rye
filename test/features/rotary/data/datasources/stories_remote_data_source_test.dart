@@ -7,6 +7,7 @@ import 'package:rotary_nl_rye/features/stories/data/datasources/different.dart';
 class MockFirebaseDatabase extends Mock implements FirebaseDatabase {}
 
 void main() {
+  // ignore: unused_local_variable
   StoriesRemoteDataSourceImpl dataSource;
   MockFirebaseDatabase mockFirebaseDatabase;
 
