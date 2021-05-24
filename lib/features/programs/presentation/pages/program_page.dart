@@ -9,6 +9,7 @@ import 'information/camps_tours.dart';
 import 'information/family_to_family.dart';
 import 'information/long_term_exchange.dart';
 import 'information/ngse.dart';
+import 'information/video_page.dart';
 
 class ProgramPage extends StatefulWidget {
   @override
@@ -168,7 +169,7 @@ class _ProgramPageState extends State<ProgramPage> {
                 thickness: 2,
               ),
               buildProgramOptionRow(context, "Promo Video", "For everyone",
-                  FontAwesomeIcons.hashtag, null),
+                  FontAwesomeIcons.hashtag, VideoPage()),
               SizedBox(
                 height: 20,
               ),
