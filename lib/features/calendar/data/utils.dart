@@ -28,13 +28,13 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   data = json.decode(response.body);
   events = EventResult.fromJson(data).events;
   //This is n^2 in time. Find a better implementation?
+  eventsHashMap.clear();
   events.forEach((event) {
-    eventsHashMap.clear();
-    // eventsHashMap[event.start.dateTime] = [event];
-    // to prevent replacement of events
+    //   eventsHashMap[event.start.dateTime] = [event];
+    //if a day has more than one event the above implementation will replace the existing event
     if (!eventsHashMap.containsKey(event.start.dateTime)) {
       eventsHashMap[event.start.dateTime] =
-          []; // to prevent initialisation error
+          []; //this line is to avoid null error and initialize the list
       eventsHashMap[event.start.dateTime]!.add(event);
     } else {
       eventsHashMap[event.start.dateTime]!.add(event);
@@ -47,12 +47,6 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   )..addAll(eventsHashMap);
   return kEvents;
 }
-
-// final LinkedHashMap<DateTime, List<Events>> kEvents =
-//     LinkedHashMap<DateTime, List<Events>>(
-//   equals: isSameDay,
-//   hashCode: getHashCode,
-// )..addAll(eventsHashMap);
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
