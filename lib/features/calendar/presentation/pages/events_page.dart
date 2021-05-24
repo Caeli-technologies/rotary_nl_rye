@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/calendar/models/event_result.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'dart:io';
+
 import '../../data/utils.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -22,6 +24,7 @@ class _CalendarPageState extends State<CalendarPage> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
   final List<MyEvent> _todayEvents = [];
+
   // ignore: unused_field
   late List<MyEvent> _myEvent; // TODO: Use otherwise remove
 
@@ -52,6 +55,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   List<MyEvent> _getEventsForDay(DateTime day) {
     // Implementation example
+    //print('kevents${kEvents[day]}');
     return kEvents[day] ?? [];
   }
 

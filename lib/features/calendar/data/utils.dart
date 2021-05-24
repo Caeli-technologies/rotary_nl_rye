@@ -8,23 +8,33 @@ import 'package:table_calendar/table_calendar.dart';
 List<MyEvent> _results = [];
 
 Future<List<MyEvent>> getData() async {
-  http.Response response = await http.get(
-    Uri.parse(
-        'https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY'),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  );
-
+  http.Response? response;
+  try {
+    response = await http.get(
+      Uri.parse(
+          'https://www.googleapis.com/calendar/v3/calendars/rye.netherlands@gmail.com/events?key=AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+  } catch (e) {
+    print(e);
+    throw 'unable to parse calendar api';
+  }
   var result = json.decode(response.body);
   var events = EventResult.fromJson(result).events;
   for (var i = 0; i < events.length; i++) {
+    //print(events[i].start.dateTime.toString());
     _results.add(
       MyEvent(
-        status: events[i].status, // Can be null
-        summary: events[i].summary, // Can be null
-        description: events[i].description, // Can be null
-        location: events[i].location, // Can be null
+        status: events[i].status,
+        // Can be null
+        summary: events[i].summary,
+        // Can be null
+        description: events[i].description,
+        // Can be null
+        location: events[i].location,
+        // Can be null
         id: events[i].id,
         htmlLink: events[i].htmlLink,
         created: events[i].created,
@@ -88,11 +98,20 @@ final _kEventSource = _events; //{
 // ],
 // });
 Map<DateTime, List<MyEvent>> get _events {
-  var x = {
+  Map<DateTime, List<MyEvent>> x = {
     //for (var x in _results) DateTime.parse(x.start.toIso8601String()): [x]
-    for (var x in _results)
-      DateTime.parse(x.created.toIso8601String()): [x] // test
   };
+  _results.forEach((element) {
+    if (!x.containsKey(element.start.dateTime)) {
+      x[element.start.dateTime] = []; //list initialisation
+      x[element.start.dateTime]!.add(element);
+    } else {
+      x[element.start.dateTime]!.add(element);
+    }
+  });
+  // x.forEach((key, value) {
+  //   print('$key:${value.toString()}');
+  // });
   return x;
 }
 
