@@ -28,6 +28,7 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   events = EventResult.fromJson(data).events;
   //This is n^2 in time. Find a better implementation?
   events.forEach((event) {
+    eventsHashMap.clear();
     // eventsHashMap[event.start.dateTime] = [event];
     // to prevent replacement of events
     if (!eventsHashMap.containsKey(event.start.dateTime)) {
