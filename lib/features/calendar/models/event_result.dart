@@ -95,17 +95,17 @@ class Creator {
 
   String email;
   String? displayName;
-  bool? self;
+  
 
   factory Creator.fromJson(Map<String, dynamic> json) => Creator(
       email: json["email"],
       displayName: json["displayName"] ?? (json["email"].toString().split("@")),
-      self: json["self"] ?? true);
+      
 
   Map<String, dynamic> toJson() => {
         "email": email,
         "displayName": displayName,
-        "self": self,
+        
       };
 }
 
@@ -118,7 +118,7 @@ class End {
   factory End.fromJson(Map<String, dynamic> json) {
     return End(
         dateTime: DateTime.parse(json["date"] ??
-            (json["dateTime"].toString().replaceAll('+', '-'))));
+            json["dateTime"]);
   }
 
   // Map<String, dynamic> toJson() => {
