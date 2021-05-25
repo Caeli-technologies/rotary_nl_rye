@@ -63,7 +63,6 @@ dependencies:
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
   share: ^2.0.1 # native share https://pub.dev/packages/share
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
-  youtube_player_flutter: ^8.0.0
   chewie: ^1.0.0
   video_player: ^2.1.1
   cached_network_image: ^3.0.0

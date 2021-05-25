@@ -8,7 +8,6 @@ import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.d
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:chewie/chewie.dart';
 
 class VideoPage extends StatefulWidget {
@@ -18,50 +17,61 @@ class VideoPage extends StatefulWidget {
 
 class _VideoPageState extends State<VideoPage> {
   late VideoPlayerController _videoPlayerController;
-  // late ChewieController _chewieController;
-  // double _aspectRatio = 16 / 9;
+  late ChewieController _chewieController;
+  late VideoPlayerController _videoPlayerController2;
+  late ChewieController _chewieController2;
+  double _aspectRatio = 16 / 9;
   @override
   initState() {
     super.initState();
-    // _videoPlayerController = VideoPlayerController.network(
-    //     "https://caeli-tech.com/rotary/videos/mixkit-forest-stream-in-the-sunlight-529-large.mp4");
-    // _chewieController = ChewieController(
-    //   allowedScreenSleep: false,
-    //   allowFullScreen: true,
-    //   deviceOrientationsAfterFullScreen: [
-    //     DeviceOrientation.landscapeRight,
-    //     DeviceOrientation.landscapeLeft,
-    //     DeviceOrientation.portraitUp,
-    //     DeviceOrientation.portraitDown,
-    //   ],
-    //   videoPlayerController: _videoPlayerController,
-    //   aspectRatio: _aspectRatio,
-    //   autoInitialize: true,
-    //   autoPlay: true,
-    //   showControls: true,
-    // );
-    // _chewieController.addListener(() {
-    //   if (_chewieController.isFullScreen) {
-    //     SystemChrome.setPreferredOrientations([
-    //       DeviceOrientation.landscapeRight,
-    //       DeviceOrientation.landscapeLeft,
-    //     ]);
-    //   } else {
-    //     SystemChrome.setPreferredOrientations([
-    //       DeviceOrientation.portraitUp,
-    //       DeviceOrientation.portraitDown,
-    //     ]);
-    //   }
-    // });
-  }
-
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'iUGlx2HENaY',
-    flags: YoutubePlayerFlags(
+    _videoPlayerController = VideoPlayerController.network(
+        "https://c.degoo.eu/degoo-production-large-file-us-east1.degoo.me/wC4_o6/w_LvDQ/mp4/ChTHsoMmoZXwOifpYSdtyQEgJV5DABAA.mp4?GoogleAccessId=GOOG1ERGS5Y62VUMTEDIF6DORMJGWTJNXVR4GZLNW6KFP7E4PMCAYMA5BR6RA&Expires=1623136044&Signature=vlnMo3vPAzCdxgzSb4Q9u1dm3fc%3D&ngsw-bypass=1");
+    _chewieController = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: true,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: _aspectRatio,
+      autoInitialize: true,
       autoPlay: false,
-      mute: false,
-    ),
-  );
+      showControls: true,
+    );
+    _videoPlayerController2 = VideoPlayerController.network(
+        "https://c.degoo.biz/degoo-production-large-file-us-east1.degoo.me/wC4_o6/w_LvDQ/mp4/ChQhClm2X5SjNL6cQ21lYdAsooz_dBAA.mp4?GoogleAccessId=GOOG1ERGS5Y62VUMTEDIF6DORMJGWTJNXVR4GZLNW6KFP7E4PMCAYMA5BR6RA&Expires=1622531902&Signature=HLLFN6BGkCuVxYsf9IoB%2FvodZEU%3D&ngsw-bypass=1");
+    _chewieController2 = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: true,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController2,
+      aspectRatio: _aspectRatio,
+      autoInitialize: false,
+      autoPlay: false,
+      showControls: true,
+    );
+    _chewieController.addListener(() {
+      if (_chewieController.isFullScreen) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeRight,
+          DeviceOrientation.landscapeLeft,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,27 +144,14 @@ class _VideoPageState extends State<VideoPage> {
                   style: TextStyle(color: Colors.black, fontSize: 13.0),
                 ),
               ),
-              // Container(
-              //   //margin: const EdgeInsets.all(10.0),
-              //   width: MediaQuery.of(context).size.width,
-              //   height: 220,
-              //   child: Chewie(
-              //     controller: _chewieController,
-              //   ),
-              // ),
-              YoutubePlayerBuilder(
-                  player: YoutubePlayer(
-                    controller: _controller,
-                  ),
-                  builder: (context, player) {
-                    return Column(
-                      children: [
-                        // some widgets
-                        player,
-                        //some other widgets
-                      ],
-                    );
-                  }),
+              Container(
+                //margin: const EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width,
+                height: 220,
+                child: Chewie(
+                  controller: _chewieController,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
@@ -163,6 +160,14 @@ class _VideoPageState extends State<VideoPage> {
                       color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                //margin: const EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width,
+                height: 220,
+                child: Chewie(
+                  controller: _chewieController2,
                 ),
               ),
               Padding(
@@ -398,7 +403,7 @@ class _VideoPageState extends State<VideoPage> {
   @override
   void dispose() {
     _videoPlayerController.dispose();
-    // _chewieController.dispose();
+    _chewieController.dispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

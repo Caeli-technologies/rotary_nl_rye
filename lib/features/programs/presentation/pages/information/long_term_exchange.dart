@@ -1,3 +1,4 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +8,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:video_player/video_player.dart';
 
 class LongTermExchangeProgramPage extends StatefulWidget {
   @override
@@ -17,15 +18,45 @@ class LongTermExchangeProgramPage extends StatefulWidget {
 
 class _LongTermExchangeProgramPageState
     extends State<LongTermExchangeProgramPage> {
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'OdGPRRJ2AfY',
-    flags: YoutubePlayerFlags(
-      hideControls: false,
-      controlsVisibleAtStart: true,
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
+  double _aspectRatio = 16 / 9;
+
+  @override
+  initState() {
+    super.initState();
+    _videoPlayerController = VideoPlayerController.network(
+        "https://c.degoo.info/degoo-production-large-file-us-east1.degoo.me/wC4_o6/w_LvDQ/mp4/ChQzyhK0MzXKTSDkra2qew3esC3oqBAA.mp4?GoogleAccessId=GOOG1ERGS5Y62VUMTEDIF6DORMJGWTJNXVR4GZLNW6KFP7E4PMCAYMA5BR6RA&Expires=1623137172&Signature=typhuZAAlQTuW5bW%2BduqRkMwpAE%3D&ngsw-bypass=1");
+    _chewieController = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: true,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: _aspectRatio,
+      autoInitialize: false,
       autoPlay: false,
-      mute: false,
-    ),
-  );
+      showControls: true,
+    );
+    _chewieController.addListener(() {
+      if (_chewieController.isFullScreen) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeRight,
+          DeviceOrientation.landscapeLeft,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,29 +129,14 @@ class _LongTermExchangeProgramPageState
                 ),
               ),
 
-              YoutubePlayerBuilder(
-                  player: YoutubePlayer(
-                    controller: _controller,
-                    showVideoProgressIndicator: true,
-                    progressIndicatorColor: Colors.blue,
-                  ),
-                  builder: (context, player) {
-                    return Column(
-                      children: [
-                        // some widgets
-                        player,
-
-                        //some other widgets
-                      ],
-                    );
-                  }),
-
-              /// youtube video needs to be here
-/*
-
-https://github.com/sarbagyastha/youtube_player_flutter/tree/master/packages/youtube_player_flutter/example
-
-*/
+              Container(
+                //margin: const EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width,
+                height: 220,
+                child: Chewie(
+                  controller: _chewieController,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
@@ -363,8 +379,8 @@ https://github.com/sarbagyastha/youtube_player_flutter/tree/master/packages/yout
 
   @override
   void dispose() {
-    //_videoPlayerController.dispose();
-    // _chewieController.dispose();
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
