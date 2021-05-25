@@ -263,7 +263,7 @@ class InboundDistrictListTile extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               width: Device.width - 150,
-              child: Text(item.districtName,
+              child: Text("${item.number} - ${item.districtName}",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
