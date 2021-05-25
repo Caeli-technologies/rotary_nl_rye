@@ -4,37 +4,37 @@ import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart
 List<DistrictList> districtList = [
   DistrictList(
     number: 1550,
-    title: 'ZUIDOOST-NEDERLAND',
+    districtName: 'ZUIDOOST-NEDERLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
   DistrictList(
     number: 1560,
-    title: 'OOST-NEDERLAND',
+    districtName: 'OOST-NEDERLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
   DistrictList(
     number: 1570,
-    title: 'MIDDEN-NEDERLAND',
+    districtName: 'MIDDEN-NEDERLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
   DistrictList(
     number: 1580,
-    title: 'NOORD-HOLLAND',
+    districtName: 'NOORD-HOLLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
   DistrictList(
     number: 1590,
-    title: 'NOORD-NEDERLAND',
+    districtName: 'NOORD-NEDERLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
   DistrictList(
     number: 1600,
-    title: 'ZUID-HOLLAND',
+    districtName: 'ZUID-HOLLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
   DistrictList(
     number: 1610,
-    title: 'ZUIDWEST-NEDERLAND',
+    districtName: 'ZUIDWEST-NEDERLAND',
     icon: FontAwesomeIcons.planeDeparture,
   ),
 ];

@@ -3,14 +3,12 @@ import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_ti
 
 class DistrictList extends ImageListTileItem {
   final int number;
-  final String title;
+  final String districtName;
   final IconData icon;
-  final list;
 
   DistrictList({
     required this.number,
-    required this.title,
-    this.list,
+    required this.districtName,
     required this.icon,
   });
 }

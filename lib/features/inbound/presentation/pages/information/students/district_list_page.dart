@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/presentation/pages/inbounds_students_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/inbound/data/district_list.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/pages/information/students/students_list_page.dart';
 
 class DistrictsListPage extends StatelessWidget {
-  final districts;
+  final YearList year;
 
-  const DistrictsListPage({required this.districts});
+  const DistrictsListPage({required this.year});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class DistrictsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Which District",
+          "District",
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -45,13 +47,21 @@ class DistrictsListPage extends StatelessWidget {
         margin: EdgeInsets.only(left: 5, right: 5),
         child: ListView.builder(
           shrinkWrap: false,
-          itemBuilder: (context, index) => InboundsStudentsListTile(
-              item: districts.list[index],
-              inboundsStudentsListPage:
-                  InboundsDetails(person: districts.list[index])),
-          itemCount: districts.list.length,
+          itemBuilder: (context, index) => InboundDistrictListTile(
+              item: districtList[index],
+              studentsListPage: StudentsListPage(
+                students: year.list
+                    .where((element) =>
+                        element.district == districtList[index].districtName)
+                    .toList(),
+              )),
+          itemCount: districtList.length,
         ),
       ),
     );
   }
 }
+//InboundsStudentsListTile(
+//               item: districts.list[index],
+//               inboundsStudentsListPage:
+//                   InboundsDetails(person: districts.list[index])),

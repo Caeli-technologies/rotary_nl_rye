@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/inbounds_students_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/students.dart';
 
 class StudentsListPage extends StatelessWidget {
-  final students;
+  final List<Students> students;
+
   const StudentsListPage({required this.students});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +47,10 @@ class StudentsListPage extends StatelessWidget {
         child: ListView.builder(
           shrinkWrap: false,
           itemBuilder: (context, index) => InboundsStudentsListTile(
-              item: students.list[index],
+              item: students[index],
               inboundsStudentsListPage:
-                  InboundsDetails(person: students.list[index])),
-          itemCount: students.list.length,
+                  InboundsDetails(person: students[index])),
+          itemCount: students.length,
         ),
       ),
     );

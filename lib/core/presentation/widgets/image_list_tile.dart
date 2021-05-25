@@ -4,15 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
   final item;
+
   const SVGListTile({
     this.descriptionPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -171,12 +175,14 @@ class ContactListTile extends StatelessWidget {
 
 class InboundYearListTile extends StatelessWidget {
   final contactDetailsPage;
-  final item;
+  final YearList item;
+
   const InboundYearListTile({
     this.contactDetailsPage,
-    this.item,
+    required this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -227,12 +233,12 @@ class InboundYearListTile extends StatelessWidget {
 }
 
 class InboundDistrictListTile extends StatelessWidget {
-  final contactDetailsPage;
-  final item;
+  final studentsListPage;
+  final DistrictList item;
 
   const InboundDistrictListTile({
-    this.contactDetailsPage,
-    this.item,
+    required this.studentsListPage,
+    required this.item,
     Key? key,
   }) : super(key: key);
 
@@ -256,8 +262,8 @@ class InboundDistrictListTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 120,
-              child: Text(item.title,
+              width: Device.width - 150,
+              child: Text(item.districtName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
@@ -274,10 +280,10 @@ class InboundDistrictListTile extends StatelessWidget {
           ],
         ),
         onTap: () {
-          print(item.year);
+          print(item.number);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => contactDetailsPage),
+            MaterialPageRoute(builder: (context) => studentsListPage),
           );
         },
       ),
