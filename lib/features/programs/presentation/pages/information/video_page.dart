@@ -25,7 +25,7 @@ class _VideoPageState extends State<VideoPage> {
   initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-        "https://c.degoo.eu/degoo-production-large-file-us-east1.degoo.me/wC4_o6/w_LvDQ/mp4/ChTHsoMmoZXwOifpYSdtyQEgJV5DABAA.mp4?GoogleAccessId=GOOG1ERGS5Y62VUMTEDIF6DORMJGWTJNXVR4GZLNW6KFP7E4PMCAYMA5BR6RA&Expires=1623136044&Signature=vlnMo3vPAzCdxgzSb4Q9u1dm3fc%3D&ngsw-bypass=1");
+        "https://caeli-tech.com/rotary/video/promo/proud_to_be_European.mp4");
     _chewieController = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,
@@ -42,7 +42,7 @@ class _VideoPageState extends State<VideoPage> {
       showControls: true,
     );
     _videoPlayerController2 = VideoPlayerController.network(
-        "https://c.degoo.biz/degoo-production-large-file-us-east1.degoo.me/wC4_o6/w_LvDQ/mp4/ChQhClm2X5SjNL6cQ21lYdAsooz_dBAA.mp4?GoogleAccessId=GOOG1ERGS5Y62VUMTEDIF6DORMJGWTJNXVR4GZLNW6KFP7E4PMCAYMA5BR6RA&Expires=1622531902&Signature=HLLFN6BGkCuVxYsf9IoB%2FvodZEU%3D&ngsw-bypass=1");
+        "https://caeli-tech.com/rotary/video/promo/5th_Avenue_Jeugd.mp4");
     _chewieController2 = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,

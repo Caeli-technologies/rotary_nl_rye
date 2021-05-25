@@ -26,7 +26,7 @@ class _LongTermExchangeProgramPageState
   initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-        "https://c.degoo.info/degoo-production-large-file-us-east1.degoo.me/wC4_o6/w_LvDQ/mp4/ChQzyhK0MzXKTSDkra2qew3esC3oqBAA.mp4?GoogleAccessId=GOOG1ERGS5Y62VUMTEDIF6DORMJGWTJNXVR4GZLNW6KFP7E4PMCAYMA5BR6RA&Expires=1623137172&Signature=typhuZAAlQTuW5bW%2BduqRkMwpAE%3D&ngsw-bypass=1");
+        "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4");
     _chewieController = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,
