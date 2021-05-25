@@ -38,7 +38,7 @@ class _LongTermExchangeProgramPageState
       ],
       videoPlayerController: _videoPlayerController,
       aspectRatio: _aspectRatio,
-      autoInitialize: false,
+      autoInitialize: true,
       autoPlay: false,
       showControls: true,
     );

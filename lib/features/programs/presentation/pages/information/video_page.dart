@@ -54,7 +54,7 @@ class _VideoPageState extends State<VideoPage> {
       ],
       videoPlayerController: _videoPlayerController2,
       aspectRatio: _aspectRatio,
-      autoInitialize: false,
+      autoInitialize: true,
       autoPlay: false,
       showControls: true,
     );
