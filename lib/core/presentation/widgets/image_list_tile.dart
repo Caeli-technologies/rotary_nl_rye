@@ -174,11 +174,11 @@ class ContactListTile extends StatelessWidget {
 }
 
 class InboundYearListTile extends StatelessWidget {
-  final contactDetailsPage;
+  final districtListPage;
   final YearList item;
 
   const InboundYearListTile({
-    this.contactDetailsPage,
+    this.districtListPage,
     required this.item,
     Key? key,
   }) : super(key: key);
@@ -224,7 +224,7 @@ class InboundYearListTile extends StatelessWidget {
           print(item.year);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => contactDetailsPage),
+            MaterialPageRoute(builder: (context) => districtListPage),
           );
         },
       ),

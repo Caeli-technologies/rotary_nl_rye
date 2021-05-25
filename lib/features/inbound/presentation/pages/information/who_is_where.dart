@@ -47,7 +47,7 @@ class _WhoIsWherePageState extends State<WhoIsWherePage> {
         shrinkWrap: false,
         itemBuilder: (context, index) => InboundYearListTile(
             item: yearList[index],
-            contactDetailsPage: DistrictsListPage(
+            districtListPage: DistrictsListPage(
               year: yearList[index],
             )),
         itemCount: yearList.length,
