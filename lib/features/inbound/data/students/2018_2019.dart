@@ -13,7 +13,7 @@ List<Students> studentsList_2018_2019 = [
       email: "ruben@example.com",
       phoneNumber: "888 444 7676",
       role: 'Voorzitter',
-      district: '',
+      district: 'ZUIDOOST-NEDERLAND',
       exchangeInfo: {
         "place": "Canada",
         "travelDates": ["March 2020", "May 2020"]
@@ -31,7 +31,7 @@ List<Students> studentsList_2018_2019 = [
       email: "bnkn@example.com",
       phoneNumber: "888 444 7676",
       role: 'Penningmeester',
-      district: '',
+      district: 'OOST-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -49,7 +49,7 @@ List<Students> studentsList_2018_2019 = [
       email: "sceptile@example.com",
       phoneNumber: "888 444 7676",
       role: 'Secretaris',
-      district: '',
+      district: 'MIDDEN-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -67,7 +67,7 @@ List<Students> studentsList_2018_2019 = [
       email: "tonann@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie PR - Extern',
-      district: '',
+      district: 'NOORD-HOLLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -85,7 +85,7 @@ List<Students> studentsList_2018_2019 = [
       email: "believer@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie PR - Extern',
-      district: '',
+      district: 'NOORD-NEDERLAND',
       exchangeInfo: {}),
 // Josephine van Dijk
   Students(
@@ -100,7 +100,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie PR - Extern',
-      district: '',
+      district: 'ZUID-HOLLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -118,7 +118,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Inbound',
-      district: '',
+      district: 'ZUIDWEST-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -136,7 +136,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Inbound',
-      district: '',
+      district: 'ZUID-HOLLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -154,7 +154,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Inbound',
-      district: '',
+      district: 'NOORD-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -172,7 +172,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Prebound / Rebound',
-      district: '',
+      district: 'NOORD-HOLLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -190,7 +190,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Prebound / Rebound',
-      district: '',
+      district: 'MIDDEN-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -208,7 +208,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Prebound / Rebound',
-      district: '',
+      district: 'OOST-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]
@@ -226,7 +226,7 @@ List<Students> studentsList_2018_2019 = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Prebound / Rebound',
-      district: '',
+      district: 'ZUIDOOST-NEDERLAND',
       exchangeInfo: {
         "place": "Japan",
         "travelDates": ["March 2020", "May 2020"]

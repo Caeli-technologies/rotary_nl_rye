@@ -4,15 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
   final item;
+
   const SVGListTile({
     this.descriptionPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,13 +174,15 @@ class ContactListTile extends StatelessWidget {
 }
 
 class InboundYearListTile extends StatelessWidget {
-  final contactDetailsPage;
-  final item;
+  final districtListPage;
+  final YearList item;
+
   const InboundYearListTile({
-    this.contactDetailsPage,
-    this.item,
+    this.districtListPage,
+    required this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -218,7 +224,66 @@ class InboundYearListTile extends StatelessWidget {
           print(item.year);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => contactDetailsPage),
+            MaterialPageRoute(builder: (context) => districtListPage),
+          );
+        },
+      ),
+    ));
+  }
+}
+
+class InboundDistrictListTile extends StatelessWidget {
+  final studentsListPage;
+  final DistrictList item;
+
+  const InboundDistrictListTile({
+    required this.studentsListPage,
+    required this.item,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: Padding(
+      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+      child: ListTile(
+        leading: Padding(
+          padding: EdgeInsets.zero,
+          child: Container(
+            child: FaIcon(
+              item.icon,
+              color: Palette.lightIndigo,
+              size: 32,
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 150,
+              child: Text(item.districtName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Palette.grey,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Palette.grey,
+            ),
+          ],
+        ),
+        onTap: () {
+          print(item.number);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => studentsListPage),
           );
         },
       ),
@@ -229,6 +294,7 @@ class InboundYearListTile extends StatelessWidget {
 class InboundsStudentsListTile extends StatelessWidget {
   final inboundsStudentsListPage;
   final item;
+
   const InboundsStudentsListTile({
     this.inboundsStudentsListPage,
     this.item,

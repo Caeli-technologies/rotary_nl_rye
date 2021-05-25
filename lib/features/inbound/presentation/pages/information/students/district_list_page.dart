@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/presentation/pages/inbounds_students_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/models/students.dart';
+import 'package:rotary_nl_rye/features/inbound/data/district_list.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/pages/information/students/students_list_page.dart';
 
-class StudentsListPage extends StatelessWidget {
-  final List<Students> students;
+class DistrictsListPage extends StatelessWidget {
+  final YearList year;
 
-  const StudentsListPage({required this.students});
+  const DistrictsListPage({required this.year});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class StudentsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Student list Page",
+          "District",
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -46,13 +47,21 @@ class StudentsListPage extends StatelessWidget {
         margin: EdgeInsets.only(left: 5, right: 5),
         child: ListView.builder(
           shrinkWrap: false,
-          itemBuilder: (context, index) => InboundsStudentsListTile(
-              item: students[index],
-              inboundsStudentsListPage:
-                  InboundsDetails(person: students[index])),
-          itemCount: students.length,
+          itemBuilder: (context, index) => InboundDistrictListTile(
+              item: districtList[index],
+              studentsListPage: StudentsListPage(
+                students: year.list
+                    .where((element) =>
+                        element.district == districtList[index].districtName)
+                    .toList(),
+              )),
+          itemCount: districtList.length,
         ),
       ),
     );
   }
 }
+//InboundsStudentsListTile(
+//               item: districts.list[index],
+//               inboundsStudentsListPage:
+//                   InboundsDetails(person: districts.list[index])),
