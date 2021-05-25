@@ -254,7 +254,7 @@ class InboundDistrictListTile extends StatelessWidget {
             child: FaIcon(
               item.icon,
               color: Palette.lightIndigo,
-              size: 32,
+              size: 40,
             ),
           ),
         ),

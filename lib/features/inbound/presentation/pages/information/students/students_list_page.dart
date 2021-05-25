@@ -6,8 +6,9 @@ import 'package:rotary_nl_rye/features/inbound/presentation/models/students.dart
 
 class StudentsListPage extends StatelessWidget {
   final List<Students> students;
-
-  const StudentsListPage({required this.students});
+  final int districtnumber;
+  const StudentsListPage(
+      {required this.students, required this.districtnumber});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class StudentsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Student list Page",
+          "Students in $districtnumber",
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

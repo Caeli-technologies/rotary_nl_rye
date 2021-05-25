@@ -37,7 +37,7 @@ class DistrictsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "District",
+          "Districts",
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -54,6 +54,7 @@ class DistrictsListPage extends StatelessWidget {
                     .where((element) =>
                         element.district == districtList[index].districtName)
                     .toList(),
+                districtnumber: districtList[index].number,
               )),
           itemCount: districtList.length,
         ),
