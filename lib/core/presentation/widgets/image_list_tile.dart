@@ -226,9 +226,69 @@ class InboundYearListTile extends StatelessWidget {
   }
 }
 
+class InboundDistrictListTile extends StatelessWidget {
+  final contactDetailsPage;
+  final item;
+
+  const InboundDistrictListTile({
+    this.contactDetailsPage,
+    this.item,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: Padding(
+      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+      child: ListTile(
+        leading: Padding(
+          padding: EdgeInsets.zero,
+          child: Container(
+            child: FaIcon(
+              item.icon,
+              color: Palette.lightIndigo,
+              size: 32,
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 120,
+              child: Text(item.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Palette.grey,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Palette.grey,
+            ),
+          ],
+        ),
+        onTap: () {
+          print(item.year);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => contactDetailsPage),
+          );
+        },
+      ),
+    ));
+  }
+}
+
 class InboundsStudentsListTile extends StatelessWidget {
   final inboundsStudentsListPage;
   final item;
+
   const InboundsStudentsListTile({
     this.inboundsStudentsListPage,
     this.item,
