@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class SVGListTile extends StatelessWidget {
@@ -127,6 +128,122 @@ class ContactListTile extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => contactDetailsPage),
+          );
+        },
+        contentPadding: EdgeInsets.all(0),
+        leading: CachedNetworkImage(
+          height: 55,
+          width: 55,
+          imageUrl: item.imageUrl,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+        title: Text(item.name,
+            style: TextStyle(
+              color: Palette.indigo,
+              fontWeight: FontWeight.w600,
+            )),
+        subtitle: Text(
+          item.role,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: Palette.grey,
+          ),
+        ),
+        trailing: Icon(
+          Icons.keyboard_arrow_right,
+          size: 30,
+          color: Palette.indigo,
+        ),
+      ),
+    );
+  }
+}
+
+class InboundYearListTile extends StatelessWidget {
+  final contactDetailsPage;
+  final item;
+  const InboundYearListTile({
+    this.contactDetailsPage,
+    this.item,
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: Padding(
+      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+      child: ListTile(
+        leading: Padding(
+          padding: EdgeInsets.zero,
+          child: Container(
+            child: FaIcon(
+              item.icon,
+              color: Palette.lightIndigo,
+              size: 32,
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 120,
+              child: Text(item.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Palette.grey,
+                    fontWeight: FontWeight.w500,
+                  )),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Palette.grey,
+            ),
+          ],
+        ),
+        onTap: () {
+          print(item.year);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => contactDetailsPage),
+          );
+        },
+      ),
+    ));
+  }
+}
+
+class InboundsStudentsListTile extends StatelessWidget {
+  final inboundsStudentsListPage;
+  final item;
+  const InboundsStudentsListTile({
+    this.inboundsStudentsListPage,
+    this.item,
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      child: ListTile(
+        onTap: () {
+          print(item.name);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => inboundsStudentsListPage),
           );
         },
         contentPadding: EdgeInsets.all(0),

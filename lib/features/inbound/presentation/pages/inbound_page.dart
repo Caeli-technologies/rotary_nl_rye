@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
+import 'information/who_is_where.dart';
+
 class InboundPage extends StatefulWidget {
   @override
   _InboundPageState createState() => _InboundPageState();
@@ -60,6 +62,12 @@ class _InboundPageState extends State<InboundPage> {
                 height: 15,
                 thickness: 2,
               ),
+              buildInboundOptionRow(context, "Who is Where?",
+                  FontAwesomeIcons.streetView, WhoIsWherePage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
               buildInboundOptionRow(context, "Welcome in Nederland",
                   FontAwesomeIcons.doorOpen, null),
               Divider(
@@ -78,7 +86,7 @@ class _InboundPageState extends State<InboundPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Insurance and Permit ",
+              buildInboundOptionRow(context, "Insurance and Permit",
                   FontAwesomeIcons.umbrella, null),
               // the end
               SizedBox(
@@ -111,6 +119,7 @@ class _InboundPageState extends State<InboundPage> {
             child: FaIcon(
               icon,
               color: Palette.lightIndigo,
+              size: 27,
             ),
           ),
         ),

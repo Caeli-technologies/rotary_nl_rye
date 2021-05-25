@@ -128,6 +128,7 @@ class _OutboundPageState extends State<OutboundPage> {
             child: FaIcon(
               icon,
               color: Palette.lightIndigo,
+              size: 27,
             ),
           ),
         ),
