@@ -38,7 +38,7 @@ class _WhoIsWherePageState extends State<WhoIsWherePage> {
           ),
         ),
         title: Text(
-          "Inbound",
+          "Who is Where?",
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

@@ -7,8 +7,11 @@ import 'package:rotary_nl_rye/features/inbound/presentation/models/students.dart
 class StudentsListPage extends StatelessWidget {
   final List<Students> students;
   final int districtnumber;
+  final String district;
   const StudentsListPage(
-      {required this.students, required this.districtnumber});
+      {required this.students,
+      required this.districtnumber,
+      required this.district});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +40,8 @@ class StudentsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Students in $districtnumber",
-          textScaleFactor: 1.4,
+          "$districtnumber - $district",
+          textScaleFactor: 0.9,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -49,8 +52,8 @@ class StudentsListPage extends StatelessWidget {
           shrinkWrap: false,
           itemBuilder: (context, index) => InboundsStudentsListTile(
               item: students[index],
-              inboundsStudentsListPage:
-                  InboundsDetails(person: students[index])),
+              inboundsStudentsListPage: InboundsDetails(
+                  person: students[index], districtnumber: districtnumber)),
           itemCount: students.length,
         ),
       ),

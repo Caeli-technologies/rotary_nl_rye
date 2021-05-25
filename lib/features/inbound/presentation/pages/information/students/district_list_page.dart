@@ -55,6 +55,7 @@ class DistrictsListPage extends StatelessWidget {
                         element.district == districtList[index].districtName)
                     .toList(),
                 districtnumber: districtList[index].number,
+                district: districtList[index].districtName,
               )),
           itemCount: districtList.length,
         ),

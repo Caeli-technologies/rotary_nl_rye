@@ -335,7 +335,7 @@ class InboundsStudentsListTile extends StatelessWidget {
               fontWeight: FontWeight.w600,
             )),
         subtitle: Text(
-          item.role,
+          "From: ${item.place}",
           style: TextStyle(
             fontWeight: FontWeight.w500,
             color: Palette.grey,

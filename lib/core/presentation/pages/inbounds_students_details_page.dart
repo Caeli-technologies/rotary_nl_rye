@@ -8,7 +8,8 @@ import 'package:rotary_nl_rye/core/prop.dart';
 
 class InboundsDetails extends StatelessWidget {
   final person;
-  InboundsDetails({required this.person});
+  final int districtnumber;
+  InboundsDetails({required this.person, required this.districtnumber});
 
   final List<String> box1 = ['some', 'thing', 'can', 'here'];
   final List<String> data1 = [
@@ -43,6 +44,11 @@ class InboundsDetails extends StatelessWidget {
             fillColor: Palette.themeShadeColor,
             padding: const EdgeInsets.all(5.0),
           ),
+        ),
+        title: Text(
+          "Student Profile",
+          textScaleFactor: 1.2,
+          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -96,12 +102,9 @@ class InboundsDetails extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       )),
                                 ),
-                                person.rotarian == 'no'
-                                    ? SizedBox.shrink()
-                                    : SvgPicture.asset(
-                                        'assets/icons/custom/rotary-logo-icon.svg',
-                                        color: Color(0xFFf7a81b),
-                                        height: 30),
+                                SvgPicture.asset(
+                                    'assets/icons/flags/${person.countryFlag}.svg',
+                                    height: 20)
                               ],
                             ),
                           ),
@@ -132,149 +135,153 @@ class InboundsDetails extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 15.0, left: 30.0, bottom: 0.0),
+                padding: const EdgeInsets.only(left: 30.0, top: 15.0),
                 child: Text(
-                  person.role,
-                  style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
+                  "Info",
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 30.0, bottom: 5.0, right: 300),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
+              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
+              //   child: Text(
+              //     "District: $districtnumber - ${person.district}",
+              //     style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
+              //   ),
+              // ),
+              Padding(
                 padding:
-                    const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 30.0),
+                    const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
                 child: Text(
-                  "District ${person.district}",
-                  style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
+                  "From: ${person.place}",
+                  style: TextStyle(fontSize: 15.0),
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 15.0, left: 30.0, bottom: 0.0),
+                padding: const EdgeInsets.only(left: 30.0, top: 15.0),
                 child: Text(
-                  "Hobbies",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 18.0),
+                  "Rotary",
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 30.0, bottom: 5.0, right: 300),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(top: 3.0, left: 25.0, right: 0.0),
-                child: SizedBox(
-                  height: 100.0,
-                  width: 400.0,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: false,
-                          itemCount: box1.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 5.0, right: 14.0),
-                              child: Material(
-                                child: GestureDetector(
-                                  child: Container(
-                                    height: 200.0,
-                                    width: 100.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      color: Palette.themeCardShadeColor,
-                                    ),
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Text(box1[index],
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontSize: 16.0)),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: Text(
-                                              data1[index],
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16.0),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      )
-                    ],
-                  ),
+                    const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
+                child: Text(
+                  "Host Club: ${person.rotaryInfo["hostClub"]}",
+                  style: TextStyle(fontSize: 15.0),
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 40.0, right: 35.0, top: 20.0),
+                    const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
+                child: Text(
+                  "Sponsor Club: ${person.rotaryInfo["sponsorClub"]}",
+                  style: TextStyle(fontSize: 15.0),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
+                child: Text(
+                  "About me",
+                  style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 30.0, bottom: 0.0, right: 300),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
                   person.bio,
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(fontSize: 16.0),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      height: 70.0,
-                      width: 70.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey[200],
-                      ),
-                      child: Center(
-                          child: Icon(
-                        Icons.present_to_all,
-                        color: Colors.black,
-                        size: 25,
-                      )),
-                    ),
-                    Container(
-                      height: 65.0,
-                      width: 240.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35.0),
-                          border:
-                              Border.all(color: Colors.blue.shade100, width: 5),
-                          color: Colors.blue[400]),
-                      child: Center(
-                        child: Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: Icon(
-                                Icons.call,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: Text(
-                                'Send a e-mail',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18.0),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: <Widget>[
+              //       Container(
+              //         height: 70.0,
+              //         width: 70.0,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(30.0),
+              //           color: Colors.grey[200],
+              //         ),
+              //         child: Center(
+              //             child: Icon(
+              //           Icons.present_to_all,
+              //           color: Colors.black,
+              //           size: 25,
+              //         )),
+              //       ),
+              //       Container(
+              //         height: 65.0,
+              //         width: 200.0,
+              //         decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(35.0),
+              //             border:
+              //                 Border.all(color: Colors.blue.shade100, width: 5),
+              //             color: Colors.blue[400]),
+              //         child: Center(
+              //           child: Row(
+              //             children: <Widget>[
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 25.0),
+              //                 child: Icon(
+              //                   Icons.call,
+              //                   color: Colors.white,
+              //                 ),
+              //               ),
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 25.0),
+              //                 child: Text(
+              //                   'WhatsApp',
+              //                   style: TextStyle(
+              //                       color: Colors.white, fontSize: 18.0),
+              //                 ),
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // )
             ],
           )
         ],
