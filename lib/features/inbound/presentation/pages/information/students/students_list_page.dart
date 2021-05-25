@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/presentation/pages/person_details_page_inbounds.dart';
+import 'package:rotary_nl_rye/core/presentation/pages/inbounds_students_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
