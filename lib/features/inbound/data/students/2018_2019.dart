@@ -204,7 +204,7 @@ List<Students> studentsList_2018_2019 = [
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
-          "https://lh3.googleusercontent.com/proxy/DX73lmg13pDda6Fx4MBxtPoT9HvXZoz7kjWD8PQTmpp3HO1DQGgWW3O5G64ZCQAEP5Pb9KYFQLooPn61Kjsh0q0o2O6Mc75gjLhRe8g92LZuRdJdvRu0QJf9PQR8h2i3RGLxLtX6RGama1IQlaLsG-uAtQDQQkc7ghgR5dRacP4Hqt8FL0VxOw",
+          "http://www.diarioeldia.cl/sites/default/files/styles/juicebox_medium/public/092018/erico_wulf_.jpg?itok=T7tifP7F",
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       role: 'Commissie Prebound / Rebound',
