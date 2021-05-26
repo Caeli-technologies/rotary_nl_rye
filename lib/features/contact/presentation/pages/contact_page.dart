@@ -102,9 +102,10 @@ class _ContactPageState extends State<ContactPage> {
             ),
             ListView.builder(
               shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
+              itemBuilder: (context, index) => RotexContactListTile(
                   item: rotexList[index],
-                  contactDetailsPage: RotexDetails(person: rotexList[index])),
+                  rotexContactDetailsPage:
+                      RotexDetails(person: rotexList[index])),
               itemCount: rotexList.length,
             ),
           ]),
