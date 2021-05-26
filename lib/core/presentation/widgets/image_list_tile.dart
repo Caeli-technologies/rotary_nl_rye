@@ -157,7 +157,7 @@ class ContactListTile extends StatelessWidget {
               fontWeight: FontWeight.w600,
             )),
         subtitle: Text(
-          item.role,
+          item.functions["1"],
           style: TextStyle(
             fontWeight: FontWeight.w500,
             color: Palette.grey,

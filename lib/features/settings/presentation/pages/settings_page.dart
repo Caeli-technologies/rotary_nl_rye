@@ -168,6 +168,57 @@ class _SettingsPageState extends State<SettingsPage> {
                           });
                         },
                       )),
+            //TODO Make Counselor page with 2 contacts
+            GestureDetector(
+                child: Container(
+              padding: EdgeInsets.zero,
+              child: ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: Container(
+                    child: FaIcon(FontAwesomeIcons.handsHelping,
+                        color: Palette.lightIndigo),
+                  ),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Counselor",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Palette.grey,
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward_ios, color: Palette.grey),
+                  ],
+                ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Counselor Page"),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                  "Needs to go to a Counselor page with contact information"),
+                            ],
+                          ),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Close")),
+                          ],
+                        );
+                      });
+                },
+              ),
+            )),
             //TODO Make Emergency page with contacts
             GestureDetector(
                 child: Container(

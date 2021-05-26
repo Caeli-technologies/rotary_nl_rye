@@ -5,7 +5,8 @@ import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_detai
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/contact/data/organization_list.dart';
+import 'package:rotary_nl_rye/features/contact/data/long_term_organization_list.dart';
+import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/rotex_list.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
@@ -21,7 +22,7 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -34,19 +35,15 @@ class _ContactPageState extends State<ContactPage> {
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
 //TODO  need a search function to it :)
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                showSearch(
-                    context: context,
-                    delegate: ContactSearch(organizationList));
-              },
-              icon: FaIcon(
-                FontAwesomeIcons.search,
-                color: Palette.lightIndigo,
-              ),
-            )
-          ],
+          // actions: <Widget>[
+          //   IconButton(
+          //     onPressed: () {},
+          //     icon: FaIcon(
+          //       FontAwesomeIcons.search,
+          //       color: Palette.lightIndigo,
+          //     ),
+          //   )
+          // ],
           bottom: TabBar(
             labelColor: const Color(0xff525c6e),
             unselectedLabelColor: const Color(0xffacb3bf),
@@ -66,7 +63,13 @@ class _ContactPageState extends State<ContactPage> {
                 height: 40,
                 alignment: Alignment.center,
                 color: Palette.themeContactTabShadeColor,
-                child: Text("Organization"),
+                child: Text("Long Term"),
+              ),
+              Container(
+                height: 40,
+                alignment: Alignment.center,
+                color: Palette.themeContactTabShadeColor,
+                child: Text("Short Term"),
               ),
               Container(
                 height: 40,
@@ -84,10 +87,18 @@ class _ContactPageState extends State<ContactPage> {
             ListView.builder(
               shrinkWrap: false,
               itemBuilder: (context, index) => ContactListTile(
-                  item: organizationList[index],
-                  contactDetailsPage:
-                      OrganizationDetails(person: organizationList[index])),
-              itemCount: organizationList.length,
+                  item: longTermOrganizationList[index],
+                  contactDetailsPage: OrganizationDetails(
+                      person: longTermOrganizationList[index])),
+              itemCount: longTermOrganizationList.length,
+            ),
+            ListView.builder(
+              shrinkWrap: false,
+              itemBuilder: (context, index) => ContactListTile(
+                  item: shortTermOrganizationList[index],
+                  contactDetailsPage: OrganizationDetails(
+                      person: shortTermOrganizationList[index])),
+              itemCount: shortTermOrganizationList.length,
             ),
             ListView.builder(
               shrinkWrap: false,

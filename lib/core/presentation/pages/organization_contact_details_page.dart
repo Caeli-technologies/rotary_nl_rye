@@ -102,7 +102,7 @@ class OrganizationDetails extends StatelessWidget {
                             ),
                             SizedBox(
                               width: Device.width - 150,
-                              child: Text(person.role,
+                              child: Text(person.functions["1"],
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: false,
@@ -128,7 +128,7 @@ class OrganizationDetails extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 30.0, top: 15.0),
                 child: Text(
-                  "Info",
+                  "Functions",
                   style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey[600],
@@ -147,7 +147,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
                 child: Text(
-                  "IDK maybe someone knows",
+                  person.functions["2"],
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),

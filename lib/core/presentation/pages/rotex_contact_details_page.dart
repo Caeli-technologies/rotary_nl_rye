@@ -175,18 +175,10 @@ class RotexDetails extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 0.0, left: 20.0, bottom: 0.0, right: 20),
+                    top: 0.0, left: 20.0, bottom: 20.0, right: 20),
                 child: Divider(
                   height: 15,
                   thickness: 2,
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 30.0),
-                child: Text(
-                  "not sure what to put here. to be honest",
-                  style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
                 ),
               ),
               Padding(
