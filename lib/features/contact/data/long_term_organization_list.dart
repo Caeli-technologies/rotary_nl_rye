@@ -12,10 +12,10 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: "",
     club: '',
     district: '1590',
-    functions: {
-      "1": "Chair Longterm Year Exchange",
-      "2": "March 2020",
-    },
+    functions: [
+      "Chair Longterm Year Exchange",
+      "March 2020",
+    ],
   ),
   Organization(
     name: "Clasine Scheepers",
@@ -28,9 +28,9 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: "",
     club: '',
     district: '1570',
-    functions: {
-      "1": "Coordinator Long Term inbound",
-      "2": "Europe tour",
-    },
+    functions: [
+      "Coordinator Long Term inbound",
+      "Europe tour",
+    ],
   )
 ];

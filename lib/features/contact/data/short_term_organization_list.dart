@@ -12,9 +12,9 @@ List<Organization> shortTermOrganizationList = [
     phoneNumber: "",
     club: '',
     district: '1610',
-    functions: {
-      "1": "Chair Shortterm Exchange",
-      "2": "March 2020",
-    },
+    functions: [
+      "Chair Shortterm Exchange",
+      "March 2020",
+    ],
   )
 ];
