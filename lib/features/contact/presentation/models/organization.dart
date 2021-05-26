@@ -2,7 +2,6 @@ import 'package:rotary_nl_rye/core/presentation/models/image_list_tile_item.dart
 
 class Organization extends ImageListTileItem {
   final String name;
-  final String rotarian;
   final String bio;
   final String district;
   final String imageUrl;
@@ -13,7 +12,6 @@ class Organization extends ImageListTileItem {
 
   Organization(
       {required this.name,
-      required this.rotarian,
       required this.bio,
       required this.district,
       required this.imageUrl,

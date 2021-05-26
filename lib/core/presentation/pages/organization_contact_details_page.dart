@@ -12,7 +12,7 @@ class OrganizationDetails extends StatelessWidget {
 
   OrganizationDetails({required this.person});
 
-  List<Widget> fx = [];
+  final List<Widget> fx = [];
 
   @override
   Widget build(BuildContext context) {
@@ -120,12 +120,8 @@ class OrganizationDetails extends StatelessWidget {
                         )
                       ],
                     ),
-                    person.rotarian == 'no'
-                        ? SizedBox.shrink()
-                        : SvgPicture.asset(
-                            'assets/icons/custom/rotary-logo-icon.svg',
-                            color: Color(0xFFf7a81b),
-                            height: 30),
+                    SvgPicture.asset('assets/icons/custom/rotary-logo-icon.svg',
+                        color: Color(0xFFf7a81b), height: 30),
                   ],
                 ),
               ),
@@ -155,7 +151,7 @@ class OrganizationDetails extends StatelessWidget {
                   children: [
                     for (var x in person.functions)
                       Text(
-                        x,
+                        '- $x',
                         style: TextStyle(fontSize: 15.0),
                       )
                   ],

@@ -3,7 +3,6 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/organization.
 List<Organization> longTermOrganizationList = [
   Organization(
     name: "Barbara Tusveld",
-    rotarian: 'yes',
     bio:
         "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl:
@@ -14,12 +13,14 @@ List<Organization> longTermOrganizationList = [
     district: '1590',
     functions: [
       "Chair Longterm Year Exchange",
-      "March 2020",
+      "Coordinator Long term Asia / Oceania / Europe",
+      "Coordinator Europe Tour",
+      "Chair long term selection",
+      "ROTEX contact person",
     ],
   ),
   Organization(
     name: "Clasine Scheepers",
-    rotarian: 'yes',
     bio:
         "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     imageUrl:
@@ -30,7 +31,10 @@ List<Organization> longTermOrganizationList = [
     district: '1570',
     functions: [
       "Coordinator Long Term inbound",
-      "Europe tour",
+      "Coordinator Long term Middle and South America",
+      "Deputy chair Public Relations",
+      "Coordinator Europe Tour",
+      "ROTEX contact person",
     ],
   )
 ];
