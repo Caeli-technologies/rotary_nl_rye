@@ -37,7 +37,7 @@ class CounselorDetails extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Organization",
+          "Counselor",
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -141,41 +141,7 @@ class CounselorDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
                 child: Text(
-                  "contact ",
-                  style: TextStyle(fontSize: 15.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30.0, top: 15.0),
-                child: Text(
-                  "Rotary Club",
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 0.0, left: 30.0, bottom: 5.0, right: 250),
-                child: Divider(
-                  height: 15,
-                  thickness: 2,
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
-                child: Text(
-                  "Club District: ",
-                  style: TextStyle(fontSize: 15.0),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
-                child: Text(
-                  "Club name:",
+                  "contact information",
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
