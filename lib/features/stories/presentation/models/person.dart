@@ -1,4 +1,4 @@
-import 'image_list_tile_item.dart';
+import '../../../../core/presentation/models/image_list_tile_item.dart';
 
 class Person extends ImageListTileItem {
   final String name;

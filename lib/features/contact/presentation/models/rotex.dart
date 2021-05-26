@@ -1,4 +1,4 @@
-import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_tile_item.dart';
+import 'package:rotary_nl_rye/core/presentation/models/image_list_tile_item.dart';
 
 class Rotex extends ImageListTileItem {
   final String name;

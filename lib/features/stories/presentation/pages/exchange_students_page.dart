@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/models/contributor.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_page.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
