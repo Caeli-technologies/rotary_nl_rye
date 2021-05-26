@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 
 class OrganizationDetails extends StatelessWidget {
-  final person;
+  final Organization person;
+
   OrganizationDetails({required this.person});
+
+  List<Widget> fx = [];
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +106,7 @@ class OrganizationDetails extends StatelessWidget {
                             ),
                             SizedBox(
                               width: Device.width - 150,
-                              child: Text(person.functions["1"],
+                              child: Text(person.functions[0],
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: false,
@@ -146,10 +150,20 @@ class OrganizationDetails extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
-                child: Text(
-                  person.functions["2"],
-                  style: TextStyle(fontSize: 15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var x in person.functions)
+                      Text(
+                        x,
+                        style: TextStyle(fontSize: 15.0),
+                      )
+                  ],
                 ),
+                //Text(
+                //   'hi',
+                //   style: TextStyle(fontSize: 15.0),
+                // ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 30.0, top: 15.0),

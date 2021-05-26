@@ -9,7 +9,8 @@ class Organization extends ImageListTileItem {
   final String email;
   final String phoneNumber;
   final String club;
-  final Map<String, dynamic> functions;
+  final List<String> functions;
+
   Organization(
       {required this.name,
       required this.rotarian,

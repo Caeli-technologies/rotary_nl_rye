@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
 
@@ -116,12 +117,14 @@ class ImageListTile extends StatelessWidget {
 
 class ContactListTile extends StatelessWidget {
   final contactDetailsPage;
-  final item;
+  final Organization item;
+
   const ContactListTile({
     this.contactDetailsPage,
-    this.item,
+    required this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -157,7 +160,7 @@ class ContactListTile extends StatelessWidget {
               fontWeight: FontWeight.w600,
             )),
         subtitle: Text(
-          item.functions["1"],
+          item.functions[0],
           style: TextStyle(
             fontWeight: FontWeight.w500,
             color: Palette.grey,
