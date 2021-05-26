@@ -3,7 +3,6 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/rotex.dart';
 List<Rotex> rotexList = [
   Rotex(
       name: "Kylian Klein Hesselink",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Netherlands",
       bio:
@@ -21,7 +20,6 @@ List<Rotex> rotexList = [
 // Toon ter Ellen
   Rotex(
       name: "Toon ter Ellen",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Germany",
       bio:
@@ -39,7 +37,6 @@ List<Rotex> rotexList = [
 // Céline Hof
   Rotex(
       name: "Céline Hof",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Germany",
       bio:
@@ -57,7 +54,6 @@ List<Rotex> rotexList = [
 // Victor Storm van ‘s Gravesande
   Rotex(
       name: "Victor Storm van ‘s Gravesande",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "France",
       bio:
@@ -75,7 +71,6 @@ List<Rotex> rotexList = [
 // Fleur Heupers
   Rotex(
       name: "Fleur Heupers",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "India",
       bio:
@@ -90,7 +85,6 @@ List<Rotex> rotexList = [
 // Josephine van Dijk
   Rotex(
       name: "Josephine van Dijk",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -108,7 +102,6 @@ List<Rotex> rotexList = [
 // Nikki Mureau
   Rotex(
       name: "Nikki Mureau",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -126,7 +119,6 @@ List<Rotex> rotexList = [
 // Fynn Boots
   Rotex(
       name: "Fynn Boots",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -144,7 +136,6 @@ List<Rotex> rotexList = [
 // Daniek de Koning
   Rotex(
       name: "Daniek de Koning",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -162,7 +153,6 @@ List<Rotex> rotexList = [
 // Timo Homburg
   Rotex(
       name: "Timo Homburg",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -180,7 +170,6 @@ List<Rotex> rotexList = [
 // Pascal Stomp
   Rotex(
       name: "Pascal Stomp",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -198,7 +187,6 @@ List<Rotex> rotexList = [
 // Emile Laitervo
   Rotex(
       name: "Emile Laitervo",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:
@@ -216,7 +204,6 @@ List<Rotex> rotexList = [
 // Sanne Pipping
   Rotex(
       name: "Sanne Pipping",
-      rotarian: 'no',
       description: "Flutter Dev",
       place: "Nice Place",
       bio:

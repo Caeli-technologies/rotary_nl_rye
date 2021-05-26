@@ -2,7 +2,6 @@ import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_ti
 
 class Rotex extends ImageListTileItem {
   final String name;
-  final String rotarian;
   final String role;
   final String district;
   final String description;
@@ -14,7 +13,6 @@ class Rotex extends ImageListTileItem {
   final Map<String, dynamic> exchangeInfo;
   Rotex(
       {required this.name,
-      required this.rotarian,
       required this.role,
       required this.district,
       required this.description,

@@ -116,12 +116,60 @@ class RotexDetails extends StatelessWidget {
                         )
                       ],
                     ),
-                    person.rotarian == 'no'
-                        ? SizedBox.shrink()
-                        : SvgPicture.asset(
-                            'assets/icons/custom/rotary-logo-icon.svg',
-                            color: Color(0xFFf7a81b),
-                            height: 30),
+                    SvgPicture.asset('assets/icons/custom/rotex_logo_light.svg',
+                        // color: Color(0xFFf7a81b),
+                        height: 30),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 20.0, bottom: 0.0, right: 20),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
+              ),
+              //TODO if he has one of the socials not. then it doen't need to show up!
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 50.0, bottom: 0.0, right: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.instagram,
+                        color: Color(0xFFbc2a8d),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.twitter,
+                        color: Color(0xFF00aced),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.linkedinIn,
+                        color: Color(0xFF0e76a8),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.facebookF,
+                        color: Color(0xFF3b5998),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    )
                   ],
                 ),
               ),
@@ -137,79 +185,90 @@ class RotexDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 30.0),
                 child: Text(
-                  "District ${person.district}",
+                  "not sure what to put here. to be honest",
                   style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(top: 15.0, left: 30.0, bottom: 0.0),
+                    const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "Hobbies",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 18.0),
+                  "About me",
+                  style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 30.0, bottom: 0.0, right: 300),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 40.0, right: 35.0, top: 20.0),
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
                   person.bio,
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(fontSize: 16.0),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      height: 70.0,
-                      width: 70.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey[200],
-                      ),
-                      child: Center(
-                          child: Icon(
-                        Icons.present_to_all,
-                        color: Colors.black,
-                        size: 25,
-                      )),
-                    ),
-                    Container(
-                      height: 65.0,
-                      width: 240.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35.0),
-                          border:
-                              Border.all(color: Colors.blue.shade100, width: 5),
-                          color: Colors.blue[400]),
-                      child: Center(
-                        child: Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: Icon(
-                                Icons.call,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
-                              child: Text(
-                                'Send a e-mail',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18.0),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: <Widget>[
+              //       Container(
+              //         height: 70.0,
+              //         width: 70.0,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(30.0),
+              //           color: Colors.grey[200],
+              //         ),
+              //         child: Center(
+              //             child: Icon(
+              //           Icons.present_to_all,
+              //           color: Colors.black,
+              //           size: 25,
+              //         )),
+              //       ),
+              //       Container(
+              //         height: 65.0,
+              //         width: 240.0,
+              //         decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(35.0),
+              //             border:
+              //                 Border.all(color: Colors.blue.shade100, width: 5),
+              //             color: Colors.blue[400]),
+              //         child: Center(
+              //           child: Row(
+              //             children: <Widget>[
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 25.0),
+              //                 child: Icon(
+              //                   Icons.call,
+              //                   color: Colors.white,
+              //                 ),
+              //               ),
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 25.0),
+              //                 child: Text(
+              //                   'Send a e-mail',
+              //                   style: TextStyle(
+              //                       color: Colors.white, fontSize: 18.0),
+              //                 ),
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // )
             ],
           )
         ],
