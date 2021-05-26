@@ -168,6 +168,57 @@ class _SettingsPageState extends State<SettingsPage> {
                           });
                         },
                       )),
+            //TODO Make Emergency page with contacts
+            GestureDetector(
+                child: Container(
+              padding: EdgeInsets.zero,
+              child: ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: Container(
+                    child: FaIcon(FontAwesomeIcons.firstAid,
+                        color: Colors.red[900]),
+                  ),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Emergency",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.red[900],
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward_ios, color: Colors.red[900]),
+                  ],
+                ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Emergency Page"),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                  "Needs to go to a Emergency page with contact information"),
+                            ],
+                          ),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Close")),
+                          ],
+                        );
+                      });
+                },
+              ),
+            )),
             SizedBox(
               height: 30,
             ),

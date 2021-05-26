@@ -37,8 +37,9 @@ class ExchangeStudentsPage extends StatelessWidget {
         ),
         title: Text(
           country.name,
-          textScaleFactor: 1.4,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+          textScaleFactor: 1.5,
+          style: TextStyle(
+              color: Palette.indigo, fontWeight: FontWeight.bold, fontSize: 15),
         ),
       ),
       body: SingleChildScrollView(
@@ -66,7 +67,7 @@ class ExchangeStudentsPage extends StatelessWidget {
               child: Text(
                 "Exchange Students",
                 textAlign: TextAlign.center,
-                textScaleFactor: 2,
+                textScaleFactor: 1.5,
                 style: TextStyle(
                   color: Palette.indigo,
                   fontWeight: FontWeight.bold,

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/presentation/pages/person_details_page_test.dart';
+import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_details_page.dart';
+import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/data/organization_list.dart';
@@ -85,14 +86,14 @@ class _ContactPageState extends State<ContactPage> {
               itemBuilder: (context, index) => ContactListTile(
                   item: organizationList[index],
                   contactDetailsPage:
-                      PersonDetails1(person: organizationList[index])),
+                      OrganizationDetails(person: organizationList[index])),
               itemCount: organizationList.length,
             ),
             ListView.builder(
               shrinkWrap: false,
               itemBuilder: (context, index) => ContactListTile(
                   item: rotexList[index],
-                  contactDetailsPage: PersonDetails1(person: rotexList[index])),
+                  contactDetailsPage: RotexDetails(person: rotexList[index])),
               itemCount: rotexList.length,
             ),
           ]),
