@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:pdf_viewer_jk/pdf_viewer_jk.dart';
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 // ignore: must_be_immutable
 class PDFPage extends StatefulWidget {
@@ -90,6 +90,7 @@ class _PDFPageState extends State<PDFPage> {
                     lazyLoad: false,
                     // scroll vertically
                     scrollDirection: Axis.vertical,
+                    // numberPickerConfirmWidget: ,
 
                     //uncomment below code to replace bottom navigation with your own
                     /* navigationBuilder:
@@ -100,7 +101,7 @@ class _PDFPageState extends State<PDFPage> {
                         IconButton(
                           icon: Icon(Icons.first_page),
                           onPressed: () {
-                            jumpToPage()(page: 0);
+                            jumpToPage(page: 0);
                           },
                         ),
                         IconButton(

@@ -1,8 +1,8 @@
 import 'package:rotary_nl_rye/features/inbound/presentation/models/students.dart';
 
-List<Students> studentsList_2020_2021 = [
+List<Students> studentsList_2022_2023 = [
   Students(
-      name: "Kylian Klein Hesselink 3",
+      name: "Kylian Klein Hesselink 4",
       countryFlag: 'nl',
       place: "Netherlands",
       bio:

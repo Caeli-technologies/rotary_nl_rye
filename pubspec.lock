@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "21.0.0"
+  advance_pdf_viewer:
+    dependency: "direct main"
+    description:
+      name: advance_pdf_viewer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   analyzer:
     dependency: transitive
     description:
@@ -637,13 +644,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  pdf_viewer_jk:
-    dependency: "direct main"
-    description:
-      name: pdf_viewer_jk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.2"
   pedantic:
     dependency: transitive
     description:
@@ -672,13 +672,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  pool:
-    dependency: transitive
-    description:
-      name: pool
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.0"
   process:
     dependency: transitive
     description:

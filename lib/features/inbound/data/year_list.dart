@@ -1,24 +1,16 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
 
+import 'students/2022_2023.dart';
 import 'students/2018_2019.dart';
 import 'students/2019_2020.dart';
-import 'students/2020_2021.dart';
-import 'students/2021_2022.dart';
 
 List<YearList> yearList = [
   // Exchange Year 2021-2022
   YearList(
-    title: "Exchange Year 2021-2022",
-    year: "2021-2022",
-    list: studentsList_2021_2022,
-    icon: FontAwesomeIcons.passport,
-  ),
-  // Exchange Year 2020-2021
-  YearList(
-    title: "Exchange Year 2020-2021",
-    year: "2020-2021",
-    list: studentsList_2020_2021,
+    title: "Exchange Year 2022-2023",
+    year: "2022-2023",
+    list: studentsList_2022_2023,
     icon: FontAwesomeIcons.passport,
   ),
   // Exchange Year 2019-2020

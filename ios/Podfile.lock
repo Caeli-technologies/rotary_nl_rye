@@ -212,6 +212,8 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - advance_pdf_viewer (1.0.5):
+    - Flutter
   - awesome_notifications (0.0.2):
     - Flutter
   - BoringSSL-GRPC (0.0.7):
@@ -419,8 +421,6 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
-  - pdf_viewer_jk (1.0.5):
-    - Flutter
   - PromisesObjC (1.2.12)
   - share (0.0.1):
     - Flutter
@@ -437,6 +437,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - advance_pdf_viewer (from `.symlinks/plugins/advance_pdf_viewer/ios`)
   - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - Firebase/Analytics
@@ -456,7 +457,6 @@ DEPENDENCIES:
   - get_version (from `.symlinks/plugins/get_version/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
-  - pdf_viewer_jk (from `.symlinks/plugins/pdf_viewer_jk/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -490,6 +490,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  advance_pdf_viewer:
+    :path: ".symlinks/plugins/advance_pdf_viewer/ios"
   awesome_notifications:
     :path: ".symlinks/plugins/awesome_notifications/ios"
   cloud_firestore:
@@ -516,8 +518,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
-  pdf_viewer_jk:
-    :path: ".symlinks/plugins/pdf_viewer_jk/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
@@ -533,6 +533,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  advance_pdf_viewer: 5c832f382b4ca84fe735f893b7e91aa830c27d7b
   awesome_notifications: 74462bc8e68b11f8235d78422266886759e9da61
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: 8ead368e38b40bb2a4c97458b7b99272399f2214
@@ -566,7 +567,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
-  pdf_viewer_jk: a2ed0b48c5df268b28fc4224d7b80150020c6b78
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
