@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/features/faq/presentation/pages/question_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 
 import '../../../../core/lang/languages.dart';
@@ -73,12 +74,17 @@ class _NewsPageState extends State<NewsPage> {
               return Transform.translate(
                 offset: Offset(0, 10),
                 child: GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            PDFPage(pdfUrl: _stories[index]["pdf"])),
-                  ),
+                  onTap: () => {
+                    _stories[index]["isPdf"] == "yes"
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PDFPage(pdfUrl: _stories[index]["pdf"])),
+                          )
+                        : Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => null)),
+                  },
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
