@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:video_player/video_player.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
@@ -99,9 +98,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
       } else if (y['videoUrl'] != null) {
         list.add(Padding(
             padding: const EdgeInsets.only(top: 10.0),
-            child: y['isYoutube']
-                ? TubePlayer(url: y['videoUrl'])
-                : NativeVideo(url: y["videoUrl"])));
+            child: NativeVideo(url: y["videoUrl"])));
       }
     }
 
@@ -123,9 +120,6 @@ class _NativeVideoState extends State<NativeVideo> {
   late ChewieController _chewieController;
   double _aspectRatio = 16 / 9;
 
-  // double _volume = 100;
-  // bool _muted = false;
-
   @override
   void initState() {
     _videoPlayerController = VideoPlayerController.network(widget.url);
@@ -133,7 +127,7 @@ class _NativeVideoState extends State<NativeVideo> {
     // TODO: implement initState
     _chewieController = ChewieController(
       allowedScreenSleep: false,
-      allowFullScreen: false,
+      allowFullScreen: true,
       deviceOrientationsAfterFullScreen: [
         DeviceOrientation.landscapeRight,
         DeviceOrientation.landscapeLeft,
@@ -185,74 +179,6 @@ class _NativeVideoState extends State<NativeVideo> {
       child: Chewie(
         controller: _chewieController,
       ),
-    );
-  }
-}
-
-class TubePlayer extends StatefulWidget {
-  final String url;
-
-  TubePlayer({required this.url});
-
-  @override
-  _TubePlayerState createState() => _TubePlayerState();
-}
-
-class _TubePlayerState extends State<TubePlayer> {
-  late String _idYoutube;
-  late YoutubePlayerController _controller;
-
-  @override
-  void initState() {
-    _idYoutube = widget.url.split('v=')[1];
-    _controller = YoutubePlayerController(
-      initialVideoId: _idYoutube,
-      flags: const YoutubePlayerFlags(
-        mute: false,
-        autoPlay: false,
-        disableDragSeek: false,
-        loop: false,
-        isLive: false,
-        forceHD: false,
-        enableCaption: true,
-      ),
-    ); // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  void deactivate() {
-    // Pauses video while navigating to next page.
-
-    _controller.pause();
-
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return YoutubePlayer(
-      key: ObjectKey(_controller),
-      controller: _controller,
-      showVideoProgressIndicator: true,
-      progressIndicatorColor: Colors.red,
-      bottomActions: [
-        CurrentPosition(),
-        const SizedBox(width: 10.0),
-        ProgressBar(isExpanded: true),
-        const SizedBox(width: 10.0),
-        RemainingDuration(),
-      ],
     );
   }
 }
