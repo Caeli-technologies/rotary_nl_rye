@@ -15,6 +15,13 @@ class NonPDFPage extends StatefulWidget {
 
 class _NonPDFPageState extends State<NonPDFPage> {
   @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -49,7 +56,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: ListView(
             children: [
               Padding(
@@ -58,7 +65,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                   widget.data["text"][0]["heading"],
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 14.0,
+                      fontSize: 25.0,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -78,7 +85,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
               a,
-              style: TextStyle(color: Colors.black, fontSize: 13.0),
+              style: TextStyle(color: Colors.black, fontSize: 16.0),
             ),
           ));
         }
@@ -91,9 +98,10 @@ class _NonPDFPageState extends State<NonPDFPage> {
         );
       } else if (y['videoUrl'] != null) {
         list.add(Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: NativeVideo(url: y),
-        ));
+            padding: const EdgeInsets.only(top: 10.0),
+            child: y['isYoutube']
+                ? TubePlayer(url: y['videoUrl'])
+                : NativeVideo(url: y["videoUrl"])));
       }
     }
 
@@ -102,7 +110,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 }
 
 class NativeVideo extends StatefulWidget {
-  final Map<String, dynamic> url;
+  final String url;
 
   NativeVideo({required this.url});
 
@@ -114,94 +122,54 @@ class _NativeVideoState extends State<NativeVideo> {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
   double _aspectRatio = 16 / 9;
-  late String _idYoutube;
-  late YoutubePlayerController _controller;
-  late PlayerState _playerState;
-  late YoutubeMetaData _videoMetaData;
 
   // double _volume = 100;
   // bool _muted = false;
-  bool _isPlayerReady = false;
 
   @override
   void initState() {
-    if (widget.url["isYoutube"]) {
-      _idYoutube = widget.url["videoUrl"].split('v=')[1];
-      _controller = YoutubePlayerController(
-        initialVideoId: _idYoutube,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: true,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-        ),
-      )..addListener(listener);
-      _videoMetaData = const YoutubeMetaData();
-      _playerState = PlayerState.unknown;
-    } else {
-      _videoPlayerController =
-          VideoPlayerController.network(widget.url["videoUrl"]);
+    _videoPlayerController = VideoPlayerController.network(widget.url);
 
-      // TODO: implement initState
-      _chewieController = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
+    // TODO: implement initState
+    _chewieController = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: false,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: _aspectRatio,
+      autoInitialize: true,
+      autoPlay: false,
+      showControls: true,
+    );
+    _chewieController.addListener(() {
+      if (_chewieController.isFullScreen) {
+        SystemChrome.setPreferredOrientations([
           DeviceOrientation.landscapeRight,
           DeviceOrientation.landscapeLeft,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
           DeviceOrientation.portraitDown,
-        ],
-        videoPlayerController: _videoPlayerController,
-        aspectRatio: _aspectRatio,
-        autoInitialize: true,
-        autoPlay: false,
-        showControls: true,
-      );
-      _chewieController.addListener(() {
-        if (_chewieController.isFullScreen) {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-          ]);
-        } else {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-        }
-      });
-    }
+        ]);
+      }
+    });
 
     super.initState();
-  }
-
-  void listener() {
-    if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
-      setState(() {
-        _playerState = _controller.value.playerState;
-        _videoMetaData = _controller.metadata;
-      });
-    }
-  }
-
-  @override
-  void deactivate() {
-    // Pauses video while navigating to next page.
-    _controller.pause();
-    super.deactivate();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    _videoPlayerController.dispose();
-    _controller.dispose();
 
+    _videoPlayerController.dispose();
     _chewieController.dispose();
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -210,26 +178,81 @@ class _NativeVideoState extends State<NativeVideo> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.url["isYoutube"]
-        ? YoutubePlayerBuilder(
-            player: YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-              progressIndicatorColor: Colors.red,
-            ),
-            builder: (context, player) => Container(
-              width: MediaQuery.of(context).size.width,
-              height: 220,
-              child: player,
-            ),
-          )
-        : Container(
-            //margin: const EdgeInsets.all(10.0),
-            width: MediaQuery.of(context).size.width,
-            height: 220,
-            child: Chewie(
-              controller: _chewieController,
-            ),
-          );
+    return Container(
+      //margin: const EdgeInsets.all(10.0),
+      width: MediaQuery.of(context).size.width,
+      height: 220,
+      child: Chewie(
+        controller: _chewieController,
+      ),
+    );
+  }
+}
+
+class TubePlayer extends StatefulWidget {
+  final String url;
+
+  TubePlayer({required this.url});
+
+  @override
+  _TubePlayerState createState() => _TubePlayerState();
+}
+
+class _TubePlayerState extends State<TubePlayer> {
+  late String _idYoutube;
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    _idYoutube = widget.url.split('v=')[1];
+    _controller = YoutubePlayerController(
+      initialVideoId: _idYoutube,
+      flags: const YoutubePlayerFlags(
+        mute: false,
+        autoPlay: false,
+        disableDragSeek: false,
+        loop: false,
+        isLive: false,
+        forceHD: false,
+        enableCaption: true,
+      ),
+    ); // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void deactivate() {
+    // Pauses video while navigating to next page.
+
+    _controller.pause();
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return YoutubePlayer(
+      key: ObjectKey(_controller),
+      controller: _controller,
+      showVideoProgressIndicator: true,
+      progressIndicatorColor: Colors.red,
+      bottomActions: [
+        CurrentPosition(),
+        const SizedBox(width: 10.0),
+        ProgressBar(isExpanded: true),
+        const SizedBox(width: 10.0),
+        RemainingDuration(),
+      ],
+    );
   }
 }

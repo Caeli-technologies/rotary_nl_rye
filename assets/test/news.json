@@ -77,6 +77,10 @@
                 {
                     "body": [
                         {
+                            "videoUrl": "https://www.youtube.com/watch?v=ClpPvpbYBpY",
+                            "isYoutube": true
+                        },
+                        {
                             "paragraph": [
                                 "hi",
                                 "hello"
@@ -92,8 +96,8 @@
                             ]
                         },
                         {
-                            "videoUrl": "https://www.youtube.com/watch?v=ClpPvpbYBpY",
-                            "isYoutube": true
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4",
+                            "isYoutube": false
                         }
                     ]
                 }
