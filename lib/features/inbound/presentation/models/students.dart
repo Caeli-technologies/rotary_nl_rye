@@ -3,6 +3,10 @@ import 'package:rotary_nl_rye/core/presentation/models/image_list_tile_item.dart
 class Students extends ImageListTileItem {
   final String name;
   final String countryFlag;
+  final String? facebookUrl;
+  final String? instagramUrl;
+  final String? twitterUrl;
+  final String? websiteUrl;
   final String district;
   final String bio;
   final String place;
@@ -15,6 +19,10 @@ class Students extends ImageListTileItem {
       required this.district,
       required this.bio,
       required this.place,
+      this.facebookUrl,
+      this.twitterUrl,
+      this.websiteUrl,
+      this.instagramUrl,
       required this.imageUrl,
       required this.phoneNumber,
       required this.rotaryInfo});

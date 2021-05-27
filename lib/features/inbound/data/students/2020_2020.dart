@@ -10,6 +10,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'NOORD-NEDERLAND',
       rotaryInfo: {
         "hostClub": "Emmen-\'t Loo",
@@ -24,6 +27,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'NOORD-NEDERLAND',
       rotaryInfo: {"hostClub": "Lelystad-Batavia", "sponsorClub": "D9700"}),
   // Cormac Shiels
@@ -35,6 +41,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'OOST-NEDERLAND',
       rotaryInfo: {"hostClub": "Voorst", "sponsorClub": "AUSTRALIA D9685"}),
   // Gui Signori
@@ -46,6 +55,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'NOORD-HOLLAND',
       rotaryInfo: {
         "hostClub": "Zaandam-Oost",
@@ -60,6 +72,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'OOST-NEDERLAND',
       rotaryInfo: {
         "hostClub": "Rijssen Regge Regio",
@@ -74,6 +89,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'ZUIDOOST NEDERLAND',
       rotaryInfo: {
         "hostClub": "Nijmegen-Stad en Land",
@@ -88,6 +106,9 @@ List<Students> studentsList_2020_2020 = [
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
       phoneNumber: "",
+      facebookUrl: null,
+      websiteUrl: null,
+      instagramUrl: null,
       district: 'ZUIDWEST NEDERLAND',
       rotaryInfo: {
         "hostClub": "Goes-De Bevelanden",
