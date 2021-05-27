@@ -20,16 +20,23 @@ class QuestionCardItem extends StatelessWidget {
       title: Text(title),
       subtitle: Text(subtitle),
       children: <Widget>[
-        Text(
-          cardTitle,
-          style: TextStyle(fontSize: 20),
+        Padding(
+          padding: const EdgeInsets.only(top: 5.0),
+          child: Text(
+            cardTitle,
+            style: TextStyle(fontSize: 18),
+          ),
         ),
         SizedBox(
           height: 20,
         ),
-        Center(
-          child: Text(cardText),
-        )
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0, right: 25.0, top: 5.0),
+          child: Text(
+            cardText,
+            style: TextStyle(),
+          ),
+        ),
       ],
     );
   }

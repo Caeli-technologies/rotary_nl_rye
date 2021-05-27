@@ -63,7 +63,7 @@ dependencies:
   advance_pdf_viewer: ^2.0.0
   get_version: ^0.2.2 # https://pub.dev/packages/get_version
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
-  share: ^2.0.1 # native share https://pub.dev/packages/share
+  share_plus: ^2.1.2 # native share https://pub.dev/packages/share_plus
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
   chewie: ^1.0.0
   video_player: ^2.1.1
