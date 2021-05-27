@@ -1,10 +1,9 @@
 import 'package:rotary_nl_rye/features/contact/presentation/models/rotex.dart';
 
 List<Rotex> rotexList = [
+// Kylian Klein Hesselink
   Rotex(
       name: "Kylian Klein Hesselink",
-      description: "Flutter Dev",
-      place: "Netherlands",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -15,80 +14,55 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Voorzitter',
-      district: '',
-      exchangeInfo: {
-        "place": "Canada",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Voorzitter'),
 // Toon ter Ellen
   Rotex(
-      name: "Toon ter Ellen",
-      description: "Flutter Dev",
-      place: "Germany",
-      bio:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-      imageUrl:
-          "https://media-exp1.licdn.com/dms/image/C4D03AQEGVOAqt6sQgQ/profile-displayphoto-shrink_800_800/0/1580887772311?e=1627516800&v=beta&t=FBTLfnxhL-GSKuc91VgioMxEwyoJX9eH6tGNHmx0fu4",
-      email: "bnkn@example.com",
-      phoneNumber: "888 444 7676",
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
-      role: 'Penningmeester',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+    name: "Toon ter Ellen",
+    bio:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    imageUrl:
+        "https://media-exp1.licdn.com/dms/image/C4D03AQEGVOAqt6sQgQ/profile-displayphoto-shrink_800_800/0/1580887772311?e=1627516800&v=beta&t=FBTLfnxhL-GSKuc91VgioMxEwyoJX9eH6tGNHmx0fu4",
+    email: "bnkn@example.com",
+    phoneNumber: "888 444 7676",
+    facebookUrl: '',
+    instagramUrl: '',
+    websiteUrl: '',
+    linkedinUrl: '',
+    role: 'Penningmeester',
+  ),
 // Céline Hof
   Rotex(
-      name: "Céline Hof",
-      description: "Flutter Dev",
-      place: "Germany",
-      bio:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-      imageUrl:
-          "https://media-exp1.licdn.com/dms/image/C4E03AQHfyT-PqTjZUQ/profile-displayphoto-shrink_800_800/0/1620311758692?e=1627516800&v=beta&t=k9bw8OV40CNp3CQmTxGfNmymduN5b-GF9stkF9RkN0s",
-      email: "sceptile@example.com",
-      phoneNumber: "888 444 7676",
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
-      role: 'Secretaris',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+    name: "Céline Hof",
+    bio:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    imageUrl:
+        "https://media-exp1.licdn.com/dms/image/C4E03AQHfyT-PqTjZUQ/profile-displayphoto-shrink_800_800/0/1620311758692?e=1627516800&v=beta&t=k9bw8OV40CNp3CQmTxGfNmymduN5b-GF9stkF9RkN0s",
+    email: "sceptile@example.com",
+    phoneNumber: "888 444 7676",
+    facebookUrl: '',
+    instagramUrl: '',
+    websiteUrl: '',
+    linkedinUrl: '',
+    role: 'Secretaris',
+  ),
 // Victor Storm van ‘s Gravesande
   Rotex(
-      name: "Victor Storm van ‘s Gravesande",
-      description: "Flutter Dev",
-      place: "France",
-      bio:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-      imageUrl:
-          "https://scontent-amt2-1.xx.fbcdn.net/v/t31.18172-1/c0.33.200.200a/p200x200/14352584_1226960370678873_2501773787135356157_o.jpg?_nc_cat=106&ccb=1-3&_nc_sid=7206a8&_nc_ohc=zlXBzgdl9fsAX8Dysuz&_nc_ht=scontent-amt2-1.xx&tp=27&oh=eb13a374f50e358202a0c3719b2aaa42&oe=60CFFEC6",
-      email: "tonann@example.com",
-      phoneNumber: "888 444 7676",
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
-      role: 'Commissie PR - Extern',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+    name: "Victor Storm van ‘s Gravesande",
+    bio:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    imageUrl:
+        "https://scontent-amt2-1.xx.fbcdn.net/v/t31.18172-1/c0.33.200.200a/p200x200/14352584_1226960370678873_2501773787135356157_o.jpg?_nc_cat=106&ccb=1-3&_nc_sid=7206a8&_nc_ohc=zlXBzgdl9fsAX8Dysuz&_nc_ht=scontent-amt2-1.xx&tp=27&oh=eb13a374f50e358202a0c3719b2aaa42&oe=60CFFEC6",
+    email: "tonann@example.com",
+    phoneNumber: "888 444 7676",
+    facebookUrl: '',
+    instagramUrl: '',
+    websiteUrl: '',
+    linkedinUrl: '',
+    role: 'Commissie PR - Extern',
+  ),
 // Fleur Heupers
   Rotex(
       name: "Fleur Heupers",
-      description: "Flutter Dev",
-      place: "India",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -99,14 +73,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie PR - Extern',
-      district: '',
-      exchangeInfo: {}),
+      role: 'Commissie PR - Extern'),
 // Josephine van Dijk
   Rotex(
       name: "Josephine van Dijk",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -117,17 +87,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie PR - Extern',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie PR - Extern'),
 // Nikki Mureau
   Rotex(
       name: "Nikki Mureau",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -138,17 +101,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Inbound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Inbound'),
 // Fynn Boots
   Rotex(
       name: "Fynn Boots",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -159,17 +115,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Inbound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Inbound'),
 // Daniek de Koning
   Rotex(
       name: "Daniek de Koning",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -180,17 +129,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Inbound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Inbound'),
 // Timo Homburg
   Rotex(
       name: "Timo Homburg",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -201,17 +143,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Prebound / Rebound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Prebound / Rebound'),
 // Pascal Stomp
   Rotex(
       name: "Pascal Stomp",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -222,17 +157,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Prebound / Rebound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Prebound / Rebound'),
 // Emile Laitervo
   Rotex(
       name: "Emile Laitervo",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -243,17 +171,10 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Prebound / Rebound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Prebound / Rebound'),
 // Sanne Pipping
   Rotex(
       name: "Sanne Pipping",
-      description: "Flutter Dev",
-      place: "Nice Place",
       bio:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
       imageUrl:
@@ -264,10 +185,5 @@ List<Rotex> rotexList = [
       instagramUrl: '',
       websiteUrl: '',
       linkedinUrl: '',
-      role: 'Commissie Prebound / Rebound',
-      district: '',
-      exchangeInfo: {
-        "place": "Japan",
-        "travelDates": ["March 2020", "May 2020"]
-      }),
+      role: 'Commissie Prebound / Rebound'),
 ];
