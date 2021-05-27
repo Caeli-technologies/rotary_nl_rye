@@ -5,6 +5,10 @@ class Rotex extends ImageListTileItem {
   final String role;
   final String district;
   final String description;
+  final String? facebookUrl;
+  final String? instagramUrl;
+  final String? linkedinUrl;
+  final String? websiteUrl;
   final String bio;
   final String place;
   final String imageUrl;
@@ -16,6 +20,10 @@ class Rotex extends ImageListTileItem {
       required this.role,
       required this.district,
       required this.description,
+      this.facebookUrl,
+      this.instagramUrl,
+      this.websiteUrl,
+      this.linkedinUrl,
       required this.bio,
       required this.place,
       required this.imageUrl,
