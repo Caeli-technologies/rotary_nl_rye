@@ -20,6 +20,8 @@ class _LongTermExchangeProgramPageState
     extends State<LongTermExchangeProgramPage> {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
+  late VideoPlayerController _videoPlayerController2;
+  late ChewieController _chewieController2;
   double _aspectRatio = 16 / 9;
 
   @override
@@ -37,6 +39,23 @@ class _LongTermExchangeProgramPageState
         DeviceOrientation.portraitDown,
       ],
       videoPlayerController: _videoPlayerController,
+      aspectRatio: _aspectRatio,
+      autoInitialize: true,
+      autoPlay: false,
+      showControls: true,
+    );
+    _videoPlayerController2 = VideoPlayerController.network(
+        "https://caeli-tech.com/rotary/video/promo/proud_to_be_European.mp4");
+    _chewieController2 = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: true,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController2,
       aspectRatio: _aspectRatio,
       autoInitialize: true,
       autoPlay: false,
@@ -250,6 +269,22 @@ class _LongTermExchangeProgramPageState
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(top: 20.0, bottom: 10),
+                child: Text(
+                  "moet nog een leuk stukje text komen",
+                  style: TextStyle(color: Colors.red, fontSize: 13.0),
+                ),
+              ),
+              //video Europa
+              Container(
+                //margin: const EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width,
+                height: 220,
+                child: Chewie(
+                  controller: _chewieController2,
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "ZUIDELIJK HALFROND",
@@ -381,6 +416,8 @@ class _LongTermExchangeProgramPageState
   void dispose() {
     _videoPlayerController.dispose();
     _chewieController.dispose();
+    _videoPlayerController2.dispose();
+    _chewieController2.dispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

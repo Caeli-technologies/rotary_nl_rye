@@ -18,14 +18,12 @@ class VideoPage extends StatefulWidget {
 class _VideoPageState extends State<VideoPage> {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
-  late VideoPlayerController _videoPlayerController2;
-  late ChewieController _chewieController2;
   double _aspectRatio = 16 / 9;
   @override
   initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-        "https://caeli-tech.com/rotary/video/promo/proud_to_be_European.mp4");
+        "https://caeli-tech.com/rotary/video/promo/5th_Avenue_Jeugd.mp4");
     _chewieController = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,
@@ -36,23 +34,6 @@ class _VideoPageState extends State<VideoPage> {
         DeviceOrientation.portraitDown,
       ],
       videoPlayerController: _videoPlayerController,
-      aspectRatio: _aspectRatio,
-      autoInitialize: true,
-      autoPlay: false,
-      showControls: true,
-    );
-    _videoPlayerController2 = VideoPlayerController.network(
-        "https://caeli-tech.com/rotary/video/promo/5th_Avenue_Jeugd.mp4");
-    _chewieController2 = ChewieController(
-      allowedScreenSleep: false,
-      allowFullScreen: true,
-      deviceOrientationsAfterFullScreen: [
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ],
-      videoPlayerController: _videoPlayerController2,
       aspectRatio: _aspectRatio,
       autoInitialize: true,
       autoPlay: false,
@@ -116,9 +97,9 @@ class _VideoPageState extends State<VideoPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "WAT HOUDT DAT IN?",
+                  "moet nog text komen",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.red,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -126,8 +107,18 @@ class _VideoPageState extends State<VideoPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het buitenland een jaar High School volgt. Omgekeerd komen buitenlandse scholieren hier om gedurende een jaar samen met leeftijdgenoten naar school te gaan.",
+                  "moet nog text voor worden gemaakt",
                   style: TextStyle(color: Colors.black, fontSize: 13.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0),
+                child: Text(
+                  "Algemene video",
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -136,24 +127,6 @@ class _VideoPageState extends State<VideoPage> {
                 height: 220,
                 child: Chewie(
                   controller: _chewieController,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Text(
-                  "VOOR WIE?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                //margin: const EdgeInsets.all(10.0),
-                width: MediaQuery.of(context).size.width,
-                height: 220,
-                child: Chewie(
-                  controller: _chewieController2,
                 ),
               ),
 
@@ -202,7 +175,7 @@ class _VideoPageState extends State<VideoPage> {
                 padding: const EdgeInsets.only(top: 15.0),
                 child: Center(
                   child: Text(
-                    'Update: 20 juli 2020',
+                    'Update: 27 mei 2021',
                     style: TextStyle(color: Color(0xFF777777)),
                   ),
                 ),
