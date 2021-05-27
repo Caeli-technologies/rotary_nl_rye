@@ -10,7 +10,7 @@ import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'counselor_list_page.dart';
 
@@ -113,8 +113,8 @@ class _SettingsPageState extends State<SettingsPage> {
             onPressed: () {
               Share.share(
                   Platform.isIOS
-                      ? 'Apple app store link https://example.com'
-                      : 'android play store link https://example.com',
+                      ? 'Hier mot nog een leuk stukje komen. + de link naar de Apple app store link https://example.com'
+                      : 'Hier mot nog een leuk stukje komen. + de link naar de google play store link https://example.com',
                   subject: 'look at this nice app :)');
             },
           )

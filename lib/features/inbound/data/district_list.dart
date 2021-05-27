@@ -38,10 +38,10 @@ List<DistrictList> districtList = [
     icon: FontAwesomeIcons.mapPin,
   ),
 ];
-// District 1550 ZUIDOOST NEDERLAND
+// District 1550 ZUIDOOST-NEDERLAND
 // District 1560 OOST-NEDERLAND
 // District 1570 MIDDEN-NEDERLAND
 // District 1580 NOORD-HOLLAND
 // District 1590 NOORD-NEDERLAND
 // District 1600 ZUID-HOLLAND
-// District 1610 ZUIDWEST NEDERLAND
+// District 1610 ZUIDWEST-NEDERLAND

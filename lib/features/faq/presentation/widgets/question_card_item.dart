@@ -15,21 +15,66 @@ class QuestionCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      leading: Icon(icon),
-      title: Text(title),
-      subtitle: Text(subtitle),
+    return Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
+      elevation: 2,
+      margin: EdgeInsets.only(right: 12.0, left: 12, top: 6),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ExpansionTile(
+          leading: Icon(icon),
+          // backgroundColor: Colors.white,
+          title: _buildTitle(),
+          // trailing: SizedBox(),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: Device.width - 100,
+                    child: Text(cardTitle,
+                        softWrap: true,
+                        style: TextStyle(
+                          inherit: true,
+                          fontSize: 20.0,
+                        )),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: Device.width - 100,
+                    child: Text(cardText,
+                        softWrap: true,
+                        style: TextStyle(
+                          inherit: true,
+                        )),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitle() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          cardTitle,
-          style: TextStyle(fontSize: 20),
+        Row(
+          children: <Widget>[
+            Text(title),
+          ],
         ),
-        SizedBox(
-          height: 20,
-        ),
-        Center(
-          child: Text(cardText),
-        )
+        Text(subtitle),
       ],
     );
   }
