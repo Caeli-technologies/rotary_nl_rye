@@ -135,6 +135,57 @@ class InboundsDetails extends StatelessWidget {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 20.0, bottom: 0.0, right: 20),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
+              ),
+              //TODO if he has one of the socials not. then it doen't need to show up!
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 80.0, bottom: 0.0, right: 80),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.instagram,
+                        color: Color(0xFFbc2a8d),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.facebookF,
+                        color: Color(0xFF3b5998),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    ),
+                    TextButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.link,
+                        color: Color(0xFF0e76a8),
+                      ),
+                      label: Text(''),
+                      onPressed: () => null,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 0.0, left: 20.0, bottom: 10.0, right: 20),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(left: 30.0, top: 15.0),
                 child: Text(
                   "Info",
