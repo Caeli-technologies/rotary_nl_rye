@@ -98,9 +98,27 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
 
-              // the end
+              // the end dont touch XD
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Center(
+                  child: Image.asset(
+                    'assets/image/rotary_blue.png',
+                    height: 55.0,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Center(
+                  child: Text(
+                    'Update: 27 mei 2021',
+                    style: TextStyle(color: Color(0xFF777777)),
+                  ),
+                ),
+              ),
               SizedBox(
-                height: 20,
+                height: 60,
               ),
             ],
           )
