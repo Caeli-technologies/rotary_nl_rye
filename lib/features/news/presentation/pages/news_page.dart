@@ -36,71 +36,97 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: Container(
+            margin: EdgeInsets.only(left: 10, top: 5),
+            width: 40,
+            height: 40,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+            child: RawMaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Icon(
+                Icons.arrow_back,
+                color: Palette.accentColor,
+                size: 30.0,
+              ),
+              shape: new CircleBorder(),
+              elevation: 2.0,
+              fillColor: Palette.themeShadeColor,
+              padding: const EdgeInsets.all(5.0),
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
+          ),
+          title: Text(
+            "News",
+            textScaleFactor: 1.4,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
-        title: Text(
-          "News",
-          textScaleFactor: 1.4,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Container(
-        // height: Device.height - 170,
-        margin: EdgeInsets.only(left: 10, right: 10),
-        child: ListView.builder(
-            itemCount: _stories.length,
-            itemBuilder: (BuildContext ctxt, int index) {
-              return Transform.translate(
-                offset: Offset(0, 10),
-                child: GestureDetector(
-                  onTap: () => {
-                    _stories[index]["isPdf"] == "yes"
-                        ? Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    PDFPage(pdfUrl: _stories[index]["pdf"])),
-                          )
-                        : Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => null)),
-                  },
-
-//TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
-
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: ListView(shrinkWrap: true, children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 170,
                   child: Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: TravelCard(
-                      image: _stories[index]["images"],
-                      title: _stories[index]["title"],
-                      description: _stories[index]["description"],
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/image/homepage/Informatiedag_Informatiemarkt_2021.png",
+                          ),
+                          fit: BoxFit.cover),
                     ),
                   ),
                 ),
-              );
-            }),
-      ),
-    );
+                SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                Container(
+                  height: Device.height - 300,
+                  child: ListView.builder(
+                      padding: EdgeInsets.only(top: 10),
+                      itemCount: _stories.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        return GestureDetector(
+                          onTap: () => {
+                            _stories[index]["isPdf"] == "yes"
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => PDFPage(
+                                            pdfUrl: _stories[index]["pdf"])),
+                                  )
+                                : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => null)),
+                          },
+
+//TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
+
+                          child: Container(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: TravelCard(
+                              image: _stories[index]["images"],
+                              title: _stories[index]["title"],
+                              description: _stories[index]["description"],
+                            ),
+                          ),
+                        );
+                      }),
+                )
+              ])),
+        ));
   }
 }
 
