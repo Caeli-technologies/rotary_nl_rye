@@ -35,80 +35,66 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: Container(
+          margin: EdgeInsets.only(left: 10, top: 5),
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+          child: RawMaterialButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: new Icon(
+              Icons.arrow_back,
+              color: Palette.accentColor,
+              size: 30.0,
             ),
-          ),
-          title: Text(
-            "News",
-            textScaleFactor: 1.4,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+            shape: new CircleBorder(),
+            elevation: 2.0,
+            fillColor: Palette.themeShadeColor,
+            padding: const EdgeInsets.all(5.0),
           ),
         ),
-        body: SingleChildScrollView(
-            child: Padding(
-                padding: EdgeInsets.only(left: 15, right: 15),
-                child: ListView(shrinkWrap: true, children: [
-                  Container(
-                      margin: EdgeInsets.only(top: 15),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Container(
-                              height: Device.height - 170,
-                              margin: EdgeInsets.only(left: 10, right: 10),
-                              child: ListView.builder(
-                                  itemCount: _stories.length,
-                                  itemBuilder: (BuildContext ctxt, int index) {
-                                    return Transform.translate(
-                                      offset: Offset(0, -10),
-                                      child: GestureDetector(
-                                        onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => PDFPage(
-                                                  pdfUrl: _stories[index]
-                                                      ["pdf"])),
-                                        ),
+        title: Text(
+          "News",
+          textScaleFactor: 1.4,
+          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Container(
+        // height: Device.height - 170,
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: ListView.builder(
+            itemCount: _stories.length,
+            itemBuilder: (BuildContext ctxt, int index) {
+              return Transform.translate(
+                offset: Offset(0, 10),
+                child: GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            PDFPage(pdfUrl: _stories[index]["pdf"])),
+                  ),
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
-                                        child: Container(
-                                          padding: EdgeInsets.only(bottom: 10),
-                                          child: TravelCard(
-                                            image: _stories[index]["images"],
-                                            title: _stories[index]["title"],
-                                            description: _stories[index]
-                                                ["description"],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ]))
-                ]))));
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: TravelCard(
+                      image: _stories[index]["images"],
+                      title: _stories[index]["title"],
+                      description: _stories[index]["description"],
+                    ),
+                  ),
+                ),
+              );
+            }),
+      ),
+    );
   }
 }
 
