@@ -62,6 +62,74 @@
             "description": "frfgefe greg regergerger",
             "text2": "debug",
             "isPdf": "yes"
+        },
+        {
+            "images": "assets/image/1.PNG",
+            "pdf": null,
+            "title": "Informatiedag 18 september 2021",
+            "description": "frfgefe greg regergerger",
+            "text2": "debug",
+            "isPdf": "no",
+            "text": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://www.youtube.com/watch?v=ClpPvpbYBpY",
+                            "isYoutube": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "images": "assets/image/2.PNG",
+            "pdf": null,
+            "title": "Update YEP",
+            "description": "frfgefe greg regergerger",
+            "text2": "debug",
+            "isPdf": "no",
+            "text": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

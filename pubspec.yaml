@@ -76,6 +76,7 @@ dependencies:
   firebase_messaging: ^10.0.0
   # need to add notification to certain widget https://stackoverflow.com/questions/48403786/how-to-open-particular-screen-on-clicking-on-push-notification-for-flutter
   flutter_app_badger: ^1.2.0
+  youtube_player_flutter: ^8.0.0
 
   
 dev_dependencies:

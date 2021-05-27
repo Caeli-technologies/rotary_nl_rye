@@ -1,8 +1,8 @@
 // @dart=2.9
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 // ignore: must_be_immutable
 class PDFPage extends StatefulWidget {
@@ -50,6 +50,12 @@ class _PDFPageState extends State<PDFPage> {
       title = (value == 1) ? "Loaded From Url" : "Loaded From Assets";
       _isLoading = false;
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
