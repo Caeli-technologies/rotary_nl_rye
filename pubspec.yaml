@@ -77,7 +77,8 @@ dependencies:
   # need to add notification to certain widget https://stackoverflow.com/questions/48403786/how-to-open-particular-screen-on-clicking-on-push-notification-for-flutter
   flutter_app_badger: ^1.2.0
 
-  
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
