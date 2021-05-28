@@ -1,12 +1,18 @@
 // @dart=2.9
+
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 
 import '../../../../core/prop.dart';
+import '../../data/utils.dart' as data;
+import '../../models/news.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -14,22 +20,47 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  List _stories = [];
+  _NewsPageState() {
+    FirebaseAuth.instance.signInAnonymously().then(
+        (UserCredential userCredential) =>
+            _currentSubscription = data.loadNews().listen(_updateNews));
+  }
 
-  // Fetch content from the json file
-  Future readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/test/news.json');
-    final data = await json.decode(response);
+  List _stories = [];
+  bool _isLoading = true;
+  News _news;
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
+      _currentSubscription;
+
+  //Fetch content from the json file
+  Future readJson(String url) async {
+    final response = await data.getData(url);
+    //await rootBundle.loadString('assets/test/news.json');
+    final info = await json.decode(response);
     setState(() {
-      _stories = data["news"];
+      _stories = info["news"];
+    });
+  }
+
+  _updateNews(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    setState(() {
+      _isLoading = false;
+      _news = data.getNewsFromQuery(snapshot);
+      readJson(_news.jsonUrl);
     });
   }
 
   @override
   void initState() {
     super.initState();
-    readJson();
+    // readJson();
+  }
+
+  @override
+  void dispose() {
+    _currentSubscription?.pause();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -66,68 +97,82 @@ class _NewsPageState extends State<NewsPage> {
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: ListView(shrinkWrap: true, children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 170,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                          image: AssetImage(
-                            "assets/image/homepage/Informatiedag_Informatiemarkt_2021.png",
-                          ),
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                Container(
-                  height: Device.height - 300,
-                  child: ListView.builder(
-                      padding: EdgeInsets.only(top: 10),
-                      itemCount: _stories.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return GestureDetector(
-                          onTap: () => {
-                            _stories[index]["isPdf"] == "yes"
-                                ? Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PDFPage(
-                                            pdfUrl: _stories[index]["pdf"])),
-                                  )
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => NonPDFPage(
-                                              data: _stories[index],
-                                            ))),
-                          },
+        body: _isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15),
+                    child: ListView(shrinkWrap: true, children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 170,
+                        child: CachedNetworkImage(
+                          height: 55,
+                          width: 55,
+                          imageUrl: _news.headerUrl,
+                          placeholder: (context, url) =>
+                              Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
+                        // child: Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(8),
+                        //     image: DecorationImage(
+                        //         image: AssetImage(
+                        //           "assets/image/homepage/Informatiedag_Informatiemarkt_2021.png",
+                        //         ),
+                        //         fit: BoxFit.cover),
+                        //   ),
+                        // ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Container(
+                        height: Device.height - 300,
+                        child: ListView.builder(
+                            padding: EdgeInsets.only(top: 10),
+                            itemCount: _stories.length,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              return GestureDetector(
+                                onTap: () => {
+                                  _stories[index]["isPdf"] == "yes"
+                                      ? Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => PDFPage(
+                                                  pdfUrl: _stories[index]
+                                                      ["pdf"])),
+                                        )
+                                      : Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => NonPDFPage(
+                                                    data: _stories[index],
+                                                  ))),
+                                },
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
-                          child: Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: TravelCard(
-                              image: _stories[index]["images"],
-                              title: _stories[index]["title"],
-                              description: _stories[index]["description"],
-                            ),
-                          ),
-                        );
-                      }),
-                )
-              ])),
-        ));
+                                child: Container(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: TravelCard(
+                                    image: _stories[index]["images"],
+                                    title: _stories[index]["title"],
+                                    description: _stories[index]["description"],
+                                  ),
+                                ),
+                              );
+                            }),
+                      )
+                    ])),
+              ));
   }
 }
 
