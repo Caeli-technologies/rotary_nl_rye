@@ -149,27 +149,27 @@ class _SettingsPageState extends State<SettingsPage> {
                 DemoLocalizations.of(context).trans('privacyAndSecurity'),
                 FontAwesomeIcons.shieldAlt,
                 null),
-            buildNotificationOptionRow(
-                DemoLocalizations.of(context).trans('new4You'),
-                Platform.isIOS
-                    ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
-                        value: slider1,
-                        onChanged: (value) {
-                          setState(() {
-                            slider1 = value;
-                          });
-                        },
-                      )
-                    : Switch(
-                        activeColor: Palette.accentColor,
-                        value: slider1,
-                        onChanged: (value) {
-                          setState(() {
-                            slider1 = value;
-                          });
-                        },
-                      )),
+            // buildNotificationOptionRow(
+            //     DemoLocalizations.of(context).trans('new4You'),
+            //     Platform.isIOS
+            //         ? CupertinoSwitch(
+            //             activeColor: Palette.accentColor,
+            //             value: slider1,
+            //             onChanged: (value) {
+            //               setState(() {
+            //                 slider1 = value;
+            //               });
+            //             },
+            //           )
+            //         : Switch(
+            //             activeColor: Palette.accentColor,
+            //             value: slider1,
+            //             onChanged: (value) {
+            //               setState(() {
+            //                 slider1 = value;
+            //               });
+            //             },
+            //           )),
             buildAccountOptionRow(context, 'Counselor',
                 FontAwesomeIcons.handsHelping, CounselorListPage()),
             //TODO Make Emergency page with contacts

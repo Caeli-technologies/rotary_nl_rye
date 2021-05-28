@@ -1,6 +1,78 @@
 {
     "news": [
         {
+            "images": "assets/image/1.PNG",
+            "pdf": null,
+            "title": "Informatiedag 18 september 2021",
+            "description": "frfgefe greg regergerger",
+            "text2": "debug",
+            "isPdf": "no",
+            "text": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "images": "assets/image/2.PNG",
+            "pdf": null,
+            "title": "Update YEP",
+            "description": "frfgefe greg regergerger",
+            "text2": "debug",
+            "isPdf": "no",
+            "text": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "hi",
+                                {
+                                    "subheader": "title"
+                                },
+                                "hello"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "images": "assets/image/3.PNG",
             "pdf": "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf",
             "title": "Update YEP 2021",
@@ -62,75 +134,6 @@
             "description": "frfgefe greg regergerger",
             "text2": "debug",
             "isPdf": "yes"
-        },
-        {
-            "images": "assets/image/1.PNG",
-            "pdf": null,
-            "title": "Informatiedag 18 september 2021",
-            "description": "frfgefe greg regergerger",
-            "text2": "debug",
-            "isPdf": "no",
-            "text": [
-                {
-                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
-                },
-                {
-                    "body": [
-                        {
-                            "paragraph": [
-                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
-                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
-                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
-                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
-                            ]
-                        },
-                        {
-                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
-                        },
-                        {
-                            "paragraph": [
-                                "hi",
-                                "hello"
-                            ]
-                        },
-                        {
-                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "images": "assets/image/2.PNG",
-            "pdf": null,
-            "title": "Update YEP",
-            "description": "frfgefe greg regergerger",
-            "text2": "debug",
-            "isPdf": "no",
-            "text": [
-                {
-                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
-                },
-                {
-                    "body": [
-                        {
-                            "paragraph": [
-                                "hi",
-                                "hello"
-                            ]
-                        },
-                        {
-                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
-                        },
-                        {
-                            "paragraph": [
-                                "hi",
-                                "hello"
-                            ]
-                        }
-                    ]
-                }
-            ]
         }
     ]
 }
