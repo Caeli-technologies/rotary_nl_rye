@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_version/get_version.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
@@ -24,71 +24,23 @@ class _SettingsPageState extends State<SettingsPage> {
   var slider2 = true;
   var slider3 = true;
 
-  String _platformVersion = 'Unknown';
-  String _projectVersion = '';
-  String _projectCode = '';
-  String _projectAppID = '';
-  String _projectName = '';
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
 
   @override
   initState() {
     super.initState();
-    initPlatformState();
+    _initPackageInfo();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await GetVersion.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    String projectVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectVersion = await GetVersion.projectVersion;
-    } on PlatformException {
-      projectVersion = 'Failed to get project version.';
-    }
-
-    String projectCode;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectCode = await GetVersion.projectCode;
-    } on PlatformException {
-      projectCode = 'Failed to get build number.';
-    }
-
-    String projectAppID;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectAppID = await GetVersion.appID;
-    } on PlatformException {
-      projectAppID = 'Failed to get app ID.';
-    }
-
-    String projectName;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectName = await GetVersion.appName;
-    } on PlatformException {
-      projectName = 'Failed to get app name.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
     setState(() {
-      _platformVersion = platformVersion;
-      _projectVersion = projectVersion;
-      _projectCode = projectCode;
-      _projectAppID = projectAppID;
-      _projectName = projectName;
+      _packageInfo = info;
     });
   }
 
@@ -281,7 +233,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Center(
               child: Text(
-                'App version: $_projectVersion ($_projectCode)',
+                'App version: ${_packageInfo.version} (${_packageInfo.buildNumber})',
                 style: TextStyle(color: Color(0xFF777777)),
               ),
             )

@@ -61,7 +61,7 @@ dependencies:
   cloud_firestore: ^2.1.0
   # pdf_viewer_jk: any # https://pub.dev/packages/pdf_viewer_jk
   advance_pdf_viewer: ^2.0.0
-  get_version: ^0.2.2 # https://pub.dev/packages/get_version
+  package_info_plus: ^1.0.1 # https://pub.dev/packages/package_info_plus
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
   share_plus: ^2.1.2 # native share https://pub.dev/packages/share_plus
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
