@@ -65,8 +65,8 @@ dependencies:
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
   share_plus: ^2.1.2 # native share https://pub.dev/packages/share_plus
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
-  chewie: ^1.0.0
-  video_player: ^2.1.1
+  chewie: ^1.2.0
+  video_player: ^2.1.4
   cached_network_image: ^3.0.0
 
 
