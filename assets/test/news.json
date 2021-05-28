@@ -43,7 +43,7 @@
         {
             "images": "assets/image/2.PNG",
             "pdf": null,
-            "title": "Update YEP",
+            "title": "Testing News",
             "description": "frfgefe greg regergerger",
             "text2": "debug",
             "isPdf": "no",
@@ -56,14 +56,14 @@
                         {
                             "paragraph": [
                                 "hi",
-                                {
-                                    "subheader": "title"
-                                },
                                 "hello"
                             ]
                         },
                         {
                             "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
                         },
                         {
                             "paragraph": [
