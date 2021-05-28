@@ -99,6 +99,19 @@ class _NonPDFPageState extends State<NonPDFPage> {
         list.add(Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: NativeVideo(url: y["videoUrl"])));
+      } else if (y['subHeader'] != null) {
+        list.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Text(
+              y['subHeader'],
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        );
       }
     }
 
