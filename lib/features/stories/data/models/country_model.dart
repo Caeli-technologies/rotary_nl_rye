@@ -1,24 +1,22 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/country.dart';
+class CountryModel extends Equatable {
+  final int id;
+  final String name, imagePath;
 
-class CountryModel extends Country {
-  final String id, name, imageUrl;
-
-  CountryModel({required this.id, required this.name, required this.imageUrl})
-      : super(id: id, name: name, imageUrl: imageUrl);
+  CountryModel({required this.id, required this.name, required this.imagePath});
 
   @override
-  List<Object?> get props => [id, name, imageUrl];
+  List<Object?> get props => [id, name, imagePath];
 
-  factory CountryModel.fromDoc(QueryDocumentSnapshot document) {
+  factory CountryModel.fromJson(Map<String, dynamic> json) {
     return CountryModel(
-        id: document.id,
-        name: document['name'],
-        imageUrl: document['imageUrl']);
+        id: (json['id'] as num).toInt(),
+        name: json['name'],
+        imagePath: json['imagePath']);
   }
 
-  /*Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {'id': id, 'name': name, 'imagePath': imagePath};
-  }*/
+  }
 }

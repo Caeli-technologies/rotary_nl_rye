@@ -1,6 +1,6 @@
-import '../../../../core/presentation/models/image_list_tile_item.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 
-class Person extends ImageListTileItem {
+class Person extends ReboundsStudentsListTile {
   final String name;
   final String description;
   final String bio;

@@ -1,32 +1,38 @@
 // @dart=2.9
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/prop.dart';
-import '../../domain/entities/story.dart';
 import '../pages/stories_details_page.dart';
 
 class StoriesDisplay extends StatefulWidget {
-  final stories;
-
-  StoriesDisplay({this.stories});
-
   @override
-  _StoriesDisplayState createState() => _StoriesDisplayState(stories);
+  _StoriesDisplayState createState() => _StoriesDisplayState();
 }
 
 class _StoriesDisplayState extends State<StoriesDisplay> {
-  final List<Story> _stories;
+  List stories = [];
 
-  _StoriesDisplayState(this._stories);
+  // Fetch content from the json file
+  Future readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/test/stories.json');
+    final data = await json.decode(response);
+    setState(() {
+      stories = data["stories"];
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    readJson();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -133,31 +139,32 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   height: Device.height - 395,
                   child: ListView.builder(
                       padding: EdgeInsets.only(top: 10),
-                      itemCount: _stories.length,
+                      itemCount: stories.length,
                       itemBuilder: (BuildContext ctxt, int index) {
                         return GestureDetector(
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => StoriesDetails(
-                                    image: _stories[index].imagePath,
-                                    country: _stories[index].country,
-                                    name: _stories[index].studentName,
-                                    text1: _stories[index].text1,
-                                    text2: _stories[index].text2,
-                                    departureDate:
-                                        _stories[index].departureDate,
-                                    arrivalDate: _stories[index].arrivalDate)),
+                                    image: stories[index]["images"],
+                                    country: stories[index]["country"],
+                                    name: stories[index]["name"],
+                                    text1: stories[index]["text1"],
+                                    text2: stories[index]["text2"],
+                                    departureDate: stories[index]
+                                        ["departureDate"],
+                                    arrivalDate: stories[index]
+                                        ["arrivalDate"])),
                           ),
                           child: Container(
                             padding: EdgeInsets.only(bottom: 10),
                             child: TravelCard(
-                                image: _stories[index].imagePath,
-                                country: _stories[index].country,
-                                text1: _stories[index].text1,
-                                text2: _stories[index].text2,
-                                departureDate: _stories[index].departureDate,
-                                arrivalDate: _stories[index].arrivalDate),
+                                image: stories[index]["images"],
+                                country: stories[index]["country"],
+                                text1: stories[index]["text1"],
+                                text2: stories[index]["text2"],
+                                departureDate: stories[index]["departureDate"],
+                                arrivalDate: stories[index]["arrivalDate"]),
                           ),
                         );
                       }),
@@ -168,8 +175,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 }
 
 class TravelCard extends StatelessWidget {
-  final String country, text1, text2, image;
-  final int departureDate, arrivalDate;
+  final String country, text1, text2, image, departureDate, arrivalDate;
 
   TravelCard(
       {this.departureDate,
@@ -225,7 +231,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                Device.convert(departureDate),
+                                departureDate,
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),
@@ -247,7 +253,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                Device.convert(arrivalDate),
+                                departureDate,
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),

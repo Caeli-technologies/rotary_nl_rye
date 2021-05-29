@@ -4,11 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_page.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/models/person.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/widgets/stories_display.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
-  final country;
-  const ExchangeStudentsPage({this.country});
+  final country, stories;
+  const ExchangeStudentsPage({this.country, this.stories});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +84,7 @@ class ExchangeStudentsPage extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, index) => ReboundsStudentsListTile(
                   item: exchangeStudents[index],
-                  reboundsStudentsListPage: StoriesPage(),
+                  reboundsStudentsListPage: StoriesDisplay(),
                 ),
                 itemCount: exchangeStudents.length,
               ),
@@ -94,8 +96,8 @@ class ExchangeStudentsPage extends StatelessWidget {
   }
 }
 
-List<Contributor> exchangeStudents = [
-  Contributor(
+List<Person> exchangeStudents = [
+  Person(
     name: "Ruben Talstra",
     description: "Long Exchange Year 2018-2019",
     place: "Netherlands",
@@ -104,8 +106,9 @@ List<Contributor> exchangeStudents = [
     imageUrl: "assets/image/1.PNG",
     email: "ruben@example.com",
     phoneNumber: "888 444 7676",
+    exchangeInfo: {},
   ),
-  Contributor(
+  Person(
     name: "_Bnkn_",
     description: "Short Exchange Year 2018-2019",
     place: "Germany",
@@ -114,8 +117,9 @@ List<Contributor> exchangeStudents = [
     imageUrl: "assets/image/2.PNG",
     email: "bnkn@example.com",
     phoneNumber: "888 444 7676",
+    exchangeInfo: {},
   ),
-  Contributor(
+  Person(
     name: "Sceptile",
     description: "Long Exchange Year 2018-2019",
     place: "Germany",
@@ -124,8 +128,9 @@ List<Contributor> exchangeStudents = [
     imageUrl: "assets/image/3.PNG",
     email: "sceptile@example.com",
     phoneNumber: "888 444 7676",
+    exchangeInfo: {},
   ),
-  Contributor(
+  Person(
     name: "Ton Ann",
     description: "Long Exchange Year 2018-2019",
     place: "France",
@@ -134,8 +139,9 @@ List<Contributor> exchangeStudents = [
     imageUrl: "assets/image/1.PNG",
     email: "tonann@example.com",
     phoneNumber: "888 444 7676",
+    exchangeInfo: {},
   ),
-  Contributor(
+  Person(
     name: "Believer",
     description: "Short Exchange Year 2018-2019",
     place: "India",
@@ -144,8 +150,9 @@ List<Contributor> exchangeStudents = [
     imageUrl: "assets/image/2.PNG",
     email: "believer@example.com",
     phoneNumber: "888 444 7676",
+    exchangeInfo: {},
   ),
-  Contributor(
+  Person(
     name: "Yvan",
     description: "Short Exchange Year 2018-2019",
     place: "Nice Place",
@@ -154,5 +161,6 @@ List<Contributor> exchangeStudents = [
     imageUrl: "assets/image/2.PNG",
     email: "yvan@example.com",
     phoneNumber: "888 444 7676",
+    exchangeInfo: {},
   )
 ];
