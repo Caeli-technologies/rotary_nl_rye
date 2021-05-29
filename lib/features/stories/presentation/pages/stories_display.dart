@@ -5,17 +5,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
+import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 import '../../../../core/prop.dart';
-import '../pages/stories_details_page.dart';
+import '../widgets/story_details_page.dart';
 
 class StoriesDisplay extends StatefulWidget {
+  final ExchangeStudent student;
+
+  StoriesDisplay({@required this.student});
+
   @override
-  _StoriesDisplayState createState() => _StoriesDisplayState();
+  _StoriesDisplayState createState() => _StoriesDisplayState(student: student);
 }
 
 class _StoriesDisplayState extends State<StoriesDisplay> {
-  List stories = [];
+  _StoriesDisplayState({@required this.student});
+
+  List<Story> stories = [];
+  final ExchangeStudent student;
 
   // Fetch content from the json file
   Future readJson() async {
@@ -23,7 +32,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
         await rootBundle.loadString('assets/test/stories.json');
     final data = await json.decode(response);
     setState(() {
-      stories = data["stories"];
+      stories = StoryResult.fromJson(data).stories;
     });
   }
 
@@ -67,7 +76,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                 Container(
                     child: CircleAvatar(
                   radius: 50.0,
-                  backgroundImage: AssetImage("assets/image/1.PNG"),
+                  backgroundImage: AssetImage(student.imageUrl),
                 )),
                 SizedBox(
                   height: 20,
@@ -81,7 +90,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   ),
                   child: Column(children: <Widget>[
                     Text(
-                      "Ruben Talstra",
+                      student.name,
                       textAlign: TextAlign.center,
                       textScaleFactor: 2,
                       style: TextStyle(
@@ -99,7 +108,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                               spacing: 30.0,
                               children: <Widget>[
                                 Text(
-                                  "Sponsor District 1590",
+                                  'Sponsor District ${student.sponsorDistrict}',
                                   textAlign: TextAlign.center,
                                   textScaleFactor: 1,
                                   style: TextStyle(
@@ -108,7 +117,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                   ),
                                 ),
                                 Text(
-                                  "Host District 7820",
+                                  'Host District ${student.hostDistrict}',
                                   textAlign: TextAlign.center,
                                   textScaleFactor: 1,
                                   style: TextStyle(
@@ -145,26 +154,13 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => StoriesDetails(
-                                    image: stories[index]["images"],
-                                    country: stories[index]["country"],
-                                    name: stories[index]["name"],
-                                    text1: stories[index]["text1"],
-                                    text2: stories[index]["text2"],
-                                    departureDate: stories[index]
-                                        ["departureDate"],
-                                    arrivalDate: stories[index]
-                                        ["arrivalDate"])),
+                                builder: (context) => StoryDetails(
+                                      story: stories[index],
+                                    )),
                           ),
                           child: Container(
                             padding: EdgeInsets.only(bottom: 10),
-                            child: TravelCard(
-                                image: stories[index]["images"],
-                                country: stories[index]["country"],
-                                text1: stories[index]["text1"],
-                                text2: stories[index]["text2"],
-                                departureDate: stories[index]["departureDate"],
-                                arrivalDate: stories[index]["arrivalDate"]),
+                            child: TravelCard(story: stories[index]),
                           ),
                         );
                       }),
@@ -175,15 +171,9 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 }
 
 class TravelCard extends StatelessWidget {
-  final String country, text1, text2, image, departureDate, arrivalDate;
+  final Story story;
 
-  TravelCard(
-      {this.departureDate,
-      this.text1,
-      this.text2,
-      this.arrivalDate,
-      this.country,
-      this.image});
+  TravelCard({@required this.story});
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +190,7 @@ class TravelCard extends StatelessWidget {
                     height: 120,
                     child: ClipRRect(
                       borderRadius: new BorderRadius.circular(14.0),
-                      child: Image.asset(image),
+                      child: Image.asset(story.imageUrl),
                     )),
                 SizedBox(
                   height: 120,
@@ -211,7 +201,7 @@ class TravelCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 12),
                         child: Text(
-                          country,
+                          story.country,
                           textScaleFactor: 1.2,
                           style: TextStyle(
                             color: Palette.indigo,
@@ -231,7 +221,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                departureDate,
+                                story.departureDate.toString(),
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),
@@ -253,7 +243,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                departureDate,
+                                story.arrivalDate.toString(),
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),
@@ -265,7 +255,7 @@ class TravelCard extends StatelessWidget {
                         padding: EdgeInsets.only(left: 10, top: 4),
                         child: SizedBox(
                           width: Device.width - 240,
-                          child: Text(text1,
+                          child: Text(story.text1,
                               textScaleFactor: 0.7,
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,

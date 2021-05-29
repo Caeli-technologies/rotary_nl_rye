@@ -3,45 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
+import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 // ignore: must_be_immutable
-class StoriesDetails extends StatelessWidget {
-  String country, name, text1, text2, image, arrivalDate, departureDate;
+class StoryDetails extends StatelessWidget {
+  final Story story;
 
-  StoriesDetails(
-      {this.country,
-      this.name,
-      this.text1,
-      this.text2,
-      this.image,
-      this.arrivalDate,
-      this.departureDate});
+  StoryDetails({@required this.story});
 
   @override
   Widget build(BuildContext context) {
     return MainContainer(
-      country: country,
-      text1: text1,
-      text2: text2,
-      name: name,
-      departureDate: departureDate,
-      arrivalDate: arrivalDate,
-      image: image,
+      story: story,
     );
   }
 }
 
 class MainContainer extends StatelessWidget {
-  final String image, name, country, text1, text2, arrivalDate, departureDate;
+  final Story story;
 
-  MainContainer(
-      {this.image,
-      this.name,
-      this.country,
-      this.text1,
-      this.text2,
-      this.arrivalDate,
-      this.departureDate});
+  MainContainer({@required this.story});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +55,7 @@ class MainContainer extends StatelessWidget {
             ),
             expandedHeight: Device.height * 0.25,
             flexibleSpace: Image.asset(
-              image,
+              story.imageUrl,
               fit: BoxFit.cover,
             ),
           )
@@ -94,7 +76,7 @@ class MainContainer extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(left: 40, top: 30),
                       child: Text(
-                        country,
+                        story.country,
                         textScaleFactor: 2,
                         style: TextStyle(
                           color: Palette.indigo,
@@ -108,7 +90,7 @@ class MainContainer extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(left: 40, top: 5),
                       child: Text(
-                        name,
+                        story.name,
                         textScaleFactor: 1,
                         style: TextStyle(
                           color: Palette.grey,
@@ -138,7 +120,7 @@ class MainContainer extends StatelessWidget {
                                     margin:
                                         EdgeInsets.only(left: 10, bottom: 3.6),
                                     child: Text(
-                                      departureDate,
+                                      story.departureDate.toString(),
                                       textScaleFactor: 1.2,
                                       style:
                                           TextStyle(color: Palette.lightIndigo),
@@ -158,7 +140,7 @@ class MainContainer extends StatelessWidget {
                                     margin:
                                         EdgeInsets.only(left: 10, bottom: 3.6),
                                     child: Text(
-                                      arrivalDate,
+                                      story.arrivalDate.toString(),
                                       textScaleFactor: 1.2,
                                       style:
                                           TextStyle(color: Palette.lightIndigo),
@@ -177,7 +159,19 @@ class MainContainer extends StatelessWidget {
                 child: Container(
                   margin:
                       EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
-                  child: ListView(children: [Text(text1)]),
+                  child: ListView(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: Text(
+                        story.message[0]["heading"],
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    ..._text(story.message[1]["body"])
+                  ]),
                 ),
               ),
             ],
@@ -185,5 +179,50 @@ class MainContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _text(List x) {
+    print(x.toString());
+
+    List<Widget> list = [];
+    for (Map<String, dynamic> y in x) {
+      if (y['paragraph'] != null) {
+        for (String a in y['paragraph']) {
+          list.add(Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Text(
+              a,
+              style: TextStyle(color: Colors.black, fontSize: 16.0),
+            ),
+          ));
+        }
+      } else if (y['imageUrl'] != null) {
+        list.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.network(y['imageUrl']),
+          ),
+        );
+      } else if (y['videoUrl'] != null) {
+        list.add(Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: NativeVideo(url: y["videoUrl"])));
+      } else if (y['subHeader'] != null) {
+        list.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Text(
+              y['subHeader'],
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        );
+      }
+    }
+
+    return list;
   }
 }

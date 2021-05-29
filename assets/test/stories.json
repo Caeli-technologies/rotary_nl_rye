@@ -1,58 +1,256 @@
 {
     "stories": [
         {
-            "images": "assets/image/3.PNG",
+            "imageUrl": "assets/image/3.PNG",
             "country": "Bali",
             "name": "Ruben",
             "departureDate": "12 april 2014",
             "arrivalDate": "18 november 2015",
             "text1": "frfgefe greg regergerger",
-            "text2": "debug"
+            "onlyVideo": false,
+            "videoUrl": "",
+            "message": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "images": "assets/image/2.PNG",
+            "onlyVideo": false,
+            "videoUrl": "",
+            "imageUrl": "assets/image/2.PNG",
             "country": "Bukittinggi",
             "name": "Ruben",
             "departureDate": "13 mei 2015",
             "arrivalDate": "19 decemeber 2016",
             "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
-            "text2": "debug"
+            "message": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "images": "assets/image/3.PNG",
+            "onlyVideo": false,
+            "videoUrl": "",
+            "imageUrl": "assets/image/3.PNG",
             "country": "Yogyakarta",
             "name": "Ruben",
             "departureDate": "14 juni 2016",
             "arrivalDate": "20 januarie 2017",
             "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
-            "text2": "debug"
+            "message": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "images": "assets/image/2.PNG",
+            "onlyVideo": false,
+            "videoUrl": "",
+            "imageUrl": "assets/image/2.PNG",
             "country": "Bogor",
             "name": "Ruben",
             "departureDate": "15 julli 2017",
             "arrivalDate": "21 fabuarie 2018",
             "text1": "frfgefe greg regergerger",
-            "text2": "debug"
+            "message": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "images": "assets/image/2.PNG",
+            "onlyVideo": false,
+            "videoUrl": "",
+            "imageUrl": "assets/image/2.PNG",
             "country": "Bandung",
             "name": "Ruben",
             "departureDate": "16 augustus 2018",
             "arrivalDate": "22 maart 2019",
             "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Lectus quam id leo in vitae. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Vitae auctor eu augue ut lectus. Non diam phasellus vestibulum lorem sed. Amet justo donec enim diam. Posuere morbi leo urna molestie at. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Neque vitae tempus quam pellentesque nec. Blandit aliquam etiam erat velit scelerisque. Aliquam faucibus purus in massa tempor nec feugiat. Nunc vel risus commodo viverra maecenas. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet. A lacus vestibulum sed arcu. Eu feugiat pretium nibh ipsum. Pharetra sit amet aliquam id diam maecenas. Augue mauris augue neque gravida in fermentum et sollicitudin. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Sit amet commodo nulla facilisi nullam vehicula ipsum a. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Purus semper eget duis at tellus. Et netus et malesuada fames. Imperdiet sed euismod nisi porta lorem mollis aliquam. Tempus egestas sed sed risus pretium quam vulputate dignissim. Nulla facilisi cras fermentum odio eu feugiat pretium nibh.",
-            "text2": "debug"
+            "message": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "images": "assets/image/3.PNG",
+            "onlyVideo": false,
+            "videoUrl": "",
+            "imageUrl": "assets/image/3.PNG",
             "country": "Malang",
             "name": "Ruben",
             "departureDate": "17 september 2019",
             "arrivalDate": "23 april 2020",
             "text1": "frfgefe greg regergerger",
-            "text2": "debug"
+            "message": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                        },
+                        {
+                            "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "paragraph": [
+                                "hi",
+                                "hello"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

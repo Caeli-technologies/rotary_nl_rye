@@ -1,4 +1,4 @@
-class Student {
+class ExchangeStudent {
   final String name;
   final String description;
   final String bio;
@@ -6,7 +6,7 @@ class Student {
   final String imageUrl;
   final Map<String, dynamic> exchangeInfo;
 
-  Student(
+  ExchangeStudent(
       {required this.name,
       required this.description,
       required this.bio,
@@ -16,15 +16,16 @@ class Student {
       required this.imageUrl,
       required this.exchangeInfo});
 
-  factory Student.fromJson(Map<String, dynamic> json) => Student(
-      name: json['name'],
-      description: json['description'],
-      bio: json['bio'],
-      country: json['country'],
-      sponsorDistrict: json['sponsorDistrict'],
-      hostDistrict: json['hostDistrict'],
-      imageUrl: json['imageUrl'],
-      exchangeInfo: json['exchangeInfo']);
+  factory ExchangeStudent.fromJson(Map<String, dynamic> json) =>
+      ExchangeStudent(
+          name: json['name'],
+          description: json['description'],
+          bio: json['bio'],
+          country: json['country'],
+          sponsorDistrict: json['sponsorDistrict'],
+          hostDistrict: json['hostDistrict'],
+          imageUrl: json['imageUrl'],
+          exchangeInfo: json['exchangeInfo']);
 
   Map<String, dynamic> toJson() => {
         "name": name,

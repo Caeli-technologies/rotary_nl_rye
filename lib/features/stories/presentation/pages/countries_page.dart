@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/models/country.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/models/person.dart';
+import 'package:rotary_nl_rye/features/stories/models/country.dart';
+import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 
 import 'exchange_students_page.dart';
 
@@ -124,8 +124,8 @@ List<Country> countries = [
   Country(name: "Japan", imageUrl: "assets/icons/flags/jp.svg", description: "")
 ];
 
-List<Student> exchangeStudents = [
-  Student(
+List<ExchangeStudent> exchangeStudents = [
+  ExchangeStudent(
     sponsorDistrict: "1590",
     hostDistrict: "7820",
     name: "Ruben Talstra",
@@ -136,7 +136,7 @@ List<Student> exchangeStudents = [
     imageUrl: "assets/image/1.PNG",
     exchangeInfo: {},
   ),
-  Student(
+  ExchangeStudent(
     sponsorDistrict: "1590",
     hostDistrict: "7820",
     name: "_Bnkn_",
@@ -147,7 +147,7 @@ List<Student> exchangeStudents = [
     imageUrl: "assets/image/2.PNG",
     exchangeInfo: {},
   ),
-  Student(
+  ExchangeStudent(
     name: "Sceptile",
     description: "Long Exchange Year 2018-2019",
     country: "Chili",
@@ -158,7 +158,7 @@ List<Student> exchangeStudents = [
     imageUrl: "assets/image/3.PNG",
     exchangeInfo: {},
   ),
-  Student(
+  ExchangeStudent(
     sponsorDistrict: "1590",
     hostDistrict: "7820",
     name: "Ton Ann",
@@ -169,7 +169,7 @@ List<Student> exchangeStudents = [
     imageUrl: "assets/image/1.PNG",
     exchangeInfo: {},
   ),
-  Student(
+  ExchangeStudent(
     sponsorDistrict: "1590",
     hostDistrict: "7820",
     name: "Believer",
@@ -180,7 +180,7 @@ List<Student> exchangeStudents = [
     imageUrl: "assets/image/2.PNG",
     exchangeInfo: {},
   ),
-  Student(
+  ExchangeStudent(
     sponsorDistrict: "1590",
     hostDistrict: "7820",
     name: "Yvan",

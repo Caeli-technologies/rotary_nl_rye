@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/models/country.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/models/person.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/stories_display.dart';
+import 'package:rotary_nl_rye/features/stories/models/country.dart';
+import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_display.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
   final Country country;
-  final List<Student> students;
+  final List<ExchangeStudent> students;
 
   const ExchangeStudentsPage({@required this.country, @required this.students});
 
@@ -86,7 +86,9 @@ class ExchangeStudentsPage extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, index) => ReboundsStudentsListTile(
                   item: students[index],
-                  reboundsStudentsListPage: StoriesDisplay(),
+                  reboundsStudentsListPage: StoriesDisplay(
+                    student: students[index],
+                  ),
                 ),
                 itemCount: students.length,
               ),
