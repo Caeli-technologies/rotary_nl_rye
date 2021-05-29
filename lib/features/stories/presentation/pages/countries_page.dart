@@ -12,6 +12,10 @@ class CountriesPage extends StatefulWidget {
   _CountriesPageState createState() => _CountriesPageState();
 }
 
+//TODO preload-svgs
+//
+//https://kangabru.xyz/2020/05/29/zero-to-hero-2.html#preload-svgs
+
 class _CountriesPageState extends State<CountriesPage> {
   @override
   Widget build(BuildContext context) {
