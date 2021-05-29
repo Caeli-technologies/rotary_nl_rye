@@ -115,6 +115,10 @@ List<Country> countries = [
       imageUrl: "assets/icons/flags/nz.svg",
       description: ""),
   Country(
+      name: "Australia",
+      imageUrl: "assets/icons/flags/au.svg",
+      description: ""),
+  Country(
       name: "Indonesia",
       imageUrl: "assets/icons/flags/id.svg",
       description: ""),
