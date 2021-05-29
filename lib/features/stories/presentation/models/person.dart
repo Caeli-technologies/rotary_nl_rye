@@ -1,21 +1,39 @@
-import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
-
-class Person extends ReboundsStudentsListTile {
+class Student {
   final String name;
   final String description;
   final String bio;
-  final String place;
+  final String country, sponsorDistrict, hostDistrict;
   final String imageUrl;
-  final String email;
-  final String phoneNumber;
   final Map<String, dynamic> exchangeInfo;
-  Person(
+
+  Student(
       {required this.name,
       required this.description,
       required this.bio,
-      required this.place,
+      required this.country,
+      required this.sponsorDistrict,
+      required this.hostDistrict,
       required this.imageUrl,
-      required this.email,
-      required this.phoneNumber,
       required this.exchangeInfo});
+
+  factory Student.fromJson(Map<String, dynamic> json) => Student(
+      name: json['name'],
+      description: json['description'],
+      bio: json['bio'],
+      country: json['country'],
+      sponsorDistrict: json['sponsorDistrict'],
+      hostDistrict: json['hostDistrict'],
+      imageUrl: json['imageUrl'],
+      exchangeInfo: json['exchangeInfo']);
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "description": description,
+        "bio": bio,
+        "country": country,
+        "sponsorDistrict": sponsorDistrict,
+        "hostDistrict": hostDistrict,
+        "imageUrl": imageUrl,
+        "exchangeInfo": exchangeInfo
+      };
 }

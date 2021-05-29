@@ -7,6 +7,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/models/person.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
@@ -415,12 +416,14 @@ class InboundsStudentsListTile extends StatelessWidget {
 
 class ReboundsStudentsListTile extends StatelessWidget {
   final reboundsStudentsListPage;
-  final item;
+  final Student item;
+
   const ReboundsStudentsListTile({
     this.reboundsStudentsListPage,
-    this.item,
+    required this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
