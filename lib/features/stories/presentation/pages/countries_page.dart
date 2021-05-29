@@ -10,6 +10,10 @@ import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'exchange_students_page.dart';
 
 class CountriesPage extends StatefulWidget {
+  final String url;
+
+  const CountriesPage({@required this.url});
+
   @override
   _CountriesPageState createState() => _CountriesPageState();
 }
@@ -21,11 +25,10 @@ class CountriesPage extends StatefulWidget {
 class _CountriesPageState extends State<CountriesPage> {
   List<ExchangeStudent> exchangeStudents = [];
 
-  Future readJson() async {
+  Future readJson(String url) async {
     // final String response =
     //     await rootBundle.loadString('assets/test/stories.json');
-    final data = await getDataStudents(
-        "https://rotary.caeli-tech.com/rebounds/studentList.json");
+    final data = await getDataStudents(url);
     setState(() {
       exchangeStudents = data;
     });
@@ -33,7 +36,7 @@ class _CountriesPageState extends State<CountriesPage> {
 
   @override
   void initState() {
-    readJson(); // TODO: implement initState
+    readJson(widget.url); // TODO: implement initState
     super.initState();
   }
 

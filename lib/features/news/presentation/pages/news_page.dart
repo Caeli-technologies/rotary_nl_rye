@@ -4,8 +4,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
@@ -15,22 +13,19 @@ import '../../data/utils.dart' as data;
 import '../../models/news.dart';
 
 class NewsPage extends StatefulWidget {
+  final News news;
+
+  NewsPage({@required this.news});
+
   @override
-  _NewsPageState createState() => _NewsPageState();
+  _NewsPageState createState() => _NewsPageState(news: news);
 }
 
 class _NewsPageState extends State<NewsPage> {
-  _NewsPageState() {
-    FirebaseAuth.instance.signInAnonymously().then(
-        (UserCredential userCredential) =>
-            _currentSubscription = data.loadNews().listen(_updateNews));
-  }
-
+  _NewsPageState({@required News news}) : _news = news;
+  final News _news;
   List _stories = [];
   bool _isLoading = true;
-  News _news;
-  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
-      _currentSubscription;
 
   //Fetch content from the json file
   Future readJson(String url) async {
@@ -42,23 +37,24 @@ class _NewsPageState extends State<NewsPage> {
     });
   }
 
-  _updateNews(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+  _updateNews(News news) {
     setState(() {
       _isLoading = false;
-      _news = data.getNewsFromQuery(snapshot);
-      readJson(_news.jsonUrl);
+
+      readJson(news.jsonUrl);
     });
   }
 
   @override
   void initState() {
+    _updateNews(_news);
     super.initState();
+
     // readJson();
   }
 
   @override
   void dispose() {
-    _currentSubscription?.pause();
     // TODO: implement dispose
     super.dispose();
   }
