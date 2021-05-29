@@ -1,10 +1,9 @@
 // @dart=2.9
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/features/stories/data/utils.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
@@ -28,11 +27,12 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   // Fetch content from the json file
   Future readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/test/stories.json');
-    final data = await json.decode(response);
+    // final String response =
+    //     await rootBundle.loadString('assets/test/stories.json');
+    final data = await getData(
+        "https://rotary.caeli-tech.com/rebounds/students/stories.json");
     setState(() {
-      stories = StoryResult.fromJson(data).stories;
+      stories = data;
     });
   }
 

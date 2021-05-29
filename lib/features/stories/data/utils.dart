@@ -14,7 +14,7 @@ Future getData(String url) async {
     );
   } catch (e) {
     print(e);
-    throw 'unable to fetch news json';
+    throw 'unable to fetch stories json';
   }
   var data = json.decode(response.body);
   List<Story> stories = StoryResult.fromJson(data).stories;

@@ -170,6 +170,9 @@ class MainContainer extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
+                    story.isDutchie
+                        ? dutchie(story.message[1]["body"])
+                        : SizedBox(),
                     ..._text(story.message[1]["body"])
                   ]),
                 ),
@@ -179,6 +182,16 @@ class MainContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget dutchie(List x) {
+    for (Map<String, dynamic> y in x) {
+      if (y['videoUrl'] != null) {
+        return Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: NativeVideo(url: y["videoUrl"]));
+      }
+    }
   }
 
   List<Widget> _text(List x) {

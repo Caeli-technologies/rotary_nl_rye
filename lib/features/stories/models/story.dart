@@ -5,8 +5,7 @@ class Story extends Equatable {
   final String arrivalDate;
   final String departureDate;
   final String imageUrl;
-  final bool onlyVideo;
-  final String? videoUrl;
+  final bool isDutchie;
   final String name;
   final String text1;
   final List message;
@@ -17,8 +16,7 @@ class Story extends Equatable {
       required this.departureDate,
       required this.imageUrl,
       required this.name,
-      required this.onlyVideo,
-      this.videoUrl,
+      required this.isDutchie,
       required this.text1,
       required this.message});
 
@@ -31,8 +29,7 @@ class Story extends Equatable {
         name,
         text1,
         message,
-        onlyVideo,
-        videoUrl!
+        isDutchie,
       ];
 
   factory Story.fromJson(Map<String, dynamic> json) => Story(
@@ -42,8 +39,7 @@ class Story extends Equatable {
       imageUrl: json["imageUrl"],
       name: json["name"],
       text1: json["text1"],
-      onlyVideo: json["onlyVideo"],
-      videoUrl: json["videoUrl"],
+      isDutchie: json["isDutchie"],
       message: json["message"]);
 
   Map<String, dynamic> toJson() {
@@ -55,8 +51,7 @@ class Story extends Equatable {
       "name": name,
       "text1": text1,
       "message": message,
-      "onlyVideo": onlyVideo,
-      "videoUrl": videoUrl
+      "isDutchie": isDutchie,
     };
   }
 }

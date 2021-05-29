@@ -7,8 +7,7 @@
             "departureDate": "12 april 2014",
             "arrivalDate": "18 november 2015",
             "text1": "frfgefe greg regergerger",
-            "onlyVideo": false,
-            "videoUrl": "",
+            "isDutchie": false,
             "message": [
                 {
                     "heading": "Belangrijke update inzake Rotary uitwisselingen"
@@ -43,8 +42,7 @@
             ]
         },
         {
-            "onlyVideo": false,
-            "videoUrl": "",
+            "isDutchie": false,
             "imageUrl": "assets/image/2.PNG",
             "country": "Bukittinggi",
             "name": "Ruben",
@@ -85,8 +83,7 @@
             ]
         },
         {
-            "onlyVideo": false,
-            "videoUrl": "",
+            "isDutchie": false,
             "imageUrl": "assets/image/3.PNG",
             "country": "Yogyakarta",
             "name": "Ruben",
@@ -127,8 +124,7 @@
             ]
         },
         {
-            "onlyVideo": false,
-            "videoUrl": "",
+            "isDutchie": false,
             "imageUrl": "assets/image/2.PNG",
             "country": "Bogor",
             "name": "Ruben",
@@ -169,8 +165,7 @@
             ]
         },
         {
-            "onlyVideo": false,
-            "videoUrl": "",
+            "isDutchie": false,
             "imageUrl": "assets/image/2.PNG",
             "country": "Bandung",
             "name": "Ruben",
@@ -211,8 +206,7 @@
             ]
         },
         {
-            "onlyVideo": false,
-            "videoUrl": "",
+            "isDutchie": false,
             "imageUrl": "assets/image/3.PNG",
             "country": "Malang",
             "name": "Ruben",
