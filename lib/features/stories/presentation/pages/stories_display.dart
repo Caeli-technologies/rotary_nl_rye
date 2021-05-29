@@ -29,7 +29,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
   Future readJson() async {
     // final String response =
     //     await rootBundle.loadString('assets/test/stories.json');
-    final data = await getData(
+    final data = await getDataStories(
         "https://rotary.caeli-tech.com/rebounds/students/stories.json");
     setState(() {
       stories = data;
