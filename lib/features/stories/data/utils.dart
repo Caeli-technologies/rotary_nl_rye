@@ -17,7 +17,11 @@ Future getDataStories(String url) async {
     print(e);
     throw 'unable to fetch stories json';
   }
+  if (response.statusCode == 404) {
+    return null;
+  }
   var data = json.decode(response.body);
+
   List<Story> stories = StoryResult.fromJson(data).stories;
   return stories;
 }

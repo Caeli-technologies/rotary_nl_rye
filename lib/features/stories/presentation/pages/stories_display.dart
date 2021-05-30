@@ -34,7 +34,12 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
     final data = await getDataStories(
         "https://rotary.caeli-tech.com/rebounds/students/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
     setState(() {
-      stories = data;
+      if (data == null) {
+        print('data $data');
+        stories = [];
+      } else {
+        stories = data;
+      }
       _isLoading = false;
     });
   }
@@ -166,24 +171,36 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                       ? Center(
                           child: CircularProgressIndicator(),
                         )
-                      : ListView.builder(
-                          padding: EdgeInsets.only(top: 10),
-                          itemCount: stories.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => StoryDetails(
-                                          story: stories[index],
-                                        )),
+                      : (stories.length == 0)
+                          ? Center(
+                              child: Text(
+                                'No Adventures yet',
+                                textAlign: TextAlign.center,
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  color: Palette.indigo,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: TravelCard(story: stories[index]),
-                              ),
-                            );
-                          }),
+                            )
+                          : ListView.builder(
+                              padding: EdgeInsets.only(top: 10),
+                              itemCount: stories.length,
+                              itemBuilder: (BuildContext ctxt, int index) {
+                                return GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => StoryDetails(
+                                              story: stories[index],
+                                            )),
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    child: TravelCard(story: stories[index]),
+                                  ),
+                                );
+                              }),
                 )
               ])),
         ));
