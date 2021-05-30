@@ -74,11 +74,24 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
           child: Padding(
               padding: EdgeInsets.only(left: 15, right: 15),
               child: ListView(shrinkWrap: true, children: [
+                //TODO fix circule image
                 Container(
-                    child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: AssetImage(student.imageUrl),
-                )),
+                  height: 50,
+                  width: 50,
+                  child: CachedNetworkImage(
+                    imageUrl: student.imageUrl,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),

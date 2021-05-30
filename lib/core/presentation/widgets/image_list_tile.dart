@@ -439,20 +439,21 @@ class ReboundsStudentsListTile extends StatelessWidget {
         contentPadding: EdgeInsets.all(0),
         leading: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(40)),
-          child: Container(
+          child: CachedNetworkImage(
             height: 55,
             width: 55,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: Palette
-                  .imageBackgroundColor, //fill the image still needs to chagnge
+            imageUrl: item.imageUrl,
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            child: Image.asset(
-              item.imageUrl,
-              height: 50,
-              width: 50,
-              fit: BoxFit.contain,
-            ),
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
         title: Text(item.name,
