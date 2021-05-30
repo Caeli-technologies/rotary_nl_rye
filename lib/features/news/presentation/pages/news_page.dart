@@ -34,15 +34,12 @@ class _NewsPageState extends State<NewsPage> {
     final info = await json.decode(response);
     setState(() {
       _stories = info["news"];
+      _isLoading = false;
     });
   }
 
   _updateNews(News news) {
-    setState(() {
-      _isLoading = false;
-
-      readJson(news.jsonUrl);
-    });
+    readJson(news.jsonUrl);
   }
 
   @override
@@ -93,79 +90,78 @@ class _NewsPageState extends State<NewsPage> {
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
-        body: _isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : SingleChildScrollView(
-                child: Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
-                    child: ListView(shrinkWrap: true, children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 170,
-                        child: CachedNetworkImage(
-                          height: 55,
-                          width: 55,
-                          imageUrl: _news.headerUrl,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover),
-                            ),
-                          ),
-                          placeholder: (context, url) =>
-                              Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        ),
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: ListView(shrinkWrap: true, children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 170,
+                  child: CachedNetworkImage(
+                    height: 55,
+                    width: 55,
+                    imageUrl: _news.headerUrl,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Divider(
-                        thickness: 2,
-                      ),
-                      Container(
-                        height: Device.height - 300,
-                        child: ListView.builder(
-                            padding: EdgeInsets.only(top: 10),
-                            itemCount: _stories.length,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              return GestureDetector(
-                                onTap: () => {
-                                  _stories[index]["isPdf"] == "yes"
-                                      ? Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => PDFPage(
-                                                  pdfUrl: _stories[index]
-                                                      ["pdf"])),
-                                        )
-                                      : Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => NonPDFPage(
-                                                    data: _stories[index],
-                                                  ))),
-                                },
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                Container(
+                  height: Device.height - 300,
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          padding: EdgeInsets.only(top: 10),
+                          itemCount: _stories.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return GestureDetector(
+                              onTap: () => {
+                                _stories[index]["isPdf"] == "yes"
+                                    ? Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => PDFPage(
+                                                pdfUrl: _stories[index]
+                                                    ["pdf"])),
+                                      )
+                                    : Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => NonPDFPage(
+                                                  data: _stories[index],
+                                                ))),
+                              },
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
-                                child: Container(
-                                  padding: EdgeInsets.only(bottom: 10),
-                                  child: TravelCard(
-                                    image: _stories[index]["images"],
-                                    title: _stories[index]["title"],
-                                    description: _stories[index]["description"],
-                                  ),
+                              child: Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TravelCard(
+                                  image: _stories[index]["images"],
+                                  title: _stories[index]["title"],
+                                  description: _stories[index]["description"],
                                 ),
-                              );
-                            }),
-                      )
-                    ])),
-              ));
+                              ),
+                            );
+                          }),
+                )
+              ])),
+        ));
   }
 }
 

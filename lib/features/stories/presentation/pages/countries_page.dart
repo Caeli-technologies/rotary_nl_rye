@@ -77,24 +77,25 @@ class _CountriesPageState extends State<CountriesPage> {
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
-        body: AbsorbPointer(
-          absorbing: _isLoading,
-          child: Container(
-            child: ListView.builder(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              itemBuilder: (context, index) => SVGListTile(
-                  item: countries[index],
-                  descriptionPage: ExchangeStudentsPage(
-                    country: countries[index],
-                    students: exchangeStudents
-                        .where((element) =>
-                            element.country == countries[index].name)
-                        .toList(),
-                  )),
-              itemCount: countries.length,
-            ),
-          ),
-        ),
+        body: _isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Container(
+                child: ListView.builder(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  itemBuilder: (context, index) => SVGListTile(
+                      item: countries[index],
+                      descriptionPage: ExchangeStudentsPage(
+                        country: countries[index],
+                        students: exchangeStudents
+                            .where((element) =>
+                                element.country == countries[index].name)
+                            .toList(),
+                      )),
+                  itemCount: countries.length,
+                ),
+              ),
       );
     }
   }
@@ -102,57 +103,105 @@ class _CountriesPageState extends State<CountriesPage> {
 
 List<Country> countries = [
   Country(
-      name: "Canada", imageUrl: "assets/icons/flags/ca.svg", description: ""),
+    name: "Argentina",
+    imageUrl: "assets/icons/flags/ar.svg",
+    description: "",
+  ),
   Country(
-      name: "Mexico", imageUrl: "assets/icons/flags/mx.svg", description: ""),
-  Country(name: "Peru", imageUrl: "assets/icons/flags/pe.svg", description: ""),
+    name: "Australia",
+    imageUrl: "assets/icons/flags/au.svg",
+    description: "",
+  ),
   Country(
-      name: "Ecuador", imageUrl: "assets/icons/flags/ec.svg", description: ""),
+    name: "Brazil",
+    imageUrl: "assets/icons/flags/br.svg",
+    description: "",
+  ),
   Country(
-      name: "Chili", imageUrl: "assets/icons/flags/cl.svg", description: ""),
+    name: "Canada",
+    imageUrl: "assets/icons/flags/ca.svg",
+    description: "",
+  ),
   Country(
-      name: "Argentina",
-      imageUrl: "assets/icons/flags/ar.svg",
-      description: ""),
+    name: "Chili",
+    imageUrl: "assets/icons/flags/cl.svg",
+    description: "",
+  ),
   Country(
-      name: "South Africa",
-      imageUrl: "assets/icons/flags/za.svg",
-      description: ""),
+    name: "Colombia",
+    imageUrl: "assets/icons/flags/co.svg",
+    description: "",
+  ),
   Country(
-      name: "New Zealand",
-      imageUrl: "assets/icons/flags/nz.svg",
-      description: ""),
+    name: "Ecuador",
+    imageUrl: "assets/icons/flags/ec.svg",
+    description: "",
+  ),
   Country(
-      name: "Australia",
-      imageUrl: "assets/icons/flags/au.svg",
-      description: ""),
+    name: "Finland",
+    imageUrl: "assets/icons/flags/fi.svg",
+    description: "",
+  ),
   Country(
-      name: "Indonesia",
-      imageUrl: "assets/icons/flags/id.svg",
-      description: ""),
+    name: "India",
+    imageUrl: "assets/icons/flags/in.svg",
+    description: "",
+  ),
   Country(
-      name: "Thailand", imageUrl: "assets/icons/flags/th.svg", description: ""),
+    name: "Indonesia",
+    imageUrl: "assets/icons/flags/id.svg",
+    description: "",
+  ),
   Country(
-      name: "United States of America",
-      imageUrl: "assets/icons/flags/us.svg",
-      description: ""),
+    name: "Italy",
+    imageUrl: "assets/icons/flags/it.svg",
+    description: "",
+  ),
   Country(
-      name: "India", imageUrl: "assets/icons/flags/in.svg", description: ""),
+    name: "Japan",
+    imageUrl: "assets/icons/flags/jp.svg",
+    description: "",
+  ),
   Country(
-      name: "Taiwan", imageUrl: "assets/icons/flags/tw.svg", description: ""),
+    name: "Mexico",
+    imageUrl: "assets/icons/flags/mx.svg",
+    description: "",
+  ),
   Country(
-      name: "Finland", imageUrl: "assets/icons/flags/fi.svg", description: ""),
+    name: "New Zealand",
+    imageUrl: "assets/icons/flags/nz.svg",
+    description: "",
+  ),
   Country(
-      name: "Brazil", imageUrl: "assets/icons/flags/br.svg", description: ""),
+    name: "Peru",
+    imageUrl: "assets/icons/flags/pe.svg",
+    description: "",
+  ),
   Country(
-      name: "South Korea",
-      imageUrl: "assets/icons/flags/kr.svg",
-      description: ""),
+    name: "South Africa",
+    imageUrl: "assets/icons/flags/za.svg",
+    description: "",
+  ),
   Country(
-      name: "Colombia", imageUrl: "assets/icons/flags/co.svg", description: ""),
+    name: "South Korea",
+    imageUrl: "assets/icons/flags/kr.svg",
+    description: "",
+  ),
   Country(
-      name: "Italy", imageUrl: "assets/icons/flags/it.svg", description: ""),
-  Country(name: "Japan", imageUrl: "assets/icons/flags/jp.svg", description: "")
+    name: "Taiwan",
+    imageUrl: "assets/icons/flags/tw.svg",
+    description: "",
+  ),
+  Country(
+    name: "Thailand",
+    imageUrl: "assets/icons/flags/th.svg",
+    description: "",
+  ),
+  Country(
+    name: "United States of America",
+    imageUrl: "assets/icons/flags/us.svg",
+    description: "",
+  ),
 ];
 
 // List<ExchangeStudent> exchangeStudents = [
