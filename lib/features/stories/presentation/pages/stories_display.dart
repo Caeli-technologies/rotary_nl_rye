@@ -32,7 +32,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
     // final String response =
     //     await rootBundle.loadString('assets/test/stories.json');
     final data = await getDataStories(
-        "https://rotary.caeli-tech.com/rebounds/students/stories.json");
+        "https://rotary.caeli-tech.com/rebounds/students/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
     setState(() {
       stories = data;
       _isLoading = false;
