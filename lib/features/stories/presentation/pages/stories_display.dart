@@ -1,5 +1,6 @@
 // @dart=2.9
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -186,12 +187,23 @@ class TravelCard extends StatelessWidget {
           child: Container(
             child: Row(
               children: <Widget>[
-                SizedBox(
-                    height: 120,
-                    child: ClipRRect(
-                      borderRadius: new BorderRadius.circular(14.0),
-                      child: Image.asset(story.imageUrl),
-                    )),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: 120,
+                  child: CachedNetworkImage(
+                    imageUrl: story.imageUrl,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
                 SizedBox(
                   height: 120,
                   child: Container(

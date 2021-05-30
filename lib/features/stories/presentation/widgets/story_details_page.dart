@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,9 +55,17 @@ class MainContainer extends StatelessWidget {
               ),
             ),
             expandedHeight: Device.height * 0.25,
-            flexibleSpace: Image.asset(
-              story.imageUrl,
-              fit: BoxFit.cover,
+            flexibleSpace: CachedNetworkImage(
+              imageUrl: story.imageUrl,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image:
+                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                ),
+              ),
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           )
         ],
