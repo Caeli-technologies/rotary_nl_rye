@@ -80,38 +80,84 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
         body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.only(left: 15, right: 15),
-              child: ListView(shrinkWrap: true, children: [
-                //TODO fix circule image
-                Container(
-                  width: 100.0,
-                  height: 100.0,
-                  child: CachedNetworkImage(
-                    imageUrl: student.imageUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(image: imageProvider),
+              child: ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    //TODO fix circule image
+                    Container(
+                      width: 100.0,
+                      height: 100.0,
+                      child: CachedNetworkImage(
+                        imageUrl: student.imageUrl,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(image: imageProvider),
+                          ),
+                        ),
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
 
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Palette.themeShadeColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(40.0),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  child: Column(children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Palette.themeShadeColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(40.0),
+                        ),
+                      ),
+                      child: Column(children: <Widget>[
+                        Text(
+                          student.name,
+                          textAlign: TextAlign.center,
+                          textScaleFactor: 2,
+                          style: TextStyle(
+                            color: Palette.indigo,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                                padding: EdgeInsets.only(
+                                    left: 40, top: 10, right: 40, bottom: 10),
+                                child: Wrap(
+                                  runSpacing: 15.0,
+                                  spacing: 30.0,
+                                  children: <Widget>[
+                                    Text(
+                                      'Sponsor District ${student.sponsorDistrict}',
+                                      textAlign: TextAlign.center,
+                                      textScaleFactor: 1,
+                                      style: TextStyle(
+                                        color: Palette.indigo,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Host District ${student.hostDistrict}',
+                                      textAlign: TextAlign.center,
+                                      textScaleFactor: 1,
+                                      style: TextStyle(
+                                        color: Palette.indigo,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ))),
+                      ]),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
-                      student.name,
+                      "Stories",
                       textAlign: TextAlign.center,
                       textScaleFactor: 2,
                       style: TextStyle(
@@ -119,90 +165,48 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                            padding: EdgeInsets.only(
-                                left: 40, top: 10, right: 40, bottom: 10),
-                            child: Wrap(
-                              runSpacing: 15.0,
-                              spacing: 30.0,
-                              children: <Widget>[
-                                Text(
-                                  'Sponsor District ${student.sponsorDistrict}',
-                                  textAlign: TextAlign.center,
-                                  textScaleFactor: 1,
-                                  style: TextStyle(
-                                    color: Palette.indigo,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Host District ${student.hostDistrict}',
-                                  textAlign: TextAlign.center,
-                                  textScaleFactor: 1,
-                                  style: TextStyle(
-                                    color: Palette.indigo,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ))),
-                  ]),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Stories",
-                  textAlign: TextAlign.center,
-                  textScaleFactor: 2,
-                  style: TextStyle(
-                    color: Palette.indigo,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                Container(
-                  height: Device.height - 395,
-                  child: _isLoading
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : (stories.length == 0)
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Container(
+                      height: Device.height - 395,
+                      child: _isLoading
                           ? Center(
-                              child: Text(
-                                'No Adventures yet',
-                                textAlign: TextAlign.center,
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  color: Palette.indigo,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              child: CircularProgressIndicator(),
                             )
-                          : ListView.builder(
-                              padding: EdgeInsets.only(top: 10),
-                              itemCount: stories.length,
-                              itemBuilder: (BuildContext ctxt, int index) {
-                                return GestureDetector(
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => StoryDetails(
-                                              story: stories[index],
-                                            )),
+                          : (stories.length == 0)
+                              ? Center(
+                                  child: Text(
+                                    'No Adventures yet',
+                                    textAlign: TextAlign.center,
+                                    textScaleFactor: 1,
+                                    style: TextStyle(
+                                      color: Palette.indigo,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                  child: Container(
-                                    padding: EdgeInsets.only(bottom: 10),
-                                    child: TravelCard(story: stories[index]),
-                                  ),
-                                );
-                              }),
-                )
-              ])),
+                                )
+                              : ListView.builder(
+                                  padding: EdgeInsets.only(top: 10),
+                                  itemCount: stories.length,
+                                  itemBuilder: (BuildContext ctxt, int index) {
+                                    return GestureDetector(
+                                      onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => StoryDetails(
+                                                  story: stories[index],
+                                                )),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.only(bottom: 10),
+                                        child:
+                                            TravelCard(story: stories[index]),
+                                      ),
+                                    );
+                                  }),
+                    )
+                  ])),
         ));
   }
 }

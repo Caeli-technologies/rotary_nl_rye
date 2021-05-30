@@ -49,51 +49,54 @@ class ExchangeStudentsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
-          child: ListView(shrinkWrap: true, children: [
-            Container(
-              child: SvgPicture.asset(
-                country.imageUrl,
-                height: 60,
-                width: 60,
-                fit: BoxFit.contain,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Palette.themeShadeColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(40.0),
-                ),
-              ),
-              child: Text(
-                "Exchange Students",
-                textAlign: TextAlign.center,
-                textScaleFactor: 1.5,
-                style: TextStyle(
-                  color: Palette.indigo,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Divider(
-              thickness: 2,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.70,
-              child: ListView.builder(
-                itemBuilder: (context, index) => ReboundsStudentsListTile(
-                  item: students[index],
-                  reboundsStudentsListPage: StoriesDisplay(
-                    student: students[index],
+          child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                Container(
+                  child: SvgPicture.asset(
+                    country.imageUrl,
+                    height: 60,
+                    width: 60,
+                    fit: BoxFit.contain,
                   ),
                 ),
-                itemCount: students.length,
-              ),
-            )
-          ]),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.themeShadeColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(40.0),
+                    ),
+                  ),
+                  child: Text(
+                    "Exchange Students",
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 1.5,
+                    style: TextStyle(
+                      color: Palette.indigo,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.70,
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => ReboundsStudentsListTile(
+                      item: students[index],
+                      reboundsStudentsListPage: StoriesDisplay(
+                        student: students[index],
+                      ),
+                    ),
+                    itemCount: students.length,
+                  ),
+                )
+              ]),
         ),
       ),
     );
