@@ -84,7 +84,6 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    //TODO fix circule image
                     Container(
                       width: 100.0,
                       height: 100.0,
@@ -101,7 +100,6 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
-
                     SizedBox(
                       height: 20,
                     ),
