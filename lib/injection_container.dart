@@ -1,6 +1,5 @@
 // @dart=2.9
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,6 +53,6 @@ Future<void> init() async {
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => DataConnectionChecker());
 
-  final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
-  sl.registerLazySingleton(() => firebaseDatabase);
+  // final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
+  // sl.registerLazySingleton(() => firebaseDatabase);
 }
