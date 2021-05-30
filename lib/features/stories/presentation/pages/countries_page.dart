@@ -24,6 +24,7 @@ class CountriesPage extends StatefulWidget {
 
 class _CountriesPageState extends State<CountriesPage> {
   List<ExchangeStudent> exchangeStudents = [];
+  bool _isLoading = true;
 
   Future readJson(String url) async {
     // final String response =
@@ -31,6 +32,7 @@ class _CountriesPageState extends State<CountriesPage> {
     final data = await getDataStudents(url);
     setState(() {
       exchangeStudents = data;
+      _isLoading = false;
     });
   }
 
@@ -75,19 +77,22 @@ class _CountriesPageState extends State<CountriesPage> {
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
-        body: Container(
-          child: ListView.builder(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            itemBuilder: (context, index) => SVGListTile(
-                item: countries[index],
-                descriptionPage: ExchangeStudentsPage(
-                  country: countries[index],
-                  students: exchangeStudents
-                      .where(
-                          (element) => element.country == countries[index].name)
-                      .toList(),
-                )),
-            itemCount: countries.length,
+        body: AbsorbPointer(
+          absorbing: _isLoading,
+          child: Container(
+            child: ListView.builder(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              itemBuilder: (context, index) => SVGListTile(
+                  item: countries[index],
+                  descriptionPage: ExchangeStudentsPage(
+                    country: countries[index],
+                    students: exchangeStudents
+                        .where((element) =>
+                            element.country == countries[index].name)
+                        .toList(),
+                  )),
+              itemCount: countries.length,
+            ),
           ),
         ),
       );
