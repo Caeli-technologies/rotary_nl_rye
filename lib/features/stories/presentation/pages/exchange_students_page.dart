@@ -82,7 +82,7 @@ class ExchangeStudentsPage extends StatelessWidget {
               thickness: 2,
             ),
             Container(
-              height: Device.height - 265,
+              height: MediaQuery.of(context).size.height * 0.70,
               child: ListView.builder(
                 itemBuilder: (context, index) => ReboundsStudentsListTile(
                   item: students[index],
