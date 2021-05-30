@@ -78,15 +78,14 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
               child: ListView(shrinkWrap: true, children: [
                 //TODO fix circule image
                 Container(
-                  height: 50,
-                  width: 50,
+                  width: 100.0,
+                  height: 100.0,
                   child: CachedNetworkImage(
                     imageUrl: student.imageUrl,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(image: imageProvider),
                       ),
                     ),
                     placeholder: (context, url) =>
@@ -94,6 +93,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
+
                 SizedBox(
                   height: 20,
                 ),
