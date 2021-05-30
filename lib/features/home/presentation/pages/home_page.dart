@@ -49,6 +49,28 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     initPlatformState();
     _removeBadge();
+    Future.wait([
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/ca.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/mx.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/pe.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/ec.svg'),
+        null,
+      ),
+    ]);
   }
 
   initPlatformState() async {
