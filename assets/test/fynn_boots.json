@@ -1,0 +1,42 @@
+{
+  "stories": [
+    {
+      "isDutchie": false,
+      "imageUrl": "assets/image/3.PNG",
+      "country": "Malang",
+      "name": "Ruben",
+      "departureDate": "17 september 2019",
+      "arrivalDate": "23 april 2020",
+      "text1": "frfgefe greg regergerger",
+      "message": [
+        {
+          "heading": "Fynn"
+        },
+        {
+          "body": [
+            {
+              "paragraph": [
+                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+              ]
+            },
+            {
+              "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+            },
+            {
+              "subHeader": "Heading"
+            },
+            {
+              "paragraph": [
+                "hi",
+                "hello"
+              ]
+            },
+            {
+              "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

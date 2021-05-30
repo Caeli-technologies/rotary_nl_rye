@@ -24,6 +24,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
   _StoriesDisplayState({@required this.student});
 
   List<Story> stories = [];
+  bool _isLoading = true;
   final ExchangeStudent student;
 
   // Fetch content from the json file
@@ -34,6 +35,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
         "https://rotary.caeli-tech.com/rebounds/students/stories.json");
     setState(() {
       stories = data;
+      _isLoading = false;
     });
   }
 
@@ -160,24 +162,28 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                 ),
                 Container(
                   height: Device.height - 395,
-                  child: ListView.builder(
-                      padding: EdgeInsets.only(top: 10),
-                      itemCount: stories.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => StoryDetails(
-                                      story: stories[index],
-                                    )),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: TravelCard(story: stories[index]),
-                          ),
-                        );
-                      }),
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          padding: EdgeInsets.only(top: 10),
+                          itemCount: stories.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => StoryDetails(
+                                          story: stories[index],
+                                        )),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TravelCard(story: stories[index]),
+                              ),
+                            );
+                          }),
                 )
               ])),
         ));
