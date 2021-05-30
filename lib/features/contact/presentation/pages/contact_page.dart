@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
@@ -19,6 +20,23 @@ class ContactPage extends StatefulWidget {
 
 //TODO needs to look like the story page. nut then only for contacts of the organication and Rotex (https://rotex.org/who-we-are/)
 class _ContactPageState extends State<ContactPage> {
+  @override
+  initState() {
+    super.initState();
+    Future.wait([
+      precachePicture(
+        ExactAssetPicture(SvgPicture.svgStringDecoder,
+            'assets/icons/custom/rotary-logo-icon.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(SvgPicture.svgStringDecoder,
+            'assets/icons/custom/rotex_logo_light.svg'),
+        null,
+      ),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
