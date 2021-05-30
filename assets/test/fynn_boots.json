@@ -2,7 +2,7 @@
   "stories": [
     {
       "isDutchie": false,
-      "imageUrl": "assets/image/3.PNG",
+      "imageUrl": "https://rotary.caeli-tech.com/images/test/3.PNG",
       "country": "Malang",
       "name": "Ruben",
       "departureDate": "17 september 2019",

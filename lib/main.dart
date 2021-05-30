@@ -1,7 +1,5 @@
 // @dart=2.9
 
-import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,17 +11,30 @@ import 'core/lang/languages.dart';
 import 'core/presentation/widgets/page_navigator.dart';
 import 'injection_container.dart' as di;
 
-void main() async {
-  runZonedGuarded<Future<void>>(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await di.init();
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+// void main() async {
+//   runZonedGuarded<Future<void>>(() async {
+//     WidgetsFlutterBinding.ensureInitialized();
+//     await Firebase.initializeApp();
+//     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+//     await di.init();
+//     SystemChrome.setPreferredOrientations(
+//         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
-    runApp(new MyApp());
-  }, FirebaseCrashlytics.instance.recordError);
+//     runApp(new MyApp());
+//   }, FirebaseCrashlytics.instance.recordError);
+// }
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
+  // Pass all uncaught errors from the framework to Crashlytics.
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  await di.init();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
