@@ -235,7 +235,7 @@ class TravelCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 4),
                         child: SizedBox(
-                          width: Device.width - 240,
+                          width: MediaQuery.of(context).size.width * 0.5,
                           child: Text(description,
                               textScaleFactor: 0.7,
                               maxLines: 3,
