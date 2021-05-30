@@ -108,21 +108,18 @@ class _NewsPageState extends State<NewsPage> {
                           height: 55,
                           width: 55,
                           imageUrl: _news.headerUrl,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover),
+                            ),
+                          ),
                           placeholder: (context, url) =>
                               Center(child: CircularProgressIndicator()),
                           errorWidget: (context, url, error) =>
                               Icon(Icons.error),
                         ),
-                        // child: Container(
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(8),
-                        //     image: DecorationImage(
-                        //         image: AssetImage(
-                        //           "assets/image/homepage/Informatiedag_Informatiemarkt_2021.png",
-                        //         ),
-                        //         fit: BoxFit.cover),
-                        //   ),
-                        // ),
                       ),
                       SizedBox(
                         height: 20,
@@ -188,12 +185,31 @@ class TravelCard extends StatelessWidget {
           child: Container(
             child: Row(
               children: <Widget>[
-                SizedBox(
-                    height: 120,
-                    child: ClipRRect(
-                      borderRadius: new BorderRadius.circular(14.0),
-                      child: Image.asset(image),
-                    )),
+                Container(
+                  // width: MediaQuery.of(context).size.width,
+                  height: 120,
+                  child: CachedNetworkImage(
+                    height: 55,
+                    width: 55,
+                    imageUrl: image,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+                // SizedBox(
+                //     height: 120,
+                //     child: ClipRRect(
+                //       borderRadius: new BorderRadius.circular(14.0),
+                //       child: Image.asset(image),
+                //     )),
                 SizedBox(
                   height: 120,
                   child: Container(
