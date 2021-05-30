@@ -186,11 +186,9 @@ class TravelCard extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Container(
-                  // width: MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width * 0.4,
                   height: 120,
                   child: CachedNetworkImage(
-                    height: 55,
-                    width: 55,
                     imageUrl: image,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
