@@ -208,7 +208,7 @@ class _LongTermExchangeProgramPageState
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CalendarPage()),
-                            ); //TODO click to calendar in app
+                            );
                           },
                       ),
                     ])),
