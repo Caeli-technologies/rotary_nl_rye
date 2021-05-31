@@ -21,7 +21,7 @@ class _CarouselState extends State<Carousel> {
         image: "assets/image/homepage/welcom_to_the_netherlands_abbi.jpg",
         text: "Social actief zijn"),
     CarouselModel(
-        image: "assets/image/homepage/together.jpg",
+        image: "assets/image/b70db74b-aebe-470d-8c47-306640be9a00.jpg",
         text: "Vergroten van je Horizon"),
     CarouselModel(
         image: "assets/image/homepage/barbara_with_students.jpg",
@@ -60,6 +60,7 @@ class _CarouselState extends State<Carousel> {
               },
               autoplay: true,
               layout: SwiperLayout.DEFAULT,
+              scale: 0.9,
               itemCount: carousels.length,
               itemBuilder: (BuildContext context, index) {
                 return Container(
