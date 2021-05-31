@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-// ignore: must_be_immutable
 class PDFPage extends StatefulWidget {
-  String pdfUrl;
+  final String pdfUrl;
 
   PDFPage({required this.pdfUrl});
 
