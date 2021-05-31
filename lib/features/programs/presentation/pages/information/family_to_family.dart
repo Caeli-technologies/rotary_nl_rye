@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/gestures.dart';
@@ -19,26 +20,88 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
   double _aspectRatio = 16 / 9;
-  int _current = 0;
+  int _current1 = 0;
+  int _current2 = 0;
+  int _current3 = 0;
 
-  List<CarouselModel> localimages = [
+  List<CarouselModel> localimages1 = [
     CarouselModel(
         image:
-            "assets/image/homepage/Informatiedag_Informatiemarkt_2021_homepage.jpg",
-        text: "Informatiemarkt op 18 september a.s."),
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture1.png",
+        text:
+            " Meike wordt door haar Argentijnse gastfamilie opgehaald van het vliegveld"),
     CarouselModel(
-        image: "assets/image/homepage/welcom_to_the_netherlands_abbi.jpg",
-        text: "Social actief zijn"),
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture2.png",
+        text: "Noor met haar gastgezin in Brazilië"),
     CarouselModel(
-        image: "assets/image/b70db74b-aebe-470d-8c47-306640be9a00.jpg",
-        text: "Vergroten van je Horizon"),
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture3.png",
+        text:
+            "Stijn bij de natuurlijke thermale baden van Mendoza met gastgezin en match ‘Fran’ in Argentinië"),
     CarouselModel(
-        image: "assets/image/homepage/barbara_with_students.jpg",
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture4.png",
+        text: "Stijn in Argentinië"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture5.png",
+        text: "Stijn (in het midden) met de Argentijnse familie van Fran"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture6.png",
+        text:
+            "Lot en haar Indiase match Lutra. Lot laat Deventer zien en en haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur.")
+  ];
+
+  List<CarouselModel> localimages2 = [
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture7.png",
+        text: "‘EVEN VERWISSELD VAN NATIONAL COSTUME’"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-1.png",
+        text: "Appeltaart bakken"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-2.png",
+        text: "kaasproeven"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-3.png",
         text: "Nieuwe vrienden maken"),
     CarouselModel(
-        image: "assets/image/homepage/saying_goodby.jpg",
-        text:
-            "De jeugdafdeling binnen Rotary heeft als missie “jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen”. Onze visie hierbij is dat wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk anderen in staat te stellen zichzelf te ontwikkelen.\n\nDoor jeugd al vroeg kennis te laten maken met andere mensen, culturen, gewoontes en gebruiken en ze buiten hun comfortzone te brengen, denken wij een bijdrage te leveren aan hun ontwikkeling in het teken van onze missie.")
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture10-1.png",
+        text: "LIANNE HEEFT EEN MATCH MET JAPANS MEISJE"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture10-2.png",
+        text: "LIANNE HEEFT EEN MATCH MET JAPANS MEISJE")
+  ];
+
+  List<CarouselModel> localimages3 = [
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture9-1.png",
+        text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture9-2.png",
+        text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture9-3.png",
+        text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture11.png",
+        text: "Samen nieuwe horizons opzoeken"),
+    CarouselModel(
+        image:
+            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture12.png",
+        text: "samen door Amsterdam fietsen")
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -216,7 +279,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                 ),
               ),
 
-// CarouselModel
+// CarouselModel 1
 
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
@@ -228,26 +291,31 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                       width: MediaQuery.of(context).size.width,
                       height: 220,
                       child: CarouselSlider.builder(
-                        itemCount: localimages.length,
+                        itemCount: localimages1.length,
                         options: CarouselOptions(
                             autoPlay: true,
                             aspectRatio: 2.0,
                             enlargeCenterPage: true,
                             onPageChanged: (index, reason) {
                               setState(() {
-                                _current = index;
+                                _current1 = index;
                               });
                             }),
                         itemBuilder: (context, index, realIdx) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                    localimages[index].image,
-                                  ),
-                                  fit: BoxFit.cover),
+                          return CachedNetworkImage(
+                            imageUrl: localimages1[index].image,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                // color: Colors.grey,
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                              ),
                             ),
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           );
                         },
                       ),
@@ -260,11 +328,11 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                       children: <Widget>[
                         Row(
                           children: map<Widget>(
-                            localimages,
+                            localimages1,
                             (index, image) {
                               return Container(
                                   alignment: Alignment.centerLeft,
-                                  child: _current == index
+                                  child: _current1 == index
                                       ? Padding(
                                           padding: const EdgeInsets.only(
                                               // right: 30.0, left: 30
@@ -275,13 +343,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                                                     .width *
                                                 0.8,
                                             child: Text(
-                                              localimages[index].text,
-                                              textScaleFactor: 1,
-                                              maxLines: 100,
-                                              overflow: TextOverflow.ellipsis,
-                                              softWrap: false,
-                                              // style: TextStyle(color: Palette.grey)
-                                            ),
+                                                localimages1[index].text,
+                                                textScaleFactor: 1,
+                                                maxLines: 100,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
+                                                style: TextStyle(
+                                                    fontStyle: FontStyle.italic,
+                                                    color: Palette.grey)),
                                           ),
                                         )
                                       : SizedBox.shrink());
@@ -298,7 +367,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                       children: <Widget>[
                         Row(
                           children: map<Widget>(
-                            localimages,
+                            localimages1,
                             (index, image) {
                               return Container(
                                 alignment: Alignment.centerLeft,
@@ -307,7 +376,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                                 margin: EdgeInsets.only(right: 8),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: _current == index
+                                    color: _current1 == index
                                         ? Palette.accentColor
                                         : Palette.lightIndigo),
                               );
@@ -338,6 +407,229 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                 ),
               ),
 
+// CarouselModel 2
+
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      // height: 220,
+                      child: CarouselSlider.builder(
+                        itemCount: localimages2.length,
+                        options: CarouselOptions(
+                            autoPlay: true,
+                            aspectRatio: 1.0,
+                            enlargeCenterPage: true,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _current2 = index;
+                              });
+                            }),
+                        itemBuilder: (context, index, realIdx) {
+                          return CachedNetworkImage(
+                            imageUrl: localimages2[index].image,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                // color: Colors.grey,
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                              ),
+                            ),
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          children: map<Widget>(
+                            localimages2,
+                            (index, image) {
+                              return Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: _current2 == index
+                                      ? Padding(
+                                          padding: const EdgeInsets.only(
+                                              // right: 30.0, left: 30
+                                              ),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.8,
+                                            child: Text(
+                                                localimages2[index].text,
+                                                textScaleFactor: 1,
+                                                maxLines: 100,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
+                                                style: TextStyle(
+                                                    fontStyle: FontStyle.italic,
+                                                    color: Palette.grey)),
+                                          ),
+                                        )
+                                      : SizedBox.shrink());
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          children: map<Widget>(
+                            localimages2,
+                            (index, image) {
+                              return Container(
+                                alignment: Alignment.centerLeft,
+                                height: 6,
+                                width: 6,
+                                margin: EdgeInsets.only(right: 8),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: _current2 == index
+                                        ? Palette.accentColor
+                                        : Palette.lightIndigo),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+//end
+
+// CarouselModel 3
+
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      // height: 250,
+                      child: CarouselSlider.builder(
+                        itemCount: localimages3.length,
+                        options: CarouselOptions(
+                            autoPlay: true,
+                            aspectRatio: 1.0,
+                            enlargeCenterPage: true,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _current3 = index;
+                              });
+                            }),
+                        itemBuilder: (context, index, realIdx) {
+                          return CachedNetworkImage(
+                            imageUrl: localimages3[index].image,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                // color: Colors.grey,
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                              ),
+                            ),
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          children: map<Widget>(
+                            localimages3,
+                            (index, image) {
+                              return Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: _current3 == index
+                                      ? Padding(
+                                          padding: const EdgeInsets.only(
+                                              // right: 30.0, left: 30
+                                              ),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.8,
+                                            child: Text(
+                                                localimages3[index].text,
+                                                textScaleFactor: 1,
+                                                maxLines: 100,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
+                                                style: TextStyle(
+                                                    fontStyle: FontStyle.italic,
+                                                    color: Palette.grey)),
+                                          ),
+                                        )
+                                      : SizedBox.shrink());
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          children: map<Widget>(
+                            localimages3,
+                            (index, image) {
+                              return Container(
+                                alignment: Alignment.centerLeft,
+                                height: 6,
+                                width: 6,
+                                margin: EdgeInsets.only(right: 8),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: _current3 == index
+                                        ? Palette.accentColor
+                                        : Palette.lightIndigo),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+//end
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
