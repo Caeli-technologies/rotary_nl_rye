@@ -37,7 +37,8 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
         text: "Nieuwe vrienden maken"),
     CarouselModel(
         image: "assets/image/homepage/saying_goodby.jpg",
-        text: "Jezelf nog beter leren kennen")
+        text:
+            "De jeugdafdeling binnen Rotary heeft als missie “jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen”. Onze visie hierbij is dat wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk anderen in staat te stellen zichzelf te ontwikkelen.\n\nDoor jeugd al vroeg kennis te laten maken met andere mensen, culturen, gewoontes en gebruiken en ze buiten hun comfortzone te brengen, denken wij een bijdrage te leveren aan hun ontwikkeling in het teken van onze missie.")
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -247,27 +248,47 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                                   ),
                                   fit: BoxFit.cover),
                             ),
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.blue.shade900),
-                                padding: EdgeInsets.all(5),
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    localimages[index].text,
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
                           );
                         },
                       ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          children: map<Widget>(
+                            localimages,
+                            (index, image) {
+                              return Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: _current == index
+                                      ? Padding(
+                                          padding: const EdgeInsets.only(
+                                              // right: 30.0, left: 30
+                                              ),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.8,
+                                            child: Text(
+                                              localimages[index].text,
+                                              textScaleFactor: 1,
+                                              maxLines: 100,
+                                              overflow: TextOverflow.ellipsis,
+                                              softWrap: false,
+                                              // style: TextStyle(color: Palette.grey)
+                                            ),
+                                          ),
+                                        )
+                                      : SizedBox.shrink());
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 12,
