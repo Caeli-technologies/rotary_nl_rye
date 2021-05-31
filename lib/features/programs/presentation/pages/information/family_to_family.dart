@@ -50,27 +50,27 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
     CarouselModel(
         image:
             "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture6.png",
-        text:
-            "Lot en haar Indiase match Lutra. Lot laat Deventer zien en en haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur.")
+        text: "Lot en haar Indiase match Lutra. Lot laat Deventer zien.")
   ];
 
   List<CarouselModel> localimages2 = [
     CarouselModel(
         image:
             "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture7.png",
-        text: "‘EVEN VERWISSELD VAN NATIONAL COSTUME’"),
+        text:
+            "Lutra haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur."),
     CarouselModel(
         image:
             "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-1.png",
-        text: "Appeltaart bakken"),
+        text: "‘EVEN VERWISSELD VAN NATIONAL COSTUME’"),
     CarouselModel(
         image:
             "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-2.png",
-        text: "kaasproeven"),
+        text: "Appeltaart bakken"),
     CarouselModel(
         image:
             "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-3.png",
-        text: "Nieuwe vrienden maken"),
+        text: "kaasproeven"),
     CarouselModel(
         image:
             "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture10-1.png",
