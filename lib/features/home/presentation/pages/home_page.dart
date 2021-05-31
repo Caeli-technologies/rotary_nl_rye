@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     initPlatformState();
     _removeBadge();
+
     Future.wait([
       precachePicture(
         ExactAssetPicture(

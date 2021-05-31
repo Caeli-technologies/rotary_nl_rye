@@ -281,11 +281,11 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 startDate: value[index]
                                                     .start
                                                     .dateTime
-                                                    .toString(),
+                                                    .toIso8601String(),
                                                 endDate: value[index]
                                                     .end
                                                     .dateTime
-                                                    .toString(),
+                                                    .toIso8601String(),
                                                 organizer: value[index]
                                                     .organizer
                                                     .email,
@@ -327,18 +327,18 @@ class DialogPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final startFullDate =
-        DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(startDate));
-    final endFullDate =
-        DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(endDate));
-    final startWeekDay =
-        DateFormat.EEEE(defaultLocale).format(DateTime.parse(startDate));
-    final endWeekDay =
-        DateFormat.EEEE(defaultLocale).format(DateTime.parse(endDate));
-    final startTime =
-        DateFormat.jm(defaultLocale).format(DateTime.parse(startDate));
+    final startFullDate = DateFormat.yMMMMd(defaultLocale)
+        .format(DateTime.parse(startDate).toLocal());
+    final endFullDate = DateFormat.yMMMMd(defaultLocale)
+        .format(DateTime.parse(endDate).toLocal());
+    final startWeekDay = DateFormat.EEEE(defaultLocale)
+        .format(DateTime.parse(startDate).toLocal());
+    final endWeekDay = DateFormat.EEEE(defaultLocale)
+        .format(DateTime.parse(endDate).toLocal());
+    final startTime = DateFormat.jm(defaultLocale)
+        .format(DateTime.parse(startDate).toLocal());
     final endTime =
-        DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
+        DateFormat.jm(defaultLocale).format(DateTime.parse(endDate).toLocal());
 
     // Widget _detectMultipleDays() {
     //   if (startFullDate == endFullDate) {

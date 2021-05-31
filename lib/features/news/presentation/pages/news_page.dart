@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:async';
 import 'dart:convert';
 
@@ -15,14 +13,14 @@ import '../../models/news.dart';
 class NewsPage extends StatefulWidget {
   final News news;
 
-  NewsPage({@required this.news});
+  NewsPage({required this.news});
 
   @override
   _NewsPageState createState() => _NewsPageState(news: news);
 }
 
 class _NewsPageState extends State<NewsPage> {
-  _NewsPageState({@required News news}) : _news = news;
+  _NewsPageState({required News news}) : _news = news;
   final News _news;
   List _stories = [];
   bool _isLoading = true;
@@ -168,7 +166,8 @@ class _NewsPageState extends State<NewsPage> {
 class TravelCard extends StatelessWidget {
   final String title, description, image;
 
-  TravelCard({this.title, this.description, this.image});
+  TravelCard(
+      {required this.title, required this.description, required this.image});
 
   @override
   Widget build(BuildContext context) {
