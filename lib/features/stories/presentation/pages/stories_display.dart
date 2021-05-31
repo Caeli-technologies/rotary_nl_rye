@@ -130,7 +130,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                   spacing: 30.0,
                                   children: <Widget>[
                                     Text(
-                                      'Sponsor District ${student.sponsorDistrict}',
+                                      'Sponsor: D${student.sponsorDistrict}',
                                       textAlign: TextAlign.center,
                                       textScaleFactor: 1,
                                       style: TextStyle(
@@ -139,7 +139,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                       ),
                                     ),
                                     Text(
-                                      'Host District ${student.hostDistrict}',
+                                      'Host: D${student.hostDistrict}',
                                       textAlign: TextAlign.center,
                                       textScaleFactor: 1,
                                       style: TextStyle(
