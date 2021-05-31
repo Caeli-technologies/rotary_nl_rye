@@ -124,7 +124,7 @@ class _NewsPageState extends State<NewsPage> {
                           child: CircularProgressIndicator(),
                         )
                       : ListView.builder(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(top: 10, bottom: 20),
                           itemCount: _stories.length,
                           itemBuilder: (BuildContext ctxt, int index) {
                             return GestureDetector(
@@ -187,6 +187,7 @@ class TravelCard extends StatelessWidget {
                     imageUrl: image,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
+                        // color: Colors.grey,
                         borderRadius: BorderRadius.circular(14),
                         image: DecorationImage(
                             image: imageProvider, fit: BoxFit.cover),
@@ -233,7 +234,7 @@ class TravelCard extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.47,
                           child: Text(description,
                               textScaleFactor: 0.7,
-                              maxLines: 3,
+                              maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                               style: TextStyle(color: Palette.grey)),
