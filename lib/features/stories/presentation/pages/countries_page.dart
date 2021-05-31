@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
@@ -12,7 +11,7 @@ import 'exchange_students_page.dart';
 class CountriesPage extends StatefulWidget {
   final String url;
 
-  const CountriesPage({@required this.url});
+  const CountriesPage({required this.url});
 
   @override
   _CountriesPageState createState() => _CountriesPageState();

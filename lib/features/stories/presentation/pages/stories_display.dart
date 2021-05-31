@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +12,14 @@ import '../widgets/story_details_page.dart';
 class StoriesDisplay extends StatefulWidget {
   final ExchangeStudent student;
 
-  StoriesDisplay({@required this.student});
+  StoriesDisplay({required this.student});
 
   @override
   _StoriesDisplayState createState() => _StoriesDisplayState(student: student);
 }
 
 class _StoriesDisplayState extends State<StoriesDisplay> {
-  _StoriesDisplayState({@required this.student});
+  _StoriesDisplayState({required this.student});
 
   List<Story> stories = [];
   bool _isLoading = true;
@@ -212,7 +210,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 class TravelCard extends StatelessWidget {
   final Story story;
 
-  TravelCard({@required this.story});
+  TravelCard({required this.story});
 
   @override
   Widget build(BuildContext context) {

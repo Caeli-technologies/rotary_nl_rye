@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
