@@ -3,6 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
+import 'information/flight_and_arrival.dart';
+import 'information/insurance.dart';
+import 'information/language.dart';
+import 'information/travel.dart';
+import 'information/welcome_in_the_netherlands.dart';
 import 'information/who_is_where.dart';
 
 class InboundPage extends StatefulWidget {
@@ -62,32 +67,41 @@ class _InboundPageState extends State<InboundPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Who is Where?",
-                  FontAwesomeIcons.streetView, WhoIsWherePage()),
+
+              buildInboundOptionRow(context, "Welcome to the Netherlands!",
+                  FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Welcome in Nederland",
-                  FontAwesomeIcons.doorOpen, null),
+              buildInboundOptionRow(context, "Flight and Arrival",
+                  FontAwesomeIcons.plane, FlightAndArrivalPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(context, "Language",
+                  FontAwesomeIcons.language, LanguagePage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+
+              buildInboundOptionRow(context, "Insurance",
+                  FontAwesomeIcons.umbrella, InsurancePage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, "To learn Netherlands", FontAwesomeIcons.flag, null),
+                  context, "Travel", FontAwesomeIcons.passport, TravelPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Your Travel to the Netherlands",
-                  FontAwesomeIcons.passport, null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Insurance and Permit",
-                  FontAwesomeIcons.umbrella, null),
+              buildInboundOptionRow(context, "Inbounds, Who is Where?",
+                  FontAwesomeIcons.streetView, WhoIsWherePage()),
+
               // the end
               SizedBox(
                 height: 20,
