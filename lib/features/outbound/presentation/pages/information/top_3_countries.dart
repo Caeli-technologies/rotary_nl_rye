@@ -94,7 +94,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
-                        text: '1. ',
+                        text: '2. ',
                       ),
                       TextSpan(
                         text: ' Kijk de video: ',
@@ -131,7 +131,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                       ),
                       TextSpan(
                         text:
-                            ' Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te weten. ',
+                            'Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te weten. ',
                       ),
                     ])),
               ),
