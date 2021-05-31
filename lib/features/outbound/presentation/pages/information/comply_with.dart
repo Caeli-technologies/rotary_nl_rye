@@ -68,14 +68,14 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Zit je op het VMBO, HAVO of VWO dan kun je na selectie voor deze uitwisseling in aanmerking komen. Je hebt wel een Rotaryclub nodig die jou wil voordragen: een Sponsorclub. Dat betekent niet dat de club jouw kosten betaalt., maar de club is verantwoordelijk voor de terug ontvangst van een jaarkind uit het buitenland. Als jij weggaat komt er ook een buitenlandse scholier terug. Een diploma is geen vereiste om je op te geven; je kunt nl ook je schoolprogramma onderbreken. Soms is dat zelfs een voordeel. In het buitenland worden namelijk vaak strenge leeftijdsgrenzen gesteld om tot een school te worden toegelaten. En om deel te kunnen nemen aan de schoolsporten is het soms beter om nog geen diploma te hebben.",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Voor de uitzending gelden indicatieve leeftijdsgrenzen, in principe 15-18 jaar. De leeftijdsgrens geldt voor overheidsscholen, soms is er enige rek mogelijk.",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
 

@@ -60,7 +60,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                   "Het weekend dient een aantal doelen:",
                   style: TextStyle(
                       color: Colors.red,
-                      fontSize: 14.0,
+                      fontSize: 15.0,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -71,7 +71,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '1. ',
@@ -101,7 +101,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '2. ',
@@ -119,7 +119,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '3. ',
@@ -141,7 +141,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '4. ',
@@ -160,70 +160,70 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "*Je krijgt een mail van ons voor het weekend waarin staat wat je moet meenemen, en wat je moet voorbereiden. Het is altijd een topweekend. ",
-                  style: TextStyle(fontSize: 11.5),
+                  style: TextStyle(fontSize: 12.5),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "Dit is wat je deze dag kan verwachten:",
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis van Nederland.",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Dit zijn een paar voorbeeld vragen uit het interview tijdens de selectie dag. We gaan je niet alles vertellen, maar zo krijg je een beetje een idee.",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "Voorbeeld vragen:",
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wat betekent volgens jou het zijn van Ambassadeur voor Rotary",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wie is je rolmodel, voor wie heb je bewondering",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wat was de gelukkigste/mooiste dag in je leven",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Op welke eigenschap ben je het meest trots",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
 

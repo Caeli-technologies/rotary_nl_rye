@@ -73,7 +73,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: 'Je stuurt een gezellig email bericht naar: ',

@@ -73,7 +73,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '1. ',
@@ -91,7 +91,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '1. ',
@@ -114,7 +114,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                       ),
                       TextSpan(
                           text: ' (Onderaan de pagina)',
-                          style: TextStyle(fontSize: 11)),
+                          style: TextStyle(fontSize: 12.5)),
                     ])),
               ),
               Padding(
@@ -124,7 +124,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 13),
+                            .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
                         text: '3. ',

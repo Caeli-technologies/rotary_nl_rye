@@ -65,7 +65,7 @@ class _SelectionDayPageState extends State<SelectionDayPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "- Ik zou gewoon je best en doen en jezelf zijn.",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
@@ -86,7 +86,7 @@ class _SelectionDayPageState extends State<SelectionDayPage> {
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Dit zijn een paar voorbeeld vragen uit het interview tijdens de selectie dag. We gaan je niet alles vertellen, maar zo krijg je een beetje een idee.",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
@@ -100,35 +100,35 @@ class _SelectionDayPageState extends State<SelectionDayPage> {
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wat betekent volgens jou het zijn van Ambassadeur voor Rotary",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wie is je rolmodel, voor wie heb je bewondering",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wat was de gelukkigste/mooiste dag in je leven",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Op welke eigenschap ben je het meest trots",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent",
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
 
