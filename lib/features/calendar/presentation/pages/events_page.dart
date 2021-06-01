@@ -1,14 +1,15 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../../models/event_result.dart';
+
 import '../../data/utils.dart';
+import '../../models/event_result.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -387,32 +388,35 @@ class DialogPage1 extends StatelessWidget {
           // _detectMultipleDays(),
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
-            child: TextButton(
-              onPressed: () {
-                if (location != null) {
-                  MapsLauncher.launchQuery(location!);
-                }
-              },
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 0.0),
-                    child: FaIcon(
-                      FontAwesomeIcons.mapMarkerAlt,
-                      color: Palette.lightIndigo,
-                      size: 20,
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 12.0),
-                      child: Text(
-                        location ?? 'there is no location',
-                        style: TextStyle(fontSize: 12.0),
+            child: AbsorbPointer(
+              absorbing: (location == null),
+              child: TextButton(
+                onPressed: () {
+                  if (location != null) {
+                    MapsLauncher.launchQuery(location!);
+                  }
+                },
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 0.0),
+                      child: FaIcon(
+                        FontAwesomeIcons.mapMarkerAlt,
+                        color: Palette.lightIndigo,
+                        size: 20,
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 12.0),
+                        child: Text(
+                          location ?? 'there is no location',
+                          style: TextStyle(fontSize: 12.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
