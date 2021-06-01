@@ -13,6 +13,8 @@ import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
+import 'package:rotary_nl_rye/features/stories/data/utils.dart';
+import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
 import '../../../home/presentation/widgets/home_card_item.dart';
@@ -36,12 +38,22 @@ class _HomePageState extends State<HomePage> {
   late StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
       _currentSubscription;
   bool _isLoading = true;
+  List<ExchangeStudent> exchangeStudents = [];
 
-  _updateNews(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+  Future readJson(String url) async {
+    // final String response =
+    //     await rootBundle.loadString('assets/test/stories.json');
+    final data = await getDataStudents(url);
+    exchangeStudents = data;
     setState(() {
       _isLoading = false;
-      _news = data.getNewsFromQuery(snapshot);
     });
+  }
+
+  _updateNews(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    _isLoading = false;
+    _news = data.getNewsFromQuery(snapshot);
+    readJson(_news.students);
   }
 
   @override
@@ -179,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                                 title: 'Rebound',
                                 description: 'rebound page',
                                 pushTo: CountriesPage(
-                                  url: _news.students,
+                                  students: exchangeStudents,
                                 )),
                           ],
                         ),

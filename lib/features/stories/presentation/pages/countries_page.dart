@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/data/utils.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 
 import 'exchange_students_page.dart';
 
 class CountriesPage extends StatefulWidget {
-  final String url;
+  final List<ExchangeStudent> students;
 
-  const CountriesPage({required this.url});
+  const CountriesPage({required this.students});
 
   @override
   _CountriesPageState createState() => _CountriesPageState();
@@ -22,22 +21,8 @@ class CountriesPage extends StatefulWidget {
 //https://kangabru.xyz/2020/05/29/zero-to-hero-2.html#preload-svgs
 
 class _CountriesPageState extends State<CountriesPage> {
-  List<ExchangeStudent> exchangeStudents = [];
-  bool _isLoading = true;
-
-  Future readJson(String url) async {
-    // final String response =
-    //     await rootBundle.loadString('assets/test/stories.json');
-    final data = await getDataStudents(url);
-    setState(() {
-      exchangeStudents = data;
-      _isLoading = false;
-    });
-  }
-
   @override
   void initState() {
-    readJson(widget.url); // TODO: implement initState
     super.initState();
   }
 
@@ -73,25 +58,21 @@ class _CountriesPageState extends State<CountriesPage> {
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
-      body: _isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Container(
-              child: ListView.builder(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                itemBuilder: (context, index) => SVGListTile(
-                    item: countries[index],
-                    descriptionPage: ExchangeStudentsPage(
-                      country: countries[index],
-                      students: exchangeStudents
-                          .where((element) =>
-                              element.country == countries[index].name)
-                          .toList(),
-                    )),
-                itemCount: countries.length,
-              ),
-            ),
+      body: Container(
+        child: ListView.builder(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          itemBuilder: (context, index) => SVGListTile(
+              item: countries[index],
+              descriptionPage: ExchangeStudentsPage(
+                country: countries[index],
+                students: widget.students
+                    .where(
+                        (element) => element.country == countries[index].name)
+                    .toList(),
+              )),
+          itemCount: countries.length,
+        ),
+      ),
     );
   }
 }
