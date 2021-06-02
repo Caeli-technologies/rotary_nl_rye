@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rotary_nl_rye">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="rotary_nl_rye"
+        android:label="Rotary Youth Exchange NL"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
