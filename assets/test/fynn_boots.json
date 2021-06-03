@@ -2,7 +2,7 @@
   "stories": [
     {
       "isDutchie": false,
-      "imageUrl": "https://rotary.caeli-tech.com/images/test/3.PNG",
+      "imageUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/test/3.PNG",
       "country": "Malang",
       "name": "Ruben",
       "departureDate": "17 september 2019",
@@ -32,7 +32,7 @@
               ]
             },
             {
-              "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+              "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4"
             }
           ]
         }
@@ -40,7 +40,7 @@
     },
     {
       "isDutchie": false,
-      "imageUrl": "https://rotary.caeli-tech.com/images/test/3.PNG",
+      "imageUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/test/3.PNG",
       "country": "Malang",
       "name": "Ruben",
       "departureDate": "17 september 2019",
@@ -70,7 +70,7 @@
               ]
             },
             {
-              "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+              "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4"
             }
           ]
         }
@@ -78,7 +78,7 @@
     },
     {
       "isDutchie": true,
-      "imageUrl": "https://rotary.caeli-tech.com/images/test/3.PNG",
+      "imageUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/test/3.PNG",
       "country": "Malang dutchie",
       "name": "Ruben",
       "departureDate": "17 september 2019",
@@ -108,7 +108,7 @@
               ]
             },
             {
-              "videoUrl": "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4"
+              "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4"
             }
           ]
         }

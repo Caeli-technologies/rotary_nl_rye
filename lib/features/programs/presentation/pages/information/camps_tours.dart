@@ -22,66 +22,66 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
   List<CarouselModel> localimages1 = [
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture1-1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture1-1.png",
         text: "roeien"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture1-2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture1-2.png",
         text: "leren boogschieten  "),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture2.png",
         text:
             "Marjolein neemt deel aan een kamp in Brazilië, een tiendaagse boottocht met excursies over de Amazone Rivier"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture3-1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture3-1.png",
         text: "OUTBOUND Zomerkamp: Egypte"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture3-2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture3-2.png",
         text: "OUTBOUND Zomerkamp: Egypte"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture4-1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture4-1.png",
         text: "OUTBOUND zomerkamp: Zuid-Italië"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture4-2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture4-2.png",
         text: "OUTBOUND zomerkamp: Zuid-Italië"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/outbound_summercamp/Picture5.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/outbound_summercamp/Picture5.png",
         text: "OUT-BOUND zomerkamp: Zuid-Italië")
   ];
 
   List<CarouselModel> localimages2 = [
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture1.png",
         text:
             "INBOUND zomerkamp in Nederland: Buitenlandse jongeren in Nederland"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture2.png",
         text:
             "INBOUNDS zomerkamp in Nederland. Buitenlandse jongere logeert bij gasfamilies."),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture3.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture3.png",
         text: "INBOUND Zomerkamp"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture4.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture4.png",
         text: "INBOUND Zomerkamp: Buitenlandse jongeren op kamp in Nederland"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture5.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture5.png",
         text:
             "INBOUND zomerkamp: Buitenlandse jongeren krijgen informatie over ‘de inpoldering’"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture6.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture6.png",
         text:
             "INBOUND zomerkamp: Buitenlandse jongeren maken kennis met de Nederlandse cultuur")
   ];
@@ -89,28 +89,28 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
   List<CarouselModel> localimages3 = [
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture7.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture7.png",
         text: "INBOUND zomerkamp: samen pannenkoeken leren bakken"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture8.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture8.png",
         text:
             "INBOUND zomerkamp: Buitenlandse jongeren vertellen bij de gastclub over hun land"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture9.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture9.png",
         text: "INBOUND zomerkamp: mee op de reddingsboot"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture10.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture10.png",
         text: "INBOUND zomerkamp: Varen en Nederland"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture11.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture11.png",
         text: "INBOUND zomerkamp: Kerktoren beklimmen"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/inbound_summercamp/Picture12.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/inbound_summercamp/Picture12.png",
         text: "Inbound Zomerkamp in Nederland ‘Afscheids- of BONTE avond")
   ];
 

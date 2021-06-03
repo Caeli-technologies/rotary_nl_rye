@@ -27,80 +27,80 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
   List<CarouselModel> localimages1 = [
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture1.png",
         text:
             " Meike wordt door haar Argentijnse gastfamilie opgehaald van het vliegveld"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture2.png",
         text: "Noor met haar gastgezin in Brazilië"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture3.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture3.png",
         text:
             "Stijn bij de natuurlijke thermale baden van Mendoza met gastgezin en match ‘Fran’ in Argentinië"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture4.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture4.png",
         text: "Stijn in Argentinië"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture5.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture5.png",
         text: "Stijn (in het midden) met de Argentijnse familie van Fran"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture6.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture6.png",
         text: "Lot en haar Indiase match Lutra. Lot laat Deventer zien.")
   ];
 
   List<CarouselModel> localimages2 = [
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture7.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture7.png",
         text:
             "Lutra haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur."),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-1.png",
         text: "‘EVEN VERWISSELD VAN NATIONAL COSTUME’"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-2.png",
         text: "Appeltaart bakken"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture8-3.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-3.png",
         text: "kaasproeven"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture10-1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture10-1.png",
         text: "LIANNE HEEFT EEN MATCH MET JAPANS MEISJE"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture10-2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture10-2.png",
         text: "LIANNE HEEFT EEN MATCH MET JAPANS MEISJE")
   ];
 
   List<CarouselModel> localimages3 = [
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture9-1.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-1.png",
         text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture9-2.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-2.png",
         text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture9-3.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-3.png",
         text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture11.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture11.png",
         text: "Samen nieuwe horizons opzoeken"),
     CarouselModel(
         image:
-            "https://rotary.caeli-tech.com/images/programs/f_to_f/Picture12.png",
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture12.png",
         text: "samen door Amsterdam fietsen")
   ];
 
@@ -173,7 +173,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
   initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-        "https://caeli-tech.com/rotary/video/promo/proud_to_be_European.mp4");
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4");
     _chewieController = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,
