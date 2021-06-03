@@ -30,7 +30,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
     // final String response =
     //     await rootBundle.loadString('assets/test/stories.json');
     final data = await getDataStories(
-        "https://rotary.caeli-tech.com/rebounds/students/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rebounds/students/${student.exchangeYear}/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
     setState(() {
       if (data == null) {
         print('data $data');

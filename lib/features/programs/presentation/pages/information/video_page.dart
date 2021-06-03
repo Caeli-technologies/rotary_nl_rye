@@ -23,7 +23,7 @@ class _VideoPageState extends State<VideoPage> {
   initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-        "https://caeli-tech.com/rotary/video/promo/5th_Avenue_Jeugd.mp4");
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4");
     _chewieController = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,

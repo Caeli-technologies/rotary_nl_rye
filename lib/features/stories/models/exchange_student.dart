@@ -1,6 +1,7 @@
 class ExchangeStudent {
   final String name;
   final String description;
+  final String exchangeYear;
 
   final String country, sponsorDistrict, hostDistrict;
   final String imageUrl;
@@ -8,6 +9,7 @@ class ExchangeStudent {
   ExchangeStudent({
     required this.name,
     required this.description,
+    required this.exchangeYear,
     required this.country,
     required this.sponsorDistrict,
     required this.hostDistrict,
@@ -18,6 +20,7 @@ class ExchangeStudent {
       ExchangeStudent(
         name: json['name'],
         description: json['description'],
+        exchangeYear: json['exchangeYear'],
         country: json['country'],
         sponsorDistrict: json['sponsorDistrict'],
         hostDistrict: json['hostDistrict'],
@@ -27,6 +30,7 @@ class ExchangeStudent {
   Map<String, dynamic> toJson() => {
         "name": name,
         "description": description,
+        "exchangeYear": exchangeYear,
         "country": country,
         "sponsorDistrict": sponsorDistrict,
         "hostDistrict": hostDistrict,
