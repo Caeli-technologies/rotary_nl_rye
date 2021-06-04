@@ -66,6 +66,7 @@ dependencies:
   video_player: ^2.1.4
   cached_network_image: ^3.0.0
   maps_launcher: ^2.0.0
+  
 
 
   # this is notification addon // please add only when ready!

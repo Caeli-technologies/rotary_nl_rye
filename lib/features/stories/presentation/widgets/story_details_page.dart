@@ -376,7 +376,70 @@ class _StoryDetailsState extends State<StoryDetails> {
   void selectedItem(BuildContext context, item) {
     switch (item) {
       case 0:
-        print("0");
+        // print("0");
+        showCupertinoModalPopup(
+          context: context,
+          builder: (context) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xffffffff),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0xff999999),
+                        width: 0.0,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      CupertinoButton(
+                        child: Text('Cancel'),
+                        onPressed: () => setState(() {
+                          dropdownValue = null;
+                        }),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 5.0,
+                        ),
+                      ),
+                      CupertinoButton(
+                        child: Text('Confirm'),
+                        onPressed: () {},
+                        // onPressed: (value) => setState(() {
+                        //   _isLoading = true;
+                        //   dropdownValue = value as String;
+                        //   translated(story.message[1]["body"]);
+                        // }
+                        // ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 5.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 320.0,
+                  color: Color(0xfff7f7f7),
+                  child: CupertinoPicker(
+                    itemExtent: 32.0,
+                    onSelectedItemChanged: (int value) {},
+                    children: const [
+                      Text('Item01'),
+                      Text('Item02'),
+                      Text('Item03'),
+                    ],
+                  ),
+                )
+              ],
+            );
+          },
+        );
         break;
       case 1:
         showMaterialScrollPicker(
