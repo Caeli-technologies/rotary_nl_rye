@@ -7,24 +7,18 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
-// ignore: must_be_immutable
-class StoryDetails extends StatelessWidget {
+class StoryDetails extends StatefulWidget {
   final Story story;
 
   StoryDetails({@required this.story});
-
   @override
-  Widget build(BuildContext context) {
-    return MainContainer(
-      story: story,
-    );
-  }
+  _StoryDetailsState createState() => _StoryDetailsState(story: story);
 }
 
-class MainContainer extends StatelessWidget {
+class _StoryDetailsState extends State<StoryDetails> {
   final Story story;
 
-  MainContainer({@required this.story});
+  _StoryDetailsState({@required this.story});
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +48,29 @@ class MainContainer extends StatelessWidget {
                 padding: const EdgeInsets.all(5.0),
               ),
             ),
+            actions: [
+              Container(
+                margin: EdgeInsets.only(right: 10, top: 10),
+                width: 40,
+                height: 40,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+                child: RawMaterialButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: new FaIcon(
+                    FontAwesomeIcons.ellipsisV,
+                    color: Palette.accentColor,
+                    size: 20.0,
+                  ),
+                  shape: new CircleBorder(),
+                  elevation: 2.0,
+                  fillColor: Palette.themeShadeColor,
+                  padding: const EdgeInsets.all(5.0),
+                ),
+              ),
+            ],
             expandedHeight: Device.height * 0.25,
             flexibleSpace: CachedNetworkImage(
               imageUrl: story.imageUrl,
