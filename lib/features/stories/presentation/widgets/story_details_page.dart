@@ -3,23 +3,40 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
+import 'package:translator/translator.dart';
+
+import 'lang.dart';
 
 class StoryDetails extends StatefulWidget {
   final Story story;
 
   StoryDetails({@required this.story});
+
   @override
   _StoryDetailsState createState() => _StoryDetailsState(story: story);
 }
 
 class _StoryDetailsState extends State<StoryDetails> {
   final Story story;
+  final translator = GoogleTranslator();
+  String dropdownValue;
+  String heading;
+  List<Widget> translate = [];
+  bool _isLoading = false;
 
   _StoryDetailsState({@required this.story});
+
+  @override
+  void dispose() {
+    dropdownValue = null;
+    translate.clear(); // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +125,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                           ],
                         )),
                   ],
-                  onSelected: (item) => SelectedItem(context, item),
+                  onSelected: (item) => selectedItem(context, item),
                 ),
               ),
             ],
@@ -226,22 +243,27 @@ class _StoryDetailsState extends State<StoryDetails> {
                 child: Container(
                   margin:
                       EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
-                  child: ListView(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Text(
-                        story.message[0]["heading"],
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    story.isDutchie
-                        ? dutchie(story.message[1]["body"])
-                        : SizedBox(),
-                    ..._text(story.message[1]["body"])
-                  ]),
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView(children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Text(
+                              (dropdownValue == null)
+                                  ? (story.message[0]["heading"])
+                                  : heading,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ...((dropdownValue == null)
+                              ? (_text(story.message[1]["body"]))
+                              : translate)
+                        ]),
                 ),
               ),
             ],
@@ -249,16 +271,6 @@ class _StoryDetailsState extends State<StoryDetails> {
         ),
       ),
     );
-  }
-
-  Widget dutchie(List x) {
-    for (Map<String, dynamic> y in x) {
-      if (y['videoUrl'] != null) {
-        return Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: NativeVideo(url: y["videoUrl"]));
-      }
-    }
   }
 
   List<Widget> _text(List x) {
@@ -306,14 +318,95 @@ class _StoryDetailsState extends State<StoryDetails> {
     return list;
   }
 
-  void SelectedItem(BuildContext context, item) {
+  void translated(List x) async {
+    header(story.message[0]["heading"]);
+    for (Map<String, dynamic> y in x) {
+      if (y['paragraph'] != null) {
+        for (String a in y['paragraph']) {
+          await Future.delayed(Duration(
+              seconds: 2)); // to prevent triggering of google recaptcha
+          await trans(a).then(
+            (value) => translate.add(
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Text(
+                  value,
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                ),
+              ),
+            ),
+          );
+          await Future.delayed(Duration(seconds: 2)); // to be adjusted
+        }
+      } else if (y['imageUrl'] != null) {
+        translate.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.network(y['imageUrl']),
+          ),
+        );
+      } else if (y['videoUrl'] != null) {
+        translate.add(Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: NativeVideo(url: y["videoUrl"])));
+      } else if (y['subHeader'] != null) {
+        await Future.delayed(Duration(seconds: 2));
+        await trans(y['subHeader']).then(
+          (value) => translate.add(
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Text(
+                value,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+        );
+        await Future.delayed(Duration(seconds: 2));
+      }
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void selectedItem(BuildContext context, item) {
     switch (item) {
       case 0:
         print("0");
         break;
       case 1:
-        print("1");
+        showMaterialScrollPicker(
+          context: context,
+          items: langs.keys.toList(),
+          title: 'Translate',
+          onChanged: (value) => setState(() {
+            _isLoading = true;
+            dropdownValue = value;
+            translated(story.message[1]["body"]);
+          }),
+          onCancelled: () => setState(() {
+            dropdownValue = null;
+          }),
+          showDivider: false,
+          selectedValue: 'Dutch',
+        );
         break;
     }
+  }
+
+  void header(String x) async {
+    await Future.delayed(Duration(seconds: 2));
+    await trans(x).then((value) => heading);
+    await Future.delayed(Duration(seconds: 2));
+  }
+
+  Future<String> trans(x) async {
+    await translator.translate(x, to: "${langs[dropdownValue]}").then((value) {
+      return value;
+    });
   }
 }
