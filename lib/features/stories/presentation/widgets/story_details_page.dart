@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -48,26 +49,66 @@ class _StoryDetailsState extends State<StoryDetails> {
                 padding: const EdgeInsets.all(5.0),
               ),
             ),
+            // actions: [
+            //   Container(
+            //     margin: EdgeInsets.only(right: 10, top: 10),
+            //     width: 40,
+            //     height: 40,
+            //     decoration:
+            //         BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+            //     child: RawMaterialButton(
+            //       onPressed: () {
+            //         //
+            //       },
+            //       child: new FaIcon(
+            //         FontAwesomeIcons.ellipsisV,
+            //         color: Palette.accentColor,
+            //         size: 20.0,
+            //       ),
+            //       shape: new CircleBorder(),
+            //       elevation: 2.0,
+            //       fillColor: Palette.themeShadeColor,
+            //       padding: const EdgeInsets.all(5.0),
+            //     ),
+            //   ),
+            // ],
             actions: [
-              Container(
-                margin: EdgeInsets.only(right: 10, top: 10),
-                width: 40,
-                height: 40,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-                child: RawMaterialButton(
-                  onPressed: () {
-                    //
-                  },
-                  child: new FaIcon(
-                    FontAwesomeIcons.ellipsisV,
-                    color: Palette.accentColor,
-                    size: 20.0,
-                  ),
-                  shape: new CircleBorder(),
-                  elevation: 2.0,
-                  fillColor: Palette.themeShadeColor,
-                  padding: const EdgeInsets.all(5.0),
+              Theme(
+                data: Theme.of(context).copyWith(),
+                child: PopupMenuButton<int>(
+                  // color: Colors.black,
+                  itemBuilder: (context) => [
+                    PopupMenuItem<int>(
+                        value: 0,
+                        child: Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.share,
+                              color: Palette.lightIndigo,
+                            ),
+                            const SizedBox(
+                              width: 7,
+                            ),
+                            Text("Share")
+                          ],
+                        )),
+                    PopupMenuDivider(),
+                    PopupMenuItem<int>(
+                        value: 1,
+                        child: Row(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.language,
+                              color: Palette.lightIndigo,
+                            ),
+                            const SizedBox(
+                              width: 7,
+                            ),
+                            Text("Translate")
+                          ],
+                        )),
+                  ],
+                  onSelected: (item) => SelectedItem(context, item),
                 ),
               ),
             ],
@@ -263,5 +304,16 @@ class _StoryDetailsState extends State<StoryDetails> {
     }
 
     return list;
+  }
+
+  void SelectedItem(BuildContext context, item) {
+    switch (item) {
+      case 0:
+        print("0");
+        break;
+      case 1:
+        print("1");
+        break;
+    }
   }
 }
