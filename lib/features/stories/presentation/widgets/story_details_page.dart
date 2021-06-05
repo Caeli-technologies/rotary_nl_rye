@@ -1,4 +1,6 @@
 // @dart=2.9
+import 'dart:math';
+
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -321,24 +323,34 @@ class _StoryDetailsState extends State<StoryDetails> {
   }
 
   void translated(List x) async {
+    translate.clear();
+    print(x.toString());
+    Random random = Random();
     header(story.message[0]["heading"]);
     for (Map<String, dynamic> y in x) {
       if (y['paragraph'] != null) {
         for (String a in y['paragraph']) {
-          await Future.delayed(Duration(
-              seconds: 2)); // to prevent triggering of google recaptcha
-          await trans(a).then(
-            (value) => translate.add(
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  value,
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
-                ),
+          await Future.delayed(
+            Duration(
+              seconds: (random.nextInt(2) + 2),
+            ),
+          ); // to prevent triggering of google recaptcha
+          String value = await trans(a);
+          print('paragraph :$value');
+          translate.add(
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Text(
+                value,
+                style: TextStyle(color: Colors.black, fontSize: 16.0),
               ),
             ),
           );
-          await Future.delayed(Duration(seconds: 2)); // to be adjusted
+          await Future.delayed(
+            Duration(
+              seconds: (random.nextInt(2) + 2),
+            ),
+          ); // to be adjusted
         }
       } else if (y['imageUrl'] != null) {
         translate.add(
@@ -348,26 +360,30 @@ class _StoryDetailsState extends State<StoryDetails> {
           ),
         );
       } else if (y['videoUrl'] != null) {
-        translate.add(Padding(
+        translate.add(
+          Padding(
             padding: const EdgeInsets.only(top: 10.0),
-            child: NativeVideo(url: y["videoUrl"])));
+            child: NativeVideo(url: y["videoUrl"]),
+          ),
+        );
       } else if (y['subHeader'] != null) {
-        await Future.delayed(Duration(seconds: 2));
-        await trans(y['subHeader']).then(
-          (value) => translate.add(
-            Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Text(
-                value,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold),
+        await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
+        String value = await trans(y['subHeader']);
+        print('subHeader :$value');
+        translate.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Text(
+              value,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
         );
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
       }
     }
     setState(() {
@@ -381,97 +397,39 @@ class _StoryDetailsState extends State<StoryDetails> {
         print("0");
         break;
       case 1:
-        Platform.isIOS
-            //iOS
-            ? showCupertinoModalPopup(
-                context: context,
-                builder: (context) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Color(0xff999999),
-                              width: 0.0,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            CupertinoButton(
-                              child: Text('Cancel'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                dropdownValue = null;
-                              },
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                                vertical: 5.0,
-                              ),
-                            ),
-                            CupertinoButton(
-                              child: Text('Confirm'),
-                              onPressed: () {},
-                              // onPressed: (value) => setState(() {
-                              //   _isLoading = true;
-                              //   dropdownValue = value as String;
-                              //   translated(story.message[1]["body"]);
-                              // }
-                              // ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                                vertical: 5.0,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 320.0,
-                        color: Color(0xfff7f7f7),
-                        child: CupertinoPicker(
-                          itemExtent: 32.0,
-                          onSelectedItemChanged: (int value) {},
-                          children: langs.keys.map((e) => Text(e)).toList(),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              )
-            // android
-            : showMaterialScrollPicker(
-                context: context,
-                items: langs.keys.toList(),
-                title: 'Translate',
-                onChanged: (value) => setState(() {
-                  _isLoading = true;
-                  dropdownValue = value;
-                  translated(story.message[1]["body"]);
-                }),
-                onCancelled: () => setState(() {
-                  dropdownValue = null;
-                }),
-                showDivider: false,
-                selectedValue: 'Dutch',
-              );
+        showMaterialScrollPicker(
+          context: context,
+          items: langs.keys.toList(),
+          title: 'Translate',
+          onChanged: (value) => setState(() {
+            if (value == 'Dutch') {
+              dropdownValue = null;
+            } else {
+              _isLoading = true;
+              dropdownValue = value;
+              translated(story.message[1]["body"]);
+            }
+          }),
+          onCancelled: () => setState(() {
+            dropdownValue = null;
+          }),
+          showDivider: false,
+          selectedValue: 'Dutch',
+        );
         break;
     }
   }
 
   void header(String x) async {
     await Future.delayed(Duration(seconds: 2));
-    await trans(x).then((value) => heading);
+    heading = await trans(x);
+    print('header :$heading');
     await Future.delayed(Duration(seconds: 2));
   }
 
   Future<String> trans(x) async {
-    await translator.translate(x, to: "${langs[dropdownValue]}").then((value) {
-      return value;
-    });
+    print('trans to ${langs[dropdownValue]}');
+    var y = await translator.translate(x, to: "${langs[dropdownValue]}");
+    return y.text;
   }
 }
