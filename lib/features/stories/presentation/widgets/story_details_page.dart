@@ -26,7 +26,7 @@ class StoryDetails extends StatefulWidget {
 class _StoryDetailsState extends State<StoryDetails> {
   final Story story;
   final translator = GoogleTranslator();
-  String dropdownValue;
+  String localeLanguage;
   String heading;
   List<Widget> translate = [];
   bool _isLoading = false;
@@ -35,7 +35,7 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   @override
   void dispose() {
-    dropdownValue = null;
+    localeLanguage = null;
     translate.clear(); // TODO: implement dispose
     super.dispose();
   }
@@ -253,7 +253,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: Text(
-                              (dropdownValue == null)
+                              (localeLanguage == null)
                                   ? (story.message[0]["heading"])
                                   : heading,
                               style: TextStyle(
@@ -262,7 +262,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          ...((dropdownValue == null)
+                          ...((localeLanguage == null)
                               ? (_text(story.message[1]["body"]))
                               : translate)
                         ]),
@@ -397,17 +397,17 @@ class _StoryDetailsState extends State<StoryDetails> {
       case 1:
         print('platform${Platform.localeName}');
         setState(() {
-          if (dropdownValue == null) {
+          if (localeLanguage == null) {
             if (Platform.localeName == 'zh') {
-              dropdownValue = 'zh-cn';
+              localeLanguage = 'zh-cn';
             } else {
-              dropdownValue = Platform.localeName.toString().split('_')[0];
-              print('locale $dropdownValue');
+              localeLanguage = Platform.localeName.toString().split('_')[0];
+              print('locale $localeLanguage');
             }
             _isLoading = true;
             translated(story.message[1]["body"]);
           } else {
-            dropdownValue = null;
+            localeLanguage = null;
           }
         });
 
@@ -417,15 +417,15 @@ class _StoryDetailsState extends State<StoryDetails> {
         //   title: 'Translate',
         //   onChanged: (value) => setState(() {
         //     if (value == 'Dutch') {
-        //       dropdownValue = null;
+        //       localeLanguage = null;
         //     } else {
         //       _isLoading = true;
-        //       dropdownValue = value;
+        //       localeLanguage = value;
         //       translated(story.message[1]["body"]);
         //     }
         //   }),
         //   onCancelled: () => setState(() {
-        //     dropdownValue = null;
+        //     localeLanguage = null;
         //   }),
         //   showDivider: false,
         //   selectedValue: 'Dutch',
@@ -442,9 +442,9 @@ class _StoryDetailsState extends State<StoryDetails> {
   }
 
   Future<String> trans(x) async {
-    print('trans to $dropdownValue');
-    if (langs.containsValue(dropdownValue)) {
-      var y = await translator.translate(x, to: "$dropdownValue");
+    print('trans to $localeLanguage');
+    if (langs.containsValue(localeLanguage)) {
+      var y = await translator.translate(x, to: "$localeLanguage");
       return y.text;
     } else {
       var y = await translator.translate(x, to: "en");
