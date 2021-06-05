@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
@@ -30,6 +31,7 @@ class _StoryDetailsState extends State<StoryDetails> {
   String heading;
   List<Widget> translate = [];
   bool _isLoading = false;
+  double progressPercent = 0;
 
   _StoryDetailsState({@required this.story});
 
@@ -42,6 +44,15 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   @override
   Widget build(BuildContext context) {
+    Color foreground = Colors.red;
+
+    if (progressPercent >= 0.8) {
+      foreground = Colors.green;
+    } else if (progressPercent >= 0.4) {
+      foreground = Colors.orange;
+    }
+
+    Color background = foreground.withOpacity(0.2);
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
@@ -264,7 +275,47 @@ class _StoryDetailsState extends State<StoryDetails> {
                           ),
                           ...((localeLanguage == null)
                               ? (_text(story.message[1]["body"]))
-                              : translate)
+                              : translate),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                width: 200,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: GestureDetector(
+                                    behavior: HitTestBehavior.translucent,
+                                    child: CircleProgressBar(
+                                      backgroundColor: background,
+                                      foregroundColor: foreground,
+                                      value: this.progressPercent,
+                                    ),
+                                    onTap: () {
+                                      final updated =
+                                          ((this.progressPercent + 0.1)
+                                                  .clamp(0.0, 1.0) *
+                                              100);
+                                      setState(() {
+                                        this.progressPercent =
+                                            updated.round() / 100;
+                                      });
+                                    },
+                                    onDoubleTap: () {
+                                      final updated =
+                                          ((this.progressPercent - 0.1)
+                                                  .clamp(0.0, 1.0) *
+                                              100);
+                                      setState(() {
+                                        this.progressPercent =
+                                            updated.round() / 100;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Text("${this.progressPercent * 100}%"),
+                            ],
+                          ),
                         ]),
                 ),
               ),
