@@ -277,7 +277,20 @@ class _StoryDetailsState extends State<StoryDetails> {
                                   ),
                                 ),
                               ),
-                              Text("${this.progressPercent * 100}%")
+                              Text(
+                                "${this.progressPercent * 100}%",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "COMPLETED",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
+                              )
                             ],
                           ),
                         )
