@@ -1,13 +1,11 @@
 // @dart=2.9
-import 'dart:math';
-
 import 'dart:io';
+import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
@@ -397,25 +395,41 @@ class _StoryDetailsState extends State<StoryDetails> {
         print("0");
         break;
       case 1:
-        showMaterialScrollPicker(
-          context: context,
-          items: langs.keys.toList(),
-          title: 'Translate',
-          onChanged: (value) => setState(() {
-            if (value == 'Dutch') {
-              dropdownValue = null;
+        print('platform${Platform.localeName}');
+        setState(() {
+          if (dropdownValue == null) {
+            if (Platform.localeName == 'zh') {
+              dropdownValue = 'zh-cn';
             } else {
-              _isLoading = true;
-              dropdownValue = value;
-              translated(story.message[1]["body"]);
+              dropdownValue = Platform.localeName.toString().split('_')[0];
+              print('locale $dropdownValue');
             }
-          }),
-          onCancelled: () => setState(() {
+            _isLoading = true;
+            translated(story.message[1]["body"]);
+          } else {
             dropdownValue = null;
-          }),
-          showDivider: false,
-          selectedValue: 'Dutch',
-        );
+          }
+        });
+
+        // showMaterialScrollPicker(
+        //   context: context,
+        //   items: langs.keys.toList(),
+        //   title: 'Translate',
+        //   onChanged: (value) => setState(() {
+        //     if (value == 'Dutch') {
+        //       dropdownValue = null;
+        //     } else {
+        //       _isLoading = true;
+        //       dropdownValue = value;
+        //       translated(story.message[1]["body"]);
+        //     }
+        //   }),
+        //   onCancelled: () => setState(() {
+        //     dropdownValue = null;
+        //   }),
+        //   showDivider: false,
+        //   selectedValue: 'Dutch',
+        // );
         break;
     }
   }
@@ -428,8 +442,13 @@ class _StoryDetailsState extends State<StoryDetails> {
   }
 
   Future<String> trans(x) async {
-    print('trans to ${langs[dropdownValue]}');
-    var y = await translator.translate(x, to: "${langs[dropdownValue]}");
-    return y.text;
+    print('trans to $dropdownValue');
+    if (langs.containsValue(dropdownValue)) {
+      var y = await translator.translate(x, to: "$dropdownValue");
+      return y.text;
+    } else {
+      var y = await translator.translate(x, to: "en");
+      return y.text;
+    }
   }
 }
