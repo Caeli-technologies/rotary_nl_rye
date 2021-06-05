@@ -277,20 +277,27 @@ class _StoryDetailsState extends State<StoryDetails> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                "${this.progressPercent * 100}%",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    "${this.progressPercent * 100}%",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 30.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "COMPLETED",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "COMPLETED",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
-                              )
                             ],
                           ),
                         )
