@@ -1,6 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:video_player/video_player.dart';
@@ -48,6 +49,29 @@ class _NonPDFPageState extends State<NonPDFPage> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
+          actions: [
+            Container(
+              margin: EdgeInsets.only(right: 10, top: 5),
+              width: 50,
+              height: 50,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+              child: RawMaterialButton(
+                onPressed: () {
+                  // code :)
+                },
+                child: new FaIcon(
+                  FontAwesomeIcons.language,
+                  color: Palette.accentColor,
+                  size: 30.0,
+                ),
+                shape: new CircleBorder(),
+                elevation: 2.0,
+                fillColor: Palette.themeShadeColor,
+                padding: const EdgeInsets.all(5.0),
+              ),
+            ),
+          ],
           title: Text(
             widget.data["title"],
             textScaleFactor: 1.4,
