@@ -262,7 +262,20 @@ class _StoryDetailsState extends State<StoryDetails> {
                       EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
                   child: _isLoading
                       ? Center(
-                          child: CircularProgressIndicator(),
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              width: 200,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: CircleProgressBar(
+                                  backgroundColor: background,
+                                  foregroundColor: foreground,
+                                  value: this.progressPercent,
+                                ),
+                              ),
+                            ),
+                            Text("${this.progressPercent * 100}%")
+                          ]),
                         )
                       : ListView(children: [
                           Padding(
@@ -280,46 +293,6 @@ class _StoryDetailsState extends State<StoryDetails> {
                           ...((localeLanguage == null)
                               ? (_text(story.message[1]["body"]))
                               : translate),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                width: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: GestureDetector(
-                                    behavior: HitTestBehavior.translucent,
-                                    child: CircleProgressBar(
-                                      backgroundColor: background,
-                                      foregroundColor: foreground,
-                                      value: this.progressPercent,
-                                    ),
-                                    onTap: () {
-                                      final updated =
-                                          ((this.progressPercent + 0.1)
-                                                  .clamp(0.0, 1.0) *
-                                              100);
-                                      setState(() {
-                                        this.progressPercent =
-                                            updated.round() / 100;
-                                      });
-                                    },
-                                    onDoubleTap: () {
-                                      final updated =
-                                          ((this.progressPercent - 0.1)
-                                                  .clamp(0.0, 1.0) *
-                                              100);
-                                      setState(() {
-                                        this.progressPercent =
-                                            updated.round() / 100;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Text("${this.progressPercent * 100}%"),
-                            ],
-                          ),
                         ]),
                 ),
               ),
@@ -383,7 +356,11 @@ class _StoryDetailsState extends State<StoryDetails> {
     print(x.toString());
     Random random = Random();
     header(story.message[0]["heading"]);
-    translationIndex++;
+    setState(() {
+      translationIndex++;
+      progressPercent = translationIndex / index;
+    });
+
     for (Map<String, dynamic> y in x) {
       if (y['paragraph'] != null) {
         for (String a in y['paragraph']) {
@@ -403,7 +380,10 @@ class _StoryDetailsState extends State<StoryDetails> {
               ),
             ),
           );
-          translationIndex++;
+          setState(() {
+            translationIndex++;
+            progressPercent = translationIndex / index;
+          });
           await Future.delayed(
             Duration(
               seconds: (random.nextInt(2) + 2),
@@ -441,7 +421,10 @@ class _StoryDetailsState extends State<StoryDetails> {
             ),
           ),
         );
-        translationIndex++;
+        setState(() {
+          translationIndex++;
+          progressPercent = translationIndex / index;
+        });
         await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
       }
     }
