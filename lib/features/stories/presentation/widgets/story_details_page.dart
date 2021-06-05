@@ -32,13 +32,17 @@ class _StoryDetailsState extends State<StoryDetails> {
   List<Widget> translate = [];
   bool _isLoading = false;
   double progressPercent = 0;
+  int index = 0;
+  int translationIndex = 0;
 
   _StoryDetailsState({@required this.story});
 
   @override
   void dispose() {
     localeLanguage = null;
-    translate.clear(); // TODO: implement dispose
+    translate.clear();
+    index = 0;
+    translationIndex = 0; // TODO: implement dispose
     super.dispose();
   }
 
@@ -328,11 +332,12 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   List<Widget> _text(List x) {
     print(x.toString());
-
+    index = 1;
     List<Widget> list = [];
     for (Map<String, dynamic> y in x) {
       if (y['paragraph'] != null) {
         for (String a in y['paragraph']) {
+          index++;
           list.add(Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
@@ -353,6 +358,7 @@ class _StoryDetailsState extends State<StoryDetails> {
             padding: const EdgeInsets.only(top: 10.0),
             child: NativeVideo(url: y["videoUrl"])));
       } else if (y['subHeader'] != null) {
+        index++;
         list.add(
           Padding(
             padding: const EdgeInsets.only(top: 25),
@@ -373,9 +379,11 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   void translated(List x) async {
     translate.clear();
+    translationIndex = 0;
     print(x.toString());
     Random random = Random();
     header(story.message[0]["heading"]);
+    translationIndex++;
     for (Map<String, dynamic> y in x) {
       if (y['paragraph'] != null) {
         for (String a in y['paragraph']) {
@@ -395,6 +403,7 @@ class _StoryDetailsState extends State<StoryDetails> {
               ),
             ),
           );
+          translationIndex++;
           await Future.delayed(
             Duration(
               seconds: (random.nextInt(2) + 2),
@@ -432,6 +441,7 @@ class _StoryDetailsState extends State<StoryDetails> {
             ),
           ),
         );
+        translationIndex++;
         await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
       }
     }
