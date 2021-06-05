@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
+
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 import 'package:translator/translator.dart';
 
@@ -262,20 +263,23 @@ class _StoryDetailsState extends State<StoryDetails> {
                       EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
                   child: _isLoading
                       ? Center(
-                          child: Stack(alignment: Alignment.center, children: [
-                            Container(
-                              width: 200,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: CircleProgressBar(
-                                  backgroundColor: background,
-                                  foregroundColor: foreground,
-                                  value: this.progressPercent,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: 200,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: CircleProgressBar(
+                                    backgroundColor: background,
+                                    foregroundColor: foreground,
+                                    value: this.progressPercent,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text("${this.progressPercent * 100}%")
-                          ]),
+                              Text("${this.progressPercent * 100}%")
+                            ],
+                          ),
                         )
                       : ListView(children: [
                           Padding(
