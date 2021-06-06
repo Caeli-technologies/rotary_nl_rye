@@ -10,7 +10,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 import 'package:translator/translator.dart';
 
@@ -466,7 +465,7 @@ class _StoryDetailsState extends State<StoryDetails> {
         print('platform${Platform.localeName}');
         setState(() {
           if (localeLanguage == null) {
-            if (Platform.localeName == 'zh') {
+            if (Platform.localeName.toString().split('_')[0] == 'zh') {
               localeLanguage = 'zh-cn';
             } else {
               localeLanguage = Platform.localeName.toString().split('_')[0];
