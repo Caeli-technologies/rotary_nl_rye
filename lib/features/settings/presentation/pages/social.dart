@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -90,13 +91,22 @@ class _SocialPageState extends State<SocialPage> {
           leading: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: Container(
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      imageUrl,
-                      width: 55.0,
-                      height: 55.0,
-                    ))),
+              child: CachedNetworkImage(
+                height: 55,
+                width: 55,
+                imageUrl: imageUrl,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                  ),
+                ),
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+            ),
           ),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
