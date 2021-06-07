@@ -1,4 +1,4 @@
-final Map<String, String> langs = {
+final Map<String, String> supportedLangs = {
   'Afrikaans': 'af',
   'Albanian': 'sq',
   'Amharic': 'am',
