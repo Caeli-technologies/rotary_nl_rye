@@ -23,7 +23,7 @@ versionCheck(context) async {
 
   try {
     // Using default duration to force fetching from remote server.
-await remoteConfig.fetchAndActivate(); 
+    await remoteConfig.ensureInitialized();
     remoteConfig.getString('force_update_current_version');
     double newVersion = double.parse(remoteConfig
         .getString('force_update_current_version')
@@ -32,7 +32,6 @@ await remoteConfig.fetchAndActivate();
     if (newVersion > currentVersion) {
       _showVersionDialog(context);
     }
-    
   } on PlatformException catch (exception) {
     // Fetch exception.
     print(exception);
