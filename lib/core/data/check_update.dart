@@ -13,32 +13,29 @@ const PLAY_STORE_URL =
 
 versionCheck(context) async {
   //Get Current installed version of app
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-  double currentVersion =
-      double.parse(packageInfo.version.trim().replaceAll(".", ""));
+  final PackageInfo info = await PackageInfo.fromPlatform();
+  double currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
+  print(currentVersion);
 
   //Get Latest version info from firebase config
-  final RemoteConfig remoteConfig = RemoteConfig.instance;
+  final RemoteConfig remoteConfig = await RemoteConfig.instance;
 
   try {
     // Using default duration to force fetching from remote server.
-    await remoteConfig.ensureInitialized();
-    remoteConfig.getString('force_update_current_version');
-    double newVersion = double.parse(remoteConfig
-        .getString('force_update_current_version')
-        .trim()
-        .replaceAll(".", ""));
+    remoteConfig.getAll();
+
+    remoteConfig.getDouble('force_update_current_version');
+    double newVersion = remoteConfig.getDouble('force_update_current_version');
+    print(newVersion);
     if (newVersion > currentVersion) {
       _showVersionDialog(context);
     }
   } on PlatformException catch (exception) {
-    // Fetch exception.
+    // Fetch throttled.
     print(exception);
   } catch (exception) {
     print('Unable to fetch remote config. Cached or default values will be '
         'used');
-    print(exception);
   }
 }
 
