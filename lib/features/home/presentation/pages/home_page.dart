@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/data/check_update.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
@@ -61,6 +62,11 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     initPlatformState();
     _removeBadge();
+    try {
+      versionCheck(context);
+    } catch (e) {
+      print(e);
+    }
 
     Future.wait([
       precachePicture(
