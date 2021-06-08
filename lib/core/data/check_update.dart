@@ -14,19 +14,34 @@ const PLAY_STORE_URL =
 versionCheck(context) async {
   //Get Current installed version of app
   final PackageInfo info = await PackageInfo.fromPlatform();
-  double currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
-  print(currentVersion);
+  double currentVersion = double.parse(info.version.trim().replaceAll(".", "") +
+      info.buildNumber.trim().replaceAll(".", ""));
 
   //Get Latest version info from firebase config
   final RemoteConfig remoteConfig = await RemoteConfig.instance;
 
   try {
     // Using default duration to force fetching from remote server.
-    remoteConfig.getAll();
+    await remoteConfig.fetchAndActivate();
+    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: Duration(seconds: 0),
+      minimumFetchInterval: Duration(hours: 1), // caches fetch for 1 hour
+    ));
+    // Version + build
+    String forceUpdateCurrentVersion =
+        remoteConfig.getString('force_update_current_version');
+    // print("forceUpdateCurrentVersion: $forceUpdateCurrentVersion");
+    String forceUpdateCurrentBuild =
+        remoteConfig.getString('force_update_current_build');
+    // print("forceUpdateCurrentBuild: $forceUpdateCurrentBuild");
 
-    remoteConfig.getDouble('force_update_current_version');
-    double newVersion = remoteConfig.getDouble('force_update_current_version');
-    print(newVersion);
+    double newVersion = double.parse(
+        forceUpdateCurrentVersion.trim().replaceAll(".", "") +
+            forceUpdateCurrentBuild.trim().replaceAll(".", ""));
+
+    print("Firebase Version: $newVersion - currentVersion: $currentVersion");
+
+    // print("newVersion: $newVersion");
     if (newVersion > currentVersion) {
       _showVersionDialog(context);
     }
@@ -34,6 +49,7 @@ versionCheck(context) async {
     // Fetch throttled.
     print(exception);
   } catch (exception) {
+    print('EXCEPTION: $exception');
     print('Unable to fetch remote config. Cached or default values will be '
         'used');
   }
