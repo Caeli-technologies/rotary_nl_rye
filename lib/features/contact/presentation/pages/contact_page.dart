@@ -10,9 +10,6 @@ import 'package:rotary_nl_rye/features/contact/data/long_term_organization_list.
 import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/rotex_list.dart';
 
-// ignore: import_of_legacy_library_into_null_safe
-import '../contact_search.dart';
-
 class ContactPage extends StatefulWidget {
   @override
   _ContactPageState createState() => _ContactPageState();
