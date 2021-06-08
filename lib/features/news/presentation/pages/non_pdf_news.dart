@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/widgets/lang.dart';
+import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:translator/translator.dart';
 
 class NonPDFPage extends StatefulWidget {
@@ -186,57 +186,33 @@ class _NonPDFPageState extends State<NonPDFPage> {
         );
   }
 
-  List<Widget> _text(List x) {
-    print(x.toString());
+  List<Widget> _text(List newsBody) {
+    print(newsBody.toString());
     index = 1;
-    List<Widget> list = [];
-    for (Map<String, dynamic> y in x) {
-      if (y['paragraph'] != null) {
-        for (String a in y['paragraph']) {
+    List<Widget> resultList = [];
+    for (Map<String, dynamic> bodyItem in newsBody) {
+      if (bodyItem['paragraph'] != null) {
+        for (String text in bodyItem['paragraph']) {
           index++;
-          list.add(Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Text(
-              a,
-              style: TextStyle(color: Colors.black, fontSize: 16.0),
-            ),
-          ));
+          resultList.add(paragraphItem(text: text));
         }
-      } else if (y['imageUrl'] != null) {
-        list.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Image.network(y['imageUrl']),
-          ),
-        );
-      } else if (y['videoUrl'] != null) {
-        list.add(Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: NativeVideo(url: y["videoUrl"])));
-      } else if (y['subHeader'] != null) {
+      } else if (bodyItem['imageUrl'] != null) {
+        resultList.add(imageItem(url: bodyItem["imageUrl"]));
+      } else if (bodyItem['videoUrl'] != null) {
+        resultList.add(videoItem(url: bodyItem["videoUrl"]));
+      } else if (bodyItem['subHeader'] != null) {
         index++;
-        list.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 25),
-            child: Text(
-              y['subHeader'],
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        );
+        resultList.add(subHeaderItem(text: bodyItem["subHeader"]));
       }
     }
 
-    return list;
+    return resultList;
   }
 
-  void translated(List x) async {
+  void translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    print(x.toString());
+    print(newsBody.toString());
     Random random = Random();
     header(widget.data['text'][0]["heading"]);
     setState(() {
@@ -244,66 +220,32 @@ class _NonPDFPageState extends State<NonPDFPage> {
       progressPercent = translationIndex / index;
     });
 
-    for (Map<String, dynamic> y in x) {
-      if (y['paragraph'] != null) {
-        for (String a in y['paragraph']) {
-          await Future.delayed(
-            Duration(
-              seconds: (random.nextInt(2) + 2),
-            ),
-          ); // to prevent triggering of google recaptcha
-          String value = await trans(a);
+    for (Map<String, dynamic> bodyItem in newsBody) {
+      if (bodyItem['paragraph'] != null) {
+        for (String text in bodyItem['paragraph']) {
+          await Future.delayed(Duration(seconds: 1));
+          // to prevent triggering of google recaptcha
+          String value = await Translate.translateText(text);
+          //String value = await trans(text);
           print('paragraph :$value');
-          translate.add(
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Text(
-                value,
-                style: TextStyle(color: Colors.black, fontSize: 16.0),
-              ),
-            ),
-          );
+          translate.add(paragraphItem(text: value));
           setState(() {
             translationIndex++;
             progressPercent = translationIndex / index;
           });
-          await Future.delayed(
-            Duration(
-              seconds: (random.nextInt(2) + 2),
-            ),
-          ); // to be adjusted
+          //await Future.delayed(
+          //    Duration(seconds: (random.nextInt(2) + 2))); // to be adjusted
         }
-      } else if (y['imageUrl'] != null) {
-        translate.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Image.network(y['imageUrl']),
-          ),
-        );
-      } else if (y['videoUrl'] != null) {
-        translate.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: NativeVideo(url: y["videoUrl"]),
-          ),
-        );
-      } else if (y['subHeader'] != null) {
+      } else if (bodyItem['imageUrl'] != null) {
+        translate.add(imageItem(url: bodyItem['imageUrl']));
+      } else if (bodyItem['videoUrl'] != null) {
+        translate.add(videoItem(url: bodyItem['videoUrl']));
+      } else if (bodyItem['subHeader'] != null) {
         await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
-        String value = await trans(y['subHeader']);
+        String value = await Translate.translateText(bodyItem['subHeader']);
+        //String value = await trans(bodyItem['subHeader']);
         print('subHeader :$value');
-        translate.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 25),
-            child: Text(
-              value,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        );
+        translate.add(subHeaderItem(text: value));
         setState(() {
           translationIndex++;
           progressPercent = translationIndex / index;
@@ -318,12 +260,13 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   void header(String x) async {
     await Future.delayed(Duration(seconds: 2));
-    heading = await trans(x);
+    heading = await Translate.translateText(x);
+    //heading = await trans(x);
     print('header :$heading');
     await Future.delayed(Duration(seconds: 2));
   }
 
-  Future<String> trans(x) async {
+  /*Future<String> trans(x) async {
     print('trans to $localeLanguage');
     if (supportedLangs.containsValue(localeLanguage)) {
       var y = await translator.translate(x, to: "$localeLanguage");
@@ -332,5 +275,40 @@ class _NonPDFPageState extends State<NonPDFPage> {
       var y = await translator.translate(x, to: "en");
       return y.text;
     }
+  }*/
+
+  Widget videoItem({required String url}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: NativeVideo(url: url),
+    );
+  }
+
+  Widget imageItem({required String url}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Image.network(url),
+    );
+  }
+
+  Widget paragraphItem({required String text}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.black, fontSize: 16.0),
+      ),
+    );
+  }
+
+  Widget subHeaderItem({required String text}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 25),
+      child: Text(
+        text,
+        style: TextStyle(
+            color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
