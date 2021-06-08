@@ -510,7 +510,7 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   Future<String> trans(x) async {
     print('trans to $localeLanguage');
-    if (langs.containsValue(localeLanguage)) {
+    if (supportedLangs.containsValue(localeLanguage)) {
       var y = await translator.translate(x, to: "$localeLanguage");
       return y.text;
     } else {
