@@ -1,13 +1,14 @@
 import 'dart:io';
 
-import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/widgets/lang.dart';
 import 'package:translator/translator.dart';
 
 class Translate {
   // TODO state emission
-  static Future<Map<String, String>> translateMap(Map<String, String> toTranslate) async {
-    if(!(await new DataConnectionChecker().hasConnection)){
+  static Future<Map<String, String>> translateMap(
+      Map<String, String> toTranslate) async {
+    if (!(await new InternetConnectionChecker().hasConnection)) {
       print("No connection");
       return toTranslate;
     }
@@ -17,7 +18,7 @@ class Translate {
     final List keys = toTranslate.keys.toList();
     final List values = toTranslate.values.toList();
 
-    for (int i = 0; i < toTranslate.length; i++){
+    for (int i = 0; i < toTranslate.length; i++) {
       result[keys[i]] = await translateText(values[i]);
     }
 
@@ -37,8 +38,7 @@ class Translate {
     final translator = GoogleTranslator();
 
     if (supportedLangs.containsValue(lang)) {
-      var translated =
-          await translator.translate(inputText, to: "$lang");
+      var translated = await translator.translate(inputText, to: "$lang");
 
       return translated.text;
     }
