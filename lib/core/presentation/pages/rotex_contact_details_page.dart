@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -251,7 +252,7 @@ class RotexDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
-                  person.bio,
+                  DemoLocalizations.of(context).trans(person.bio),
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
