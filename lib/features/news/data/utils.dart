@@ -14,7 +14,7 @@ News getNewsFromQuery(DocumentSnapshot<Map<String, dynamic>> snapshot) {
   return News.fromSnapshot(snapshot);
 }
 
-Future getData(String url) async {
+Future getDataNews(String url) async {
   http.Response? response;
   try {
     response = await http.get(

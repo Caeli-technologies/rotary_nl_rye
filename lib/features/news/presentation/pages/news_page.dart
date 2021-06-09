@@ -27,7 +27,7 @@ class _NewsPageState extends State<NewsPage> {
 
   //Fetch content from the json file
   Future readJson(String url) async {
-    final response = await data.getData(url);
+    final response = await data.getDataNews(url);
     //await rootBundle.loadString('assets/test/news.json');
     final info = await json.decode(response);
     setState(() {
