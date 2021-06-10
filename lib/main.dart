@@ -51,10 +51,12 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: [
-        const Locale('en', ''),
+        const Locale('en', 'US'),
+        const Locale('en', 'GB'),
         const Locale('nl', ''),
         const Locale('de', ''),
-        const Locale('pt', ''),
+        const Locale('pt', 'PT'),
+        const Locale('pt', 'BR'),
         const Locale.fromSubtags(
             languageCode: 'zh',
             scriptCode: 'Hans',
