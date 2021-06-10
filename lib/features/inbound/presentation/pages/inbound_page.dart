@@ -113,10 +113,12 @@ class _InboundPageState extends State<InboundPage> {
                   ],
                 ),
               ),
-
-              Divider(
-                height: 15,
-                thickness: 2,
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
               ),
 
               buildInboundOptionRow(
@@ -141,9 +143,12 @@ class _InboundPageState extends State<InboundPage> {
                 ),
               ),
 
-              Divider(
-                height: 15,
-                thickness: 2,
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Divider(
+                  height: 15,
+                  thickness: 2,
+                ),
               ),
               buildInboundOptionRow(
                   context,
@@ -216,7 +221,7 @@ class _InboundPageState extends State<InboundPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 150,
+              width: Device.width - 170,
               child: Text(
                 title,
                 maxLines: 2,
@@ -234,7 +239,7 @@ class _InboundPageState extends State<InboundPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               SizedBox(
-                width: Device.width - 150,
+                width: Device.width - 170,
                 child: Text(subtitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -245,6 +250,10 @@ class _InboundPageState extends State<InboundPage> {
             ],
           ),
         ),
+        // trailing: Icon(
+        //   Icons.arrow_forward_ios,
+        //   color: Palette.grey,
+        // ),
         onTap: () {
           if (pushTo != null) {
             Navigator.push(

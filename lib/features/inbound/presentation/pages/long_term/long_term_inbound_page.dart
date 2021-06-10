@@ -44,7 +44,7 @@ class _LongTermExchangeInboundPageState
           ),
         ),
         title: Text(
-          "Long Term Outbound",
+          "Long Term Inbound",
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

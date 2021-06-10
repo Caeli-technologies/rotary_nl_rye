@@ -43,7 +43,7 @@ class _FamilyToFamilyInboundPageState extends State<FamilyToFamilyInboundPage> {
           ),
         ),
         title: Text(
-          "Family to Family",
+          "Family to Family Inbound",
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

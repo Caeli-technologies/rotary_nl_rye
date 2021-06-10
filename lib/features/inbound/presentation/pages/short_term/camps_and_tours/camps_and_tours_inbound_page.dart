@@ -43,7 +43,7 @@ class _CampsAndToursInboundPageState extends State<CampsAndToursInboundPage> {
           ),
         ),
         title: Text(
-          "Camps & Tours",
+          "Camps & Tours Inbound",
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

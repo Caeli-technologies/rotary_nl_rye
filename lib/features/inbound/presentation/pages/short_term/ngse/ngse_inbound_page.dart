@@ -42,7 +42,7 @@ class _NGSEInboundPageState extends State<NGSEInboundPage> {
           ),
         ),
         title: Text(
-          "NGSE",
+          "NGSE Inbound",
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
