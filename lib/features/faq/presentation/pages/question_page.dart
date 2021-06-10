@@ -57,6 +57,10 @@ class _QuestionPageState extends State<QuestionPage> {
                 cardTitle: "In Children use can use any flutter Widget",
                 cardText:
                     "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            // the end
+            SizedBox(
+              height: 40,
+            ),
           ],
         ));
   }

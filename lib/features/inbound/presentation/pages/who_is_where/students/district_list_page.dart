@@ -3,7 +3,8 @@ import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/inbound/data/district_list.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/pages/information/students/students_list_page.dart';
+
+import 'students_list_page.dart';
 
 class DistrictsListPage extends StatelessWidget {
   final YearList year;
