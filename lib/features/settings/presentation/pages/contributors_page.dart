@@ -39,6 +39,12 @@ class _ContributorsPageState extends State<ContributorsPage> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
+          title: Text(
+            "Contributors",
+            textScaleFactor: 1.4,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Container(
           height: Device.height - 277,
