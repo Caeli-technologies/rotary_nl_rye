@@ -8,33 +8,6 @@ import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Translate {
-  static Future<Map<String, String>> map(
-      Map<String, String> toTranslate) async {
-    if (!(await new InternetConnectionChecker().hasConnection)) {
-      print("No connection");
-      return toTranslate;
-    }
-
-    final Map<String, String> result = {};
-
-    final List keys = toTranslate.keys.toList();
-    final List values = toTranslate.values.toList();
-
-    for (int i = 0; i < toTranslate.length; i++) {
-      result[keys[i]] = await text(values[i]);
-    }
-
-    return result;
-  }
-
-  static String fetchLang() {
-    if (Platform.localeName.split('_')[0] == 'zh') {
-      return 'ZH';
-    } else {
-      return Platform.localeName.split('_').join('-').toUpperCase();
-    }
-  }
-
   static Future<String> text(String inputText) async {
     // check network connection
     if (!(await new InternetConnectionChecker().hasConnection)) {
@@ -77,5 +50,13 @@ class Translate {
       'text': input,
       'target_lang': lang
     });
+  }
+
+  static String fetchLang() {
+    if (Platform.localeName.split('_')[0] == 'zh') {
+      return 'ZH';
+    } else {
+      return Platform.localeName.split('_').join('-').toUpperCase();
+    }
   }
 }
