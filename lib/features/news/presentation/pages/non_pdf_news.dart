@@ -225,7 +225,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
         for (String text in bodyItem['paragraph']) {
           await Future.delayed(Duration(seconds: 1));
           // to prevent triggering of google recaptcha
-          String value = await Translate.translateText(text);
+          String value = await Translate.text(text);
           //String value = await trans(text);
           print('paragraph :$value');
           translate.add(paragraphItem(text: value));
@@ -242,7 +242,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
         translate.add(videoItem(url: bodyItem['videoUrl']));
       } else if (bodyItem['subHeader'] != null) {
         await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
-        String value = await Translate.translateText(bodyItem['subHeader']);
+        String value = await Translate.text(bodyItem['subHeader']);
         //String value = await trans(bodyItem['subHeader']);
         print('subHeader :$value');
         translate.add(subHeaderItem(text: value));
@@ -260,7 +260,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   void header(String x) async {
     await Future.delayed(Duration(seconds: 2));
-    heading = await Translate.translateText(x);
+    heading = await Translate.text(x);
     //heading = await trans(x);
     print('header :$heading');
     await Future.delayed(Duration(seconds: 2));

@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Translate {
-  // TODO state emission
-  static Future<Map<String, String>> translateMap(
+  static Future<Map<String, String>> map(
       Map<String, String> toTranslate) async {
     if (!(await new InternetConnectionChecker().hasConnection)) {
       print("No connection");
@@ -21,7 +21,7 @@ class Translate {
     final List values = toTranslate.values.toList();
 
     for (int i = 0; i < toTranslate.length; i++) {
-      result[keys[i]] = await translateText(values[i]);
+      result[keys[i]] = await text(values[i]);
     }
 
     return result;
@@ -35,22 +35,37 @@ class Translate {
     }
   }
 
-  static Future<String> translateText(String inputText) async {
-    final lang = fetchLang();
+  static Future<String> text(String inputText) async {
+    // check network connection
+    if (!(await new InternetConnectionChecker().hasConnection)) {
+      print("No connection");
+      return inputText;
+    }
 
-    if (deeplSupportedLangs.containsValue(lang)) {
-      final response = await getTranslation(lang, inputText);
-      final body = jsonDecode(response.body);
+    var lang = fetchLang();
 
-      return body['translations'][0]['text'];
+    // check cache
+    SharedPreferences cache = await SharedPreferences.getInstance();
+    final key = lang + "+" + inputText;
+    if(cache.containsKey(key)){
+      print("Retrieving from cache");
+      return Future.value(cache.getString(key));
     }
 
     // fallback to english
-    print("Language not supported. Fallback to english");
-    final response = await getTranslation('EN-US', inputText);
-    final body = jsonDecode(response.body);
+    if (!(deeplSupportedLangs.containsValue(lang))) {
+      print("Language not supported. Fallback to english");
+      lang = "EN-US";
+    }
 
-    return body['translations'][0]['text'];
+    print("Retrieving from deepl api and cache data");
+    final response = await getTranslation(lang, inputText);
+    final body = jsonDecode(response.body);
+    final result = body['translations'][0]['text'];
+
+    cache.setString(key, result);
+
+    return result;
   }
 
   static Future<http.Response> getTranslation(String lang, String input) async {
