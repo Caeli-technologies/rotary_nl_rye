@@ -18,7 +18,7 @@ versionCheck(context) async {
       info.buildNumber.trim().replaceAll(".", ""));
 
   //Get Latest version info from firebase config
-  final RemoteConfig remoteConfig = await RemoteConfig.instance;
+  final RemoteConfig remoteConfig = RemoteConfig.instance;
 
   try {
     // Using default duration to force fetching from remote server.
