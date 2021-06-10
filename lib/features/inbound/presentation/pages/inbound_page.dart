@@ -1,14 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'information/flight_and_arrival.dart';
-import 'information/insurance.dart';
-import 'information/language.dart';
-import 'information/travel.dart';
-import 'information/welcome_in_the_netherlands.dart';
-import 'information/who_is_where.dart';
+import 'long_term/long_term_inbound_page.dart';
+import 'short_term/camps_and_tours/camps_and_tours_inbound_page.dart';
+import 'short_term/family_to_family/family_to_family_inbound_page.dart';
+import 'short_term/ngse/ngse_inbound_page.dart';
+import 'who_is_where/who_is_where.dart';
 
 class InboundPage extends StatefulWidget {
   @override
@@ -56,55 +58,119 @@ class _InboundPageState extends State<InboundPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
-                child: Text(
-                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                padding: const EdgeInsets.only(
+                    left: 16.0, right: 16.0, top: 20.0, bottom: 20),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 16),
+                        children: [
+                      TextSpan(
+                        text: 'Inbounds',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text:
+                            ' Wow, we’re so excited that you will be our inbound exchange student for the coming year. For this to happen we will need some extra information so please watch your email inbox on a regular basis. ',
+                      ),
+                      TextSpan(
+                        text:
+                            'Also you can find some further information in this app. If you have any questions that are not answered, please contact our inbound coordinator ',
+                      ),
+                      TextSpan(
+                        text: 'Clasine Scheepers',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch("mailto:longtermin@rotaryyep.nl");
+                          },
+                      ),
+                      TextSpan(
+                        text: ' and/or ',
+                      ),
+                      TextSpan(
+                        text: 'Ben Mureau',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch("mailto:longtermadmin@rotaryyep.nl");
+                          },
+                      ),
+                    ])),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Long Term Exchange Program",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ),
+
               Divider(
                 height: 15,
                 thickness: 2,
               ),
 
-              buildInboundOptionRow(context, "Welcome to the Netherlands!",
-                  FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
+              buildInboundOptionRow(
+                  context,
+                  "Long Term Exchange Program",
+                  "Year Exchange",
+                  FontAwesomeIcons.hashtag,
+                  LongTermExchangeInboundPage()),
+              SizedBox(
+                height: 10,
               ),
-              buildInboundOptionRow(context, "Flight and Arrival",
-                  FontAwesomeIcons.plane, FlightAndArrivalPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Language",
-                  FontAwesomeIcons.language, LanguagePage()),
-              Divider(
-                height: 15,
-                thickness: 2,
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Short Term Exchange Program",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
 
-              buildInboundOptionRow(context, "Insurance",
-                  FontAwesomeIcons.umbrella, InsurancePage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, "Travel", FontAwesomeIcons.passport, TravelPage()),
+                  context,
+                  "FAMILY TO FAMILY",
+                  "Exchange between families",
+                  FontAwesomeIcons.hashtag,
+                  FamilyToFamilyInboundPage()),
+              buildInboundOptionRow(context, "CAMPS & TOURS", "Summer Camps",
+                  FontAwesomeIcons.hashtag, CampsAndToursInboundPage()),
+              buildInboundOptionRow(
+                  context,
+                  "NGSE",
+                  "New Generations Service Exchange",
+                  FontAwesomeIcons.hashtag,
+                  NGSEInboundPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Inbounds, Who is Where?",
-                  FontAwesomeIcons.streetView, WhoIsWherePage()),
-
-              // the end
-              SizedBox(
-                height: 20,
+              buildInboundOptionRowWhoIsWhere(
+                  context,
+                  "Inbounds, Who is Where?",
+                  FontAwesomeIcons.streetView,
+                  WhoIsWherePage()),
+              Divider(
+                height: 15,
+                thickness: 2,
               ),
               // the end
               SizedBox(
@@ -117,7 +183,81 @@ class _InboundPageState extends State<InboundPage> {
     );
   }
 
-  GestureDetector buildInboundOptionRow(
+  Container buildInboundOptionRow(
+    BuildContext context,
+    String title,
+    subtitle,
+    IconData icon,
+    pushTo,
+  ) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
+          child: Container(
+              child: CachedNetworkImage(
+            height: 50,
+            width: 50,
+            imageUrl:
+                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
+            ),
+            placeholder: (context, url) =>
+                Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          )),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(
+              width: Device.width - 150,
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                    inherit: true, fontWeight: FontWeight.w700, fontSize: 16.0),
+              ),
+            ),
+          ],
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(
+                width: Device.width - 150,
+                child: Text(subtitle,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(
+                        inherit: true, fontSize: 14.0, color: Colors.black45)),
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          if (pushTo != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pushTo),
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  GestureDetector buildInboundOptionRowWhoIsWhere(
     BuildContext context,
     String title,
     IconData icon,

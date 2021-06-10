@@ -9,12 +9,14 @@ import 'information/selection_day.dart';
 import 'information/selection_weekend.dart';
 import 'information/top_3_countries.dart';
 
-class NGSEOutboundPage extends StatefulWidget {
+class LongTermExchangeOutboundPage extends StatefulWidget {
   @override
-  _NGSEOutboundPageState createState() => _NGSEOutboundPageState();
+  _LongTermExchangeOutboundPageState createState() =>
+      _LongTermExchangeOutboundPageState();
 }
 
-class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
+class _LongTermExchangeOutboundPageState
+    extends State<LongTermExchangeOutboundPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +44,8 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
           ),
         ),
         title: Text(
-          "Outbound",
-          textScaleFactor: 1.4,
+          "Long Term Outbound",
+          textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

@@ -114,7 +114,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
 
   final cols2 = [
     new DataColumn(
-      label: const Text('????'),
+      label: const Text(''),
     ),
     new DataColumn(
       label: SizedBox(
@@ -772,45 +772,46 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                             .copyWith(fontSize: 13),
                         children: [
                       TextSpan(
-                        text: 'Aanmelden',
+                        text:
+                            'De aanmelding voor Shortterm loopt nu alleen via het emailadres ',
+                      ),
+                      TextSpan(
+                        text: 'interesse@rotaryyep.nl',
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("https://www.rotary.nl/yep/aanmelden/");
+                            launch("mailto:interesse@rotaryyep.nl");
                           },
-                      ),
-                      TextSpan(
-                        text:
-                            ' Doe je via de site van Rotary Youth Exchange. Hier maak je eerst een account aan. Daarna kun je aanmelden onder "Outbound"/ "familie naar familie" / "registreren".\n\nZodra je het registratieformulier hebt aangemaakt ontvang je een email met daarin alle instructies. Deze instructies dienen nauwgezet opgevolgd te worden. Pas dan beginnen wij met het zoeken van een geweldige match voor jou.',
                       ),
                     ])),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 13),
-                        children: [
-                      TextSpan(
-                        text:
-                            'Heb je vragen stel ze bij voorkeur per mail, klik op de namen bij “family to family” op de ',
-                      ),
-                      TextSpan(
-                        text: 'contact',
-                        style: TextStyle(color: Colors.blue),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            launch("https://www.rotary.nl/yep/contact/");
-                          },
-                      ),
-                      TextSpan(
-                        text: ' pagina.',
-                      ),
-                    ])),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10.0),
+              //   child: RichText(
+              //       text: TextSpan(
+              //           style: Theme.of(context)
+              //               .textTheme
+              //               .bodyText2!
+              //               .copyWith(fontSize: 13),
+              //           children: [
+              //         TextSpan(
+              //           text:
+              //               'Heb je vragen stel ze bij voorkeur per mail, klik op de namen bij “family to family” op de ',
+              //         ),
+              //         TextSpan(
+              //           text: 'contact',
+              //           style: TextStyle(color: Colors.blue),
+              //           recognizer: TapGestureRecognizer()
+              //             ..onTap = () {
+              //               launch("https://www.rotary.nl/yep/contact/");
+              //             },
+              //         ),
+              //         TextSpan(
+              //           text: ' pagina.',
+              //         ),
+              //       ])),
+              // ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
@@ -900,23 +901,6 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                 ),
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Text(
-                  "Deze bijeenkomst is verplicht voor de kandidaat en minimaal één ouder.",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  'Deze bijeenkomst vindt plaats op de laatste zaterdag van mei, van 09.30 tot 11.30 uur.\n\nLocatie centraal in het land.',
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
-                ),
-              ),
               // the end dont touch XD
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),

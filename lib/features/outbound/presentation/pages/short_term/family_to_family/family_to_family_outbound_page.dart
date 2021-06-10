@@ -9,14 +9,14 @@ import 'information/selection_day.dart';
 import 'information/selection_weekend.dart';
 import 'information/top_3_countries.dart';
 
-class LongTermExchangeOutboundPage extends StatefulWidget {
+class FamilyToFamilyOutboundPage extends StatefulWidget {
   @override
-  _LongTermExchangeOutboundPageState createState() =>
-      _LongTermExchangeOutboundPageState();
+  _FamilyToFamilyOutboundPageState createState() =>
+      _FamilyToFamilyOutboundPageState();
 }
 
-class _LongTermExchangeOutboundPageState
-    extends State<LongTermExchangeOutboundPage> {
+class _FamilyToFamilyOutboundPageState
+    extends State<FamilyToFamilyOutboundPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +44,8 @@ class _LongTermExchangeOutboundPageState
           ),
         ),
         title: Text(
-          "Outbound",
-          textScaleFactor: 1.4,
+          "Family to Family",
+          textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
