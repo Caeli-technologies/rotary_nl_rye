@@ -271,8 +271,8 @@ class _LongTermExchangeProgramPageState
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 10),
                 child: Text(
-                  "moet nog een leuk stukje text komen",
-                  style: TextStyle(color: Colors.red, fontSize: 13.0),
+                  "Op exchange dicht bij huis, duurzaam reizen en toch een andere cultuur & taal? Geniet van wat Europa jou kan bieden!",
+                  style: TextStyle(color: Colors.black, fontSize: 13.0),
                 ),
               ),
               //video Europa

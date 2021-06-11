@@ -3,19 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-import 'information/comply_with.dart';
-import 'information/how_to_sign_up.dart';
-import 'information/selection_day.dart';
-import 'information/selection_weekend.dart';
-import 'information/top_3_countries.dart';
+import 'information/flight_and_arrival.dart';
+import 'information/insurance.dart';
+import 'information/language.dart';
+import 'information/travel.dart';
+import 'information/welcome_in_the_netherlands.dart';
 
-class CampsAndToursOutboundPage extends StatefulWidget {
+class FamilyToFamilyInboundPage extends StatefulWidget {
   @override
-  _CampsAndToursOutboundPageState createState() =>
-      _CampsAndToursOutboundPageState();
+  _FamilyToFamilyInboundPageState createState() =>
+      _FamilyToFamilyInboundPageState();
 }
 
-class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
+class _FamilyToFamilyInboundPageState extends State<FamilyToFamilyInboundPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +43,8 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
           ),
         ),
         title: Text(
-          "Outbound",
-          textScaleFactor: 1.4,
+          "Family to Family Inbound",
+          textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -67,47 +67,37 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
-                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
+              buildInboundOptionRow(context, "Welcome to the Netherlands!",
+                  FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
-                  FontAwesomeIcons.exclamation, ComplyWithPage()),
+              buildInboundOptionRow(context, "Flight and Arrival",
+                  FontAwesomeIcons.plane, FlightAndArrivalPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(
-                  context,
-                  "Wat moet ik doen voor de selectiedag",
-                  FontAwesomeIcons.voteYea,
-                  SelectionDayPage()),
+              buildInboundOptionRow(context, "Language",
+                  FontAwesomeIcons.language, LanguagePage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(
-                  context,
-                  "Wat moet ik doen voor het selectieweekend",
-                  FontAwesomeIcons.clipboardCheck,
-                  SelectionWeekendPage()),
+
+              buildInboundOptionRow(context, "Insurance",
+                  FontAwesomeIcons.umbrella, InsurancePage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(
-                  context,
-                  "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
-                  FontAwesomeIcons.globe,
-                  Top3CountriesPage()),
+              buildInboundOptionRow(
+                  context, "Travel", FontAwesomeIcons.passport, TravelPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Hoe bereid ik me voor",
-                  FontAwesomeIcons.suitcase, null),
               // the end
               SizedBox(
                 height: 20,
@@ -119,7 +109,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
     );
   }
 
-  GestureDetector buildOutboundOptionRow(
+  GestureDetector buildInboundOptionRow(
     BuildContext context,
     String title,
     IconData icon,

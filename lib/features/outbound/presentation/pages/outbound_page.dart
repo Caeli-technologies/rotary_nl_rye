@@ -4,10 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-import 'long_term/outbound_page.dart';
-import 'short_term/camps_and_tours/outbound_page.dart';
-import 'short_term/family_to_family/outbound_page.dart';
-import 'short_term/ngse/outbound_page.dart';
+import 'long_term/long_term_outbound_page.dart';
+import 'short_term/camps_and_tours/camps_and_tours_outbound_page.dart';
+import 'short_term/family_to_family/family_to_family_outbound_page.dart';
+import 'short_term/ngse/ngse_outbound_page.dart';
 
 class OutboundPage extends StatefulWidget {
   @override

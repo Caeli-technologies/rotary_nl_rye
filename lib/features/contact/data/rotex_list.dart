@@ -113,13 +113,13 @@ List<Rotex> rotexList = [
       name: "Daniek de Koning",
       bio: "daniekKoningBio",
       imageUrl:
-          "https://media-exp1.licdn.com/dms/image/C4E03AQF5jYv5Gp3EhQ/profile-displayphoto-shrink_800_800/0/1619097502554?e=1627516800&v=beta&t=EMWtMmnoMT7asQbmjksXR67hbmV-d_BTQLotqn7MimM",
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/daniek-de-koning.jpg",
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
+      facebookUrl: null,
+      instagramUrl: 'https://www.instagram.com/daniekdekoning/',
+      websiteUrl: null,
+      linkedinUrl: null,
       role: 'Commissie Inbound'),
 // Timo Homburg
   Rotex(
@@ -130,7 +130,7 @@ List<Rotex> rotexList = [
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
       facebookUrl: 'https://www.facebook.com/timo.homburg',
-      instagramUrl: 'https://www.instagram.com/thtimo_',
+      instagramUrl: 'https://www.instagram.com/thtimo_/',
       websiteUrl: null,
       linkedinUrl: null,
       role: 'Commissie Prebound / Rebound'),

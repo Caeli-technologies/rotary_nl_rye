@@ -6,9 +6,9 @@ import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class RotexDetails extends StatelessWidget {
+class ContributorsDetails extends StatelessWidget {
   final person;
-  RotexDetails({required this.person});
+  ContributorsDetails({required this.person});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,6 @@ class RotexDetails extends StatelessWidget {
             fillColor: Palette.themeShadeColor,
             padding: const EdgeInsets.all(5.0),
           ),
-        ),
-        title: Text(
-          "Rotex",
-          textScaleFactor: 1.4,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -102,7 +97,7 @@ class RotexDetails extends StatelessWidget {
                             ),
                             SizedBox(
                               width: Device.width - 150,
-                              child: Text(person.role,
+                              child: Text(person.description,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: false,
@@ -116,9 +111,6 @@ class RotexDetails extends StatelessWidget {
                         )
                       ],
                     ),
-                    SvgPicture.asset('assets/icons/custom/rotex_logo_light.svg',
-                        // color: Color(0xFFf7a81b),
-                        height: 30),
                   ],
                 ),
               ),
@@ -175,7 +167,7 @@ class RotexDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                    person.facebookUrl == null
+                    person.githubUrl == null
                         ? SizedBox.shrink()
                         : Padding(
                             padding:
@@ -184,10 +176,10 @@ class RotexDetails extends StatelessWidget {
                               children: <Widget>[
                                 TextButton(
                                   child: FaIcon(
-                                    FontAwesomeIcons.facebookF,
-                                    color: Color(0xFF3b5998),
+                                    FontAwesomeIcons.github,
+                                    color: Color(0xFF000333),
                                   ),
-                                  onPressed: () => launch(person.facebookUrl),
+                                  onPressed: () => launch(person.githubUrl),
                                 ),
                               ],
                             ),
@@ -215,7 +207,7 @@ class RotexDetails extends StatelessWidget {
 
               person.websiteUrl == null &&
                       person.linkedinUrl == null &&
-                      person.facebookUrl == null &&
+                      person.githubUrl == null &&
                       person.instagramUrl == null
                   ? SizedBox.shrink()
                   : Padding(
@@ -250,7 +242,7 @@ class RotexDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
-                  DemoLocalizations.of(context).trans(person.bio),
+                  person.bio,
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),

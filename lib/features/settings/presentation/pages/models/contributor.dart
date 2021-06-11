@@ -4,6 +4,10 @@ class Contributor extends ImageListTileItem {
   final String name;
   final String description;
   final String bio;
+  final String? githubUrl;
+  final String? instagramUrl;
+  final String? linkedinUrl;
+  final String? websiteUrl;
   final String place;
   final String imageUrl;
   final String email;
@@ -12,6 +16,10 @@ class Contributor extends ImageListTileItem {
       {required this.name,
       required this.description,
       required this.bio,
+      this.githubUrl,
+      this.instagramUrl,
+      this.websiteUrl,
+      this.linkedinUrl,
       required this.place,
       required this.imageUrl,
       required this.email,
