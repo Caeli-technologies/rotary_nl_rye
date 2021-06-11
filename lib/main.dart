@@ -8,10 +8,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'injection_container.dart' as di;
 
 import 'core/lang/languages.dart';
+import 'core/path/firebase_dynamic_links.dart';
 import 'core/presentation/widgets/page_navigator.dart';
-import 'injection_container.dart' as di;
+import 'features/settings/presentation/pages/social.dart';
 
 // void main() async {
 //   runZonedGuarded<Future<void>>(() async {
@@ -84,6 +86,11 @@ class MyApp extends StatelessWidget {
       title: 'Rotary youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
+      routes: <String, WidgetBuilder>{
+        '/helloworld': (BuildContext context) => SocialPage(),
+        '/tutorials': (context) => TutorialsPage(),
+        '/error': (context) => ErrorPage(),
+      },
     );
   }
 }
