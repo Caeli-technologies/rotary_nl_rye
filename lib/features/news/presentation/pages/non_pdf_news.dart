@@ -485,7 +485,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
         if (await canLaunch(_linkMessage!)) {
           await Share.share(
               Platform.isIOS
-                  ? 'Hier mot nog een leuk stukje komen. + de link naar de Apple app store link $_linkMessage' // iOS
+                  ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
                   : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
               subject: 'look at this nice app :)');
         } else {
