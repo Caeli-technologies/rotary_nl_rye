@@ -54,7 +54,8 @@ class _DynamicLinksState extends State<DynamicLinks>
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarytestnl.page.link',
-      link: Uri.parse('https://rotarytestnl.page.link/helloworld'),
+      link: Uri.parse(
+          'https://rotarytestnl.page.link/helloworld'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,

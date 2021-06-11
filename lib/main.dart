@@ -86,6 +86,8 @@ class MyApp extends StatelessWidget {
       title: 'Rotary youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
+
+      // here needs the routs for dynamic links :)
       routes: <String, WidgetBuilder>{
         '/helloworld': (BuildContext context) => SocialPage(),
         '/tutorials': (context) => TutorialsPage(),
