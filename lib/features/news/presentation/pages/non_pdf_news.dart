@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,8 @@ import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
@@ -28,15 +31,25 @@ class _NonPDFPageState extends State<NonPDFPage> {
   bool translationSuccess = true;
   String errorMessage = "";
 
+  String? _linkMessage;
+  bool _isCreatingLink = false;
+
   void dispose() {
     isTranslating = false;
     translate.clear();
     index = 0;
     translationIndex = 0; // TODO: implement dispose
+    _linkMessage;
 
     // TODO: implement dispose
 
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this._createDynamicLink();
   }
 
   @override
@@ -464,10 +477,21 @@ class _NonPDFPageState extends State<NonPDFPage> {
     );
   }
 
-  void selectedItem(BuildContext context, item) {
+  Future<void> selectedItem(BuildContext context, item) async {
     switch (item) {
       case 0:
-        print("0");
+        _createDynamicLink();
+
+        if (await canLaunch(_linkMessage!)) {
+          await Share.share(
+              Platform.isIOS
+                  ? 'Hier mot nog een leuk stukje komen. + de link naar de Apple app store link $_linkMessage' // iOS
+                  : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+              subject: 'look at this nice app :)');
+        } else {
+          throw 'Could not launch $_linkMessage';
+        }
+
         break;
       case 1:
         print('platform${Platform.localeName}');
@@ -503,5 +527,35 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
         break;
     }
+  }
+
+  Future<void> _createDynamicLink() async {
+    setState(() {
+      _isCreatingLink = true;
+    });
+
+    final DynamicLinkParameters parameters = DynamicLinkParameters(
+      uriPrefix: 'https://rotarytestnl.page.link',
+      link: Uri.parse(
+          'https://rotarytestnl.page.link/helloworld'), //change this to the url in the main.dart
+      androidParameters: AndroidParameters(
+        packageName: 'com.caelitechnologies.rotary_nl_rye',
+        minimumVersion: 1,
+      ),
+      iosParameters: IosParameters(
+        bundleId: 'com.caelitechnologies.rotary-nl-rye',
+        minimumVersion: '1',
+        appStoreId: '1567096118',
+      ),
+    );
+
+    Uri url;
+    final ShortDynamicLink shortLink = await parameters.buildShortLink();
+    url = shortLink.shortUrl;
+
+    setState(() {
+      _linkMessage = url.toString();
+      _isCreatingLink = false;
+    });
   }
 }

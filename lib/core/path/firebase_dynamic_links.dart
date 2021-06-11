@@ -95,7 +95,7 @@ class _DynamicLinksState extends State<DynamicLinks>
               CupertinoIcons.share,
               color: Palette.indigo,
             ),
-            onPressed: _launchURL,
+            onPressed: _createShareURL,
           )
         ],
       ),
@@ -130,7 +130,7 @@ class _DynamicLinksState extends State<DynamicLinks>
     );
   }
 
-  _launchURL() async {
+  _createShareURL() async {
     _createDynamicLink();
 
     if (await canLaunch(_linkMessage!)) {
