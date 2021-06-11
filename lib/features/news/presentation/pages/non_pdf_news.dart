@@ -1,13 +1,9 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
-import 'package:translator/translator.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
@@ -18,8 +14,7 @@ class NonPDFPage extends StatefulWidget {
 }
 
 class _NonPDFPageState extends State<NonPDFPage> {
-  final translator = GoogleTranslator();
-  String? localeLanguage;
+  bool isTranslating = false;
   String? heading;
   List<Widget> translate = [];
   bool _isLoading = false;
@@ -28,7 +23,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   int translationIndex = 0;
 
   void dispose() {
-    localeLanguage = null;
+    isTranslating = false;
     translate.clear();
     index = 0;
     translationIndex = 0; // TODO: implement dispose
@@ -86,20 +81,9 @@ class _NonPDFPageState extends State<NonPDFPage> {
                 onPressed: () {
                   // code :)
                   setState(() {
-                    if (localeLanguage == null) {
-                      if (Platform.localeName.toString().split('_')[0] ==
-                          'zh') {
-                        localeLanguage = 'zh-cn';
-                      } else {
-                        localeLanguage =
-                            Platform.localeName.toString().split('_')[0];
-                        print('locale $localeLanguage');
-                      }
-                      _isLoading = true;
-                      translated(widget.data['text'][1]["body"]);
-                    } else {
-                      localeLanguage = null;
-                    }
+                    _isLoading = true;
+                    isTranslating = true;
+                    translated(widget.data['text'][1]["body"]);
                   });
                 },
                 child: new FaIcon(
@@ -141,7 +125,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "${this.progressPercent * 100}%",
+                          "${(this.progressPercent * 100).round()}%",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -168,18 +152,18 @@ class _NonPDFPageState extends State<NonPDFPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: Text(
-                        (localeLanguage == null)
-                            ? (widget.data["text"][0]["heading"])
-                            : heading,
+                        (isTranslating)
+                            ? heading
+                            : (widget.data["text"][0]["heading"]),
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    ...((localeLanguage == null)
-                        ? (_text(widget.data["text"][1]['body']))
-                        : translate)
+                    ...((isTranslating)
+                        ? translate
+                        : (_text(widget.data["text"][1]['body'])))
                   ],
                 ),
               ) // NativeVideo(url: "https://www.youtube.com/watch?v=ClpPvpbYBpY"),
@@ -187,7 +171,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
   }
 
   List<Widget> _text(List newsBody) {
-    print(newsBody.toString());
     index = 1;
     List<Widget> resultList = [];
     for (Map<String, dynamic> bodyItem in newsBody) {
@@ -212,8 +195,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
   void translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    print(newsBody.toString());
-    Random random = Random();
     header(widget.data['text'][0]["heading"]);
     setState(() {
       translationIndex++;
@@ -223,34 +204,24 @@ class _NonPDFPageState extends State<NonPDFPage> {
     for (Map<String, dynamic> bodyItem in newsBody) {
       if (bodyItem['paragraph'] != null) {
         for (String text in bodyItem['paragraph']) {
-          await Future.delayed(Duration(seconds: 1));
-          // to prevent triggering of google recaptcha
-          String value = await Translate.text(text);
-          //String value = await trans(text);
-          print('paragraph :$value');
+          String value = await Translate.text(text, 'NL');
           translate.add(paragraphItem(text: value));
           setState(() {
             translationIndex++;
             progressPercent = translationIndex / index;
           });
-          //await Future.delayed(
-          //    Duration(seconds: (random.nextInt(2) + 2))); // to be adjusted
         }
       } else if (bodyItem['imageUrl'] != null) {
         translate.add(imageItem(url: bodyItem['imageUrl']));
       } else if (bodyItem['videoUrl'] != null) {
         translate.add(videoItem(url: bodyItem['videoUrl']));
       } else if (bodyItem['subHeader'] != null) {
-        await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
-        String value = await Translate.text(bodyItem['subHeader']);
-        //String value = await trans(bodyItem['subHeader']);
-        print('subHeader :$value');
+        String value = await Translate.text(bodyItem['subHeader'], 'NL');
         translate.add(subHeaderItem(text: value));
         setState(() {
           translationIndex++;
           progressPercent = translationIndex / index;
         });
-        await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
       }
     }
     setState(() {
@@ -259,23 +230,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
   }
 
   void header(String x) async {
-    await Future.delayed(Duration(seconds: 2));
-    heading = await Translate.text(x);
-    //heading = await trans(x);
-    print('header :$heading');
-    await Future.delayed(Duration(seconds: 2));
+    heading = await Translate.text(x, 'NL');
   }
-
-  /*Future<String> trans(x) async {
-    print('trans to $localeLanguage');
-    if (supportedLangs.containsValue(localeLanguage)) {
-      var y = await translator.translate(x, to: "$localeLanguage");
-      return y.text;
-    } else {
-      var y = await translator.translate(x, to: "en");
-      return y.text;
-    }
-  }*/
 
   Widget videoItem({required String url}) {
     return Padding(

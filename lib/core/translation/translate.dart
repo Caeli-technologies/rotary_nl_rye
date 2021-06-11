@@ -8,7 +8,7 @@ import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Translate {
-  static Future<String> text(String inputText) async {
+  static Future<String> text(String inputText, String inputLang) async {
     // check network connection
     if (!(await new InternetConnectionChecker().hasConnection)) {
       print("No connection");
@@ -16,6 +16,14 @@ class Translate {
     }
 
     var lang = fetchLang();
+
+    // check if input lang is different from the text
+    if(lang == inputLang) {
+      print("Text lang = to Translate lang");
+      return inputText;
+    }
+
+    print("Translating");
 
     // check cache
     SharedPreferences cache = await SharedPreferences.getInstance();
@@ -31,11 +39,21 @@ class Translate {
       lang = "EN-US";
     }
 
-    print("Retrieving from deepl api and cache data");
+    print("Retrieving from deepl api");
     final response = await getTranslation(lang, inputText);
+    final status = response.statusCode;
+
+    // check if api call was succes
+    if(status != 200){
+      print("Api call failed with status: $status");
+      return inputText;
+    }
+
     final body = jsonDecode(response.body);
     final result = body['translations'][0]['text'];
+    print(body.toString() + result.toString());
 
+    print("Cache data");
     cache.setString(key, result);
 
     return result;
