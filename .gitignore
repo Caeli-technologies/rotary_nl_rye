@@ -48,3 +48,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/build
+
+
+# api keys
+assets/keys/deepl.json
