@@ -15,7 +15,7 @@ class NonPDFPage extends StatefulWidget {
 
 class _NonPDFPageState extends State<NonPDFPage> {
   bool isTranslating = false;
-  String? heading;
+  String heading = "Placeholder";
   List<Widget> translate = [];
   bool _isLoading = false;
   double progressPercent = 0;
@@ -80,10 +80,10 @@ class _NonPDFPageState extends State<NonPDFPage> {
               child: RawMaterialButton(
                 onPressed: () {
                   // code :)
-                  setState(() {
+                  setState(() async{
                     _isLoading = true;
                     isTranslating = true;
-                    translated(widget.data['text'][1]["body"]);
+                    await translated(widget.data['text'][1]["body"]);
                   });
                 },
                 child: new FaIcon(
@@ -192,10 +192,10 @@ class _NonPDFPageState extends State<NonPDFPage> {
     return resultList;
   }
 
-  void translated(List newsBody) async {
+  Future<void> translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    header(widget.data['text'][0]["heading"]);
+    await header(widget.data['text'][0]["heading"]);
     setState(() {
       translationIndex++;
       progressPercent = translationIndex / index;
@@ -204,7 +204,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
     for (Map<String, dynamic> bodyItem in newsBody) {
       if (bodyItem['paragraph'] != null) {
         for (String text in bodyItem['paragraph']) {
-          String value = await Translate.text(text, 'NL');
+          String value = await Translate.text(inputText: text);
           translate.add(paragraphItem(text: value));
           setState(() {
             translationIndex++;
@@ -216,7 +216,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
       } else if (bodyItem['videoUrl'] != null) {
         translate.add(videoItem(url: bodyItem['videoUrl']));
       } else if (bodyItem['subHeader'] != null) {
-        String value = await Translate.text(bodyItem['subHeader'], 'NL');
+        String value = await Translate.text(inputText: bodyItem['subHeader']);
         translate.add(subHeaderItem(text: value));
         setState(() {
           translationIndex++;
@@ -229,8 +229,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
     });
   }
 
-  void header(String x) async {
-    heading = await Translate.text(x, 'NL');
+  Future<void> header(String text) async {
+    heading = await Translate.text(inputText: text);
   }
 
   Widget videoItem({required String url}) {
