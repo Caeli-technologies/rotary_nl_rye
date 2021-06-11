@@ -75,7 +75,7 @@ class _MainScreenState extends State<_MainScreen> {
         shortDynamicLinkPathLength: ShortDynamicLinkPathLength.short,
       ),
       iosParameters: IosParameters(
-        bundleId: 'com.caelitechnologies.rotary-nl-rye',
+        bundleId: '1567096118',
         minimumVersion: '0',
       ),
     );

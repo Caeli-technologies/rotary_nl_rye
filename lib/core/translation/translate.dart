@@ -8,7 +8,7 @@ import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Translate {
-  static Future<String> text(String inputText, String inputLang) async {
+  static Future<String> text({required String inputText, String inputLang = 'NL'}) async {
     // check network connection
     if (!(await new InternetConnectionChecker().hasConnection)) {
       print("No connection");
