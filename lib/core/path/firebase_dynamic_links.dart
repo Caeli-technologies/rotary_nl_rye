@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DynamicLinks extends StatefulWidget {
@@ -19,6 +23,7 @@ class _DynamicLinksState extends State<DynamicLinks>
   void initState() {
     super.initState();
     this._initDynamicLinks();
+    this._createDynamicLink();
   }
 
   Future<void> _initDynamicLinks() async {
@@ -72,10 +77,26 @@ class _DynamicLinksState extends State<DynamicLinks>
   }
 
   @override
+  void dispose() {
+    // ignore: unnecessary_statements
+    _linkMessage;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Woolha.com Flutter Tutorial'),
+        title: const Text('Dynamic Links test page'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              CupertinoIcons.share,
+              color: Palette.indigo,
+            ),
+            onPressed: _launchURL,
+          )
+        ],
       ),
       body: SizedBox(
         width: double.infinity,
@@ -83,22 +104,12 @@ class _DynamicLinksState extends State<DynamicLinks>
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed:
-                      !_isCreatingLink ? () => _createDynamicLink() : null,
-                  child: const Text('Get Short Link'),
-                ),
-              ],
-            ),
             InkWell(
-              onTap: () async {
-                if (_linkMessage != null) {
-                  await launch(_linkMessage!);
-                }
-              },
+              // onTap: () async {
+              //   if (_linkMessage != null) {
+              //     await launch(_linkMessage!);
+              //   }
+              // },
               onLongPress: () {
                 Clipboard.setData(ClipboardData(text: _linkMessage));
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -116,6 +127,20 @@ class _DynamicLinksState extends State<DynamicLinks>
         ),
       ),
     );
+  }
+
+  _launchURL() async {
+    _createDynamicLink();
+
+    if (await canLaunch(_linkMessage!)) {
+      await Share.share(
+          Platform.isIOS
+              ? 'Hier mot nog een leuk stukje komen. + de link naar de Apple app store link $_linkMessage' // iOS
+              : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+          subject: 'look at this nice app :)');
+    } else {
+      throw 'Could not launch $_linkMessage';
+    }
   }
 }
 
