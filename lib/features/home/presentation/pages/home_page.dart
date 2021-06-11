@@ -229,15 +229,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         SizedBox(
                           height: 16,
                         ),
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.redoAlt,
-                                title: 'test',
-                                description: 'rebound page',
-                                pushTo: DynamicLinks()),
-                          ],
-                        ),
+
+                        // going to the test page of Dynamic links
+                        // Row(
+                        //   children: <Widget>[
+                        //     HomeCardItem(
+                        //         icon: FontAwesomeIcons.redoAlt,
+                        //         title: 'test',
+                        //         description: 'rebound page',
+                        //         pushTo: DynamicLinks()),
+                        //   ],
+                        // ),
 /*
                   ElevatedButton(
                     child: new Text('Add badge'),

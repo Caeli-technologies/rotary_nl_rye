@@ -140,7 +140,7 @@ class TutorialsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Woolha.com Flutter Tutorial'),
+        title: const Text('Hello World DeepLink'),
       ),
       body: const Center(
         child: const Text('Tutorials Page'),
@@ -154,7 +154,7 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Woolha.com Flutter Tutorial'),
+        title: const Text('Hello World DeepLink error'),
       ),
       body: const Center(
         child: const Text('Error Page'),
