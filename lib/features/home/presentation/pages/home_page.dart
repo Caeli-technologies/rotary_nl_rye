@@ -129,16 +129,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         //     arguments: <String?, String?>{id: "id", name: "id"},
         //   );
         // }
-
-        if (deepLink.path == "/helloworld") {
-          final String? id = deepLink.queryParameters["id"];
-          final String? name = deepLink.queryParameters["name"];
+        final uri = deepLink.path;
+        print("deepLink.path: $uri ");
+        if (deepLink.path == "/helloworld/") {
+          final id = deepLink.queryParameters["id"];
+          final name = deepLink.queryParameters["name"];
           // Make sure the ID is in place to be more robust against invalid deep links.
-
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => SocialPage(id: id, name: name)));
         }
-        if (deepLink.path == "/tutorials") {
+        if (deepLink.path == "/tutorials/") {
           final id = deepLink.queryParameters["id"];
           final name = deepLink.queryParameters["name"];
           // Make sure the ID is in place to be more robust against invalid deep links.
