@@ -15,6 +15,7 @@ import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
@@ -99,7 +100,51 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       final Uri? deepLink = dynamicLink?.link;
 
       if (deepLink != null) {
-        Navigator.pushNamed(context, deepLink.path);
+        // Navigator.pushNamed(context, deepLink.path);
+// ignore: unnecessary_statements
+
+        // if (deepLink.queryParameters.containsKey('id')) {
+        //   String? id = deepLink.queryParameters['id'];
+        //   String? name = deepLink.queryParameters['name'];
+        //   Navigator.of(context).push(MaterialPageRoute(
+        //       builder: (context) => SocialPage(id: id, name: name)));
+
+        //   // Navigator.pushNamed(BuildContext context) => SocialPage(id: id, name: name);
+        // }
+        // print(deepLink.queryParameters['name']);
+        // Navigator.pushNamed(context, deepLink.path);
+
+        // if (deepLink.queryParameters.containsKey('id')) {
+        //   // String _path = deepLink.path;
+        //   String? id = deepLink.queryParameters['id'];
+        //   String? name = deepLink.queryParameters['name'];
+        //   // verify the username is parsed correctly
+        //   print("My users username is: $name and $id");
+        //   // Navigator.of(context).push(MaterialPageRoute(
+        //   //     builder: (context) => SocialPage(id: id, name: name)));
+
+        //   Navigator.pushNamed(
+        //     context,
+        //     '/helloworld',
+        //     arguments: <String?, String?>{id: "id", name: "id"},
+        //   );
+        // }
+
+        if (deepLink.path == "/helloworld") {
+          final String? id = deepLink.queryParameters["id"];
+          final String? name = deepLink.queryParameters["name"];
+          // Make sure the ID is in place to be more robust against invalid deep links.
+
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => SocialPage(id: id, name: name)));
+        }
+        if (deepLink.path == "/tutorials") {
+          final id = deepLink.queryParameters["id"];
+          final name = deepLink.queryParameters["name"];
+          // Make sure the ID is in place to be more robust against invalid deep links.
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => SocialPage(id: id, name: name)));
+        }
       }
     }, onError: (OnLinkErrorException e) async {
       Navigator.pushNamed(context, '/error');
@@ -110,7 +155,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     final Uri? deepLink = data?.link;
 
     if (deepLink != null) {
-      Navigator.pushNamed(context, deepLink.path);
+      if (deepLink.queryParameters.containsKey('id')) {
+        String? id = deepLink.queryParameters['id'];
+        String? name = deepLink.queryParameters['name'];
+        // verify the username is parsed correctly
+        print("My users username is: $name and $id");
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => SocialPage(id: id, name: name)));
+
+        // Navigator.pushNamed(BuildContext context) => SocialPage(id: id, name: name);
+      }
     }
   }
 

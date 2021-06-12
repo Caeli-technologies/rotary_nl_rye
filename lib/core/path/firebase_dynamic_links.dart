@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,7 +25,7 @@ class _DynamicLinksState extends State<DynamicLinks>
   void initState() {
     super.initState();
     this._initDynamicLinks();
-    this._createDynamicLink(id, name);
+    // this._createDynamicLink(id, name);
   }
 
   Future<void> _initDynamicLinks() async {
@@ -34,6 +35,16 @@ class _DynamicLinksState extends State<DynamicLinks>
 
       if (deepLink != null) {
         Navigator.pushNamed(context, deepLink.path);
+// ignore: unnecessary_statements
+
+        if (deepLink.queryParameters.containsKey('id')) {
+          String? id = deepLink.queryParameters['id'];
+          String? name = deepLink.queryParameters['name'];
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => SocialPage(id: id, name: name)));
+
+          // Navigator.pushNamed(BuildContext context) => SocialPage(id: id, name: name);
+        }
       }
     }, onError: (OnLinkErrorException e) async {
       Navigator.pushNamed(context, '/error');
@@ -44,11 +55,18 @@ class _DynamicLinksState extends State<DynamicLinks>
     final Uri? deepLink = data?.link;
 
     if (deepLink != null) {
-      Navigator.pushNamed(context, deepLink.path);
+      if (deepLink.queryParameters.containsKey('name')) {
+        String? id = deepLink.queryParameters['id'];
+        String? name = deepLink.queryParameters['name'];
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => SocialPage(id: id, name: name)));
+
+        // Navigator.pushNamed(BuildContext context) => SocialPage(id: id, name: name);
+      }
     }
   }
 
-  Future<void> _createDynamicLink(String id, name) async {
+  Future<void> _createDynamicLink(String id, String name) async {
     setState(() {
       _isCreatingLink = true;
     });
@@ -56,7 +74,7 @@ class _DynamicLinksState extends State<DynamicLinks>
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarytestnl.page.link',
       link: Uri.parse(
-          'https://rotarytestnl.page.link/helloworld/$id/$name'), //change this to the url in the main.dart
+          'https://rotarytestnl.page.link/helloworld/?id=$id&name=$name'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
@@ -132,7 +150,7 @@ class _DynamicLinksState extends State<DynamicLinks>
   }
 
   _createShareURL() async {
-    _createDynamicLink(id, name);
+    _createDynamicLink(id = 'id', name = 'name');
 
     if (await canLaunch(_linkMessage!)) {
       await Share.share(
