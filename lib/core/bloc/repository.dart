@@ -110,7 +110,7 @@ class Repository {
             await apiProvider.getDataStudentList(url.students!);
         return y;
       }
-      var x = await apiProvider.readFile(fileName: newsJsonFile);
+      var x = await apiProvider.readFile(fileName: studentListJsonFile);
       List<ExchangeStudent>? students;
       try {
         students = ExchangeResult.fromJson(x).students;

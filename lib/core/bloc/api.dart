@@ -163,9 +163,7 @@ class ApiProvider {
     final file = await _localFile(fileName: fileName);
     try {
       dbBloc.addFileStatus(FileStatus(
-          fileName: fireStoreUrlFile,
-          lastFetch: DateTime.now(),
-          isLocal: true));
+          fileName: fileName, lastFetch: DateTime.now(), isLocal: true));
       print('added file to db');
     } catch (e) {
       throw 'unable to add writefile $fileName to db - $e';
