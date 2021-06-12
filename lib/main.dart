@@ -5,15 +5,16 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'injection_container.dart' as di;
 
 import 'core/lang/languages.dart';
 import 'core/path/firebase_dynamic_links.dart';
 import 'core/presentation/widgets/page_navigator.dart';
 import 'features/settings/presentation/pages/social.dart';
+import 'injection_container.dart' as di;
 
 // void main() async {
 //   runZonedGuarded<Future<void>>(() async {
@@ -31,6 +32,11 @@ import 'features/settings/presentation/pages/social.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  if (kDebugMode) {
+    // Force disable Crashlytics collection while doing every day development.
+    // Temporarily toggle this to true if you want to test crash reporting in your app.
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+  }
   runZonedGuarded<Future<void>>(() async {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     await di.init();

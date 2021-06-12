@@ -60,6 +60,8 @@ class ApiProvider {
     }
     var data = json.decode(response.body);
     // print('news data ${data.toString()}');
+    writeFile(content: data, fileName: newsJsonFile);
+
     List<News>? news;
     try {
       news = NewsResult.fromJson(data).news;
@@ -89,11 +91,12 @@ class ApiProvider {
     }
     List<Story>? stories;
     if (response.statusCode != 200) {
+      writeFile(content: "{}", fileName: student.name + student.exchangeYear);
       return stories = [];
       //throw 'stories response ${response.statusCode}';
     }
     var data = json.decode(response.body);
-
+    writeFile(content: data, fileName: student.name + student.exchangeYear);
     try {
       stories = StoryResult.fromJson(data).stories;
       print('Stories parsed');
@@ -123,6 +126,7 @@ class ApiProvider {
       throw 'studentList response ${response.statusCode}';
     }
     var data = json.decode(response.body);
+    writeFile(content: data, fileName: studentListJsonFile);
     List<ExchangeStudent>? students;
     try {
       students = ExchangeResult.fromJson(data).students;
@@ -295,7 +299,7 @@ class DatabaseProvider {
     String path = join(documentsDirectory.path, "fileStatus.db");
     var database = await openDatabase(path,
         version: 1, onCreate: initDB, onUpgrade: onUpgrade);
-    apiProvider.addStringToSF(key: dbCreate, value: DateTime.now().toString());
+
     print('database created');
     return database;
   }
@@ -325,4 +329,7 @@ final String dbCreate = 'dbCreated';
 int dbPurge = 48;
 //todo enable remote config for the value
 final fireStoreUrlFile = 'firestoreUrl';
+final newsJsonFile = 'news';
+final studentListJsonFile = 'studentList';
+
 final apiProvider = ApiProvider();
