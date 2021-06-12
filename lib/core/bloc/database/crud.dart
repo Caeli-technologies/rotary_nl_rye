@@ -20,7 +20,7 @@ class Crud {
       if (query.isNotEmpty)
         result = await db.query(filesTABLE,
             columns: columns,
-            where: 'description LIKE ?',
+            where: 'fileName LIKE ?',
             whereArgs: ["%$query%"]);
     } else {
       result = await db.query(filesTABLE, columns: columns);

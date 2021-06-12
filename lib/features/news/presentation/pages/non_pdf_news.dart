@@ -4,11 +4,12 @@ import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
+import 'package:rotary_nl_rye/features/news/models/news.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
   _NonPDFPageState createState() => _NonPDFPageState();
-  final Map<String, dynamic> data;
+  final News data;
 
   NonPDFPage({required this.data});
 }
@@ -80,10 +81,10 @@ class _NonPDFPageState extends State<NonPDFPage> {
               child: RawMaterialButton(
                 onPressed: () {
                   // code :)
-                  setState(() async{
+                  setState(() async {
                     _isLoading = true;
                     isTranslating = true;
-                    await translated(widget.data['text'][1]["body"]);
+                    await translated(widget.data.text![1]["body"]);
                   });
                 },
                 child: new FaIcon(
@@ -99,7 +100,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
             ),
           ],
           title: Text(
-            widget.data["title"],
+            widget.data.title,
             textScaleFactor: 1.4,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -154,7 +155,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                       child: Text(
                         (isTranslating)
                             ? heading
-                            : (widget.data["text"][0]["heading"]),
+                            : (widget.data.text![0]["heading"]),
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25.0,
@@ -163,7 +164,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                     ),
                     ...((isTranslating)
                         ? translate
-                        : (_text(widget.data["text"][1]['body'])))
+                        : (_text(widget.data.text![1]['body'])))
                   ],
                 ),
               ) // NativeVideo(url: "https://www.youtube.com/watch?v=ClpPvpbYBpY"),
@@ -195,7 +196,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    await header(widget.data['text'][0]["heading"]);
+    await header(widget.data.text![0]["heading"]);
     setState(() {
       translationIndex++;
       progressPercent = translationIndex / index;

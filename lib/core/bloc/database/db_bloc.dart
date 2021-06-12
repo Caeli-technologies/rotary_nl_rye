@@ -13,6 +13,10 @@ class DbBloc {
     getFileStatus();
   }
 
+  fileStatusQuery({String? query}) async {
+    return await _fileRepository.getAllFileStatus(query: query);
+  }
+
   getFileStatus({String? query}) async {
     _fileController.sink
         .add(await _fileRepository.getAllFileStatus(query: query));

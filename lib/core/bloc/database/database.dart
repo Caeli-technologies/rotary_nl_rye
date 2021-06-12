@@ -1,14 +1,11 @@
 class FileStatus {
-  int id;
+  int? id;
   String fileName;
   bool isLocal = false;
   DateTime? lastFetch;
 
   FileStatus(
-      {required this.id,
-      required this.fileName,
-      this.isLocal = false,
-      this.lastFetch});
+      {this.id, required this.fileName, this.isLocal = false, this.lastFetch});
 
   factory FileStatus.fromDatabaseJson(Map<String, dynamic> data) => FileStatus(
         id: data['id'],
