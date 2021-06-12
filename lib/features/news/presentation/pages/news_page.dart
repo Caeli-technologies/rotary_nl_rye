@@ -41,6 +41,7 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   void initState() {
+    _newsBloc.getNews();
     super.initState();
 
     // readJson();
@@ -98,6 +99,7 @@ class _NewsPageState extends State<NewsPage> {
                       stream: _newsBloc.header,
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
+                          print(snapshot.error.toString());
                           return Center(
                             child: Text(snapshot.error.toString()),
                           );
@@ -138,10 +140,13 @@ class _NewsPageState extends State<NewsPage> {
                       stream: _newsBloc.news,
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
+                          print(snapshot.error.toString());
                           return Center(
                             child: Text(snapshot.error.toString()),
                           );
                         } else if (snapshot.hasData) {
+                          print(
+                              'snapshot has data ${snapshot.data.toString()}');
                           return ListView.builder(
                               padding: EdgeInsets.only(top: 10, bottom: 20),
                               itemCount: snapshot.data!.length,

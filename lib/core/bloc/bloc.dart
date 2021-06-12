@@ -22,15 +22,21 @@ class NewsBloc {
   }
 
   getNews() async {
-    _newsController.sink.add(await _repository.fetchNews());
-  }
-
-  getHeader() async {
-    _headerController.sink.add(_repository.fetchHeader());
+    var x = await _repository.fetchNews();
+    print('get news ${x.toString()}');
+    _newsController.sink.add(x);
+    print('newscontroller.sink.add');
+    var y = await _repository.fetchHeader();
+    print('get header ${y.toString()}');
+    _headerController.sink.add(y);
+    print('_headercontroller.sink.add');
   }
 
   getStudentList() async {
-    _headerController.sink.add(_repository.fetchStudentList());
+    var x = await _repository.fetchStudentList();
+    print('get header ${x.toString()}');
+    _studentController.sink.add(x);
+    print('studentcontroller.sink.add');
   }
 
   dispose() {

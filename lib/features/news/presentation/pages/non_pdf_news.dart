@@ -8,9 +8,9 @@ import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
+import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:rotary_nl_rye/features/news/models/news.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
@@ -500,7 +500,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
           _isLoading = true;
           isTranslating = !isTranslating;
           FutureBuilder(
-            future: translated(widget.data['text'][1]["body"]),
+            future: translated(widget.data.text![1]["body"]),
             builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
               if (!translationSuccess && isTranslating) {
                 print('show dialog');

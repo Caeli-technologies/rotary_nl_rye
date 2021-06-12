@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,12 +15,10 @@ import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
-import 'package:rotary_nl_rye/features/stories/data/utils.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
 import '../../../home/presentation/widgets/home_card_item.dart';
-import '../../../news/data/utils.dart' as data;
 import '../widgets/carousel_display.dart';
 
 class HomePage extends StatefulWidget {
@@ -164,77 +161,74 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   SvgPicture.asset('assets/image/rotary_rye_nl_logo_home.svg'),
             ),
 
-                  // Slider images
-                  Carousel(),
+            // Slider images
+            Carousel(),
 
-                  // navigator buttons
-                  Container(
-                    margin: EdgeInsets.only(top: 24, left: 16, right: 16),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.list,
-                                title: 'Programs',
-                                description:
-                                    'information to apply and more things',
-                                pushTo: ProgramPage()),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.newspaper,
-                                title: 'News',
-                                description: 'rebound page',
-                                pushTo: NewsPage(
-                                  news: _news,
-                                )),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.calendarAlt,
-                                title: 'Calendar',
-                                description:
-                                    'people that are going to the netherlands',
-                                pushTo: CalendarPage()),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.reply,
-                                title: 'Outbound',
-                                description:
-                                    'students that are going to a diffrent country',
-                                pushTo: OutboundPage()),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.share,
-                                title: 'Inbound',
-                                description:
-                                    'people that are going to the netherlands',
-                                pushTo: InboundPage()),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.redoAlt,
-                                title: 'Rebound',
-                                description: 'rebound page',
-                                pushTo: CountriesPage(
-                                  students: exchangeStudents,
-                                )),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
+            // navigator buttons
+            Container(
+              margin: EdgeInsets.only(top: 24, left: 16, right: 16),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.list,
+                          title: 'Programs',
+                          description: 'information to apply and more things',
+                          pushTo: ProgramPage()),
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.newspaper,
+                          title: 'News',
+                          description: 'rebound page',
+                          pushTo: NewsPage()),
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.calendarAlt,
+                          title: 'Calendar',
+                          description:
+                              'people that are going to the netherlands',
+                          pushTo: CalendarPage()),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.reply,
+                          title: 'Outbound',
+                          description:
+                              'students that are going to a diffrent country',
+                          pushTo: OutboundPage()),
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.share,
+                          title: 'Inbound',
+                          description:
+                              'people that are going to the netherlands',
+                          pushTo: InboundPage()),
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.redoAlt,
+                          title: 'Rebound',
+                          description: 'rebound page',
+                          pushTo: CountriesPage(
+                            students: exchangeStudents,
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
 
-                        // going to the test page of Dynamic links
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.redoAlt,
-                                title: 'test',
-                                description: 'rebound page',
-                                pushTo: DynamicLinks()),
-                          ],
-                        ),
+                  // going to the test page of Dynamic links
+                  Row(
+                    children: <Widget>[
+                      HomeCardItem(
+                          icon: FontAwesomeIcons.redoAlt,
+                          title: 'test',
+                          description: 'rebound page',
+                          pushTo: DynamicLinks()),
+                    ],
+                  ),
 /*
                   ElevatedButton(
                     child: new Text('Add badge'),

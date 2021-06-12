@@ -4,8 +4,8 @@ class NewsResult {
   List<News> news = [];
 
   NewsResult.fromJson(Map<String, dynamic> json) {
-    if (json['stories'] != null) {
-      json['stories'].forEach((v) {
+    if (json['news'] != null) {
+      json['news'].forEach((v) {
         news.add(News.fromJson(v));
       });
     }
@@ -36,7 +36,7 @@ class News {
       images: json["images"],
       title: json["title"],
       description: json["description"],
-      isPdf: (json["isPdf"] == 'true') ? true : false,
+      isPdf: (json["isPdf"] == 'yes') ? true : false,
       pdf: json["pdf"],
       text: json["text"]);
 
@@ -45,7 +45,7 @@ class News {
       "images": images,
       "title": title,
       "description": description,
-      "isPdf": isPdf.toString(),
+      "isPdf": isPdf ? "yes" : "no",
       "pdf": pdf,
       "text": text
     };

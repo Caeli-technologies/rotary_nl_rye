@@ -22,6 +22,7 @@ class ApiProvider {
   /// Firestore fetch
   Future<FireStoreUrl> fetchUrls() async {
     FirebaseAuth.instance.signInAnonymously();
+    print('signed in Anonymously');
     try {
       final x = await FirebaseFirestore.instance
           .collection('news')
@@ -30,10 +31,11 @@ class ApiProvider {
           .then(
             (value) => FireStoreUrl.fromSnapshot(value),
           );
+      print('FireStoreUrl fetched and parsed');
       return x;
     } catch (e) {
       print(e);
-      throw e;
+      throw 'unable to fetch and parse FirestoreUrl $e';
     }
   }
 
@@ -48,37 +50,42 @@ class ApiProvider {
           'Content-Type': 'application/json',
         },
       );
+      print('News fetched');
     } catch (e) {
       print(e);
-      throw 'unable to fetch news json';
+      throw 'unable to fetch news json $e';
     }
     if (response.statusCode != 200) {
       throw 'news response ${response.statusCode}';
     }
     var data = json.decode(response.body);
+    // print('news data ${data.toString()}');
     List<News>? news;
     try {
       news = NewsResult.fromJson(data).news;
+      print('news parsed ');
     } catch (e) {
       print(e);
-      throw e;
+      throw 'unable to parse news response $e';
     }
 
     return news;
   }
 
-  Future<List<Story>> getDataStories(String url) async {
+  Future<List<Story>> getDataStories(ExchangeStudent student) async {
     http.Response? response;
     try {
       response = await http.get(
-        Uri.parse(url),
+        Uri.parse(
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rebounds/students/${student.exchangeYear}/${student.name.replaceAll(" ", "_").toLowerCase()}.json"),
         headers: {
           'Content-Type': 'application/json',
         },
       );
+      print('Stories fetched');
     } catch (e) {
       print(e);
-      throw 'unable to fetch stories json';
+      throw 'unable to fetch stories json $e';
     }
     if (response.statusCode != 200) {
       throw 'stories response ${response.statusCode}';
@@ -87,9 +94,10 @@ class ApiProvider {
     List<Story>? stories;
     try {
       stories = StoryResult.fromJson(data).stories;
+      print('Stories parsed');
     } catch (e) {
       print(e);
-      throw e;
+      throw 'unable to parse stories $e';
     }
 
     return stories;
@@ -104,9 +112,10 @@ class ApiProvider {
           'Content-Type': 'application/json',
         },
       );
+      print('StudentList fetched');
     } catch (e) {
       print(e);
-      throw 'unable to fetch StudentList json';
+      throw 'unable to fetch StudentList json $e';
     }
     if (response.statusCode != 200) {
       throw 'studentList response ${response.statusCode}';
@@ -115,45 +124,67 @@ class ApiProvider {
     List<ExchangeStudent>? students;
     try {
       students = ExchangeResult.fromJson(data).students;
+      print('StudentList parsed');
     } catch (e) {
       print(e);
-      throw e;
+      throw 'unable to parse studentList $e';
     }
     return students;
   }
 
   /// File CRUD
   Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      print('got local directory ${directory.path}');
+      return directory.path;
+    } catch (e) {
+      throw 'unable to get local path - $e';
+    }
   }
 
   Future<File> _localFile({required String fileName}) async {
-    final path = await _localPath;
-    return File('$path/$fileName.txt');
+    try {
+      final path = await _localPath;
+      print('got local file $path/$fileName.json');
+      return File('$path/$fileName.json');
+    } catch (e) {
+      throw 'unable to get local file $fileName:- $e';
+    }
   }
 
   Future<File> writeFile({required content, required String fileName}) async {
     final file = await _localFile(fileName: fileName);
-    dbBloc.addFileStatus(FileStatus(
-        fileName: fireStoreUrlFile, lastFetch: DateTime.now(), isLocal: true));
-    // Write the file
-    return file.writeAsString(content);
+    try {
+      dbBloc.addFileStatus(FileStatus(
+          fileName: fireStoreUrlFile,
+          lastFetch: DateTime.now(),
+          isLocal: true));
+      print('added file to db');
+    } catch (e) {
+      throw 'unable to add writefile $fileName to db - $e';
+    } // Write the file
+    try {
+      print('File $fileName written and saved');
+      return file.writeAsString(json.encode(content), flush: true);
+    } catch (e) {
+      throw 'unable to write to file $fileName - $e';
+    }
   }
 
   Future readFile({required String fileName}) async {
+    final file = await _localFile(fileName: fileName);
     try {
-      final file = await _localFile(fileName: fileName);
 // todo requrires changes
 
       // Read the file
-      final contents = await file.readAsString();
-
+      final contents = json.decode(await file.readAsString());
+      print('File read $contents');
       return contents;
     } catch (e) {
+      throw 'unable to read file $fileName - $e';
       // If encountering an error, return 0
-      return 0;
+
     }
   }
 
@@ -161,9 +192,20 @@ class ApiProvider {
     try {
       final file = await _localFile(fileName: fileName);
       file.delete();
+      print('File deleted $fileName');
     } catch (e) {
+      throw 'unable to delete file $fileName - $e';
       // If encountering an error, return 0
-      return 0;
+
+    }
+    try {
+      dbBloc.updateFileStatus(FileStatus(
+          fileName: fireStoreUrlFile,
+          lastFetch: DateTime.now(),
+          isLocal: false));
+      print('db file updated $fileName');
+    } catch (e) {
+      throw 'unable to update delete file $fileName to db - $e';
     }
   }
 
@@ -171,33 +213,62 @@ class ApiProvider {
 
   addStringToSF({required String key, required String value}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(key, value);
+    try {
+      prefs.setString(key, value);
+      print('added string $value to SF $key');
+    } catch (e) {
+      throw 'unable to add string $value to SF $key - $e';
+    }
   }
 
   addBoolToSF({required String key, required bool value}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(key, value);
+    try {
+      prefs.setBool(key, value);
+
+      print('added bool $value to SF $key');
+    } catch (e) {
+      throw 'unable to add bool $value to SF $key - $e';
+    }
   }
 
-  getStringValuesSF(String key) async {
+  Future<String?> getStringValuesSF(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    String? stringValue = prefs.getString(key);
-    return stringValue;
+    String? value;
+    try {
+      value = prefs.getString(key);
+
+      print('got string $value from SF $key');
+      return value;
+    } catch (e) {
+      throw 'unable to read string $value to SF $key - $e';
+    }
   }
 
   getBoolValuesSF(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    bool? stringValue = prefs.getBool(key);
-    return stringValue;
+    bool? value;
+    try {
+      value = prefs.getBool(key);
+      print('got bool $value from SF $key');
+      return value;
+    } catch (e) {
+      throw 'unable to read bool $value to SF $key - $e';
+    }
   }
 
   removeValues(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Remove String
-    prefs.remove(key);
-    //Remove bool
+    try {
+      prefs.remove(key);
+      //Remove bool
+      print('remove string from SF $key');
+    } catch (e) {
+      throw 'unable to remove key from SF $key - $e';
+    }
   }
 }
 
@@ -208,7 +279,10 @@ class DatabaseProvider {
   Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
+    if (_database != null) {
+      print('db fetched');
+      return _database!;
+    }
     _database = await createDatabase();
     return _database!;
   }
@@ -219,6 +293,8 @@ class DatabaseProvider {
     String path = join(documentsDirectory.path, "fileStatus.db");
     var database = await openDatabase(path,
         version: 1, onCreate: initDB, onUpgrade: onUpgrade);
+    apiProvider.addStringToSF(key: dbCreate, value: DateTime.now().toString());
+    print('database created');
     return database;
   }
 
@@ -238,7 +314,6 @@ class DatabaseProvider {
         "is_Local INTEGER, "
         "lastFetch TEXT "
         ")");
-    apiProvider.addStringToSF(key: dbCreate, value: DateTime.now().toString());
   }
 }
 
