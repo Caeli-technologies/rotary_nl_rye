@@ -1,52 +1,41 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() {
-  runApp(MaterialApp(
-    title: 'Dynamic Links Example',
-    routes: <String, WidgetBuilder>{
-      '/': (BuildContext context) => _MainScreen(),
-      '/helloworld': (BuildContext context) => _DynamicLinkScreen(),
-    },
-  ));
-}
-
-class _MainScreen extends StatefulWidget {
+class DynamicLinks extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MainScreenState();
+  _DynamicLinksState createState() => _DynamicLinksState();
 }
 
-class _MainScreenState extends State<_MainScreen> {
+class _DynamicLinksState extends State<DynamicLinks>
+    with WidgetsBindingObserver {
   String? _linkMessage;
   bool _isCreatingLink = false;
-  String _testString =
-      'To test: long press link and then copy and click from a non-browser '
-      "app. Make sure this isn't being tested on iOS simulator and iOS xcode "
-      'is properly setup. Look at firebase_dynamic_links/README.md for more '
-      'details.';
 
   @override
   void initState() {
     super.initState();
-    initDynamicLinks();
+    this._initDynamicLinks();
+    this._createDynamicLink();
   }
 
-  Future<void> initDynamicLinks() async {
+  Future<void> _initDynamicLinks() async {
     FirebaseDynamicLinks.instance.onLink(
         onSuccess: (PendingDynamicLinkData? dynamicLink) async {
       final Uri? deepLink = dynamicLink?.link;
 
       if (deepLink != null) {
-        // ignore: unawaited_futures
         Navigator.pushNamed(context, deepLink.path);
       }
     }, onError: (OnLinkErrorException e) async {
-      print('onLinkError');
-      print(e.message);
+      Navigator.pushNamed(context, '/error');
     });
 
     final PendingDynamicLinkData? data =
@@ -54,39 +43,33 @@ class _MainScreenState extends State<_MainScreen> {
     final Uri? deepLink = data?.link;
 
     if (deepLink != null) {
-      // ignore: unawaited_futures
       Navigator.pushNamed(context, deepLink.path);
     }
   }
 
-  Future<void> _createDynamicLink(bool short) async {
+  Future<void> _createDynamicLink() async {
     setState(() {
       _isCreatingLink = true;
     });
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarytestnl.page.link',
-      link: Uri.parse('https://rotarytestnl.page.link/test'),
+      link: Uri.parse(
+          'https://rotarytestnl.page.link/helloworld'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
-        minimumVersion: 0,
-      ),
-      dynamicLinkParametersOptions: DynamicLinkParametersOptions(
-        shortDynamicLinkPathLength: ShortDynamicLinkPathLength.short,
+        minimumVersion: 1,
       ),
       iosParameters: IosParameters(
-        bundleId: '1567096118',
-        minimumVersion: '0',
+        bundleId: 'com.caelitechnologies.rotary-nl-rye',
+        minimumVersion: '1',
+        appStoreId: '1567096118',
       ),
     );
 
     Uri url;
-    if (short) {
-      final ShortDynamicLink shortLink = await parameters.buildShortLink();
-      url = shortLink.shortUrl;
-    } else {
-      url = await parameters.buildUrl();
-    }
+    final ShortDynamicLink shortLink = await parameters.buildShortLink();
+    url = shortLink.shortUrl;
 
     setState(() {
       _linkMessage = url.toString();
@@ -95,62 +78,74 @@ class _MainScreenState extends State<_MainScreen> {
   }
 
   @override
+  void dispose() {
+    // ignore: unnecessary_statements
+    _linkMessage;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Dynamic Links Example'),
-        ),
-        body: Builder(builder: (BuildContext context) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ElevatedButton(
-                      onPressed: !_isCreatingLink
-                          ? () => _createDynamicLink(false)
-                          : null,
-                      child: const Text('Get Long Link'),
-                    ),
-                    ElevatedButton(
-                      onPressed: !_isCreatingLink
-                          ? () => _createDynamicLink(true)
-                          : null,
-                      child: const Text('Get Short Link'),
-                    ),
-                  ],
-                ),
-                InkWell(
-                  onTap: () async {
-                    if (_linkMessage != null) {
-                      await launch(_linkMessage!);
-                    }
-                  },
-                  onLongPress: () {
-                    Clipboard.setData(ClipboardData(text: _linkMessage));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Copied Link!')),
-                    );
-                  },
-                  child: Text(
-                    _linkMessage ?? '',
-                    style: const TextStyle(color: Colors.blue),
-                  ),
-                ),
-                Text(_linkMessage == null ? '' : _testString)
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Dynamic Links test page'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              CupertinoIcons.share,
+              color: Palette.indigo,
             ),
-          );
-        }),
+            onPressed: _createShareURL,
+          )
+        ],
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              // onTap: () async {
+              //   if (_linkMessage != null) {
+              //     await launch(_linkMessage!);
+              //   }
+              // },
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(text: _linkMessage));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Copied Link!')),
+                );
+              },
+              child: Text(
+                _linkMessage ?? '',
+                style: const TextStyle(color: Colors.blue),
+              ),
+            ),
+            Text(_linkMessage == null ? '' : '')
+            ////
+          ],
+        ),
       ),
     );
   }
+
+  _createShareURL() async {
+    _createDynamicLink();
+
+    if (await canLaunch(_linkMessage!)) {
+      await Share.share(
+          Platform.isIOS
+              ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
+              : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+          subject: 'look at this nice app :)');
+    } else {
+      throw 'Could not launch $_linkMessage';
+    }
+  }
 }
 
-class _DynamicLinkScreen extends StatelessWidget {
+class DynamicLinkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -161,6 +156,34 @@ class _DynamicLinkScreen extends StatelessWidget {
         body: const Center(
           child: Text('Hello, World!'),
         ),
+      ),
+    );
+  }
+}
+
+class TutorialsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Hello World DeepLink'),
+      ),
+      body: const Center(
+        child: const Text('Tutorials Page'),
+      ),
+    );
+  }
+}
+
+class ErrorPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Hello World DeepLink error'),
+      ),
+      body: const Center(
+        child: const Text('Error Page'),
       ),
     );
   }

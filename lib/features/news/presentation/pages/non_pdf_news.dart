@@ -1,9 +1,15 @@
+import 'dart:io';
+
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 
 class NonPDFPage extends StatefulWidget {
@@ -23,15 +29,28 @@ class _NonPDFPageState extends State<NonPDFPage> {
   int index = 0;
   int translationIndex = 0;
 
+  bool translationSuccess = true;
+  String errorMessage = "";
+
+  String? _linkMessage;
+  bool _isCreatingLink = false;
+
   void dispose() {
     isTranslating = false;
     translate.clear();
     index = 0;
     translationIndex = 0; // TODO: implement dispose
+    _linkMessage;
 
     // TODO: implement dispose
 
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this._createDynamicLink();
   }
 
   @override
@@ -71,34 +90,201 @@ class _NonPDFPageState extends State<NonPDFPage> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
+          // actions: [
+          //   Container(
+          //     margin: EdgeInsets.only(right: 10, top: 5),
+          //     width: 50,
+          //     height: 50,
+          //     decoration:
+          //         BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+          //     child: Platform.localeName == 'NL'
+          //         ? Container()
+          //         : RawMaterialButton(
+          //             onPressed: () {
+          //               setState(() {
+          //                 _isLoading = true;
+          //                 isTranslating = !isTranslating;
+          //                 FutureBuilder(
+          //                   future: translated(widget.data['text'][1]["body"]),
+          //                   builder: (BuildContext context,
+          //                       AsyncSnapshot<void> snapshot) {
+          //                     if (!translationSuccess && isTranslating) {
+          //                       print('show dialog');
+          //                       showDialog(
+          //                         context: context,
+          //                         builder: (BuildContext context) {
+          //                           return Dialog(
+          //                             insetPadding: EdgeInsets.symmetric(
+          //                                 horizontal: 15, vertical: 10),
+          //                             child: TextButton.icon(
+          //                                 onPressed: () =>
+          //                                     Navigator.pop(context),
+          //                                 icon: Icon(Icons.close,
+          //                                     color: Palette.accentColor),
+          //                                 label: Text(
+          //                                   errorMessage,
+          //                                   style: TextStyle(
+          //                                       color: Palette.accentColor),
+          //                                 )),
+          //                           );
+          //                         },
+          //                       );
+          //                     }
+          //                     return Container();
+          //                   },
+          //                 );
+          //               });
+          //             },
+          //             child: new FaIcon(
+          //               FontAwesomeIcons.language,
+          //               color: Palette.accentColor,
+          //               size: 30.0,
+          //             ),
+          //             shape: new CircleBorder(),
+          //             elevation: 2.0,
+          //             fillColor: Palette.themeShadeColor,
+          //             padding: const EdgeInsets.all(5.0),
+          //           ),
+          //   ),
+          // ],
           actions: [
             Container(
               margin: EdgeInsets.only(right: 10, top: 5),
               width: 50,
               height: 50,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-              child: RawMaterialButton(
-                onPressed: () {
-                  // code :)
-                  setState(() async {
-                    _isLoading = true;
-                    isTranslating = true;
-                    await translated(widget.data.text![1]["body"]);
-                  });
-                },
-                child: new FaIcon(
-                  FontAwesomeIcons.language,
-                  color: Palette.accentColor,
-                  size: 30.0,
-                ),
-                shape: new CircleBorder(),
-                elevation: 2.0,
-                fillColor: Palette.themeShadeColor,
-                padding: const EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                color: Palette.themeShadeColor,
+                borderRadius: BorderRadius.circular(40.0),
               ),
+              child: Platform.localeName == 'NL'
+                  ? PopupMenuButton<int>(
+                      // color: Colors.black,
+                      itemBuilder: (context) => [
+                        PopupMenuItem<int>(
+                            value: 0,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  CupertinoIcons.share,
+                                  color: Palette.lightIndigo,
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Text("Share")
+                              ],
+                            )),
+                      ],
+                      onSelected: (item) => selectedItem(context, item),
+                    )
+                  : PopupMenuButton<int>(
+                      // color: Colors.black,
+                      itemBuilder: (context) => [
+                        PopupMenuItem<int>(
+                            value: 0,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  CupertinoIcons.share,
+                                  color: Palette.lightIndigo,
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Text("Share")
+                              ],
+                            )),
+                        PopupMenuDivider(),
+                        PopupMenuItem<int>(
+                            value: 1,
+                            child: Row(
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.language,
+                                  color: Palette.lightIndigo,
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Text("Translate")
+                              ],
+                            )),
+                      ],
+                      onSelected: (item) => selectedItem(context, item),
+                      // icon: Icon(
+                      //   Icons.list,
+                      //   color: Colors.red,
+
+                      // ),
+                      icon: FaIcon(
+                        FontAwesomeIcons.list,
+                        color: Palette.accentColor,
+                        size: 22.0,
+                      ),
+                    ),
             ),
           ],
+          // actions: [
+          //   Theme(
+          //     data: Theme.of(context).copyWith(),
+          //     child: Platform.localeName == 'NL'
+          //         ? PopupMenuButton<int>(
+          //             // color: Colors.black,
+          //             itemBuilder: (context) => [
+          //               PopupMenuItem<int>(
+          //                   value: 0,
+          //                   child: Row(
+          //                     children: [
+          //                       Icon(
+          //                         CupertinoIcons.share,
+          //                         color: Palette.lightIndigo,
+          //                       ),
+          //                       const SizedBox(
+          //                         width: 7,
+          //                       ),
+          //                       Text("Share")
+          //                     ],
+          //                   )),
+          //             ],
+          //             onSelected: (item) => selectedItem(context, item),
+          //           )
+          //         : PopupMenuButton<int>(
+          //             // color: Colors.black,
+          //             itemBuilder: (context) => [
+          //               PopupMenuItem<int>(
+          //                   value: 0,
+          //                   child: Row(
+          //                     children: [
+          //                       Icon(
+          //                         CupertinoIcons.share,
+          //                         color: Palette.lightIndigo,
+          //                       ),
+          //                       const SizedBox(
+          //                         width: 7,
+          //                       ),
+          //                       Text("Share")
+          //                     ],
+          //                   )),
+          //               PopupMenuDivider(),
+          //               PopupMenuItem<int>(
+          //                   value: 1,
+          //                   child: Row(
+          //                     children: [
+          //                       FaIcon(
+          //                         FontAwesomeIcons.language,
+          //                         color: Palette.lightIndigo,
+          //                       ),
+          //                       const SizedBox(
+          //                         width: 7,
+          //                       ),
+          //                       Text("Translate")
+          //                     ],
+          //                   )),
+          //             ],
+          //             onSelected: (item) => selectedItem(context, item),
+          //           ),
+          //   ),
+          // ],
           title: Text(
             widget.data.title,
             textScaleFactor: 1.4,
@@ -205,8 +391,15 @@ class _NonPDFPageState extends State<NonPDFPage> {
     for (Map<String, dynamic> bodyItem in newsBody) {
       if (bodyItem['paragraph'] != null) {
         for (String text in bodyItem['paragraph']) {
-          String value = await Translate.text(inputText: text);
-          translate.add(paragraphItem(text: value));
+          final value = await Translate.text(inputText: text);
+          String translation = await value['translation'];
+          if (translationSuccess) {
+            translationSuccess = await value['success'];
+          }
+          if (errorMessage == "") {
+            errorMessage = await value['message'];
+          }
+          translate.add(paragraphItem(text: translation));
           setState(() {
             translationIndex++;
             progressPercent = translationIndex / index;
@@ -217,8 +410,15 @@ class _NonPDFPageState extends State<NonPDFPage> {
       } else if (bodyItem['videoUrl'] != null) {
         translate.add(videoItem(url: bodyItem['videoUrl']));
       } else if (bodyItem['subHeader'] != null) {
-        String value = await Translate.text(inputText: bodyItem['subHeader']);
-        translate.add(subHeaderItem(text: value));
+        final value = await Translate.text(inputText: bodyItem['subHeader']);
+        String translation = await value['translation'];
+        if (translationSuccess) {
+          translationSuccess = await value['success'];
+        }
+        if (errorMessage == "") {
+          errorMessage = await value['message'];
+        }
+        translate.add(subHeaderItem(text: translation));
         setState(() {
           translationIndex++;
           progressPercent = translationIndex / index;
@@ -230,8 +430,17 @@ class _NonPDFPageState extends State<NonPDFPage> {
     });
   }
 
-  Future<void> header(String text) async {
-    heading = await Translate.text(inputText: text);
+  Future<String> header(String text) async {
+    final value = await Translate.text(inputText: text);
+    final heading = value['translation'];
+    if (translationSuccess) {
+      translationSuccess = value['success'];
+    }
+    if (errorMessage == "") {
+      errorMessage = value['message'];
+    }
+
+    return heading;
   }
 
   Widget videoItem({required String url}) {
@@ -267,5 +476,87 @@ class _NonPDFPageState extends State<NonPDFPage> {
             color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
       ),
     );
+  }
+
+  Future<void> selectedItem(BuildContext context, item) async {
+    switch (item) {
+      case 0:
+        _createDynamicLink();
+
+        if (await canLaunch(_linkMessage!)) {
+          await Share.share(
+              Platform.isIOS
+                  ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
+                  : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+              subject: 'look at this nice app :)');
+        } else {
+          throw 'Could not launch $_linkMessage';
+        }
+
+        break;
+      case 1:
+        print('platform${Platform.localeName}');
+        setState(() {
+          _isLoading = true;
+          isTranslating = !isTranslating;
+          FutureBuilder(
+            future: translated(widget.data['text'][1]["body"]),
+            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+              if (!translationSuccess && isTranslating) {
+                print('show dialog');
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      insetPadding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      child: TextButton.icon(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Icon(Icons.close, color: Palette.accentColor),
+                          label: Text(
+                            errorMessage,
+                            style: TextStyle(color: Palette.accentColor),
+                          )),
+                    );
+                  },
+                );
+              }
+              return Container();
+            },
+          );
+        });
+
+        break;
+    }
+  }
+
+  Future<void> _createDynamicLink() async {
+    setState(() {
+      _isCreatingLink = true;
+    });
+
+    final DynamicLinkParameters parameters = DynamicLinkParameters(
+      uriPrefix: 'https://rotarytestnl.page.link',
+      link: Uri.parse(
+          'https://rotarytestnl.page.link/helloworld'), //change this to the url in the main.dart
+      androidParameters: AndroidParameters(
+        packageName: 'com.caelitechnologies.rotary_nl_rye',
+        minimumVersion: 1,
+      ),
+      iosParameters: IosParameters(
+        bundleId: 'com.caelitechnologies.rotary-nl-rye',
+        minimumVersion: '1',
+        appStoreId: '1567096118',
+      ),
+    );
+
+    Uri url;
+    final ShortDynamicLink shortLink = await parameters.buildShortLink();
+    url = shortLink.shortUrl;
+
+    setState(() {
+      _linkMessage = url.toString();
+      _isCreatingLink = false;
+    });
   }
 }

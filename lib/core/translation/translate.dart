@@ -8,19 +8,21 @@ import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Translate {
-  static Future<String> text({required String inputText, String inputLang = 'NL'}) async {
-    // check network connection
-    if (!(await new InternetConnectionChecker().hasConnection)) {
-      print("No connection");
-      return inputText;
-    }
+  static Future<Map<String, dynamic>> text({required String inputText, String inputLang = 'NL'}) async {
+    Map<String, dynamic> result = {
+      'translation': '',
+      'success': false,
+      'message': ''
+    };
 
     var lang = fetchLang();
 
     // check if input lang is different from the text
     if(lang == inputLang) {
-      print("Text lang = to Translate lang");
-      return inputText;
+      result['translation'] = inputLang;
+      result['message'] = "Text lang = to Translate lang";
+
+      return result;
     }
 
     print("Translating");
@@ -30,7 +32,19 @@ class Translate {
     final key = lang + "+" + inputText;
     if(cache.containsKey(key)){
       print("Retrieving from cache");
-      return Future.value(cache.getString(key));
+      result['translation'] = Future.value(cache.getString(key));
+      result['success'] = true;
+
+      return result;
+    }
+
+    // check network connection
+    if (!(await new InternetConnectionChecker().hasConnection)) {
+      result['translation'] = inputLang;
+      result['message'] = "No connection";
+      result['success'] = false;
+
+      return result;
     }
 
     // fallback to english
@@ -45,16 +59,18 @@ class Translate {
 
     // check if api call was succes
     if(status != 200){
-      print("Api call failed with status: $status");
-      return inputText;
+      result['translation'] = inputText;
+      result['message'] = "Api call failed with status: $status";
+
+      return result;
     }
 
     final body = jsonDecode(response.body);
-    final result = body['translations'][0]['text'];
-    print(body.toString() + result.toString());
+    result['translation'] = body['translations'][0]['text'];
+    result['success'] = true;
 
     print("Cache data");
-    cache.setString(key, result);
+    cache.setString(key, result['translation']);
 
     return result;
   }

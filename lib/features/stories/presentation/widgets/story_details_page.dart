@@ -107,8 +107,13 @@ class _StoryDetailsState extends State<StoryDetails> {
             //   ),
             // ],
             actions: [
-              Theme(
-                data: Theme.of(context).copyWith(),
+              Container(
+                margin: EdgeInsets.only(right: 10, top: 5),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Palette.themeShadeColor,
+                    borderRadius: BorderRadius.circular(40.0)),
                 child: PopupMenuButton<int>(
                   // color: Colors.black,
                   itemBuilder: (context) => [
@@ -143,8 +148,13 @@ class _StoryDetailsState extends State<StoryDetails> {
                         )),
                   ],
                   onSelected: (item) => selectedItem(context, item),
+                  icon: FaIcon(
+                    FontAwesomeIcons.list,
+                    color: Palette.accentColor,
+                    size: 22.0,
+                  ),
                 ),
-              ),
+              )
             ],
             expandedHeight: Device.height * 0.25,
             flexibleSpace: CachedNetworkImage(
