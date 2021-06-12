@@ -74,7 +74,7 @@ class _DynamicLinksState extends State<DynamicLinks>
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarytestnl.page.link',
       link: Uri.parse(
-          'https://rotarytestnl.page.link/tutorials/?id=$id&name=$name'), //change this to the url in the main.dart
+          'https://rotarytestnl.page.link/tutorials?id=$id&name=$name'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
@@ -150,7 +150,7 @@ class _DynamicLinksState extends State<DynamicLinks>
   }
 
   _createShareURL() async {
-    _createDynamicLink(id = 'id', name = 'name');
+    _createDynamicLink(id = 'id_test_1', name = 'name_test_2');
 
     if (await canLaunch(_linkMessage!)) {
       await Share.share(
