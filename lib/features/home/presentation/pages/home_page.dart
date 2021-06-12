@@ -210,9 +210,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           icon: FontAwesomeIcons.redoAlt,
                           title: 'Rebound',
                           description: 'rebound page',
-                          pushTo: CountriesPage(
-                            students: exchangeStudents,
-                          )),
+                          pushTo: CountriesPage()),
                     ],
                   ),
                   SizedBox(

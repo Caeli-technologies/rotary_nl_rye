@@ -87,11 +87,13 @@ class ApiProvider {
       print(e);
       throw 'unable to fetch stories json $e';
     }
+    List<Story>? stories;
     if (response.statusCode != 200) {
-      throw 'stories response ${response.statusCode}';
+      return stories = [];
+      //throw 'stories response ${response.statusCode}';
     }
     var data = json.decode(response.body);
-    List<Story>? stories;
+
     try {
       stories = StoryResult.fromJson(data).stories;
       print('Stories parsed');

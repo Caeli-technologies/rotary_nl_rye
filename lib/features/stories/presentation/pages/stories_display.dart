@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
@@ -20,33 +21,44 @@ class StoriesDisplay extends StatefulWidget {
 class _StoriesDisplayState extends State<StoriesDisplay> {
   _StoriesDisplayState({required this.student});
 
-  List<Story> stories = [];
-  bool _isLoading = true;
+  final storyBloc = StudentsBloc();
+
+  // List<Story> stories = [];
+  // bool _isLoading = true;
   final ExchangeStudent student;
 
   // Fetch content from the json file
-  Future readJson() async {
-    // final String response =
-    //     await rootBundle.loadString('assets/test/stories.json');
-    final data = null; //await getDataStories(
-    //    "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rebounds/students/${student.exchangeYear}/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
-    setState(() {
-      if (data == null) {
-        print('data $data');
-        stories = [];
-      } else {
-        stories = data;
-      }
-      _isLoading = false;
-    });
-  }
+  // Future readJson() async {
+  //   // final String response =
+  //   //     await rootBundle.loadString('assets/test/stories.json');
+  //   final data = null; //await getDataStories(
+  //   //    "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rebounds/students/${student.exchangeYear}/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
+  //   setState(() {
+  //     if (data == null) {
+  //       print('data $data');
+  //       stories = [];
+  //     } else {
+  //       stories = data;
+  //     }
+  //     _isLoading = false;
+  //   });
+  // }
 
   @override
   void initState() {
+    storyBloc.getStoryList(student);
     super.initState();
-    readJson();
+//    readJson();
   }
 
+  @override
+  void dispose() {
+    storyBloc.disposeStory();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -165,41 +177,56 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                     ),
                     Container(
                       height: Device.height - 395,
-                      child: _isLoading
-                          ? Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : (stories.length == 0)
-                              ? Center(
-                                  child: Text(
-                                    'No Adventures yet',
-                                    textAlign: TextAlign.center,
-                                    textScaleFactor: 1,
-                                    style: TextStyle(
-                                      color: Palette.indigo,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )
-                              : ListView.builder(
-                                  padding: EdgeInsets.only(top: 10),
-                                  itemCount: stories.length,
-                                  itemBuilder: (BuildContext ctxt, int index) {
-                                    return GestureDetector(
-                                      onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => StoryDetails(
-                                                  story: stories[index],
-                                                )),
+                      child: StreamBuilder<List<Story>>(
+                          stream: storyBloc.storyList,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              print(snapshot.error.toString());
+                              return Center(
+                                child: Text(snapshot.error.toString()),
+                              );
+                            } else if (snapshot.hasData) {
+                              return (snapshot.data!.length == 0)
+                                  ? Center(
+                                      child: Text(
+                                        'No Adventures yet',
+                                        textAlign: TextAlign.center,
+                                        textScaleFactor: 1,
+                                        style: TextStyle(
+                                          color: Palette.indigo,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                      child: Container(
-                                        padding: EdgeInsets.only(bottom: 10),
-                                        child:
-                                            TravelCard(story: stories[index]),
-                                      ),
-                                    );
-                                  }),
+                                    )
+                                  : ListView.builder(
+                                      padding: EdgeInsets.only(top: 10),
+                                      itemCount: snapshot.data!.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return GestureDetector(
+                                          onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    StoryDetails(
+                                                      story:
+                                                          snapshot.data![index],
+                                                    )),
+                                          ),
+                                          child: Container(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: TravelCard(
+                                                story: snapshot.data![index]),
+                                          ),
+                                        );
+                                      });
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          }),
                     )
                   ])),
         ));

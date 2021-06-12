@@ -145,8 +145,8 @@ class _NewsPageState extends State<NewsPage> {
                             child: Text(snapshot.error.toString()),
                           );
                         } else if (snapshot.hasData) {
-                          print(
-                              'snapshot has data ${snapshot.data.toString()}');
+                          // print(
+                          //     'snapshot has data ${snapshot.data.toString()}');
                           return ListView.builder(
                               padding: EdgeInsets.only(top: 10, bottom: 20),
                               itemCount: snapshot.data!.length,

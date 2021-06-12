@@ -2,6 +2,7 @@ import 'package:rotary_nl_rye/core/bloc/api.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
+import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 bool firstStart = true;
 
@@ -58,6 +59,14 @@ class Repository {
     url = FireStoreUrl.fromJson(x);
     List<ExchangeStudent> y =
         await apiProvider.getDataStudentList(url.students!);
+    return y;
+  }
+
+  Future<List<Story>> fetchStories(ExchangeStudent student) async {
+    FireStoreUrl url;
+    //var x = await apiProvider.readFile(fileName: fireStoreUrlFile);
+    //url = FireStoreUrl.fromJson(x);
+    List<Story> y = await apiProvider.getDataStories(student);
     return y;
   }
 }

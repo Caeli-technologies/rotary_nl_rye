@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
+import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 class NewsBloc {
   final _repository = Repository();
@@ -12,10 +13,6 @@ class NewsBloc {
   final _headerController = StreamController<String>.broadcast();
 
   get header => _headerController.stream;
-  final _studentController =
-      StreamController<List<ExchangeStudent>>.broadcast();
-
-  get studentList => _studentController.stream;
 
   NewsBloc() {
     getNews();
@@ -27,22 +24,14 @@ class NewsBloc {
     _newsController.sink.add(x);
     print('newscontroller.sink.add');
     var y = await _repository.fetchHeader();
-    print('get header ${y.toString()}');
+    //print('get header ${y.toString()}');
     _headerController.sink.add(y);
-    print('_headercontroller.sink.add');
-  }
-
-  getStudentList() async {
-    var x = await _repository.fetchStudentList();
-    print('get header ${x.toString()}');
-    _studentController.sink.add(x);
-    print('studentcontroller.sink.add');
+    //print('_headercontroller.sink.add');
   }
 
   dispose() {
     _newsController.close();
     _headerController.close();
-    _studentController.close();
   }
 // Stream<List<News>> get allNews => _newsFetcher.stream;
 // fetchAllNews() async {
@@ -53,6 +42,39 @@ class NewsBloc {
 // dispose() {
 //   _newsFetcher.close();
 // }
+}
+
+class StudentsBloc {
+  final _repository = Repository();
+  final _studentController =
+      StreamController<List<ExchangeStudent>>.broadcast();
+
+  get studentList => _studentController.stream;
+  final _storyController = StreamController<List<Story>>.broadcast();
+
+  get storyList => _storyController.stream;
+
+  getStudentList() async {
+    var x = await _repository.fetchStudentList();
+    //print('get studentList ${x.toString()}');
+    _studentController.sink.add(x);
+    //print('studentcontroller.sink.add');
+  }
+
+  getStoryList(ExchangeStudent student) async {
+    var x = await _repository.fetchStories(student);
+    //print('get header ${x.toString()}');
+    _storyController.sink.add(x);
+    //print('studentcontroller.sink.add');
+  }
+
+  disposeStudent() {
+    _studentController.close();
+  }
+
+  disposeStory() {
+    _storyController.close();
+  }
 }
 
 // final newsBloc = NewsBloc();
