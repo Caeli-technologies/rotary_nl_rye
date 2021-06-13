@@ -34,6 +34,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   String? _linkMessage;
   bool _isCreatingLink = false;
+  String? id;
 
   void dispose() {
     isTranslating = false;
@@ -50,7 +51,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   @override
   void initState() {
     super.initState();
-    this._createDynamicLink();
+    // this._createDynamicLink();
   }
 
   @override
@@ -358,7 +359,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> selectedItem(BuildContext context, item) async {
     switch (item) {
       case 0:
-        _createDynamicLink();
+        _createDynamicLink(id = ''); //TODO add the parameters here
 
         if (await canLaunch(_linkMessage!)) {
           await Share.share(
@@ -407,7 +408,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
     }
   }
 
-  Future<void> _createDynamicLink() async {
+  Future<void> _createDynamicLink(String id) async {
     setState(() {
       _isCreatingLink = true;
     });
@@ -415,7 +416,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarytestnl.page.link',
       link: Uri.parse(
-          'https://rotarytestnl.page.link/helloworld'), //change this to the url in the main.dart
+          'https://rotarytestnl.page.link/news?id=$id'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
@@ -424,6 +425,12 @@ class _NonPDFPageState extends State<NonPDFPage> {
         bundleId: 'com.caelitechnologies.rotary-nl-rye',
         minimumVersion: '1',
         appStoreId: '1567096118',
+      ),
+      socialMetaTagParameters: SocialMetaTagParameters(
+        title: 'Example of a Dynamic Link',
+        description: 'This link works whether app is installed or not!',
+        imageUrl: Uri.parse(
+            'https://is4-ssl.mzstatic.com/image/thumb/Purple114/v4/6e/21/e4/6e21e45b-49cb-fa52-83c2-bb56ab288b49/AppIcon-0-0-1x_U007emarketing-0-0-0-4-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.jpeg/1200x630wa.png'),
       ),
     );
 
