@@ -13,7 +13,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/lang/languages.dart';
 import 'core/path/firebase_dynamic_links.dart';
 import 'core/presentation/widgets/page_navigator.dart';
-import 'features/settings/presentation/pages/social.dart';
 import 'injection_container.dart' as di;
 
 // void main() async {

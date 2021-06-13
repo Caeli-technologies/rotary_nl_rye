@@ -161,19 +161,32 @@ class ApiProvider {
 
   Future<File> writeFile({required content, required String fileName}) async {
     final file = await _localFile(fileName: fileName);
+    List<FileStatus>? results = await dbBloc.getFileStatus(query: fileName);
+    List<FileStatus> contain;
+    if (results != null) {
+      contain =
+          results.where((element) => element.fileName == fileName).toList();
+    } else {
+      contain = [];
+    }
     try {
-      dbBloc.addFileStatus(FileStatus(
-          fileName: fileName, lastFetch: DateTime.now(), isLocal: true));
-      print('added file to db');
+      if (!contain.contains(fileName)) {
+        print('file doesn\'t exist in db writing... ');
+        dbBloc.addFileStatus(FileStatus(
+            fileName: fileName, lastFetch: DateTime.now(), isLocal: true));
+        print('added file to db');
+      } else {
+        print('db already contains $fileName deferring write');
+      }
     } catch (e) {
       throw 'unable to add writefile $fileName to db - $e';
-    } // Write the file
+    }
     try {
       print('File $fileName written and saved');
       return file.writeAsString(json.encode(content), flush: true);
     } catch (e) {
       throw 'unable to write to file $fileName - $e';
-    }
+    } // Write the file
   }
 
   Future readFile({required String fileName}) async {

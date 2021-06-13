@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/bloc/bloc.dart';
+import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/core/data/check_update.dart';
 import 'package:rotary_nl_rye/core/path/firebase_dynamic_links.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
@@ -40,10 +40,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   String _appBadgeSupported = 'Unknown';
   late FireStoreUrl _news;
-  late NewsBloc _newsBloc;
+  Repository _repo = Repository();
   late StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
       _currentSubscription;
-  bool _isLoading = true;
+  bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
 
   // Future readJson(String url) async {
@@ -65,6 +65,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   initState() {
     super.initState();
+
     this._initDynamicLinks();
 
     initPlatformState();
@@ -151,9 +152,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               builder: (context) => SocialPage(id: id, name: name)));
         }
         if (deepLink.path == "/news") {
+          // i don't know why this part of code is not being called
+          // setState(() {
+          //   _isLoading = true;
+          // });
           String? id = deepLink.queryParameters["id"];
-          List<News> _newsList = await _newsBloc.getNews();
-          _newsList[int.parse(id!)].isPdf
+          print('news id $id');
+          List<News> _newsList = await _repo.fetchNews();
+          print('news fetched ${_newsList[int.parse(id!)].toString()}');
+          _newsList[int.parse(id)].isPdf
               ? Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -165,6 +172,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   MaterialPageRoute(
                       builder: (context) =>
                           NonPDFPage(data: _newsList[int.parse(id)])));
+          // setState(() {
+          //   _isLoading = false;
+          // }); // need to relocate this setstate
           // Make sure the ID is in place to be more robust against invalid deep links.
 
           // not sure
@@ -172,7 +182,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           // Navigator.of(context).push(MaterialPageRoute(
           //     builder: (context) => NewsPage(news: news[id])));
         }
-        Navigator.pushNamed(context, '${deepLink.queryParameters['route']}');
+        //   Navigator.pushNamed(context, '${deepLink.queryParameters['route']}');
       }
     }, onError: (OnLinkErrorException e) async {
       Navigator.pushNamed(context, '/error');
@@ -212,6 +222,27 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
     if (deepLink?.path == "/news") {
       String? id = deepLink?.queryParameters["id"];
+      // setState(() {
+      //   _isLoading = true;
+      // });
+      List<News> _newsList = await _repo.fetchNews();
+
+      _newsList[int.parse(id!)].isPdf
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      PDFPage(pdfUrl: _newsList[int.parse(id)].pdf!)),
+            )
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      NonPDFPage(data: _newsList[int.parse(id)])));
+      // setState(() {
+      //   _isLoading = false;
+      // }); // need to relocate this setstate
+
       // Make sure the ID is in place to be more robust against invalid deep links.
 
       // not sure
@@ -220,7 +251,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       //     builder: (context) => NewsPage(news: news[id])));
     }
     //else
-    Navigator.pushNamed(context, '${deepLink?.queryParameters['route']}');
+    //Navigator.pushNamed(context, '${deepLink?.queryParameters['route']}');
   }
 
   initPlatformState() async {
@@ -251,6 +282,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void dispose() {
     //  _currentSubscription.cancel();
+
     // TODO: implement dispose
     super.dispose();
   }
@@ -259,83 +291,89 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       // Body
-      body: Container(
-        child: ListView(
-          physics: ClampingScrollPhysics(),
-          children: <Widget>[
-            Container(
-              height: 90,
-              margin: EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 10),
-              child:
-                  SvgPicture.asset('assets/image/rotary_rye_nl_logo_home.svg'),
-            ),
-
-            // Slider images
-            Carousel(),
-
-            // navigator buttons
-            Container(
-              margin: EdgeInsets.only(top: 24, left: 16, right: 16),
-              child: Column(
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : Container(
+              child: ListView(
+                physics: ClampingScrollPhysics(),
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.list,
-                          title: 'Programs',
-                          description: 'information to apply and more things',
-                          pushTo: ProgramPage()),
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.newspaper,
-                          title: 'News',
-                          description: 'rebound page',
-                          pushTo: NewsPage()),
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.calendarAlt,
-                          title: 'Calendar',
-                          description:
-                              'people that are going to the netherlands',
-                          pushTo: CalendarPage()),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.reply,
-                          title: 'Outbound',
-                          description:
-                              'students that are going to a diffrent country',
-                          pushTo: OutboundPage()),
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.share,
-                          title: 'Inbound',
-                          description:
-                              'people that are going to the netherlands',
-                          pushTo: InboundPage()),
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.redoAlt,
-                          title: 'Rebound',
-                          description: 'rebound page',
-                          pushTo: CountriesPage()),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16,
+                  Container(
+                    height: 90,
+                    margin: EdgeInsets.only(
+                        left: 16, right: 16, bottom: 24, top: 10),
+                    child: SvgPicture.asset(
+                        'assets/image/rotary_rye_nl_logo_home.svg'),
                   ),
 
-                  // going to the test page of Dynamic links
-                  Row(
-                    children: <Widget>[
-                      HomeCardItem(
-                          icon: FontAwesomeIcons.redoAlt,
-                          title: 'test',
-                          description: 'rebound page',
-                          pushTo: DynamicLinks()),
-                    ],
-                  ),
+                  // Slider images
+                  Carousel(),
+
+                  // navigator buttons
+                  Container(
+                    margin: EdgeInsets.only(top: 24, left: 16, right: 16),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.list,
+                                title: 'Programs',
+                                description:
+                                    'information to apply and more things',
+                                pushTo: ProgramPage()),
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.newspaper,
+                                title: 'News',
+                                description: 'rebound page',
+                                pushTo: NewsPage()),
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.calendarAlt,
+                                title: 'Calendar',
+                                description:
+                                    'people that are going to the netherlands',
+                                pushTo: CalendarPage()),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.reply,
+                                title: 'Outbound',
+                                description:
+                                    'students that are going to a diffrent country',
+                                pushTo: OutboundPage()),
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.share,
+                                title: 'Inbound',
+                                description:
+                                    'people that are going to the netherlands',
+                                pushTo: InboundPage()),
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.redoAlt,
+                                title: 'Rebound',
+                                description: 'rebound page',
+                                pushTo: CountriesPage()),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+
+                        // going to the test page of Dynamic links
+                        Row(
+                          children: <Widget>[
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.redoAlt,
+                                title: 'test',
+                                description: 'rebound page',
+                                pushTo: DynamicLinks()),
+                          ],
+                        ),
 /*
                   ElevatedButton(
                     child: new Text('Add badge'),
@@ -349,12 +387,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         _removeBadge();
                       }),
 */
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 

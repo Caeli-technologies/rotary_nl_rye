@@ -359,13 +359,15 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> selectedItem(BuildContext context, item) async {
     switch (item) {
       case 0:
-        _createDynamicLink(id = ''); //TODO add the parameters here
+        _createDynamicLink(
+            id = widget.data.id.toString()); //TODO add the parameters here
 
         if (await canLaunch(_linkMessage!)) {
           await Share.share(
               Platform.isIOS
                   ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
-                  : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+                  : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
+              //android
               subject: 'look at this nice app :)');
         } else {
           throw 'Could not launch $_linkMessage';
