@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-class SelectionWeekendPage extends StatefulWidget {
+class SelectionDayPage extends StatefulWidget {
   @override
-  _SelectionWeekendPageState createState() => _SelectionWeekendPageState();
+  _SelectionDayPageState createState() => _SelectionDayPageState();
 }
 
-class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
+class _SelectionDayPageState extends State<SelectionDayPage> {
   @override
   initState() {
     super.initState();
@@ -41,7 +41,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
           ),
         ),
         title: Text(
-          "Selectie weekend",
+          "Selectie dag",
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -57,124 +57,29 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Het weekend dient een aantal doelen:",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
+                  "Wat moet ik doen voor de selectie dag:",
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text: '1. ',
-                      ),
-                      TextSpan(
-                        text: 'Elkaar beter leren kennen.',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                      TextSpan(
-                        text:
-                            ' De groep leert elkaar beter kennen en wij leren jullie beter ',
-                      ),
-                      TextSpan(
-                        text: 'kennen.',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                      TextSpan(
-                        text:
-                            ' Wij kunnen zó beter inschatten waar jullie als toekomstige Outbounds naar toe zouden kunnen gaan.',
-                      ),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text: '2. ',
-                      ),
-                      TextSpan(
-                        text: 'Jezelf presenteren.',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text: '3. ',
-                      ),
-                      TextSpan(
-                        text: 'Je oriënteren op een top-drie van landen',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                      TextSpan(
-                        text:
-                            ' waarnaar je het liefst wilt worden uitgezonden. Zowel Internationaal als Europees.',
-                      ),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text: '4. ',
-                      ),
-                      TextSpan(
-                        text: 'Selectie:',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                      TextSpan(
-                        text:
-                            ' Je kunt laten zien dat je uit het goede “uitwisselingshout” bent gesneden. Aanwezigheid is verplicht. Het weekend is dan ook onderdeel van de uiteindelijke selectie.',
-                      ),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "*Je krijgt een mail van ons voor het weekend waarin staat wat je moet meenemen, en wat je moet voorbereiden. Het is altijd een topweekend. ",
-                  style: TextStyle(fontSize: 12.5),
+                  "- Ik zou gewoon je best en doen en jezelf zijn.",
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "Dit is wat je deze dag kan verwachten:",
-                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis van Nederland.",
-                  style: TextStyle(fontSize: 14.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
@@ -188,7 +93,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "Voorbeeld vragen:",
-                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(

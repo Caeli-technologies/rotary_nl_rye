@@ -2,11 +2,14 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/data/check_update.dart';
+import 'package:rotary_nl_rye/core/path/firebase_dynamic_links.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
@@ -26,7 +29,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   _HomePageState() {
     FirebaseAuth.instance.signInAnonymously().then(
         (UserCredential userCredential) =>
@@ -59,8 +62,15 @@ class _HomePageState extends State<HomePage> {
   @override
   initState() {
     super.initState();
+    this._initDynamicLinks();
+
     initPlatformState();
     _removeBadge();
+    try {
+      versionCheck(context);
+    } catch (e) {
+      print(e);
+    }
 
     Future.wait([
       precachePicture(
@@ -84,6 +94,27 @@ class _HomePageState extends State<HomePage> {
         null,
       ),
     ]);
+  }
+
+  Future<void> _initDynamicLinks() async {
+    FirebaseDynamicLinks.instance.onLink(
+        onSuccess: (PendingDynamicLinkData? dynamicLink) async {
+      final Uri? deepLink = dynamicLink?.link;
+
+      if (deepLink != null) {
+        Navigator.pushNamed(context, deepLink.path);
+      }
+    }, onError: (OnLinkErrorException e) async {
+      Navigator.pushNamed(context, '/error');
+    });
+
+    final PendingDynamicLinkData? data =
+        await FirebaseDynamicLinks.instance.getInitialLink();
+    final Uri? deepLink = data?.link;
+
+    if (deepLink != null) {
+      Navigator.pushNamed(context, deepLink.path);
+    }
   }
 
   initPlatformState() async {
@@ -197,6 +228,17 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SizedBox(
                           height: 16,
+                        ),
+
+                        // going to the test page of Dynamic links
+                        Row(
+                          children: <Widget>[
+                            HomeCardItem(
+                                icon: FontAwesomeIcons.redoAlt,
+                                title: 'test',
+                                description: 'rebound page',
+                                pushTo: DynamicLinks()),
+                          ],
                         ),
 /*
                   ElevatedButton(

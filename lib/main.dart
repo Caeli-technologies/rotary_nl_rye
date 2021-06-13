@@ -1,15 +1,19 @@
 // @dart=2.9
 
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'injection_container.dart' as di;
 
 import 'core/lang/languages.dart';
+import 'core/path/firebase_dynamic_links.dart';
 import 'core/presentation/widgets/page_navigator.dart';
-import 'injection_container.dart' as di;
+import 'features/settings/presentation/pages/social.dart';
 
 // void main() async {
 //   runZonedGuarded<Future<void>>(() async {
@@ -26,15 +30,16 @@ import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
+  runZonedGuarded<Future<void>>(() async {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    await di.init();
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
+    runApp(new MyApp());
+  }, FirebaseCrashlytics.instance.recordError);
   // Pass all uncaught errors from the framework to Crashlytics.
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  await di.init();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -48,10 +53,12 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: [
-        const Locale('en', ''),
+        const Locale('en', 'US'),
+        const Locale('en', 'GB'),
         const Locale('nl', ''),
         const Locale('de', ''),
-        const Locale('pt', ''),
+        const Locale('pt', 'PT'),
+        const Locale('pt', 'BR'),
         const Locale.fromSubtags(
             languageCode: 'zh',
             scriptCode: 'Hans',
@@ -79,6 +86,13 @@ class MyApp extends StatelessWidget {
       title: 'Rotary youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
+
+      // here needs the routs for dynamic links :)
+      routes: <String, WidgetBuilder>{
+        '/helloworld': (BuildContext context) => SocialPage(),
+        '/tutorials': (context) => TutorialsPage(),
+        '/error': (context) => ErrorPage(),
+      },
     );
   }
 }
