@@ -236,18 +236,15 @@ PODS:
     - FirebaseAnalytics (~> 8.0.0)
   - Firebase/CoreOnly (8.0.0):
     - FirebaseCore (= 8.0.0)
-  - Firebase/Database (8.0.0):
+  - Firebase/Crashlytics (8.0.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 8.0.0)
+    - FirebaseCrashlytics (~> 8.0.0)
   - Firebase/Firestore (8.0.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.0.0)
   - Firebase/Messaging (8.0.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 8.0.0)
-  - Firebase/Storage (8.0.0):
-    - Firebase/CoreOnly
-    - FirebaseStorage (~> 8.0.0)
   - firebase_analytics (8.1.0):
     - Firebase/Analytics (= 8.0.0)
     - firebase_core
@@ -259,16 +256,12 @@ PODS:
   - firebase_core (1.2.0):
     - Firebase/CoreOnly (= 8.0.0)
     - Flutter
-  - firebase_database (6.1.2):
-    - Firebase/Database (= 8.0.0)
+  - firebase_crashlytics (2.0.4):
+    - Firebase/Crashlytics (= 8.0.0)
     - firebase_core
     - Flutter
   - firebase_messaging (10.0.0):
     - Firebase/Messaging (= 8.0.0)
-    - firebase_core
-    - Flutter
-  - firebase_storage (8.1.0):
-    - Firebase/Storage (= 8.0.0)
     - firebase_core
     - Flutter
   - FirebaseAnalytics (8.0.0):
@@ -312,9 +305,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseDatabase (8.0.0):
+  - FirebaseCrashlytics (8.0.0):
     - FirebaseCore (~> 8.0)
-    - leveldb-library (~> 1.22)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.0)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseFirestore (8.0.0):
     - abseil/algorithm (= 0.20200225.0)
     - abseil/base (= 0.20200225.0)
@@ -339,9 +335,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Reachability (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
-  - FirebaseStorage (8.0.0):
-    - FirebaseCore (~> 8.0)
-    - GTMSessionFetcher/Core (~> 1.5)
   - Flutter (1.0.0)
   - flutter_app_badger (0.0.1):
     - Flutter
@@ -410,6 +403,8 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
   - leveldb-library (1.22.1)
+  - maps_launcher (0.0.1):
+    - Flutter
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -440,18 +435,17 @@ DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - Firebase/Analytics
   - Firebase/Auth
-  - Firebase/Database
+  - Firebase/Crashlytics
   - Firebase/Firestore
   - Firebase/Messaging
-  - Firebase/Storage
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
+  - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
-  - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_app_badger (from `.symlinks/plugins/flutter_app_badger/ios`)
+  - maps_launcher (from `.symlinks/plugins/maps_launcher/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
@@ -470,11 +464,10 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseDatabase
+    - FirebaseCrashlytics
     - FirebaseFirestore
     - FirebaseInstallations
     - FirebaseMessaging
-    - FirebaseStorage
     - FMDB
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -499,16 +492,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
-  firebase_database:
-    :path: ".symlinks/plugins/firebase_database/ios"
+  firebase_crashlytics:
+    :path: ".symlinks/plugins/firebase_crashlytics/ios"
   firebase_messaging:
     :path: ".symlinks/plugins/firebase_messaging/ios"
-  firebase_storage:
-    :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
   flutter_app_badger:
     :path: ".symlinks/plugins/flutter_app_badger/ios"
+  maps_launcher:
+    :path: ".symlinks/plugins/maps_launcher/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider:
@@ -536,18 +529,16 @@ SPEC CHECKSUMS:
   firebase_analytics: 221d3bc4e8f1b5144a4bd4cc6b33790ee51bd543
   firebase_auth: f960df4ddd8cb415859dbc01a02d7859925ddef0
   firebase_core: e4d3efb030a2b2021819f8faa538bb23deb46695
-  firebase_database: 9020b0edff812b1c1eede4ead4f63dcd7a65453b
+  firebase_crashlytics: 4f3ce855ce6116de954cde34f88003df8ed9de4a
   firebase_messaging: 3b6e0657b21261a57a1cd041fafa713f2aa6923f
-  firebase_storage: 6ea45fdb1976a9a32bf42d1a285a0103a97faaae
   FirebaseAnalytics: dcb92c7c9ef4fa7ffac276e8f87bd4fc8c97f1b8
   FirebaseAuth: b8cd992fca5b53dc6eec09e873a3f375f000c5a1
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
   FirebaseCoreDiagnostics: a31d987ba0fe16d59886a5dbadc2f1de871f88c8
-  FirebaseDatabase: 363961e25451425be8b14bb8801a592515ec58f2
+  FirebaseCrashlytics: 69cddb6bfa7656c5346e603bc85b029392252ee6
   FirebaseFirestore: 7f6576eaca9f821e864c3e917d68aa99f4e6b613
   FirebaseInstallations: c4aab1005d6547b00a7529777fe52f5d4d45165b
   FirebaseMessaging: 1a33b4af3c8042ed6ddacb6c031894af2064bfab
-  FirebaseStorage: 61bcd27880fa17362f68be67d3683d04bfd7b1c7
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_app_badger: 65de4d6f0c34a891df49e6cfb8a1c0496426fa68
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -558,6 +549,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  maps_launcher: eae38ee13a9c3f210fa04e04bb4c073fa4c6ed92
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
@@ -569,6 +561,6 @@ SPEC CHECKSUMS:
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: 460352b5ad21b0d1f7614ba8ba74d6eddae9fe87
+PODFILE CHECKSUM: 4eb9f158f8370b3742dcab7469233ba23a44af86
 
 COCOAPODS: 1.10.1

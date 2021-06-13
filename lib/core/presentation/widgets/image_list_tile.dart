@@ -7,6 +7,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
+import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
@@ -415,12 +416,14 @@ class InboundsStudentsListTile extends StatelessWidget {
 
 class ReboundsStudentsListTile extends StatelessWidget {
   final reboundsStudentsListPage;
-  final item;
+  final ExchangeStudent item;
+
   const ReboundsStudentsListTile({
     this.reboundsStudentsListPage,
-    this.item,
+    required this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -436,20 +439,21 @@ class ReboundsStudentsListTile extends StatelessWidget {
         contentPadding: EdgeInsets.all(0),
         leading: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(40)),
-          child: Container(
+          child: CachedNetworkImage(
             height: 55,
             width: 55,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: Palette
-                  .imageBackgroundColor, //fill the image still needs to chagnge
+            imageUrl: item.imageUrl,
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            child: Image.asset(
-              item.imageUrl,
-              height: 50,
-              width: 50,
-              fit: BoxFit.contain,
-            ),
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
         title: Text(item.name,

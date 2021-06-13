@@ -3,6 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
+import 'information/comply_with.dart';
+import 'information/how_to_sign_up.dart';
+import 'information/selection_day.dart';
+import 'information/selection_weekend.dart';
+import 'information/top_3_countries.dart';
+
 class OutboundPage extends StatefulWidget {
   @override
   _OutboundPageState createState() => _OutboundPageState();
@@ -50,10 +56,10 @@ class _OutboundPageState extends State<OutboundPage> {
             children: <Widget>[
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Text(
                   "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(fontSize: 16.0),
                 ),
               ),
               Divider(
@@ -61,13 +67,13 @@ class _OutboundPageState extends State<OutboundPage> {
                 thickness: 2,
               ),
               buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
-                  FontAwesomeIcons.pencilAlt, null),
+                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
-                  FontAwesomeIcons.exclamation, null),
+                  FontAwesomeIcons.exclamation, ComplyWithPage()),
               Divider(
                 height: 15,
                 thickness: 2,
@@ -76,7 +82,7 @@ class _OutboundPageState extends State<OutboundPage> {
                   context,
                   "Wat moet ik doen voor de selectiedag",
                   FontAwesomeIcons.voteYea,
-                  null),
+                  SelectionDayPage()),
               Divider(
                 height: 15,
                 thickness: 2,
@@ -85,7 +91,7 @@ class _OutboundPageState extends State<OutboundPage> {
                   context,
                   "Wat moet ik doen voor het selectieweekend",
                   FontAwesomeIcons.clipboardCheck,
-                  null),
+                  SelectionWeekendPage()),
               Divider(
                 height: 15,
                 thickness: 2,
@@ -94,13 +100,13 @@ class _OutboundPageState extends State<OutboundPage> {
                   context,
                   "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
                   FontAwesomeIcons.globe,
-                  null),
+                  Top3CountriesPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildOutboundOptionRow(context, "Hoe bereid ik me voor",
-                  FontAwesomeIcons.toolbox, null),
+                  FontAwesomeIcons.suitcase, null),
               // the end
               SizedBox(
                 height: 20,

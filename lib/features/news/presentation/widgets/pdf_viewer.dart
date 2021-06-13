@@ -1,53 +1,39 @@
-// @dart=2.9
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-// ignore: must_be_immutable
 class PDFPage extends StatefulWidget {
-  String pdfUrl;
+  final String pdfUrl;
 
-  PDFPage({this.pdfUrl});
+  PDFPage({required this.pdfUrl});
 
   @override
-  _PDFPageState createState() => _PDFPageState();
+  _PDFPageState createState() => _PDFPageState(pdfUrl: pdfUrl);
 }
 
 class _PDFPageState extends State<PDFPage> {
   final String pdfUrl;
 
-  _PDFPageState({this.pdfUrl});
+  _PDFPageState({required this.pdfUrl});
 
   bool _isLoading = true;
-  PDFDocument document;
+  late PDFDocument document;
   String title = "Loading";
 
   @override
   void initState() {
     super.initState();
-    loadDocument(1); // 0 = local fetch | 1 = web fetch
+    loadDocument();
   }
 
-  loadDocument(value) async {
+  loadDocument() async {
     setState(() {
       _isLoading = true;
       title = "Loading";
     });
-    if (value == 1) {
-      // [VERBOSE-2:ui_dart_state.cc(186)] Unhandled Exception: NoSuchMethodError: The getter 'length' was called on null.
-      // Receiver: null
-      // Tried calling: length
-
-      // document = await PDFDocument.fromURL(pdfUrl); // not yet working
-      document = await PDFDocument.fromURL(
-          "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf"); // works
-    } else {
-      document = await PDFDocument.fromAsset(
-          'assets/pdf_test/nieuwsbrief-zomer-2020.pdf');
-    }
+    document = await PDFDocument.fromURL(pdfUrl);
     setState(() {
-      title = (value == 1) ? "Loaded From Url" : "Loaded From Assets";
       _isLoading = false;
     });
   }

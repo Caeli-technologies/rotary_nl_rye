@@ -1,14 +1,17 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_page.dart';
+import 'package:rotary_nl_rye/features/stories/models/country.dart';
+import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_display.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
-  final country;
-  const ExchangeStudentsPage({this.country});
+  final Country country;
+  final List<ExchangeStudent> students;
+
+  const ExchangeStudentsPage({required this.country, required this.students});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,114 +48,56 @@ class ExchangeStudentsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
-          child: ListView(shrinkWrap: true, children: [
-            Container(
-              child: SvgPicture.asset(
-                country.imageUrl,
-                height: 60,
-                width: 60,
-                fit: BoxFit.contain,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Palette.themeShadeColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(40.0),
+          child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                Container(
+                  child: SvgPicture.asset(
+                    country.imageUrl,
+                    height: 60,
+                    width: 60,
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              child: Text(
-                "Exchange Students",
-                textAlign: TextAlign.center,
-                textScaleFactor: 1.5,
-                style: TextStyle(
-                  color: Palette.indigo,
-                  fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-            ),
-            Divider(
-              thickness: 2,
-            ),
-            Container(
-              height: Device.height - 265,
-              child: ListView.builder(
-                itemBuilder: (context, index) => ReboundsStudentsListTile(
-                  item: exchangeStudents[index],
-                  reboundsStudentsListPage: StoriesPage(),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.themeShadeColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(40.0),
+                    ),
+                  ),
+                  child: Text(
+                    "Exchange Students",
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 1.5,
+                    style: TextStyle(
+                      color: Palette.indigo,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                itemCount: exchangeStudents.length,
-              ),
-            )
-          ]),
+                Divider(
+                  thickness: 2,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.70,
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => ReboundsStudentsListTile(
+                      item: students[index],
+                      reboundsStudentsListPage: StoriesDisplay(
+                        student: students[index],
+                      ),
+                    ),
+                    itemCount: students.length,
+                  ),
+                )
+              ]),
         ),
       ),
     );
   }
 }
-
-List<Contributor> exchangeStudents = [
-  Contributor(
-    name: "Ruben Talstra",
-    description: "Long Exchange Year 2018-2019",
-    place: "Netherlands",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl: "assets/image/1.PNG",
-    email: "ruben@example.com",
-    phoneNumber: "888 444 7676",
-  ),
-  Contributor(
-    name: "_Bnkn_",
-    description: "Short Exchange Year 2018-2019",
-    place: "Germany",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl: "assets/image/2.PNG",
-    email: "bnkn@example.com",
-    phoneNumber: "888 444 7676",
-  ),
-  Contributor(
-    name: "Sceptile",
-    description: "Long Exchange Year 2018-2019",
-    place: "Germany",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl: "assets/image/3.PNG",
-    email: "sceptile@example.com",
-    phoneNumber: "888 444 7676",
-  ),
-  Contributor(
-    name: "Ton Ann",
-    description: "Long Exchange Year 2018-2019",
-    place: "France",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl: "assets/image/1.PNG",
-    email: "tonann@example.com",
-    phoneNumber: "888 444 7676",
-  ),
-  Contributor(
-    name: "Believer",
-    description: "Short Exchange Year 2018-2019",
-    place: "India",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl: "assets/image/2.PNG",
-    email: "believer@example.com",
-    phoneNumber: "888 444 7676",
-  ),
-  Contributor(
-    name: "Yvan",
-    description: "Short Exchange Year 2018-2019",
-    place: "Nice Place",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl: "assets/image/2.PNG",
-    email: "yvan@example.com",
-    phoneNumber: "888 444 7676",
-  )
-];

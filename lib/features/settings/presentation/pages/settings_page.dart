@@ -1,10 +1,10 @@
-// @dart=2.9
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';

@@ -4,8 +4,6 @@ import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/data/counselor_list.dart';
 
-import 'models/counselor.dart';
-
 class CounselorListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

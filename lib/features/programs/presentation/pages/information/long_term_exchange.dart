@@ -28,7 +28,7 @@ class _LongTermExchangeProgramPageState
   initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
-        "https://caeli-tech.com/rotary/video/promo/Rotary_Promo_Short.mp4");
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4");
     _chewieController = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,
@@ -45,7 +45,7 @@ class _LongTermExchangeProgramPageState
       showControls: true,
     );
     _videoPlayerController2 = VideoPlayerController.network(
-        "https://caeli-tech.com/rotary/video/promo/proud_to_be_European.mp4");
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4");
     _chewieController2 = ChewieController(
       allowedScreenSleep: false,
       allowFullScreen: true,
@@ -208,7 +208,7 @@ class _LongTermExchangeProgramPageState
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CalendarPage()),
-                            ); //TODO click to calendar in app
+                            );
                           },
                       ),
                     ])),

@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 
 import '../../../features/about/presentation/pages/about_page.dart';
