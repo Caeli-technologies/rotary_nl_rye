@@ -96,6 +96,7 @@ class MyApp extends StatelessWidget {
       // here needs the routs for dynamic links :)
       routes: <String, WidgetBuilder>{
         // '/helloworld': (BuildContext context) => SocialPage(),
+        // '/helloworld': (context) => HelloWorld('linkData'),
         // '/tutorials': (context) => TutorialsPage(),
         '/error': (context) => ErrorPage(),
       },

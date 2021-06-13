@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => SocialPage(id: id, name: name)));
         }
-        if (deepLink.path == "/tutorials") {
+        if (deepLink.path == "/stories") {
           final id = deepLink.queryParameters["id"];
           final name = deepLink.queryParameters["name"];
           // Make sure the ID is in place to be more robust against invalid deep links.
@@ -148,9 +148,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         if (deepLink.path == "/news") {
           String? id = deepLink.queryParameters["id"];
           // Make sure the ID is in place to be more robust against invalid deep links.
+
+          // not sure
+
           // Navigator.of(context).push(MaterialPageRoute(
           //     builder: (context) => NewsPage(news: news[id])));
         }
+        Navigator.pushNamed(context, '${deepLink.queryParameters['route']}');
       }
     }, onError: (OnLinkErrorException e) async {
       Navigator.pushNamed(context, '/error');
@@ -160,18 +164,45 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         await FirebaseDynamicLinks.instance.getInitialLink();
     final Uri? deepLink = data?.link;
 
-    if (deepLink != null) {
-      if (deepLink.queryParameters.containsKey('id')) {
-        String? id = deepLink.queryParameters['id'];
-        String? name = deepLink.queryParameters['name'];
-        // verify the username is parsed correctly
-        print("My users username is: $name and $id");
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SocialPage(id: id, name: name)));
+    // if (deepLink != null) {
+    //   if (deepLink.queryParameters.containsKey('id')) {
+    //     String? id = deepLink.queryParameters['id'];
+    //     String? name = deepLink.queryParameters['name'];
+    //     // verify the username is parsed correctly
+    //     print("My users username is: $name and $id");
+    //     Navigator.of(context).push(MaterialPageRoute(
+    //         builder: (context) => SocialPage(id: id, name: name)));
 
-        // Navigator.pushNamed(BuildContext context) => SocialPage(id: id, name: name);
-      }
+    //     // Navigator.pushNamed(BuildContext context) => SocialPage(id: id, name: name);
+    //   }
+    // }
+    final uri = deepLink?.path;
+    print("deepLink.path: $uri ");
+    if (deepLink?.path == "/helloworld") {
+      final id = deepLink?.queryParameters["id"];
+      final name = deepLink?.queryParameters["name"];
+      // Make sure the ID is in place to be more robust against invalid deep links.
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SocialPage(id: id, name: name)));
     }
+    if (deepLink?.path == "/stories") {
+      final id = deepLink?.queryParameters["id"];
+      final name = deepLink?.queryParameters["name"];
+      // Make sure the ID is in place to be more robust against invalid deep links.
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SocialPage(id: id, name: name)));
+    }
+    if (deepLink?.path == "/news") {
+      String? id = deepLink?.queryParameters["id"];
+      // Make sure the ID is in place to be more robust against invalid deep links.
+
+      // not sure
+
+      // Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => NewsPage(news: news[id])));
+    }
+    //else
+    Navigator.pushNamed(context, '${deepLink?.queryParameters['route']}');
   }
 
   initPlatformState() async {
