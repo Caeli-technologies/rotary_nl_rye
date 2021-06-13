@@ -8,9 +8,9 @@ import '../../../../core/prop.dart';
 import '../../models/news.dart';
 
 class NewsPage extends StatefulWidget {
-  //final News news;
+  // final News news;
 
-  //NewsPage({required this.news});
+// NewsPage({required this.news});
 
   @override
   _NewsPageState createState() => _NewsPageState();

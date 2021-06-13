@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PDFPage extends StatefulWidget {
   final String pdfUrl;
@@ -71,6 +75,23 @@ class _PDFPageState extends State<PDFPage> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
+// TODO not yet working, Dynamic link to share this pdf page with someone else
+
+          // actions: <Widget>[
+          //   IconButton(
+          //     icon: Icon(
+          //       CupertinoIcons.share,
+          //       color: Palette.indigo,
+          //     ),
+          //     onPressed: () {
+          //       // Share.share(
+          //       //     Platform.isIOS
+          //       //         ? 'Hier mot nog een leuk stukje komen. + de link naar de Apple app store link https://example.com'
+          //       //         : 'Hier mot nog een leuk stukje komen. + de link naar de google play store link https://example.com',
+          //       //     subject: 'look at this nice app :)');
+          //     },
+          //   )
+          // ],
         ),
         body: Center(
             child: _isLoading
