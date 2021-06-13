@@ -7,12 +7,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/core/data/check_update.dart';
 import 'package:rotary_nl_rye/core/path/firebase_dynamic_links.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
+import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
+import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
+import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
@@ -36,6 +40,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   String _appBadgeSupported = 'Unknown';
   late FireStoreUrl _news;
+  late NewsBloc _newsBloc;
   late StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
       _currentSubscription;
   bool _isLoading = true;
@@ -147,6 +152,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         }
         if (deepLink.path == "/news") {
           String? id = deepLink.queryParameters["id"];
+          List<News> _newsList = await _newsBloc.getNews();
+          _newsList[int.parse(id!)].isPdf
+              ? Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PDFPage(pdfUrl: _newsList[int.parse(id)].pdf!)),
+                )
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          NonPDFPage(data: _newsList[int.parse(id)])));
           // Make sure the ID is in place to be more robust against invalid deep links.
 
           // not sure
