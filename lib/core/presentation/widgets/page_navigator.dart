@@ -100,7 +100,8 @@ class _PageNavigatorState extends State<PageNavigator> {
                       builder: (context) =>
                           NonPDFPage(data: _newsList[int.parse(id)])));
         }
-        Navigator.pushNamed(context, '${deepLink.queryParameters['route']}');
+        // still need some work
+        // Navigator.pushNamed(context, '${deepLink.queryParameters['route']}');
       }
     }, onError: (OnLinkErrorException e) async {
       Navigator.pushNamed(context, '/error');
@@ -143,6 +144,7 @@ class _PageNavigatorState extends State<PageNavigator> {
                   builder: (context) =>
                       NonPDFPage(data: _newsList[int.parse(id)])));
     }
-    Navigator.pushNamed(context, '${deepLink?.queryParameters['route']}');
+    // still need some work
+    // Navigator.pushNamed(context, '${deepLink?.queryParameters['route']}');
   }
 }
