@@ -33,6 +33,10 @@ class _PageNavigatorState extends State<PageNavigator> {
     this._initDynamicLinks();
     super.initState();
 
+    FirebaseMessaging.instance.getToken().then((token) {
+      print(token); // Print the Token in Console
+    });
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;

@@ -362,6 +362,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_app_badger (0.0.1):
     - Flutter
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -473,6 +475,7 @@ DEPENDENCIES:
   - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - Flutter (from `Flutter`)
   - flutter_app_badger (from `.symlinks/plugins/flutter_app_badger/ios`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - maps_launcher (from `.symlinks/plugins/maps_launcher/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -535,6 +538,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_app_badger:
     :path: ".symlinks/plugins/flutter_app_badger/ios"
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   maps_launcher:
     :path: ".symlinks/plugins/maps_launcher/ios"
   package_info_plus:
@@ -581,6 +586,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 055f6b5ba1751547596ded5032c4d5c6054ca501
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_app_badger: 65de4d6f0c34a891df49e6cfb8a1c0496426fa68
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GoogleAppMeasurement: c6bbc9753d046b5456dd4f940057fbad2c28419e
   GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
