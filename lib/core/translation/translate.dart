@@ -8,7 +8,8 @@ import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Translate {
-  static Future<Map<String, dynamic>> text({required String inputText, String inputLang = 'NL'}) async {
+  static Future<Map<String, dynamic>> text(
+      {required String inputText, String inputLang = 'NL'}) async {
     Map<String, dynamic> result = {
       'translation': '',
       'success': false,
@@ -18,7 +19,7 @@ class Translate {
     var lang = fetchLang();
 
     // check if input lang is different from the text
-    if(lang == inputLang) {
+    if (lang == inputLang) {
       result['translation'] = inputLang;
       result['message'] = "Text lang = to Translate lang";
 
@@ -30,7 +31,7 @@ class Translate {
     // check cache
     SharedPreferences cache = await SharedPreferences.getInstance();
     final key = lang + "+" + inputText;
-    if(cache.containsKey(key)){
+    if (cache.containsKey(key)) {
       print("Retrieving from cache");
       result['translation'] = Future.value(cache.getString(key));
       result['success'] = true;
@@ -58,7 +59,7 @@ class Translate {
     final status = response.statusCode;
 
     // check if api call was succes
-    if(status != 200){
+    if (status != 200) {
       result['translation'] = inputText;
       result['message'] = "Api call failed with status: $status";
 
@@ -78,12 +79,15 @@ class Translate {
   static Future<http.Response> getTranslation(String lang, String input) async {
     String data = await rootBundle.loadString('assets/keys/deepl.json');
     String key = json.decode(data)['key'];
-    return http.post(Uri.parse('https://api-free.deepl.com/v2/translate?auth_key=$key'), headers: <String, String>{
-      'Host': 'api-free.deepl.com',
-    }, body: <String, String>{
-      'text': input,
-      'target_lang': lang
-    });
+    return http.post(
+        Uri.parse('https://api-free.deepl.com/v2/translate?auth_key=$key'),
+        headers: <String, String>{
+          'Host': 'api-free.deepl.com',
+        },
+        body: <String, String>{
+          'text': input,
+          'target_lang': lang
+        });
   }
 
   static String fetchLang() {
