@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PDFPage extends StatefulWidget {
   final String pdfUrl;
+  final News data;
 
-  PDFPage({required this.pdfUrl});
+  PDFPage({required this.pdfUrl, required this.data});
 
   @override
   _PDFPageState createState() => _PDFPageState(pdfUrl: pdfUrl);
@@ -33,6 +35,7 @@ class _PDFPageState extends State<PDFPage> {
 
   @override
   void initState() {
+    this._createDynamicLink(id = widget.data.id.toString());
     super.initState();
     loadDocument();
   }
@@ -176,7 +179,7 @@ class _PDFPageState extends State<PDFPage> {
   }
 
   _createShareURL() async {
-    _createDynamicLink(id = 'id_test_1');
+    _createDynamicLink(id = widget.data.id.toString());
 
     if (await canLaunch(_linkMessage!)) {
       await Share.share(

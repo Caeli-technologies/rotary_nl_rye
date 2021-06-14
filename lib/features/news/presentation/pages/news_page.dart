@@ -159,7 +159,9 @@ class _NewsPageState extends State<NewsPage> {
                                             MaterialPageRoute(
                                                 builder: (context) => PDFPage(
                                                     pdfUrl: snapshot
-                                                        .data![index].pdf!)),
+                                                        .data![index].pdf!,
+                                                    data:
+                                                        snapshot.data![index])),
                                           )
                                         : Navigator.push(
                                             context,

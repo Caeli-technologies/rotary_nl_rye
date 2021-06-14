@@ -68,10 +68,6 @@ class _DynamicLinksState extends State<DynamicLinks>
 
   Future<void> _createDynamicLink(
       String pathName, String id, String name) async {
-    setState(() {
-      _isCreatingLink = true;
-    });
-
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarytestnl.page.link',
       link: Uri.parse(
@@ -99,7 +95,6 @@ class _DynamicLinksState extends State<DynamicLinks>
 
     setState(() {
       _linkMessage = url.toString();
-      _isCreatingLink = false;
     });
   }
 
@@ -158,7 +153,7 @@ class _DynamicLinksState extends State<DynamicLinks>
 
   _createShareURL() async {
     _createDynamicLink(
-        pathName = 'stories', id = 'id_test_1', name = 'name_test_2');
+        pathName = 'error', id = 'id_test_1', name = 'name_test_2');
 
     if (await canLaunch(_linkMessage!)) {
       await Share.share(
