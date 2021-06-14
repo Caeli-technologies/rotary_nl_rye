@@ -310,7 +310,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   Future<String> header(String text) async {
     final value = await Translate.text(inputText: text);
-    final String heading = value['translation'];
+    final heading = value['translation'];
     if (translationSuccess) {
       translationSuccess = value['success'];
     }

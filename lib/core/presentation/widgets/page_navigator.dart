@@ -30,15 +30,41 @@ class _PageNavigatorState extends State<PageNavigator> {
   late FireStoreUrl _news;
   Repository _repo = Repository();
 
+  // Future<void> _firebaseMessagingBackgroundHandler(
+  //     RemoteMessage message) async {
+  //   if (message.data["navigation"] == "/news") {
+  //     String id = message.data["id"];
+  //     print('news id $id');
+  //     List<News> _newsList = await _repo.fetchNews();
+  //     print('news fetched ${_newsList[int.parse(id)].toString()}');
+  //     _newsList[int.parse(id)].isPdf
+  //         ? Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //                 builder: (context) => PDFPage(
+  //                     pdfId: _newsList[int.parse(id)],
+  //                     pdfUrl: _newsList[int.parse(id)].pdf!)),
+  //           )
+  //         : Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //                 builder: (context) =>
+  //                     NonPDFPage(data: _newsList[int.parse(id)])));
+  //   }
+  // }
+
   @override
   initState() {
     this._initDynamicLinks();
     super.initState();
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    FirebaseMessaging.instance.getToken().then((token) {
-      print(token); // Print the Token in Console
-    });
+
+    // Test token for FCM
+    // FirebaseMessaging.instance.getToken().then((token) {
+    //   print(token); // Print the Token in Console
+    // });
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       print("onMessage: $message");
     });
