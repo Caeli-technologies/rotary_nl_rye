@@ -260,7 +260,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    await header(widget.data.text![0]["heading"]);
+    heading = await header(widget.data.text![0]["heading"]);
     setState(() {
       translationIndex++;
       progressPercent = translationIndex / index;
@@ -310,7 +310,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   Future<String> header(String text) async {
     final value = await Translate.text(inputText: text);
-    final heading = value['translation'];
+    final String heading = value['translation'];
     if (translationSuccess) {
       translationSuccess = value['success'];
     }
