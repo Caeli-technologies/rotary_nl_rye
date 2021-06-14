@@ -9,17 +9,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/core/data/check_update.dart';
-import 'package:rotary_nl_rye/core/path/firebase_dynamic_links.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
-import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
-import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
-import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
-import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 
@@ -39,10 +34,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   String _appBadgeSupported = 'Unknown';
-  late FireStoreUrl _news;
-  Repository _repo = Repository();
-  late StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>
-      _currentSubscription;
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
 
