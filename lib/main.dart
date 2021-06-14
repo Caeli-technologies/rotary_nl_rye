@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +29,16 @@ import 'injection_container.dart' as di;
 //   }, FirebaseCrashlytics.instance.recordError);
 // }
 
-void main() async {
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
   if (kDebugMode) {
     // Force disable Crashlytics collection while doing every day development.
     // Temporarily toggle this to true if you want to test crash reporting in your app.
@@ -88,6 +96,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       // Provide dark theme.
       themeMode: ThemeMode.system,
+      navigatorKey: navigatorKey,
       title: 'Rotary youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
