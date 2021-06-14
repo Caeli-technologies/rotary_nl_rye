@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/custom_routes.dart';
 import 'core/lang/languages.dart';
-import 'core/path/firebase_dynamic_links.dart';
 import 'core/presentation/widgets/page_navigator.dart';
 import 'injection_container.dart' as di;
 
@@ -91,14 +91,8 @@ class MyApp extends StatelessWidget {
       title: 'Rotary youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
-
-      // here needs the routs for dynamic links :)
-      routes: <String, WidgetBuilder>{
-        // '/helloworld': (BuildContext context) => SocialPage(),
-        // '/helloworld': (context) => HelloWorld('linkData'),
-        // '/tutorials': (context) => TutorialsPage(),
-        '/error': (context) => ErrorPage(),
-      },
+      //routing in "lib/core/custom_routes.dart"
+      routes: customRoutes,
     );
   }
 }
