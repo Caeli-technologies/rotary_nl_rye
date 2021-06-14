@@ -160,7 +160,7 @@ class _NewsPageState extends State<NewsPage> {
                                                 builder: (context) => PDFPage(
                                                     pdfUrl: snapshot
                                                         .data![index].pdf!,
-                                                    data:
+                                                    pdfId:
                                                         snapshot.data![index])),
                                           )
                                         : Navigator.push(

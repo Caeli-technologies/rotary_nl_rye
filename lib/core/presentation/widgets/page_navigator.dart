@@ -92,7 +92,7 @@ class _PageNavigatorState extends State<PageNavigator> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => PDFPage(
-                          data: _newsList[int.parse(id)],
+                          pdfId: _newsList[int.parse(id)],
                           pdfUrl: _newsList[int.parse(id)].pdf!)),
                 )
               : Navigator.push(
@@ -137,7 +137,7 @@ class _PageNavigatorState extends State<PageNavigator> {
               context,
               MaterialPageRoute(
                   builder: (context) => PDFPage(
-                      data: _newsList[int.parse(id)],
+                      pdfId: _newsList[int.parse(id)],
                       pdfUrl: _newsList[int.parse(id)].pdf!)),
             )
           : Navigator.push(

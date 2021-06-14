@@ -12,9 +12,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PDFPage extends StatefulWidget {
   final String pdfUrl;
-  final News data;
+  final News pdfId;
 
-  PDFPage({required this.pdfUrl, required this.data});
+  PDFPage({required this.pdfUrl, required this.pdfId});
 
   @override
   _PDFPageState createState() => _PDFPageState(pdfUrl: pdfUrl);
@@ -35,7 +35,7 @@ class _PDFPageState extends State<PDFPage> {
 
   @override
   void initState() {
-    this._createDynamicLink(id = widget.data.id.toString());
+    this._createDynamicLink(id = widget.pdfId.id.toString());
     super.initState();
     loadDocument();
   }
@@ -179,7 +179,7 @@ class _PDFPageState extends State<PDFPage> {
   }
 
   _createShareURL() async {
-    _createDynamicLink(id = widget.data.id.toString());
+    _createDynamicLink(id = widget.pdfId.id.toString());
 
     if (await canLaunch(_linkMessage!)) {
       await Share.share(
