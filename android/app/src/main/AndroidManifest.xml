@@ -4,9 +4,14 @@
    <application
         android:label="Rotary Youth Exchange NL"
         android:icon="@mipmap/ic_launcher">                 
-        <meta-data
-          android:name="com.google.firebase.messaging.default_notification_icon"
-          android:resource="@mipmap/ic_launcher" />
+<!-- Add custom icon to the notifications -->
+<meta-data
+android:name="com.google.firebase.messaging.default_notification_icon"
+android:resource="@drawable/ic_stat_rotary_logo_icon" />
+<!-- Change the color of the icon -->
+<meta-data
+android:name="com.google.firebase.messaging.default_notification_color"
+android:resource="@color/colorPrimary" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
