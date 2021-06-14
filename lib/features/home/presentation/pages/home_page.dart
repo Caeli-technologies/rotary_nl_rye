@@ -101,6 +101,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   Future<void> _initDynamicLinks() async {
+    // TODO "onLink" is when the app is open and on the homescreen.
     FirebaseDynamicLinks.instance.onLink(
         onSuccess: (PendingDynamicLinkData? dynamicLink) async {
       final Uri? deepLink = dynamicLink?.link;
@@ -188,6 +189,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       Navigator.pushNamed(context, '/error');
     });
 
+// TODO "getInitialLink" is when the app is closed.
     final PendingDynamicLinkData? data =
         await FirebaseDynamicLinks.instance.getInitialLink();
     final Uri? deepLink = data?.link;
