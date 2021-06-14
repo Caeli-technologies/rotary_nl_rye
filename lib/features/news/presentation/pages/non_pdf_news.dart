@@ -51,7 +51,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   @override
   void initState() {
     super.initState();
-    // this._createDynamicLink();
+    this._createDynamicLink(id = widget.data.id.toString());
   }
 
   @override
