@@ -1,6 +1,8 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
@@ -17,34 +19,6 @@ import '../../../features/settings/presentation/pages/settings_page.dart';
 import '../../prop.dart';
 import 'bottom_navigation_bar.dart';
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   print("onBackgroundMessage: $message");
-// }
-
-// Future<void> _firebaseMessagingBackgroundHandler(
-//     RemoteMessage message, context) async {
-//   Repository _repo = Repository();
-//   if (message.data["navigation"] == "/news") {
-//     String id = message.data["id"];
-//     print('news id $id');
-//     List<News> _newsList = await _repo.fetchNews();
-//     print('news fetched ${_newsList[int.parse(id)].toString()}');
-//     _newsList[int.parse(id)].isPdf
-//         ? Navigator.push(
-//             context,
-//             MaterialPageRoute(
-//                 builder: (context) => PDFPage(
-//                     pdfId: _newsList[int.parse(id)],
-//                     pdfUrl: _newsList[int.parse(id)].pdf!)),
-//           )
-//         : Navigator.push(
-//             context,
-//             MaterialPageRoute(
-//                 builder: (context) =>
-//                     NonPDFPage(data: _newsList[int.parse(id)])));
-//   }
-// }
-
 class PageNavigator extends StatefulWidget {
   @override
   _PageNavigatorState createState() => _PageNavigatorState();
@@ -59,55 +33,48 @@ class _PageNavigatorState extends State<PageNavigator> {
     this._initDynamicLinks();
     super.initState();
 
-    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-    //test 1
-    FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
-      print("onMessageOpenedApp: $message");
-
-      // if (message.data["navigation"] == "/news") {
-      //   int _yourId = int.tryParse(message.data["id"]) ?? 0;
-      //   Navigator.push(
-      //       navigatorKey.currentState!.context,
-      //       MaterialPageRoute(
-      //           builder: (context) => SocialPage(
-      //                 id: _yourId,
-      //               )));
-      // }
-
-      if (message.data["navigation"] == "/news") {
-        String id = message.data["id"];
-        print('news id $id');
-        List<News> _newsList = await _repo.fetchNews();
-        print('news fetched ${_newsList[int.parse(id)].toString()}');
-        _newsList[int.parse(id)].isPdf
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PDFPage(
-                        pdfId: _newsList[int.parse(id)],
-                        pdfUrl: _newsList[int.parse(id)].pdf!)),
-              )
-            : Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        NonPDFPage(data: _newsList[int.parse(id)])));
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null && !kIsWeb) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channel.description,
+                // TODO add a proper drawable resource to android, for now using
+                //      one that already exists in example app.
+                icon: 'ic_stat_rotary_logo_icon',
+                color: Color(
+                    0xFFf7a81b), // TODO still need to change to a better one
+              ),
+            ));
+        if (message.data["navigation"] == "/news") {
+          String id = message.data["id"];
+          print('news id $id');
+          List<News> _newsList = await _repo.fetchNews();
+          print('news fetched ${_newsList[int.parse(id)].toString()}');
+          _newsList[int.parse(id)].isPdf
+              ? Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PDFPage(
+                          pdfId: _newsList[int.parse(id)],
+                          pdfUrl: _newsList[int.parse(id)].pdf!)),
+                )
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          NonPDFPage(data: _newsList[int.parse(id)])));
+        }
       }
     });
 
-    // RemoteMessage? message =
-    //     await FirebaseMessaging.instance.getInitialMessage();
-    // If the message also contains a data property with a "type" of "chat",
-    // navigate to a chat screen
-    // Test token for FCM
-    // FirebaseMessaging.instance.getToken().then((token) {
-    //   print(token); // Print the Token in Console
-    // });
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      print("onMessage: $message");
-    });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print("onMessageOpenedApp: $message");
 
