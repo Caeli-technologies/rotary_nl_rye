@@ -6,20 +6,13 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SocialPage extends StatefulWidget {
-  final String? id, name;
-
-  SocialPage({this.id, this.name});
-
   @override
-  _SocialPageState createState() => _SocialPageState(id: id, name: name);
+  _SocialPageState createState() => _SocialPageState();
 }
 
 const _url = 'https://www.cylog.org/headers/';
 
 class _SocialPageState extends State<SocialPage> {
-  final String? id, name;
-  _SocialPageState({this.id, this.name});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,18 +75,6 @@ class _SocialPageState extends State<SocialPage> {
                   'test3 ',
                   'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
                   ''),
-
-              //test for dynamic links
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildLinkOptionRow(
-                  context,
-                  '[$id] [$name]',
-                  'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-                  ''),
-              //end test
             ],
           )
         ],

@@ -5,6 +5,8 @@
 	<key>aps-environment</key>
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
-	<array/>
+	<array>
+		<string>applinks:rotarytestnl.page.link</string>
+	</array>
 </dict>
 </plist>

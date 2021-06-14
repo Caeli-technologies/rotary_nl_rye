@@ -71,16 +71,16 @@ class _PageNavigatorState extends State<PageNavigator> {
         final uri = deepLink.path;
         print("deepLink.path: $uri ");
         if (deepLink.path == "/helloworld") {
-          final id = deepLink.queryParameters["id"];
-          final name = deepLink.queryParameters["name"];
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => SocialPage(id: id, name: name)));
+          // final id = deepLink.queryParameters["id"];
+          // final name = deepLink.queryParameters["name"];
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => SocialPage()));
         }
         if (deepLink.path == "/stories") {
-          final id = deepLink.queryParameters["id"];
-          final name = deepLink.queryParameters["name"];
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => SocialPage(id: id, name: name)));
+          // final id = deepLink.queryParameters["id"];
+          // final name = deepLink.queryParameters["name"];
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => SocialPage()));
         }
         if (deepLink.path == "/news") {
           String? id = deepLink.queryParameters["id"];
@@ -117,16 +117,16 @@ class _PageNavigatorState extends State<PageNavigator> {
 
     print("deepLink.path: $uri ");
     if (deepLink?.path == "/helloworld") {
-      final id = deepLink?.queryParameters["id"];
-      final name = deepLink?.queryParameters["name"];
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SocialPage(id: id, name: name)));
+      // final id = deepLink?.queryParameters["id"];
+      // final name = deepLink?.queryParameters["name"];
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => SocialPage()));
     }
     if (deepLink?.path == "/stories") {
-      final id = deepLink?.queryParameters["id"];
-      final name = deepLink?.queryParameters["name"];
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SocialPage(id: id, name: name)));
+      // final id = deepLink?.queryParameters["id"];
+      // final name = deepLink?.queryParameters["name"];
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => SocialPage()));
     }
     if (deepLink?.path == "/news") {
       String? id = deepLink?.queryParameters["id"];

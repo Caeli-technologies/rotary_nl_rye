@@ -425,7 +425,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
       ),
       iosParameters: IosParameters(
         bundleId: 'com.caelitechnologies.rotary-nl-rye',
-        minimumVersion: '1',
+        minimumVersion: '1.0.0',
         appStoreId: '1567096118',
       ),
       // socialMetaTagParameters: SocialMetaTagParameters(

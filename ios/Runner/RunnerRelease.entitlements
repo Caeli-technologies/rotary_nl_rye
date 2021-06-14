@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>aps-environment</key>
-	<string>development</string>
+	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
-	<array/>
+	<array>
+		<string>applinks:rotarytestnl.page.link</string>
+	</array>
 </dict>
 </plist>
