@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     //         _currentSubscription = data.loadNews().listen(_updateNews));
   }
 
-  String _appBadgeSupported = 'Unknown';
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
 
