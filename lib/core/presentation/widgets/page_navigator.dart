@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:quick_actions/quick_actions.dart';
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/core/data/check_update.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
@@ -159,6 +160,23 @@ class _PageNavigatorState extends State<PageNavigator> {
       ),
     ]);
     // end
+
+// QuickActions start
+
+    // final QuickActions quickActions = QuickActions();
+    // quickActions.initialize((shortcutType) {
+    //   if (shortcutType == 'action_main') {
+    //     print('The user tapped on the "Main view" action.');
+    //   }
+    //   // More handling code...
+    // });
+    // quickActions.setShortcutItems(<ShortcutItem>[
+    //   const ShortcutItem(
+    //       type: 'action_main', localizedTitle: 'Main view', icon: 'icon_main'),
+    //   const ShortcutItem(
+    //       type: 'action_help', localizedTitle: 'Help', icon: 'icon_help')
+    // ]);
+// QuickActions end
   }
 
 // app Badge Supported
