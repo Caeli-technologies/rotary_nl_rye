@@ -94,30 +94,6 @@ class _PageNavigatorState extends State<PageNavigator> {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      print('A new onMessageOpenedApp event was published!');
-      if (message.data["navigation"] == "/news") {
-        _removeBadge();
-        String id = message.data["id"];
-        print('news id $id');
-        List<News> _newsList = await _repo.fetchNews();
-        print('news fetched ${_newsList[int.parse(id)].toString()}');
-        _newsList[int.parse(id)].isPdf
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PDFPage(
-                        pdfId: _newsList[int.parse(id)],
-                        pdfUrl: _newsList[int.parse(id)].pdf!)),
-              )
-            : Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        NonPDFPage(data: _newsList[int.parse(id)])));
-      }
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print("onMessageOpenedApp: $message");
 
       // if (message.data["navigation"] == "/news") {
