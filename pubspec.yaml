@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+30
+version: 1.0.0+32
 
 authors:
   - Ruben Talstra <info@caeli-tech.com>
@@ -46,6 +46,7 @@ dependencies:
   firebase_crashlytics: ^2.0.4
   firebase_remote_config: ^0.10.0+1 
   firebase_dynamic_links: ^2.0.5
+  firebase_messaging: ^10.0.1
   cloud_firestore: ^2.1.0
   translator: ^0.1.7       #TODO add https://pub.dev/packages/translator
   dartz: ^0.10.0-nullsafety.2
@@ -69,15 +70,11 @@ dependencies:
   cached_network_image: ^3.0.0
   maps_launcher: ^2.0.0
   
-
-
-  # this is notification addon // please add only when ready!
-  # https://pub.dev/packages/awesome_notifications // needs come config in ios part and android files
-  awesome_notifications: ^0.0.6+5 # its really good :)
-  firebase_messaging: ^10.0.1
   # need to add notification to certain widget https://stackoverflow.com/questions/48403786/how-to-open-particular-screen-on-clicking-on-push-notification-for-flutter
   flutter_app_badger: ^1.2.0
   flutter_local_notifications: ^6.0.0
+
+  # quick_actions: ^0.6.0+2 # something fun to add later (for both android and iOS) https://pub.dev/packages/quick_actions#quick_actions
 
 
 

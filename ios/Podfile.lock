@@ -214,8 +214,6 @@ PODS:
     - abseil/meta/type_traits
   - advance_pdf_viewer (1.0.5):
     - Flutter
-  - awesome_notifications (0.0.2):
-    - Flutter
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -457,7 +455,6 @@ PODS:
 
 DEPENDENCIES:
   - advance_pdf_viewer (from `.symlinks/plugins/advance_pdf_viewer/ios`)
-  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - Firebase/Analytics
   - Firebase/Auth
@@ -516,8 +513,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   advance_pdf_viewer:
     :path: ".symlinks/plugins/advance_pdf_viewer/ios"
-  awesome_notifications:
-    :path: ".symlinks/plugins/awesome_notifications/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   firebase_analytics:
@@ -562,7 +557,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   advance_pdf_viewer: 5c832f382b4ca84fe735f893b7e91aa830c27d7b
-  awesome_notifications: 74462bc8e68b11f8235d78422266886759e9da61
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: 83d6cd19d24798c523265494ab81db32009fcb7b
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1

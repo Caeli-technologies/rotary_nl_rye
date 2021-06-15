@@ -167,51 +167,6 @@ class _DynamicLinksState extends State<DynamicLinks>
   }
 }
 
-class DynamicLinkScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hello World DeepLink'),
-        ),
-        body: const Center(
-          child: Text('Hello, World!'),
-        ),
-      ),
-    );
-  }
-}
-
-class HelloWorld extends StatelessWidget {
-  String _linkData;
-
-  HelloWorld(this._linkData);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('$_linkData'),
-      ),
-    );
-  }
-}
-
-class TutorialsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello World DeepLink'),
-      ),
-      body: const Center(
-        child: const Text('Tutorials Page'),
-      ),
-    );
-  }
-}
-
 class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

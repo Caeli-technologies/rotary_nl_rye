@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
@@ -33,7 +32,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     //         _currentSubscription = data.loadNews().listen(_updateNews));
   }
 
-  String _appBadgeSupported = 'Unknown';
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
 
@@ -56,62 +54,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   initState() {
     super.initState();
-
-    initPlatformState();
-    _removeBadge();
-    try {
-      versionCheck(context);
-    } catch (e) {
-      print(e);
-    }
-
-    Future.wait([
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/ca.svg'),
-        null,
-      ),
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/mx.svg'),
-        null,
-      ),
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/pe.svg'),
-        null,
-      ),
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/ec.svg'),
-        null,
-      ),
-    ]);
-  }
-
-  initPlatformState() async {
-    String appBadgeSupported;
-    try {
-      bool res = await FlutterAppBadger.isAppBadgeSupported();
-      if (res) {
-        appBadgeSupported = 'Supported';
-      } else {
-        appBadgeSupported = 'Not supported';
-      }
-    } on PlatformException {
-      appBadgeSupported = 'Failed to get badge support.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _appBadgeSupported = appBadgeSupported;
-    });
-
-    print("Badge supported: $_appBadgeSupported\n");
   }
 
   @override
@@ -209,19 +151,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         //         pushTo: DynamicLinks()),
                         //   ],
                         // ),
-/*
-                  ElevatedButton(
-                    child: new Text('Add badge'),
-                    onPressed: () {
-                      _addBadge();
-                    },
-                  ),
-                  ElevatedButton(
-                      child: new Text('Remove badge'),
-                      onPressed: () {
-                        _removeBadge();
-                      }),
-*/
                       ],
                     ),
                   ),
@@ -229,13 +158,5 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               ),
             ),
     );
-  }
-
-  void _addBadge() {
-    FlutterAppBadger.updateBadgeCount(1);
-  }
-
-  void _removeBadge() {
-    FlutterAppBadger.removeBadge();
   }
 }
