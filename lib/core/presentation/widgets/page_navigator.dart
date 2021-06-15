@@ -24,6 +24,8 @@ class PageNavigator extends StatefulWidget {
   _PageNavigatorState createState() => _PageNavigatorState();
 }
 
+PageNavigator p = new PageNavigator();
+
 class _PageNavigatorState extends State<PageNavigator> {
   late FireStoreUrl _news;
   Repository _repo = Repository();
@@ -32,11 +34,15 @@ class _PageNavigatorState extends State<PageNavigator> {
   initState() {
     this._initDynamicLinks();
     super.initState();
+  }
 
+  Future<void> getToken() async {
     FirebaseMessaging.instance.getToken().then((token) {
       print(token); // Print the Token in Console
     });
+  }
 
+  Future<void> getInitialMessages() async {
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage? message) async {
@@ -47,20 +53,23 @@ class _PageNavigatorState extends State<PageNavigator> {
         print('news fetched ${_newsList[int.parse(id)].toString()}');
         _newsList[int.parse(id)].isPdf
             ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PDFPage(
-                        pdfId: _newsList[int.parse(id)],
-                        pdfUrl: _newsList[int.parse(id)].pdf!)),
-              )
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  PDFPage(
+                      pdfId: _newsList[int.parse(id)],
+                      pdfUrl: _newsList[int.parse(id)].pdf!)),
+        )
             : Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        NonPDFPage(data: _newsList[int.parse(id)])));
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    NonPDFPage(data: _newsList[int.parse(id)])));
       }
     });
+  }
 
+  Future<void> onMessage() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -103,7 +112,9 @@ class _PageNavigatorState extends State<PageNavigator> {
       //                   NonPDFPage(data: _newsList[int.parse(id)])));
       // }
     });
+  }
 
+  Future<void> onMessageOpenedApp() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print('A new onMessageOpenedApp event was published!');
       if (message.data["navigation"] == "/news") {
