@@ -2,8 +2,12 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
+import 'package:rotary_nl_rye/core/data/check_update.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
@@ -26,11 +30,14 @@ class PageNavigator extends StatefulWidget {
 
 class _PageNavigatorState extends State<PageNavigator> {
   late FireStoreUrl _news;
+  String _appBadgeSupported = 'Unknown';
   Repository _repo = Repository();
 
   @override
   initState() {
     this._initDynamicLinks();
+    appBadgeSupportedState();
+    _removeBadge();
     super.initState();
 
     FirebaseMessaging.instance.getToken().then((token) {
@@ -41,6 +48,7 @@ class _PageNavigatorState extends State<PageNavigator> {
         .getInitialMessage()
         .then((RemoteMessage? message) async {
       if (message?.data["navigation"] == "/news") {
+        _removeBadge();
         String id = message?.data["id"];
         print('news id $id');
         List<News> _newsList = await _repo.fetchNews();
@@ -82,31 +90,13 @@ class _PageNavigatorState extends State<PageNavigator> {
               ),
             ));
       }
-      // print('A new onMessage event was published!');
-      // if (message.data["navigation"] == "/news") {
-      //   String id = message.data["id"];
-      //   print('news id $id');
-      //   List<News> _newsList = await _repo.fetchNews();
-      //   print('news fetched ${_newsList[int.parse(id)].toString()}');
-      //   _newsList[int.parse(id)].isPdf
-      //       ? Navigator.push(
-      //           context,
-      //           MaterialPageRoute(
-      //               builder: (context) => PDFPage(
-      //                   pdfId: _newsList[int.parse(id)],
-      //                   pdfUrl: _newsList[int.parse(id)].pdf!)),
-      //         )
-      //       : Navigator.push(
-      //           context,
-      //           MaterialPageRoute(
-      //               builder: (context) =>
-      //                   NonPDFPage(data: _newsList[int.parse(id)])));
-      // }
+      print('onMessage: ${message.data}');
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print('A new onMessageOpenedApp event was published!');
       if (message.data["navigation"] == "/news") {
+        _removeBadge();
         String id = message.data["id"];
         print('news id $id');
         List<News> _newsList = await _repo.fetchNews();
@@ -141,6 +131,7 @@ class _PageNavigatorState extends State<PageNavigator> {
       // }
 
       if (message.data["navigation"] == "/news") {
+        _removeBadge();
         String id = message.data["id"];
         print('news id $id');
         List<News> _newsList = await _repo.fetchNews();
@@ -160,7 +151,66 @@ class _PageNavigatorState extends State<PageNavigator> {
                         NonPDFPage(data: _newsList[int.parse(id)])));
       }
     });
+// versionCheck firebase remote config
+    try {
+      versionCheck(context);
+    } catch (e) {
+      print(e);
+    }
+// end
+
+// render complex SVG
+    Future.wait([
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/ca.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/mx.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/pe.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'assets/icons/flags/ec.svg'),
+        null,
+      ),
+    ]);
+    // end
   }
+
+// app Badge Supported
+  appBadgeSupportedState() async {
+    String appBadgeSupported;
+    try {
+      bool res = await FlutterAppBadger.isAppBadgeSupported();
+      if (res) {
+        appBadgeSupported = 'Supported';
+      } else {
+        appBadgeSupported = 'Not supported';
+      }
+    } on PlatformException {
+      appBadgeSupported = 'Failed to get badge support.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _appBadgeSupported = appBadgeSupported;
+    });
+
+    print("Badge supported: $_appBadgeSupported\n");
+  }
+// end
 
   @override
   Widget build(BuildContext context) {
@@ -192,6 +242,8 @@ class _PageNavigatorState extends State<PageNavigator> {
       ),
     );
   }
+
+// Dynamic links start
 
   Future<void> _initDynamicLinks() async {
     // TODO "onLink" is when the app is open and on the homescreen.
@@ -281,4 +333,15 @@ class _PageNavigatorState extends State<PageNavigator> {
     // still need some work
     // Navigator.pushNamed(context, '${deepLink?.path}');
   }
+
+// Dynamic links end
+
+}
+
+void _removeBadge() {
+  FlutterAppBadger.removeBadge();
+}
+
+void _addBadge() {
+  FlutterAppBadger.updateBadgeCount(1);
 }
