@@ -40,7 +40,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
   void dispose() {
     isTranslating = false;
     translate.clear();
-    removeBadge();
     index = 0;
     translationIndex = 0; // TODO: implement dispose
     _linkMessage;

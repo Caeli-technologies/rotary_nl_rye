@@ -64,7 +64,6 @@ class _PDFPageState extends State<PDFPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    removeBadge();
   }
 
   @override
