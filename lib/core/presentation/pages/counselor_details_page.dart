@@ -224,7 +224,10 @@ class CounselorDetails extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           )
         ],

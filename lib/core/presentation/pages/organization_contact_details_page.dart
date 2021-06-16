@@ -274,7 +274,10 @@ class OrganizationDetails extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           )
         ],
