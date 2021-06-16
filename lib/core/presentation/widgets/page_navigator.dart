@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rotary_nl_rye/core/data/check_update.dart';
+import 'package:rotary_nl_rye/core/firebase/check_update.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_dynamic_links.dart';
 
@@ -41,7 +41,6 @@ class _PageNavigatorState extends State<PageNavigator> {
     } catch (e) {
       print(e);
     }
-// end
 
 // render complex SVG
     Future.wait([
