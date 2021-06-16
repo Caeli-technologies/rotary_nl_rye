@@ -8,6 +8,7 @@ import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../home/presentation/widgets/home_card_item.dart';
 import '../widgets/carousel_display.dart';
@@ -26,6 +27,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
+  SharedPreferences? sharedPreferences;
+  int currentNewsIndex = 0;
 
   // Future readJson(String url) async {
   //   // final String response =
@@ -46,6 +49,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   initState() {
     super.initState();
+    // TODO: implement dispose
+    getBadge();
+  }
+
+  getBadge() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      currentNewsIndex = sharedPreferences!.getInt("newsBadge")!;
+    });
   }
 
   @override
@@ -91,18 +103,23 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 title: 'Programs',
                                 description:
                                     'information to apply and more things',
-                                pushTo: ProgramPage()),
+                                pushTo: ProgramPage(),
+                                currentNewsIndex: 0),
                             HomeCardItem(
-                                icon: FontAwesomeIcons.newspaper,
-                                title: 'News',
-                                description: 'rebound page',
-                                pushTo: NewsPage()),
+                              icon: FontAwesomeIcons.newspaper,
+                              title: 'News',
+                              description: 'rebound page',
+                              pushTo: NewsPage(),
+                              currentNewsIndex: currentNewsIndex,
+                            ),
                             HomeCardItem(
-                                icon: FontAwesomeIcons.calendarAlt,
-                                title: 'Calendar',
-                                description:
-                                    'people that are going to the netherlands',
-                                pushTo: CalendarPage()),
+                              icon: FontAwesomeIcons.calendarAlt,
+                              title: 'Calendar',
+                              description:
+                                  'people that are going to the netherlands',
+                              pushTo: CalendarPage(),
+                              currentNewsIndex: 0,
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -115,18 +132,21 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 title: 'Outbound',
                                 description:
                                     'students that are going to a diffrent country',
-                                pushTo: OutboundPage()),
+                                pushTo: OutboundPage(),
+                                currentNewsIndex: 0),
                             HomeCardItem(
                                 icon: FontAwesomeIcons.share,
                                 title: 'Inbound',
                                 description:
                                     'people that are going to the netherlands',
-                                pushTo: InboundPage()),
+                                pushTo: InboundPage(),
+                                currentNewsIndex: 0),
                             HomeCardItem(
                                 icon: FontAwesomeIcons.redoAlt,
                                 title: 'Rebound',
                                 description: 'rebound page',
-                                pushTo: CountriesPage()),
+                                pushTo: CountriesPage(),
+                                currentNewsIndex: 0),
                           ],
                         ),
                         SizedBox(

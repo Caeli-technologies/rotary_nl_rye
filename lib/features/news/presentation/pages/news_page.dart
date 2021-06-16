@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/prop.dart';
 import '../../models/news.dart';
@@ -40,11 +41,17 @@ class _NewsPageState extends State<NewsPage> {
   // }
 
   @override
-  void initState() {
-    _newsBloc.getNews();
+  initState() {
     super.initState();
+    // TODO: implement dispose
+    removeBadge();
+  }
 
-    // readJson();
+  removeBadge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.remove('newsBadge');
+    });
   }
 
   @override
@@ -52,6 +59,7 @@ class _NewsPageState extends State<NewsPage> {
     _newsBloc.dispose();
     // TODO: implement dispose
     super.dispose();
+    removeBadge();
   }
 
   @override

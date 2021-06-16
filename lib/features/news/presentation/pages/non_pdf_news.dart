@@ -10,6 +10,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NonPDFPage extends StatefulWidget {
@@ -39,6 +40,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   void dispose() {
     isTranslating = false;
     translate.clear();
+    removeBadge();
     index = 0;
     translationIndex = 0; // TODO: implement dispose
     _linkMessage;
@@ -52,6 +54,14 @@ class _NonPDFPageState extends State<NonPDFPage> {
   void initState() {
     super.initState();
     this._createDynamicLink(id = widget.data.id.toString());
+    removeBadge();
+  }
+
+  removeBadge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.remove('newsBadge');
+    });
   }
 
   @override

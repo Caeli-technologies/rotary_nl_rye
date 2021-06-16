@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PDFPage extends StatefulWidget {
@@ -38,6 +39,14 @@ class _PDFPageState extends State<PDFPage> {
     this._createDynamicLink(id = widget.pdfId.id.toString());
     super.initState();
     loadDocument();
+    removeBadge();
+  }
+
+  removeBadge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.remove('newsBadge');
+    });
   }
 
   loadDocument() async {
@@ -55,6 +64,7 @@ class _PDFPageState extends State<PDFPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    removeBadge();
   }
 
   @override

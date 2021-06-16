@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:badges/badges.dart';
 
 class HomeCardItem extends StatelessWidget {
   final String title, description;
   final IconData icon;
+  late int currentNewsIndex;
   final pushTo;
 
   HomeCardItem(
       {required this.title,
       required this.icon,
       required this.description,
-      this.pushTo});
+      this.pushTo,
+      required this.currentNewsIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +37,31 @@ class HomeCardItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(bottom: 16),
-                          child: FaIcon(
-                            icon,
-                            color: Palette.lightIndigo,
-                            size: 35,
-                          ),
-                        ),
+                        icon == FontAwesomeIcons.newspaper &&
+                                currentNewsIndex > 0
+                            ? Container(
+                                margin: EdgeInsets.only(bottom: 16),
+                                child: Badge(
+                                  position:
+                                      BadgePosition.topEnd(top: -15, end: -15),
+                                  badgeContent: Text(
+                                      currentNewsIndex.toString(),
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                  child: FaIcon(
+                                    icon,
+                                    color: Palette.lightIndigo,
+                                    size: 35,
+                                  ),
+                                ))
+                            : Container(
+                                margin: EdgeInsets.only(bottom: 16),
+                                child: FaIcon(
+                                  icon,
+                                  color: Palette.lightIndigo,
+                                  size: 35,
+                                ),
+                              ),
                         Text(
                           title,
                           style: TextStyle(fontSize: 16, color: Palette.indigo),
