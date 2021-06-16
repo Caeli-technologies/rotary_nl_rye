@@ -11,7 +11,6 @@ import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart
 import 'package:rotary_nl_rye/main.dart';
 
 late FireStoreUrl _news;
-String _appBadgeSupported = 'Unknown';
 Repository _repo = Repository();
 
 Future<void> getToken() async {
