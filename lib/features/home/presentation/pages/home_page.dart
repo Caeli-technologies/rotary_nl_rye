@@ -19,15 +19,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  _HomePageState() {
-    // FirebaseAuth.instance.signInAnonymously().then(
-    //     (UserCredential userCredential) =>
-    //         _currentSubscription = data.loadNews().listen(_updateNews));
-  }
+  // _HomePageState() {
+  //   // FirebaseAuth.instance.signInAnonymously().then(
+  //   //     (UserCredential userCredential) =>
+  //   //         _currentSubscription = data.loadNews().listen(_updateNews));
+  // }
 
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
-  SharedPreferences? sharedPreferences;
+  late SharedPreferences sharedPreferences;
   int currentNewsIndex = 0;
 
   // Future readJson(String url) async {
@@ -53,19 +53,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     getBadge();
   }
 
-  getBadge() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    setState(() {
-      currentNewsIndex = sharedPreferences!.getInt("newsBadge")!;
-    });
-  }
-
   @override
   void dispose() {
     //  _currentSubscription.cancel();
 
     // TODO: implement dispose
     super.dispose();
+  }
+
+  getBadge() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      currentNewsIndex = sharedPreferences.getInt("newsBadge")!;
+    });
   }
 
   @override

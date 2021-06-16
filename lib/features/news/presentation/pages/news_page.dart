@@ -50,7 +50,7 @@ class _NewsPageState extends State<NewsPage> {
   removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.remove('newsBadge');
+      prefs.setInt("newsBadge", 0);
     });
   }
 
