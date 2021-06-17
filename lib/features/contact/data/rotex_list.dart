@@ -147,18 +147,18 @@ List<Rotex> rotexList = [
       websiteUrl: '',
       linkedinUrl: '',
       role: 'Commissie Prebound / Rebound'),
-// Emile Laitervo
+// Emil Laitervo
   Rotex(
-      name: "Emile Laitervo",
+      name: "Emil Laitervo",
       bio: "emileLaitervoBio",
       imageUrl:
-          "http://www.diarioeldia.cl/sites/default/files/styles/juicebox_medium/public/092018/erico_wulf_.jpg?itok=T7tifP7F",
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/emil-laitervo.jpg",
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
+      facebookUrl: 'https://www.facebook.com/profile.php?id=100009870756048',
+      instagramUrl: 'https://www.instagram.com/emil.laitervo/',
+      websiteUrl: null,
+      linkedinUrl: null,
       role: 'Commissie Prebound / Rebound'),
 // Sanne Pipping
   Rotex(
