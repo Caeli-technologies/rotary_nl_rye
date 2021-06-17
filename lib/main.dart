@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/custom_routes.dart';
 import 'core/lang/languages.dart';
@@ -36,10 +37,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   print('Got a message whilst in the BACKGROUND or TERMINATED!');
 
-  if (message.notification != null) {
-    print(
-        'Message also contained a notification, with the following:\nTitle: ${message.notification?.title}\nBody: ${message.notification?.body}');
-  }
+  // test
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setInt("newsBadge", 1);
+  // end test
 }
 
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -57,8 +58,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(
-      // Platform.isIOS ? null :
-      _firebaseMessagingBackgroundHandler);
+      Platform.isIOS ? null : _firebaseMessagingBackgroundHandler);
 
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
