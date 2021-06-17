@@ -5,13 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
-import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 
-late FireStoreUrl _news;
 Repository _repo = Repository();
 
 Future<void> initDynamicLinks(BuildContext context) async {
