@@ -157,9 +157,9 @@ class _PDFPageState extends State<PDFPage> {
     });
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://rotarytestnl.page.link',
+      uriPrefix: 'https://rotarynl.page.link',
       link: Uri.parse(
-          'https://rotarytestnl.page.link/news?id=$id'), //change this to the url in the main.dart
+          'https://rotarynl.page.link/news?id=$id'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,

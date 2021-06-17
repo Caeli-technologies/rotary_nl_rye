@@ -178,7 +178,7 @@ class ErrorPage extends StatelessWidget {
 //   Future<void> _createDynamicLink(
 //       String pathName, String id, String name) async {
 //     final DynamicLinkParameters parameters = DynamicLinkParameters(
-//       uriPrefix: 'https://rotarytestnl.page.link',
+//       uriPrefix: 'https://rotarynl.page.link',
 //       link: Uri.parse(
 //           'https://rotarytestnl.page.link/$pathName?id=$id&name=$name'), //change this to the url in the main.dart
 //       androidParameters: AndroidParameters(
