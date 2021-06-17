@@ -53,10 +53,10 @@ class _NonPDFPageState extends State<NonPDFPage> {
   void initState() {
     super.initState();
     this._createDynamicLink(id = widget.data.id.toString());
-    removeBadge();
+    _removeBadge();
   }
 
-  removeBadge() async {
+  void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setInt("newsBadge", 0);

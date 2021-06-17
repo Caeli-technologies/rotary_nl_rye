@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 late FireStoreUrl _news;
 Repository _repo = Repository();
-SharedPreferences? sharedPreferences;
+// SharedPreferences? sharedPreferences;
 
 Future<void> getToken() async {
   FirebaseMessaging.instance.getToken().then((token) {
@@ -25,12 +25,11 @@ Future<void> getInitialMessages(BuildContext context) async {
   FirebaseMessaging.instance
       .getInitialMessage()
       .then((RemoteMessage? message) async {
-    // test
-    sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences!.setInt("newsBadge", 1);
-// end test
-
     if (message?.data["navigation"] == "/news") {
+      // test
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setInt("newsBadge", 1);
+      // end test
       _removeBadge();
       String id = message?.data["id"];
       print('news id $id');
@@ -56,8 +55,8 @@ Future<void> getInitialMessages(BuildContext context) async {
 Future<void> onMessage(BuildContext context) async {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     // test
-    sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences!.setInt("newsBadge", 1);
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("newsBadge", 1);
 // end test
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
@@ -104,12 +103,12 @@ Future<void> onMessage(BuildContext context) async {
 
 Future<void> onMessageOpenedApp(BuildContext context) async {
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-    // test
-    sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences!.setInt("newsBadge", 1);
-// end test
     print('A new onMessageOpenedApp event was published!');
     if (message.data["navigation"] == "/news") {
+      // test
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setInt("newsBadge", 1);
+// end test
       String id = message.data["id"];
       print('news id $id');
       List<News> _newsList = await _repo.fetchNews();

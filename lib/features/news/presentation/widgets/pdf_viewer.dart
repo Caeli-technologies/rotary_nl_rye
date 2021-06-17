@@ -36,13 +36,13 @@ class _PDFPageState extends State<PDFPage> {
 
   @override
   void initState() {
-    this._createDynamicLink(id = widget.pdfId.id.toString());
-    this.removeBadge();
     super.initState();
+    this._createDynamicLink(id = widget.pdfId.id.toString());
     loadDocument();
+    _removeBadge();
   }
 
-  removeBadge() async {
+  void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setInt("newsBadge", 0);

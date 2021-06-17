@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:badges/badges.dart';
 

@@ -44,10 +44,10 @@ class _NewsPageState extends State<NewsPage> {
   initState() {
     super.initState();
     // TODO: implement dispose
-    removeBadge();
+    _removeBadge();
   }
 
-  removeBadge() async {
+  void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setInt("newsBadge", 0);

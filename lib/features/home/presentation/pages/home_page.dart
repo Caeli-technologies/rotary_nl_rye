@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
-  late SharedPreferences sharedPreferences;
-  int currentNewsIndex = 0;
+  SharedPreferences? sharedPreferences;
+  int _currentNewsIndex = 0;
 
   // Future readJson(String url) async {
   //   // final String response =
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   initState() {
     super.initState();
     // TODO: implement dispose
-    getBadge();
+    _loadBadge();
   }
 
   @override
@@ -61,10 +61,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  getBadge() async {
-    sharedPreferences = await SharedPreferences.getInstance();
+  void _loadBadge() async {
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      currentNewsIndex = sharedPreferences.getInt("newsBadge")!;
+      _currentNewsIndex = (prefs.getInt('newsBadge') ?? 0);
     });
   }
 
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               title: 'News',
                               description: 'rebound page',
                               pushTo: NewsPage(),
-                              currentNewsIndex: currentNewsIndex,
+                              currentNewsIndex: _currentNewsIndex,
                             ),
                             HomeCardItem(
                               icon: FontAwesomeIcons.calendarAlt,

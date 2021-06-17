@@ -32,9 +32,20 @@ import 'injection_container.dart' as di;
 // }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print("Handling a background message ${message.data}");
+  if (Firebase.apps.isEmpty) await Firebase.initializeApp();
+
+  print('Got a message whilst in the BACKGROUND or TERMINATED!');
+
+  if (message.notification != null) {
+    print(
+        'Message also contained a notification, with the following:\nTitle: ${message.notification?.title}\nBody: ${message.notification?.body}');
+  }
 }
+
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp();
+//   print("Handling a background message ${message.data}");
+// }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
 AndroidNotificationChannel channel;
@@ -46,7 +57,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(
-      Platform.isIOS ? null : _firebaseMessagingBackgroundHandler);
+      // Platform.isIOS ? null :
+      _firebaseMessagingBackgroundHandler);
 
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
