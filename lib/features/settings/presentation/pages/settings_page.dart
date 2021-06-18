@@ -132,7 +132,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 0.0),
                   child: Container(
                     child: FaIcon(FontAwesomeIcons.firstAid,
-                        color: Colors.red[900]),
+                        color: Palette.emergencyRed),
                   ),
                 ),
                 title: Row(
@@ -143,10 +143,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
-                        color: Colors.red[900],
+                        color: Palette.emergencyRed,
                       ),
                     ),
-                    Icon(Icons.arrow_forward_ios, color: Colors.red[900]),
+                    Icon(Icons.arrow_forward_ios, color: Palette.emergencyRed),
                   ],
                 ),
                 onTap: () {

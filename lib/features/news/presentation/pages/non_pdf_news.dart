@@ -230,7 +230,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                             ? heading
                             : (widget.data.text![0]["heading"]),
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Palette.titleText,
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold),
                       ),
@@ -349,7 +349,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
       padding: const EdgeInsets.only(top: 10.0),
       child: Text(
         text,
-        style: TextStyle(color: Colors.black, fontSize: 16.0),
+        style: TextStyle(color: Palette.bodyText, fontSize: 16.0),
       ),
     );
   }
@@ -360,7 +360,9 @@ class _NonPDFPageState extends State<NonPDFPage> {
       child: Text(
         text,
         style: TextStyle(
-            color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
+            color: Palette.titleText,
+            fontSize: 14.0,
+            fontWeight: FontWeight.bold),
       ),
     );
   }

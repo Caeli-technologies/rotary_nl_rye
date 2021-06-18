@@ -2,11 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-class QuestionCardItem extends StatelessWidget {
+class QuestionCardItem extends StatefulWidget {
   final String title, subtitle, cardTitle, cardText;
   final IconData icon;
 
   QuestionCardItem(
+      {required this.title,
+      required this.icon,
+      required this.subtitle,
+      required this.cardTitle,
+      required this.cardText});
+
+  @override
+  _QuestionCardItemState createState() => _QuestionCardItemState(
+      cardTitle: cardTitle,
+      cardText: cardText,
+      title: title,
+      subtitle: subtitle,
+      icon: icon);
+}
+
+class _QuestionCardItemState extends State<QuestionCardItem> {
+  bool isExpanded = false;
+
+  final String title, subtitle, cardTitle, cardText;
+  final IconData icon;
+
+  _QuestionCardItemState(
       {required this.title,
       required this.icon,
       required this.subtitle,
@@ -23,10 +45,14 @@ class QuestionCardItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ExpansionTile(
-          leading: Icon(icon),
+          leading: Icon(
+            icon,
+            color: isExpanded ? Palette.isExpandedYes : Palette.isExpandedNo,
+          ),
           // backgroundColor: Colors.white,
-          title: _buildTitle(),
+          title: _buildTitle(isExpanded: isExpanded),
           // trailing: SizedBox(),
+
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -60,21 +86,30 @@ class QuestionCardItem extends StatelessWidget {
               ),
             )
           ],
+          onExpansionChanged: (bool expanding) =>
+              setState(() => this.isExpanded = expanding),
         ),
       ),
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle({required bool isExpanded}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text(title),
+            Text(title,
+                style: TextStyle(
+                  color:
+                      isExpanded ? Palette.isExpandedYes : Palette.isExpandedNo,
+                )),
           ],
         ),
-        Text(subtitle),
+        Text(subtitle,
+            style: TextStyle(
+              color: isExpanded ? Palette.isExpandedYes : Palette.isExpandedNo,
+            )),
       ],
     );
   }
