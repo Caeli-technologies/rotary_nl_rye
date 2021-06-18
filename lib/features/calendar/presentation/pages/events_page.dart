@@ -189,6 +189,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       _focusedDay = focusedDay;
                     },
                     calendarBuilders: CalendarBuilders(
+                      //TODO still needs to be added to the Color Pallete
                       dowBuilder: (context, day) {
                         if (day.weekday == DateTime.saturday) {
                           final text = DateFormat.E(localLanguage).format(day);
@@ -439,7 +440,7 @@ class DialogPage1 extends StatelessWidget {
             startTime == endTime
                 ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
                 : "$startWeekDay, $startFullDate | $startTime - $endTime",
-            style: const TextStyle(color: Colors.black87, fontSize: 12.0),
+            style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
           ),
           // _detectMultipleDays(),
           Padding(
@@ -518,10 +519,7 @@ class DialogPage1 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(organizer,
-                            style: TextStyle(
-                                inherit: true,
-                                fontSize: 14.0,
-                                color: Colors.black)),
+                            style: TextStyle(inherit: true, fontSize: 14.0)),
                       ],
                     ),
                     subtitle: Padding(
@@ -538,7 +536,7 @@ class DialogPage1 extends StatelessWidget {
                                   style: TextStyle(
                                       inherit: true,
                                       fontSize: 12.0,
-                                      color: Colors.black45)),
+                                      color: Palette.creatorText)),
                             ),
                           ),
                         ],
