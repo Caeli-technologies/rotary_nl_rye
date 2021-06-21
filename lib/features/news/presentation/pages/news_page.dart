@@ -43,6 +43,7 @@ class _NewsPageState extends State<NewsPage> {
   @override
   initState() {
     super.initState();
+    _newsBloc.getNews();
     // TODO: implement dispose
     _removeBadge();
   }
@@ -167,7 +168,7 @@ class _NewsPageState extends State<NewsPage> {
                                                 builder: (context) => PDFPage(
                                                     pdfUrl: snapshot
                                                         .data![index].pdf!,
-                                                    pdfId:
+                                                    data:
                                                         snapshot.data![index])),
                                           )
                                         : Navigator.push(

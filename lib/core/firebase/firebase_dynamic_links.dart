@@ -43,8 +43,9 @@ Future<void> initDynamicLinks(BuildContext context) async {
                 context,
                 MaterialPageRoute(
                     builder: (context) => PDFPage(
-                        pdfId: _newsList[int.parse(id)],
-                        pdfUrl: _newsList[int.parse(id)].pdf!)),
+                          pdfUrl: _newsList[int.parse(id)].pdf!,
+                          data: _newsList[int.parse(id)],
+                        )),
               )
             : Navigator.push(
                 context,
@@ -88,8 +89,8 @@ Future<void> initDynamicLinks(BuildContext context) async {
             context,
             MaterialPageRoute(
                 builder: (context) => PDFPage(
-                    pdfId: _newsList[int.parse(id)],
-                    pdfUrl: _newsList[int.parse(id)].pdf!)),
+                    pdfUrl: _newsList[int.parse(id)].pdf!,
+                    data: _newsList[int.parse(id)])),
           )
         : Navigator.push(
             context,

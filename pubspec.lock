@@ -11,9 +11,11 @@ packages:
   advance_pdf_viewer:
     dependency: "direct main"
     description:
-      name: advance_pdf_viewer
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: pdf-viewer-file-fix
+      resolved-ref: "93d23ff7c3e11a58e0d4d9b4a987d534dda3a5a2"
+      url: "https://github.com/AdiD253/pdf_viewer.git"
+    source: git
     version: "2.0.0"
   analyzer:
     dependency: transitive
@@ -756,6 +758,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  quick_actions:
+    dependency: "direct main"
+    description:
+      name: quick_actions
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0+2"
+  quick_actions_platform_interface:
+    dependency: transitive
+    description:
+      name: quick_actions_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   rxdart:
     dependency: transitive
     description:

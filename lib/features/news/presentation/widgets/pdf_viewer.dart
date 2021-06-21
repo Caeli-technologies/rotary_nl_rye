@@ -12,19 +12,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PDFPage extends StatefulWidget {
+  final News data;
   final String pdfUrl;
-  final News pdfId;
 
-  PDFPage({required this.pdfUrl, required this.pdfId});
-
+  PDFPage({required this.data, required this.pdfUrl});
   @override
-  _PDFPageState createState() => _PDFPageState(pdfUrl: pdfUrl);
+  _PDFPageState createState() => _PDFPageState(pdfUrl: pdfUrl, data: data);
 }
 
 class _PDFPageState extends State<PDFPage> {
   final String pdfUrl;
+  final News data;
 
-  _PDFPageState({required this.pdfUrl});
+  _PDFPageState({required this.pdfUrl, required this.data});
 
   bool _isLoading = true;
   late PDFDocument document;
@@ -37,9 +37,11 @@ class _PDFPageState extends State<PDFPage> {
   @override
   void initState() {
     super.initState();
-    this._createDynamicLink(id = widget.pdfId.id.toString());
-    loadDocument();
+    _loadDocument();
+    this._createDynamicLink(id = widget.data.id.toString());
+
     _removeBadge();
+    print(pdfUrl);
   }
 
   void _removeBadge() async {
@@ -49,13 +51,13 @@ class _PDFPageState extends State<PDFPage> {
     });
   }
 
-  loadDocument() async {
+  void _loadDocument() async {
     setState(() {
       _isLoading = true;
-      title = "Loading";
     });
     document = await PDFDocument.fromURL(pdfUrl);
     setState(() {
+      // document = document;
       _isLoading = false;
     });
   }
@@ -188,7 +190,7 @@ class _PDFPageState extends State<PDFPage> {
   }
 
   _createShareURL() async {
-    _createDynamicLink(id = widget.pdfId.id.toString());
+    _createDynamicLink(id = widget.data.id.toString());
 
     if (await canLaunch(_linkMessage!)) {
       await Share.share(
