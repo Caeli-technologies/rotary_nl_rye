@@ -1,6 +1,8 @@
 import 'dart:io';
 
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+// import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:advance_pdf_viewer_fork/advance_pdf_viewer_fork.dart';
+import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,11 +39,16 @@ class _PDFPageState extends State<PDFPage> {
   @override
   void initState() {
     super.initState();
-    _loadDocument();
+    loadDocument();
     this._createDynamicLink(id = widget.data.id.toString());
 
     _removeBadge();
     print(pdfUrl);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+    ]);
   }
 
   void _removeBadge() async {
@@ -51,7 +58,7 @@ class _PDFPageState extends State<PDFPage> {
     });
   }
 
-  void _loadDocument() async {
+  loadDocument() async {
     setState(() {
       _isLoading = true;
     });
@@ -64,7 +71,10 @@ class _PDFPageState extends State<PDFPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    document.clearImageCache();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     super.dispose();
   }
 
@@ -105,7 +115,7 @@ class _PDFPageState extends State<PDFPage> {
             )
           ],
         ),
-        body: Center(
+        body: Container(
             child: _isLoading
                 ? Center(child: CircularProgressIndicator())
                 : PDFViewer(
@@ -116,7 +126,8 @@ class _PDFPageState extends State<PDFPage> {
                     // scroll vertically
                     scrollDirection: Axis.vertical,
                     // numberPickerConfirmWidget: ,
-
+                    showPicker: false,
+                    showNavigation: false,
                     //uncomment below code to replace bottom navigation with your own
                     /* navigationBuilder:
                       (context, page, totalPages, jumpToPage, animateToPage) {

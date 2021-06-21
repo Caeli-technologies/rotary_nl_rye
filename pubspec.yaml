@@ -78,10 +78,7 @@ dependencies:
   badges: ^2.0.1
 
   # temperary 
-  advance_pdf_viewer:
-    git:
-      url: https://github.com/AdiD253/pdf_viewer.git
-      ref: pdf-viewer-file-fix
+  advance_pdf_viewer_fork: ^2.0.0
 
 dev_dependencies:
   flutter_test:

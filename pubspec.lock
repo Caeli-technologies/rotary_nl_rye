@@ -8,14 +8,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "22.0.0"
-  advance_pdf_viewer:
+  advance_pdf_viewer_fork:
     dependency: "direct main"
     description:
-      path: "."
-      ref: pdf-viewer-file-fix
-      resolved-ref: "93d23ff7c3e11a58e0d4d9b4a987d534dda3a5a2"
-      url: "https://github.com/AdiD253/pdf_viewer.git"
-    source: git
+      name: advance_pdf_viewer_fork
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "2.0.0"
   analyzer:
     dependency: transitive

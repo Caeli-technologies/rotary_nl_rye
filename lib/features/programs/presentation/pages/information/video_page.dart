@@ -28,10 +28,7 @@ class _VideoPageState extends State<VideoPage> {
       allowedScreenSleep: false,
       allowFullScreen: true,
       deviceOrientationsAfterFullScreen: [
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
         DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
       ],
       videoPlayerController: _videoPlayerController,
       aspectRatio: _aspectRatio,
