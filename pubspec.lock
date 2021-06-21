@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "22.0.0"
-  advance_pdf_viewer_fork:
-    dependency: "direct main"
-    description:
-      name: advance_pdf_viewer_fork
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   analyzer:
     dependency: transitive
     description:
@@ -412,6 +405,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  flutter_cached_pdfview:
+    dependency: "direct main"
+    description:
+      name: flutter_cached_pdfview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0-nullsafety"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -445,6 +445,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8+4"
+  flutter_pdfview:
+    dependency: transitive
+    description:
+      name: flutter_pdfview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -511,13 +518,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  infinite_listview:
-    dependency: transitive
-    description:
-      name: infinite_listview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   internet_connection_checker:
     dependency: "direct main"
     description:
@@ -588,13 +588,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  numberpicker:
-    dependency: transitive
-    description:
-      name: numberpicker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   octo_image:
     dependency: transitive
     description:

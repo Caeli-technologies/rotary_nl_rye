@@ -61,12 +61,13 @@ dependencies:
   flutter_bloc: ^7.0.0
   flutter_svg: ^0.22.0
   # advance_pdf_viewer: ^2.0.0
+  flutter_cached_pdfview: ^0.4.0-nullsafety
   package_info_plus: ^1.0.1 # https://pub.dev/packages/package_info_plus
   url_launcher: ^6.0.3 # https://pub.dev/packages/url_launcher
   share_plus: ^2.1.2 # native share https://pub.dev/packages/share_plus
   table_calendar: ^3.0.0 # https://pub.dev/packages/table_calendar
-  chewie: ^1.2.0
-  video_player: ^2.1.4
+  chewie: ^1.2.2
+  video_player: ^2.1.6
   cached_network_image: ^3.0.0
   maps_launcher: ^2.0.0
   
@@ -76,9 +77,7 @@ dependencies:
 
   quick_actions: ^0.6.0+2 # something fun to add later (for both android and iOS) https://pub.dev/packages/quick_actions#quick_actions
   badges: ^2.0.1
-
-  # temperary 
-  advance_pdf_viewer_fork: ^2.0.0
+  
 
 dev_dependencies:
   flutter_test:
