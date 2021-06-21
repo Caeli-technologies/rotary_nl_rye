@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class QuestionCardItem extends StatefulWidget {
@@ -51,7 +52,10 @@ class _QuestionCardItemState extends State<QuestionCardItem> {
           ),
           // backgroundColor: Colors.white,
           title: _buildTitle(isExpanded: isExpanded),
-          // trailing: SizedBox(),
+          trailing: Icon(
+            isExpanded ? FontAwesomeIcons.minus : FontAwesomeIcons.plus,
+            size: 16,
+          ),
 
           children: <Widget>[
             Padding(
