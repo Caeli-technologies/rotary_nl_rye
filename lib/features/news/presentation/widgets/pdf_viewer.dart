@@ -116,13 +116,13 @@ class _PDFPageState extends State<PDFPage> {
           children: <Widget>[
             PDF(
               onPageChanged: (int? current, int? total) =>
-                  _pageCountController.add('${current! + 1} - $total'),
+                  _pageCountController.add('${current! + 1} / $total'),
               onViewCreated: (PDFViewController pdfViewController) async {
                 _pdfViewController.complete(pdfViewController);
                 final int currentPage =
                     await pdfViewController.getCurrentPage() ?? 0;
                 final int? pageCount = await pdfViewController.getPageCount();
-                _pageCountController.add('${currentPage + 1} - $pageCount');
+                _pageCountController.add('${currentPage + 1} / $pageCount');
               },
             ).cachedFromUrl(
               pdfUrl,
