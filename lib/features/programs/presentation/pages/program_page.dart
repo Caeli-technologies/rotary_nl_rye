@@ -63,7 +63,7 @@ class _ProgramPageState extends State<ProgramPage> {
                 child: Text(
                   "Interesse?",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Palette.titleText,
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -73,7 +73,7 @@ class _ProgramPageState extends State<ProgramPage> {
                 child: Text(
                   "Wil je:",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Palette.bodyText,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -82,49 +82,49 @@ class _ProgramPageState extends State<ProgramPage> {
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Andere culturen leren?",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
                 child: Text(
                   "- Een andere taal leren,",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
                 child: Text(
                   "- Vrienden krijgen over de hele wereld",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
                 child: Text(
                   "- Ambasseur van Nederland zijn voor Rotary",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
                   "Ben je tussen 15 en 18½ jaar oud op het moment van vertrek. \nSociaal en avontuurlijk, flexibel en klaar om het bekende achter je te laten en nieuwe dingen te ontdekken?",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
                   "Dan zit je bij ons goed! Met de steun van Rotary kunnen gemiddeld meer dan 40 jongeren deelnemen aan de jaarlijkse uitwisseling en ruim 50 jongeren aan onze zomerkampen en korte uitwisselingen.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
                   "Ben je ouder maakt niet uit. Met de New Generation Service Exchange kun je deelnemen tussen de 18 en 30 jaar.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
@@ -210,18 +210,19 @@ class _ProgramPageState extends State<ProgramPage> {
               ),
               buildProgramOptionRow(
                   context,
+                  "NGSE",
+                  "New Generations Service Exchange",
+                  FontAwesomeIcons.hashtag,
+                  NGSEProgramPage()),
+              buildProgramOptionRow(
+                  context,
                   "FAMILY TO FAMILY",
                   "Exchange between families",
                   FontAwesomeIcons.hashtag,
                   FamilyToFamilyProgramPage()),
               buildProgramOptionRow(context, "CAMPS & TOURS", "Summer Camps",
                   FontAwesomeIcons.hashtag, CampsAndToursProgramPage()),
-              buildProgramOptionRow(
-                  context,
-                  "NGSE",
-                  "New Generations Service Exchange",
-                  FontAwesomeIcons.hashtag,
-                  NGSEProgramPage()),
+
               // the end
               SizedBox(
                 height: 40,
@@ -290,7 +291,9 @@ class _ProgramPageState extends State<ProgramPage> {
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     style: TextStyle(
-                        inherit: true, fontSize: 14.0, color: Colors.black45)),
+                        inherit: true,
+                        fontSize: 14.0,
+                        color: Palette.descriptionText)),
               ),
             ],
           ),

@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-// import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
-// import 'package:advance_pdf_viewer_fork/advance_pdf_viewer_fork.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
@@ -32,7 +30,7 @@ class _PDFPageState extends State<PDFPage> {
   _PDFPageState({required this.pdfUrl, required this.data});
 
   bool _isLoading = true;
-  // late PDFDocument document;
+  // bool isDarkMode = false;
   String title = "Loading";
 
   final Completer<PDFViewController> _pdfViewController =
@@ -77,6 +75,8 @@ class _PDFPageState extends State<PDFPage> {
   @override
   Widget build(BuildContext context) {
     Color foreground = Colors.green;
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -149,7 +149,7 @@ class _PDFPageState extends State<PDFPage> {
                           "$progress%",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Palette.bodyText,
                               fontSize: 30.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -157,7 +157,7 @@ class _PDFPageState extends State<PDFPage> {
                           "COMPLETED",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Palette.bodyText,
                               fontSize: 15.0,
                               fontWeight: FontWeight.bold),
                         ),

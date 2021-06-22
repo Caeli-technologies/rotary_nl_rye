@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrganizationDetails extends StatelessWidget {
   final Organization person;
@@ -228,49 +229,53 @@ class OrganizationDetails extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      height: 70.0,
-                      width: 70.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey[200],
-                      ),
-                      child: Center(
-                          child: FaIcon(
-                        FontAwesomeIcons.envelope,
-                        color: Colors.black,
-                        size: 30,
-                      )),
-                    ),
-                    Container(
-                      height: 65.0,
-                      width: 180.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35.0),
-                          border:
-                              Border.all(color: Colors.blue.shade100, width: 5),
-                          color: Colors.blue[400]),
-                      child: Center(
-                        child: Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
+                    GestureDetector(
+                      child: Container(
+                          height: 70.0,
+                          width: 70.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            color: Colors.grey[200],
+                          ),
+                          child: Center(
                               child: FaIcon(
-                                FontAwesomeIcons.phone,
-                                color: Colors.white,
-                              ),
+                            FontAwesomeIcons.envelope,
+                            color: Colors.black,
+                            size: 30,
+                          ))),
+                      onTap: () => launch("mailto:${person.email}"),
+                    ),
+                    GestureDetector(
+                      child: Container(
+                          height: 65.0,
+                          width: 180.0,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(35.0),
+                              border: Border.all(
+                                  color: Colors.blue.shade100, width: 5),
+                              color: Colors.blue[400]),
+                          child: Center(
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 25.0),
+                                  child: FaIcon(
+                                    FontAwesomeIcons.phone,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Text(
+                                    'Call me ',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18.0),
+                                  ),
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: Text(
-                                'Call me ',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18.0),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                          )),
+                      onTap: () => launch("tel:${person.phoneNumber}"),
                     )
                   ],
                 ),
