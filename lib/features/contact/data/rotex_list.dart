@@ -19,13 +19,13 @@ List<Rotex> rotexList = [
     name: "Toon ter Ellen",
     bio: "toonTerEllenBio",
     imageUrl:
-        "https://media-exp1.licdn.com/dms/image/C4D03AQEGVOAqt6sQgQ/profile-displayphoto-shrink_800_800/0/1580887772311?e=1627516800&v=beta&t=FBTLfnxhL-GSKuc91VgioMxEwyoJX9eH6tGNHmx0fu4",
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/toon-ter-ellen.jpg",
     email: "bnkn@example.com",
     phoneNumber: "888 444 7676",
-    facebookUrl: '',
-    instagramUrl: '',
-    websiteUrl: '',
-    linkedinUrl: '',
+    facebookUrl: 'https://www.facebook.com/toon.terellen',
+    instagramUrl: 'https://www.instagram.com/toonterellen_/',
+    websiteUrl: null,
+    linkedinUrl: 'https://www.linkedin.com/in/toon-ter-ellen-71a925199/',
     role: 'Penningmeester',
   ),
 // Céline Hof
@@ -147,18 +147,18 @@ List<Rotex> rotexList = [
       websiteUrl: '',
       linkedinUrl: '',
       role: 'Commissie Prebound / Rebound'),
-// Emile Laitervo
+// Emil Laitervo
   Rotex(
-      name: "Emile Laitervo",
+      name: "Emil Laitervo",
       bio: "emileLaitervoBio",
       imageUrl:
-          "http://www.diarioeldia.cl/sites/default/files/styles/juicebox_medium/public/092018/erico_wulf_.jpg?itok=T7tifP7F",
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/emil-laitervo.jpg",
       email: "yvan@example.com",
       phoneNumber: "888 444 7676",
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
+      facebookUrl: 'https://www.facebook.com/profile.php?id=100009870756048',
+      instagramUrl: 'https://www.instagram.com/emil.laitervo/',
+      websiteUrl: null,
+      linkedinUrl: null,
       role: 'Commissie Prebound / Rebound'),
 // Sanne Pipping
   Rotex(

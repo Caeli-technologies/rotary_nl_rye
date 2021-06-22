@@ -17,6 +17,7 @@ class NewsResult {
 }
 
 class News {
+  final int id;
   final String images;
   final String title;
   final String? pdf;
@@ -25,7 +26,8 @@ class News {
   final List? text;
 
   News(
-      {required this.images,
+      {required this.id,
+      required this.images,
       required this.description,
       required this.isPdf,
       required this.title,
@@ -33,6 +35,7 @@ class News {
       this.text});
 
   factory News.fromJson(Map<String, dynamic> json) => News(
+      id: json["id"],
       images: json["images"],
       title: json["title"],
       description: json["description"],
@@ -42,6 +45,7 @@ class News {
 
   Map<String, dynamic> toJson() {
     return {
+      "id": id,
       "images": images,
       "title": title,
       "description": description,

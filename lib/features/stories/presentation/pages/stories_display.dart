@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/widgets/story_dutchie_page.dart';
 
 import '../../../../core/prop.dart';
 import '../widgets/story_details_page.dart';
@@ -204,21 +205,33 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return GestureDetector(
-                                          onTap: () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    StoryDetails(
-                                                      story:
-                                                          snapshot.data![index],
-                                                    )),
-                                          ),
+                                          onTap: () => snapshot
+                                                      .data![index].isDutchie ==
+                                                  true
+                                              ? Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          StoryDutchie(
+                                                            story: snapshot
+                                                                .data![index],
+                                                          )),
+                                                )
+                                              : Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          StoryDetails(
+                                                            story: snapshot
+                                                                .data![index],
+                                                          )),
+                                                ),
                                           child: Container(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10),
-                                            child: TravelCard(
-                                                story: snapshot.data![index]),
-                                          ),
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10),
+                                              child: TravelCard(
+                                                  story:
+                                                      snapshot.data![index])),
                                         );
                                       });
                             } else {

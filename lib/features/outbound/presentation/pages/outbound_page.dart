@@ -101,18 +101,19 @@ class _OutboundPageState extends State<OutboundPage> {
               ),
               buildProgramOptionRow(
                   context,
+                  "NGSE",
+                  "New Generations Service Exchange",
+                  FontAwesomeIcons.hashtag,
+                  NGSEOutboundPage()),
+              buildProgramOptionRow(
+                  context,
                   "FAMILY TO FAMILY",
                   "Exchange between families",
                   FontAwesomeIcons.hashtag,
                   FamilyToFamilyOutboundPage()),
               buildProgramOptionRow(context, "CAMPS & TOURS", "Summer Camps",
                   FontAwesomeIcons.hashtag, CampsAndToursOutboundPage()),
-              buildProgramOptionRow(
-                  context,
-                  "NGSE",
-                  "New Generations Service Exchange",
-                  FontAwesomeIcons.hashtag,
-                  NGSEOutboundPage()),
+
               // the end
               SizedBox(
                 height: 40,
@@ -181,7 +182,9 @@ class _OutboundPageState extends State<OutboundPage> {
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     style: TextStyle(
-                        inherit: true, fontSize: 14.0, color: Colors.black45)),
+                        inherit: true,
+                        fontSize: 14.0,
+                        color: Palette.descriptionText)),
               ),
             ],
           ),

@@ -1,19 +1,22 @@
 // @dart=2.9
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/custom_routes.dart';
 import 'core/lang/languages.dart';
-import 'core/path/firebase_dynamic_links.dart';
 import 'core/presentation/widgets/page_navigator.dart';
-import 'features/settings/presentation/pages/social.dart';
 import 'injection_container.dart' as di;
 
 // void main() async {
@@ -29,9 +32,62 @@ import 'injection_container.dart' as di;
 //   }, FirebaseCrashlytics.instance.recordError);
 // }
 
-void main() async {
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  if (Firebase.apps.isEmpty) await Firebase.initializeApp();
+
+  print('Got a message whilst in the BACKGROUND or TERMINATED!');
+
+  // test
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setInt("newsBadge", 1);
+  // end test
+}
+
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp();
+//   print("Handling a background message ${message.data}");
+// }
+
+/// Create a [AndroidNotificationChannel] for heads up notifications
+AndroidNotificationChannel channel;
+
+/// Initialize the [FlutterLocalNotificationsPlugin] package.
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(
+      Platform.isIOS ? null : _firebaseMessagingBackgroundHandler);
+
+  if (!kIsWeb) {
+    channel = const AndroidNotificationChannel(
+      'high_importance_channel', // id
+      'High Importance Notifications', // title
+      'This channel is used for important notifications.', // description
+      importance: Importance.high,
+    );
+
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    /// Create an Android Notification Channel.
+    ///
+    /// We use this channel in the `AndroidManifest.xml` file to override the
+    /// default FCM channel to enable heads up notifications.
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+    /// Update the iOS foreground notification presentation options to allow
+    /// heads up notifications.
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+  }
   if (kDebugMode) {
     // Force disable Crashlytics collection while doing every day development.
     // Temporarily toggle this to true if you want to test crash reporting in your app.
@@ -92,13 +148,8 @@ class MyApp extends StatelessWidget {
       title: 'Rotary youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
-
-      // here needs the routs for dynamic links :)
-      routes: <String, WidgetBuilder>{
-        '/helloworld': (BuildContext context) => SocialPage(),
-        '/tutorials': (context) => TutorialsPage(),
-        '/error': (context) => ErrorPage(),
-      },
+      //routing in "lib/core/custom_routes.dart"
+      routes: customRoutes,
     );
   }
 }

@@ -152,18 +152,19 @@ class _InboundPageState extends State<InboundPage> {
               ),
               buildInboundOptionRow(
                   context,
+                  "NGSE",
+                  "New Generations Service Exchange",
+                  FontAwesomeIcons.hashtag,
+                  NGSEInboundPage()),
+              buildInboundOptionRow(
+                  context,
                   "FAMILY TO FAMILY",
                   "Exchange between families",
                   FontAwesomeIcons.hashtag,
                   FamilyToFamilyInboundPage()),
               buildInboundOptionRow(context, "CAMPS & TOURS", "Summer Camps",
                   FontAwesomeIcons.hashtag, CampsAndToursInboundPage()),
-              buildInboundOptionRow(
-                  context,
-                  "NGSE",
-                  "New Generations Service Exchange",
-                  FontAwesomeIcons.hashtag,
-                  NGSEInboundPage()),
+
               Divider(
                 height: 15,
                 thickness: 2,
@@ -245,7 +246,9 @@ class _InboundPageState extends State<InboundPage> {
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     style: TextStyle(
-                        inherit: true, fontSize: 14.0, color: Colors.black45)),
+                        inherit: true,
+                        fontSize: 14.0,
+                        color: Palette.descriptionText)),
               ),
             ],
           ),

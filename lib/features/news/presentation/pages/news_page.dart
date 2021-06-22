@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/prop.dart';
 import '../../models/news.dart';
 
 class NewsPage extends StatefulWidget {
-  //final News news;
+  // final News news;
 
-  //NewsPage({required this.news});
+// NewsPage({required this.news});
 
   @override
   _NewsPageState createState() => _NewsPageState();
@@ -40,11 +41,18 @@ class _NewsPageState extends State<NewsPage> {
   // }
 
   @override
-  void initState() {
-    _newsBloc.getNews();
+  initState() {
     super.initState();
+    _newsBloc.getNews();
+    // TODO: implement dispose
+    _removeBadge();
+  }
 
-    // readJson();
+  void _removeBadge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setInt("newsBadge", 0);
+    });
   }
 
   @override
@@ -159,7 +167,9 @@ class _NewsPageState extends State<NewsPage> {
                                             MaterialPageRoute(
                                                 builder: (context) => PDFPage(
                                                     pdfUrl: snapshot
-                                                        .data![index].pdf!)),
+                                                        .data![index].pdf!,
+                                                    data:
+                                                        snapshot.data![index])),
                                           )
                                         : Navigator.push(
                                             context,

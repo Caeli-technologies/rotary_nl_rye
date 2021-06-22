@@ -161,11 +161,15 @@ class _CalendarPageState extends State<CalendarPage> {
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     calendarStyle: CalendarStyle(
                       // Use `CalendarStyle` to customize the UI
+                      outsideTextStyle: const TextStyle(color: Colors.red),
+                      // defaultTextStyle: const TextStyle(color: Colors.black54),
                       outsideDaysVisible: false,
+
                       //TODO change colour dark mode
                       markerDecoration: const BoxDecoration(
                           color: Colors.red, shape: BoxShape.circle),
                     ),
+
                     //TODO add this to the lang files
                     availableCalendarFormats: const {
                       CalendarFormat.month: 'Month',
@@ -184,6 +188,39 @@ class _CalendarPageState extends State<CalendarPage> {
                     onPageChanged: (focusedDay) {
                       _focusedDay = focusedDay;
                     },
+                    calendarBuilders: CalendarBuilders(
+                      //TODO still needs to be added to the Color Pallete
+                      dowBuilder: (context, day) {
+                        if (day.weekday == DateTime.saturday) {
+                          final text = DateFormat.E(localLanguage).format(day);
+
+                          return Center(
+                            child: Text(
+                              text,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          );
+                        }
+                        if (day.weekday == DateTime.sunday) {
+                          final text = DateFormat.E(localLanguage).format(day);
+
+                          return Center(
+                            child: Text(
+                              text,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          );
+                        } else {
+                          final text = DateFormat.E(localLanguage).format(day);
+                          return Center(
+                            child: Text(
+                              text,
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          );
+                        }
+                      },
+                    ),
                   ),
                   const SizedBox(height: 8.0),
                   Expanded(
@@ -203,17 +240,19 @@ class _CalendarPageState extends State<CalendarPage> {
                                           horizontal: 4.0),
                                       child: Container(
                                           decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: Palette.imageBlox,
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                               boxShadow: [
                                                 BoxShadow(
-                                                    color: Colors.grey.shade400,
+                                                    color:
+                                                        Palette.imageShadowBox2,
                                                     spreadRadius: 0.1,
                                                     blurRadius: 25.0,
                                                     offset: Offset(0.0, 1.0)),
                                                 BoxShadow(
-                                                    color: Colors.white,
+                                                    color:
+                                                        Palette.imageShadowBox1,
                                                     spreadRadius: 0.1,
                                                     blurRadius: 25.0,
                                                     offset: Offset(0.0, 1.0))
@@ -262,7 +301,8 @@ class _CalendarPageState extends State<CalendarPage> {
                                             style: TextStyle(
                                                 inherit: true,
                                                 fontSize: 14.0,
-                                                color: Colors.black45)),
+                                                color:
+                                                    Palette.descriptionText)),
                                       ],
                                     ),
                                     subtitle: Padding(
@@ -282,7 +322,8 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 style: TextStyle(
                                                     inherit: true,
                                                     fontSize: 14.0,
-                                                    color: Colors.black45)),
+                                                    color: Palette
+                                                        .descriptionText)),
                                           ),
                                         ],
                                       ),
@@ -399,7 +440,7 @@ class DialogPage1 extends StatelessWidget {
             startTime == endTime
                 ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
                 : "$startWeekDay, $startFullDate | $startTime - $endTime",
-            style: const TextStyle(color: Colors.black87, fontSize: 12.0),
+            style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
           ),
           // _detectMultipleDays(),
           Padding(
@@ -478,10 +519,7 @@ class DialogPage1 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(organizer,
-                            style: TextStyle(
-                                inherit: true,
-                                fontSize: 14.0,
-                                color: Colors.black)),
+                            style: TextStyle(inherit: true, fontSize: 14.0)),
                       ],
                     ),
                     subtitle: Padding(
@@ -498,7 +536,7 @@ class DialogPage1 extends StatelessWidget {
                                   style: TextStyle(
                                       inherit: true,
                                       fontSize: 12.0,
-                                      color: Colors.black45)),
+                                      color: Palette.creatorText)),
                             ),
                           ),
                         ],

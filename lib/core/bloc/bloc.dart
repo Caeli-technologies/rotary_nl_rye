@@ -18,7 +18,7 @@ class NewsBloc {
     getNews();
   }
 
-  getNews() async {
+  Future<List<News>> getNews() async {
     var x = await _repository.fetchNews();
     print('get news ${x.toString()}');
     _newsController.sink.add(x);
@@ -27,6 +27,7 @@ class NewsBloc {
     //print('get header ${y.toString()}');
     _headerController.sink.add(y);
     //print('_headercontroller.sink.add');
+    return x;
   }
 
   dispose() {

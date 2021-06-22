@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -246,6 +245,10 @@ class ContributorsDetails extends StatelessWidget {
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
+              SizedBox(
+                height: 40,
+              ),
+
               // Padding(
               //   padding:
               //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),

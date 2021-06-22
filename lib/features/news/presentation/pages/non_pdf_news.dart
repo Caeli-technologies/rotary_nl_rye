@@ -10,6 +10,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NonPDFPage extends StatefulWidget {
@@ -34,6 +35,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   String? _linkMessage;
   bool _isCreatingLink = false;
+  String? id;
 
   void dispose() {
     isTranslating = false;
@@ -50,7 +52,15 @@ class _NonPDFPageState extends State<NonPDFPage> {
   @override
   void initState() {
     super.initState();
-    this._createDynamicLink();
+    this._createDynamicLink(id = widget.data.id.toString());
+    _removeBadge();
+  }
+
+  void _removeBadge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setInt("newsBadge", 0);
+    });
   }
 
   @override
@@ -220,7 +230,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                             ? heading
                             : (widget.data.text![0]["heading"]),
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Palette.titleText,
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold),
                       ),
@@ -259,7 +269,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    await header(widget.data.text![0]["heading"]);
+    heading = await header(widget.data.text![0]["heading"]);
     setState(() {
       translationIndex++;
       progressPercent = translationIndex / index;
@@ -339,7 +349,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
       padding: const EdgeInsets.only(top: 10.0),
       child: Text(
         text,
-        style: TextStyle(color: Colors.black, fontSize: 16.0),
+        style: TextStyle(color: Palette.bodyText, fontSize: 16.0),
       ),
     );
   }
@@ -350,7 +360,9 @@ class _NonPDFPageState extends State<NonPDFPage> {
       child: Text(
         text,
         style: TextStyle(
-            color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
+            color: Palette.titleText,
+            fontSize: 14.0,
+            fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -358,13 +370,15 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> selectedItem(BuildContext context, item) async {
     switch (item) {
       case 0:
-        _createDynamicLink();
+        _createDynamicLink(
+            id = widget.data.id.toString()); //TODO add the parameters here
 
         if (await canLaunch(_linkMessage!)) {
           await Share.share(
               Platform.isIOS
-                  ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
-                  : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+                  ? 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
+                  : 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
+              //android
               subject: 'look at this nice app :)');
         } else {
           throw 'Could not launch $_linkMessage';
@@ -407,24 +421,30 @@ class _NonPDFPageState extends State<NonPDFPage> {
     }
   }
 
-  Future<void> _createDynamicLink() async {
+  Future<void> _createDynamicLink(String id) async {
     setState(() {
       _isCreatingLink = true;
     });
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://rotarytestnl.page.link',
+      uriPrefix: 'https://rotarynl.page.link',
       link: Uri.parse(
-          'https://rotarytestnl.page.link/helloworld'), //change this to the url in the main.dart
+          'https://rotarynl.page.link/news?id=$id'), //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
       ),
       iosParameters: IosParameters(
         bundleId: 'com.caelitechnologies.rotary-nl-rye',
-        minimumVersion: '1',
+        minimumVersion: '1.0.0',
         appStoreId: '1567096118',
       ),
+      // socialMetaTagParameters: SocialMetaTagParameters(
+      //   title: 'Example of a Dynamic Link',
+      //   description: 'This link works whether app is installed or not!',
+      //   imageUrl: Uri.parse(
+      //       'https://is4-ssl.mzstatic.com/image/thumb/Purple114/v4/6e/21/e4/6e21e45b-49cb-fa52-83c2-bb56ab288b49/AppIcon-0-0-1x_U007emarketing-0-0-0-4-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.jpeg/1200x630wa.png'),
+      // ),
     );
 
     Uri url;
