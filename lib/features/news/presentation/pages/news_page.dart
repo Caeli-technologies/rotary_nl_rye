@@ -1,55 +1,63 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/prop.dart';
-import '../../data/utils.dart' as data;
 import '../../models/news.dart';
 
 class NewsPage extends StatefulWidget {
-  final News news;
+  // final News news;
 
-  NewsPage({required this.news});
+// NewsPage({required this.news});
 
   @override
-  _NewsPageState createState() => _NewsPageState(news: news);
+  _NewsPageState createState() => _NewsPageState();
 }
 
 class _NewsPageState extends State<NewsPage> {
-  _NewsPageState({required News news}) : _news = news;
-  final News _news;
-  List _stories = [];
-  bool _isLoading = true;
+  NewsBloc _newsBloc = NewsBloc();
+
+  //_NewsPageState({required News news}) : _news = news;
+  //final News _news;
+  // List _stories = [];
+  // bool _isLoading = true;
 
   //Fetch content from the json file
-  Future readJson(String url) async {
-    final response = await data.getData(url);
-    //await rootBundle.loadString('assets/test/news.json');
-    final info = await json.decode(response);
-    setState(() {
-      _stories = info["news"];
-      _isLoading = false;
-    });
-  }
-
-  _updateNews(News news) {
-    readJson(news.jsonUrl);
-  }
+  // Future readJson(String url) async {
+  //   final response = await data.getDataNews(url);
+  //   //await rootBundle.loadString('assets/test/news.json');
+  //   final info = await json.decode(response);
+  //   setState(() {
+  //     _stories = info["news"];
+  //     _isLoading = false;
+  //   });
+  // }
+  //
+  // _updateNews(News news) {
+  //   readJson(news.jsonUrl);
+  // }
 
   @override
-  void initState() {
-    _updateNews(_news);
+  initState() {
     super.initState();
+    _newsBloc.getNews();
+    // TODO: implement dispose
+    _removeBadge();
+  }
 
-    // readJson();
+  void _removeBadge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setInt("newsBadge", 0);
+    });
   }
 
   @override
   void dispose() {
+    _newsBloc.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -95,21 +103,38 @@ class _NewsPageState extends State<NewsPage> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 170,
-                  child: CachedNetworkImage(
-                    height: 55,
-                    width: 55,
-                    imageUrl: _news.headerUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
-                      ),
-                    ),
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
+                  child: StreamBuilder<String>(
+                      stream: _newsBloc.header,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          print(snapshot.error.toString());
+                          return Center(
+                            child: Text(snapshot.error.toString()),
+                          );
+                        } else if (snapshot.hasData) {
+                          return CachedNetworkImage(
+                            height: 55,
+                            width: 55,
+                            imageUrl: snapshot.data!,
+                            //"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                              ),
+                            ),
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      }),
                 ),
                 SizedBox(
                   height: 20,
@@ -119,44 +144,62 @@ class _NewsPageState extends State<NewsPage> {
                 ),
                 Container(
                   height: Device.height - 300,
-                  child: _isLoading
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : ListView.builder(
-                          padding: EdgeInsets.only(top: 10, bottom: 20),
-                          itemCount: _stories.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return GestureDetector(
-                              onTap: () => {
-                                _stories[index]["isPdf"] == "yes"
-                                    ? Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => PDFPage(
-                                                pdfUrl: _stories[index]
-                                                    ["pdf"])),
-                                      )
-                                    : Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => NonPDFPage(
-                                                  data: _stories[index],
-                                                ))),
-                              },
+                  child: StreamBuilder<List<News>>(
+                      stream: _newsBloc.news,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          print(snapshot.error.toString());
+                          return Center(
+                            child: Text(snapshot.error.toString()),
+                          );
+                        } else if (snapshot.hasData) {
+                          // print(
+                          //     'snapshot has data ${snapshot.data.toString()}');
+                          return ListView.builder(
+                              padding: EdgeInsets.only(top: 10, bottom: 20),
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: () => {
+                                    snapshot.data![index].isPdf
+                                        ? Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => PDFPage(
+                                                    pdfUrl: snapshot
+                                                        .data![index].pdf!,
+                                                    data:
+                                                        snapshot.data![index])),
+                                          )
+                                        : Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    NonPDFPage(
+                                                      data:
+                                                          snapshot.data![index],
+                                                    ))),
+                                  },
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: TravelCard(
-                                  image: _stories[index]["images"],
-                                  title: _stories[index]["title"],
-                                  description: _stories[index]["description"],
-                                ),
-                              ),
-                            );
-                          }),
+                                  child: Container(
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    child: TravelCard(
+                                      image: snapshot.data![index].images,
+                                      title: snapshot.data![index].title,
+                                      description:
+                                          snapshot.data![index].description,
+                                    ),
+                                  ),
+                                );
+                              });
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      }),
                 )
               ])),
         ));

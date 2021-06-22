@@ -1,16 +1,57 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+class NewsResult {
+  NewsResult({required this.news});
+
+  List<News> news = [];
+
+  NewsResult.fromJson(Map<String, dynamic> json) {
+    if (json['news'] != null) {
+      json['news'].forEach((v) {
+        news.add(News.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() => {
+        "news": List<dynamic>.from(news.map((x) => x.toJson())),
+      };
+}
 
 class News {
-  final String id;
-  final String headerUrl;
-  final String jsonUrl;
-  final String students;
-  final DocumentReference reference;
+  final int id;
+  final String images;
+  final String title;
+  final String? pdf;
+  final String description;
+  final bool isPdf;
+  final List? text;
 
-  News.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot)
-      : id = snapshot.id,
-        students = snapshot.data()!['students'],
-        reference = snapshot.reference,
-        headerUrl = snapshot.data()!['header'],
-        jsonUrl = snapshot.data()!['json'];
+  News(
+      {required this.id,
+      required this.images,
+      required this.description,
+      required this.isPdf,
+      required this.title,
+      this.pdf,
+      this.text});
+
+  factory News.fromJson(Map<String, dynamic> json) => News(
+      id: json["id"],
+      images: json["images"],
+      title: json["title"],
+      description: json["description"],
+      isPdf: (json["isPdf"] == 'yes') ? true : false,
+      pdf: json["pdf"],
+      text: json["text"]);
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "images": images,
+      "title": title,
+      "description": description,
+      "isPdf": isPdf ? "yes" : "no",
+      "pdf": pdf,
+      "text": text
+    };
+  }
 }

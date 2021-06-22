@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
@@ -8,9 +9,9 @@ import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'exchange_students_page.dart';
 
 class CountriesPage extends StatefulWidget {
-  final List<ExchangeStudent> students;
-
-  const CountriesPage({required this.students});
+  // final List<ExchangeStudent> students;
+  //
+  // const CountriesPage({required this.students});
 
   @override
   _CountriesPageState createState() => _CountriesPageState();
@@ -21,9 +22,18 @@ class CountriesPage extends StatefulWidget {
 //https://kangabru.xyz/2020/05/29/zero-to-hero-2.html#preload-svgs
 
 class _CountriesPageState extends State<CountriesPage> {
+  final studentBloc = StudentsBloc();
+
   @override
   void initState() {
+    studentBloc.getStudentList();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    studentBloc.disposeStudent(); // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -59,19 +69,37 @@ class _CountriesPageState extends State<CountriesPage> {
         ),
       ),
       body: Container(
-        child: ListView.builder(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          itemBuilder: (context, index) => SVGListTile(
-              item: countries[index],
-              descriptionPage: ExchangeStudentsPage(
-                country: countries[index],
-                students: widget.students
-                    .where(
-                        (element) => element.country == countries[index].name)
-                    .toList(),
-              )),
-          itemCount: countries.length,
-        ),
+        child: StreamBuilder<List<ExchangeStudent>>(
+            stream: studentBloc.studentList,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                print(snapshot.error.toString());
+                return Center(
+                  child: Text(snapshot.error.toString()),
+                );
+              } else if (snapshot.hasData) {
+                // print(
+                // 'snapshot has data ${snapshot.data.toString()}');
+
+                return ListView.builder(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  itemBuilder: (context, index) => SVGListTile(
+                      item: countries[index],
+                      descriptionPage: ExchangeStudentsPage(
+                        country: countries[index],
+                        students: snapshot.data!
+                            .where((element) =>
+                                element.country == countries[index].name)
+                            .toList(),
+                      )),
+                  itemCount: countries.length,
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
       ),
     );
   }

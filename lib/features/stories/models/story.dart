@@ -9,6 +9,7 @@ class Story extends Equatable {
   final String name;
   final String text1;
   final List message;
+  final String videoUrl;
 
   Story(
       {required this.country,
@@ -18,6 +19,7 @@ class Story extends Equatable {
       required this.name,
       required this.isDutchie,
       required this.text1,
+      required this.videoUrl,
       required this.message});
 
   @override
@@ -30,6 +32,7 @@ class Story extends Equatable {
         text1,
         message,
         isDutchie,
+        videoUrl,
       ];
 
   factory Story.fromJson(Map<String, dynamic> json) => Story(
@@ -40,6 +43,7 @@ class Story extends Equatable {
       name: json["name"],
       text1: json["text1"],
       isDutchie: json["isDutchie"],
+      videoUrl: json["videoUrl"],
       message: json["message"]);
 
   Map<String, dynamic> toJson() {
@@ -52,6 +56,7 @@ class Story extends Equatable {
       "text1": text1,
       "message": message,
       "isDutchie": isDutchie,
+      "videoUrl": videoUrl,
     };
   }
 }

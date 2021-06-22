@@ -1,0 +1,119 @@
+{
+  "news": [
+    {
+      "id": 0,
+      "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
+      "pdf": null,
+      "title": "Informatiedag 18 september 2021",
+      "description": "Deze film toont alle Rotary (korte en lange) jeugdprogramma's, zoals jaaruitwisseling/youth exchange, family-to-family uitwisselingen, zomerkampen in binnen- en buitenland, RYLA alsook het Vlielandkamp. Heb je interesse of een vraag, stuur je mail naar interesse@rotaryyep.nl. Tot snel?!",
+      "isPdf": "no",
+      "text": [
+        {
+          "heading": "Rotary Youth Exchange - Rotary's 5th Avenue"
+        },
+        {
+          "body": [
+            {
+              "paragraph": [
+                "Deze film toont alle Rotary (korte en lange) jeugdprogramma's, zoals jaaruitwisseling/youth exchange, family-to-family uitwisselingen, zomerkampen in binnen- en buitenland, RYLA alsook het Vlielandkamp. Heb je interesse of een vraag, stuur je mail naar interesse@rotaryyep.nl. Tot snel?!"
+              ]
+            },
+            {
+              "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th_Avenue_Jeugd.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "images": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg",
+      "pdf": null,
+      "title": "Update YEP 2021",
+      "description": "NGSE behoort tot de vijfde service avenue van Rotary International, net als de Internationale Jeugduitwisselingen, Interact, Rotaract en RYLA.",
+      "isPdf": "no",
+      "text": [
+        {
+          "heading": "Belangrijke update inzake Rotary uitwisselingen"
+        },
+        {
+          "body": [
+            {
+              "paragraph": [
+                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+              ]
+            },
+            {
+              "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "images": "https://www.rotary.nl/.uc/i9795991e0102a7739a04f1986c0456d5090361002fef0301c000/ngse.png",
+      "pdf": "https://www.rotary.nl/yep/nieuws/NGSE.pdf",
+      "title": "NGSE flyer 2020",
+      "description": "NGSE behoort tot de vijfde service avenue van Rotary International, net als de Internationale Jeugduitwisselingen, Interact, Rotaract en RYLA.",
+      "isPdf": "yes"
+    },
+    {
+      "id": 3,
+      "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/news-letter-summer-2020.jpg",
+      "pdf": "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf",
+      "title": "newsletter summer 2020",
+      "description": "",
+      "isPdf": "yes"
+    },
+    {
+      "id": 4,
+      "images": "https://www.rotary.nl/.uc/i5e3f34890102ae2c0f03e8310005621b8d498e4ab4b20301c000/nieuwsbrief-winter-mdjc-kopie-2-klein.jpg",
+      "pdf": "https://www.rotary.nl/yep/nieuws/nieuwsbrief-winter-2020.pdf",
+      "title": "newsletter winter 2020",
+      "description": "",
+      "isPdf": "yes"
+    },
+    {
+      "id": 5,
+      "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/test/2.PNG",
+      "pdf": null,
+      "title": "Testing News",
+      "description": "frfgefe greg regergerger",
+      "isPdf": "no",
+      "text": [
+        {
+          "heading": "Belangrijke update inzake Rotary uitwisselingen"
+        },
+        {
+          "body": [
+            {
+              "paragraph": [
+                "hi",
+                "hello"
+              ]
+            },
+            {
+              "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+            },
+            {
+              "subHeader": "AANMELDEN"
+            },
+            {
+              "paragraph": [
+                "hi",
+                "hello"
+              ]
+            },
+            {
+              "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

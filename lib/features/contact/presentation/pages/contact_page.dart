@@ -60,8 +60,8 @@ class _ContactPageState extends State<ContactPage> {
           //   )
           // ],
           bottom: TabBar(
-            labelColor: const Color(0xff525c6e),
-            unselectedLabelColor: const Color(0xffacb3bf),
+            labelColor: Palette.selectedlabelColor,
+            unselectedLabelColor: Palette.unselectedLabelColor,
             indicatorPadding: EdgeInsets.all(0.0),
             indicatorWeight: 4.0,
             labelPadding: EdgeInsets.only(left: 0.0, right: 0.0),
