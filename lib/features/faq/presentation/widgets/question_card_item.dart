@@ -53,9 +53,9 @@ class _QuestionCardItemState extends State<QuestionCardItem> {
           // backgroundColor: Colors.white,
           title: _buildTitle(isExpanded: isExpanded),
           trailing: Icon(
-            isExpanded ? FontAwesomeIcons.minus : FontAwesomeIcons.plus,
-            size: 16,
-          ),
+              isExpanded ? FontAwesomeIcons.minus : FontAwesomeIcons.plus,
+              size: 16,
+              color: isExpanded ? Palette.isExpandedNo : Palette.isExpandedYes),
 
           children: <Widget>[
             Padding(
