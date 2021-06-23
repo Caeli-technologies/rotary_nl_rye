@@ -18,7 +18,7 @@ class _CarouselState extends State<Carousel> {
             "assets/image/homepage/Informatiedag_Informatiemarkt_2021_homepage.jpg",
         text: "Informatiemarkt op 18 september a.s."),
     CarouselModel(
-        image: "assets/image/homepage/welcom_to_the_netherlands_abbi.jpg",
+        image: "assets/image/homepage/shelterbox.jpg",
         text: "Social actief zijn"),
     CarouselModel(
         image: "assets/image/b70db74b-aebe-470d-8c47-306640be9a00.jpg",
