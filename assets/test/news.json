@@ -1,6 +1,7 @@
 {
     "news": [
         {
+            "id": 0,
             "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
             "pdf": null,
             "title": "Rotary Youth 5th Avenue",
@@ -25,6 +26,7 @@
             ]
         },
         {
+            "id": 1,
             "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex-text.png",
             "pdf": null,
             "title": "nieuws 2021 Corona",
@@ -52,6 +54,7 @@
             ]
         },
         {
+            "id": 2,
             "images": "https://www.rotary.nl/.uc/i9795991e0102a7739a04f1986c0456d5090361002fef0301c000/ngse.png",
             "pdf": "https://www.rotary.nl/yep/nieuws/NGSE.pdf",
             "title": "NGSE flyer 2020",
@@ -59,6 +62,7 @@
             "isPdf": "yes"
         },
         {
+            "id": 3,
             "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/news-letter-summer-2020.jpg",
             "pdf": "https://www.rotary.nl/yep/nieuws/nieuwsbrief-zomer-2020.pdf",
             "title": "newsletter summer 2020",
@@ -66,6 +70,7 @@
             "isPdf": "yes"
         },
         {
+            "id": 4,
             "images": "https://www.rotary.nl/.uc/i5e3f34890102ae2c0f03e8310005621b8d498e4ab4b20301c000/nieuwsbrief-winter-mdjc-kopie-2-klein.jpg",
             "pdf": "https://www.rotary.nl/yep/nieuws/nieuwsbrief-winter-2020.pdf",
             "title": "newsletter winter 2020",
@@ -73,6 +78,7 @@
             "isPdf": "yes"
         },
         {
+            "id": 5,
             "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/test/2.PNG",
             "pdf": null,
             "title": "Testing News",
