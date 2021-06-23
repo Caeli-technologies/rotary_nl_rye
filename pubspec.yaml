@@ -74,7 +74,7 @@ dependencies:
   flutter_app_badger: ^1.2.0
   flutter_local_notifications: ^6.0.0
 
-  quick_actions: ^0.6.0+2 # something fun to add later (for both android and iOS) https://pub.dev/packages/quick_actions#quick_actions
+  # quick_actions: ^0.6.0+2 # something fun to add later (for both android and iOS) https://pub.dev/packages/quick_actions#quick_actions
   badges: ^2.0.1
   
 

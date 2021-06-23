@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_actions/quick_actions.dart';
+// import 'package:quick_actions/quick_actions.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/firebase/check_update.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
@@ -70,31 +70,31 @@ class _PageNavigatorState extends State<PageNavigator> {
 
 // QuickActions start
 
-    final QuickActions quickActions = QuickActions();
-    quickActions.initialize((shortcutType) {
-      if (shortcutType == 'action_news') {
-        print('The user tapped on the "news view" action.');
-      }
-      if (shortcutType == 'action_calendar') {
-        print('The user tapped on the "calendar view" action.');
-      }
-      if (shortcutType == 'action_emergency') {
-        print('The user tapped on the "emergency view" action.');
-      }
-      // More handling code...
-    });
-    quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(
-          type: 'action_news', localizedTitle: 'News', icon: 'home'),
-      const ShortcutItem(
-          type: 'action_calendar',
-          localizedTitle: 'Calendar',
-          icon: 'icon_help'),
-      const ShortcutItem(
-          type: 'action_emergency',
-          localizedTitle: 'Emergency',
-          icon: 'icon_help')
-    ]);
+    // final QuickActions quickActions = QuickActions();
+    // quickActions.initialize((shortcutType) {
+    //   if (shortcutType == 'action_news') {
+    //     print('The user tapped on the "news view" action.');
+    //   }
+    //   if (shortcutType == 'action_calendar') {
+    //     print('The user tapped on the "calendar view" action.');
+    //   }
+    //   if (shortcutType == 'action_emergency') {
+    //     print('The user tapped on the "emergency view" action.');
+    //   }
+    //   // More handling code...
+    // });
+    // quickActions.setShortcutItems(<ShortcutItem>[
+    //   const ShortcutItem(
+    //       type: 'action_news', localizedTitle: 'News', icon: 'home'),
+    //   const ShortcutItem(
+    //       type: 'action_calendar',
+    //       localizedTitle: 'Calendar',
+    //       icon: 'icon_help'),
+    //   const ShortcutItem(
+    //       type: 'action_emergency',
+    //       localizedTitle: 'Emergency',
+    //       icon: 'icon_help')
+    // ]);
 // QuickActions end
   }
 
