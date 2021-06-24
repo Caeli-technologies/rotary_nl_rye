@@ -91,12 +91,15 @@ class ApiProvider {
     }
     List<Story>? stories;
     if (response.statusCode != 200) {
-      writeFile(content: "{}", fileName: student.name + student.exchangeYear);
+      //writeFile(content: "{}", fileName: student.name + student.exchangeYear);
       return stories = [];
       //throw 'stories response ${response.statusCode}';
     }
     var data = json.decode(response.body);
-    writeFile(content: data, fileName: student.name + student.exchangeYear);
+    writeFile(
+        content: data,
+        fileName: student.name.replaceAll(" ", "_").toLowerCase() +
+            student.exchangeYear);
     try {
       stories = StoryResult.fromJson(data).stories;
       print('Stories parsed');
