@@ -7,7 +7,7 @@ class Story extends Equatable {
   final String imageUrl;
   final bool isDutchie;
   final String name;
-  final String text1;
+  final String description;
   final List message;
   final String videoUrl;
 
@@ -18,7 +18,7 @@ class Story extends Equatable {
       required this.imageUrl,
       required this.name,
       required this.isDutchie,
-      required this.text1,
+      required this.description,
       required this.videoUrl,
       required this.message});
 
@@ -29,7 +29,7 @@ class Story extends Equatable {
         departureDate,
         imageUrl,
         name,
-        text1,
+        description,
         message,
         isDutchie,
         videoUrl,
@@ -41,7 +41,7 @@ class Story extends Equatable {
       departureDate: (json["departureDate"]),
       imageUrl: json["imageUrl"],
       name: json["name"],
-      text1: json["text1"],
+      description: json["description"],
       isDutchie: json["isDutchie"],
       videoUrl: json["videoUrl"],
       message: json["message"]);
@@ -53,7 +53,7 @@ class Story extends Equatable {
       "departureDate": departureDate,
       "imageUrl": imageUrl,
       "name": name,
-      "text1": text1,
+      "description": description,
       "message": message,
       "isDutchie": isDutchie,
       "videoUrl": videoUrl,

@@ -110,7 +110,6 @@ flutter:
      - assets/icons/flags/
      - assets/icons/custom/
      - assets/lang/
-     - assets/test/
      - assets/keys/deepl.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
