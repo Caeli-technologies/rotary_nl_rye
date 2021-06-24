@@ -19,39 +19,36 @@ class _NativeVideoState extends State<NativeVideo> {
 
   @override
   void initState() {
-    _videoPlayerController = VideoPlayerController.network(widget.url);
-
-    // TODO: implement initState
-    _chewieController = ChewieController(
-      allowedScreenSleep: false,
-      allowFullScreen: true,
-      deviceOrientationsAfterFullScreen: [
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ],
-      videoPlayerController: _videoPlayerController,
-      aspectRatio: _aspectRatio,
-      autoInitialize: true,
-      autoPlay: false,
-      showControls: true,
-    );
-    _chewieController.addListener(() {
-      if (_chewieController.isFullScreen) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeRight,
-          DeviceOrientation.landscapeLeft,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
+    super.initState();
+    try {
+      _videoPlayerController = VideoPlayerController.network(widget.url);
+      _chewieController = ChewieController(
+        allowedScreenSleep: false,
+        allowFullScreen: true,
+        deviceOrientationsAfterFullScreen: [
           DeviceOrientation.portraitUp,
           DeviceOrientation.portraitDown,
-        ]);
-      }
-    });
-
-    super.initState();
+        ],
+        videoPlayerController: _videoPlayerController,
+        aspectRatio: _aspectRatio,
+        autoInitialize: true,
+        autoPlay: false,
+        showControls: true,
+      );
+      _chewieController.addListener(() {
+        if (_chewieController.isFullScreen) {
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ]);
+        } else {
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
+        }
+      });
+    } catch (e) {}
   }
 
   @override

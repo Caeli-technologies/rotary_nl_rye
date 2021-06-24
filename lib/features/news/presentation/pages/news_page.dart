@@ -99,109 +99,117 @@ class _NewsPageState extends State<NewsPage> {
         body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.only(left: 15, right: 15),
-              child: ListView(shrinkWrap: true, children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 170,
-                  child: StreamBuilder<String>(
-                      stream: _newsBloc.header,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          print(snapshot.error.toString());
-                          return Center(
-                            child: Text(snapshot.error.toString()),
-                          );
-                        } else if (snapshot.hasData) {
-                          return CachedNetworkImage(
-                            height: 55,
-                            width: 55,
-                            imageUrl: snapshot.data!,
-                            //"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                    image: imageProvider, fit: BoxFit.cover),
-                              ),
-                            ),
-                            placeholder: (context, url) =>
-                                Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
-                          );
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      }),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                Container(
-                  height: Device.height - 300,
-                  child: StreamBuilder<List<News>>(
-                      stream: _newsBloc.news,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          print(snapshot.error.toString());
-                          return Center(
-                            child: Text(snapshot.error.toString()),
-                          );
-                        } else if (snapshot.hasData) {
-                          // print(
-                          //     'snapshot has data ${snapshot.data.toString()}');
-                          return ListView.builder(
-                              padding: EdgeInsets.only(top: 10, bottom: 20),
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () => {
-                                    snapshot.data![index].isPdf
-                                        ? Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => PDFPage(
-                                                    pdfUrl: snapshot
-                                                        .data![index].pdf!,
-                                                    data:
-                                                        snapshot.data![index])),
-                                          )
-                                        : Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    NonPDFPage(
-                                                      data:
-                                                          snapshot.data![index],
-                                                    ))),
-                                  },
+              child: ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 170,
+                      child: StreamBuilder<String>(
+                          stream: _newsBloc.header,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              print(snapshot.error.toString());
+                              return Center(
+                                child: Text(snapshot.error.toString()),
+                              );
+                            } else if (snapshot.hasData) {
+                              return CachedNetworkImage(
+                                height: 55,
+                                width: 55,
+                                imageUrl: snapshot.data!,
+                                //"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover),
+                                  ),
+                                ),
+                                placeholder: (context, url) =>
+                                    Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              );
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          }),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.64,
+                      child: StreamBuilder<List<News>>(
+                          stream: _newsBloc.news,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              print(snapshot.error.toString());
+                              return Center(
+                                child: Text(snapshot.error.toString()),
+                              );
+                            } else if (snapshot.hasData) {
+                              // print(
+                              //     'snapshot has data ${snapshot.data.toString()}');
+                              return ListView.builder(
+                                  padding: EdgeInsets.only(top: 10, bottom: 20),
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      onTap: () => {
+                                        snapshot.data![index].isPdf
+                                            ? Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PDFPage(
+                                                            pdfUrl: snapshot
+                                                                .data![index]
+                                                                .pdf!,
+                                                            data: snapshot
+                                                                .data![index])),
+                                              )
+                                            : Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NonPDFPage(
+                                                          data: snapshot
+                                                              .data![index],
+                                                        ))),
+                                      },
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
-                                  child: Container(
-                                    padding: EdgeInsets.only(bottom: 10),
-                                    child: TravelCard(
-                                      image: snapshot.data![index].images,
-                                      title: snapshot.data![index].title,
-                                      description:
-                                          snapshot.data![index].description,
-                                    ),
-                                  ),
-                                );
-                              });
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      }),
-                )
-              ])),
+                                      child: Container(
+                                        padding: EdgeInsets.only(bottom: 10),
+                                        child: TravelCard(
+                                          image: snapshot.data![index].images,
+                                          title: snapshot.data![index].title,
+                                          description:
+                                              snapshot.data![index].description,
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          }),
+                    )
+                  ])),
         ));
   }
 }
