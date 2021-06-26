@@ -5,8 +5,8 @@ class Organization extends ImageListTileItem {
   final String bio;
   final String district;
   final String imageUrl;
-  final String email;
-  final String phoneNumber;
+  final String? email;
+  final String? phoneNumber;
   final String club;
   final List<String> functions;
 
@@ -15,8 +15,8 @@ class Organization extends ImageListTileItem {
       required this.bio,
       required this.district,
       required this.imageUrl,
-      required this.email,
-      required this.phoneNumber,
+      this.email,
+      this.phoneNumber,
       required this.club,
       required this.functions});
 }

@@ -229,54 +229,61 @@ class OrganizationDetails extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    GestureDetector(
-                      child: Container(
-                          height: 70.0,
-                          width: 70.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30.0),
-                            color: Colors.grey[200],
-                          ),
-                          child: Center(
-                              child: FaIcon(
-                            FontAwesomeIcons.envelope,
-                            color: Colors.black,
-                            size: 30,
-                          ))),
-                      onTap: () => launch("mailto:${person.email}"),
-                    ),
-                    GestureDetector(
-                      child: Container(
-                          height: 65.0,
-                          width: 180.0,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(35.0),
-                              border: Border.all(
-                                  color: Colors.blue.shade100, width: 5),
-                              color: Colors.blue[400]),
-                          child: Center(
-                            child: Row(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 25.0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.phone,
-                                    color: Colors.white,
-                                  ),
+                    person.email == null
+                        ? SizedBox.shrink()
+                        : GestureDetector(
+                            child: Container(
+                                height: 70.0,
+                                width: 70.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  color: Colors.grey[200],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: Text(
-                                    'Call me ',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18.0),
+                                child: Center(
+                                    child: FaIcon(
+                                  FontAwesomeIcons.envelope,
+                                  color: Colors.black,
+                                  size: 30,
+                                ))),
+                            onTap: () => launch("mailto:${person.email}"),
+                          ),
+                    person.phoneNumber == null
+                        ? SizedBox.shrink()
+                        : GestureDetector(
+                            child: Container(
+                                height: 65.0,
+                                width: 180.0,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(35.0),
+                                    border: Border.all(
+                                        color: Colors.blue.shade100, width: 5),
+                                    color: Colors.blue[400]),
+                                child: Center(
+                                  child: Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 25.0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.phone,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child: Text(
+                                          'Call me ',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18.0),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                          )),
-                      onTap: () => launch("tel:${person.phoneNumber}"),
-                    )
+                                )),
+                            onTap: () => launch("tel:${person.phoneNumber}"),
+                          )
                   ],
                 ),
               ),

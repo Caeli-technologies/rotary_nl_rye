@@ -9,8 +9,8 @@ class Rotex extends ImageListTileItem {
   final String? websiteUrl;
   final String bio;
   final String imageUrl;
-  final String email;
-  final String phoneNumber;
+  final String? email;
+  final String? phoneNumber;
   Rotex(
       {required this.name,
       required this.role,
@@ -20,6 +20,6 @@ class Rotex extends ImageListTileItem {
       this.linkedinUrl,
       required this.bio,
       required this.imageUrl,
-      required this.email,
-      required this.phoneNumber});
+      this.email,
+      this.phoneNumber});
 }
