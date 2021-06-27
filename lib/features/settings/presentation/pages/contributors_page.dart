@@ -47,7 +47,7 @@ class _ContributorsPageState extends State<ContributorsPage> {
           ),
         ),
         body: Container(
-          height: Device.height - 277,
+          // height: Device.height - 277,
           margin: EdgeInsets.only(left: 20, right: 20),
           child: ListView.builder(
             shrinkWrap: true,

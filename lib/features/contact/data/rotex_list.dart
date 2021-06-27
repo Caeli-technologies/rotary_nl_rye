@@ -6,13 +6,13 @@ List<Rotex> rotexList = [
       name: "Kylian Klein Hesselink",
       bio: "kylianHesselinkBio",
       imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/kylian-klein-hesselink.jpg",
       email: null,
       phoneNumber: null,
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
+      facebookUrl: 'https://www.facebook.com/kyliankh',
+      instagramUrl: 'https://www.instagram.com/kyliankh/',
+      websiteUrl: null,
+      linkedinUrl: 'https://www.linkedin.com/in/kylian-klein-hesselink',
       role: 'Voorzitter'),
 // Toon ter Ellen
   Rotex(

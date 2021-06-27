@@ -161,33 +161,34 @@ class _NewsPageState extends State<NewsPage> {
                               // print(
                               //     'snapshot has data ${snapshot.data.toString()}');
                               return ListView.builder(
-                                  padding: EdgeInsets.only(top: 10, bottom: 20),
-                                  itemCount: snapshot.data!.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return GestureDetector(
+                                padding: EdgeInsets.only(top: 10, bottom: 30),
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return GestureDetector(
                                       onTap: () => {
-                                        snapshot.data![index].isPdf
-                                            ? Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PDFPage(
-                                                            pdfUrl: snapshot
-                                                                .data![index]
-                                                                .pdf!,
-                                                            data: snapshot
-                                                                .data![index])),
-                                              )
-                                            : Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        NonPDFPage(
-                                                          data: snapshot
-                                                              .data![index],
-                                                        ))),
-                                      },
+                                            snapshot.data![index].isPdf
+                                                ? Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            PDFPage(
+                                                                pdfUrl: snapshot
+                                                                    .data![
+                                                                        index]
+                                                                    .pdf!,
+                                                                data: snapshot
+                                                                        .data![
+                                                                    index])),
+                                                  )
+                                                : Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            NonPDFPage(
+                                                              data: snapshot
+                                                                  .data![index],
+                                                            ))),
+                                          },
 
 //TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
 
@@ -199,9 +200,9 @@ class _NewsPageState extends State<NewsPage> {
                                           description:
                                               snapshot.data![index].description,
                                         ),
-                                      ),
-                                    );
-                                  });
+                                      ));
+                                },
+                              );
                             } else {
                               return Center(
                                 child: CircularProgressIndicator(),
