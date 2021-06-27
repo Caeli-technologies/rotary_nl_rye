@@ -27,7 +27,7 @@ class _CarouselState extends State<Carousel> {
         image: "assets/image/homepage/barbara_with_students.jpg",
         text: "Nieuwe vrienden maken"),
     CarouselModel(
-        image: "assets/image/homepage/saying_goodby.jpg",
+        image: "assets/image/homepage/saying_goodby_2.jpeg",
         text: "Jezelf nog beter leren kennen")
   ];
 
