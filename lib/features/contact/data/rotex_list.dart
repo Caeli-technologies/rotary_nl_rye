@@ -31,20 +31,20 @@ List<Rotex> rotexList = [
     role: 'Penningmeester',
   ),
 // Céline Hof
-  Rotex(
-    name: "Céline Hof",
-    bio: "celineHofBio",
-    imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: '',
-    instagramUrl: '',
-    websiteUrl: '',
-    linkedinUrl: '',
-    role: 'Secretaris',
-  ),
+  // Rotex(
+  //   name: "Céline Hof",
+  //   bio: "celineHofBio",
+  //   imageUrl:
+  //       "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+  //   email: null,
+  //   phoneNumber: null,
+  //   snapchatUrl: null,
+  //   facebookUrl: null,
+  //   instagramUrl: null,
+  //   websiteUrl: null,
+  //   linkedinUrl: null,
+  //   role: 'Secretaris',
+  // ),
 // Victor Storm van ‘s Gravesande
   Rotex(
     name: "Victor Storm van ‘s Gravesande",
@@ -65,28 +65,42 @@ List<Rotex> rotexList = [
       name: "Fleur Heupers",
       bio: "fleurHeupersBio",
       imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/fleur-heupers.png",
       email: null,
       phoneNumber: null,
-      facebookUrl: '',
-      snapchatUrl: null,
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
+      facebookUrl: 'https://www.facebook.com/fleur.heupers.9',
+      snapchatUrl: 'https://www.snapchat.com/add/fleur.hps/',
+      instagramUrl: 'https://www.instagram.com/fleurheupers/',
+      websiteUrl: null,
+      linkedinUrl: null,
       role: 'Commissie PR - Extern'),
 // Josephine van Dijk
+  // Rotex(
+  //     name: "Josephine van Dijk",
+  //     bio: "josephineDijkBio",
+  //     imageUrl:
+  //         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+  //     email: null,
+  //     phoneNumber: null,
+  //     facebookUrl: null,
+  //     snapchatUrl: null,
+  //     instagramUrl: null,
+  //     websiteUrl: null,
+  //     linkedinUrl: null,
+  //     role: 'Commissie PR - Extern'),
+  // Julia Brok
   Rotex(
-      name: "Josephine van Dijk",
-      bio: "josephineDijkBio",
+      name: "Julia Brok",
+      bio: "juliaBrokBio",
       imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/julia-brok.jpg",
       email: null,
       phoneNumber: null,
-      facebookUrl: '',
+      facebookUrl: null,
       snapchatUrl: null,
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
+      instagramUrl: 'https://www.instagram.com/juliabrok_/',
+      websiteUrl: null,
+      linkedinUrl: null,
       role: 'Commissie PR - Extern'),
 // Nikki Mureau
   Rotex(
@@ -110,11 +124,11 @@ List<Rotex> rotexList = [
           "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/fynn-boots.jpg",
       email: null,
       phoneNumber: null,
-      facebookUrl: '',
-      instagramUrl: '',
-      snapchatUrl: null,
-      websiteUrl: '',
-      linkedinUrl: '',
+      facebookUrl: 'https://www.facebook.com/fynn.boots',
+      instagramUrl: 'https://www.instagram.com/fynnboots/',
+      snapchatUrl: 'https://www.snapchat.com/add/fynnboots',
+      websiteUrl: null,
+      linkedinUrl: null,
       role: 'Commissie Inbound'),
 // Daniek de Koning
   Rotex(
@@ -159,19 +173,19 @@ List<Rotex> rotexList = [
       linkedinUrl: null,
       role: 'Commissie Prebound / Rebound'),
 // Pascal Stomp
-  Rotex(
-      name: "Pascal Stomp",
-      bio: "pascalStompBio",
-      imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-      email: null,
-      phoneNumber: null,
-      snapchatUrl: null,
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
-      role: 'Commissie Prebound / Rebound'),
+  // Rotex(
+  //     name: "Pascal Stomp",
+  //     bio: "pascalStompBio",
+  //     imageUrl:
+  //         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+  //     email: null,
+  //     phoneNumber: null,
+  //     snapchatUrl: null,
+  //     facebookUrl: null,
+  //     instagramUrl: null,
+  //     websiteUrl: null,
+  //     linkedinUrl: null,
+  //     role: 'Commissie Prebound / Rebound'),
 // Emil Laitervo
   Rotex(
       name: "Emil Laitervo",
@@ -187,17 +201,17 @@ List<Rotex> rotexList = [
       linkedinUrl: null,
       role: 'Commissie Prebound / Rebound'),
 // Sanne Pipping
-  Rotex(
-      name: "Sanne Pipping",
-      bio: "sannePippingBio",
-      imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-      email: null,
-      phoneNumber: null,
-      snapchatUrl: null,
-      facebookUrl: '',
-      instagramUrl: '',
-      websiteUrl: '',
-      linkedinUrl: '',
-      role: 'Commissie Prebound / Rebound'),
+  // Rotex(
+  //     name: "Sanne Pipping",
+  //     bio: "sannePippingBio",
+  //     imageUrl:
+  //         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+  //     email: null,
+  //     phoneNumber: null,
+  //     snapchatUrl: null,
+  //     facebookUrl: null,
+  //     instagramUrl: null,
+  //     websiteUrl: null,
+  //     linkedinUrl: null,
+  //     role: 'Commissie Prebound / Rebound'),
 ];
