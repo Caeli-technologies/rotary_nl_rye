@@ -124,7 +124,8 @@ class RotexDetails extends StatelessWidget {
               ),
               person.websiteUrl == null &&
                       person.facebookUrl == null &&
-                      person.instagramUrl == null
+                      person.instagramUrl == null &&
+                      person.snapchatUrl == null
                   ? SizedBox.shrink()
                   : Padding(
                       padding: const EdgeInsets.only(
@@ -154,6 +155,23 @@ class RotexDetails extends StatelessWidget {
                                     color: Color(0xFFbc2a8d),
                                   ),
                                   onPressed: () => launch(person.instagramUrl),
+                                ),
+                              ],
+                            ),
+                          ),
+                    person.snapchatUrl == null
+                        ? SizedBox.shrink()
+                        : Padding(
+                            padding:
+                                const EdgeInsets.only(right: 10.0, left: 10.0),
+                            child: Stack(
+                              children: <Widget>[
+                                TextButton(
+                                  child: FaIcon(
+                                    FontAwesomeIcons.snapchatGhost,
+                                    color: Color(0xFFFFFC00),
+                                  ),
+                                  onPressed: () => launch(person.snapchatUrl),
                                 ),
                               ],
                             ),
@@ -216,7 +234,8 @@ class RotexDetails extends StatelessWidget {
               person.websiteUrl == null &&
                       person.linkedinUrl == null &&
                       person.facebookUrl == null &&
-                      person.instagramUrl == null
+                      person.instagramUrl == null &&
+                      person.snapchatUrl == null
                   ? SizedBox.shrink()
                   : Padding(
                       padding: const EdgeInsets.only(

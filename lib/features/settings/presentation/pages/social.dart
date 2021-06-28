@@ -82,18 +82,6 @@ class _SocialPageState extends State<SocialPage> {
                   'test3 ',
                   'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
                   ''),
-
-              //test for dynamic links
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildLinkOptionRow(
-                  context,
-                  '[$id]',
-                  'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-                  ''),
-              //end test
             ],
           )
         ],

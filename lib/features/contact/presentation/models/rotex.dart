@@ -7,6 +7,7 @@ class Rotex extends ImageListTileItem {
   final String? instagramUrl;
   final String? linkedinUrl;
   final String? websiteUrl;
+  final String? snapchatUrl;
   final String bio;
   final String imageUrl;
   final String? email;
@@ -18,6 +19,7 @@ class Rotex extends ImageListTileItem {
       this.instagramUrl,
       this.websiteUrl,
       this.linkedinUrl,
+      this.snapchatUrl,
       required this.bio,
       required this.imageUrl,
       this.email,
