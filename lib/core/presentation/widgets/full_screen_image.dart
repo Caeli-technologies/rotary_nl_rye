@@ -60,7 +60,7 @@ class RedeemConfirmationScreen extends StatelessWidget {
                 ), // this is the main reason of transparency at next screen. I am ignoring rest implementation but what i have achieved is you can see.
               )),
           onTap: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
           }),
     );
   }
