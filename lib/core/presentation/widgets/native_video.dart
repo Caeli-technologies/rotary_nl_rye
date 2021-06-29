@@ -79,7 +79,7 @@ class _NativeVideoState extends State<NativeVideo> {
   Future<void> loadSharedPreferencesAndSwitchState() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      isSwitchedFT = prefs.getBool("autoInitializeState")!;
+      isSwitchedFT = prefs.getBool("autoInitializeState") ?? false;
     });
   }
 
