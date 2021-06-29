@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/bloc/bloc.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_video.dart';
 import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
@@ -94,10 +95,17 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    Container(
-                      width: 100.0,
-                      height: 100.0,
+                    InkWell(
+                      borderRadius: BorderRadius.circular(60),
+                      onTap: () {
+                        Navigator.of(context).push(PageRouteBuilder(
+                            opaque: false,
+                            pageBuilder: (BuildContext context, _, __) =>
+                                FullScreenImage(url: student.imageUrl)));
+                      },
                       child: CachedNetworkImage(
+                        height: 100,
+                        width: 100,
                         imageUrl: student.imageUrl,
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
@@ -177,7 +185,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                       thickness: 2,
                     ),
                     Container(
-                      height: Device.height - 395,
+                      height: MediaQuery.of(context).size.height * 0.57,
                       child: StreamBuilder<List<Story>>(
                           stream: storyBloc.storyList,
                           builder: (context, snapshot) {
