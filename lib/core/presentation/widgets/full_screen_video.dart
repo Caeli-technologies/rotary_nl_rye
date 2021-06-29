@@ -20,69 +20,72 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
   _FullScreenVideoState({required this.story});
 
   late VideoPlayerController _videoPlayerController;
-  late ChewieController _chewieController;
+  ChewieController? _chewieController;
   double _aspectRatio = 16 / 9;
   bool isSwitchedFT = false;
 
+  Future<void> _loadPrefs() async {
+    loadSharedPreferencesAndSwitchState().then((_) {
+      loadVideo();
+    });
+  }
+
   @override
   void initState() {
-    getSwitchValues();
     super.initState();
-    try {
-      _videoPlayerController = VideoPlayerController.network(story.videoUrl);
-      _chewieController = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ],
-        videoPlayerController: _videoPlayerController,
-        aspectRatio: _aspectRatio,
-        autoInitialize: isSwitchedFT,
-        autoPlay: false,
-        showControls: true,
-      );
-      _chewieController.addListener(() {
-        if (_chewieController.isFullScreen) {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-          ]);
-        } else {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-        }
-      });
-    } catch (e) {}
-  }
-
-  getSwitchValues() async {
-    isSwitchedFT = (await getSwitchState())!;
-    setState(() {});
-  }
-
-  Future<bool?> getSwitchState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? isSwitchedFT = prefs.getBool("switchVideoState");
-    print(isSwitchedFT);
-
-    return isSwitchedFT;
+    _loadPrefs();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     _videoPlayerController.dispose();
-    _chewieController.dispose();
+    _chewieController?.dispose();
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
     super.dispose();
+  }
+
+  void loadVideo() async {
+    _videoPlayerController = VideoPlayerController.network(story.videoUrl);
+    await Future.wait([
+      // _videoPlayerController.initialize(),
+    ]);
+    _chewieController = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: true,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: _aspectRatio,
+      autoInitialize: isSwitchedFT,
+      autoPlay: false,
+      showControls: true,
+    );
+    _chewieController!.addListener(() {
+      if (_chewieController!.isFullScreen) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeRight,
+          DeviceOrientation.landscapeLeft,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+      }
+    });
+    setState(() {});
+  }
+
+  Future<void> loadSharedPreferencesAndSwitchState() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isSwitchedFT = prefs.getBool("autoInitializeState")!;
+    });
   }
 
   @override
@@ -123,9 +126,16 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
               width: MediaQuery.of(context).size.width,
               // height: MediaQuery.of(context).size.height * 0.3,
               height: 235,
-              child: Chewie(
-                controller: _chewieController,
-              ),
+              child: _chewieController != null
+                  ? Chewie(
+                      controller: _chewieController!,
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                      ],
+                    ),
             )));
   }
 }

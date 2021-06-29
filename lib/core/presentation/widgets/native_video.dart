@@ -14,19 +14,15 @@ class NativeVideo extends StatefulWidget {
 }
 
 class _NativeVideoState extends State<NativeVideo> {
-  //TODO this needs to be fixed
   late VideoPlayerController _videoPlayerController;
-  late ChewieController _chewieController;
+  ChewieController? _chewieController;
   double _aspectRatio = 16 / 9;
   bool isSwitchedFT = false;
-
-  bool _loading = true;
 
   Future<void> _loadPrefs() async {
     loadSharedPreferencesAndSwitchState().then((_) {
       loadVideo();
     });
-    setState(() => _loading = false);
   }
 
   @override
@@ -38,49 +34,50 @@ class _NativeVideoState extends State<NativeVideo> {
   @override
   void dispose() {
     _videoPlayerController.dispose();
-    _chewieController.dispose();
+    _chewieController?.dispose();
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
     super.dispose();
-    _loading = true;
   }
 
-  loadVideo() {
-    try {
-      _videoPlayerController = VideoPlayerController.network(widget.url);
-      _chewieController = ChewieController(
-        allowedScreenSleep: false,
-        allowFullScreen: true,
-        deviceOrientationsAfterFullScreen: [
+  void loadVideo() async {
+    _videoPlayerController = VideoPlayerController.network(widget.url);
+    await Future.wait([
+      // _videoPlayerController.initialize(),
+    ]);
+    _chewieController = ChewieController(
+      allowedScreenSleep: false,
+      allowFullScreen: true,
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: _aspectRatio,
+      autoInitialize: isSwitchedFT,
+      autoPlay: false,
+      showControls: true,
+    );
+    _chewieController!.addListener(() {
+      if (_chewieController!.isFullScreen) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeRight,
+          DeviceOrientation.landscapeLeft,
+        ]);
+      } else {
+        SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
           DeviceOrientation.portraitDown,
-        ],
-        videoPlayerController: _videoPlayerController,
-        aspectRatio: _aspectRatio,
-        autoInitialize: isSwitchedFT,
-        autoPlay: false,
-        showControls: true,
-      );
-      _chewieController.addListener(() {
-        if (_chewieController.isFullScreen) {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-          ]);
-        } else {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-        }
-      });
-    } catch (e) {}
+        ]);
+      }
+    });
+    setState(() {});
   }
 
-  loadSharedPreferencesAndSwitchState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  Future<void> loadSharedPreferencesAndSwitchState() async {
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
       isSwitchedFT = prefs.getBool("autoInitializeState")!;
     });
@@ -88,15 +85,20 @@ class _NativeVideoState extends State<NativeVideo> {
 
   @override
   Widget build(BuildContext context) {
-    return _loading == true
-        ? CircularProgressIndicator()
-        : Container(
-            //margin: const EdgeInsets.all(10.0),
-            width: MediaQuery.of(context).size.width,
-            height: 220,
-            child: Chewie(
-              controller: _chewieController,
+    return Container(
+      //margin: const EdgeInsets.all(10.0),
+      width: MediaQuery.of(context).size.width,
+      height: 220,
+      child: _chewieController != null
+          ? Chewie(
+              controller: _chewieController!,
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+              ],
             ),
-          );
+    );
   }
 }
