@@ -70,8 +70,7 @@ class InboundsDetails extends StatelessWidget {
                           Navigator.of(context).push(PageRouteBuilder(
                               opaque: false,
                               pageBuilder: (BuildContext context, _, __) =>
-                                  RedeemConfirmationScreen(
-                                      url: person.imageUrl)));
+                                  FullScreenImage(url: person.imageUrl)));
                         },
                         child: CachedNetworkImage(
                           height: 60,

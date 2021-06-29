@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-class RedeemConfirmationScreen extends StatelessWidget {
+class FullScreenImage extends StatelessWidget {
   final String url;
 
-  RedeemConfirmationScreen({required this.url});
+  FullScreenImage({required this.url});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class RedeemConfirmationScreen extends StatelessWidget {
           leading: SizedBox.shrink(),
           actions: [
             Container(
-              margin: EdgeInsets.only(left: 10, top: 5),
+              margin: EdgeInsets.only(right: 10, top: 5),
               width: 40,
               height: 40,
               decoration:
