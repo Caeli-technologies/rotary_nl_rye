@@ -144,7 +144,21 @@ List<Rotex> rotexList = [
       websiteUrl: null,
       linkedinUrl: null,
       role: 'Commissie Inbound'),
-  // Kevin Kooistra
+// Britt Krijgsman
+  Rotex(
+      name: "Britt Krijgsman",
+      bio: "brittKrijgsmanBio",
+      imageUrl:
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/britt-krijgsman.jpg",
+      email: null,
+      phoneNumber: null,
+      facebookUrl: 'https://www.facebook.com/britt.krijgsman',
+      instagramUrl: 'https://www.instagram.com/brittkrijgsman/',
+      websiteUrl: null,
+      snapchatUrl: null,
+      linkedinUrl: null,
+      role: 'Commissie Inbound'),
+// Kevin Kooistra
   Rotex(
       name: "Kevin Kooistra",
       bio: "kevinKooistraBio",
