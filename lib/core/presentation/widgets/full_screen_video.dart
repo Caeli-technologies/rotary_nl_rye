@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
 
 class FullScreenVideo extends StatefulWidget {
@@ -21,9 +22,11 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
   double _aspectRatio = 16 / 9;
+  bool isSwitchedFT = false;
 
   @override
   void initState() {
+    getSwitchValues();
     super.initState();
     try {
       _videoPlayerController = VideoPlayerController.network(story.videoUrl);
@@ -36,7 +39,7 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
         ],
         videoPlayerController: _videoPlayerController,
         aspectRatio: _aspectRatio,
-        autoInitialize: true,
+        autoInitialize: isSwitchedFT,
         autoPlay: false,
         showControls: true,
       );
@@ -54,6 +57,19 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
         }
       });
     } catch (e) {}
+  }
+
+  getSwitchValues() async {
+    isSwitchedFT = (await getSwitchState())!;
+    setState(() {});
+  }
+
+  Future<bool?> getSwitchState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isSwitchedFT = prefs.getBool("switchVideoState");
+    print(isSwitchedFT);
+
+    return isSwitchedFT;
   }
 
   @override

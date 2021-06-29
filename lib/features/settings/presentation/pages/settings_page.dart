@@ -10,6 +10,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'counselor_list_page.dart';
 
@@ -22,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   var slider1 = true;
   var slider2 = true;
   var slider3 = true;
+  bool isSwitchedFT = false;
 
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -34,6 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
   initState() {
     super.initState();
     _initPackageInfo();
+    getSwitchValues();
   }
 
   Future<void> _initPackageInfo() async {
@@ -41,6 +44,26 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       _packageInfo = info;
     });
+  }
+
+  getSwitchValues() async {
+    isSwitchedFT = (await getSwitchState())!;
+    setState(() {});
+  }
+
+  Future<bool> saveSwitchState(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("autoInitializeState", value);
+    print('Switch Value saved $value');
+    return prefs.setBool("autoInitializeState", value);
+  }
+
+  Future<bool?> getSwitchState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isSwitchedFT = prefs.getBool("autoInitializeState");
+    print(isSwitchedFT);
+
+    return isSwitchedFT;
   }
 
   @override
@@ -102,30 +125,35 @@ class _SettingsPageState extends State<SettingsPage> {
                 null),
 
             //TODO maybe add later a "Auto load video's on cellular" Switch
-/*
+
             buildNotificationOptionRow(
-                "Auto load video's on cellular",
+                "Auto load video's",
                 FontAwesomeIcons.wifi,
                 Platform.isIOS
                     ? CupertinoSwitch(
                         activeColor: Palette.accentColor,
-                        value: slider1,
-                        onChanged: (value) {
+                        value: isSwitchedFT,
+                        onChanged: (bool value) {
                           setState(() {
-                            slider1 = value;
+                            isSwitchedFT = value;
+                            saveSwitchState(value);
+                            print('Saved state is $isSwitchedFT');
                           });
+                          print(isSwitchedFT);
                         },
                       )
                     : Switch(
                         activeColor: Palette.accentColor,
-                        value: slider1,
-                        onChanged: (value) {
+                        value: isSwitchedFT,
+                        onChanged: (bool value) {
                           setState(() {
-                            slider1 = value;
+                            isSwitchedFT = value;
+                            saveSwitchState(value);
+                            print('Saved state is $isSwitchedFT');
                           });
+                          print(isSwitchedFT);
                         },
                       )),
-*/
 
             // buildNotificationOptionRow(
             //     DemoLocalizations.of(context).trans('new4You'),
