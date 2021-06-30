@@ -60,7 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<bool?> getSwitchState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? isSwitchedFT = prefs.getBool("autoInitializeState");
+    bool isSwitchedFT = prefs.getBool("autoInitializeState") ?? false;
     print(isSwitchedFT);
 
     return isSwitchedFT;
