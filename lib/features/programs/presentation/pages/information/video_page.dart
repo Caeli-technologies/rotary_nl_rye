@@ -1,14 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
-import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
 
 class VideoPage extends StatefulWidget {
   @override
@@ -16,39 +9,9 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
-  late VideoPlayerController _videoPlayerController;
-  late ChewieController _chewieController;
-  double _aspectRatio = 16 / 9;
   @override
   initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.network(
-        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4");
-    _chewieController = ChewieController(
-      allowedScreenSleep: false,
-      allowFullScreen: true,
-      deviceOrientationsAfterFullScreen: [
-        DeviceOrientation.portraitUp,
-      ],
-      videoPlayerController: _videoPlayerController,
-      aspectRatio: _aspectRatio,
-      autoInitialize: true,
-      autoPlay: false,
-      showControls: true,
-    );
-    _chewieController.addListener(() {
-      if (_chewieController.isFullScreen) {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeRight,
-          DeviceOrientation.landscapeLeft,
-        ]);
-      } else {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ]);
-      }
-    });
   }
 
   @override
@@ -118,13 +81,11 @@ class _VideoPageState extends State<VideoPage> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Container(
-                //margin: const EdgeInsets.all(10.0),
-                width: MediaQuery.of(context).size.width,
-                height: 220,
-                child: Chewie(
-                  controller: _chewieController,
-                ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: NativeVideo(
+                    url:
+                        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4"),
               ),
 
               Padding(
@@ -189,11 +150,6 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
     super.dispose();
   }
 }
