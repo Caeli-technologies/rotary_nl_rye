@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -9,11 +8,11 @@ class DemoLocalizations {
 
   final Locale locale;
 
-  static DemoLocalizations of(BuildContext context) {
+  static DemoLocalizations? of(BuildContext context) {
     return Localizations.of<DemoLocalizations>(context, DemoLocalizations);
   }
 
-  Map<String, String> _sentences;
+  late Map<String, String> _sentences;
 
   Future<bool> load() async {
     String data = await rootBundle
@@ -29,7 +28,7 @@ class DemoLocalizations {
   }
 
   String trans(String key) {
-    return this._sentences[key];
+    return this._sentences[key]!;
   }
 }
 
@@ -50,8 +49,8 @@ class DemoLocalizationsDelegate
   @override
   Future<DemoLocalizations> load(Locale locale) async {
 // flutter 0.11 localeResolutionCallback fix, change it if fixed
-    if (locale == null || isSupported(locale) == false) {
-      debugPrint('*app_locale_delegate* fallback to locale ');
+    if (isSupported(locale) == false) {
+      print('*app_locale_delegate* fallback to locale ');
 
       locale = Locale('en', ''); // fallback to default language
     }

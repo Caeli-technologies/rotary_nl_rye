@@ -279,7 +279,7 @@ class RotexDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
-                  DemoLocalizations.of(context).trans(person.bio),
+                  DemoLocalizations.of(context)!.trans(person.bio),
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),

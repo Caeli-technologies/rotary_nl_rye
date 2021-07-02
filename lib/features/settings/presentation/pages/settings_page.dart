@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
@@ -74,7 +73,7 @@ class _SettingsPageState extends State<SettingsPage> {
         elevation: 0.0,
         centerTitle: false,
         title: Text(
-          DemoLocalizations.of(context).trans('settingsTitle'),
+          DemoLocalizations.of(context)!.trans('settingsTitle'),
           textScaleFactor: 1.7,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -101,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Row(
               children: [
                 Text(
-                  DemoLocalizations.of(context).trans('account'),
+                  DemoLocalizations.of(context)!.trans('account'),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -115,12 +114,12 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             buildAccountOptionRow(
                 context,
-                DemoLocalizations.of(context).trans('social'),
+                DemoLocalizations.of(context)!.trans('social'),
                 FontAwesomeIcons.hashtag,
                 SocialPage()),
             buildAccountOptionRow(
                 context,
-                DemoLocalizations.of(context).trans('privacyAndSecurity'),
+                DemoLocalizations.of(context)!.trans('privacyAndSecurity'),
                 FontAwesomeIcons.shieldAlt,
                 null),
 

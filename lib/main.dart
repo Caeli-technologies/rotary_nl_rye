@@ -57,8 +57,9 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(
-      Platform.isIOS ? null : _firebaseMessagingBackgroundHandler);
+  if (Platform.isAndroid) {
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  }
 
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(

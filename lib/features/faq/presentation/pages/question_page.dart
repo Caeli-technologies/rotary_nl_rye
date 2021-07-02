@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -20,7 +19,7 @@ class _QuestionPageState extends State<QuestionPage> {
           elevation: 0.0,
           centerTitle: false,
           title: Text(
-            DemoLocalizations.of(context).trans('questionTitle'),
+            DemoLocalizations.of(context)!.trans('questionTitle'),
             textScaleFactor: 1.7,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
