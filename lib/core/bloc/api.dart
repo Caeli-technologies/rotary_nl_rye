@@ -4,27 +4,28 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:rotary_nl_rye/core/bloc/database/db_bloc.dart';
+import 'package:rotary_nl_rye/core/bloc/domain/db_bloc.dart';
+import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
+import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/features/news/models/firestore_url.dart';
-import 'package:rotary_nl_rye/features/news/models/news.dart';
-import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqflite.dart';
 
-import 'database/database.dart';
+import 'database/file_status_entity.dart';
 
-class ApiProvider {
-  final dbBloc = DbBloc();
+final String fireStoreUrlsFileName = 'firestoreUrl';
+final String newsJsonFile = 'news';
+final String studentListJsonFile = 'studentList';
+final String firstRunKey = 'firstRun';
 
+class ApiProvider extends DbBloc{
   /// Firestore fetch
   Future<FireStoreUrl> fetchUrls() async {
     FirebaseAuth.instance.signInAnonymously();
     print('signed in Anonymously');
     try {
-      final x = await FirebaseFirestore.instance
+      final urls = await FirebaseFirestore.instance
           .collection('news')
           .doc('today')
           .get()
@@ -32,7 +33,7 @@ class ApiProvider {
             (value) => FireStoreUrl.fromSnapshot(value),
           );
       print('FireStoreUrl fetched and parsed');
-      return x;
+      return urls;
     } catch (e) {
       print(e);
       throw 'unable to fetch and parse FirestoreUrl $e';
@@ -152,7 +153,7 @@ class ApiProvider {
     }
   }
 
-  Future<File> _localFile({required String fileName}) async {
+  Future<File> _createFile({required String fileName}) async {
     try {
       final path = await _localPath;
       print('got local file $path/$fileName.json');
@@ -162,9 +163,9 @@ class ApiProvider {
     }
   }
 
-  Future<File> writeFile({required content, required String fileName}) async {
-    final file = await _localFile(fileName: fileName);
-    List<FileStatus>? results = await dbBloc.getFileStatus(query: fileName);
+  Future<File> writeFile({required content, required String fileName}) async {/// UrlsObject, fireStoreUrls
+    final file = await _createFile(fileName: fileName);
+    List<FileStatus>? results = await getAllFileStatus();
     List<FileStatus> contain;
     if (results != null) {
       contain =
@@ -175,7 +176,7 @@ class ApiProvider {
     try {
       if (!contain.contains(fileName)) {
         print('file doesn\'t exist in db writing... ');
-        dbBloc.addFileStatus(FileStatus(
+        addFileStatus(FileStatus(
             fileName: fileName, lastFetch: DateTime.now(), isLocal: true));
         print('added file to db');
       } else {
@@ -193,7 +194,7 @@ class ApiProvider {
   }
 
   Future readFile({required String fileName}) async {
-    final file = await _localFile(fileName: fileName);
+    final file = await _createFile(fileName: fileName);
     try {
 // todo requrires changes
 
@@ -210,7 +211,7 @@ class ApiProvider {
 
   Future deleteFile({required String fileName}) async {
     try {
-      final file = await _localFile(fileName: fileName);
+      final file = await _createFile(fileName: fileName);
       file.delete();
       print('File deleted $fileName');
     } catch (e) {
@@ -219,8 +220,8 @@ class ApiProvider {
 
     }
     try {
-      dbBloc.updateFileStatus(FileStatus(
-          fileName: fireStoreUrlFile,
+      updateFileStatus(FileStatus(
+          fileName: fireStoreUrlsFileName,
           lastFetch: DateTime.now(),
           isLocal: false));
       print('db file updated $fileName');
@@ -231,10 +232,10 @@ class ApiProvider {
 
   /// Shared preferences
 
-  addStringToSF({required String key, required String value}) async {
+  addIntToSF({required String key, required int value}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      prefs.setString(key, value);
+      prefs.setInt(key, value);
       print('added string $value to SF $key');
     } catch (e) {
       throw 'unable to add string $value to SF $key - $e';
@@ -252,12 +253,12 @@ class ApiProvider {
     }
   }
 
-  Future<String?> getStringValuesSF(String key) async {
+  Future<int?> getStringValuesSF(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    String? value;
+    int? value;
     try {
-      value = prefs.getString(key);
+      value = prefs.getInt(key);
 
       print('got string $value from SF $key');
       return value;
@@ -266,17 +267,14 @@ class ApiProvider {
     }
   }
 
-  getBoolValuesSF(String key) async {
+  isDataPresent(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    bool? value;
-    try {
-      value = prefs.getBool(key);
-      print('got bool $value from SF $key');
-      return value;
-    } catch (e) {
-      throw 'unable to read bool $value to SF $key - $e';
+    int? value = prefs.getInt(key);
+    if (value == null) {
+      return true;
     }
+    return false;
   }
 
   removeValues(String key) async {
@@ -291,59 +289,3 @@ class ApiProvider {
     }
   }
 }
-
-final filesTABLE = 'files';
-
-class DatabaseProvider {
-  static final DatabaseProvider dbProvider = DatabaseProvider();
-  Database? _database;
-
-  Future<Database> get database async {
-    if (_database != null) {
-      print('db fetched');
-      return _database!;
-    }
-    _database = await createDatabase();
-    return _database!;
-  }
-
-  createDatabase() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    //"ReactiveTodo.db is our database instance name
-    String path = join(documentsDirectory.path, "fileStatus.db");
-    var database = await openDatabase(path,
-        version: 1, onCreate: initDB, onUpgrade: onUpgrade);
-
-    print('database created');
-    return database;
-  }
-
-  //This is optional, and only used for changing DB schema migrations
-  void onUpgrade(Database database, int oldVersion, int newVersion) {
-    if (newVersion > oldVersion) {}
-  }
-
-  void initDB(Database database, int version) async {
-    await database.execute("CREATE TABLE $filesTABLE ("
-        "id INTEGER PRIMARY KEY, "
-        "fileName TEXT, "
-
-        /*SQLITE doesn't have boolean type
-        so we store isDone as integer where 0 is false
-        and 1 is true*/
-        "is_Local INTEGER, "
-        "lastFetch TEXT "
-        ")");
-  }
-}
-
-final String dbCreate = 'dbCreated';
-
-/// DataBase purge time in hours
-int dbPurge = 48;
-//todo enable remote config for the value
-final fireStoreUrlFile = 'firestoreUrl';
-final newsJsonFile = 'news';
-final studentListJsonFile = 'studentList';
-
-final apiProvider = ApiProvider();

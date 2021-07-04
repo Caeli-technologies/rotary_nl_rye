@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
-import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;

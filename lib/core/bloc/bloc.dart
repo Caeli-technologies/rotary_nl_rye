@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:rotary_nl_rye/core/bloc/repository.dart';
-import 'package:rotary_nl_rye/features/news/models/news.dart';
-import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
+import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
+import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 class NewsBloc {

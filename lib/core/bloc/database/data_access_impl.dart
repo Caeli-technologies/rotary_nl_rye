@@ -1,27 +1,31 @@
-import 'package:rotary_nl_rye/core/bloc/database/database.dart';
+import 'package:rotary_nl_rye/core/bloc/database/file_status_entity.dart';
 
-import '../api.dart';
+import '../Database.dart';
+import '../domain/data_access.dart';
 
-class Crud {
+class SqlLiteAccess implements DataAccess{
   final dbProvider = DatabaseProvider.dbProvider;
 
-  Future<int> addFileStatus(FileStatus fileStatus) async {
+  final filesTABLE = 'files';
+  @override
+  Future<void> add(dynamic fileStatus) async {
     final db = await dbProvider.database;
+    final file = fileStatus as FileStatus;
     try {
-      var result = db.insert(filesTABLE, fileStatus.toDatabaseJson());
-      print('file status added to db $result');
-      return result;
+      db.insert(filesTABLE, file.toDatabaseJson());
+      print('file status added to db');
     } catch (e) {
       throw 'unable to add file status to db $e';
     }
   }
 
-  Future<List<FileStatus>> getFileStatus(
-      {List<String>? columns, String? query}) async {
+  @override
+  Future<List<dynamic>> getAll(
+      /*{List<String>? columns, String? query}*/) async {
     final db = await dbProvider.database;
 
     late List<Map<String, dynamic>> result;
-    if (query != null) {
+    /*if (query != null) {
       if (query.isNotEmpty) {
         try {
           result = await db.query(filesTABLE,
@@ -33,14 +37,14 @@ class Crud {
           throw 'unable to query file status from db $e';
         }
       }
-    } else {
+    } else {*/
       try {
-        result = await db.query(filesTABLE, columns: columns);
+        result = await db.query(filesTABLE);
         print('file status full query compete $result');
       } catch (e) {
         throw 'unable to full query file status from db $e';
       }
-    }
+    /*}*/
 
     try {
       List<FileStatus> files = result.isNotEmpty
@@ -53,12 +57,14 @@ class Crud {
     }
   }
 
-  Future<int> updateFileStatus(FileStatus fileStatus) async {
+  @override
+  Future<int> update(dynamic fileStatus) async {
     final db = await dbProvider.database;
+    final file = fileStatus as FileStatus;
 
     try {
-      var result = await db.update(filesTABLE, fileStatus.toDatabaseJson(),
-          where: "id = ?", whereArgs: [fileStatus.id]);
+      var result = await db.update(filesTABLE, file.toDatabaseJson(),
+          where: "id = ?", whereArgs: [file.id]);
       print('update file status to db done $result');
       return result;
     } catch (e) {
@@ -66,11 +72,14 @@ class Crud {
     }
   }
 
-  Future<int> deleteFileStatus(int id) async {
+  @override
+  Future<int> delete(dynamic fileStatus) async {
     final db = await dbProvider.database;
+    final file = fileStatus as FileStatus;
+
     try {
       var result =
-          await db.delete(filesTABLE, where: 'id = ?', whereArgs: [id]);
+          await db.delete(filesTABLE, where: 'id = ?', whereArgs: [file.id]);
 
       print('delete file status from db done $result');
       return result;
@@ -79,8 +88,10 @@ class Crud {
     }
   }
 
-  Future deleteAllFileStatus() async {
+  @override
+  Future deleteAll() async {
     final db = await dbProvider.database;
+
     try {
       var result = await db.delete(
         filesTABLE,
@@ -90,5 +101,11 @@ class Crud {
     } catch (e) {
       throw 'unable to add file status to db $e';
     }
+  }
+
+  @override
+  Future get(item) {
+    // TODO: implement get
+    throw UnimplementedError();
   }
 }

@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/services.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
-import 'package:rotary_nl_rye/features/news/models/news.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -9,7 +9,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   final _repo = Repository();
-  _repo.firstRun();
+  _repo.init();
 
   /// Features - Stories
   // Bloc

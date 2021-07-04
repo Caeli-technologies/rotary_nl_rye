@@ -5,8 +5,8 @@ import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/domain/entities/news.dart';
 import '../../../../core/prop.dart';
-import '../../models/news.dart';
 
 class NewsPage extends StatefulWidget {
   // final News news;

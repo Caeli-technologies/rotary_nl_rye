@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/bloc/bloc.dart';
+import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
-import 'package:rotary_nl_rye/features/stories/models/exchange_student.dart';
 
 import 'exchange_students_page.dart';
 
