@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,8 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  final _repo = Repository();
-  _repo.init();
 
   /// Features - Stories
   // Bloc

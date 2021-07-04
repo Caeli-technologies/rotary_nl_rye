@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/bloc/bloc.dart';
+import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,8 +18,7 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  NewsBloc _newsBloc = NewsBloc();
-
+  final _newsBloc = NewsBloc();
   //_NewsPageState({required News news}) : _news = news;
   //final News _news;
   // List _stories = [];
@@ -43,7 +42,7 @@ class _NewsPageState extends State<NewsPage> {
   @override
   initState() {
     super.initState();
-    _newsBloc.getNews();
+    _newsBloc.getNewsData();
     // TODO: implement dispose
     _removeBadge();
   }

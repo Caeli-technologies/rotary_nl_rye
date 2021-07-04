@@ -14,9 +14,9 @@ class FireStoreUrlsModel {
   FireStoreUrlsModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot)
       : id = snapshot.id,
         reference = snapshot.reference,
-        headerUrl = snapshot.data()!['students'],
-        jsonUrl = snapshot.data()!['header'],
-        studentsUrl = snapshot.data()!['json'];
+        headerUrl = snapshot.data()!['header'],
+        jsonUrl = snapshot.data()!['json'],
+        studentsUrl = snapshot.data()!['students'];
 
   factory FireStoreUrlsModel.fromJson(Map<String, dynamic> json) => FireStoreUrlsModel(
       headerUrl: json["header"],

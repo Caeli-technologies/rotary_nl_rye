@@ -9,24 +9,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'datamodels/firestore_urls_model.dart';
 
 class Repo {
-  final FireStoreUrls fireStoreUrls;
   final ApiResponse apiResponse;
   final SharedPreferences cache;
 
   Repo({
-    required this.fireStoreUrls,
     required this.apiResponse,
     required this.cache,
   });
 
   Future<void> initData() async {
-    if (cache.getKeys().length == 0 ||
+    print("initData");
+    print(cache.getKeys());
+    if (!cache.getKeys().contains("imageHeader") ||
         isTooOld(cache.getInt("creationTime")!)) {
       cacheData();
     }
   }
 
   Future<void> cacheData() async {
+    cache.clear();
     cacheImageHeader();
     cacheNews();
     cacheExchangeStudents();
@@ -41,35 +42,35 @@ class Repo {
 
   Future<void> cacheImageHeader() async {
     final String url = await _getUrlFor("imageHeader");
-    final String data = await apiResponse.getBody(url);
 
-    cache.setString("imageHeader", data);
+    cache.setString("imageHeader", url);
   }
 
   Future<void> cacheNews() async {
     final String url = await _getUrlFor("news");
     final String data = await apiResponse.getBody(url);
 
-    final List decoded = json.decode(data);
+    final List decoded = json.decode(data)["news"] as List;
     final List<News> news = [];
-    for (var item in decoded) {
+    for (Map<String, dynamic> item in decoded) {
       news.add(News.fromJson(item));
     }
 
-    cache.setString("news", news.toString());
+    cache.setString("news", json.encode(news));
   }
 
   Future<void> cacheExchangeStudents() async {
     final String url = await _getUrlFor("exchangeStudents");
     final String data = await apiResponse.getBody(url);
 
-    final List decoded = json.decode(data);
-    final List<ExchangeStudent> news = [];
-    for (var item in decoded) {
-      news.add(ExchangeStudent.fromJson(item));
+    final List decoded = json.decode(data)["rebounds"] as List;
+    print(decoded);
+    final List<ExchangeStudent> exchangeStudents = [];
+    for (Map<String, dynamic> item in decoded) {
+      exchangeStudents.add(ExchangeStudent.fromJson(item));
     }
 
-    cache.setString("exchangeStudents", data);
+    cache.setString("exchangeStudents", json.encode(exchangeStudents));
   }
 
   Future<String> _getUrlFor(String key) async {

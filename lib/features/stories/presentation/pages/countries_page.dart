@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/bloc/bloc.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
+import 'package:rotary_nl_rye/core/domain/exchangeStudents.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
@@ -22,11 +22,11 @@ class CountriesPage extends StatefulWidget {
 //https://kangabru.xyz/2020/05/29/zero-to-hero-2.html#preload-svgs
 
 class _CountriesPageState extends State<CountriesPage> {
-  final studentBloc = StudentsBloc();
+  final studentBloc = new StudentsBloc();
 
   @override
   void initState() {
-    studentBloc.getStudentList();
+    studentBloc.getExchangeStudentList();
     super.initState();
   }
 

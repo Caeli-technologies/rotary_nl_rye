@@ -19,7 +19,7 @@ class ApiResponse {
     if (response.statusCode != 200) {
       throw 'response ${response.statusCode}';
     }
-
-    return json.decode(response.body);
+print(json.decode(response.body));
+    return response.body;
   }
 }

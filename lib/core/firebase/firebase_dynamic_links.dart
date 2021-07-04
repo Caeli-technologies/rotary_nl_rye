@@ -3,15 +3,15 @@ import 'dart:async';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 
-Repository _repo = Repository();
-
 Future<void> initDynamicLinks(BuildContext context) async {
+  NewsBloc _repo = NewsBloc();
+
   // TODO "onLink" is when the app is open and on the homescreen.
   FirebaseDynamicLinks.instance.onLink(
       onSuccess: (PendingDynamicLinkData? dynamicLink) async {
@@ -35,7 +35,7 @@ Future<void> initDynamicLinks(BuildContext context) async {
       if (deepLink.path == "/news") {
         String? id = deepLink.queryParameters["id"];
         print('news id $id');
-        List<News> _newsList = await _repo.fetchNews();
+        List<News> _newsList = await _repo.getNewsData();
         print('news fetched ${_newsList[int.parse(id!)].toString()}');
         _newsList[int.parse(id)].isPdf
             ? Navigator.push(
@@ -81,7 +81,7 @@ Future<void> initDynamicLinks(BuildContext context) async {
   }
   if (deepLink?.path == "/news") {
     String? id = deepLink?.queryParameters["id"];
-    List<News> _newsList = await _repo.fetchNews();
+    List<News> _newsList = await _repo.getNewsData();
 
     _newsList[int.parse(id!)].isPdf
         ? Navigator.push(

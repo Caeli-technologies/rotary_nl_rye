@@ -3,15 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rotary_nl_rye/core/bloc/repository.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-Repository _repo = Repository();
-// SharedPreferences? sharedPreferences;
 
 Future<void> getToken() async {
   FirebaseMessaging.instance.getToken().then((token) {
@@ -20,6 +17,8 @@ Future<void> getToken() async {
 }
 
 Future<void> getInitialMessages(BuildContext context) async {
+  NewsBloc _repo = NewsBloc();
+
   FirebaseMessaging.instance
       .getInitialMessage()
       .then((RemoteMessage? message) async {
@@ -31,7 +30,7 @@ Future<void> getInitialMessages(BuildContext context) async {
       _removeBadge();
       String id = message?.data["id"];
       print('news id $id');
-      List<News> _newsList = await _repo.fetchNews();
+      List<News> _newsList = await _repo.getNewsData();
       print('news fetched ${_newsList[int.parse(id)].toString()}');
       _newsList[int.parse(id)].isPdf
           ? Navigator.push(
@@ -100,6 +99,8 @@ Future<void> onMessage(BuildContext context) async {
 }
 
 Future<void> onMessageOpenedApp(BuildContext context) async {
+  NewsBloc _repo = NewsBloc();
+
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
     print('A new onMessageOpenedApp event was published!');
     if (message.data["navigation"] == "/news") {
@@ -109,7 +110,7 @@ Future<void> onMessageOpenedApp(BuildContext context) async {
 // end test
       String id = message.data["id"];
       print('news id $id');
-      List<News> _newsList = await _repo.fetchNews();
+      List<News> _newsList = await _repo.getNewsData();
       print('news fetched ${_newsList[int.parse(id)].toString()}');
       _newsList[int.parse(id)].isPdf
           ? Navigator.push(

@@ -8,8 +8,8 @@ class FireStoreUrls {
     FirebaseAuth.instance.signInAnonymously();
     try {
       final urls = await FirebaseFirestore.instance
-          .collection('urls')
-          .doc('today')
+          .collection('news')
+          .doc('urls')
           .get();
       return FireStoreUrlsModel.fromSnapshot(urls);
     } catch (e) {
