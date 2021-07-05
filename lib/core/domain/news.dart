@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:rotary_nl_rye/core/data/datasources/config.dart';
 import 'package:rotary_nl_rye/core/data/datasources/http.dart';
 import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,10 +18,10 @@ class NewsBloc {
   Future<List<News>> getNewsData() async {
     SharedPreferences cache = await SharedPreferences.getInstance();
     await Repo(apiResponse: ApiResponse(), cache: cache).initData();
-    final String imageHeader = cache.getString("imageHeader")!;
+    final String imageHeader = cache.getString(Config.spImageHeaderKey)!;
     _headerController.sink.add(imageHeader);
 
-    final List temp = json.decode(cache.getString("news")!) as List;
+    final List temp = json.decode(cache.getString(Config.spNewsKey)!) as List;
     final List<News> news = [];
     temp.forEach((json) {news.add(News.fromJson(json));});
     _newsController.sink.add(news);

@@ -1,21 +1,3 @@
-class NewsResult {
-  NewsResult({required this.news});
-
-  List<News> news = [];
-
-  NewsResult.fromJson(Map<String, dynamic> json) {
-    if (json['news'] != null) {
-      json['news'].forEach((v) {
-        news.add(News.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() => {
-        "news": List<dynamic>.from(news.map((x) => x.toJson())),
-      };
-}
-
 class News {
   final int id;
   final String images;

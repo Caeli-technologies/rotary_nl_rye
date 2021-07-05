@@ -37,21 +37,3 @@ class ExchangeStudent {
         "imageUrl": imageUrl
       };
 }
-
-class ExchangeResult {
-  ExchangeResult({required this.students});
-
-  List<ExchangeStudent> students = [];
-
-  ExchangeResult.fromJson(Map<String, dynamic> json) {
-    if (json['rebounds'] != null) {
-      json['rebounds'].forEach((v) {
-        students.add(ExchangeStudent.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() => {
-        "stories": List<dynamic>.from(students.map((x) => x.toJson())),
-      };
-}

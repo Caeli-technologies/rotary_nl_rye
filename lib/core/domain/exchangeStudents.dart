@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:rotary_nl_rye/core/data/datasources/config.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,7 +21,7 @@ class StudentsBloc {
     final List<Story> story = cache.getString("imageHeader") as List<Story>;
     _storyController.sink.add(story);*/
 
-    final List temp = json.decode(cache.getString("exchangeStudents")!) as List;
+    final List temp = json.decode(cache.getString(Config.spExchangeStudentsKey)!) as List;
     final List<ExchangeStudent> exchangeStudents = [];
     temp.forEach((json) {exchangeStudents.add(ExchangeStudent.fromJson(json));});
     _studentController.sink.add(exchangeStudents);

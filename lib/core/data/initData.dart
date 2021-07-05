@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:rotary_nl_rye/core/data/datasources/config.dart';
 import 'package:rotary_nl_rye/core/data/datasources/firestore.dart';
 import 'package:rotary_nl_rye/core/data/datasources/http.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
@@ -20,8 +21,8 @@ class Repo {
   Future<void> initData() async {
     print("initData");
     print(cache.getKeys());
-    if (!cache.getKeys().contains("imageHeader") ||
-        isTooOld(cache.getInt("creationTime")!)) {
+    if (!cache.getKeys().contains(Config.spImageHeaderKey) ||
+        isTooOld(cache.getInt(Config.spLastUpdateKey)!)) {
       cacheData();
     }
   }
@@ -31,46 +32,46 @@ class Repo {
     cacheImageHeader();
     cacheNews();
     cacheExchangeStudents();
-    cache.setInt("creationTime", DateTime.now().millisecondsSinceEpoch);
+    cache.setInt(Config.spLastUpdateKey, DateTime.now().millisecondsSinceEpoch);
   }
 
   bool isTooOld(int milliSec) {
-    final int hours = 48;
+    final int hours = Config.hoursTillDataRefresh;
     final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(milliSec);
     return dateTime.difference(DateTime.now()).inHours > hours;
   }
 
   Future<void> cacheImageHeader() async {
-    final String url = await _getUrlFor("imageHeader");
+    final String url = await _getUrlFor(Config.spImageHeaderKey);
 
-    cache.setString("imageHeader", url);
+    cache.setString(Config.spImageHeaderKey, url);
   }
 
   Future<void> cacheNews() async {
-    final String url = await _getUrlFor("news");
+    final String url = await _getUrlFor(Config.spNewsKey);
     final String data = await apiResponse.getBody(url);
 
-    final List decoded = json.decode(data)["news"] as List;
+    final List decoded = json.decode(data)[Config.apiNewsKey] as List;
     final List<News> news = [];
     for (Map<String, dynamic> item in decoded) {
       news.add(News.fromJson(item));
     }
 
-    cache.setString("news", json.encode(news));
+    cache.setString(Config.spNewsKey, json.encode(news));
   }
 
   Future<void> cacheExchangeStudents() async {
-    final String url = await _getUrlFor("exchangeStudents");
+    final String url = await _getUrlFor(Config.spExchangeStudentsKey);
     final String data = await apiResponse.getBody(url);
 
-    final List decoded = json.decode(data)["rebounds"] as List;
+    final List decoded = json.decode(data)[Config.apiExchangeStudentsKey] as List;
     print(decoded);
     final List<ExchangeStudent> exchangeStudents = [];
     for (Map<String, dynamic> item in decoded) {
       exchangeStudents.add(ExchangeStudent.fromJson(item));
     }
 
-    cache.setString("exchangeStudents", json.encode(exchangeStudents));
+    cache.setString(Config.spExchangeStudentsKey, json.encode(exchangeStudents));
   }
 
   Future<String> _getUrlFor(String key) async {
