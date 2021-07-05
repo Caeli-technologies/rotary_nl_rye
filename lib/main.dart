@@ -15,7 +15,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/custom_routes.dart';
-import 'core/data/datasources/http.dart';
 import 'core/data/initData.dart';
 import 'core/lang/languages.dart';
 import 'core/presentation/widgets/page_navigator.dart';
@@ -104,7 +103,7 @@ Future<void> main() async {
 
     runApp(new MyApp());
   }, FirebaseCrashlytics.instance.recordError);
-  final _repo = Repo(apiResponse: ApiResponse(), cache: await SharedPreferences.getInstance());
+  final _repo = Repo();
   _repo.initData();
   // Pass all uncaught errors from the framework to Crashlytics.
 }

@@ -1,54 +1,56 @@
 import 'dart:convert';
 
+import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/data/datasources/config.dart';
 import 'package:rotary_nl_rye/core/data/datasources/firestore.dart';
 import 'package:rotary_nl_rye/core/data/datasources/http.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'datamodels/firestore_urls_model.dart';
 
 class Repo {
-  final ApiResponse apiResponse;
-  final SharedPreferences cache;
-
-  Repo({
-    required this.apiResponse,
-    required this.cache,
-  });
+  final ApiResponse apiResponse = new ApiResponse();
+  final Cache cache = new Cache();
 
   Future<void> initData() async {
     print("initData");
-    print(cache.getKeys());
-    if (!cache.getKeys().contains(Config.spImageHeaderKey) ||
-        isTooOld(cache.getInt(Config.spLastUpdateKey)!)) {
-      cacheData();
+    if (!(await isDataPresent()) || await isTooOld()) {
+      await cacheData();
     }
   }
 
   Future<void> cacheData() async {
-    cache.clear();
-    cacheImageHeader();
-    cacheNews();
-    cacheExchangeStudents();
-    cache.setInt(Config.spLastUpdateKey, DateTime.now().millisecondsSinceEpoch);
+    await cache.clear();
+    await cacheImageHeader();
+    await cacheNews();
+    await cacheExchangeStudents();
+    await cache.store(Config.spLastUpdateKey, DateTime.now().millisecondsSinceEpoch);
   }
 
-  bool isTooOld(int milliSec) {
-    final int hours = Config.hoursTillDataRefresh;
-    final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(milliSec);
-    return dateTime.difference(DateTime.now()).inHours > hours;
+  Future<bool> isDataPresent() async {
+    final Set<String> keys = await cache.getKeys();
+    return keys.contains(Config.spLastUpdateKey);
+  }
+
+  Future<bool> isTooOld() async {
+    DateTime dateTime = await getLastUpdate();
+    final age = dateTime.difference(DateTime.now());
+    return age > Config.maxAge;
+  }
+
+  Future<DateTime> getLastUpdate() async {
+    final int lastUpdate = await cache.getByKey(Config.spLastUpdateKey) as int;
+    final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(lastUpdate);
+    return dateTime;
   }
 
   Future<void> cacheImageHeader() async {
-    final String url = await _getUrlFor(Config.spImageHeaderKey);
+    final String url = await FireStoreUrls.getUrl(Config.fbImageHeaderKey);
 
-    cache.setString(Config.spImageHeaderKey, url);
+    await cache.store(Config.spImageHeaderKey, url);
   }
 
   Future<void> cacheNews() async {
-    final String url = await _getUrlFor(Config.spNewsKey);
+    final String url = await FireStoreUrls.getUrl(Config.fbNewsKey);
     final String data = await apiResponse.getBody(url);
 
     final List decoded = json.decode(data)[Config.apiNewsKey] as List;
@@ -57,34 +59,22 @@ class Repo {
       news.add(News.fromJson(item));
     }
 
-    cache.setString(Config.spNewsKey, json.encode(news));
+    await cache.store(Config.spNewsKey, json.encode(news));
   }
 
   Future<void> cacheExchangeStudents() async {
-    final String url = await _getUrlFor(Config.spExchangeStudentsKey);
+    final String url = await FireStoreUrls.getUrl(Config.fbExchangeStudentsKey);
     final String data = await apiResponse.getBody(url);
 
-    final List decoded = json.decode(data)[Config.apiExchangeStudentsKey] as List;
+    final List decoded =
+        json.decode(data)[Config.apiExchangeStudentsKey] as List;
     print(decoded);
     final List<ExchangeStudent> exchangeStudents = [];
     for (Map<String, dynamic> item in decoded) {
       exchangeStudents.add(ExchangeStudent.fromJson(item));
     }
 
-    cache.setString(Config.spExchangeStudentsKey, json.encode(exchangeStudents));
-  }
-
-  Future<String> _getUrlFor(String key) async {
-    final FireStoreUrlsModel object = await FireStoreUrls().getUrls();
-    switch (key) {
-      case "imageHeader":
-        return object.headerUrl!;
-      case "news":
-        return object.jsonUrl!;
-      case "exchangeStudents":
-        return object.studentsUrl!;
-      default:
-        throw Exception("no such var");
-    }
+    await cache.store(
+        Config.spExchangeStudentsKey, json.encode(exchangeStudents));
   }
 }
