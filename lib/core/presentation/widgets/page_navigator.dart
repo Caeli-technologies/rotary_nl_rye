@@ -161,6 +161,6 @@ void _removeBadge() {
   FlutterAppBadger.removeBadge();
 }
 
-void _addBadge() {
-  FlutterAppBadger.updateBadgeCount(1);
-}
+// void _addBadge() {
+//   FlutterAppBadger.updateBadgeCount(1);
+// }

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:share_plus/share_plus.dart';
@@ -29,8 +30,6 @@ class _PDFPageState extends State<PDFPage> {
 
   _PDFPageState({required this.pdfUrl, required this.data});
 
-  bool _isLoading = true;
-  // bool isDarkMode = false;
   String title = "Loading";
 
   final Completer<PDFViewController> _pdfViewController =
@@ -75,8 +74,6 @@ class _PDFPageState extends State<PDFPage> {
   @override
   Widget build(BuildContext context) {
     Color foreground = Colors.green;
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,

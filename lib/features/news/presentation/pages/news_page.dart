@@ -43,7 +43,6 @@ class _NewsPageState extends State<NewsPage> {
   initState() {
     super.initState();
     _newsBloc.getNewsData();
-    // TODO: implement dispose
     _removeBadge();
   }
 
@@ -57,7 +56,6 @@ class _NewsPageState extends State<NewsPage> {
   @override
   void dispose() {
     _newsBloc.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 

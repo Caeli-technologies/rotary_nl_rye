@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 
 /// still need to add here the cards from settings to make settings cleaner :)
 

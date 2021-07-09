@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -34,7 +35,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
   String errorMessage = "";
 
   String? _linkMessage;
-  bool _isCreatingLink = false;
   String? id;
 
   void dispose() {
@@ -422,9 +422,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   }
 
   Future<void> _createDynamicLink(String id) async {
-    setState(() {
-      _isCreatingLink = true;
-    });
+    setState(() {});
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarynl.page.link',
@@ -453,7 +451,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
     setState(() {
       _linkMessage = url.toString();
-      _isCreatingLink = false;
     });
   }
 }
