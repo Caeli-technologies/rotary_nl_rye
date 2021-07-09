@@ -14,5 +14,5 @@ class Config {
 
   static final String spLastUpdateKey = "lastUpdate";
 
-  static final Duration maxAge = new Duration(days: 2);
+  static final Duration maxAge = new Duration(days: 0);
 }
