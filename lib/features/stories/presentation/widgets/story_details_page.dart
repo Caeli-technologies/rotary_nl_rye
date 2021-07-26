@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
-import 'package:rotary_nl_rye/features/stories/models/story.dart';
 import 'package:translator/translator.dart';
 
 class StoryDetails extends StatefulWidget {
@@ -155,7 +155,7 @@ class _StoryDetailsState extends State<StoryDetails> {
             ],
             expandedHeight: Device.height * 0.25,
             flexibleSpace: CachedNetworkImage(
-              imageUrl: widget.story.imageUrl,
+              imageUrl: widget.story.image,
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(
                   image:

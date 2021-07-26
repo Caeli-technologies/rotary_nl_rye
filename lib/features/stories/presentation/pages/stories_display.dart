@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
+import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 import 'package:rotary_nl_rye/core/domain/exchangeStudents.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_video.dart';
-import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 import '../../../../core/prop.dart';
 import '../widgets/story_details_page.dart';
@@ -276,7 +276,7 @@ class TravelCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.45,
                   height: 120,
                   child: CachedNetworkImage(
-                    imageUrl: story.imageUrl,
+                    imageUrl: story.image,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),

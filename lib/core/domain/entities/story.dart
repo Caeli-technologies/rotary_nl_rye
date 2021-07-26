@@ -9,8 +9,8 @@ class Story {
   final String departureDate;
   final String arrivalDate;
   final String description;
-  final String heading;
-  final List<dynamic> body;
+  //final String message;
+  final List<dynamic> message;
 
   Story(
       {required this.isDutchie,
@@ -21,32 +21,35 @@ class Story {
       required this.departureDate,
       required this.arrivalDate,
       required this.description,
-      required this.heading,
-      required this.body});
+      required this.message,
+      //required this.body
+  });
 
   factory Story.fromJson(Map<String, dynamic> json) => Story(
       isDutchie: json["isDutchie"],
-      image: json["image"],
+      image: json["imageUrl"],
       video: json["videoUrl"],
       country: json["country"],
       name: json["name"],
       departureDate: json["departureDate"],
       arrivalDate: json["arrivalDate"],
       description: json["description"],
-      heading: json["heading"],
-      body: json["body"]);
+      message: json["message"],
+      //body: json["body"]
+  );
 
   Map<String, dynamic> toJson() {
     return {
       "isDutchie": isDutchie,
-      "image": image,
-      "video": video,
+      "imageUrl": image,
+      "videoUrl": video,
+      "name": name,
       "country": country,
       "departureDate": departureDate,
       "arrivalDate": arrivalDate,
       "description": description,
-      "heading": heading,
-      "body": body
+      "message": message,
+      //"body": body
     };
   }
 }

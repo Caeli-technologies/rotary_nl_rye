@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/data/datasources/config.dart';
 import 'package:rotary_nl_rye/core/data/initData.dart';
-import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 import 'entities/exchange_student.dart';
+import 'entities/story.dart';
 
 class StudentsBloc {
   final _studentController =
