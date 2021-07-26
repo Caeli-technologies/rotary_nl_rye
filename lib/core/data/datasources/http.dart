@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
@@ -19,7 +18,7 @@ class ApiResponse {
     if (response.statusCode != 200) {
       throw 'response ${response.statusCode}';
     }
-print(json.decode(response.body));
+
     return response.body;
   }
 }

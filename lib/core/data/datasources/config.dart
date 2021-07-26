@@ -11,6 +11,7 @@ class Config {
   static final String spImageHeaderKey = "imageHeader";
   static final String spNewsKey = "news";
   static final String spExchangeStudentsKey = "exchangeStudents";
+  static final String spStoriesKey = "stories";
 
   static final String spLastUpdateKey = "lastUpdate";
 

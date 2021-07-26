@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/data/datasources/config.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/features/stories/models/story.dart';
 
 import 'entities/exchange_student.dart';
@@ -18,14 +19,19 @@ class StudentsBloc {
   final Cache cache = new Cache();
 
   void getExchangeStudentList() async {
-    /*await Repo(apiResponse: ApiResponse(), cache: cache).initData();
-    final List<Story> story = cache.getString("imageHeader") as List<Story>;
-    _storyController.sink.add(story);*/
-
+    await Repo().initData("", "");
     final List temp = json.decode(await cache.getByKey(Config.spExchangeStudentsKey)) as List;
     final List<ExchangeStudent> exchangeStudents = [];
     temp.forEach((json) {exchangeStudents.add(ExchangeStudent.fromJson(json));});
     _studentController.sink.add(exchangeStudents);
+  }
+
+  void getStoriesList(String studentExchangeYear, String studentName) async {
+    await Repo().initData(studentExchangeYear, studentName);
+    final List temp = json.decode(await cache.getByKey(studentExchangeYear + studentName)) as List;
+    final List<Story> stories = [];
+    temp.forEach((json) {stories.add(Story.fromJson(json));});
+    _storyController.sink.add(stories);
   }
 
   disposeStudent() {

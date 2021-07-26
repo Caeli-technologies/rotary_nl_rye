@@ -48,7 +48,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   @override
   void initState() {
-    storyBloc.getExchangeStudentList();
+    storyBloc.getStoriesList(student.exchangeYear, student.name);
     super.initState();
 //    readJson();
   }

@@ -12,7 +12,6 @@ class FireStoreUrls {
           .get();
       return urls.data()![key];
     } catch (e) {
-      print(e);
       throw 'unable to fetch and parse FirestoreUrl $e';
     }
   }

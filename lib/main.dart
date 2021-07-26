@@ -104,7 +104,7 @@ Future<void> main() async {
     runApp(new MyApp());
   }, FirebaseCrashlytics.instance.recordError);
   final _repo = Repo();
-  _repo.initData();
+  _repo.initData("", "");
   // Pass all uncaught errors from the framework to Crashlytics.
 }
 
