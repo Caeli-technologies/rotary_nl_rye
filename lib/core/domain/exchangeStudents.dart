@@ -27,10 +27,14 @@ class StudentsBloc {
   }
 
   void getStoriesList(String studentExchangeYear, String studentName) async {
-    await Repo().initData(studentExchangeYear, studentName);
-    final List temp = json.decode(await cache.getByKey(studentExchangeYear + studentName)) as List;
     final List<Story> stories = [];
-    temp.forEach((json) {stories.add(Story.fromJson(json));});
+    try {
+      await Repo().initData(studentExchangeYear, studentName);
+      final List temp = json.decode(await cache.getByKey(studentExchangeYear + studentName)) as List;
+      temp.forEach((json) {stories.add(Story.fromJson(json));});
+    } catch (error) {
+      print(error);
+    }
     _storyController.sink.add(stories);
   }
 
