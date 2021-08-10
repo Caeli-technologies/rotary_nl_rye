@@ -114,6 +114,8 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 10,
             ),
             buildAccountOptionRow(
+                context, 'Bestuur / Team RYE', FontAwesomeIcons.users, null),
+            buildAccountOptionRow(
                 context,
                 DemoLocalizations.of(context)!.trans('social'),
                 FontAwesomeIcons.hashtag,

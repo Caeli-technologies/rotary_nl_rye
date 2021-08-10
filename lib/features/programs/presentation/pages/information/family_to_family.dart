@@ -650,8 +650,11 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 10),
                 child: Text(
-                  "moet nog een leuk stukje text komen",
-                  style: TextStyle(color: Colors.red, fontSize: 13.0),
+                  "Kijk even deze prachtige video. Je wordt vast erg enthousiast.",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               //video Europa
