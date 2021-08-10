@@ -84,17 +84,29 @@ class ExchangeStudentsPage extends StatelessWidget {
                   thickness: 2,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.70,
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => ReboundsStudentsListTile(
-                      item: students[index],
-                      reboundsStudentsListPage: StoriesDisplay(
-                        student: students[index],
-                      ),
-                    ),
-                    itemCount: students.length,
-                  ),
-                )
+                    height: MediaQuery.of(context).size.height * 0.70,
+                    child: students.length == 0
+                        ? Center(
+                            child: Text(
+                              'No Students Yet',
+                              textAlign: TextAlign.center,
+                              textScaleFactor: 1,
+                              style: TextStyle(
+                                color: Palette.indigo,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemBuilder: (context, index) =>
+                                ReboundsStudentsListTile(
+                              item: students[index],
+                              reboundsStudentsListPage: StoriesDisplay(
+                                student: students[index],
+                              ),
+                            ),
+                            itemCount: students.length,
+                          ))
               ]),
         ),
       ),

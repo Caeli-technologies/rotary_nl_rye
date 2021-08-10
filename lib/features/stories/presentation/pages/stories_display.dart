@@ -62,33 +62,36 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    if(student.toString() == "[]") {
-      return Scaffold(appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
+    if (student.toString() == "[]") {
+      return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            leading: Container(
+              margin: EdgeInsets.only(left: 10, top: 5),
+              width: 40,
+              height: 40,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+              child: RawMaterialButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: new Icon(
+                  Icons.arrow_back,
+                  color: Palette.accentColor,
+                  size: 30.0,
+                ),
+                shape: new CircleBorder(),
+                elevation: 2.0,
+                fillColor: Palette.themeShadeColor,
+                padding: const EdgeInsets.all(5.0),
+              ),
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
           ),
-        ),
-      ),
-          body: Center(child: Text("A problem occured. Maybe there is no data present yet")));
+          body: Center(
+              child: Text(
+                  "A problem occured. Maybe there is no data present yet")));
     }
     return Scaffold(
         appBar: AppBar(

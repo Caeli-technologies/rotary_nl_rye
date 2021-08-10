@@ -38,8 +38,8 @@ class DistrictsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Districts",
-          textScaleFactor: 1.4,
+          "Districts Year ${year.year}",
+          textScaleFactor: 0.9,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

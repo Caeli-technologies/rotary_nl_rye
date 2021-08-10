@@ -46,17 +46,29 @@ class StudentsListPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        //height: Device.height - 277,
-        margin: EdgeInsets.only(left: 5, right: 5),
-        child: ListView.builder(
-          shrinkWrap: false,
-          itemBuilder: (context, index) => InboundsStudentsListTile(
-              item: students[index],
-              inboundsStudentsListPage: InboundsDetails(
-                  person: students[index], districtnumber: districtnumber)),
-          itemCount: students.length,
-        ),
-      ),
+          //height: Device.height - 277,
+          margin: EdgeInsets.only(left: 5, right: 5),
+          child: students.length == 0
+              ? Center(
+                  child: Text(
+                    'No Students Here',
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 1,
+                    style: TextStyle(
+                      color: Palette.indigo,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              : ListView.builder(
+                  shrinkWrap: false,
+                  itemBuilder: (context, index) => InboundsStudentsListTile(
+                      item: students[index],
+                      inboundsStudentsListPage: InboundsDetails(
+                          person: students[index],
+                          districtnumber: districtnumber)),
+                  itemCount: students.length,
+                )),
     );
   }
 }
