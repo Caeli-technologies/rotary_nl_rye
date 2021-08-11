@@ -236,10 +236,10 @@ class TravelCard extends StatelessWidget {
                     imageUrl: image,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
-                        // color: Colors.grey,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(14),
                         image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
+                            image: imageProvider, fit: BoxFit.contain),
                       ),
                     ),
                     placeholder: (context, url) =>

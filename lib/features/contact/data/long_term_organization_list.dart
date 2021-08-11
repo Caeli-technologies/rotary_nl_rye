@@ -4,13 +4,13 @@ List<Organization> longTermOrganizationList = [
   Organization(
     name: "Barbara Tusveld",
     bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Als voorzitter van de Longterm commissie ben ik enorm trots dat we met ons team elk jaar voor 40 - 50 scholieren een jaar uitwisseling kunnen realiseren.\nHet is een “lifetime in a year” en niet een “year in a lifetime”\nIk ben zelf uitwisselingsstudent geweest in 1984. Nog steeds bezoek ik mijn gastouders jaarlijks in Amerika. Onze kinderen zijn ook beiden op uitwisseling geweest en intussen hebben wij al 5 bonus kinderen uit de hele wereld en als het aan ons ligt komen er nog heel veel bij.\nNaast deze mooie vrijwillersbaan bij Rotary werk ik als trainer/coach en deels als leerkracht. Ik ben dol op reizen en lopen met onze twee honden. ",
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg",
     email: "longtermchair@rotaryyep.nl",
     phoneNumber: "",
-    club: '',
-    district: '1590',
+    club: 'RC Lelystad',
+    district: '1590 NOORD-NEDERLAND',
     functions: [
       "Chair Longterm Year Exchange",
       "Coordinator Long term Asia / Oceania / Europe",

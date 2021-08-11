@@ -439,7 +439,7 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.1"
+    version: "8.1.1+1"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
@@ -928,7 +928,7 @@ packages:
       name: table_calendar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   term_glyph:
     dependency: transitive
     description:

@@ -194,7 +194,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "Club District: ",
+                  "Club District: ${person.district}",
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
@@ -202,7 +202,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
                 child: Text(
-                  "Club name:",
+                  "Club name: ${person.club}",
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),

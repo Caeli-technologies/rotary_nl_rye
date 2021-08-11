@@ -54,33 +54,33 @@ class _VideoPageState extends State<VideoPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  "moet nog text komen",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  "moet nog text voor worden gemaakt",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Text(
-                  "Algemene video",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 20.0),
+              //   child: Text(
+              //     "moet nog text komen",
+              //     style: TextStyle(
+              //         color: Colors.red,
+              //         fontSize: 14.0,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10.0),
+              //   child: Text(
+              //     "moet nog text voor worden gemaakt",
+              //     style: TextStyle(color: Colors.black, fontSize: 13.0),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 25.0),
+              //   child: Text(
+              //     "Algemene video",
+              //     style: TextStyle(
+              //         color: Colors.red,
+              //         fontSize: 14.0,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: NativeVideo(

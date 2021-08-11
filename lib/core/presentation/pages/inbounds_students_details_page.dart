@@ -10,18 +10,14 @@ import 'package:rotary_nl_rye/core/prop.dart';
 class InboundsDetails extends StatelessWidget {
   final person;
   final int districtnumber;
-  InboundsDetails({required this.person, required this.districtnumber});
-
-  final List<String> box1 = ['some', 'thing', 'can', 'here'];
-  final List<String> data1 = [
-    '1',
-    '2',
-    '3',
-    '4'
-  ]; //TODO change to font awesome icons :)
+  final String year;
+  InboundsDetails(
+      {required this.person, required this.districtnumber, required this.year});
 
   @override
   Widget build(BuildContext context) {
+    double currentYear = double.parse(year.trim().replaceAll("-", ""));
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -316,33 +312,68 @@ class InboundsDetails extends StatelessWidget {
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
-                child: Text(
-                  "About me",
-                  style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 0.0, left: 30.0, bottom: 0.0, right: 300),
-                child: Divider(
-                  height: 15,
-                  thickness: 2,
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
-                child: Text(
-                  person.bio,
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
+
+              currentYear < 20222023.0
+                  ? SizedBox.shrink()
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 20.0, left: 30.0, bottom: 0.0),
+                            child: Text(
+                              "About me",
+                              style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 0.0, left: 30.0, bottom: 0.0, right: 300),
+                            child: Divider(
+                              height: 15,
+                              thickness: 2,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30.0, right: 30.0, top: 5.0),
+                            child: Text(
+                              person.bio,
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          ),
+                        ]),
+
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
+              //   child: Text(
+              //     "About me",
+              //     style: TextStyle(
+              //         color: Colors.grey[600],
+              //         fontSize: 18.0,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       top: 0.0, left: 30.0, bottom: 0.0, right: 300),
+              //   child: Divider(
+              //     height: 15,
+              //     thickness: 2,
+              //   ),
+              // ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
+              //   child: Text(
+              //     person.bio,
+              //     style: TextStyle(fontSize: 16.0),
+              //   ),
+              // ),
               // Padding(
               //   padding:
               //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),

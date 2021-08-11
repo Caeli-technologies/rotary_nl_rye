@@ -57,6 +57,7 @@ class DistrictsListPage extends StatelessWidget {
                     .toList(),
                 districtnumber: districtList[index].number,
                 district: districtList[index].districtName,
+                year: year.year,
               )),
           itemCount: districtList.length,
         ),

@@ -8,10 +8,13 @@ class StudentsListPage extends StatelessWidget {
   final List<Students> students;
   final int districtnumber;
   final String district;
+  final String year;
+
   const StudentsListPage(
       {required this.students,
       required this.districtnumber,
-      required this.district});
+      required this.district,
+      required this.year});
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +69,7 @@ class StudentsListPage extends StatelessWidget {
                       item: students[index],
                       inboundsStudentsListPage: InboundsDetails(
                           person: students[index],
+                          year: year,
                           districtnumber: districtnumber)),
                   itemCount: students.length,
                 )),
