@@ -65,6 +65,7 @@ class Palette {
   static Color isExpandedYes = 0 as Color;
   // Settings Page
   static Color emergencyRed = 0 as Color;
+  static Color socialBlue = 0 as Color;
   // Calendar Page
   static Color imageBlox = 0 as Color;
   static Color imageShadowBox1 = 0 as Color;
@@ -100,6 +101,7 @@ class Palette {
       isExpandedYes = Colors.indigoAccent[100]!;
       // Settings Page
       emergencyRed = Colors.red[600]!;
+      socialBlue = Colors.blue;
       // Calendar Page
       imageBlox = Colors.grey[700]!;
       imageShadowBox1 = Colors.grey[850]!;
@@ -123,6 +125,7 @@ class Palette {
       isExpandedYes = Colors.indigo[700]!;
       // Settings Page
       emergencyRed = Colors.red[900]!;
+      socialBlue = Colors.blue;
       // Calendar Page
       imageBlox = Colors.white;
       imageShadowBox1 = Colors.white;

@@ -7,6 +7,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_board.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -113,8 +114,8 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(
-                context, 'Bestuur / Team RYE', FontAwesomeIcons.users, null),
+            buildAccountOptionRow(context, 'Bestuur / Team RYE',
+                FontAwesomeIcons.users, PDFPageBoard()),
             buildAccountOptionRow(
                 context,
                 DemoLocalizations.of(context)!.trans('social'),
