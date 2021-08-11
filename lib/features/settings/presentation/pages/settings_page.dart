@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -11,6 +12,7 @@ import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_bo
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'counselor_list_page.dart';
 
@@ -121,11 +123,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 DemoLocalizations.of(context)!.trans('social'),
                 FontAwesomeIcons.hashtag,
                 SocialPage()),
-            buildAccountOptionRow(
-                context,
-                DemoLocalizations.of(context)!.trans('privacyAndSecurity'),
-                FontAwesomeIcons.shieldAlt,
-                null),
+            // buildAccountOptionRow(
+            //     context,
+            //     DemoLocalizations.of(context)!.trans('privacyAndSecurity'),
+            //     FontAwesomeIcons.shieldAlt,
+            //     null),
 
             //TODO maybe add later a "Auto load video's on cellular" Switch
 
@@ -287,6 +289,52 @@ class _SettingsPageState extends State<SettingsPage> {
             )),
             SizedBox(
               height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  RichText(
+                      text: TextSpan(
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(fontSize: 14),
+                          children: [
+                        TextSpan(
+                          text: 'Privacy Policy',
+                          style: TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              launch(
+                                "https://www.rotary.nl/yep/yep-app/privacy-policy.html",
+                                forceSafariVC: false,
+                              );
+                            },
+                        ),
+                      ])),
+                  RichText(
+                      text: TextSpan(
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(fontSize: 14),
+                          children: [
+                        TextSpan(
+                          text: 'Terms & Conditions',
+                          style: TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              launch(
+                                "https://www.rotary.nl/yep/yep-app/terms-and-conditions.html",
+                                forceSafariVC: false,
+                              );
+                            },
+                        ),
+                      ])),
+                ],
+              ),
             ),
             Center(
               child: Text(
