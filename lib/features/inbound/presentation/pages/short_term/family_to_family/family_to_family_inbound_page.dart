@@ -55,53 +55,53 @@ class _FamilyToFamilyInboundPageState extends State<FamilyToFamilyInboundPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: Text(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Welcome to the Netherlands!",
-                  FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Flight and Arrival",
-                  FontAwesomeIcons.plane, FlightAndArrivalPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, "Language",
-                  FontAwesomeIcons.language, LanguagePage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              //   child: Text(
+              //     "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+              //     style: TextStyle(fontSize: 16.0),
+              //   ),
+              // ),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildInboundOptionRow(context, "Welcome to the Netherlands!",
+              //     FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildInboundOptionRow(context, "Flight and Arrival",
+              //     FontAwesomeIcons.plane, FlightAndArrivalPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildInboundOptionRow(context, "Language",
+              //     FontAwesomeIcons.language, LanguagePage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
 
-              buildInboundOptionRow(context, "Insurance",
-                  FontAwesomeIcons.umbrella, InsurancePage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                  context, "Travel", FontAwesomeIcons.passport, TravelPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              // the end
-              SizedBox(
-                height: 20,
-              ),
+              // buildInboundOptionRow(context, "Insurance",
+              //     FontAwesomeIcons.umbrella, InsurancePage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildInboundOptionRow(
+              //     context, "Travel", FontAwesomeIcons.passport, TravelPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // // the end
+              // SizedBox(
+              //   height: 20,
+              // ),
             ],
           )
         ],

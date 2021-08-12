@@ -54,63 +54,63 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: Text(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
-                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
-                  FontAwesomeIcons.exclamation, ComplyWithPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
-                  context,
-                  "Wat moet ik doen voor de selectiedag",
-                  FontAwesomeIcons.voteYea,
-                  SelectionDayPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
-                  context,
-                  "Wat moet ik doen voor het selectieweekend",
-                  FontAwesomeIcons.clipboardCheck,
-                  SelectionWeekendPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
-                  context,
-                  "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
-                  FontAwesomeIcons.globe,
-                  Top3CountriesPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, "Hoe bereid ik me voor",
-                  FontAwesomeIcons.suitcase, null),
-              // the end
-              SizedBox(
-                height: 20,
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              //   child: Text(
+              //     "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+              //     style: TextStyle(fontSize: 16.0),
+              //   ),
+              // ),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
+              //     FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
+              //     FontAwesomeIcons.exclamation, ComplyWithPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildOutboundOptionRow(
+              //     context,
+              //     "Wat moet ik doen voor de selectiedag",
+              //     FontAwesomeIcons.voteYea,
+              //     SelectionDayPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildOutboundOptionRow(
+              //     context,
+              //     "Wat moet ik doen voor het selectieweekend",
+              //     FontAwesomeIcons.clipboardCheck,
+              //     SelectionWeekendPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildOutboundOptionRow(
+              //     context,
+              //     "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
+              //     FontAwesomeIcons.globe,
+              //     Top3CountriesPage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildOutboundOptionRow(context, "Hoe bereid ik me voor",
+              //     FontAwesomeIcons.suitcase, null),
+              // // the end
+              // SizedBox(
+              //   height: 20,
+              // ),
             ],
           )
         ],
