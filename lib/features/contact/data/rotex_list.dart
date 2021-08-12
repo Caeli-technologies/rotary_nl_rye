@@ -200,6 +200,20 @@ List<Rotex> rotexList = [
       websiteUrl: null,
       linkedinUrl: null,
       role: 'Commissie Prebound / Rebound'),
+// Anne Lucas
+  Rotex(
+      name: "Anne Lucas",
+      bio: "anneLucasBio",
+      imageUrl:
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/anne-lucas.jpg",
+      email: null,
+      phoneNumber: null,
+      snapchatUrl: null,
+      facebookUrl: null,
+      instagramUrl: 'https://www.instagram.com/annelucas_/',
+      websiteUrl: null,
+      linkedinUrl: null,
+      role: 'Commissie Prebound / Rebound'),
 // Pascal Stomp
   // Rotex(
   //     name: "Pascal Stomp",

@@ -341,7 +341,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 'App version: ${_packageInfo.version} (${_packageInfo.buildNumber})',
                 style: TextStyle(color: Color(0xFF777777)),
               ),
-            )
+            ),
+            SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

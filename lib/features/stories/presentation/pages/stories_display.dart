@@ -136,12 +136,14 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                       },
                       child: CachedNetworkImage(
                         height: 100,
-                        width: 100,
                         imageUrl: student.imageUrl,
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: DecorationImage(image: imageProvider),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.fitHeight,
+                            ),
                           ),
                         ),
                         placeholder: (context, url) =>
