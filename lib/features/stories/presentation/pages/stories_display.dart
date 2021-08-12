@@ -13,8 +13,9 @@ import '../widgets/story_details_page.dart';
 
 class StoriesDisplay extends StatefulWidget {
   final ExchangeStudent student;
+  final String country;
 
-  StoriesDisplay({required this.student});
+  StoriesDisplay({required this.student, required this.country});
 
   @override
   _StoriesDisplayState createState() => _StoriesDisplayState(student: student);
@@ -267,6 +268,11 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                                           StoryDetails(
                                                             story: snapshot
                                                                 .data![index],
+                                                            imageUrl: student
+                                                                .imageUrl,
+                                                            name: student.name,
+                                                            country:
+                                                                widget.country,
                                                           )),
                                                 ),
                                           child: Container(
@@ -331,7 +337,7 @@ class TravelCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 12),
                         child: Text(
-                          story.country,
+                          story.title,
                           textScaleFactor: 1.2,
                           style: TextStyle(
                             color: Palette.indigo,
@@ -344,14 +350,14 @@ class TravelCard extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             FaIcon(
-                              FontAwesomeIcons.planeDeparture,
+                              FontAwesomeIcons.clock,
                               color: Palette.lightIndigo,
                               size: 15,
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                story.departureDate.toString(),
+                                story.startDate.toString(),
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),
@@ -366,14 +372,14 @@ class TravelCard extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             FaIcon(
-                              FontAwesomeIcons.planeArrival,
+                              FontAwesomeIcons.clock,
                               color: Palette.lightIndigo,
                               size: 15,
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                story.arrivalDate.toString(),
+                                story.endDate.toString(),
                                 textScaleFactor: 1.1,
                                 style: TextStyle(color: Palette.lightIndigo),
                               ),

@@ -103,6 +103,7 @@ class ExchangeStudentsPage extends StatelessWidget {
                               item: students[index],
                               reboundsStudentsListPage: StoriesDisplay(
                                 student: students[index],
+                                country: country.name,
                               ),
                             ),
                             itemCount: students.length,

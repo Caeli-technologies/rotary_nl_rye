@@ -17,8 +17,13 @@ class StoryDetails extends StatefulWidget {
   @override
   _StoryDetailsState createState() => _StoryDetailsState();
   final Story story;
+  final String name, imageUrl, country;
 
-  StoryDetails({required this.story});
+  StoryDetails(
+      {required this.story,
+      required this.name,
+      required this.imageUrl,
+      required this.country});
 }
 
 class _StoryDetailsState extends State<StoryDetails> {
@@ -54,6 +59,7 @@ class _StoryDetailsState extends State<StoryDetails> {
     }
 
     Color background = foreground.withOpacity(0.2);
+
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
@@ -171,102 +177,184 @@ class _StoryDetailsState extends State<StoryDetails> {
         body: Container(
           child: Column(
             children: <Widget>[
+              // Container(
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //         color: Palette.themeShadeColor,
+              //         borderRadius: BorderRadius.only(
+              //             bottomLeft: Radius.circular(40.0),
+              //             bottomRight: Radius.circular(40.0))),
+
               Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Palette.themeShadeColor,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40.0),
-                        bottomRight: Radius.circular(40.0))),
-                child: Column(children: <Widget>[
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 40, top: 30),
-                      child: Text(
-                        widget.story.country,
-                        textScaleFactor: 2,
-                        style: TextStyle(
-                          color: Palette.indigo,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 40, top: 5),
-                      child: Text(
-                        widget.story.name,
-                        textScaleFactor: 1,
-                        style: TextStyle(
-                          color: Palette.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                          padding: EdgeInsets.only(
-                              left: 40, top: 15, right: 40, bottom: 10),
-                          child: Wrap(
-                            runSpacing: 15.0,
-                            spacing: 30.0,
+                  // margin: EdgeInsets.only(top: size.height * 0.45),
+                  // width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Palette.themeShadeColor,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(40.0),
+                          bottomRight: Radius.circular(40.0))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Align(
+                            child: Container(
+                              width: 150,
+                              height: 7,
+                              decoration: BoxDecoration(
+                                  color: Colors.red[100],
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(widget.story.title,
+                              textScaleFactor: 1.5,
+                              style: TextStyle(
+                                color: Palette.indigo,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
                             children: <Widget>[
-                              RichText(
-                                text: TextSpan(children: [
-                                  WidgetSpan(
-                                      child: FaIcon(
-                                    FontAwesomeIcons.planeDeparture,
-                                    color: Palette.lightIndigo,
-                                  )),
-                                  WidgetSpan(
-                                      child: Container(
-                                    margin:
-                                        EdgeInsets.only(left: 10, bottom: 3.6),
-                                    child: Text(
-                                      widget.story.departureDate.toString(),
-                                      textScaleFactor: 1.2,
-                                      style:
-                                          TextStyle(color: Palette.lightIndigo),
+                              CachedNetworkImage(
+                                height: 50,
+                                width: 50,
+                                imageUrl: widget.imageUrl,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
                                     ),
-                                  ))
-                                ]),
+                                  ),
+                                ),
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
                               ),
-                              RichText(
-                                text: TextSpan(children: [
-                                  WidgetSpan(
-                                      child: FaIcon(
-                                    FontAwesomeIcons.planeArrival,
-                                    color: Palette.lightIndigo,
-                                  )),
-                                  WidgetSpan(
-                                      child: Container(
-                                    margin:
-                                        EdgeInsets.only(left: 10, bottom: 3.6),
-                                    child: Text(
-                                      widget.story.arrivalDate.toString(),
-                                      textScaleFactor: 1.2,
-                                      style:
-                                          TextStyle(color: Palette.lightIndigo),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    widget.name,
+                                    textScaleFactor: 1.2,
+                                    style: TextStyle(
+                                      color: Palette.grey,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ))
-                                ]),
-                              ),
+                                  ),
+                                  SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(widget.country,
+                                      textScaleFactor: 1.1,
+                                      style:
+                                          TextStyle(color: Palette.lightIndigo))
+                                ],
+                              )
                             ],
-                          ))),
-                ]),
-              ),
+                          ),
+
+                          // Align(
+                          //   alignment: Alignment.topLeft,
+                          //   child: Container(
+                          //     padding: EdgeInsets.only(left: 40, top: 30),
+                          //     child: Text(
+                          //       widget.story.country,
+                          //       textScaleFactor: 2,
+                          //       style: TextStyle(
+                          //         color: Palette.indigo,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          // Align(
+                          //   alignment: Alignment.topLeft,
+                          //   child: Container(
+                          //     padding: EdgeInsets.only(left: 40, top: 5),
+                          //     child: Text(
+                          //       widget.story.name,
+                          //       textScaleFactor: 1,
+                          //       style: TextStyle(
+                          //         color: Palette.grey,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          // Align(
+                          //     alignment: Alignment.topLeft,
+                          //     child: Container(
+                          //         padding: EdgeInsets.only(
+                          //             left: 40, top: 15, right: 40, bottom: 10),
+                          //         child: Wrap(
+                          //           runSpacing: 15.0,
+                          //           spacing: 30.0,
+                          //           children: <Widget>[
+                          //             RichText(
+                          //               text: TextSpan(children: [
+                          //                 WidgetSpan(
+                          //                     child: FaIcon(
+                          //                   FontAwesomeIcons.planeDeparture,
+                          //                   color: Palette.lightIndigo,
+                          //                 )),
+                          //                 WidgetSpan(
+                          //                     child: Container(
+                          //                   margin: EdgeInsets.only(
+                          //                       left: 10, bottom: 3.6),
+                          //                   child: Text(
+                          //                     widget.story.departureDate
+                          //                         .toString(),
+                          //                     textScaleFactor: 1.2,
+                          //                     style: TextStyle(
+                          //                         color: Palette.lightIndigo),
+                          //                   ),
+                          //                 ))
+                          //               ]),
+                          //             ),
+                          //             RichText(
+                          //               text: TextSpan(children: [
+                          //                 WidgetSpan(
+                          //                     child: FaIcon(
+                          //                   FontAwesomeIcons.planeArrival,
+                          //                   color: Palette.lightIndigo,
+                          //                 )),
+                          //                 WidgetSpan(
+                          //                     child: Container(
+                          //                   margin: EdgeInsets.only(
+                          //                       left: 10, bottom: 3.6),
+                          //                   child: Text(
+                          //                     widget.story.arrivalDate
+                          //                         .toString(),
+                          //                     textScaleFactor: 1.2,
+                          //                     style: TextStyle(
+                          //                         color: Palette.lightIndigo),
+                          //                   ),
+                          //                 ))
+                          //               ]),
+                          //             ),
+                          //           ],
+                          //         ))),
+                        ]),
+                  )),
 
               //TODO, the text and images all on one scroll page that's going up when you go up.
 
               Expanded(
                 child: Container(
-                  margin:
-                      EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                   child: _isLoading
                       ? Center(
                           child: Stack(
@@ -309,7 +397,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                         )
                       : ListView(children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
+                            padding: const EdgeInsets.only(top: 0.0),
                             child: Text(
                               (isTranslating)
                                   ? heading
