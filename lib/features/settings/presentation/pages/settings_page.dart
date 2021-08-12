@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/gallery_view.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_board.dart';
@@ -116,6 +117,8 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
+            buildAccountOptionRow(context, 'Pictures (testing)',
+                FontAwesomeIcons.images, GalleryViewPage()),
             buildAccountOptionRow(context, 'Bestuur / Team RYE',
                 FontAwesomeIcons.users, PDFPageBoard()),
             buildAccountOptionRow(

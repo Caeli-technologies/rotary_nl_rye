@@ -95,7 +95,8 @@ class _AboutPageState extends State<AboutPage> {
                         TextSpan(
                           text: '‣ Missie: ',
                           style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
+                              color: Palette.titleText,
+                              fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text: 'wij stellen jeugd in staat om ',
@@ -124,7 +125,8 @@ class _AboutPageState extends State<AboutPage> {
                         TextSpan(
                           text: '‣ Visie: ',
                           style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
+                              color: Palette.titleText,
+                              fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text: 'wij geloven dat leiderschap begint met ',
@@ -154,7 +156,8 @@ class _AboutPageState extends State<AboutPage> {
                         TextSpan(
                           text: '‣ Strategie: ',
                           style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
+                              color: Palette.titleText,
+                              fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text:
