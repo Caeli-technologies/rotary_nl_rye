@@ -64,9 +64,16 @@ class _ViewPhotosState extends State<ViewPhotos> {
             scrollPhysics: const BouncingScrollPhysics(),
             pageController: pageController,
             builder: (BuildContext context, int index) {
+              // return PhotoViewGalleryPageOptions(
+              //   imageProvider: NetworkImage(widget.imageList[index]),
+              //   heroAttributes: PhotoViewHeroAttributes(tag: widget.imageIndex),
+              // );
               return PhotoViewGalleryPageOptions(
                 imageProvider: NetworkImage(widget.imageList[index]),
                 heroAttributes: PhotoViewHeroAttributes(tag: widget.imageIndex),
+                maxScale: PhotoViewComputedScale.covered * 2.0,
+                minScale: PhotoViewComputedScale.contained * 0.8,
+                initialScale: PhotoViewComputedScale.contained,
               );
             },
             onPageChanged: onPageChanged,
