@@ -68,15 +68,15 @@ List<Organization> longTermOrganizationList = [
   Organization(
     name: "Ben Mureau",
     bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Mijn naam is Ben Mureau en ik verzorg sinds enkele jaren de visa voor de inbounds en de verzekeringen voor de in- en outbounds.\n\nIn het dagelijkse leven ben ik actief als innovatie directeur bij een multi nationale onderneming, ben getrouwd en heb 3 kinderen.\n\nIk ben in de organisatie gerold toen mijn dochter ook deelnam aan het long term exchange programma. Het is werkelijk fantastisch om deel uit te mogen maken van het enthousiaste en inspirerende team dat de long term exchange organiseert en begeleidt. Samen met de Rotex’ers (oud deelnemers long term exchange) en het LT team organiseren we verschillende activiteiten en zorgen ook voor de begeleiding van de exchangers, samen met de gastouders natuurlijk.\n\nAls je beseft wat een exchange jaar voor de jongeren betekent, dan kan je alleen maar dankbaar zijn dat je daar een bijdrage aan kan en mag leveren.",
     imageUrl:
         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
     email: "longtermadmin@rotaryyep.nl",
-    phoneNumber: "",
-    club: '',
-    district: '',
+    phoneNumber: null,
+    club: 'RC Oldenzaal',
+    district: '1560',
     functions: [
-      "Administrator Longterm Inbound",
+      "Coordinator visa and assurance Long Term Exchange",
     ],
   ),
   Organization(

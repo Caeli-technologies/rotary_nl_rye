@@ -155,8 +155,8 @@ class OrganizationDetails extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
+                padding: const EdgeInsets.only(
+                    top: 2.0, left: 30.0, bottom: 15.0, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
