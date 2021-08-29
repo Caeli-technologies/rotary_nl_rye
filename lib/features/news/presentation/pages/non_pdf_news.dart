@@ -10,6 +10,7 @@ import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
+import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -257,6 +258,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
         resultList.add(imageItem(url: bodyItem["imageUrl"]));
       } else if (bodyItem['videoUrl'] != null) {
         resultList.add(videoItem(url: bodyItem["videoUrl"]));
+      } else if (bodyItem['pdfUrl'] != null) {
+        resultList.add(pdfButton(pdfUrl: bodyItem["pdfUrl"]));
       } else if (bodyItem['subHeader'] != null) {
         index++;
         resultList.add(subHeaderItem(text: bodyItem["subHeader"]));
@@ -296,6 +299,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
         translate.add(imageItem(url: bodyItem['imageUrl']));
       } else if (bodyItem['videoUrl'] != null) {
         translate.add(videoItem(url: bodyItem['videoUrl']));
+      } else if (bodyItem['pdfUrl'] != null) {
+        translate.add(pdfButton(pdfUrl: bodyItem['pdfUrl']));
       } else if (bodyItem['subHeader'] != null) {
         final value = await Translate.text(inputText: bodyItem['subHeader']);
         String translation = await value['translation'];
@@ -335,6 +340,47 @@ class _NonPDFPageState extends State<NonPDFPage> {
       padding: const EdgeInsets.only(top: 10.0),
       child: NativeVideo(url: url),
     );
+  }
+
+  Widget pdfButton({required String pdfUrl}) {
+    return Padding(
+        padding: const EdgeInsets.only(top: 40.0, bottom: 30),
+        child: Container(
+          child: Center(
+            child: CupertinoButton.filled(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PDFPage(
+                            pdfUrl: pdfUrl,
+                            data: widget.data,
+                          )),
+                );
+              },
+              child:
+                  // Row(
+                  //   children: <Widget>[
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(left: 25.0),
+                  //       child: FaIcon(
+                  //         FontAwesomeIcons.phone,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(left: 20.0),
+                  //       child: Text(
+                  //         'Call me ',
+                  //         style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
+                  Text("Open PDF"),
+            ),
+          ),
+        ));
   }
 
   Widget imageItem({required String url}) {
