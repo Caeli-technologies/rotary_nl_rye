@@ -60,11 +60,11 @@ List<Organization> shortTermOrganizationList = [
   Organization(
     name: "Sabine Vergroesen",
     bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Hallo. Mijn naam is Sabine. Na ruim zes jaar actief meegedraaid te hebben bij het Long Term youth exchange programma van Rotary, heb ik een start gemaakt met het opzetten van een uitwisselingsprogramma voor jonge volwassenen binnen de kaders van Rotary: New Generation Service Exchange (NGSE). Dit programma is bedoeld om jongeren tussen 18 en 30 jaar een mogelijkheid te bieden in een ander land voor een stage, studie of buitenlandse werkervaring enkele weken (max 3 maanden) door te brengen.  Een lokale Rotary club zorgt ter plaatse voor huisvesting, bij voorkeur in een of meer gastgezinnen. Deelname aan de service projecten van de Hostclub ter plaatse wordt ook zeer op prijs gesteld.\n\nZin om meer te weten? Mail me gerust met een korte omschrijving van jouw project. ",
     imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/sabine-vergroesen.jpg",
     email: "ngse@rotaryyep.nl",
-    phoneNumber: "",
+    phoneNumber: null,
     club: '',
     district: '',
     functions: [
