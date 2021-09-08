@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -79,6 +80,7 @@ class _InboundPageState extends State<InboundPage> {
                         text:
                             'Also you can find some further information in this app. If you have any questions that are not answered, please contact our inbound coordinator ',
                       ),
+                      // TODO go to there contact page
                       TextSpan(
                         text: 'Clasine Scheepers',
                         style: TextStyle(color: Colors.blue),
@@ -155,15 +157,22 @@ class _InboundPageState extends State<InboundPage> {
                   "NGSE",
                   "New Generations Service Exchange",
                   FontAwesomeIcons.hashtag,
-                  NGSEInboundPage()),
+                  // NGSEInboundPage(),
+                  null),
               buildInboundOptionRow(
                   context,
                   "FAMILY TO FAMILY",
                   "Exchange between families",
                   FontAwesomeIcons.hashtag,
-                  FamilyToFamilyInboundPage()),
-              buildInboundOptionRow(context, "CAMPS & TOURS", "Summer Camps",
-                  FontAwesomeIcons.hashtag, CampsAndToursInboundPage()),
+                  // FamilyToFamilyInboundPage(),
+                  null),
+              buildInboundOptionRow(
+                  context,
+                  "CAMPS & TOURS",
+                  "Summer Camps",
+                  FontAwesomeIcons.hashtag,
+                  // CampsAndToursInboundPage(),
+                  null),
 
               Divider(
                 height: 15,
@@ -262,6 +271,15 @@ class _InboundPageState extends State<InboundPage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => pushTo),
+            );
+          } else {
+            String title = "Comming soon";
+            String message = "This page is not yet ready";
+            showMaterialDialog(
+              context,
+              title,
+              message,
+              null,
             );
           }
         },

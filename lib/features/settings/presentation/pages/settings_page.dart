@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/gallery_view.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_board.dart';
@@ -213,27 +214,33 @@ class _SettingsPageState extends State<SettingsPage> {
                   ],
                 ),
                 onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text("Emergency Page"),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                  "Needs to go to a Emergency page with contact information"),
-                            ],
-                          ),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text("Close")),
-                          ],
-                        );
-                      });
+                  String title = "Emergency Page";
+                  String message =
+                      "This page is not yet ready, \nNeeds to go to a Emergency page with contact information";
+                  String action = "Close";
+                  showMaterialDialog(context, title, message, action);
+
+                  // showDialog(
+                  //     context: context,
+                  //     builder: (BuildContext context) {
+                  //       return AlertDialog(
+                  //         title: Text("Emergency Page"),
+                  //         content: Column(
+                  //           mainAxisSize: MainAxisSize.min,
+                  //           children: [
+                  //             Text(
+                  //                 "Needs to go to a Emergency page with contact information"),
+                  //           ],
+                  //         ),
+                  //         actions: [
+                  //           TextButton(
+                  //               onPressed: () {
+                  //                 Navigator.of(context).pop();
+                  //               },
+                  //               child: Text("Close")),
+                  //         ],
+                  //       );
+                  //     });
                 },
               ),
             )),

@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -429,114 +430,51 @@ class DialogPage1 extends StatelessWidget {
     //     );
     //   }
     // }
+    return Platform.isIOS
+        ? new CupertinoAlertDialog(
+            title: Text(title ?? 'there is no Title'),
+            content: new Column(
+              // mainAxisSize: MainAxisSize.min,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  startTime == endTime
+                      ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                      : "$startWeekDay, $startFullDate \n$startTime - $endTime",
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
+                ),
 
-    return new AlertDialog(
-      title: Text(title ?? 'there is no Title'),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            startTime == endTime
-                ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
-                : "$startWeekDay, $startFullDate | $startTime - $endTime",
-            style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
-          ),
-          // _detectMultipleDays(),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: AbsorbPointer(
-              absorbing: (location == null),
-              child: TextButton(
-                onPressed: () {
-                  if (location != null) {
-                    MapsLauncher.launchQuery(location!);
-                  }
-                },
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 0.0),
-                      child: FaIcon(
-                        FontAwesomeIcons.mapMarkerAlt,
-                        color: Palette.lightIndigo,
-                        size: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 12.0),
-                        child: Text(
-                          location ?? 'there is no location',
-                          style: TextStyle(fontSize: 12.0),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
-              children: <Widget>[
+                // _detectMultipleDays(),
+
+                //TODO fix padding location link
                 Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.alignLeft,
-                    color: Palette.lightIndigo,
-                    size: 20,
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0),
-                    child: Text(
-                      description ?? 'there is no description',
-                      style: TextStyle(fontSize: 12.0),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.calendarDay,
-                    color: Palette.lightIndigo,
-                    size: 20,
-                  ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(organizer,
-                            style: TextStyle(inherit: true, fontSize: 14.0)),
-                      ],
-                    ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 0.0),
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: AbsorbPointer(
+                    absorbing: (location == null),
+                    child: TextButton(
+                      onPressed: () {
+                        if (location != null) {
+                          MapsLauncher.launchQuery(location!);
+                        }
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 0.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.mapMarkerAlt,
+                              color: Palette.lightIndigo,
+                              size: 20,
+                            ),
+                          ),
                           Expanded(
-                            child: SizedBox(
-                              child: Text("Created by: $creator",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: false,
-                                  style: TextStyle(
-                                      inherit: true,
-                                      fontSize: 12.0,
-                                      color: Palette.creatorText)),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0),
+                              child: Text(
+                                location ?? 'there is no location',
+                                style: TextStyle(fontSize: 13.0),
+                              ),
                             ),
                           ),
                         ],
@@ -544,19 +482,393 @@ class DialogPage1 extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.alignLeft,
+                          color: Palette.lightIndigo,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          description ?? 'there is no description',
+                          style: TextStyle(fontSize: 13.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.calendarDay,
+                          color: Palette.lightIndigo,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          organizer,
+                          style: TextStyle(fontSize: 13.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Text(
+
+                //       "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate",
+                //   style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
+                // ),
+                Text("Created by: $creator",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(
+                        inherit: true,
+                        fontSize: 12.0,
+                        color: Palette.creatorText))
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 16.0),
+                //   child: Row(
+                //     children: <Widget>[
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 5.0),
+                //         child: FaIcon(
+                //           FontAwesomeIcons.calendarDay,
+                //           color: Palette.lightIndigo,
+                //           size: 20,
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: ListTile(
+                //           title: Row(
+                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //             children: <Widget>[
+                //               Text(organizer,
+                //                   style:
+                //                       TextStyle(inherit: true, fontSize: 14.0)),
+                //             ],
+                //           ),
+                //           subtitle: Padding(
+                //             padding: const EdgeInsets.only(top: 0.0),
+                //             child: Row(
+                //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //               children: <Widget>[
+                //                 Expanded(
+                //                   child: SizedBox(
+                //                     child: Text("Created by: $creator",
+                //                         maxLines: 2,
+                //                         overflow: TextOverflow.ellipsis,
+                //                         softWrap: false,
+                //                         style: TextStyle(
+                //                             inherit: true,
+                //                             fontSize: 12.0,
+                //                             color: Palette.creatorText)),
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
               ],
             ),
+            actions: <Widget>[
+              new TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Okay, got it!'),
+              ),
+            ],
           )
-        ],
-      ),
-      actions: <Widget>[
-        new TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Okay, got it!'),
-        ),
-      ],
-    );
+        : new AlertDialog(
+            title: Text(title ?? 'there is no Title'),
+            content: new Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  startTime == endTime
+                      ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                      : "$startWeekDay, $startFullDate | $startTime - $endTime",
+                  style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
+                ),
+                // _detectMultipleDays(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: AbsorbPointer(
+                    absorbing: (location == null),
+                    child: TextButton(
+                      onPressed: () {
+                        if (location != null) {
+                          MapsLauncher.launchQuery(location!);
+                        }
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 0.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.mapMarkerAlt,
+                              color: Palette.lightIndigo,
+                              size: 20,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0),
+                              child: Text(
+                                location ?? 'there is no location',
+                                style: TextStyle(fontSize: 12.0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.alignLeft,
+                          color: Palette.lightIndigo,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 12.0),
+                          child: Text(
+                            description ?? 'there is no description',
+                            style: TextStyle(fontSize: 12.0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.calendarDay,
+                          color: Palette.lightIndigo,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(organizer,
+                                  style:
+                                      TextStyle(inherit: true, fontSize: 14.0)),
+                            ],
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Expanded(
+                                  child: SizedBox(
+                                    child: Text("Created by: $creator",
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: false,
+                                        style: TextStyle(
+                                            inherit: true,
+                                            fontSize: 12.0,
+                                            color: Palette.creatorText)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            actions: <Widget>[
+              new TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Okay, got it!'),
+              ),
+            ],
+
+            // actions: <Widget>[
+            //   action != null
+            //       ? TextButton(
+            //           child: Text(action),
+            //           onPressed: () {
+            //             Navigator.pop(context);
+            //           },
+            //         )
+            //       : TextButton(
+            //           child: Text("OK"),
+            //           onPressed: () {
+            //             Navigator.pop(context);
+            //           },
+            //         )
+            // ],
+          );
+
+    // test
+    // return new AlertDialog(
+    //   title: Text(title ?? 'there is no Title'),
+    //   content: new Column(
+    //     mainAxisSize: MainAxisSize.min,
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: <Widget>[
+    //       Text(
+    //         startTime == endTime
+    //             ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+    //             : "$startWeekDay, $startFullDate | $startTime - $endTime",
+    //         style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
+    //       ),
+    //       // _detectMultipleDays(),
+    //       Padding(
+    //         padding: const EdgeInsets.only(top: 16.0),
+    //         child: AbsorbPointer(
+    //           absorbing: (location == null),
+    //           child: TextButton(
+    //             onPressed: () {
+    //               if (location != null) {
+    //                 MapsLauncher.launchQuery(location!);
+    //               }
+    //             },
+    //             child: Row(
+    //               children: <Widget>[
+    //                 Padding(
+    //                   padding: const EdgeInsets.only(bottom: 0.0),
+    //                   child: FaIcon(
+    //                     FontAwesomeIcons.mapMarkerAlt,
+    //                     color: Palette.lightIndigo,
+    //                     size: 20,
+    //                   ),
+    //                 ),
+    //                 Expanded(
+    //                   child: Padding(
+    //                     padding: EdgeInsets.only(left: 12.0),
+    //                     child: Text(
+    //                       location ?? 'there is no location',
+    //                       style: TextStyle(fontSize: 12.0),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       Padding(
+    //         padding: const EdgeInsets.only(top: 16.0),
+    //         child: Row(
+    //           children: <Widget>[
+    //             Padding(
+    //               padding: const EdgeInsets.only(left: 5.0),
+    //               child: FaIcon(
+    //                 FontAwesomeIcons.alignLeft,
+    //                 color: Palette.lightIndigo,
+    //                 size: 20,
+    //               ),
+    //             ),
+    //             Expanded(
+    //               child: Padding(
+    //                 padding: EdgeInsets.only(left: 12.0),
+    //                 child: Text(
+    //                   description ?? 'there is no description',
+    //                   style: TextStyle(fontSize: 12.0),
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //       Padding(
+    //         padding: const EdgeInsets.only(top: 16.0),
+    //         child: Row(
+    //           children: <Widget>[
+    //             Padding(
+    //               padding: const EdgeInsets.only(left: 5.0),
+    //               child: FaIcon(
+    //                 FontAwesomeIcons.calendarDay,
+    //                 color: Palette.lightIndigo,
+    //                 size: 20,
+    //               ),
+    //             ),
+    //             Expanded(
+    //               child: ListTile(
+    //                 title: Row(
+    //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                   children: <Widget>[
+    //                     Text(organizer,
+    //                         style: TextStyle(inherit: true, fontSize: 14.0)),
+    //                   ],
+    //                 ),
+    //                 subtitle: Padding(
+    //                   padding: const EdgeInsets.only(top: 0.0),
+    //                   child: Row(
+    //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                     children: <Widget>[
+    //                       Expanded(
+    //                         child: SizedBox(
+    //                           child: Text("Created by: $creator",
+    //                               maxLines: 2,
+    //                               overflow: TextOverflow.ellipsis,
+    //                               softWrap: false,
+    //                               style: TextStyle(
+    //                                   inherit: true,
+    //                                   fontSize: 12.0,
+    //                                   color: Palette.creatorText)),
+    //                         ),
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    //   actions: <Widget>[
+    //     new TextButton(
+    //       onPressed: () {
+    //         Navigator.of(context).pop();
+    //       },
+    //       child: const Text('Okay, got it!'),
+    //     ),
+    //   ],
+    // );
   }
 }

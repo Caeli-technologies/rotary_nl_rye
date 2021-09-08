@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -48,7 +49,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
+        padding: EdgeInsets.only(left: 20, top: 15, right: 20),
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -72,7 +73,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 14),
+                            .copyWith(fontSize: 16),
                         children: [
                       TextSpan(
                         text: 'Je stuurt een gezellig email bericht naar: ',
@@ -82,7 +83,8 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:interesse@rotaryyep.nl");
+                            launch(
+                                "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F");
                           },
                       ),
                       TextSpan(
@@ -91,6 +93,38 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                       ),
                     ])),
               ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 40.0, bottom: 30),
+                  child: Container(
+                    child: Center(
+                      child: CupertinoButton.filled(
+                        onPressed: () {
+                          launch(
+                              "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F");
+                        },
+                        child:
+                            // Row(
+                            //   children: <Widget>[
+                            //     Padding(
+                            //       padding: const EdgeInsets.only(left: 25.0),
+                            //       child: FaIcon(
+                            //         FontAwesomeIcons.phone,
+                            //         color: Colors.white,
+                            //       ),
+                            //     ),
+                            //     Padding(
+                            //       padding: const EdgeInsets.only(left: 20.0),
+                            //       child: Text(
+                            //         'Call me ',
+                            //         style: TextStyle(color: Colors.white, fontSize: 18.0),
+                            //       ),
+                            //     )
+                            //   ],
+                            // ),
+                            Text("Verstuur een Email"),
+                      ),
+                    ),
+                  )),
 
               // the end dont touch XD
               Padding(

@@ -48,7 +48,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
+        padding: EdgeInsets.only(left: 20, top: 15, right: 20),
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -72,7 +72,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 14),
+                            .copyWith(fontSize: 15),
                         children: [
                       TextSpan(
                         text: '1. ',
@@ -90,7 +90,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 14),
+                            .copyWith(fontSize: 15),
                         children: [
                       TextSpan(
                         text: '2. ',
@@ -113,7 +113,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                       ),
                       TextSpan(
                           text: ' (Onderaan de pagina)',
-                          style: TextStyle(fontSize: 12.5)),
+                          style: TextStyle(fontSize: 13)),
                     ])),
               ),
               Padding(
@@ -123,7 +123,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontSize: 14),
+                            .copyWith(fontSize: 15),
                         children: [
                       TextSpan(
                         text: '3. ',

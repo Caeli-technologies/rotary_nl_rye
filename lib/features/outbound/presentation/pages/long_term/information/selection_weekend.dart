@@ -46,7 +46,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
+        padding: EdgeInsets.only(left: 20, top: 15, right: 20),
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
         children: <Widget>[

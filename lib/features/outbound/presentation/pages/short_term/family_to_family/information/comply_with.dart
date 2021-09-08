@@ -46,7 +46,7 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
+        padding: EdgeInsets.only(left: 20, top: 15, right: 20),
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -66,15 +66,8 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "Zit je op het VMBO, HAVO of VWO dan kun je na selectie voor deze uitwisseling in aanmerking komen. Je hebt wel een Rotaryclub nodig die jou wil voordragen: een Sponsorclub. Dat betekent niet dat de club jouw kosten betaalt., maar de club is verantwoordelijk voor de terug ontvangst van een jaarkind uit het buitenland. Als jij weggaat komt er ook een buitenlandse scholier terug. Een diploma is geen vereiste om je op te geven; je kunt nl ook je schoolprogramma onderbreken. Soms is dat zelfs een voordeel. In het buitenland worden namelijk vaak strenge leeftijdsgrenzen gesteld om tot een school te worden toegelaten. En om deel te kunnen nemen aan de schoolsporten is het soms beter om nog geen diploma te hebben.",
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  "Voor de uitzending gelden indicatieve leeftijdsgrenzen, in principe 15-18 jaar. De leeftijdsgrens geldt voor overheidsscholen, soms is er enige rek mogelijk.",
-                  style: TextStyle(fontSize: 14.0),
+                  "Alle jongens en meisjes in de leeftijd van 15 t/m 19* jaar, die open staan voor anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen ontmoeten zijn geschikt om aan dit programma deel te nemen. ",
+                  style: TextStyle(fontSize: 15.0),
                 ),
               ),
 
@@ -92,7 +85,7 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
                 padding: const EdgeInsets.only(top: 15.0),
                 child: Center(
                   child: Text(
-                    'Update: 31 May 2021',
+                    'Update: 8 Sep 2021',
                     style: TextStyle(color: Color(0xFF777777)),
                   ),
                 ),

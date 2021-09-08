@@ -55,14 +55,14 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-              //   child: Text(
-              //     "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
-              //     style: TextStyle(fontSize: 16.0),
-              //   ),
-              // ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                child: Text(
+                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ),
               // Divider(
               //   height: 15,
               //   thickness: 2,

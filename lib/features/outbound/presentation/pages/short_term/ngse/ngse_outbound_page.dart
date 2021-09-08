@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 import 'information/comply_with.dart';
@@ -165,6 +166,10 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
               context,
               MaterialPageRoute(builder: (context) => pushTo),
             );
+          } else {
+            String title = "Comming soon";
+            String message = "This page is not yet ready";
+            showMaterialDialog(context, title, message, null);
           }
         },
       ),

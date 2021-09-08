@@ -5,9 +5,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 
 import 'information/comply_with.dart';
 import 'information/how_to_sign_up.dart';
-import 'information/selection_day.dart';
-import 'information/selection_weekend.dart';
-import 'information/top_3_countries.dart';
+import 'information/countries_preference.dart';
 
 class FamilyToFamilyOutboundPage extends StatefulWidget {
   @override
@@ -56,35 +54,35 @@ class _FamilyToFamilyOutboundPageState
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-              //   child: Text(
-              //     "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
-              //     style: TextStyle(fontSize: 16.0),
-              //   ),
-              // ),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
-              //     FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
-              //     FontAwesomeIcons.exclamation, ComplyWithPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(
-              //     context,
-              //     "Wat moet ik doen voor de selectiedag",
-              //     FontAwesomeIcons.voteYea,
-              //     SelectionDayPage()),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                child: Text(
+                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie.",
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
+                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
+                  FontAwesomeIcons.exclamation, ComplyWithPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Landenvoorkeur",
+                  FontAwesomeIcons.flag, CountriesPreferencePage()),
               // Divider(
               //   height: 15,
               //   thickness: 2,

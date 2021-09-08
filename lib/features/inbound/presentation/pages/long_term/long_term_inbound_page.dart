@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 import 'information/flight_and_arrival.dart';
@@ -63,6 +64,9 @@ class _LongTermExchangeInboundPageState
                   "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
                   style: TextStyle(fontSize: 16.0),
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Divider(
                 height: 15,
@@ -156,6 +160,15 @@ class _LongTermExchangeInboundPageState
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => pushTo),
+            );
+          } else {
+            String title = "Comming soon";
+            String message = "This page is not yet ready";
+            showMaterialDialog(
+              context,
+              title,
+              message,
+              null,
             );
           }
         },

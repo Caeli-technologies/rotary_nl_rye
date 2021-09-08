@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 import 'long_term/long_term_outbound_page.dart';
@@ -58,7 +59,7 @@ class _OutboundPageState extends State<OutboundPage> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op uitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -104,7 +105,9 @@ class _OutboundPageState extends State<OutboundPage> {
                   "NGSE",
                   "New Generations Service Exchange",
                   FontAwesomeIcons.hashtag,
-                  NGSEOutboundPage()),
+                  // TODO not yet ready
+                  // NGSEOutboundPage()
+                  null),
               buildProgramOptionRow(
                   context,
                   "FAMILY TO FAMILY",
@@ -194,6 +197,15 @@ class _OutboundPageState extends State<OutboundPage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => pushTo),
+            );
+          } else {
+            String title = "Comming soon";
+            String message = "This page is not yet ready";
+            showMaterialDialog(
+              context,
+              title,
+              message,
+              null,
             );
           }
         },
