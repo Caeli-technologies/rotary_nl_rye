@@ -27,34 +27,36 @@ class _QuestionPageState extends State<QuestionPage> {
         body: ListView(
           //padding: const EdgeInsets.only(top: 60),
           children: <Widget>[
-            QuestionCardItem(
-                icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
-                subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
-                cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
-            QuestionCardItem(
-                icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
-                subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
-                cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
-            QuestionCardItem(
-                icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
-                subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
-                cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
-            QuestionCardItem(
-                icon: FontAwesomeIcons.question,
-                title: "Expansion Title",
-                subtitle: "  Sub Title's",
-                cardTitle: "In Children use can use any flutter Widget",
-                cardText:
-                    "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            //TODO add FAQ
+
+            // QuestionCardItem(
+            //     icon: FontAwesomeIcons.question,
+            //     title: "Expansion Title",
+            //     subtitle: "  Sub Title's",
+            //     cardTitle: "In Children use can use any flutter Widget",
+            //     cardText:
+            //         "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            // QuestionCardItem(
+            //     icon: FontAwesomeIcons.question,
+            //     title: "Expansion Title",
+            //     subtitle: "  Sub Title's",
+            //     cardTitle: "In Children use can use any flutter Widget",
+            //     cardText:
+            //         "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            // QuestionCardItem(
+            //     icon: FontAwesomeIcons.question,
+            //     title: "Expansion Title",
+            //     subtitle: "  Sub Title's",
+            //     cardTitle: "In Children use can use any flutter Widget",
+            //     cardText:
+            //         "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
+            // QuestionCardItem(
+            //     icon: FontAwesomeIcons.question,
+            //     title: "Expansion Title",
+            //     subtitle: "  Sub Title's",
+            //     cardTitle: "In Children use can use any flutter Widget",
+            //     cardText:
+            //         "Children Widgets are expanded/ visible when Expansion Tile Widget is Clicked"),
             // the end
             SizedBox(
               height: 40,
