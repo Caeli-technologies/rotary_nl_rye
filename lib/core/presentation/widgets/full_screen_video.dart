@@ -93,6 +93,7 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
     return Scaffold(
         backgroundColor: Colors.black12.withOpacity(0.8),
         appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: SizedBox.shrink(),

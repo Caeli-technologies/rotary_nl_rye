@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
@@ -76,6 +77,10 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.dark
+                : SystemUiOverlayStyle.light,
         elevation: 0.0,
         centerTitle: false,
         title: Text(
@@ -118,8 +123,8 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, 'Pictures (testing)',
-                FontAwesomeIcons.images, GalleryViewPage()),
+            buildAccountOptionRow(context, 'Pictures', FontAwesomeIcons.images,
+                GalleryViewPage()),
             buildAccountOptionRow(context, 'Bestuur / Team RYE',
                 FontAwesomeIcons.users, PDFPageBoard()),
             buildAccountOptionRow(

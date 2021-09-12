@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+
+import '../../../../main.dart';
 
 class ViewPhotos extends StatefulWidget {
   final String heroTitle;
@@ -38,6 +42,10 @@ class _ViewPhotosState extends State<ViewPhotos> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.light
+                : SystemUiOverlayStyle.dark,
         title: Text(
           "${currentIndex + 1} out of ${widget.imageList.length}",
           style: TextStyle(color: Colors.white),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -21,6 +22,10 @@ class _SocialPageState extends State<SocialPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.dark
+                : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Container(
@@ -76,12 +81,12 @@ class _SocialPageState extends State<SocialPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildLinkOptionRow(
-                  context,
-                  'test3 ',
-                  Palette.socialBlue,
-                  'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-                  ''),
+              // buildLinkOptionRow(
+              //     context,
+              //     'test3 ',
+              //     Palette.socialBlue,
+              //     'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
+              //     ''),
             ],
           )
         ],

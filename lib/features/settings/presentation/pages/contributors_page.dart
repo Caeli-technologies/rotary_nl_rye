@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/contributors_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -16,6 +17,10 @@ class _ContributorsPageState extends State<ContributorsPage> {
     {
       return Scaffold(
         appBar: AppBar(
+          systemOverlayStyle:
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(

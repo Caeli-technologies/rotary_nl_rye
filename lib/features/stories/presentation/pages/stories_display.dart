@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
@@ -66,6 +67,10 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
     if (student.toString() == "[]") {
       return Scaffold(
           appBar: AppBar(
+            systemOverlayStyle:
+                MediaQuery.of(context).platformBrightness == Brightness.light
+                    ? SystemUiOverlayStyle.dark
+                    : SystemUiOverlayStyle.light,
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: Container(
@@ -96,6 +101,10 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
     }
     return Scaffold(
         appBar: AppBar(
+          systemOverlayStyle:
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(

@@ -76,6 +76,10 @@ class _PDFPageState extends State<PDFPage> {
     Color foreground = Colors.green;
     return Scaffold(
         appBar: AppBar(
+          systemOverlayStyle:
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(

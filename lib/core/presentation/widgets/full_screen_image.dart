@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class FullScreenImage extends StatelessWidget {
@@ -12,6 +13,7 @@ class FullScreenImage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black12.withOpacity(0.8),
       appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: SizedBox.shrink(),

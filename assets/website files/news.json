@@ -27,7 +27,7 @@
         },
         {
             "id": 1,
-            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex-text.png",
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex.png",
             "pdf": null,
             "title": "nieuws 2021 Corona",
             "description": "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
@@ -47,7 +47,7 @@
                             ]
                         },
                         {
-                            "imageUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex-text.png"
+                            "imageUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex.png"
                         }
                     ]
                 }
@@ -55,7 +55,7 @@
         },
         {
             "id": 2,
-            "images": "https://www.rotary.nl/.uc/i9795991e0102a7739a04f1986c0456d5090361002fef0301c000/ngse.png",
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/ngse/ngse4.png",
             "pdf": "https://www.rotary.nl/yep/nieuws/NGSE.pdf",
             "title": "NGSE flyer 2020",
             "description": "NGSE behoort tot de vijfde service avenue van Rotary International, net als de Internationale Jeugduitwisselingen, Interact, Rotaract en RYLA.",
@@ -97,19 +97,19 @@
                             ]
                         },
                         {
-                            "imageUrl": "https://www.rotary.nl/d1550/nieuws/update-yep/webhare-1.jpg"
+                            "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/dutchie/2019-2020/Dutchie_Anne_Lucas.mp4"
                         },
                         {
                             "subHeader": "AANMELDEN"
+                        },
+                        {
+                            "pdfUrl": "https://www.rotary.nl/yep/nieuws/nieuwsbrief-winter-2020.pdf"
                         },
                         {
                             "paragraph": [
                                 "hi",
                                 "hello"
                             ]
-                        },
-                        {
-                            "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4"
                         }
                     ]
                 }

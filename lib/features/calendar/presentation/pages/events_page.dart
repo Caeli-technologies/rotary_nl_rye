@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
@@ -106,6 +107,10 @@ class _CalendarPageState extends State<CalendarPage> {
     print(kEvents.length);
     return Scaffold(
         appBar: AppBar(
+          systemOverlayStyle:
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: Container(
@@ -439,7 +444,7 @@ class DialogPage1 extends StatelessWidget {
               children: <Widget>[
                 Text(
                   startTime == endTime
-                      ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                      ? "$startWeekDay, $startFullDate - \n$endWeekDay, $endFullDate"
                       : "$startWeekDay, $startFullDate \n$startTime - $endTime",
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
