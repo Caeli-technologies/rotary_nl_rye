@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/programs/presentation/pages/information/long_term_exchange.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class Top3CountriesPage extends StatefulWidget {
+class WhichCountriesPage extends StatefulWidget {
   @override
-  _Top3CountriesPageState createState() => _Top3CountriesPageState();
+  _WhichCountriesPageState createState() => _WhichCountriesPageState();
 }
 
-class _Top3CountriesPageState extends State<Top3CountriesPage> {
+class _WhichCountriesPageState extends State<WhichCountriesPage> {
   @override
   initState() {
     super.initState();
@@ -47,7 +47,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
           ),
         ),
         title: Text(
-          "Goede top 3 van landen",
+          "Met welke landen?",
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -72,21 +72,10 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
               // ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text: '1. ',
-                      ),
-                      TextSpan(
-                        text:
-                            ' Lees in deze app de verhalen van exchange studenten',
-                      ),
-                    ])),
+                child: Text(
+                  "Europese landen, maar ook Canada, VS en Taiwan.",
+                  style: TextStyle(fontSize: 14.0),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
@@ -98,45 +87,16 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
-                        text: '2. ',
+                        text: 'aanmelden via het emailadres ',
                       ),
                       TextSpan(
-                        text: ' Kijk de video: ',
-                      ),
-                      TextSpan(
-                        text: 'Proud to be European',
+                        text: 'interesse@rotaryyep.nl.',
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      LongTermExchangeProgramPage()),
-                            );
+                            launch("mailto:interesse@rotaryyep.nl");
                           },
-                      ),
-                      TextSpan(
-                          text: ' (Onderaan de pagina)',
-                          style: TextStyle(fontSize: 12.5)),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text: '3. ',
-                      ),
-                      TextSpan(
-                        text:
-                            'Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te weten. ',
-                      ),
+                      )
                     ])),
               ),
 

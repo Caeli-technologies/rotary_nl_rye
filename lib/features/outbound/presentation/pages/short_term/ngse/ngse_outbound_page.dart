@@ -68,6 +68,9 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
               //     style: TextStyle(fontSize: 16.0),
               //   ),
               // ),
+              // SizedBox(
+              //   height: 20,
+              // ),
               // Divider(
               //   height: 15,
               //   thickness: 2,

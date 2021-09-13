@@ -6,9 +6,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 
 import 'information/comply_with.dart';
 import 'information/how_to_sign_up.dart';
-import 'information/selection_day.dart';
-import 'information/selection_weekend.dart';
-import 'information/top_3_countries.dart';
+import 'information/which_countries.dart';
 
 class CampsAndToursOutboundPage extends StatefulWidget {
   @override
@@ -68,55 +66,36 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
-              //     FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
-              //     FontAwesomeIcons.exclamation, ComplyWithPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(
-              //     context,
-              //     "Wat moet ik doen voor de selectiedag",
-              //     FontAwesomeIcons.voteYea,
-              //     SelectionDayPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(
-              //     context,
-              //     "Wat moet ik doen voor het selectieweekend",
-              //     FontAwesomeIcons.clipboardCheck,
-              //     SelectionWeekendPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(
-              //     context,
-              //     "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
-              //     FontAwesomeIcons.globe,
-              //     Top3CountriesPage()),
-              // Divider(
-              //   height: 15,
-              //   thickness: 2,
-              // ),
-              // buildOutboundOptionRow(context, "Hoe bereid ik me voor",
-              //     FontAwesomeIcons.suitcase, null),
-              // // the end
-              // SizedBox(
-              //   height: 20,
-              // ),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
+                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Voor wie?",
+                  FontAwesomeIcons.exclamation, ComplyWithPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, "Met welke landen?",
+                  FontAwesomeIcons.globeEurope, WhichCountriesPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+
+              // the end
+              SizedBox(
+                height: 20,
+              ),
             ],
           )
         ],
