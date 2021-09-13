@@ -14,7 +14,7 @@ Icon?
 profile
 xcuserdata
 **/.generated/
-/builds/
+/build/
 Flutter/App.framework
 Flutter/Flutter.framework
 Flutter/Flutter.podspec
