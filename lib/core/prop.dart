@@ -72,6 +72,7 @@ class Palette {
   static Color imageShadowBox2 = 0 as Color;
   static Color descriptionText = 0 as Color;
   static Color creatorText = 0 as Color;
+  static Color iconColor = 0 as Color;
 
   static Palette get instance {
     _instance.set();
@@ -108,6 +109,7 @@ class Palette {
       imageShadowBox2 = Colors.grey.shade700;
       descriptionText = Colors.grey[300]!;
       creatorText = Colors.grey[400]!;
+      iconColor = Colors.indigo[100]!;
     } else {
       // light
       indigo = Colors.indigo[800]!;
@@ -132,6 +134,7 @@ class Palette {
       imageShadowBox2 = Colors.grey.shade400;
       descriptionText = Colors.black45;
       creatorText = Colors.black45;
+      iconColor = Colors.indigoAccent[100]!;
     }
   }
 }

@@ -469,7 +469,7 @@ class DialogPage1 extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 0.0),
                             child: FaIcon(
                               FontAwesomeIcons.mapMarkerAlt,
-                              color: Palette.lightIndigo,
+                              color: Palette.iconColor,
                               size: 20,
                             ),
                           ),
@@ -495,7 +495,7 @@ class DialogPage1 extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5.0),
                         child: FaIcon(
                           FontAwesomeIcons.alignLeft,
-                          color: Palette.lightIndigo,
+                          color: Palette.iconColor,
                           size: 20,
                         ),
                       ),
@@ -516,7 +516,7 @@ class DialogPage1 extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5.0),
                         child: FaIcon(
                           FontAwesomeIcons.calendarDay,
-                          color: Palette.lightIndigo,
+                          color: Palette.iconColor,
                           size: 20,
                         ),
                       ),

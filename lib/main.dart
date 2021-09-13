@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'dart:async';
 import 'dart:io';
 
@@ -48,10 +49,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 // }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
-late AndroidNotificationChannel channel;
+AndroidNotificationChannel channel;
 
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -135,9 +136,9 @@ class MyApp extends StatelessWidget {
         const Locale('es', ''),
       ],
       localeResolutionCallback:
-          (Locale? locale, Iterable<Locale> supportedLocales) {
+          (Locale locale, Iterable<Locale> supportedLocales) {
         for (Locale supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale!.languageCode) {
+          if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }
