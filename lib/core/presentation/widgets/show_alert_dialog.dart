@@ -13,13 +13,13 @@ void showMaterialDialog(context, title, message, action) {
               content: Text(message),
               actions: <Widget>[
                 action != null
-                    ? TextButton(
+                    ? CupertinoDialogAction(
                         child: Text(action),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                       )
-                    : TextButton(
+                    : CupertinoDialogAction(
                         child: Text("OK"),
                         onPressed: () {
                           Navigator.pop(context);
