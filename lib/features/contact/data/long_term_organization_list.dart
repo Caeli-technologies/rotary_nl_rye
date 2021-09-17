@@ -8,7 +8,7 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg",
     email: "longtermchair@rotaryyep.nl",
-    phoneNumber: "",
+    phoneNumber: "+31655128529",
     club: 'RC Lelystad',
     district: '1590 NOORD-NEDERLAND',
     functions: [
@@ -26,7 +26,7 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/clasine-schepers.png",
     email: "longtermin@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31652710977",
     club: 'RC Huizen',
     district: '1570 MIDDEN-NEDERLAND',
     functions: [
@@ -41,7 +41,7 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg",
     email: "usacanada@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31636527122",
     club: 'Rotary Club Oosterwolde',
     district: '1590 NOORD-NEDERLAND',
     functions: [
@@ -55,7 +55,7 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg",
     email: "msamerica@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31652682275",
     club: 'RC Emmen-’t Loo',
     district: '1590 NOORD-NEDERLAND',
     functions: [
@@ -69,7 +69,7 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ben-mureau.jpg",
     email: "longtermadmin@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31651911244",
     club: 'RC Oldenzaal',
     district: '1560 OOST-NEDERLAND',
     functions: [
@@ -83,7 +83,7 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/betty-rijkmans.png",
     email: "doc@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31629523379",
     club: 'Rotaryclub Meppel',
     district: '1590 NOORD-NEDERLAND',
     functions: [
@@ -119,20 +119,20 @@ List<Organization> longTermOrganizationList = [
       "Teacher Orientation Course",
     ],
   ),
-  Organization(
-    name: "Luke Klazema",
-    bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-    email: "docteacher@rotaryyep.nl",
-    phoneNumber: "",
-    club: '',
-    district: '',
-    functions: [
-      "Teacher Orientation Course",
-    ],
-  ),
+  // Organization(
+  //   name: "Luke Klazema",
+  //   bio:
+  //       "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+  //   imageUrl:
+  //       "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+  //   email: "docteacher@rotaryyep.nl",
+  //   phoneNumber: "",
+  //   club: '',
+  //   district: '',
+  //   functions: [
+  //     "Teacher Orientation Course",
+  //   ],
+  // ),
   Organization(
     name: "Hilleke van der Veer",
     bio:

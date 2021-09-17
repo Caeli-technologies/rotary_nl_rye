@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+49
+version: 1.0.2+50
 
 # authors:
 #   - Ruben Talstra <info@caeli-tech.com>
@@ -44,7 +44,7 @@ dependencies:
   firebase_auth: ^3.0.1
   firebase_analytics: ^8.0.1
   firebase_crashlytics: ^2.1.1
-  firebase_remote_config: ^0.10.0+1 
+  firebase_remote_config: ^0.11.0 
   firebase_dynamic_links: ^2.0.5
   firebase_messaging: ^10.0.1
   cloud_firestore: ^2.1.0
@@ -75,7 +75,7 @@ dependencies:
   photo_view: ^0.12.0
 
   # temp
-  wakelock: 0.5.3+3
+  wakelock: ^0.5.6
 
   
   
@@ -91,6 +91,7 @@ dependencies:
   # quick_actions: ^0.6.0+2 # something fun to add later (for both android and iOS) https://pub.dev/packages/quick_actions#quick_actions
   badges: ^2.0.1
   
+  # https://github.com/Jon1105/flutter_animated_circle_progress new version not working
   
 
 dev_dependencies:
@@ -101,7 +102,7 @@ dev_dependencies:
   flutter_native_splash: ^1.2.3
 
   #temp
-  wakelock_platform_interface: 0.2.1+2
+  # wakelock_platform_interface: 0.2.1+2
 
 flutter_icons:
   image_path: "icon/icon.jpg" 

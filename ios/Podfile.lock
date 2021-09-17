@@ -344,7 +344,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
-  - cloud_firestore (2.5.2):
+  - cloud_firestore (2.5.3):
     - Firebase/Firestore (= 8.6.0)
     - firebase_core
     - Flutter
@@ -396,7 +396,7 @@ PODS:
     - Firebase/Messaging (= 8.6.0)
     - firebase_core
     - Flutter
-  - firebase_remote_config (0.10.0-5):
+  - firebase_remote_config (0.11.0):
     - Firebase/RemoteConfig (= 8.6.0)
     - firebase_core
     - Flutter
@@ -678,7 +678,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
-  cloud_firestore: 8a2843c34901ea2bc6aafcaa1c452f5b4f1ade37
+  cloud_firestore: bb4fcf1d62a2bf48586fad7a7e9612f20a719cda
   Firebase: 21ac9f28b09a8bdfc005f34c984fca84e7e8786d
   firebase_analytics: 039357074df292fb8a58e119206762d10483a8ec
   firebase_auth: a5da789c2876fda3ad7407bd2828e502dfeebc42
@@ -686,7 +686,7 @@ SPEC CHECKSUMS:
   firebase_crashlytics: b0581024be6112af8821de61e5a37fdb292373f0
   firebase_dynamic_links: ef0989cdc7e7d2aaed5814a81f7ca0ec7a6028ee
   firebase_messaging: 0fddeca6fcfee0bed23c66210391d782af8f8d0e
-  firebase_remote_config: 68becd5f079ab2f73bc717c24ce6c31f5f1cf13f
+  firebase_remote_config: 4defdf4a3bc8e9749abf68084b3103f3075721fb
   FirebaseABTesting: c3e48ebf5e7e5c674c5a131c68e941d7921d83dc
   FirebaseAnalytics: 8f32ae54ad42754f503354782575c4ddfc1425c3
   FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4

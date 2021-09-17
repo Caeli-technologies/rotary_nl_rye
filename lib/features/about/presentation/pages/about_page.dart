@@ -33,15 +33,15 @@ class _AboutPageState extends State<AboutPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                child: Container(
-                    child: ClipRRect(
-                  child: Image.asset(
-                    "assets/image/rotary_opens_opportunities_logo.png",
-                  ),
-                )),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              //   child: Container(
+              //       child: ClipRRect(
+              //     child: Image.asset(
+              //       "assets/image/rotary_opens_opportunities_logo.png",
+              //     ),
+              //   )),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                 child: SizedBox(

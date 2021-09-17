@@ -22,7 +22,7 @@ List<Organization> shortTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/femke-burger.jpg",
     email: "zomerkamp@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31627315996",
     club: '',
     district: '',
     functions: [
@@ -36,7 +36,7 @@ List<Organization> shortTermOrganizationList = [
     imageUrl:
         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/gideon-roos.jpg",
     email: "campsandtours@rotaryyep.nl",
-    phoneNumber: null,
+    phoneNumber: "+31610930431",
     club: 'RC Monnickendam',
     district: '1580 NOORD-HOLLAND',
     functions: [
@@ -46,13 +46,13 @@ List<Organization> shortTermOrganizationList = [
   Organization(
     name: "Petra van Wouw",
     bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Ik ben Petra van Wouw-Diekmeier. Lid van Rotary sinds 2017. Mijn club is Rotary Etten-Leur. Een zeer actieve club, zeker op het gebied van Jeugd.  In 2020 ben ik gevraagd als Regio Jeugd Commisaris District 1610 regio 3. Helaas hebben hier door de Corona situatie nog niet heel veel activiteiten plaats kunnen vinden. Sinds juli 2021 ben ik Coordinator Family-2-Family voor het Noordelijk Halfrond. Hopelijk kunnen we snel van start met het oppakken van de uitwisselingen! Ik heb er in ieder geval veel zin in om nader kennis te maken met de jeugd die er op uit wil.\n\nWie ben ik? Van beroep ben ik grimeur en kostuummaker. Op dit moment ben ik aan het omscholen tot meubelstoffeerder. De situatie is onduidelijk wat er in de toekomst met de theaters gaat gebeuren en stilzitten is niet een van mijn deugden. Dus, tijd voor iets anders. Heel erg leuk, nieuwe materialen, gereedschappen en mensen. En toch mijn creatieve kant blijven triggeren. We zullen zien wat de toekomst gaat brengen. Combineren van beide beroepen kan natuurlijk ook altijd nog.\n\nNaast mijn werk heb ik als hobby’s mijn twee honden (Engelse Cocker Spaniels), die ik regelmatig show en ballroom-dansen.\n\nNieuwe uitdagingen vind ik geweldig. Vandaar mijn enthousiasme voor jeugd. Daar is immers nog alles mogelijk! Zij kijken naar de toekomst en zien nog alle mogelijkheden. Graag wil ik hen begeleiden in de kansen die Rotary biedt op het gebied van jeugduitwisselingen. Ben je geinteresseerd, stuur me dan een mailtje. Dan gaan we kijken wat er kan.",
     imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-    email: "",
-    phoneNumber: "",
-    club: '',
-    district: '',
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/petra-van-wouw.jpg",
+    email: "f2f@rotaryyep.nl",
+    phoneNumber: "+31622520236",
+    club: 'Rotary Etten-Leur',
+    district: '1610 ZUIDWEST-NEDERLAND',
     functions: [
       "Family2Family",
     ],

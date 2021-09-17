@@ -97,8 +97,8 @@ class _SettingsPageState extends State<SettingsPage> {
             onPressed: () {
               Share.share(
                   Platform.isIOS
-                      ? 'Hier mot nog een leuk stukje komen. + de link naar de Apple app store link https://example.com'
-                      : 'Hier mot nog een leuk stukje komen. + de link naar de google play store link https://example.com',
+                      ? 'https://apps.apple.com/app/rotary-youth-exchange-nl/id1567096118'
+                      : 'https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye',
                   subject: 'look at this nice app :)');
             },
           )
