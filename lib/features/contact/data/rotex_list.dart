@@ -75,19 +75,19 @@ List<Rotex> rotexList = [
       linkedinUrl: null,
       role: 'Commissie PR - Extern'),
 // Josephine van Dijk
-  // Rotex(
-  //     name: "Josephine van Dijk",
-  //     bio: "josephineDijkBio",
-  //     imageUrl:
-  //         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-  //     email: null,
-  //     phoneNumber: null,
-  //     facebookUrl: null,
-  //     snapchatUrl: null,
-  //     instagramUrl: null,
-  //     websiteUrl: null,
-  //     linkedinUrl: null,
-  //     role: 'Commissie PR - Extern'),
+  Rotex(
+      name: "Josephine van Dijk",
+      bio: "josephineDijkBio",
+      imageUrl:
+          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/josephine-dijk.jpg",
+      email: null,
+      phoneNumber: null,
+      facebookUrl: null,
+      snapchatUrl: null,
+      instagramUrl: "josephinedijk",
+      websiteUrl: null,
+      linkedinUrl: "https://nl.linkedin.com/in/josephinedijk",
+      role: 'Commissie PR - Extern'),
   // Julia Brok
   Rotex(
       name: "Julia Brok",

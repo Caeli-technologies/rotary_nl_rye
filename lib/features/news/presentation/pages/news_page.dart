@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
@@ -40,11 +42,30 @@ class _NewsPageState extends State<NewsPage> {
   //   readJson(news.jsonUrl);
   // }
 
+  // late List data;
+  // late List<String> imageList = [];
+
+  // Future<String> fetchDataFromApi() async {
+  //   var jsonData = await http.get(Uri.parse(
+  //       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/new-header.json"));
+  //   var fetchData = jsonDecode(jsonData.body);
+
+  //   setState(() {
+  //     data = fetchData;
+  //     data.forEach((element) {
+  //       imageList.add(element);
+  //     });
+  //   });
+  //   // print(imageList);
+  //   return "Success";
+  // }
+
   @override
   initState() {
     super.initState();
     _newsBloc.getNewsData();
     _removeBadge();
+    // fetchDataFromApi();
   }
 
   void _removeBadge() async {

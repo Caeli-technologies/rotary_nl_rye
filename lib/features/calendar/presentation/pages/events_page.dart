@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/utils.dart';
 import '../../models/event_result.dart';
@@ -334,6 +335,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                         ],
                                       ),
                                     ),
+
                                     //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
                                     onTap: () {
                                       showDialog(
@@ -405,6 +407,11 @@ class DialogPage1 extends StatelessWidget {
     final endTime =
         DateFormat.jm(defaultLocale).format(DateTime.parse(endDate).toLocal());
 
+    RegExp exp =
+        new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    Iterable<RegExpMatch> matches = exp.allMatches(description ?? "");
+    // String sendLink = description!.substring(matches.start, matches.end))
+
     // Widget _detectMultipleDays() {
     //   if (startFullDate == endFullDate) {
     //     return SizedBox.shrink();
@@ -444,7 +451,9 @@ class DialogPage1 extends StatelessWidget {
               children: <Widget>[
                 Text(
                   startTime == endTime
-                      ? "$startWeekDay, $startFullDate - \n$endWeekDay, $endFullDate"
+                      // just add everything as a single
+                      // ? "$startWeekDay, $startFullDate - \n$endWeekDay, $endFullDate"
+                      ? "$startWeekDay, $startFullDate"
                       : "$startWeekDay, $startFullDate \n$startTime - $endTime",
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
@@ -508,6 +517,24 @@ class DialogPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
+                // ignore: unrelated_type_equality_checks
+                // (matches == ("Instance of '_RegExpMatch'"))
+                //?
+                exp.hasMatch(description ?? "") == true
+                    ? CupertinoButton.filled(
+                        minSize: 5,
+                        child: Text('Link'),
+                        onPressed: () {
+                          matches.forEach((match) {
+                            String sendLink =
+                                description!.substring(match.start, match.end);
+                            launch(
+                              sendLink,
+                              forceSafariVC: false,
+                            );
+                          });
+                        })
+                    : SizedBox.shrink(),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
@@ -529,7 +556,6 @@ class DialogPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 // Text(
 
                 //       "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate",
@@ -592,7 +618,7 @@ class DialogPage1 extends StatelessWidget {
               ],
             ),
             actions: <Widget>[
-              new TextButton(
+              new CupertinoDialogAction(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -608,7 +634,9 @@ class DialogPage1 extends StatelessWidget {
               children: <Widget>[
                 Text(
                   startTime == endTime
-                      ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                      // just add everything as a single
+                      // ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                      ? "$startWeekDay, $startFullDate"
                       : "$startWeekDay, $startFullDate | $startTime - $endTime",
                   style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
                 ),
