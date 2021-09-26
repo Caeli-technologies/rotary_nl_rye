@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/main.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -141,7 +145,8 @@ class RotexDetails extends StatelessWidget {
               person.websiteUrl == null &&
                       person.facebookUrl == null &&
                       person.instagramUrl == null &&
-                      person.snapchatUrl == null
+                      person.snapchatUrl == null &&
+                      person.phoneNumber == null
                   ? SizedBox.shrink()
                   : Padding(
                       padding: const EdgeInsets.only(
@@ -289,9 +294,16 @@ class RotexDetails extends StatelessWidget {
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              person.websiteUrl == null &&
+                      person.linkedinUrl == null &&
+                      person.facebookUrl == null &&
+                      person.instagramUrl == null &&
+                      person.snapchatUrl == null
+                  ? SizedBox(
+                      height: 40,
+                    )
+                  : SizedBox.shrink(),
+
               Padding(
                 padding:
                     const EdgeInsets.only(top: 15.0, left: 30.0, right: 20.0),
@@ -321,42 +333,67 @@ class RotexDetails extends StatelessWidget {
                     person.phoneNumber == null
                         ? SizedBox.shrink()
                         : Container(
-                            height: 65.0,
-                            width: 180.0,
+                            height: 70.0,
+                            width: 70.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(35.0),
-                                border: Border.all(
-                                    color: Colors.blue.shade100, width: 5),
-                                color: Colors.blue[400]),
+                              borderRadius: BorderRadius.circular(30.0),
+                              color: Colors.grey[200],
+                            ),
                             child: RawMaterialButton(
-                              onPressed: () {
-                                launch("tel:${person.phoneNumber}");
-                              },
+                              onPressed: () =>
+                                  openwhatsapp(context, person.phoneNumber!),
                               shape: new RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(35.0)),
-                              child: Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 25.0),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.phone,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      'Call me ',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18.0),
-                                    ),
-                                  )
-                                ],
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              child: FaIcon(
+                                FontAwesomeIcons.whatsapp,
+                                color: Color(
+                                  0xFF25D366,
+                                ),
+                                size: 40,
                               ),
-                            ))
+                            )),
+
+                    // Container(
+                    //     height: 65.0,
+                    //     width: 230.0,
+                    //     decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(35.0),
+                    //         border: Border.all(
+                    //             color: Colors.blue.shade100, width: 5),
+                    //         color: Colors.blue[400]),
+                    //     child: RawMaterialButton(
+                    //       onPressed: () {
+                    //         launch("tel:${person.phoneNumber}");
+                    //       },
+                    //       shape: new RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(35.0)),
+                    //       child: Row(
+                    //         children: <Widget>[
+                    //           Padding(
+                    //             padding: const EdgeInsets.only(left: 25.0),
+                    //             child: FaIcon(
+                    //               FontAwesomeIcons.whatsapp,
+                    //               color: Color(
+                    //                 0xFF25D366,
+                    //               ),
+                    //               size: 30,
+                    //             ),
+                    //           ),
+                    //           Padding(
+                    //             padding: const EdgeInsets.only(left: 20.0),
+                    //             child: Text(
+                    //               'Whatsapp me ',
+                    //               style: TextStyle(
+                    //                   color: Colors.white, fontSize: 18.0),
+                    //             ),
+                    //           )
+                    //         ],
+                    //       ),
+                    //     ))
                   ],
                 ),
               ),
+
               SizedBox(
                 height: 40,
               ),
