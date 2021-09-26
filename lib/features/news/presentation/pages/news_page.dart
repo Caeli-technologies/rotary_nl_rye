@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/cached_network_image.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,6 +68,7 @@ class _NewsPageState extends State<NewsPage> {
     super.initState();
     _newsBloc.getNewsData();
     _removeBadge();
+
     // fetchDataFromApi();
   }
 
@@ -138,7 +142,16 @@ class _NewsPageState extends State<NewsPage> {
                                 child: Text(snapshot.error.toString()),
                               );
                             } else if (snapshot.hasData) {
-                              return CachedNetworkImage(
+                              return
+
+                                  // CachedNetworkImageRotary(
+                                  //     imageUrl: snapshot.data!);
+                                  //     Image.network(
+                                  //   snapshot.data!,
+                                  //   fit: BoxFit.cover,
+                                  // );
+
+                                  CachedNetworkImage(
                                 height: 55,
                                 width: 55,
                                 imageUrl: snapshot.data!,

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,13 +8,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-
   /// Features - Stories
   // Bloc
   // sl.registerFactory(() => StoriesBloc(getStories: sl()));
 
   // Use cases
   // sl.registerLazySingleton(() => GetStories(sl()));
+
+  // temp solluction
+  final Cache cache = new Cache();
+
+  await cache.clear();
+  // final today = DateTime(now.year, now.month, now.day);
+  // final toDaysAgo = DateTime(now.year, now.month, now.day - 2);
 
   // Repository
   // sl.registerLazySingleton<StoriesRepository>(() => StoriesRepositoryImpl(

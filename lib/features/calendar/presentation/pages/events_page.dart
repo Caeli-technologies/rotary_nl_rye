@@ -699,6 +699,36 @@ class DialogPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
+                exp.hasMatch(description ?? "") == true
+                    ? Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.link,
+                              color: Palette.lightIndigo,
+                              size: 20,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                                padding: EdgeInsets.only(),
+                                child: TextButton(
+                                    onPressed: () {
+                                      matches.forEach((match) {
+                                        String sendLink = description!
+                                            .substring(match.start, match.end);
+                                        launch(
+                                          sendLink,
+                                          forceSafariVC: false,
+                                        );
+                                      });
+                                    },
+                                    child: Text('Link'))),
+                          ),
+                        ],
+                      )
+                    : SizedBox.shrink(),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Row(
