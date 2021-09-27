@@ -91,6 +91,7 @@ dependencies:
 
   # quick_actions: ^0.6.0+2 # something fun to add later (for both android and iOS) https://pub.dev/packages/quick_actions#quick_actions
   badges: ^2.0.1
+  csv: ^5.0.0
   
   # https://github.com/Jon1105/flutter_animated_circle_progress new version not working
   
@@ -131,6 +132,7 @@ flutter:
      - assets/icons/custom/
      - assets/lang/
      - assets/keys/deepl.json
+     - assets/csv/Book1.csv
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

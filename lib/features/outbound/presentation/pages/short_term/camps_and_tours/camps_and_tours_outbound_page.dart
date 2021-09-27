@@ -7,6 +7,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'information/comply_with.dart';
 import 'information/how_to_sign_up.dart';
 import 'information/which_countries.dart';
+import 'widgets/loadCsv.dart';
 
 class CampsAndToursOutboundPage extends StatefulWidget {
   @override
@@ -87,6 +88,12 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
               ),
               buildOutboundOptionRow(context, "Met welke landen?",
                   FontAwesomeIcons.globeEurope, WhichCountriesPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(
+                  context, "Landen Lijst", FontAwesomeIcons.list, LoadCsv()),
               Divider(
                 height: 15,
                 thickness: 2,
