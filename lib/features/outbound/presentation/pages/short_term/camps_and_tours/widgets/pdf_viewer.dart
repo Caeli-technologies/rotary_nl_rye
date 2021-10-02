@@ -10,10 +10,12 @@ import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class PDFPageViewer extends StatefulWidget {
+  final String title;
   final String pdfURL;
 
   PDFPageViewer({
     required this.pdfURL,
+    required this.title,
   });
   @override
   _PDFPageViewerState createState() => _PDFPageViewerState(pdfURL: pdfURL);
@@ -91,6 +93,12 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
           //     onPressed: _createShareURL,
           //   )
           // ],
+          title: Text(
+            widget.title,
+            textScaleFactor: 1.0,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Stack(
           children: <Widget>[

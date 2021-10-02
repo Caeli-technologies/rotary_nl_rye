@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -96,6 +97,38 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                       ),
                     ])),
               ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 40.0, bottom: 30),
+                  child: Container(
+                    child: Center(
+                      child: CupertinoButton.filled(
+                        onPressed: () {
+                          launch(
+                              "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F");
+                        },
+                        child:
+                            // Row(
+                            //   children: <Widget>[
+                            //     Padding(
+                            //       padding: const EdgeInsets.only(left: 25.0),
+                            //       child: FaIcon(
+                            //         FontAwesomeIcons.phone,
+                            //         color: Colors.white,
+                            //       ),
+                            //     ),
+                            //     Padding(
+                            //       padding: const EdgeInsets.only(left: 20.0),
+                            //       child: Text(
+                            //         'Call me ',
+                            //         style: TextStyle(color: Colors.white, fontSize: 18.0),
+                            //       ),
+                            //     )
+                            //   ],
+                            // ),
+                            Text("Verstuur een Email"),
+                      ),
+                    ),
+                  )),
 
               // the end dont touch XD
               Padding(

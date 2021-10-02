@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:csv/csv.dart' as csv;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle, rootBundle;
 
 import 'package:csv/csv.dart';
@@ -15,103 +18,245 @@ class LoadCsv extends StatefulWidget {
 class _LoadCsvState extends State<LoadCsv> {
   List<List<dynamic>> _data = [];
 
-  // This function is triggered when the floating button is pressed
-  void _loadCSV() async {
-    final _rawData = await rootBundle.loadString("assets/csv/Book1.csv");
-    List<List<dynamic>> _listData = CsvToListConverter(
-      fieldDelimiter: ";",
-    ).convert(_rawData);
-    setState(() {
-      _data = _listData;
-    });
+  Future<List<List>?> getData() async {
+    // final responseData = await http.get(
+    //     Uri.parse("https://stadler.caeli-tech.com/testApp/sql/list_train.php"));
+    final response = await http.get(
+        Uri.parse(
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/book1.csv"),
+        headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
+    try {
+      if (response.statusCode == 200) {
+        List<List<dynamic>> _listData = CsvToListConverter(
+          eol: '\r\n',
+          fieldDelimiter: ";",
+        ).convert(response.body);
+
+        setState(() {
+          _data = _listData;
+        });
+
+        return _listData;
+      } else {
+        // ignore: null_check_always_fails
+        return null!;
+      }
+    } catch (e) {
+      // ignore: null_check_always_fails
+      return null;
+    }
   }
+
+  // Future<List<List>> csvToList() async {
+  //   var csvfile = await http.get(
+  //     Uri.parse(
+  //         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/book1.csv"),
+  //   );
+  //   csv.CsvToListConverter converter =
+  //       new csv.CsvToListConverter(eol: '\r\n', fieldDelimiter: ';');
+  //   List<List> listCreated = converter.convert(
+  //       csvfile.body); // the csv file is converted to a 2-Dimensional list
+  //   setState(() {
+  //     _data = listCreated;
+  //   });
+  //   return listCreated;
+  // }
+
+  // // This function is triggered when the floating button is pressed
+  // void _loadCSV() async {
+  //   final _rawData = await rootBundle.loadString("assets/csv/Book1.csv");
+  //   List<List<dynamic>> _listData = CsvToListConverter(
+  //     fieldDelimiter: ";",
+  //   ).convert(_rawData);
+  //   setState(() {
+  //     _data = _listData;
+  //   });
+  // }
 
   @override
   void initState() {
     super.initState();
-    _loadCSV();
+    // getData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
+        appBar: AppBar(
+          systemOverlayStyle:
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: Container(
+            margin: EdgeInsets.only(left: 10, top: 5),
+            width: 40,
+            height: 40,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
+            child: RawMaterialButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: new Icon(
+                Icons.arrow_back,
+                color: Palette.accentColor,
+                size: 30.0,
+              ),
+              shape: new CircleBorder(),
+              elevation: 2.0,
+              fillColor: Palette.themeShadeColor,
+              padding: const EdgeInsets.all(5.0),
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
+          ),
+          title: Text(
+            "Camps & Tours Excel List",
+            textScaleFactor: 1.2,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
         ),
-        title: Text(
-          "Camps & Tours Excel List",
-          textScaleFactor: 1.2,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(left: 15, right: 15),
-        child: ListView.builder(
-          padding: EdgeInsets.only(top: 10, bottom: 30),
-          itemCount: _data.length,
-          itemBuilder: (_, index) {
-            if (index == 0) {
-              // return the header
-              return SizedBox.shrink();
-            }
-            return GestureDetector(
-                onTap: () {
-                  print("number " + _data[index][8].toString());
+        body: Padding(
+          padding: EdgeInsets.only(left: 15, right: 15),
+          child: FutureBuilder<List<List>?>(
+            future: getData(), // async work
+            builder:
+                (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Center(child: Text("Please wait it's loading..."));
+              } else {
+                if (snapshot.hasError)
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                else
+                  // return Center(child: new Text('${snapshot.data}'));  // snapshot.data  :- get your object which is pass from your downloadData() function
+                  return ListView.builder(
+                    padding: EdgeInsets.only(top: 10, bottom: 30),
+                    itemCount: _data.length,
+                    itemBuilder: (_, index) {
+                      if (index == 0) {
+                        // return the header
+                        return SizedBox.shrink();
+                      }
+                      return GestureDetector(
+                          onTap: () {
+                            print("number " +
+                                snapshot.data![index][8].toString());
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PDFPageViewer(
-                              pdfURL: _data[index][9].toString(),
-                            )),
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PDFPageViewer(
+                                        title:
+                                            snapshot.data![index][2].toString(),
+                                        pdfURL:
+                                            snapshot.data![index][9].toString(),
+                                      )),
+                            );
+                            // needs to go to the pdf
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: TravelCard(
+                              number: snapshot.data![index][0].toString(),
+                              date: snapshot.data![index][1].toString(),
+                              title: snapshot.data![index][2].toString(),
+                              hostCountryCode:
+                                  snapshot.data![index][3].toString(),
+                              hostCountry: snapshot.data![index][4].toString(),
+                              hostDistrict: snapshot.data![index][5].toString(),
+                              ageMin: snapshot.data![index][6].toString(),
+                              ageMax: snapshot.data![index][7].toString(),
+                              contribution: snapshot.data![index][8].toString(),
+                              invitation: snapshot.data![index][9].toString(),
+                            ),
+                          ));
+                    },
                   );
-                  // needs to go to the pdf
-                },
-                child: Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  child: TravelCard(
-                    number: _data[index][0].toString(),
-                    date: _data[index][1].toString(),
-                    title: _data[index][2].toString(),
-                    hostCountryCode: _data[index][3].toString(),
-                    hostCountry: _data[index][4].toString(),
-                    hostDistrict: _data[index][5].toString(),
-                    ageMin: _data[index][6].toString(),
-                    ageMax: _data[index][7].toString(),
-                    contribution: _data[index][8].toString(),
-                    invitation: _data[index][9].toString(),
-                  ),
-                ));
-          },
-        ),
-      ),
-      // floatingActionButton:
-      //     FloatingActionButton(child: Icon(Icons.refresh), onPressed: _loadCSV),
-    );
+              }
+            },
+
+            // return ListView.builder(
+            //   padding: EdgeInsets.only(top: 10, bottom: 30),
+            //   itemCount: _data.length,
+            //   itemBuilder: (_, index) {
+            //     if (index == 0) {
+            //       // return the header
+            //       return SizedBox.shrink();
+            //     }
+            //     return GestureDetector(
+            //         onTap: () {
+            //           print("number " + _data[index][8].toString());
+
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => PDFPageViewer(
+            //                       pdfURL: _data[index][9].toString(),
+            //                     )),
+            //           );
+            //           // needs to go to the pdf
+            //         },
+            //         child: Container(
+            //           padding: EdgeInsets.only(bottom: 10),
+            //           child: TravelCard(
+            //             number: _data[index][0].toString(),
+            //             date: _data[index][1].toString(),
+            //             title: _data[index][2].toString(),
+            //             hostCountryCode: _data[index][3].toString(),
+            //             hostCountry: _data[index][4].toString(),
+            //             hostDistrict: _data[index][5].toString(),
+            //             ageMin: _data[index][6].toString(),
+            //             ageMax: _data[index][7].toString(),
+            //             contribution: _data[index][8].toString(),
+            //             invitation: _data[index][9].toString(),
+            //           ),
+            //         ));
+            //   },
+            // );
+
+            // return ListView.builder(
+            //   padding: EdgeInsets.only(top: 10, bottom: 30),
+            //   itemCount: snapshot.data.length,
+            //   itemBuilder: (_, index) {
+            //     if (index == 0) {
+            //       // return the header
+            //       return SizedBox.shrink();
+            //     }
+            //     return GestureDetector(
+            //         onTap: () {
+            //           print("number " + snapshot.data[index][8].toString());
+
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => PDFPageViewer(
+            //                       pdfURL: snapshot.data[index][9].toString(),
+            //                     )),
+            //           );
+            //           // needs to go to the pdf
+            //         },
+            //         child: Container(
+            //           padding: EdgeInsets.only(bottom: 10),
+            //           child: TravelCard(
+            //             number: snapshot.data[index][0].toString(),
+            //             date: snapshot.data[index][1].toString(),
+            //             title: snapshot.data[index][2].toString(),
+            //             hostCountryCode: snapshot.data[index][3].toString(),
+            //             hostCountry: snapshot.data[index][4].toString(),
+            //             hostDistrict: snapshot.data[index][5].toString(),
+            //             ageMin: snapshot.data[index][6].toString(),
+            //             ageMax: snapshot.data[index][7].toString(),
+            //             contribution: snapshot.data[index][8].toString(),
+            //             invitation: snapshot.data[index][9].toString(),
+            //           ),
+            //         ));
+            //   },
+            // ),
+          ),
+          // floatingActionButton:
+          //     FloatingActionButton(child: Icon(Icons.refresh), onPressed: _loadCSV),
+        ));
   }
 }
 
@@ -159,7 +304,7 @@ class TravelCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 10),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.9,
+                          width: MediaQuery.of(context).size.width * 0.85,
                           child: Text(title,
                               textScaleFactor: 1.1,
                               maxLines: 2,
@@ -174,6 +319,47 @@ class TravelCard extends StatelessWidget {
                     ],
                   )),
                 ),
+                // Container(
+                //   padding: EdgeInsets.only(top: 10),
+                //   child: Row(
+                //     children: <Widget>[
+                //       Container(
+                //         padding: EdgeInsets.only(left: 16),
+                //         child: Row(
+                //           children: <Widget>[
+                //             FaIcon(
+                //               FontAwesomeIcons.listOl,
+                //               color: Palette.lightIndigo,
+                //               size: 20,
+                //             ),
+                //             Container(
+                //               margin: EdgeInsets.only(left: 16),
+                //               child: Text(
+                //                 'Number:',
+                //                 textScaleFactor: 1.2,
+                //                 style: TextStyle(
+                //                   color: Palette.indigo,
+                //                   fontWeight: FontWeight.bold,
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Container(
+                //         margin: EdgeInsets.only(left: 75),
+                //         child: Text(
+                //           number,
+                //           textScaleFactor: 1.2,
+                //           style: TextStyle(
+                //             color: Palette.indigo,
+                //             // fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
                 // Container(
                 //   width: 50,
                 //   //MediaQuery.of(context).size.width * 0.20,
@@ -203,14 +389,13 @@ class TravelCard extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.only(left: 11),
+                              padding: EdgeInsets.only(left: 20),
                               child: Row(
                                 children: <Widget>[
-                                  SvgPicture.asset(
-                                    "assets/icons/flags/$hostCountryCode.svg",
-                                    height: 20,
-                                    width: 50,
-                                    fit: BoxFit.contain,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidFlag,
+                                    color: Palette.lightIndigo,
+                                    size: 20,
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(left: 12),
@@ -227,16 +412,40 @@ class TravelCard extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 28),
-                              child: Text(
-                                hostCountry,
-                                textScaleFactor: 1.2,
-                                style: TextStyle(
-                                  color: Palette.indigo,
-                                  // fontWeight: FontWeight.bold,
-                                ),
+                              padding: EdgeInsets.only(left: 30),
+                              child: Row(
+                                children: <Widget>[
+                                  SvgPicture.asset(
+                                    "assets/icons/flags/$hostCountryCode.svg",
+                                    height: 20,
+                                    width: 50,
+                                    fit: BoxFit.contain,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      hostCountry,
+                                      textScaleFactor: 1.2,
+                                      style: TextStyle(
+                                        color: Palette.indigo,
+                                        // fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
+                            ),
+                            // Container(
+                            //   margin: EdgeInsets.only(left: 28),
+                            //   child: Text(
+                            //     hostCountry,
+                            //     textScaleFactor: 1.2,
+                            //     style: TextStyle(
+                            //       color: Palette.indigo,
+                            //       // fontWeight: FontWeight.bold,
+                            //     ),
+                            //   ),
+                            // )
                           ],
                         ),
                       ),
@@ -374,7 +583,7 @@ class TravelCard extends StatelessWidget {
                                     size: 20,
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 17),
+                                    margin: EdgeInsets.only(left: 16),
                                     child: Text(
                                       'Min - Max:',
                                       textScaleFactor: 1.2,
@@ -388,7 +597,7 @@ class TravelCard extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 59),
+                              margin: EdgeInsets.only(left: 61),
                               child: Text(
                                 ageMin + ' - ' + ageMax + " Years",
                                 textScaleFactor: 1.2,
@@ -415,7 +624,7 @@ class TravelCard extends StatelessWidget {
                                     size: 20,
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 17),
+                                    margin: EdgeInsets.only(left: 20),
                                     child: Text(
                                       'Contribution:',
                                       textScaleFactor: 1.2,
@@ -429,7 +638,7 @@ class TravelCard extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 39),
+                              margin: EdgeInsets.only(left: 37),
                               child: Text(
                                 contribution,
                                 textScaleFactor: 1.2,
