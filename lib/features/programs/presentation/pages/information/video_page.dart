@@ -97,31 +97,28 @@ class _VideoPageState extends State<VideoPage> {
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Text(
                   "Waarom doen we dit?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "- Het opbouwen van goede relaties met andere landen",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Het houdt de club jong",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- De jongere ontwikkelt zichzelf en zijn/haar omgeving",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               // the end dont touch XD

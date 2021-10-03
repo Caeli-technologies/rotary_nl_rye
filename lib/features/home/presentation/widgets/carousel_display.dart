@@ -13,9 +13,9 @@ class _CarouselState extends State<Carousel> {
   int _current = 0;
 
   List<CarouselModel> carousels = [
-    CarouselModel(
-        image: "assets/image/homepage/4bc2b606-ddf3-4c28-930d-e4d1ad8118d4.jpg",
-        text: "Informatiedag online op 2 oktober a.s."),
+    // CarouselModel(
+    //     image: "assets/image/homepage/4bc2b606-ddf3-4c28-930d-e4d1ad8118d4.jpg",
+    //     text: "Informatiedag online op 2 oktober a.s."),
     CarouselModel(
         image: "assets/image/homepage/shelterbox.jpg",
         text: "Social actief zijn"),

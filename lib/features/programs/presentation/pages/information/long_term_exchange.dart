@@ -68,31 +68,28 @@ class _LongTermExchangeProgramPageState
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
                   "WAT HOUDT DAT IN?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het buitenland een jaar High School volgt. Omgekeerd komen buitenlandse scholieren hier om gedurende een jaar samen met leeftijdgenoten naar school te gaan.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Zit je op VWO, HAVO of VMBO dan kun je na selectie voor deze uitwisseling in aanmerking komen. Je hebt wel een Rotaryclub nodig die jou wil voordragen: een Sponsorclub. Dat betekent uiteraard niet dat de club jouw kosten betaalt. Nee, de club is verantwoordelijk voor de terug ontvangst van een jaarkind uit het buitenland.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Text(
                   "Een diploma is geen vereiste om je op te geven; je kunt ook je schoolprogramma onderbreken. Soms is dat zelfs een voordeel. In het buitenland worden namelijk vaak strenge leeftijdsgrenzen gesteld om tot een school te worden toegelaten. En om deel te kunnen nemen aan de schoolsporten is het soms beter om nog geen diploma te hebben.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
 
@@ -106,31 +103,28 @@ class _LongTermExchangeProgramPageState
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "VOOR WIE?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Voor de uitzending gelden indicatieve leeftijdsgrenzen, in principe 15,5-18,5 jaar. De leeftijdsgrens geldt voor overheidsscholen, soms is er enige rek mogelijk.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Als je ouder bent zijn de mogelijkheden kleiner; je kunt het echter altijd vragen.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Kandidaten dienen deel te nemen aan een selectiedag in oktober en een selectieweekend in november.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
@@ -163,62 +157,56 @@ class _LongTermExchangeProgramPageState
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Op basis van de beoordeling na de selectiedagen wordt uitgenodigd aan het programma deel te nemen. Er is een verplichte informatiedag in april en juni, waarbij ook je ouders aanwezig dienen te zijn.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "MET WELKE LANDEN?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "De commissie jaaruitwisseling probeert een zo groot mogelijke spreiding in de bestemmingen te realiseren omdat daardoor ook de groep scholieren in Nederland een grote spreiding in nationaliteiten en culturen zal hebben.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "In de hieronder genoemde landen wordt uitgewisseld met één of meer districten. Van jaar tot jaar kunnen die districten veranderen. De informatie per land is nog niet ingevuld.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "NOORDELIJK HALFROND",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "USA, Canada, India, Indonesie, Japan, Thailand, Taiwan",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Europa: Frankrijk. Italie, Finland en Zweden, Spanje, Turkije",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 10),
                 child: Text(
                   "Op exchange dicht bij huis, duurzaam reizen en toch een andere cultuur & taal? Geniet van wat Europa jou kan bieden!",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               //video Europa
@@ -232,27 +220,21 @@ class _LongTermExchangeProgramPageState
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "ZUIDELIJK HALFROND",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Brazilie, Chili, Argentinie, Mexico, Ecuador, Peru, Mexico, Australie, Nieuw Zeeland, Zuid Afrika",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "AANMELDEN?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -283,48 +265,42 @@ class _LongTermExchangeProgramPageState
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "KOSTEN?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "De kosten voor de jongere bedragen vanaf € 2.400,-- incl. zakgeld exclusief ticket en andere onkosten.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Text(
                   "Waarom doen we dit?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "- Het opbouwen van goede relaties met andere landen",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Het houdt de club jong",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- De jongere ontwikkelt zichzelf en zijn/haar omgeving",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               // the end dont touch XD

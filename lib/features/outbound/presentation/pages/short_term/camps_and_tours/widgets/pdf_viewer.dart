@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
@@ -84,15 +85,32 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
-          // actions: <Widget>[
-          //   IconButton(
-          //     icon: Icon(
-          //       CupertinoIcons.share,
-          //       color: Palette.indigo,
-          //     ),
-          //     onPressed: _createShareURL,
-          //   )
-          // ],
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(
+                  FontAwesomeIcons.copy,
+                  color: Palette.indigo,
+                ),
+                onPressed: () {
+                  Clipboard.setData(new ClipboardData(text: "Your Copy text"))
+                      .then((_) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Copied to your clipboard !',
+                          style: TextStyle(
+                              color:
+                                  (MediaQuery.of(context).platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white)),
+                      backgroundColor:
+                          (MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light)
+                              ? Colors.grey[350]
+                              : Palette.themeShadeColor,
+                    ));
+                  });
+                })
+          ],
           title: Text(
             widget.title,
             textScaleFactor: 1.0,

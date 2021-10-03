@@ -111,7 +111,7 @@ class _LoadCsvState extends State<LoadCsv> {
             ),
           ),
           title: Text(
-            "Camps & Tours Excel List",
+            "Camps & Tours List",
             textScaleFactor: 1.2,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -140,8 +140,8 @@ class _LoadCsvState extends State<LoadCsv> {
                       }
                       return GestureDetector(
                           onTap: () {
-                            print("number " +
-                                snapshot.data![index][8].toString());
+                            print("title: " +
+                                snapshot.data![index][2].toString());
 
                             Navigator.push(
                               context,

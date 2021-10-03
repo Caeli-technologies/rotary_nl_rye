@@ -54,7 +54,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
+        padding: EdgeInsets.only(left: 30, top: 15, right: 30),
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -104,7 +104,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                       child: CupertinoButton.filled(
                         onPressed: () {
                           launch(
-                              "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F");
+                              "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20Camps%20and%20Tours");
                         },
                         child:
                             // Row(

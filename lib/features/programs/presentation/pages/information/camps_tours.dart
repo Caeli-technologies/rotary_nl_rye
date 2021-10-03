@@ -170,7 +170,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "CAMPS & TOURS: deelnemen",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 17.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -180,7 +180,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "OUTBOUND zomerkamp: ",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -301,7 +301,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "INBOUND zomerkamp: ",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -534,7 +534,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "Wat houdt dat in?",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -543,7 +543,9 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Heel veel Europese landen organiseren in de periode van juni t/m september Zomer Tours en speciale kampen, zoals zeil-, ski- en sportkampen. De laatste jaren worden er ook Zomerkampen in Canada, V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20 deelnemers gevormd met een zo groot mogelijke spreiding van nationaliteiten. Deze groepen zijn te gast bij Rotaryclubs die een informatief, toeristisch of sportief programma organiseren. Meestal verblijft men in (Rotary)gezinnen of hostels waarbij Rotarians de leiding hebben. De belangstelling is doorgaans groter dan het aantal beschikbare plaatsen, dus stuur z.s.m. jouw aanmelding in!.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(
+                      // color: Colors.black,
+                      fontSize: 13.0),
                 ),
               ),
 
@@ -552,7 +554,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "Voor wie?",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -561,7 +563,9 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "De leeftijd van de deelnemers varieert van 15 - 21 jaar. Deelname is mogelijk voor jongeren van Rotarians en van niet-Rotarians.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(
+                      // color: Colors.black,
+                      fontSize: 13.0),
                 ),
               ),
 
@@ -570,7 +574,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "Met welke landen?",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -579,7 +583,9 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Europese landen, maar ook Canada, VS en Taiwan.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(
+                      // color: Colors.black,
+                      fontSize: 13.0),
                 ),
               ),
 
@@ -588,7 +594,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 child: Text(
                   "Aanmelden?",
                   style: TextStyle(
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -633,35 +639,35 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Hierop moet duidelijk worden:",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "- Wie jouw sponsor-Rotary Club is;",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- De periode waarin je beschikbaar bent;",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- De landen waarnaar je voorkeur uitgaat. (Als er geen speci­fieke voor­keur is en elk Europees land goed is, kan dit vermeld worden.)",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "De coördinator koppelt de aanmeldingen aan de uitnodigingen en stuurt de deelnemers bericht.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
 
@@ -712,38 +718,35 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
                   "Aanmelden?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "De kosten voor aanmelding zijn € 100.-. * (kosten kunnen per jaar verschillen) \n\nDe aanmelding staat open tot mei. \n\nNaast het inschrijfgeld moet men rekening houden met de volgende kosten:",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "- Reiskosten naar de plaats waar het kamp wordt gehouden.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Zakgeld ter plaatse.",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Een enkele Rotary Club in het buitenland vraagt wel eens een klein deelnamebedrag (dit staat steeds in de uitnodiging vermeld.)",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
 
@@ -751,31 +754,28 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Text(
                   "Waarom doen we dit?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   "- Het opbouwen van goede relaties met andere landen",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- Het houdt de club jong",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   "- De jongere ontwikkelt zichzelf en zijn/haar omgeving",
-                  style: TextStyle(color: Colors.black, fontSize: 13.0),
+                  style: TextStyle(fontSize: 13.0),
                 ),
               ),
 
