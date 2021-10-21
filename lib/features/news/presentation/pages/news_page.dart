@@ -5,6 +5,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/cached_network_image.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
@@ -25,6 +26,9 @@ class NewsPage extends StatefulWidget {
 
 class _NewsPageState extends State<NewsPage> {
   final _newsBloc = NewsBloc();
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
   //_NewsPageState({required News news}) : _news = news;
   //final News _news;
   // List _stories = [];
@@ -68,6 +72,11 @@ class _NewsPageState extends State<NewsPage> {
     super.initState();
     _newsBloc.getNewsData();
     _removeBadge();
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
 
     // fetchDataFromApi();
   }
@@ -152,6 +161,7 @@ class _NewsPageState extends State<NewsPage> {
                                   // );
 
                                   CachedNetworkImage(
+                                cacheManager: cacheManager,
                                 height: 55,
                                 width: 55,
                                 imageUrl: snapshot.data!,
@@ -257,6 +267,17 @@ class TravelCard extends StatelessWidget {
   TravelCard(
       {required this.title, required this.description, required this.image});
 
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -272,6 +293,7 @@ class TravelCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.4,
                   height: 120,
                   child: CachedNetworkImage(
+                    cacheManager: cacheManager,
                     imageUrl: image,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(

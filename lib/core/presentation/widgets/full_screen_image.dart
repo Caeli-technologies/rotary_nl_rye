@@ -1,12 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class FullScreenImage extends StatelessWidget {
   final String url;
 
   FullScreenImage({required this.url});
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  bool _tooOld = false;
+
+  @override
+  void initState() {
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +59,7 @@ class FullScreenImage extends StatelessWidget {
               tag: '',
               child: Center(
                 child: CachedNetworkImage(
+                  cacheManager: cacheManager,
                   // height: 200,
                   width: MediaQuery.of(context).size.width,
                   imageUrl: url,

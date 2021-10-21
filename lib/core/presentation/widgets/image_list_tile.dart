@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
@@ -60,11 +62,13 @@ class SVGListTile extends StatelessWidget {
 class ImageListTile extends StatelessWidget {
   final descriptionPage;
   final item;
+
   const ImageListTile({
     this.descriptionPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -120,11 +124,22 @@ class ContactListTile extends StatelessWidget {
   final contactDetailsPage;
   final Organization item;
 
-  const ContactListTile({
+  ContactListTile({
     this.contactDetailsPage,
     required this.item,
     Key? key,
   }) : super(key: key);
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +155,7 @@ class ContactListTile extends StatelessWidget {
         },
         contentPadding: EdgeInsets.all(0),
         leading: CachedNetworkImage(
+          cacheManager: cacheManager,
           height: 55,
           width: 55,
           imageUrl: item.imageUrl,
@@ -180,11 +196,24 @@ class ContactListTile extends StatelessWidget {
 class RotexContactListTile extends StatelessWidget {
   final rotexContactDetailsPage;
   final item;
-  const RotexContactListTile({
+
+  RotexContactListTile({
     this.rotexContactDetailsPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -199,6 +228,7 @@ class RotexContactListTile extends StatelessWidget {
         },
         contentPadding: EdgeInsets.all(0),
         leading: CachedNetworkImage(
+          cacheManager: cacheManager,
           height: 55,
           width: 55,
           imageUrl: item.imageUrl,
@@ -359,11 +389,23 @@ class InboundsStudentsListTile extends StatelessWidget {
   final inboundsStudentsListPage;
   final item;
 
-  const InboundsStudentsListTile({
+  InboundsStudentsListTile({
     this.inboundsStudentsListPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -378,6 +420,7 @@ class InboundsStudentsListTile extends StatelessWidget {
         },
         contentPadding: EdgeInsets.all(0),
         leading: CachedNetworkImage(
+          cacheManager: cacheManager,
           height: 55,
           width: 55,
           imageUrl: item.imageUrl,
@@ -419,11 +462,22 @@ class ReboundsStudentsListTile extends StatelessWidget {
   final reboundsStudentsListPage;
   final ExchangeStudent item;
 
-  const ReboundsStudentsListTile({
+  ReboundsStudentsListTile({
     this.reboundsStudentsListPage,
     required this.item,
     Key? key,
   }) : super(key: key);
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -441,6 +495,7 @@ class ReboundsStudentsListTile extends StatelessWidget {
         leading: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(40)),
           child: CachedNetworkImage(
+            cacheManager: cacheManager,
             height: 55,
             width: 55,
             imageUrl: item.imageUrl,
@@ -482,11 +537,24 @@ class ReboundsStudentsListTile extends StatelessWidget {
 class CounselorListTile extends StatelessWidget {
   final counselorDetailsPage;
   final item;
-  const CounselorListTile({
+
+  CounselorListTile({
     this.counselorDetailsPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -501,6 +569,7 @@ class CounselorListTile extends StatelessWidget {
         },
         contentPadding: EdgeInsets.all(0),
         leading: CachedNetworkImage(
+          cacheManager: cacheManager,
           height: 55,
           width: 55,
           imageUrl: item.imageUrl,
@@ -541,11 +610,24 @@ class CounselorListTile extends StatelessWidget {
 class ContributorsListTile extends StatelessWidget {
   final contributorsDetailsPage;
   final item;
-  const ContributorsListTile({
+
+  ContributorsListTile({
     this.contributorsDetailsPage,
     this.item,
     Key? key,
   }) : super(key: key);
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -560,6 +642,7 @@ class ContributorsListTile extends StatelessWidget {
         },
         contentPadding: EdgeInsets.all(0),
         leading: CachedNetworkImage(
+          cacheManager: cacheManager,
           height: 55,
           width: 55,
           imageUrl: item.imageUrl,

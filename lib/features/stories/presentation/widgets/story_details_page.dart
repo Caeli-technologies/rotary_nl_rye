@@ -5,7 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
@@ -47,6 +49,17 @@ class _StoryDetailsState extends State<StoryDetails> {
     index = 0;
     translationIndex = 0; // TODO: implement dispose
     super.dispose();
+  }
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
   }
 
   @override
@@ -166,6 +179,7 @@ class _StoryDetailsState extends State<StoryDetails> {
             ],
             expandedHeight: Device.height * 0.25,
             flexibleSpace: CachedNetworkImage(
+              cacheManager: cacheManager,
               imageUrl: widget.story.image,
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(
@@ -227,6 +241,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                           Row(
                             children: <Widget>[
                               CachedNetworkImage(
+                                cacheManager: cacheManager,
                                 height: 50,
                                 width: 50,
                                 imageUrl: widget.imageUrl,

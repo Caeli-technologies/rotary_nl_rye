@@ -1,14 +1,29 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContributorsDetails extends StatelessWidget {
   final person;
+
   ContributorsDetails({required this.person});
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  bool _tooOld = false;
+
+  @override
+  void initState() {
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +84,7 @@ class ContributorsDetails extends StatelessWidget {
                                       FullScreenImage(url: person.imageUrl)));
                             },
                             child: CachedNetworkImage(
+                              cacheManager: cacheManager,
                               height: 60,
                               width: 60,
                               imageUrl: person.imageUrl,

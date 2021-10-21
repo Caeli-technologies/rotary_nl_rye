@@ -5,9 +5,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,9 +33,17 @@ class _CalendarPageState extends State<CalendarPage> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
   late Future<LinkedHashMap<DateTime, List<Events>>> getEvents;
+
+  final CacheManager cacheManager = new DefaultCacheManager();
+
   @override
   void initState() {
     super.initState();
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
     getEvents = getData();
@@ -265,6 +275,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                                     offset: Offset(0.0, 1.0))
                                               ]),
                                           child: CachedNetworkImage(
+                                            cacheManager: cacheManager,
                                             height: 50,
                                             width: 50,
                                             imageUrl:

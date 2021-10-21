@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 import 'package:rotary_nl_rye/core/domain/exchangeStudents.dart';
@@ -48,10 +50,17 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
   //   });
   // }
 
+  final CacheManager cacheManager = new DefaultCacheManager();
+
   @override
   void initState() {
     storyBloc.getStoriesList(student.exchangeYear, student.name);
     super.initState();
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
 //    readJson();
   }
 
@@ -145,6 +154,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                                 FullScreenImage(url: student.imageUrl)));
                       },
                       child: CachedNetworkImage(
+                        cacheManager: cacheManager,
                         height: 100,
                         imageUrl: student.imageUrl,
                         imageBuilder: (context, imageProvider) => Container(
@@ -309,6 +319,17 @@ class TravelCard extends StatelessWidget {
 
   TravelCard({required this.story});
 
+  final CacheManager cacheManager = new DefaultCacheManager();
+
+  @override
+  void initState() {
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -324,6 +345,7 @@ class TravelCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.45,
                   height: 120,
                   child: CachedNetworkImage(
+                    cacheManager: cacheManager,
                     imageUrl: story.image,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(

@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -164,9 +166,16 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
     ),
   ];
 
+  final CacheManager cacheManager = new DefaultCacheManager();
+
   @override
   initState() {
     super.initState();
+    bool _tooOld = false;
+    Repo().isTooOld().then((ob) => _tooOld = ob);
+    if (_tooOld) {
+      cacheManager.emptyCache();
+    }
     // fetch from inetrnet localy
     // WidgetsBinding.instance!.addPostFrameCallback((_) {
     //   images.forEach((imageUrl) {
@@ -266,6 +275,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                             }),
                         itemBuilder: (context, index, realIdx) {
                           return CachedNetworkImage(
+                            cacheManager: cacheManager,
                             imageUrl: localimages1[index].image,
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
@@ -391,6 +401,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                             }),
                         itemBuilder: (context, index, realIdx) {
                           return CachedNetworkImage(
+                            cacheManager: cacheManager,
                             imageUrl: localimages2[index].image,
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
@@ -503,6 +514,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                             }),
                         itemBuilder: (context, index, realIdx) {
                           return CachedNetworkImage(
+                            cacheManager: cacheManager,
                             imageUrl: localimages3[index].image,
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(

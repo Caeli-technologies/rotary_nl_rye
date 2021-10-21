@@ -22,6 +22,7 @@ class Repo {
   }
 
   Future<void> cacheData() async {
+    print('Caching...');
     await cache.clear();
     await HeaderImageRepositoryImpl().cacheImageHeader();
     await NewsRepositoryImpl().cacheNews();
