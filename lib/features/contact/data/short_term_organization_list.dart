@@ -2,15 +2,15 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/organization.
 
 List<Organization> shortTermOrganizationList = [
   Organization(
-    name: "To be decided",
+    name: "Marja Hofland",
     bio:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+        "Hallo, mijn naam is Marja Hofland.\nAls kersverse voorzitter STEP ga ik me inzetten om de short term programma's nog succesvoller te maken samen met alle coördinatoren.\nAls HBO student aan de Hogeschool van Amsterdam ben ik in 1987-1988 vijf maanden op stage gegaan in Seattle, USA. Het was echt een bijzonder mooie ervaring die mijn leven enorm verrijkt heeft. Daarvoor heb ik in 1984-1985 door West-Afrika gereisd met een vrachtwagen, dwars door de Sahara. Andere culturen van dichtbij leren kennen is iets prachtigs. Je wordt er een completer mens van. En van de hitte naar de kou: ik heb ook een winter in een Oostenrijks gezin doorgebracht waar ik nog steeds jaarlijks een paar maal terugkeer om samen met mijn Oostenrijkse vrienden te gaan skiën en in de zomer met mijn mountainbike door de bergen te crossen. Heerlijk!\n\nOp jezelf aangewezen zijn in een onbekende wereld is het grootste kado dat je jezelf kunt geven.\nNaast de zomerkampen en de family to family programma's ben ik van mening dat het NGSE programma voor studenten tot 30 jaar een prachtige kans is om met ondersteuning van Rotary een buitenlandse stage te doen. Dit programma verdient meer bekendheid!\nSinds 2006 ben ik lid van Rotaryclub Schouwen-Duiveland, waar wij met ons gezin vanuit Den Haag 17 jaar geleden zijn neergestreken. Naast Rotarylid zing ik in een kamerkoor en als arbeidsdeskundige werk ik dagelijks in de verzuim- en re-integratie wereld vanuit mijn eigen bedrijf. Dit vanuit het perspectief: wat kan wel? \nIk kijk uit naar vele deelnemers van onze prachtige Rotary programma's. ",
     imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/marja-hofland.jpg",
     email: "shortterm@rotaryyep.nl",
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'RC Schouwen-Duiveland',
+    district: '1610 ZUIDWEST-NEDERLAND',
     functions: [
       "Chair Shortterm Exchange",
     ],

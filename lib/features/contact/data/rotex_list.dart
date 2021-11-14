@@ -76,7 +76,7 @@ List<Rotex> rotexList = [
       role: 'Commissie PR - Extern'),
 // Josephine van Dijk
   Rotex(
-      name: "Josephine van Dijk",
+      name: "Josephine Dijk",
       bio: "josephineDijkBio",
       imageUrl:
           "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/josephine-dijk.jpg",
