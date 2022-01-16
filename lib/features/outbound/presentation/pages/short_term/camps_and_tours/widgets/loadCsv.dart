@@ -290,7 +290,7 @@ class TravelCard extends StatelessWidget {
           color: Palette.themeShadeColor,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
-          height: hostCountryCode.contains('/') ? 220 : 185,
+          height: hostCountryCode.contains('/') ? 230 : 200,
           child: Container(
             child: Column(
               children: <Widget>[
