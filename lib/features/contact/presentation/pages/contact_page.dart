@@ -22,12 +22,12 @@ class _ContactPageState extends State<ContactPage> {
     super.initState();
     Future.wait([
       precachePicture(
-        ExactAssetPicture(SvgPicture.svgStringDecoder,
+        ExactAssetPicture(SvgPicture.svgStringDecoderBuilder,
             'assets/icons/custom/rotary-logo-icon.svg'),
         null,
       ),
       precachePicture(
-        ExactAssetPicture(SvgPicture.svgStringDecoder,
+        ExactAssetPicture(SvgPicture.svgStringDecoderBuilder,
             'assets/icons/custom/rotex_logo_light.svg'),
         null,
       ),

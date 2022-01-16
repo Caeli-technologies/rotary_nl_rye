@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:csv/csv.dart' as csv;
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:flutter/services.dart' show SystemUiOverlayStyle, rootBundle;
+import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 import 'package:csv/csv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,7 +21,7 @@ class _LoadCsvState extends State<LoadCsv> {
     //     Uri.parse("https://stadler.caeli-tech.com/testApp/sql/list_train.php"));
     final response = await http.get(
         Uri.parse(
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/book1.csv"),
+            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv"),
         headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
     try {
       if (response.statusCode == 200) {
@@ -158,8 +156,8 @@ class _LoadCsvState extends State<LoadCsv> {
                           child: Container(
                             padding: EdgeInsets.only(bottom: 10),
                             child: TravelCard(
-                              number: snapshot.data![index][0].toString(),
-                              date: snapshot.data![index][1].toString(),
+                              startDate: snapshot.data![index][0].toString(),
+                              endDate: snapshot.data![index][1].toString(),
                               title: snapshot.data![index][2].toString(),
                               hostCountryCode:
                                   snapshot.data![index][3].toString(),
@@ -261,8 +259,8 @@ class _LoadCsvState extends State<LoadCsv> {
 }
 
 class TravelCard extends StatelessWidget {
-  final String number,
-      date,
+  final String startDate,
+      endDate,
       title,
       hostCountryCode,
       hostCountry,
@@ -273,8 +271,8 @@ class TravelCard extends StatelessWidget {
       invitation;
 
   TravelCard({
-    required this.number,
-    required this.date,
+    required this.startDate,
+    required this.endDate,
     required this.title,
     required this.hostCountryCode,
     required this.hostCountry,
@@ -292,7 +290,7 @@ class TravelCard extends StatelessWidget {
           color: Palette.themeShadeColor,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
-          height: 170,
+          height: hostCountryCode.contains('/') ? 190 : 170,
           child: Container(
             child: Column(
               children: <Widget>[
@@ -319,136 +317,165 @@ class TravelCard extends StatelessWidget {
                     ],
                   )),
                 ),
-                // Container(
-                //   padding: EdgeInsets.only(top: 10),
-                //   child: Row(
-                //     children: <Widget>[
-                //       Container(
-                //         padding: EdgeInsets.only(left: 16),
-                //         child: Row(
-                //           children: <Widget>[
-                //             FaIcon(
-                //               FontAwesomeIcons.listOl,
-                //               color: Palette.lightIndigo,
-                //               size: 20,
-                //             ),
-                //             Container(
-                //               margin: EdgeInsets.only(left: 16),
-                //               child: Text(
-                //                 'Number:',
-                //                 textScaleFactor: 1.2,
-                //                 style: TextStyle(
-                //                   color: Palette.indigo,
-                //                   fontWeight: FontWeight.bold,
-                //                 ),
-                //               ),
-                //             )
-                //           ],
-                //         ),
-                //       ),
-                //       Container(
-                //         margin: EdgeInsets.only(left: 75),
-                //         child: Text(
-                //           number,
-                //           textScaleFactor: 1.2,
-                //           style: TextStyle(
-                //             color: Palette.indigo,
-                //             // fontWeight: FontWeight.bold,
-                //           ),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // ),
-                // Container(
-                //   width: 50,
-                //   //MediaQuery.of(context).size.width * 0.20,
-                //   height: 50,
-                //   child: CachedNetworkImage(
-                //     imageUrl:
-                //         "https://www.rotary.nl/.uc/i5b0088f50102d3db2b009f6ba7034db105b0994f3df50701c454018c0080/kdgxncq9fap2y1r7femelq.jpg",
-                //     imageBuilder: (context, imageProvider) => Container(
-                //       decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(14),
-                //         image: DecorationImage(
-                //             image: imageProvider, fit: BoxFit.cover),
-                //       ),
-                //     ),
-                //     placeholder: (context, url) =>
-                //         Center(child: CircularProgressIndicator()),
-                //     errorWidget: (context, url, error) => Icon(Icons.error),
-                //   ),
-                // ),
                 SizedBox(
                   child: Container(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.solidFlag,
-                                    color: Palette.lightIndigo,
-                                    size: 20,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 12),
-                                    child: Text(
-                                      'Host Country:',
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        fontWeight: FontWeight.bold,
+                      hostCountryCode.contains('/')
+                          ? Column(children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(left: 20),
+                                      child: Row(
+                                        children: <Widget>[
+                                          FaIcon(
+                                            FontAwesomeIcons.solidFlag,
+                                            color: Palette.lightIndigo,
+                                            size: 20,
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 12),
+                                            child: Text(
+                                              'Host Country:',
+                                              textScaleFactor: 1.2,
+                                              style: TextStyle(
+                                                color: Palette.indigo,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  )
+                                    Container(
+                                      padding: EdgeInsets.only(left: 30),
+                                      child: Row(
+                                        children: <Widget>[
+                                          SvgPicture.asset(
+                                            "assets/icons/flags/${hostCountryCode.split('/')[0]}.svg",
+                                            height: 20,
+                                            width: 50,
+                                            fit: BoxFit.contain,
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10),
+                                            child: Text(
+                                              hostCountry.split('/')[0],
+                                              textScaleFactor: 1.2,
+                                              style: TextStyle(
+                                                color: Palette.indigo,
+                                                // fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(left: 184),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                left: 5, right: 5),
+                                            child: Text(
+                                              '/ ',
+                                              textScaleFactor: 1.2,
+                                              style: TextStyle(
+                                                color: Palette.indigo,
+                                                // fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          SvgPicture.asset(
+                                            "assets/icons/flags/${hostCountryCode.split('/')[1]}.svg",
+                                            height: 20,
+                                            width: 50,
+                                            fit: BoxFit.contain,
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10),
+                                            child: Text(
+                                              hostCountry.split('/')[1],
+                                              textScaleFactor: 1.2,
+                                              style: TextStyle(
+                                                color: Palette.indigo,
+                                                // fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ])
+                          : Container(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: Row(
+                                      children: <Widget>[
+                                        FaIcon(
+                                          FontAwesomeIcons.solidFlag,
+                                          color: Palette.lightIndigo,
+                                          size: 20,
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 12),
+                                          child: Text(
+                                            'Host Country:',
+                                            textScaleFactor: 1.2,
+                                            style: TextStyle(
+                                              color: Palette.indigo,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(left: 30),
+                                    child: Row(
+                                      children: <Widget>[
+                                        SvgPicture.asset(
+                                          "assets/icons/flags/$hostCountryCode.svg",
+                                          height: 20,
+                                          width: 50,
+                                          fit: BoxFit.contain,
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 10),
+                                          child: Text(
+                                            hostCountry,
+                                            textScaleFactor: 1.2,
+                                            style: TextStyle(
+                                              color: Palette.indigo,
+                                              // fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(left: 30),
-                              child: Row(
-                                children: <Widget>[
-                                  SvgPicture.asset(
-                                    "assets/icons/flags/$hostCountryCode.svg",
-                                    height: 20,
-                                    width: 50,
-                                    fit: BoxFit.contain,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      hostCountry,
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            // Container(
-                            //   margin: EdgeInsets.only(left: 28),
-                            //   child: Text(
-                            //     hostCountry,
-                            //     textScaleFactor: 1.2,
-                            //     style: TextStyle(
-                            //       color: Palette.indigo,
-                            //       // fontWeight: FontWeight.bold,
-                            //     ),
-                            //   ),
-                            // )
-                          ],
-                        ),
-                      ),
                       // Container(
                       //   padding: EdgeInsets.only(left: 10, top: 10),
                       //   child: Row(
@@ -505,17 +532,31 @@ class TravelCard extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 37),
-                              child: Text(
-                                hostDistrict,
-                                textScaleFactor: 1.2,
-                                style: TextStyle(
-                                  color: Palette.indigo,
-                                  // fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
+                            hostDistrict.contains('/')
+                                ? Container(
+                                    margin: EdgeInsets.only(left: 37),
+                                    child: Text(
+                                      hostDistrict.split('/')[0] +
+                                          ' / ' +
+                                          hostDistrict.split('/')[1],
+                                      textScaleFactor: 1.2,
+                                      style: TextStyle(
+                                        color: Palette.indigo,
+                                        // fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    margin: EdgeInsets.only(left: 37),
+                                    child: Text(
+                                      hostDistrict,
+                                      textScaleFactor: 1.2,
+                                      style: TextStyle(
+                                        color: Palette.indigo,
+                                        // fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
                           ],
                         ),
                       ),

@@ -39,6 +39,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
   String? _linkMessage;
   String? id;
 
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+
   void dispose() {
     isTranslating = false;
     translate.clear();
@@ -483,7 +485,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
       ),
-      iosParameters: IosParameters(
+      iosParameters: IOSParameters(
         bundleId: 'com.caelitechnologies.rotary-nl-rye',
         minimumVersion: '1.0.0',
         appStoreId: '1567096118',
@@ -497,7 +499,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
     );
 
     Uri url;
-    final ShortDynamicLink shortLink = await parameters.buildShortLink();
+    final ShortDynamicLink shortLink =
+        await dynamicLinks.buildShortLink(parameters);
     url = shortLink.shortUrl;
 
     setState(() {

@@ -47,22 +47,22 @@ class _PageNavigatorState extends State<PageNavigator> {
     Future.wait([
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/ca.svg'),
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ca.svg'),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/mx.svg'),
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/mx.svg'),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/pe.svg'),
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/pe.svg'),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'assets/icons/flags/ec.svg'),
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ec.svg'),
         null,
       ),
     ]);

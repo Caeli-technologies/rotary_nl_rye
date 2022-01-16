@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
@@ -11,53 +10,103 @@ import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 
 Future<void> initDynamicLinks(BuildContext context) async {
   NewsBloc _repo = NewsBloc();
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   // TODO "onLink" is when the app is open and on the homescreen.
-  FirebaseDynamicLinks.instance.onLink(
-      onSuccess: (PendingDynamicLinkData? dynamicLink) async {
-    final Uri? deepLink = dynamicLink?.link;
 
-    if (deepLink != null) {
-      final uri = deepLink.path;
-      print("deepLink.path: $uri ");
-      if (deepLink.path == "/helloworld") {
-        // final id = deepLink.queryParameters["id"];
-        // final name = deepLink.queryParameters["name"];
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => SocialPage()));
-      }
-      if (deepLink.path == "/stories") {
-        // final id = deepLink.queryParameters["id"];
-        // final name = deepLink.queryParameters["name"];
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => SocialPage()));
-      }
-      if (deepLink.path == "/news") {
-        String? id = deepLink.queryParameters["id"];
-        print('news id $id');
-        List<News> _newsList = await _repo.getNewsData();
-        print('news fetched ${_newsList[int.parse(id!)].toString()}');
-        _newsList[int.parse(id)].isPdf
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PDFPage(
-                          pdfUrl: _newsList[int.parse(id)].pdf!,
-                          data: _newsList[int.parse(id)],
-                        )),
-              )
-            : Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        NonPDFPage(data: _newsList[int.parse(id)])));
-      }
-      // still need some work
-      Navigator.pushNamed(context, '${deepLink.path}');
+  dynamicLinks.onLink.listen((dynamicLinkData) async {
+    // Navigator.pushNamed(context, dynamicLinkData.link.path);
+
+    final Uri deepLink = dynamicLinkData.link;
+
+    // if (deepLink != null) {
+    final uri = deepLink.path;
+    print("deepLink.path: $uri ");
+    if (deepLink.path == "/helloworld") {
+      // final id = deepLink.queryParameters["id"];
+      // final name = deepLink.queryParameters["name"];
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => SocialPage()));
     }
-  }, onError: (OnLinkErrorException e) async {
+    if (deepLink.path == "/stories") {
+      // final id = deepLink.queryParameters["id"];
+      // final name = deepLink.queryParameters["name"];
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => SocialPage()));
+    }
+    if (deepLink.path == "/news") {
+      String? id = deepLink.queryParameters["id"];
+      print('news id $id');
+      List<News> _newsList = await _repo.getNewsData();
+      print('news fetched ${_newsList[int.parse(id!)].toString()}');
+      _newsList[int.parse(id)].isPdf
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PDFPage(
+                        pdfUrl: _newsList[int.parse(id)].pdf!,
+                        data: _newsList[int.parse(id)],
+                      )),
+            )
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      NonPDFPage(data: _newsList[int.parse(id)])));
+    }
+    // still need some work
+    Navigator.pushNamed(context, '${deepLink.path}');
+    // }
+  }).onError((error) {
+    print('onLink error');
     Navigator.pushNamed(context, '/error');
   });
+
+  // FirebaseDynamicLinks.instance.onLink(
+  //     onSuccess: (PendingDynamicLinkData? dynamicLink) async {
+  //   final Uri? deepLink = dynamicLink?.link;
+
+  //   if (deepLink != null) {
+  //     final uri = deepLink.path;
+  //     print("deepLink.path: $uri ");
+  //     if (deepLink.path == "/helloworld") {
+  //       // final id = deepLink.queryParameters["id"];
+  //       // final name = deepLink.queryParameters["name"];
+  //       Navigator.of(context)
+  //           .push(MaterialPageRoute(builder: (context) => SocialPage()));
+  //     }
+  //     if (deepLink.path == "/stories") {
+  //       // final id = deepLink.queryParameters["id"];
+  //       // final name = deepLink.queryParameters["name"];
+  //       Navigator.of(context)
+  //           .push(MaterialPageRoute(builder: (context) => SocialPage()));
+  //     }
+  //     if (deepLink.path == "/news") {
+  //       String? id = deepLink.queryParameters["id"];
+  //       print('news id $id');
+  //       List<News> _newsList = await _repo.getNewsData();
+  //       print('news fetched ${_newsList[int.parse(id!)].toString()}');
+  //       _newsList[int.parse(id)].isPdf
+  //           ? Navigator.push(
+  //               context,
+  //               MaterialPageRoute(
+  //                   builder: (context) => PDFPage(
+  //                         pdfUrl: _newsList[int.parse(id)].pdf!,
+  //                         data: _newsList[int.parse(id)],
+  //                       )),
+  //             )
+  //           : Navigator.push(
+  //               context,
+  //               MaterialPageRoute(
+  //                   builder: (context) =>
+  //                       NonPDFPage(data: _newsList[int.parse(id)])));
+  //     }
+  //     // still need some work
+  //     Navigator.pushNamed(context, '${deepLink.path}');
+  //   }
+  // }, onError: (OnLinkErrorException e) async {
+  //   Navigator.pushNamed(context, '/error');
+  // });
 
 // TODO "getInitialLink" is when the app is closed.
   final PendingDynamicLinkData? data =

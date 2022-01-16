@@ -32,6 +32,8 @@ class _PDFPageState extends State<PDFPage> {
 
   String title = "Loading";
 
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+
   final Completer<PDFViewController> _pdfViewController =
       Completer<PDFViewController>();
   final StreamController<String> _pageCountController =
@@ -208,7 +210,7 @@ class _PDFPageState extends State<PDFPage> {
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
       ),
-      iosParameters: IosParameters(
+      iosParameters: IOSParameters(
         bundleId: 'com.caelitechnologies.rotary-nl-rye',
         minimumVersion: '1',
         appStoreId: '1567096118',
@@ -222,7 +224,8 @@ class _PDFPageState extends State<PDFPage> {
     );
 
     Uri url;
-    final ShortDynamicLink shortLink = await parameters.buildShortLink();
+    final ShortDynamicLink shortLink =
+        await dynamicLinks.buildShortLink(parameters);
     url = shortLink.shortUrl;
 
     setState(() {

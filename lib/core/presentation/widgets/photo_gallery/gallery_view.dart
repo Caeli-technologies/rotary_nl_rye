@@ -95,8 +95,8 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
           ),
         ),
         body: Container(
-          margin: EdgeInsets.all(12),
-          child: StaggeredGridView.countBuilder(
+            margin: EdgeInsets.all(12),
+            child: MasonryGridView.count(
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 12,
@@ -130,9 +130,9 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
                       ),
                     ));
               },
-              staggeredTileBuilder: (index) {
-                return StaggeredTile.count(1, index.isEven ? 1.2 : 1.8);
-              }),
-        ));
+              // staggeredTileBuilder: (index) {
+              //   return StaggeredTile.count(1, index.isEven ? 1.2 : 1.8);
+              // }),
+            )));
   }
 }
