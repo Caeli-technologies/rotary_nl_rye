@@ -290,7 +290,7 @@ class TravelCard extends StatelessWidget {
           color: Palette.themeShadeColor,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
-          height: hostCountryCode.contains('/') ? 190 : 170,
+          height: hostCountryCode.contains('/') ? 220 : 185,
           child: Container(
             child: Column(
               children: <Widget>[
@@ -476,35 +476,6 @@ class TravelCard extends StatelessWidget {
                                 ],
                               ),
                             ),
-                      // Container(
-                      //   padding: EdgeInsets.only(left: 10, top: 10),
-                      //   child: Row(
-                      //     children: <Widget>[
-                      //       // FaIcon(
-                      //       //   FontAwesomeIcons.clock,
-                      //       //   color: Palette.lightIndigo,
-                      //       //   size: 15,
-                      //       // ),
-                      //       SvgPicture.asset(
-                      //         "assets/icons/flags/$hostCountryCode.svg",
-                      //         height: 20,
-                      //         width: 50,
-                      //         fit: BoxFit.contain,
-                      //       ),
-                      //       Container(
-                      //         margin: EdgeInsets.only(left: 10),
-                      //         child: Text(
-                      //           hostCountry,
-                      //           textScaleFactor: 1.2,
-                      //           style: TextStyle(
-                      //             color: Palette.indigo,
-                      //             fontWeight: FontWeight.bold,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
                       Container(
                         padding: EdgeInsets.only(top: 10),
                         child: Row(
@@ -560,56 +531,6 @@ class TravelCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // Container(
-                      //   padding: EdgeInsets.only(left: 20, top: 8),
-                      //   child: Row(
-                      //     children: <Widget>[
-                      //       FaIcon(
-                      //         FontAwesomeIcons.thumbtack,
-                      //         color: Palette.lightIndigo,
-                      //         size: 20,
-                      //       ),
-                      //       Container(
-                      //         margin: EdgeInsets.only(left: 17),
-                      //         child: Text(
-                      //           'Host District: ' + hostDistrict,
-                      //           textScaleFactor: 1.2,
-                      //           style: TextStyle(
-                      //             color: Palette.indigo,
-                      //             fontWeight: FontWeight.bold,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
-                      // Container(
-                      //   padding: EdgeInsets.only(left: 19, top: 6),
-                      //   child: Row(
-                      //     children: <Widget>[
-                      //       FaIcon(
-                      //         FontAwesomeIcons.birthdayCake,
-                      //         color: Palette.lightIndigo,
-                      //         size: 20,
-                      //       ),
-                      //       Container(
-                      //         margin: EdgeInsets.only(left: 15, top: 2),
-                      //         child: Text(
-                      //           'Min - Max: ' +
-                      //               ageMin +
-                      //               ' - ' +
-                      //               ageMax +
-                      //               " Years",
-                      //           textScaleFactor: 1.2,
-                      //           style: TextStyle(
-                      //             color: Palette.indigo,
-                      //             fontWeight: FontWeight.bold,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
                       Container(
                         padding: EdgeInsets.only(top: 10),
                         child: Row(
@@ -692,29 +613,47 @@ class TravelCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // Container(
-                      //   padding: EdgeInsets.only(left: 21, top: 6),
-                      //   child: Row(
-                      //     children: <Widget>[
-                      //       FaIcon(
-                      //         FontAwesomeIcons.euroSign,
-                      //         color: Palette.lightIndigo,
-                      //         size: 20,
-                      //       ),
-                      //       Container(
-                      //         margin: EdgeInsets.only(left: 18, top: 2),
-                      //         child: Text(
-                      //           'Contribution: ' + contribution,
-                      //           textScaleFactor: 1.2,
-                      //           style: TextStyle(
-                      //             color: Palette.indigo,
-                      //             fontWeight: FontWeight.bold,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
+                      Container(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Row(
+                                children: <Widget>[
+                                  FaIcon(
+                                    FontAwesomeIcons.calendarAlt,
+                                    color: Palette.lightIndigo,
+                                    size: 20,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 14),
+                                    child: Text(
+                                      'Date:',
+                                      textScaleFactor: 1.2,
+                                      style: TextStyle(
+                                        color: Palette.indigo,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 30),
+                              child: Text(
+                                startDate + ' - ' + endDate,
+                                textScaleFactor: 1.2,
+                                style: TextStyle(
+                                  color: Palette.indigo,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   )),
                 ),
