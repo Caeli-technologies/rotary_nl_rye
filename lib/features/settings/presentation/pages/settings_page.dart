@@ -78,6 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        toolbarHeight: 80,
         systemOverlayStyle:
             MediaQuery.of(context).platformBrightness == Brightness.light
                 ? SystemUiOverlayStyle.dark
