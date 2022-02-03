@@ -13,7 +13,6 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_board.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
-import 'package:rotary_nl_rye/ui_constants.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -279,7 +278,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Container(
                   child: FaIcon(
                     FontAwesomeIcons.code,
-                    color: Palette.lightIndigo,
+                    color: Palette.indigo,
                   ),
                 ),
               ),
@@ -384,7 +383,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Container(
             child: FaIcon(
               icon,
-              color: Palette.lightIndigo,
+              color: Palette.indigo,
             ),
           ),
         ),
@@ -418,7 +417,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: ListTile(
         leading: FaIcon(
           icon,
-          color: Palette.lightIndigo,
+          color: Palette.indigo,
         ),
         title: Container(
           child: Column(

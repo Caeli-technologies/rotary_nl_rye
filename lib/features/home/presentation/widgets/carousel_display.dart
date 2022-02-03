@@ -42,7 +42,6 @@ class _CarouselState extends State<Carousel> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      margin: EdgeInsets.only(left: 16, right: 16),
       width: MediaQuery.of(context).size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +62,7 @@ class _CarouselState extends State<Carousel> {
               itemCount: carousels.length,
               itemBuilder: (BuildContext context, index) {
                 return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
@@ -110,7 +110,7 @@ class _CarouselState extends State<Carousel> {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _current == index
-                              ? Palette.accentColor
+                              ? Palette.indigo
                               : Palette.lightIndigo),
                     );
                   },
