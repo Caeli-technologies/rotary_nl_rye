@@ -22,81 +22,81 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
   List<CarouselModel> localimages1 = [
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture1.png",
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture1.png',
         text:
-            " Meike wordt door haar Argentijnse gastfamilie opgehaald van het vliegveld"),
+            ' Meike wordt door haar Argentijnse gastfamilie opgehaald van het vliegveld'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture2.png",
-        text: "Noor met haar gastgezin in Brazilië"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture2.png',
+        text: 'Noor met haar gastgezin in Brazilië'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture3.png",
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture3.png',
         text:
-            "Stijn bij de natuurlijke thermale baden van Mendoza met gastgezin en match ‘Fran’ in Argentinië"),
+            'Stijn bij de natuurlijke thermale baden van Mendoza met gastgezin en match ‘Fran’ in Argentinië'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture4.png",
-        text: "Stijn in Argentinië"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture4.png',
+        text: 'Stijn in Argentinië'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture5.png",
-        text: "Stijn (in het midden) met de Argentijnse familie van Fran"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture5.png',
+        text: 'Stijn (in het midden) met de Argentijnse familie van Fran'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture6.png",
-        text: "Lot en haar Indiase match Lutra. Lot laat Deventer zien.")
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture6.png',
+        text: 'Lot en haar Indiase match Lutra. Lot laat Deventer zien.')
   ];
 
   List<CarouselModel> localimages2 = [
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture7.png",
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture7.png',
         text:
-            "Lutra haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur."),
+            'Lutra haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur.'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-1.png",
-        text: "‘EVEN VERWISSELD VAN NATIONAL COSTUME’"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-1.png',
+        text: '‘EVEN VERWISSELD VAN NATIONAL COSTUME’'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-2.png",
-        text: "Appeltaart bakken"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-2.png',
+        text: 'Appeltaart bakken'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-3.png",
-        text: "kaasproeven"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-3.png',
+        text: 'kaasproeven'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture10-1.png",
-        text: "LIANNE HEEFT EEN MATCH MET JAPANS MEISJE"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture10-1.png',
+        text: 'LIANNE HEEFT EEN MATCH MET JAPANS MEISJE'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture10-2.png",
-        text: "LIANNE HEEFT EEN MATCH MET JAPANS MEISJE")
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture10-2.png',
+        text: 'LIANNE HEEFT EEN MATCH MET JAPANS MEISJE')
   ];
 
   List<CarouselModel> localimages3 = [
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-1.png",
-        text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-1.png',
+        text: 'LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-2.png",
-        text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-2.png',
+        text: 'LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-3.png",
-        text: "LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture9-3.png',
+        text: 'LOUISE HEEFT EEN MATCH MET JONGERE UIT DE USA'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture11.png",
-        text: "Samen nieuwe horizons opzoeken"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture11.png',
+        text: 'Samen nieuwe horizons opzoeken'),
     CarouselModel(
         image:
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture12.png",
-        text: "samen door Amsterdam fietsen")
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture12.png',
+        text: 'samen door Amsterdam fietsen')
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -206,7 +206,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
           ),
         ),
         title: Text(
-          "Family To Family",
+          'Family To Family',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -222,7 +222,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "FAMILY TO FAMILY: deelnemen",
+                  'FAMILY TO FAMILY: deelnemen',
                   style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -230,14 +230,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "WAT IS HET?",
+                  'WAT IS HET?',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "De naam zegt het al, Short Term Exchange Programm (STEP). Het is een uitwisseling met een leeftijdgenoot in het buitenland voor de korte duur van ongeveer 2x3 weken of 2x4 weken. Maar het is ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in het buitenland woont, samen met jouw maatje, en dat jouw maatje samen met jou in Nederland komt wonen.",
+                  'De naam zegt het al, Short Term Exchange Programm (STEP). Het is een uitwisseling met een leeftijdgenoot in het buitenland voor de korte duur van ongeveer 2x3 weken of 2x4 weken. Maar het is ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in het buitenland woont, samen met jouw maatje, en dat jouw maatje samen met jou in Nederland komt wonen.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
@@ -355,14 +355,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "WAAROM DOEN WE DIT?",
+                  'WAAROM DOEN WE DIT?',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "De jeugdafdeling binnen Rotary heeft als missie “jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen”. Onze visie hierbij is dat wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk anderen in staat te stellen zichzelf te ontwikkelen.\n\nDoor jeugd al vroeg kennis te laten maken met andere mensen, culturen, gewoontes en gebruiken en ze buiten hun comfortzone te brengen, denken wij een bijdrage te leveren aan hun ontwikkeling in het teken van onze missie.",
+                  'De jeugdafdeling binnen Rotary heeft als missie “jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen”. Onze visie hierbij is dat wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk anderen in staat te stellen zichzelf te ontwikkelen.\n\nDoor jeugd al vroeg kennis te laten maken met andere mensen, culturen, gewoontes en gebruiken en ze buiten hun comfortzone te brengen, denken wij een bijdrage te leveren aan hun ontwikkeling in het teken van onze missie.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
@@ -593,14 +593,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "VOOR WIE DOEN WE DIT?",
+                  'VOOR WIE DOEN WE DIT?',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "Jongens en meisjes in de leeftijd van 15 t/m 19 jaar, die open staan voor anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen ontmoeten zijn geschikt om aan dit programma deel te nemen.",
+                  'Jongens en meisjes in de leeftijd van 15 t/m 19 jaar, die open staan voor anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen ontmoeten zijn geschikt om aan dit programma deel te nemen.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
@@ -608,14 +608,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "MET WELKE LANDEN WISSELEN WE UIT?",
+                  'MET WELKE LANDEN WISSELEN WE UIT?',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "In principe kan een uitwisseling met elk door Rotary gecertificeerd land plaatsvinden. Voor een uitwisseling is het belangrijk dat het land of district (bij heel grote landen) veilig en goed georganiseerd is om onze kinderen op een goede manier te ontvangen. Hiervoor hanteren we binnen Rotary International strikte procedures. Elk ontvangend land of district staat onder goed toezicht en met onze jarenlange ervaring weten wij waar we succesvolle uitwisselingen tot stand kunnen brengen. Bij aanmelden geef je drie voorkeurslanden aan op minimaal 2 continenten. Wij streven ernaar om een match binnen het voorkeursland te realiseren, maar dat garanderen we niet. Er is een belangrijk onderscheid tussen het noordelijk en het zuidelijk halfrond.",
+                  'In principe kan een uitwisseling met elk door Rotary gecertificeerd land plaatsvinden. Voor een uitwisseling is het belangrijk dat het land of district (bij heel grote landen) veilig en goed georganiseerd is om onze kinderen op een goede manier te ontvangen. Hiervoor hanteren we binnen Rotary International strikte procedures. Elk ontvangend land of district staat onder goed toezicht en met onze jarenlange ervaring weten wij waar we succesvolle uitwisselingen tot stand kunnen brengen. Bij aanmelden geef je drie voorkeurslanden aan op minimaal 2 continenten. Wij streven ernaar om een match binnen het voorkeursland te realiseren, maar dat garanderen we niet. Er is een belangrijk onderscheid tussen het noordelijk en het zuidelijk halfrond.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
@@ -623,21 +623,21 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Noordelijk halfrond",
+                  'Noordelijk halfrond',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "De belangrijkste bestemmingen zijn; VS, Canada, Mexico en Japan. Inmiddels vinden er steeds meer uitwisselingen binnen Europa en India plaats. Deze uitwisselingen vinden plaats in de zomervakantie. Jouw bezoek aan het buitenland en de ontvangst van jouw maatje vinden aaneengesloten plaats. Dat betekent dat een uitwisseling bestaat uit één aaneengesloten periode van ongeveer 2 x 3 weken.",
+                  'De belangrijkste bestemmingen zijn; VS, Canada, Mexico en Japan. Inmiddels vinden er steeds meer uitwisselingen binnen Europa en India plaats. Deze uitwisselingen vinden plaats in de zomervakantie. Jouw bezoek aan het buitenland en de ontvangst van jouw maatje vinden aaneengesloten plaats. Dat betekent dat een uitwisseling bestaat uit één aaneengesloten periode van ongeveer 2 x 3 weken.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 10),
                 child: Text(
-                  "Kijk even deze prachtige video. Je wordt vast erg enthousiast.",
+                  'Kijk even deze prachtige video. Je wordt vast erg enthousiast.',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -646,19 +646,19 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: NativeVideo(
                     url:
-                        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4"),
+                        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4'),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Zuidelijk halfrond",
+                  'Zuidelijk halfrond',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "De belangrijkste bestemmingen zijn; Argentinië, Brazilië en Zuid-Afrika. In de zomervakantie bezoek jij het gezin van jouw maatje. De ontvangst van jouw maatje is in december/januari als het zuidelijk halfrond zomervakantie heeft. Beide bezoeken duren ongeveer 4 weken. Duur en planningsperiode zijn in onderling overleg.",
+                  'De belangrijkste bestemmingen zijn; Argentinië, Brazilië en Zuid-Afrika. In de zomervakantie bezoek jij het gezin van jouw maatje. De ontvangst van jouw maatje is in december/januari als het zuidelijk halfrond zomervakantie heeft. Beide bezoeken duren ongeveer 4 weken. Duur en planningsperiode zijn in onderling overleg.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
@@ -666,14 +666,14 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "WAT KOST HET?",
+                  'WAT KOST HET?',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "De kosten zijn: €150 euro excl. verzekering, ticket, zakgeld en ziektekosten.",
+                  'De kosten zijn: €150 euro excl. verzekering, ticket, zakgeld en ziektekosten.',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
@@ -698,7 +698,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "AANMELDPROCEDURE",
+                  'AANMELDPROCEDURE',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -720,7 +720,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:interesse@rotaryyep.nl");
+                            launch('mailto:interesse@rotaryyep.nl');
                           },
                       ),
                     ])),
@@ -790,7 +790,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Sponsorclub",
+                  'Sponsorclub',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),

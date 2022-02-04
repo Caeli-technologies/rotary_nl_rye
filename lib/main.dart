@@ -38,7 +38,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   // test
   final prefs = await SharedPreferences.getInstance();
-  prefs.setInt("newsBadge", 1);
+  prefs.setInt('newsBadge', 1);
   // end test
 }
 
@@ -103,7 +103,7 @@ Future<void> main() async {
     runApp(new MyApp());
   }, FirebaseCrashlytics.instance.recordError);
   final _repo = Repo();
-  _repo.initData("", "");
+  _repo.initData('', '');
   // Pass all uncaught errors from the framework to Crashlytics.
 }
 
