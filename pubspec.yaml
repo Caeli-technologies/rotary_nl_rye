@@ -74,7 +74,6 @@ dependencies:
   wakelock: ^0.5.6
 
 dev_dependencies:
-
   flutter_launcher_icons: ^0.9.2
   flutter_native_splash: ^1.2.3
   flutter_test:
@@ -103,6 +102,7 @@ flutter:
     - assets/icons/flags/
     - assets/icons/custom/
     - assets/lang/
+    - assets/keys/deepl.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
