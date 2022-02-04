@@ -58,7 +58,7 @@ class _CarouselState extends State<Carousel> {
               },
               autoplay: true,
               layout: SwiperLayout.DEFAULT,
-              scale: 0.9,
+              scale: 1,
               itemCount: carousels.length,
               itemBuilder: (BuildContext context, index) {
                 return Container(

@@ -62,7 +62,7 @@ class HomeCardItem extends StatelessWidget {
                             ),
                       Text(
                         title,
-                        style: TextStyle(fontSize: 16, color: Palette.indigo),
+                        style: TextStyle(fontSize: 14, color: Palette.indigo),
                       )
                     ],
                   )
