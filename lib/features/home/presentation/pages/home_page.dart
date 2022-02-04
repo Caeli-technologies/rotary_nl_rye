@@ -3,9 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
+import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item_single.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
+import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/loadCsv.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -152,7 +154,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         SizedBox(
                           height: 16,
                         ),
-
+                        Row(
+                          children: <Widget>[
+                            HomeCardItemSingle(
+                                icon: FontAwesomeIcons.campground,
+                                title: 'Outbound - Camps and Tours List',
+                                description:
+                                    'students that are going to a diffrent country',
+                                pushTo: LoadCsv(),
+                                currentNewsIndex: 0),
+                          ],
+                        ),
                         // going to the test page of Dynamic links
                         // Row(
                         //   children: <Widget>[
