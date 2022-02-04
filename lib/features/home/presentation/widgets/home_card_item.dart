@@ -23,51 +23,48 @@ class HomeCardItem extends StatelessWidget {
         child: GestureDetector(
             child: Container(
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(left: 5, right: 5),
+              margin: EdgeInsets.only(left: 10, right: 10),
               height: 120,
               decoration: BoxDecoration(
                 color: Palette.themeCardShadeColor,
-                borderRadius: BorderRadius.circular(12),
+                boxShadow: [kSubtleBoxShadow],
+                borderRadius: BorderRadius.circular(kBorderRadius),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        icon == FontAwesomeIcons.newspaper &&
-                                currentNewsIndex > 0
-                            ? Container(
-                                margin: EdgeInsets.only(bottom: 16),
-                                child: Badge(
-                                  position:
-                                      BadgePosition.topEnd(top: -15, end: -15),
-                                  badgeContent: Text(
-                                      currentNewsIndex.toString(),
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.white)),
-                                  child: FaIcon(
-                                    icon,
-                                    color: Palette.lightIndigo,
-                                    size: 35,
-                                  ),
-                                ))
-                            : Container(
-                                margin: EdgeInsets.only(bottom: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      icon == FontAwesomeIcons.newspaper && currentNewsIndex > 0
+                          ? Container(
+                              margin: EdgeInsets.only(bottom: 16),
+                              child: Badge(
+                                position:
+                                    BadgePosition.topEnd(top: -15, end: -15),
+                                badgeContent: Text(currentNewsIndex.toString(),
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
                                 child: FaIcon(
                                   icon,
                                   color: Palette.lightIndigo,
                                   size: 35,
                                 ),
+                              ))
+                          : Container(
+                              margin: EdgeInsets.only(bottom: 16),
+                              child: FaIcon(
+                                icon,
+                                color: Palette.lightIndigo,
+                                size: 35,
                               ),
-                        Text(
-                          title,
-                          style: TextStyle(fontSize: 16, color: Palette.indigo),
-                        )
-                      ],
-                    ),
+                            ),
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 14, color: Palette.indigo),
+                      )
+                    ],
                   )
                 ],
               ),
