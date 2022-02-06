@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +62,10 @@ class DemoLocalizationsDelegate
     DemoLocalizations localizations = new DemoLocalizations(locale);
     await localizations.load();
 
-    print("Load ${locale.languageCode}");
+    if (kDebugMode) {
+      log('Load ${locale.languageCode}');
+      log('Platform.localeName: ' + Platform.localeName.substring(0, 2));
+    }
 
     return localizations;
   }

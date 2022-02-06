@@ -414,6 +414,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return GestureDetector(
         child: Container(
       padding: EdgeInsets.zero,
+      // color: Palette.themeCardShadeColor,
       child: ListTile(
         leading: FaIcon(
           icon,

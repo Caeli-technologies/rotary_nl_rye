@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       // Body
-      backgroundColor: Palette.themeShadeColor,
+      // backgroundColor: Palette.themeShadeColor,
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(),
