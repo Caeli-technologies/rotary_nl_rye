@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:skeletons/skeletons.dart';
 
 class LoadCsv extends StatefulWidget {
   @override
@@ -122,7 +123,7 @@ class _LoadCsvState extends State<LoadCsv> {
             builder:
                 (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return Center(child: Text("Please wait it's loading..."));
+                return SkeletonListView();
               } else {
                 if (snapshot.hasError)
                   return Center(child: Text('Error: ${snapshot.error}'));

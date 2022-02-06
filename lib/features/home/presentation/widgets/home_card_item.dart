@@ -20,62 +20,67 @@ class HomeCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: GestureDetector(
-            child: Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(left: 10, right: 10),
-              height: 120,
-              decoration: BoxDecoration(
-                color: Palette.themeCardShadeColor,
-                boxShadow: [kSubtleBoxShadow],
-                borderRadius: BorderRadius.circular(kBorderRadius),
-              ),
-              child: Row(
+        child: Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [kSubtleBoxShadow],
+          borderRadius: BorderRadius.circular(kBorderRadius),
+        ),
+        child: MaterialButton(
+          onPressed: () {
+            if (pushTo != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => pushTo),
+              );
+            }
+          },
+          color: Palette.themeCardShadeColor,
+          height: 120,
+          elevation: 0,
+          highlightElevation: 0,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(kBorderRadius)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      icon == FontAwesomeIcons.newspaper && currentNewsIndex > 0
-                          ? Container(
-                              margin: EdgeInsets.only(bottom: 16),
-                              child: Badge(
-                                position:
-                                    BadgePosition.topEnd(top: -15, end: -15),
-                                badgeContent: Text(currentNewsIndex.toString(),
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.white)),
-                                child: FaIcon(
-                                  icon,
-                                  color: Palette.lightIndigo,
-                                  size: 35,
-                                ),
-                              ))
-                          : Container(
-                              margin: EdgeInsets.only(bottom: 16),
-                              child: FaIcon(
-                                icon,
-                                color: Palette.lightIndigo,
-                                size: 35,
-                              ),
+                  icon == FontAwesomeIcons.newspaper && currentNewsIndex > 0
+                      ? Container(
+                          margin: EdgeInsets.only(bottom: 16),
+                          child: Badge(
+                            position: BadgePosition.topEnd(top: -15, end: -15),
+                            badgeContent: Text(currentNewsIndex.toString(),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white)),
+                            child: FaIcon(
+                              icon,
+                              color: Palette.lightIndigo,
+                              size: 35,
                             ),
-                      Text(
-                        title,
-                        style: TextStyle(fontSize: 14, color: Palette.indigo),
-                      )
-                    ],
+                          ))
+                      : Container(
+                          margin: EdgeInsets.only(bottom: 16),
+                          child: FaIcon(
+                            icon,
+                            color: Palette.lightIndigo,
+                            size: 35,
+                          ),
+                        ),
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 14, color: Palette.indigo),
                   )
                 ],
-              ),
-            ),
-            onTap: () {
-              if (pushTo != null) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => pushTo),
-                );
-              }
-            }));
+              )
+            ],
+          ),
+        ),
+      ),
+    ));
   }
 }
