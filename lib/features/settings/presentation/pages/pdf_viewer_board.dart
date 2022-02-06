@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
@@ -15,7 +13,7 @@ class PDFPageBoard extends StatefulWidget {
 }
 
 class _PDFPageBoardState extends State<PDFPageBoard> {
-  String title = "Loading";
+  String title = 'Loading';
 
   final Completer<PDFViewController> _pdfViewController =
       Completer<PDFViewController>();
@@ -118,7 +116,7 @@ class _PDFPageBoardState extends State<PDFPageBoard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "$progress%",
+                          '$progress%',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Palette.bodyText,
@@ -126,7 +124,7 @@ class _PDFPageBoardState extends State<PDFPageBoard> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "COMPLETED",
+                          'COMPLETED',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Palette.bodyText,

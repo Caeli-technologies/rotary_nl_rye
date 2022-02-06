@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class FlightAndArrivalPage extends StatefulWidget {
@@ -45,7 +44,7 @@ class _FlightAndArrivalPageState extends State<FlightAndArrivalPage> {
           ),
         ),
         title: Text(
-          "Flight and Arrival",
+          'Flight and Arrival',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -61,7 +60,7 @@ class _FlightAndArrivalPageState extends State<FlightAndArrivalPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Flight",
+                  'Flight',
                   style: TextStyle(
                       decoration: TextDecoration.underline,
                       fontSize: 14.0,
@@ -108,7 +107,7 @@ class _FlightAndArrivalPageState extends State<FlightAndArrivalPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Arrival",
+                  'Arrival',
                   style: TextStyle(
                       decoration: TextDecoration.underline,
                       fontSize: 14.0,

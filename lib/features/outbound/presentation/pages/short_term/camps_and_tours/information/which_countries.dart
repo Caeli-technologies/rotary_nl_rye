@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -47,7 +46,7 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
           ),
         ),
         title: Text(
-          "Met welke landen?",
+          'Met welke landen?',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -73,7 +72,7 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "Europese landen, maar ook Canada, VS en Taiwan.",
+                  'Europese landen, maar ook Canada, VS en Taiwan.',
                   style: TextStyle(fontSize: 14.0),
                 ),
               ),
@@ -94,7 +93,7 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:interesse@rotaryyep.nl");
+                            launch('mailto:interesse@rotaryyep.nl');
                           },
                       )
                     ])),

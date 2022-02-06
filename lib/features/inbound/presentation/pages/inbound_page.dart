@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -10,9 +9,6 @@ import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'long_term/long_term_inbound_page.dart';
-import 'short_term/camps_and_tours/camps_and_tours_inbound_page.dart';
-import 'short_term/family_to_family/family_to_family_inbound_page.dart';
-import 'short_term/ngse/ngse_inbound_page.dart';
 import 'who_is_where/who_is_where.dart';
 
 class InboundPage extends StatefulWidget {
@@ -33,7 +29,7 @@ class _InboundPageState extends State<InboundPage> {
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          "Inbound",
+          'Inbound',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -73,7 +69,7 @@ class _InboundPageState extends State<InboundPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:longtermin@rotaryyep.nl");
+                            launch('mailto:longtermin@rotaryyep.nl');
                           },
                       ),
                       TextSpan(
@@ -84,7 +80,7 @@ class _InboundPageState extends State<InboundPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:longtermadmin@rotaryyep.nl");
+                            launch('mailto:longtermadmin@rotaryyep.nl');
                           },
                       ),
                     ])),
@@ -95,7 +91,7 @@ class _InboundPageState extends State<InboundPage> {
                 child: Row(
                   children: [
                     Text(
-                      "Long Term Exchange Program",
+                      'Long Term Exchange Program',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -112,8 +108,8 @@ class _InboundPageState extends State<InboundPage> {
 
               buildInboundOptionRow(
                   context,
-                  "Long Term Exchange Program",
-                  "Year Exchange",
+                  'Long Term Exchange Program',
+                  'Year Exchange',
                   FontAwesomeIcons.hashtag,
                   LongTermExchangeInboundPage()),
               SizedBox(
@@ -124,7 +120,7 @@ class _InboundPageState extends State<InboundPage> {
                 child: Row(
                   children: [
                     Text(
-                      "Short Term Exchange Program",
+                      'Short Term Exchange Program',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -141,22 +137,22 @@ class _InboundPageState extends State<InboundPage> {
               ),
               buildInboundOptionRow(
                   context,
-                  "NGSE",
-                  "New Generations Service Exchange",
+                  'NGSE',
+                  'New Generations Service Exchange',
                   FontAwesomeIcons.hashtag,
                   // NGSEInboundPage(),
                   null),
               buildInboundOptionRow(
                   context,
-                  "FAMILY TO FAMILY",
-                  "Exchange between families",
+                  'FAMILY TO FAMILY',
+                  'Exchange between families',
                   FontAwesomeIcons.hashtag,
                   // FamilyToFamilyInboundPage(),
                   null),
               buildInboundOptionRow(
                   context,
-                  "CAMPS & TOURS",
-                  "Summer Camps",
+                  'CAMPS & TOURS',
+                  'Summer Camps',
                   FontAwesomeIcons.hashtag,
                   // CampsAndToursInboundPage(),
                   null),
@@ -167,7 +163,7 @@ class _InboundPageState extends State<InboundPage> {
               ),
               buildInboundOptionRowWhoIsWhere(
                   context,
-                  "Inbounds, Who is Where?",
+                  'Inbounds, Who is Where?',
                   FontAwesomeIcons.streetView,
                   WhoIsWherePage()),
               Divider(
@@ -202,7 +198,7 @@ class _InboundPageState extends State<InboundPage> {
             height: 50,
             width: 50,
             imageUrl:
-                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
+                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
             imageBuilder: (context, imageProvider) => Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -260,8 +256,8 @@ class _InboundPageState extends State<InboundPage> {
               MaterialPageRoute(builder: (context) => pushTo),
             );
           } else {
-            String title = "Comming soon";
-            String message = "This page is not yet ready";
+            String title = 'Comming soon';
+            String message = 'This page is not yet ready';
             showMaterialDialog(
               context,
               title,

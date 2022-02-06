@@ -59,14 +59,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<bool> saveSwitchState(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool("autoInitializeState", value);
+    prefs.setBool('autoInitializeState', value);
     print('Switch Value saved $value');
-    return prefs.setBool("autoInitializeState", value);
+    return prefs.setBool('autoInitializeState', value);
   }
 
   Future<bool?> getSwitchState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isSwitchedFT = prefs.getBool("autoInitializeState") ?? false;
+    bool isSwitchedFT = prefs.getBool('autoInitializeState') ?? false;
     print(isSwitchedFT);
 
     return isSwitchedFT;
@@ -209,7 +209,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "Emergency",
+                          'Emergency',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -221,10 +221,10 @@ class _SettingsPageState extends State<SettingsPage> {
                       ],
                     ),
                     onTap: () {
-                      String title = "Emergency Page";
+                      String title = 'Emergency Page';
                       String message =
-                          "This page is not yet ready, \nNeeds to go to a Emergency page with contact information";
-                      String action = "Close";
+                          'This page is not yet ready, \nNeeds to go to a Emergency page with contact information';
+                      String action = 'Close';
                       showMaterialDialog(context, title, message, action);
 
                       // showDialog(
@@ -260,7 +260,7 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              "Development",
+              'Development',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
@@ -286,7 +286,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Contributors",
+                    'Contributors',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -328,7 +328,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             launch(
-                              "https://www.rotary.nl/yep/yep-app/privacy-policy.html",
+                              'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
                               forceSafariVC: false,
                             );
                           },
@@ -347,7 +347,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             launch(
-                              "https://www.rotary.nl/yep/yep-app/terms-and-conditions.html",
+                              'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
                               forceSafariVC: false,
                             );
                           },

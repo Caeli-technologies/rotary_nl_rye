@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -10,7 +9,6 @@ import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'long_term/long_term_outbound_page.dart';
 import 'short_term/camps_and_tours/camps_and_tours_outbound_page.dart';
 import 'short_term/family_to_family/family_to_family_outbound_page.dart';
-import 'short_term/ngse/ngse_outbound_page.dart';
 
 class OutboundPage extends StatefulWidget {
   @override
@@ -30,7 +28,7 @@ class _OutboundPageState extends State<OutboundPage> {
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          "Outbound",
+          'Outbound',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -46,7 +44,7 @@ class _OutboundPageState extends State<OutboundPage> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op uitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op uitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -56,7 +54,7 @@ class _OutboundPageState extends State<OutboundPage> {
               Row(
                 children: [
                   Text(
-                    "Long Term Exchange Program",
+                    'Long Term Exchange Program',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -68,8 +66,8 @@ class _OutboundPageState extends State<OutboundPage> {
 
               buildProgramOptionRow(
                   context,
-                  "Long Term Exchange Program",
-                  "Year Exchange",
+                  'Long Term Exchange Program',
+                  'Year Exchange',
                   FontAwesomeIcons.hashtag,
                   LongTermExchangeOutboundPage()),
               SizedBox(
@@ -78,7 +76,7 @@ class _OutboundPageState extends State<OutboundPage> {
               Row(
                 children: [
                   Text(
-                    "Short Term Exchange Program",
+                    'Short Term Exchange Program',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -89,19 +87,19 @@ class _OutboundPageState extends State<OutboundPage> {
               ),
               buildProgramOptionRow(
                   context,
-                  "NGSE",
-                  "New Generations Service Exchange",
+                  'NGSE',
+                  'New Generations Service Exchange',
                   FontAwesomeIcons.hashtag,
                   // TODO not yet ready
                   // NGSEOutboundPage()
                   null),
               buildProgramOptionRow(
                   context,
-                  "FAMILY TO FAMILY",
-                  "Exchange between families",
+                  'FAMILY TO FAMILY',
+                  'Exchange between families',
                   FontAwesomeIcons.hashtag,
                   FamilyToFamilyOutboundPage()),
-              buildProgramOptionRow(context, "CAMPS & TOURS", "Summer Camps",
+              buildProgramOptionRow(context, 'CAMPS & TOURS', 'Summer Camps',
                   FontAwesomeIcons.hashtag, CampsAndToursOutboundPage()),
 
               // the end
@@ -132,7 +130,7 @@ class _OutboundPageState extends State<OutboundPage> {
             height: 50,
             width: 50,
             imageUrl:
-                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
+                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
             imageBuilder: (context, imageProvider) => Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -186,8 +184,8 @@ class _OutboundPageState extends State<OutboundPage> {
               MaterialPageRoute(builder: (context) => pushTo),
             );
           } else {
-            String title = "Comming soon";
-            String message = "This page is not yet ready";
+            String title = 'Comming soon';
+            String message = 'This page is not yet ready';
             showMaterialDialog(
               context,
               title,

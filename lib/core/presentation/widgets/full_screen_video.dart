@@ -84,7 +84,7 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
   Future<void> loadSharedPreferencesAndSwitchState() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      isSwitchedFT = prefs.getBool("autoInitializeState") ?? false;
+      isSwitchedFT = prefs.getBool('autoInitializeState') ?? false;
     });
   }
 

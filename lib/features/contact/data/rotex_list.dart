@@ -3,10 +3,10 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/rotex.dart';
 List<Rotex> rotexList = [
 // Kylian Klein Hesselink
   Rotex(
-      name: "Kylian Klein Hesselink",
-      bio: "kylianHesselinkBio",
+      name: 'Kylian Klein Hesselink',
+      bio: 'kylianHesselinkBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/kylian-klein-hesselink.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/kylian-klein-hesselink.jpg',
       email: null,
       phoneNumber: null,
       snapchatUrl: null,
@@ -17,10 +17,10 @@ List<Rotex> rotexList = [
       role: 'Voorzitter'),
 // Toon ter Ellen
   Rotex(
-    name: "Toon ter Ellen",
-    bio: "toonTerEllenBio",
+    name: 'Toon ter Ellen',
+    bio: 'toonTerEllenBio',
     imageUrl:
-        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/toon-ter-ellen.jpg",
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/toon-ter-ellen.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -47,10 +47,10 @@ List<Rotex> rotexList = [
   // ),
 // Victor Storm van ‘s Gravesande
   Rotex(
-    name: "Victor Storm van ‘s Gravesande",
-    bio: "victorStormBio",
+    name: 'Victor Storm van ‘s Gravesande',
+    bio: 'victorStormBio',
     imageUrl:
-        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/victor-storm.jpg",
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/victor-storm.jpg',
     email: null,
     phoneNumber: null,
     facebookUrl: null,
@@ -62,10 +62,10 @@ List<Rotex> rotexList = [
   ),
 // Fleur Heupers
   Rotex(
-      name: "Fleur Heupers",
-      bio: "fleurHeupersBio",
+      name: 'Fleur Heupers',
+      bio: 'fleurHeupersBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/fleur-heupers.png",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/fleur-heupers.png',
       email: null,
       phoneNumber: null,
       facebookUrl: 'https://www.facebook.com/fleur.heupers.9',
@@ -76,24 +76,24 @@ List<Rotex> rotexList = [
       role: 'Commissie PR - Extern'),
 // Josephine van Dijk
   Rotex(
-      name: "Josephine Dijk",
-      bio: "josephineDijkBio",
+      name: 'Josephine Dijk',
+      bio: 'josephineDijkBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/josephine-dijk.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/josephine-dijk.jpg',
       email: null,
       phoneNumber: null,
       facebookUrl: null,
       snapchatUrl: null,
-      instagramUrl: "josephinedijk",
+      instagramUrl: 'josephinedijk',
       websiteUrl: null,
-      linkedinUrl: "https://nl.linkedin.com/in/josephinedijk",
+      linkedinUrl: 'https://nl.linkedin.com/in/josephinedijk',
       role: 'Commissie PR - Extern'),
   // Julia Brok
   Rotex(
-      name: "Julia Brok",
-      bio: "juliaBrokBio",
+      name: 'Julia Brok',
+      bio: 'juliaBrokBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/julia-brok.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/julia-brok.jpg',
       email: null,
       phoneNumber: null,
       facebookUrl: null,
@@ -104,10 +104,10 @@ List<Rotex> rotexList = [
       role: 'Commissie PR - Extern'),
 // Nikki Mureau
   Rotex(
-      name: "Nikki Mureau",
-      bio: "nikkiMureauBio",
+      name: 'Nikki Mureau',
+      bio: 'nikkiMureauBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/nikki-mureau.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/nikki-mureau.jpg',
       email: null,
       phoneNumber: '+31651756783',
       facebookUrl: null,
@@ -118,10 +118,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Inbound'),
 // Fynn Boots
   Rotex(
-      name: "Fynn Boots",
-      bio: "fynnBootsBio",
+      name: 'Fynn Boots',
+      bio: 'fynnBootsBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/fynn-boots.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/fynn-boots.jpg',
       email: null,
       phoneNumber: null,
       facebookUrl: 'https://www.facebook.com/fynn.boots',
@@ -132,10 +132,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Inbound'),
 // Daniek de Koning
   Rotex(
-      name: "Daniek de Koning",
-      bio: "daniekKoningBio",
+      name: 'Daniek de Koning',
+      bio: 'daniekKoningBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/daniek-de-koning.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/daniek-de-koning.jpg',
       email: null,
       phoneNumber: null,
       facebookUrl: null,
@@ -146,10 +146,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Inbound'),
 // Britt Krijgsman
   Rotex(
-      name: "Britt Krijgsman",
-      bio: "brittKrijgsmanBio",
+      name: 'Britt Krijgsman',
+      bio: 'brittKrijgsmanBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/britt-krijgsman.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/britt-krijgsman.jpg',
       email: null,
       phoneNumber: null,
       facebookUrl: 'https://www.facebook.com/britt.krijgsman',
@@ -160,10 +160,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Inbound'),
 // Kevin Kooistra
   Rotex(
-      name: "Kevin Kooistra",
-      bio: "kevinKooistraBio",
+      name: 'Kevin Kooistra',
+      bio: 'kevinKooistraBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/kevin-kooistra.png",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/kevin-kooistra.png',
       email: null,
       phoneNumber: null,
       facebookUrl: null,
@@ -174,10 +174,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Inbound'),
 // Timo Homburg
   Rotex(
-      name: "Timo Homburg",
-      bio: "timoHomburgBio",
+      name: 'Timo Homburg',
+      bio: 'timoHomburgBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/timo-homburg.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/timo-homburg.jpg',
       email: null,
       phoneNumber: null,
       snapchatUrl: null,
@@ -188,10 +188,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Prebound / Rebound'),
 // Sanne Pipping
   Rotex(
-      name: "Sanne Pipping",
-      bio: "sannePippingBio",
+      name: 'Sanne Pipping',
+      bio: 'sannePippingBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/sanne-pipping.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/sanne-pipping.jpg',
       email: null,
       phoneNumber: null,
       snapchatUrl: null,
@@ -202,10 +202,10 @@ List<Rotex> rotexList = [
       role: 'Commissie Prebound / Rebound'),
 // Anne Lucas
   Rotex(
-      name: "Anne Lucas",
-      bio: "anneLucasBio",
+      name: 'Anne Lucas',
+      bio: 'anneLucasBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/anne-lucas.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/anne-lucas.jpg',
       email: null,
       phoneNumber: null,
       snapchatUrl: null,
@@ -230,10 +230,10 @@ List<Rotex> rotexList = [
   //     role: 'Commissie Prebound / Rebound'),
 // Emil Laitervo
   Rotex(
-      name: "Emil Laitervo",
-      bio: "emileLaitervoBio",
+      name: 'Emil Laitervo',
+      bio: 'emileLaitervoBio',
       imageUrl:
-          "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/emil-laitervo.jpg",
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/emil-laitervo.jpg',
       email: null,
       phoneNumber: null,
       snapchatUrl: null,

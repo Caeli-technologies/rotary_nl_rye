@@ -23,7 +23,7 @@ class NewsRepositoryImpl implements NewsRepository {
   }
 
   Future<List<News>> get() async {
-    await Repo().initData("", "");
+    await Repo().initData('', '');
 
     List<News> news = await getCachedNews();
     _controller.sink.add(news);

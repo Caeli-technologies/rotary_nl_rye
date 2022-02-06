@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -50,7 +49,7 @@ class _LongTermExchangeInboundPageState
           ),
         ),
         title: Text(
-          "Long Term Inbound",
+          'Long Term Inbound',
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -66,7 +65,7 @@ class _LongTermExchangeInboundPageState
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Text(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -77,33 +76,33 @@ class _LongTermExchangeInboundPageState
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Welcome to the Netherlands!",
+              buildInboundOptionRow(context, 'Welcome to the Netherlands!',
                   FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Flight and Arrival",
+              buildInboundOptionRow(context, 'Flight and Arrival',
                   FontAwesomeIcons.plane, FlightAndArrivalPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, "Language",
+              buildInboundOptionRow(context, 'Language',
                   FontAwesomeIcons.language, LanguagePage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
 
-              buildInboundOptionRow(context, "Insurance",
+              buildInboundOptionRow(context, 'Insurance',
                   FontAwesomeIcons.umbrella, InsurancePage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, "Travel", FontAwesomeIcons.passport, TravelPage()),
+                  context, 'Travel', FontAwesomeIcons.passport, TravelPage()),
               Divider(
                 height: 15,
                 thickness: 2,
@@ -167,8 +166,8 @@ class _LongTermExchangeInboundPageState
               MaterialPageRoute(builder: (context) => pushTo),
             );
           } else {
-            String title = "Comming soon";
-            String message = "This page is not yet ready";
+            String title = 'Comming soon';
+            String message = 'This page is not yet ready';
             showMaterialDialog(
               context,
               title,

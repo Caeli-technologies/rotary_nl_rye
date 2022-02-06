@@ -31,7 +31,7 @@ class _ProgramPageState extends State<ProgramPage> {
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          "Programs",
+          'Programs',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -47,7 +47,7 @@ class _ProgramPageState extends State<ProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  "Interesse?",
+                  'Interesse?',
                   style: TextStyle(
                       color: Palette.titleText,
                       fontSize: 20.0,
@@ -57,7 +57,7 @@ class _ProgramPageState extends State<ProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  "Wil je:",
+                  'Wil je:',
                   style: TextStyle(
                       color: Palette.bodyText,
                       fontSize: 14.0,
@@ -67,49 +67,49 @@ class _ProgramPageState extends State<ProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  "- Andere culturen leren?",
+                  '- Andere culturen leren?',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
                 child: Text(
-                  "- Een andere taal leren,",
+                  '- Een andere taal leren,',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
                 child: Text(
-                  "- Vrienden krijgen over de hele wereld",
+                  '- Vrienden krijgen over de hele wereld',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
                 child: Text(
-                  "- Ambasseur van Nederland zijn voor Rotary",
+                  '- Ambasseur van Nederland zijn voor Rotary',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
-                  "Ben je tussen 15 en 18½ jaar oud op het moment van vertrek. \nSociaal en avontuurlijk, flexibel en klaar om het bekende achter je te laten en nieuwe dingen te ontdekken?",
+                  'Ben je tussen 15 en 18½ jaar oud op het moment van vertrek. \nSociaal en avontuurlijk, flexibel en klaar om het bekende achter je te laten en nieuwe dingen te ontdekken?',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
-                  "Dan zit je bij ons goed! Met de steun van Rotary kunnen gemiddeld meer dan 40 jongeren deelnemen aan de jaarlijkse uitwisseling en ruim 50 jongeren aan onze zomerkampen en korte uitwisselingen.",
+                  'Dan zit je bij ons goed! Met de steun van Rotary kunnen gemiddeld meer dan 40 jongeren deelnemen aan de jaarlijkse uitwisseling en ruim 50 jongeren aan onze zomerkampen en korte uitwisselingen.',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
                 child: Text(
-                  "Ben je ouder maakt niet uit. Met de New Generation Service Exchange kun je deelnemen tussen de 18 en 30 jaar.",
+                  'Ben je ouder maakt niet uit. Met de New Generation Service Exchange kun je deelnemen tussen de 18 en 30 jaar.',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
               ),
@@ -131,7 +131,7 @@ class _ProgramPageState extends State<ProgramPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:interesse@rotaryyep.nl");
+                            launch('mailto:interesse@rotaryyep.nl');
                           },
                       ),
                       TextSpan(
@@ -146,7 +146,7 @@ class _ProgramPageState extends State<ProgramPage> {
               Row(
                 children: [
                   Text(
-                    "Promo Video ",
+                    'Promo Video ',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -155,7 +155,7 @@ class _ProgramPageState extends State<ProgramPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildProgramOptionRow(context, "Promo Video", "For everyone",
+              buildProgramOptionRow(context, 'Promo Video', 'For everyone',
                   FontAwesomeIcons.hashtag, VideoPage()),
               SizedBox(
                 height: 20,
@@ -163,7 +163,7 @@ class _ProgramPageState extends State<ProgramPage> {
               Row(
                 children: [
                   Text(
-                    "Long Term Exchange Program",
+                    'Long Term Exchange Program',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -175,8 +175,8 @@ class _ProgramPageState extends State<ProgramPage> {
 
               buildProgramOptionRow(
                   context,
-                  "Long Term Exchange Program",
-                  "Year Exchange",
+                  'Long Term Exchange Program',
+                  'Year Exchange',
                   FontAwesomeIcons.hashtag,
                   LongTermExchangeProgramPage()),
               SizedBox(
@@ -185,7 +185,7 @@ class _ProgramPageState extends State<ProgramPage> {
               Row(
                 children: [
                   Text(
-                    "Short Term Exchange Program",
+                    'Short Term Exchange Program',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -196,17 +196,17 @@ class _ProgramPageState extends State<ProgramPage> {
               ),
               buildProgramOptionRow(
                   context,
-                  "NGSE",
-                  "New Generations Service Exchange",
+                  'NGSE',
+                  'New Generations Service Exchange',
                   FontAwesomeIcons.hashtag,
                   NGSEProgramPage()),
               buildProgramOptionRow(
                   context,
-                  "FAMILY TO FAMILY",
-                  "Exchange between families",
+                  'FAMILY TO FAMILY',
+                  'Exchange between families',
                   FontAwesomeIcons.hashtag,
                   FamilyToFamilyProgramPage()),
-              buildProgramOptionRow(context, "CAMPS & TOURS", "Summer Camps",
+              buildProgramOptionRow(context, 'CAMPS & TOURS', 'Summer Camps',
                   FontAwesomeIcons.hashtag, CampsAndToursProgramPage()),
 
               // the end
@@ -237,7 +237,7 @@ class _ProgramPageState extends State<ProgramPage> {
             height: 50,
             width: 50,
             imageUrl:
-                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
+                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
             imageBuilder: (context, imageProvider) => Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),

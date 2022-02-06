@@ -11,8 +11,8 @@ class Repo {
   final Cache cache = new Cache();
 
   Future<void> initData(String studentExchangeYear, String studentName) async {
-    print("initData");
-    if (studentExchangeYear != "" && studentName != "") {
+    print('initData');
+    if (studentExchangeYear != '' && studentName != '') {
       await StoriesRepositoryImpl().cacheStories(
           studentExchangeYear, studentName);
     }

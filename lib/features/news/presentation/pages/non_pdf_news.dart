@@ -26,7 +26,7 @@ class NonPDFPage extends StatefulWidget {
 
 class _NonPDFPageState extends State<NonPDFPage> {
   bool isTranslating = false;
-  String heading = "Placeholder";
+  String heading = 'Placeholder';
   List<Widget> translate = [];
   bool _isLoading = false;
   double progressPercent = 0;
@@ -34,7 +34,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   int translationIndex = 0;
 
   bool translationSuccess = true;
-  String errorMessage = "";
+  String errorMessage = '';
 
   String? _linkMessage;
   String? id;
@@ -63,7 +63,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.setInt("newsBadge", 0);
+      prefs.setInt('newsBadge', 0);
     });
   }
 
@@ -132,7 +132,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                                 const SizedBox(
                                   width: 7,
                                 ),
-                                Text("Share")
+                                Text('Share')
                               ],
                             )),
                       ],
@@ -152,7 +152,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                                 const SizedBox(
                                   width: 7,
                                 ),
-                                Text("Share")
+                                Text('Share')
                               ],
                             )),
                         PopupMenuDivider(),
@@ -167,7 +167,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                                 const SizedBox(
                                   width: 7,
                                 ),
-                                Text("Translate")
+                                Text('Translate')
                               ],
                             )),
                       ],
@@ -207,7 +207,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "${(this.progressPercent * 100).round()}%",
+                          '${(this.progressPercent * 100).round()}%',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -215,7 +215,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "COMPLETED",
+                          'COMPLETED',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -236,7 +236,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                       child: Text(
                         (isTranslating)
                             ? heading
-                            : (widget.data.text![0]["heading"]),
+                            : (widget.data.text![0]['heading']),
                         style: TextStyle(
                             color: Palette.titleText,
                             fontSize: 25.0,
@@ -262,14 +262,14 @@ class _NonPDFPageState extends State<NonPDFPage> {
           resultList.add(paragraphItem(text: text));
         }
       } else if (bodyItem['imageUrl'] != null) {
-        resultList.add(imageItem(url: bodyItem["imageUrl"]));
+        resultList.add(imageItem(url: bodyItem['imageUrl']));
       } else if (bodyItem['videoUrl'] != null) {
-        resultList.add(videoItem(url: bodyItem["videoUrl"]));
+        resultList.add(videoItem(url: bodyItem['videoUrl']));
       } else if (bodyItem['pdfUrl'] != null) {
-        resultList.add(pdfButton(pdfUrl: bodyItem["pdfUrl"]));
+        resultList.add(pdfButton(pdfUrl: bodyItem['pdfUrl']));
       } else if (bodyItem['subHeader'] != null) {
         index++;
-        resultList.add(subHeaderItem(text: bodyItem["subHeader"]));
+        resultList.add(subHeaderItem(text: bodyItem['subHeader']));
       }
     }
 
@@ -279,7 +279,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    heading = await header(widget.data.text![0]["heading"]);
+    heading = await header(widget.data.text![0]['heading']);
     setState(() {
       translationIndex++;
       progressPercent = translationIndex / index;
@@ -293,7 +293,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
           if (translationSuccess) {
             translationSuccess = await value['success'];
           }
-          if (errorMessage == "") {
+          if (errorMessage == '') {
             errorMessage = await value['message'];
           }
           translate.add(paragraphItem(text: translation));
@@ -314,7 +314,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
         if (translationSuccess) {
           translationSuccess = await value['success'];
         }
-        if (errorMessage == "") {
+        if (errorMessage == '') {
           errorMessage = await value['message'];
         }
         translate.add(subHeaderItem(text: translation));
@@ -335,7 +335,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
     if (translationSuccess) {
       translationSuccess = value['success'];
     }
-    if (errorMessage == "") {
+    if (errorMessage == '') {
       errorMessage = value['message'];
     }
 
@@ -384,7 +384,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                   //     )
                   //   ],
                   // ),
-                  Text("Open PDF"),
+                  Text('Open PDF'),
             ),
           ),
         ));
@@ -444,7 +444,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
           _isLoading = true;
           isTranslating = !isTranslating;
           FutureBuilder(
-            future: translated(widget.data.text![1]["body"]),
+            future: translated(widget.data.text![1]['body']),
             builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
               if (!translationSuccess && isTranslating) {
                 print('show dialog');

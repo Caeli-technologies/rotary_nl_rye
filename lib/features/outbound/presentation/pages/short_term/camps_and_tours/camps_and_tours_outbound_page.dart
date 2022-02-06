@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
@@ -47,7 +46,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
           ),
         ),
         title: Text(
-          "Camps & Tours",
+          'Camps & Tours',
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -63,7 +62,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: SelectableText(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -74,26 +73,26 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
+              buildOutboundOptionRow(context, 'Hoe schrijf ik mezelf in',
                   FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Voor wie?",
+              buildOutboundOptionRow(context, 'Voor wie?',
                   FontAwesomeIcons.exclamation, ComplyWithPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Met welke landen?",
+              buildOutboundOptionRow(context, 'Met welke landen?',
                   FontAwesomeIcons.globeEurope, WhichCountriesPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildOutboundOptionRow(
-                  context, "Landen Lijst", FontAwesomeIcons.list, LoadCsv()),
+                  context, 'Landen Lijst', FontAwesomeIcons.list, LoadCsv()),
               Divider(
                 height: 15,
                 thickness: 2,

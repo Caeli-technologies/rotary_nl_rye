@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -26,7 +24,7 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
   final String pdfURL;
   _PDFPageViewerState({required this.pdfURL});
 
-  String title = "Loading";
+  String title = 'Loading';
 
   final Completer<PDFViewController> _pdfViewController =
       Completer<PDFViewController>();
@@ -92,7 +90,7 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
                   color: Palette.indigo,
                 ),
                 onPressed: () {
-                  Clipboard.setData(new ClipboardData(text: "Your Copy text"))
+                  Clipboard.setData(new ClipboardData(text: 'Your Copy text'))
                       .then((_) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('Copied to your clipboard !',
@@ -152,7 +150,7 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "$progress%",
+                          '$progress%',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Palette.bodyText,
@@ -160,7 +158,7 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "COMPLETED",
+                          'COMPLETED',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Palette.bodyText,

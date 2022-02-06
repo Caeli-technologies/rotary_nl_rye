@@ -48,7 +48,7 @@ class StudentsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "$districtnumber - $district",
+          '$districtnumber - $district',
           textScaleFactor: 0.9,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

@@ -22,7 +22,7 @@ class HeaderImageRepositoryImpl implements HeaderImageRepository{
   }
 
   Future<HeaderImage> getHeaderImageData() async {
-    await Repo().initData("", "");
+    await Repo().initData('', '');
 
     HeaderImage headerImage = await getCachedHeaderImage();
     _controller.sink.add(headerImage);

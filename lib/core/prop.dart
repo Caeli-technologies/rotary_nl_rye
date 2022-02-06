@@ -9,29 +9,29 @@ class Device {
   static bool isDark = false;
 
   static String convert(int millisecondsSinceEpoch) {
-    String result = "";
+    String result = '';
 
     List months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "September",
-      "October",
-      "November",
-      "December"
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'September',
+      'October',
+      'November',
+      'December'
     ];
 
     result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch)
         .day
         .toString();
-    result += " ";
+    result += ' ';
     result += months[
         DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).month - 1];
-    result += " ";
+    result += ' ';
     result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch)
         .year
         .toString();

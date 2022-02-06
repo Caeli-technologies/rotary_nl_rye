@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/information/long_term_exchange.dart';
 
@@ -47,7 +46,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
           ),
         ),
         title: Text(
-          "Goede top 3 van landen",
+          'Goede top 3 van landen',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

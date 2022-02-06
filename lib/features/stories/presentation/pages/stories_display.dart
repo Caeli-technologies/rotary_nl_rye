@@ -63,7 +63,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    if (student.toString() == "[]") {
+    if (student.toString() == '[]') {
       return Scaffold(
           appBar: AppBar(
             systemOverlayStyle:
@@ -96,7 +96,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
           ),
           body: Center(
               child: Text(
-                  "A problem occured. Maybe there is no data present yet")));
+                  'A problem occured. Maybe there is no data present yet')));
     }
     return Scaffold(
         appBar: AppBar(
@@ -215,7 +215,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
                       height: 10,
                     ),
                     Text(
-                      "Stories",
+                      'Stories',
                       textAlign: TextAlign.center,
                       textScaleFactor: 2,
                       style: TextStyle(

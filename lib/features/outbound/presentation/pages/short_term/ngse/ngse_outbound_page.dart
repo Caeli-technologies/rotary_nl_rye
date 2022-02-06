@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
-import 'information/comply_with.dart';
-import 'information/how_to_sign_up.dart';
-import 'information/selection_day.dart';
-import 'information/selection_weekend.dart';
-import 'information/top_3_countries.dart';
 
 class NGSEOutboundPage extends StatefulWidget {
   @override
@@ -48,7 +41,7 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
           ),
         ),
         title: Text(
-          "NGSE",
+          'NGSE',
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -175,8 +168,8 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
               MaterialPageRoute(builder: (context) => pushTo),
             );
           } else {
-            String title = "Comming soon";
-            String message = "This page is not yet ready";
+            String title = 'Comming soon';
+            String message = 'This page is not yet ready';
             showMaterialDialog(context, title, message, null);
           }
         },

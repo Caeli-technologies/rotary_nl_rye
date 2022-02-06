@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class ComplyWithPage extends StatefulWidget {
@@ -45,7 +44,7 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
           ),
         ),
         title: Text(
-          "Waar moet ik aan voldoen?",
+          'Waar moet ik aan voldoen?',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -71,7 +70,7 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "Alle jongens en meisjes in de leeftijd van 15 t/m 19* jaar, die open staan voor anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen ontmoeten zijn geschikt om aan dit programma deel te nemen. ",
+                  'Alle jongens en meisjes in de leeftijd van 15 t/m 19* jaar, die open staan voor anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen ontmoeten zijn geschikt om aan dit programma deel te nemen. ',
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),

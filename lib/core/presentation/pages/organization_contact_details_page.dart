@@ -52,7 +52,7 @@ class OrganizationDetails extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Organization",
+          'Organization',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -368,7 +368,7 @@ class OrganizationDetails extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 30.0, top: 20.0),
                 child: Text(
-                  "Functions",
+                  'Functions',
                   style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey[600],
@@ -404,7 +404,7 @@ class OrganizationDetails extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 30.0, top: 15.0),
                 child: Text(
-                  "Rotary Club",
+                  'Rotary Club',
                   style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey[600],
@@ -423,7 +423,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "Club District: ${person.district}",
+                  'Club District: ${person.district}',
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
@@ -431,7 +431,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
                 child: Text(
-                  "Club name: ${person.club}",
+                  'Club name: ${person.club}',
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
@@ -439,7 +439,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "About me",
+                  'About me',
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 18.0,
@@ -479,7 +479,7 @@ class OrganizationDetails extends StatelessWidget {
                             ),
                             child: RawMaterialButton(
                                 onPressed: () {
-                                  launch("mailto:${person.email}");
+                                  launch('mailto:${person.email}');
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
@@ -500,7 +500,7 @@ class OrganizationDetails extends StatelessWidget {
                                 color: Colors.blue[400]),
                             child: RawMaterialButton(
                               onPressed: () {
-                                launch("tel:${person.phoneNumber}");
+                                launch('tel:${person.phoneNumber}');
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(35.0)),

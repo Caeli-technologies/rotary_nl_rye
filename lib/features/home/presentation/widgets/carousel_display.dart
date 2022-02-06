@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
@@ -17,17 +16,17 @@ class _CarouselState extends State<Carousel> {
     //     image: "assets/image/homepage/4bc2b606-ddf3-4c28-930d-e4d1ad8118d4.jpg",
     //     text: "Informatiedag online op 2 oktober a.s."),
     CarouselModel(
-        image: "assets/image/homepage/shelterbox.jpg",
-        text: "Social actief zijn"),
+        image: 'assets/image/homepage/shelterbox.jpg',
+        text: 'Social actief zijn'),
     CarouselModel(
-        image: "assets/image/b70db74b-aebe-470d-8c47-306640be9a00.jpg",
-        text: "Vergroten van je Horizon"),
+        image: 'assets/image/b70db74b-aebe-470d-8c47-306640be9a00.jpg',
+        text: 'Vergroten van je Horizon'),
     CarouselModel(
-        image: "assets/image/homepage/barbara_with_students.jpg",
-        text: "Nieuwe vrienden maken"),
+        image: 'assets/image/homepage/barbara_with_students.jpg',
+        text: 'Nieuwe vrienden maken'),
     CarouselModel(
-        image: "assets/image/homepage/saying_goodby_2.jpeg",
-        text: "Jezelf nog beter leren kennen")
+        image: 'assets/image/homepage/saying_goodby_2.jpeg',
+        text: 'Jezelf nog beter leren kennen')
   ];
 
   List<T> map<T>(List list, Function handler) {

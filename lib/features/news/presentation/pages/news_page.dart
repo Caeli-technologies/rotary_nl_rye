@@ -1,12 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/cached_network_image.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
@@ -76,7 +71,7 @@ class _NewsPageState extends State<NewsPage> {
   void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.setInt("newsBadge", 0);
+      prefs.setInt('newsBadge', 0);
     });
   }
 
@@ -98,7 +93,7 @@ class _NewsPageState extends State<NewsPage> {
           elevation: 0.0,
           leading: UniformBackButton(),
           title: Text(
-            "News",
+            'News',
             textScaleFactor: 1.4,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),

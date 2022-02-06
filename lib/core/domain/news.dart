@@ -17,7 +17,7 @@ class NewsBloc {
   get news => _newsController.stream;
 
   Future<List<News>> getNewsData() async {
-    await Repo().initData("", "");
+    await Repo().initData('', '');
     final String imageHeader = await cache.getByKey(Config.spImageHeaderKey);
     _headerController.sink.add(imageHeader);
 

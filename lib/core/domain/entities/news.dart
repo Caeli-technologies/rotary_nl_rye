@@ -17,23 +17,23 @@ class News {
       this.text});
 
   factory News.fromJson(Map<String, dynamic> json) => News(
-      id: json["id"],
-      images: json["images"],
-      title: json["title"],
-      description: json["description"],
-      isPdf: (json["isPdf"] == 'yes') ? true : false,
-      pdf: json["pdf"],
-      text: json["text"]);
+      id: json['id'],
+      images: json['images'],
+      title: json['title'],
+      description: json['description'],
+      isPdf: (json['isPdf'] == 'yes') ? true : false,
+      pdf: json['pdf'],
+      text: json['text']);
 
   Map<String, dynamic> toJson() {
     return {
-      "id": id,
-      "images": images,
-      "title": title,
-      "description": description,
-      "isPdf": isPdf ? "yes" : "no",
-      "pdf": pdf,
-      "text": text
+      'id': id,
+      'images': images,
+      'title': title,
+      'description': description,
+      'isPdf': isPdf ? 'yes' : 'no',
+      'pdf': pdf,
+      'text': text
     };
   }
 }

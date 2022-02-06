@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class SelectionWeekendPage extends StatefulWidget {
@@ -45,7 +44,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
           ),
         ),
         title: Text(
-          "Selectie weekend",
+          'Selectie weekend',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -61,7 +60,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
-                  "Het weekend dient een aantal doelen:",
+                  'Het weekend dient een aantal doelen:',
                   style: TextStyle(
                       color: Colors.red,
                       fontSize: 15.0,
@@ -163,7 +162,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "*Je krijgt een mail van ons voor het weekend waarin staat wat je moet meenemen, en wat je moet voorbereiden. Het is altijd een topweekend. ",
+                  '*Je krijgt een mail van ons voor het weekend waarin staat wat je moet meenemen, en wat je moet voorbereiden. Het is altijd een topweekend. ',
                   style: TextStyle(fontSize: 12.5),
                 ),
               ),

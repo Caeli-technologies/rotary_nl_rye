@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -50,7 +49,7 @@ class _LongTermExchangeOutboundPageState
           ),
         ),
         title: Text(
-          "Long Term Outbound",
+          'Long Term Outbound',
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -66,7 +65,7 @@ class _LongTermExchangeOutboundPageState
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Text(
-                  "Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.",
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -77,13 +76,13 @@ class _LongTermExchangeOutboundPageState
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
+              buildOutboundOptionRow(context, 'Hoe schrijf ik mezelf in',
                   FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
+              buildOutboundOptionRow(context, 'Waar moet ik aan voldoen',
                   FontAwesomeIcons.exclamation, ComplyWithPage()),
               Divider(
                 height: 15,
@@ -91,7 +90,7 @@ class _LongTermExchangeOutboundPageState
               ),
               buildOutboundOptionRow(
                   context,
-                  "Wat moet ik doen voor de selectiedag",
+                  'Wat moet ik doen voor de selectiedag',
                   FontAwesomeIcons.voteYea,
                   SelectionDayPage()),
               Divider(
@@ -100,7 +99,7 @@ class _LongTermExchangeOutboundPageState
               ),
               buildOutboundOptionRow(
                   context,
-                  "Wat moet ik doen voor het selectieweekend",
+                  'Wat moet ik doen voor het selectieweekend',
                   FontAwesomeIcons.clipboardCheck,
                   SelectionWeekendPage()),
               Divider(
@@ -109,14 +108,14 @@ class _LongTermExchangeOutboundPageState
               ),
               buildOutboundOptionRow(
                   context,
-                  "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
+                  'Hoe maak ik een goede top 3 van landen waar ik naar toe wil ',
                   FontAwesomeIcons.globe,
                   Top3CountriesPage()),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Hoe bereid ik me voor",
+              buildOutboundOptionRow(context, 'Hoe bereid ik me voor',
                   FontAwesomeIcons.suitcase, null),
 
               // the end
@@ -178,8 +177,8 @@ class _LongTermExchangeOutboundPageState
               MaterialPageRoute(builder: (context) => pushTo),
             );
           } else {
-            String title = "Comming soon";
-            String message = "This page is not yet ready";
+            String title = 'Comming soon';
+            String message = 'This page is not yet ready';
             showMaterialDialog(context, title, message, null);
           }
         },

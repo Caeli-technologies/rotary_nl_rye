@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class TravelPage extends StatefulWidget {
@@ -45,7 +44,7 @@ class _TravelPageState extends State<TravelPage> {
           ),
         ),
         title: Text(
-          "Travel",
+          'Travel',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

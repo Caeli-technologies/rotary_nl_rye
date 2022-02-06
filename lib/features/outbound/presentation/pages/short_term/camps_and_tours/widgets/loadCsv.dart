@@ -22,13 +22,13 @@ class _LoadCsvState extends State<LoadCsv> {
     //     Uri.parse("https://stadler.caeli-tech.com/testApp/sql/list_train.php"));
     final response = await http.get(
         Uri.parse(
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv'),
         headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
     try {
       if (response.statusCode == 200) {
         List<List<dynamic>> _listData = CsvToListConverter(
           eol: '\r\n',
-          fieldDelimiter: ";",
+          fieldDelimiter: ';',
         ).convert(response.body);
 
         setState(() {
@@ -110,7 +110,7 @@ class _LoadCsvState extends State<LoadCsv> {
             ),
           ),
           title: Text(
-            "Camps & Tours List",
+            'Camps & Tours List',
             textScaleFactor: 1.2,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -139,7 +139,7 @@ class _LoadCsvState extends State<LoadCsv> {
                       }
                       return GestureDetector(
                           onTap: () {
-                            print("title: " +
+                            print('title: ' +
                                 snapshot.data![index][2].toString());
 
                             Navigator.push(
@@ -455,7 +455,7 @@ class TravelCard extends StatelessWidget {
                                     child: Row(
                                       children: <Widget>[
                                         SvgPicture.asset(
-                                          "assets/icons/flags/$hostCountryCode.svg",
+                                          'assets/icons/flags/$hostCountryCode.svg',
                                           height: 20,
                                           width: 50,
                                           fit: BoxFit.contain,
@@ -562,7 +562,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 61),
                               child: Text(
-                                ageMin + ' - ' + ageMax + " Years",
+                                ageMin + ' - ' + ageMax + ' Years',
                                 textScaleFactor: 1.2,
                                 style: TextStyle(
                                   color: Palette.indigo,

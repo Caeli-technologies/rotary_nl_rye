@@ -19,15 +19,15 @@ class FireStoreUrl {
         jsonUrl = snapshot.data()!['json'];
 
   factory FireStoreUrl.fromJson(Map<String, dynamic> json) => FireStoreUrl(
-      headerUrl: json["headerUrl"],
-      jsonUrl: json["jsonUrl"],
-      students: json["students"]);
+      headerUrl: json['headerUrl'],
+      jsonUrl: json['jsonUrl'],
+      students: json['students']);
 
   Map<String, dynamic> toJson() {
     return {
-      "students": students,
-      "headerUrl": headerUrl,
-      "jsonUrl": jsonUrl,
+      'students': students,
+      'headerUrl': headerUrl,
+      'jsonUrl': jsonUrl,
     };
   }
 }

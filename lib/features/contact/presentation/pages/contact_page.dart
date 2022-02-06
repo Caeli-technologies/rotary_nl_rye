@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -48,7 +47,7 @@ class _ContactPageState extends State<ContactPage> {
           elevation: 0.0,
           centerTitle: false,
           title: Text(
-            "Contact List",
+            'Contact List',
             textScaleFactor: 1.7,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -82,19 +81,19 @@ class _ContactPageState extends State<ContactPage> {
                 height: 40,
                 alignment: Alignment.center,
                 color: Palette.themeContactTabShadeColor,
-                child: Text("Long Term"),
+                child: Text('Long Term'),
               ),
               Container(
                 height: 40,
                 alignment: Alignment.center,
                 color: Palette.themeContactTabShadeColor,
-                child: Text("Short Term"),
+                child: Text('Short Term'),
               ),
               Container(
                 height: 40,
                 alignment: Alignment.center,
                 color: Palette.themeContactTabShadeColor,
-                child: Text("Rotex"),
+                child: Text('Rotex'),
               ),
             ],
           ),

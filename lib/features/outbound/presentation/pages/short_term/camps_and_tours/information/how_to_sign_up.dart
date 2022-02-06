@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -48,7 +47,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
           ),
         ),
         title: Text(
-          "Hoe schrijf ik mezelf in",
+          'Hoe schrijf ik mezelf in',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -88,7 +87,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch("mailto:interesse@rotaryyep.nl");
+                            launch('mailto:interesse@rotaryyep.nl');
                           },
                       ),
                       TextSpan(
@@ -104,7 +103,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                       child: CupertinoButton.filled(
                         onPressed: () {
                           launch(
-                              "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20Camps%20and%20Tours");
+                              'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20Camps%20and%20Tours');
                         },
                         child:
                             // Row(
@@ -125,7 +124,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                             //     )
                             //   ],
                             // ),
-                            Text("Verstuur een Email"),
+                            Text('Verstuur een Email'),
                       ),
                     ),
                   )),
