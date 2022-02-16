@@ -34,3 +34,5 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+# run 'dart fix --apply' to auto change.
