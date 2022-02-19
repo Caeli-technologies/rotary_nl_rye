@@ -22,27 +22,27 @@ class Story {
   });
 
   factory Story.fromJson(Map<String, dynamic> json) => Story(
-        isDutchie: json["isDutchie"],
-        image: json["imageUrl"],
-        video: json["videoUrl"],
-        title: json["title"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        description: json["description"],
-        message: json["message"],
+        isDutchie: json['isDutchie'],
+        image: json['imageUrl'],
+        video: json['videoUrl'],
+        title: json['title'],
+        startDate: json['startDate'],
+        endDate: json['endDate'],
+        description: json['description'],
+        message: json['message'],
         //body: json["body"]
       );
 
   Map<String, dynamic> toJson() {
     return {
-      "isDutchie": isDutchie,
-      "imageUrl": image,
-      "videoUrl": video,
-      "title": title,
-      "startDate": startDate,
-      "endDate": endDate,
-      "description": description,
-      "message": message,
+      'isDutchie': isDutchie,
+      'imageUrl': image,
+      'videoUrl': video,
+      'title': title,
+      'startDate': startDate,
+      'endDate': endDate,
+      'description': description,
+      'message': message,
       //"body": body
     };
   }

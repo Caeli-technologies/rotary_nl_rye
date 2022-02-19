@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class AboutPage extends StatefulWidget {
@@ -21,7 +20,7 @@ class _AboutPageState extends State<AboutPage> {
         elevation: 0.0,
         centerTitle: false,
         title: Text(
-          "About Us",
+          'About Us',
           textScaleFactor: 1.7,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -45,7 +44,7 @@ class _AboutPageState extends State<AboutPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                 child: SizedBox(
-                  child: Text("Nederland MDJC : Multi district Jeugd Commissie",
+                  child: Text('Nederland MDJC : Multi district Jeugd Commissie',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
@@ -61,7 +60,7 @@ class _AboutPageState extends State<AboutPage> {
                 padding:
                     const EdgeInsets.only(left: 16.5, right: 16.0, top: 20.0),
                 child: Text(
-                  "Internationale jeugduitwisselingen met Rotary worden al 55 jaar met succes georganiseerd. Jeugduitwisselingen zit in het DNA van Rotary. De jeugd heeft de toekomst, niet alleen voor de Rotary, maar ook voor de wereld. In 2010 is Jeugdzaken met jeugduitwisseling de vijfde Avenue binnen Rotary geworden. Jaarlijks zijn er 7000 Exchanges wereldwijd.",
+                  'Internationale jeugduitwisselingen met Rotary worden al 55 jaar met succes georganiseerd. Jeugduitwisselingen zit in het DNA van Rotary. De jeugd heeft de toekomst, niet alleen voor de Rotary, maar ook voor de wereld. In 2010 is Jeugdzaken met jeugduitwisseling de vijfde Avenue binnen Rotary geworden. Jaarlijks zijn er 7000 Exchanges wereldwijd.',
                   style: TextStyle(color: Palette.bodyText, fontSize: 16.0),
                 ),
               ),
@@ -69,7 +68,7 @@ class _AboutPageState extends State<AboutPage> {
                 padding:
                     const EdgeInsets.only(left: 16.0, right: 16.0, top: 30.0),
                 child: Text(
-                  "DOEL UITWISSELING",
+                  'DOEL UITWISSELING',
                   style: TextStyle(
                       color: Colors.blue[700],
                       fontSize: 16.0,
@@ -80,7 +79,7 @@ class _AboutPageState extends State<AboutPage> {
                 padding:
                     const EdgeInsets.only(left: 16.0, right: 16.0, top: 5.0),
                 child: Text(
-                  "Connecting your minds, share future beliefs",
+                  'Connecting your minds, share future beliefs',
                   style: TextStyle(
                       color: Colors.yellow[700],
                       fontSize: 15.0,

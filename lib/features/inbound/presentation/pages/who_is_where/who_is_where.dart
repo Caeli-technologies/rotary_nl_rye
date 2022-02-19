@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/inbound/data/year_list.dart';
@@ -44,7 +43,7 @@ class _WhoIsWherePageState extends State<WhoIsWherePage> {
           ),
         ),
         title: Text(
-          "Who is Where?",
+          'Who is Where?',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

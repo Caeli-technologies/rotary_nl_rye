@@ -19,7 +19,7 @@ class StudentsBloc {
   final Cache cache = new Cache();
 
   void getExchangeStudentList() async {
-    await Repo().initData("", "");
+    await Repo().initData('', '');
     final List temp = json.decode(await cache.getByKey(Config.spExchangeStudentsKey)) as List;
     final List<ExchangeStudent> exchangeStudents = [];
     temp.forEach((json) {exchangeStudents.add(ExchangeStudent.fromJson(json));});

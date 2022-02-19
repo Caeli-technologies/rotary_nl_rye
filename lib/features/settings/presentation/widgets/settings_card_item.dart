@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// still need to add here the cards from settings to make settings cleaner :)
 

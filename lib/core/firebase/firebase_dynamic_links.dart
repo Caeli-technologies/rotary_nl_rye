@@ -21,21 +21,21 @@ Future<void> initDynamicLinks(BuildContext context) async {
 
     // if (deepLink != null) {
     final uri = deepLink.path;
-    print("deepLink.path: $uri ");
-    if (deepLink.path == "/helloworld") {
+    print('deepLink.path: $uri ');
+    if (deepLink.path == '/helloworld') {
       // final id = deepLink.queryParameters["id"];
       // final name = deepLink.queryParameters["name"];
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => SocialPage()));
     }
-    if (deepLink.path == "/stories") {
+    if (deepLink.path == '/stories') {
       // final id = deepLink.queryParameters["id"];
       // final name = deepLink.queryParameters["name"];
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => SocialPage()));
     }
-    if (deepLink.path == "/news") {
-      String? id = deepLink.queryParameters["id"];
+    if (deepLink.path == '/news') {
+      String? id = deepLink.queryParameters['id'];
       print('news id $id');
       List<News> _newsList = await _repo.getNewsData();
       print('news fetched ${_newsList[int.parse(id!)].toString()}');
@@ -115,21 +115,21 @@ Future<void> initDynamicLinks(BuildContext context) async {
 
   final uri = deepLink?.path;
 
-  print("deepLink.path: $uri ");
-  if (deepLink?.path == "/helloworld") {
+  print('deepLink.path: $uri ');
+  if (deepLink?.path == '/helloworld') {
     // final id = deepLink?.queryParameters["id"];
     // final name = deepLink?.queryParameters["name"];
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SocialPage()));
   }
-  if (deepLink?.path == "/stories") {
+  if (deepLink?.path == '/stories') {
     // final id = deepLink?.queryParameters["id"];
     // final name = deepLink?.queryParameters["name"];
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SocialPage()));
   }
-  if (deepLink?.path == "/news") {
-    String? id = deepLink?.queryParameters["id"];
+  if (deepLink?.path == '/news') {
+    String? id = deepLink?.queryParameters['id'];
     List<News> _newsList = await _repo.getNewsData();
 
     _newsList[int.parse(id!)].isPdf

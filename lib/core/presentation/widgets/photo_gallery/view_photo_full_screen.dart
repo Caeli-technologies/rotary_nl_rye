@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 
-import '../../../../main.dart';
 
 class ViewPhotos extends StatefulWidget {
   final String heroTitle;
@@ -14,7 +11,7 @@ class ViewPhotos extends StatefulWidget {
   ViewPhotos(
       {required this.imageIndex,
       required this.imageList,
-      this.heroTitle = "img"});
+      this.heroTitle = 'img'});
 
   @override
   _ViewPhotosState createState() => _ViewPhotosState();
@@ -47,7 +44,7 @@ class _ViewPhotosState extends State<ViewPhotos> {
                 ? SystemUiOverlayStyle.light
                 : SystemUiOverlayStyle.dark,
         title: Text(
-          "${currentIndex + 1} out of ${widget.imageList.length}",
+          '${currentIndex + 1} out of ${widget.imageList.length}',
           style: TextStyle(color: Colors.white),
         ),
         actions: [

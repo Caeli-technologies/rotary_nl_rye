@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:quick_actions/quick_actions.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:rotary_nl_rye/core/firebase/check_update.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_dynamic_links.dart';
@@ -121,7 +120,7 @@ class _PageNavigatorState extends State<PageNavigator> {
       _appBadgeSupported = appBadgeSupported;
     });
 
-    print("Badge supported: $_appBadgeSupported\n");
+    print('Badge supported: $_appBadgeSupported\n');
   }
 // end
 

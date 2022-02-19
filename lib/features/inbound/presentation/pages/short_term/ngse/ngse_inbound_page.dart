@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
-import 'information/flight_and_arrival.dart';
-import 'information/insurance.dart';
-import 'information/language.dart';
-import 'information/travel.dart';
-import 'information/welcome_in_the_netherlands.dart';
 
 class NGSEInboundPage extends StatefulWidget {
   @override
@@ -47,7 +41,7 @@ class _NGSEInboundPageState extends State<NGSEInboundPage> {
           ),
         ),
         title: Text(
-          "NGSE Inbound",
+          'NGSE Inbound',
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

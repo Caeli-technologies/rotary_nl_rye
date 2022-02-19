@@ -14,6 +14,6 @@ class StoryResult {
   }
 
   Map<String, dynamic> toJson() => {
-        "stories": List<dynamic>.from(stories.map((x) => x.toJson())),
+        'stories': List<dynamic>.from(stories.map((x) => x.toJson())),
       };
 }

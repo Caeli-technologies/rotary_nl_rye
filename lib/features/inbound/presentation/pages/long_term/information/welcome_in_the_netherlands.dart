@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class WelcomeInTheNetherlandsPage extends StatefulWidget {
@@ -47,7 +46,7 @@ class _WelcomeInTheNetherlandsPageState
           ),
         ),
         title: Text(
-          "Welcome to the Netherlands!",
+          'Welcome to the Netherlands!',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

@@ -43,7 +43,7 @@ class DistrictsListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Districts Year ${year.year}",
+          'Districts Year ${year.year}',
           textScaleFactor: 0.9,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

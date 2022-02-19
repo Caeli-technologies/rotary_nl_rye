@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -48,7 +47,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
           ),
         ),
         title: Text(
-          "Hoe schrijf ik mezelf in",
+          'Hoe schrijf ik mezelf in',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -89,7 +88,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             launch(
-                                "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20LongTerm%20Exchange");
+                                'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20LongTerm%20Exchange');
                           },
                       ),
                       TextSpan(
@@ -106,7 +105,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                       child: CupertinoButton.filled(
                         onPressed: () {
                           launch(
-                              "mailto:interesse@rotaryyep.nl?subject=interrese%20in%20LongTerm%20Exchange");
+                              'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20LongTerm%20Exchange');
                         },
                         child:
                             // Row(
@@ -127,7 +126,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                             //     )
                             //   ],
                             // ),
-                            Text("Verstuur een Email"),
+                            Text('Verstuur een Email'),
                       ),
                     ),
                   )),

@@ -14,11 +14,11 @@ const PLAY_STORE_URL =
 versionCheck(context) async {
   //Get Current installed version of app
   final PackageInfo info = await PackageInfo.fromPlatform();
-  double currentVersion = double.parse(info.version.trim().replaceAll(".", "") +
-      info.buildNumber.trim().replaceAll(".", ""));
+  double currentVersion = double.parse(info.version.trim().replaceAll('.', '') +
+      info.buildNumber.trim().replaceAll('.', ''));
 
   //Get Latest version info from firebase config
-  final RemoteConfig remoteConfig = RemoteConfig.instance;
+  final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
 
   try {
     // Using default duration to force fetching from remote server.
@@ -36,10 +36,10 @@ versionCheck(context) async {
     // print("forceUpdateCurrentBuild: $forceUpdateCurrentBuild");
 
     double newVersion = double.parse(
-        forceUpdateCurrentVersion.trim().replaceAll(".", "") +
-            forceUpdateCurrentBuild.trim().replaceAll(".", ""));
+        forceUpdateCurrentVersion.trim().replaceAll('.', '') +
+            forceUpdateCurrentBuild.trim().replaceAll('.', ''));
 
-    print("Firebase Version: $newVersion - currentVersion: $currentVersion");
+    print('Firebase Version: $newVersion - currentVersion: $currentVersion');
 
     // print("newVersion: $newVersion");
     if (newVersion > currentVersion) {
@@ -61,11 +61,11 @@ _showVersionDialog(context) async {
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
-      String title = "New Update Available";
+      String title = 'New Update Available';
       String message =
-          "There is a newer version of app available please update it now.";
-      String btnLabel = "Update Now";
-      String btnLabelCancel = "Later";
+          'There is a newer version of app available please update it now.';
+      String btnLabel = 'Update Now';
+      String btnLabelCancel = 'Later';
       return Platform.isIOS
           ? new CupertinoAlertDialog(
               title: Text(title),

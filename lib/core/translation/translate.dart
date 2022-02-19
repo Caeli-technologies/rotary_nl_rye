@@ -21,18 +21,18 @@ class Translate {
     // check if input lang is different from the text
     if (lang == inputLang) {
       result['translation'] = inputLang;
-      result['message'] = "Text lang = to Translate lang";
+      result['message'] = 'Text lang = to Translate lang';
 
       return result;
     }
 
-    print("Translating");
+    print('Translating');
 
     // check cache
     SharedPreferences cache = await SharedPreferences.getInstance();
-    final key = lang + "+" + inputText;
+    final key = lang + '+' + inputText;
     if (cache.containsKey(key)) {
-      print("Retrieving from cache");
+      print('Retrieving from cache');
       result['translation'] = Future.value(cache.getString(key));
       result['success'] = true;
 
@@ -42,7 +42,7 @@ class Translate {
     // check network connection
     if (!(await new InternetConnectionChecker().hasConnection)) {
       result['translation'] = inputLang;
-      result['message'] = "No connection";
+      result['message'] = 'No connection';
       result['success'] = false;
 
       return result;
@@ -50,18 +50,18 @@ class Translate {
 
     // fallback to english
     if (!(deeplSupportedLangs.containsValue(lang))) {
-      print("Language not supported. Fallback to english");
-      lang = "EN-US";
+      print('Language not supported. Fallback to english');
+      lang = 'EN-US';
     }
 
-    print("Retrieving from deepl api");
+    print('Retrieving from deepl api');
     final response = await getTranslation(lang, inputText);
     final status = response.statusCode;
 
     // check if api call was succes
     if (status != 200) {
       result['translation'] = inputText;
-      result['message'] = "Api call failed with status: $status";
+      result['message'] = 'Api call failed with status: $status';
 
       return result;
     }
@@ -70,7 +70,7 @@ class Translate {
     result['translation'] = body['translations'][0]['text'];
     result['success'] = true;
 
-    print("Cache data");
+    print('Cache data');
     cache.setString(key, result['translation']);
 
     return result;

@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,7 +38,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   // test
   final prefs = await SharedPreferences.getInstance();
-  prefs.setInt("newsBadge", 1);
+  prefs.setInt('newsBadge', 1);
   // end test
 }
 
@@ -50,9 +49,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
 AndroidNotificationChannel channel;
+// late AndroidNotificationChannel channel;
 
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+// late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -104,7 +105,7 @@ Future<void> main() async {
     runApp(new MyApp());
   }, FirebaseCrashlytics.instance.recordError);
   final _repo = Repo();
-  _repo.initData("", "");
+  _repo.initData('', '');
   // Pass all uncaught errors from the framework to Crashlytics.
 }
 
@@ -136,10 +137,12 @@ class MyApp extends StatelessWidget {
             countryCode: 'TW'), // 'zh_Hant_TW'
         const Locale('es', ''),
       ],
-      localeResolutionCallback:
-          (Locale locale, Iterable<Locale> supportedLocales) {
-        for (Locale supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode) {
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale == null) {
+          return supportedLocales.first;
+        }
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.countryCode == locale.countryCode) {
             return supportedLocale;
           }
         }

@@ -76,7 +76,7 @@ class ExchangeStudentsPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "Exchange Students",
+                    'Exchange Students',
                     textAlign: TextAlign.center,
                     textScaleFactor: 1.5,
                     style: TextStyle(

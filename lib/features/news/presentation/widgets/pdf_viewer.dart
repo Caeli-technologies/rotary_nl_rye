@@ -5,7 +5,6 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -30,7 +29,7 @@ class _PDFPageState extends State<PDFPage> {
 
   _PDFPageState({required this.pdfUrl, required this.data});
 
-  String title = "Loading";
+  String title = 'Loading';
 
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
@@ -40,7 +39,6 @@ class _PDFPageState extends State<PDFPage> {
       StreamController<String>();
 
   String? _linkMessage;
-  bool _isCreatingLink = false;
   String? id;
 
   @override
@@ -61,7 +59,7 @@ class _PDFPageState extends State<PDFPage> {
   void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.setInt("newsBadge", 0);
+      prefs.setInt('newsBadge', 0);
     });
   }
 
@@ -149,7 +147,7 @@ class _PDFPageState extends State<PDFPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "$progress%",
+                          '$progress%',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Palette.bodyText,
@@ -157,7 +155,7 @@ class _PDFPageState extends State<PDFPage> {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "COMPLETED",
+                          'COMPLETED',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Palette.bodyText,
@@ -198,9 +196,7 @@ class _PDFPageState extends State<PDFPage> {
   }
 
   Future<void> _createDynamicLink(String id) async {
-    setState(() {
-      _isCreatingLink = true;
-    });
+    setState(() {});
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarynl.page.link',
@@ -230,7 +226,6 @@ class _PDFPageState extends State<PDFPage> {
 
     setState(() {
       _linkMessage = url.toString();
-      _isCreatingLink = false;
     });
   }
 

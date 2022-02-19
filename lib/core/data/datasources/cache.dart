@@ -33,7 +33,7 @@ class Cache {
       return Future.value();
     }
 
-    throw Exception("unsupported type " + value.runtimeType.toString() + " is not supported by SharedPreferences");
+    throw Exception('unsupported type ' + value.runtimeType.toString() + ' is not supported by SharedPreferences');
   }
 
   Future<Set<String>> getKeys() async {

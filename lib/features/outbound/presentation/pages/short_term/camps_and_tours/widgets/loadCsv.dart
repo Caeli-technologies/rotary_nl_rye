@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:skeletons/skeletons.dart';
 
 class LoadCsv extends StatefulWidget {
   @override
@@ -21,13 +22,13 @@ class _LoadCsvState extends State<LoadCsv> {
     //     Uri.parse("https://stadler.caeli-tech.com/testApp/sql/list_train.php"));
     final response = await http.get(
         Uri.parse(
-            "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv"),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv'),
         headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
     try {
       if (response.statusCode == 200) {
         List<List<dynamic>> _listData = CsvToListConverter(
           eol: '\r\n',
-          fieldDelimiter: ";",
+          fieldDelimiter: ';',
         ).convert(response.body);
 
         setState(() {
@@ -109,7 +110,7 @@ class _LoadCsvState extends State<LoadCsv> {
             ),
           ),
           title: Text(
-            "Camps & Tours List",
+            'Camps & Tours List',
             textScaleFactor: 1.2,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -122,7 +123,7 @@ class _LoadCsvState extends State<LoadCsv> {
             builder:
                 (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return Center(child: Text("Please wait it's loading..."));
+                return SkeletonListView();
               } else {
                 if (snapshot.hasError)
                   return Center(child: Text('Error: ${snapshot.error}'));
@@ -138,7 +139,7 @@ class _LoadCsvState extends State<LoadCsv> {
                       }
                       return GestureDetector(
                           onTap: () {
-                            print("title: " +
+                            print('title: ' +
                                 snapshot.data![index][2].toString());
 
                             Navigator.push(
@@ -454,7 +455,7 @@ class TravelCard extends StatelessWidget {
                                     child: Row(
                                       children: <Widget>[
                                         SvgPicture.asset(
-                                          "assets/icons/flags/$hostCountryCode.svg",
+                                          'assets/icons/flags/$hostCountryCode.svg',
                                           height: 20,
                                           width: 50,
                                           fit: BoxFit.contain,
@@ -561,7 +562,7 @@ class TravelCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 61),
                               child: Text(
-                                ageMin + ' - ' + ageMax + " Years",
+                                ageMin + ' - ' + ageMax + ' Years',
                                 textScaleFactor: 1.2,
                                 style: TextStyle(
                                   color: Palette.indigo,

@@ -24,7 +24,7 @@ class EventResult {
   }
 
   Map<String, dynamic> toJson() => {
-        "items": List<dynamic>.from(events.map((x) => x.toJson())),
+        'items': List<dynamic>.from(events.map((x) => x.toJson())),
       };
 }
 
@@ -59,33 +59,33 @@ class Events {
   End end;
 
   factory Events.fromJson(Map<String, dynamic> json) => Events(
-        id: json["id"],
-        status: json["status"],
-        htmlLink: json["htmlLink"],
-        created: DateTime.parse(json["created"]),
-        updated: DateTime.parse(json["updated"]),
-        summary: json["summary"],
-        description: json["description"],
-        location: json["location"],
-        creator: Creator.fromJson(json["creator"]),
-        organizer: Creator.fromJson(json["organizer"]),
-        start: End.fromJson(json["start"]),
-        end: End.fromJson(json["end"]),
+        id: json['id'],
+        status: json['status'],
+        htmlLink: json['htmlLink'],
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated']),
+        summary: json['summary'],
+        description: json['description'],
+        location: json['location'],
+        creator: Creator.fromJson(json['creator']),
+        organizer: Creator.fromJson(json['organizer']),
+        start: End.fromJson(json['start']),
+        end: End.fromJson(json['end']),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "status": status,
-        "htmlLink": htmlLink,
-        "created": created.toIso8601String(),
-        "updated": updated.toIso8601String(),
-        "summary": summary,
-        "description": description,
-        "location": location,
-        "creator": creator.toJson(),
-        "organizer": organizer.toJson(),
-        "start": start.toString(),
-        "end": end.toString(),
+        'id': id,
+        'status': status,
+        'htmlLink': htmlLink,
+        'created': created.toIso8601String(),
+        'updated': updated.toIso8601String(),
+        'summary': summary,
+        'description': description,
+        'location': location,
+        'creator': creator.toJson(),
+        'organizer': organizer.toJson(),
+        'start': start.toString(),
+        'end': end.toString(),
       };
 }
 
@@ -97,11 +97,11 @@ class Creator {
   String email;
 
   factory Creator.fromJson(Map<String, dynamic> json) => Creator(
-        email: json["email"],
+        email: json['email'],
       );
 
   Map<String, dynamic> toJson() => {
-        "email": email,
+        'email': email,
       };
 }
 
@@ -112,7 +112,7 @@ class End {
 
   DateTime dateTime;
   factory End.fromJson(Map<String, dynamic> json) {
-    return End(dateTime: DateTime.parse(json["dateTime"] ?? json["date"]));
+    return End(dateTime: DateTime.parse(json['dateTime'] ?? json['date']));
   }
 
   // Map<String, dynamic> toJson() => {

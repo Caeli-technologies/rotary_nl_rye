@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
@@ -90,34 +89,34 @@ class _VideoPageState extends State<VideoPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: NativeVideo(
                     url:
-                        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4"),
+                        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4'),
               ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Text(
-                  "Waarom doen we dit?",
+                  'Waarom doen we dit?',
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "- Het opbouwen van goede relaties met andere landen",
+                  '- Het opbouwen van goede relaties met andere landen',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  "- Het houdt de club jong",
+                  '- Het houdt de club jong',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  "- De jongere ontwikkelt zichzelf en zijn/haar omgeving",
+                  '- De jongere ontwikkelt zichzelf en zijn/haar omgeving',
                   style: TextStyle(fontSize: 13.0),
                 ),
               ),

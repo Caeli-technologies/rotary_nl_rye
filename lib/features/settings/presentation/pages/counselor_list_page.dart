@@ -37,7 +37,7 @@ class CounselorListPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Counselors",
+          'Counselors',
           textScaleFactor: 1,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

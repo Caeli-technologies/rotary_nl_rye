@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,7 +8,6 @@ import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RotexDetails extends StatelessWidget {
@@ -48,7 +45,7 @@ class RotexDetails extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Rotex",
+          'Rotex',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -271,7 +268,7 @@ class RotexDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "About me",
+                  'About me',
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 18.0,
@@ -321,7 +318,7 @@ class RotexDetails extends StatelessWidget {
                             ),
                             child: RawMaterialButton(
                                 onPressed: () {
-                                  launch("mailto:${person.email}");
+                                  launch('mailto:${person.email}');
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),

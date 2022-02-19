@@ -236,7 +236,7 @@ class ContributorsDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  "About me",
+                  'About me',
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 18.0,

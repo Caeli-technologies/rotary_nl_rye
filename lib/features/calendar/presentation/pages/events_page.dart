@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -104,7 +105,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("Initial kEvents is empty becuase its null.");
+    print('Initial kEvents is empty becuase its null.');
     print(kEvents.length);
     return Scaffold(
         appBar: AppBar(
@@ -114,29 +115,9 @@ class _CalendarPageState extends State<CalendarPage> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           title: Text(
-            "Calendar",
+            'Calendar',
             textScaleFactor: 1.4,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -149,7 +130,7 @@ class _CalendarPageState extends State<CalendarPage> {
                 return Center(child: CircularProgressIndicator());
               }
               kEvents = snapshot.data as LinkedHashMap<DateTime, List<Events>>;
-              print("Got data for kEvents");
+              print('Got data for kEvents');
               print(kEvents.length);
               print(localLanguage);
               return Column(
@@ -268,7 +249,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                             height: 50,
                                             width: 50,
                                             imageUrl:
-                                                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
+                                                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
                                             imageBuilder:
                                                 (context, imageProvider) =>
                                                     Container(
@@ -294,7 +275,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                       children: <Widget>[
                                         SizedBox(
                                           width: Device.width - 260,
-                                          child: Text("${value[index].summary}",
+                                          child: Text('${value[index].summary}',
                                               maxLines: 2,
                                               overflow: TextOverflow.ellipsis,
                                               softWrap: false,
@@ -304,7 +285,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                                   fontWeight: FontWeight.w700)),
                                         ),
                                         Text(
-                                            "${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}",
+                                            '${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}',
                                             style: TextStyle(
                                                 inherit: true,
                                                 fontSize: 14.0,
@@ -409,7 +390,7 @@ class DialogPage1 extends StatelessWidget {
 
     RegExp exp =
         new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
-    Iterable<RegExpMatch> matches = exp.allMatches(description ?? "");
+    Iterable<RegExpMatch> matches = exp.allMatches(description ?? '');
     // String sendLink = description!.substring(matches.start, matches.end))
 
     // Widget _detectMultipleDays() {
@@ -453,8 +434,8 @@ class DialogPage1 extends StatelessWidget {
                   startTime == endTime
                       // just add everything as a single
                       // ? "$startWeekDay, $startFullDate - \n$endWeekDay, $endFullDate"
-                      ? "$startWeekDay, $startFullDate"
-                      : "$startWeekDay, $startFullDate \n$startTime - $endTime",
+                      ? '$startWeekDay, $startFullDate'
+                      : '$startWeekDay, $startFullDate \n$startTime - $endTime',
                   style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
                 ),
 
@@ -520,7 +501,7 @@ class DialogPage1 extends StatelessWidget {
                 // ignore: unrelated_type_equality_checks
                 // (matches == ("Instance of '_RegExpMatch'"))
                 //?
-                exp.hasMatch(description ?? "") == true
+                exp.hasMatch(description ?? '') == true
                     ? CupertinoButton.filled(
                         minSize: 5,
                         child: Text('Link'),
@@ -561,7 +542,7 @@ class DialogPage1 extends StatelessWidget {
                 //       "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate",
                 //   style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
                 // ),
-                Text("Created by: $creator",
+                Text('Created by: $creator',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
@@ -636,8 +617,8 @@ class DialogPage1 extends StatelessWidget {
                   startTime == endTime
                       // just add everything as a single
                       // ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
-                      ? "$startWeekDay, $startFullDate"
-                      : "$startWeekDay, $startFullDate | $startTime - $endTime",
+                      ? '$startWeekDay, $startFullDate'
+                      : '$startWeekDay, $startFullDate | $startTime - $endTime',
                   style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
                 ),
                 // _detectMultipleDays(),
@@ -699,7 +680,7 @@ class DialogPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
-                exp.hasMatch(description ?? "") == true
+                exp.hasMatch(description ?? '') == true
                     ? Row(
                         children: <Widget>[
                           Padding(
@@ -758,7 +739,7 @@ class DialogPage1 extends StatelessWidget {
                               children: <Widget>[
                                 Expanded(
                                   child: SizedBox(
-                                    child: Text("Created by: $creator",
+                                    child: Text('Created by: $creator',
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         softWrap: false,

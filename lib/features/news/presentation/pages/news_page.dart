@@ -1,14 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/cached_network_image.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/domain/entities/news.dart';
@@ -75,7 +71,7 @@ class _NewsPageState extends State<NewsPage> {
   void _removeBadge() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      prefs.setInt("newsBadge", 0);
+      prefs.setInt('newsBadge', 0);
     });
   }
 
@@ -95,29 +91,9 @@ class _NewsPageState extends State<NewsPage> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           title: Text(
-            "News",
+            'News',
             textScaleFactor: 1.4,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),

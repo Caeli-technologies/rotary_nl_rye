@@ -20,7 +20,7 @@ void showMaterialDialog(context, title, message, action) {
                         },
                       )
                     : CupertinoDialogAction(
-                        child: Text("OK"),
+                        child: Text('OK'),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -39,7 +39,7 @@ void showMaterialDialog(context, title, message, action) {
                         },
                       )
                     : TextButton(
-                        child: Text("OK"),
+                        child: Text('OK'),
                         onPressed: () {
                           Navigator.pop(context);
                         },

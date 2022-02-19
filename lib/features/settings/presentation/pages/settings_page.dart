@@ -59,14 +59,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<bool> saveSwitchState(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool("autoInitializeState", value);
+    prefs.setBool('autoInitializeState', value);
     print('Switch Value saved $value');
-    return prefs.setBool("autoInitializeState", value);
+    return prefs.setBool('autoInitializeState', value);
   }
 
   Future<bool?> getSwitchState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isSwitchedFT = prefs.getBool("autoInitializeState") ?? false;
+    bool isSwitchedFT = prefs.getBool('autoInitializeState') ?? false;
     print(isSwitchedFT);
 
     return isSwitchedFT;
@@ -77,6 +77,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        toolbarHeight: 80,
         systemOverlayStyle:
             MediaQuery.of(context).platformBrightness == Brightness.light
                 ? SystemUiOverlayStyle.dark
@@ -104,264 +105,267 @@ class _SettingsPageState extends State<SettingsPage> {
           )
         ],
       ),
-      body: Container(
-        child: ListView(
-          padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-          children: [
-            Row(
+      body: ListView(
+        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              DemoLocalizations.of(context)!.trans('account'),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: kSecondaryBgColor,
+                borderRadius: BorderRadius.circular(kBorderRadius),
+                boxShadow: [kBoxShadow]),
+            child: Column(
               children: [
-                Text(
-                  DemoLocalizations.of(context)!.trans('account'),
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            buildAccountOptionRow(context, 'Pictures', FontAwesomeIcons.images,
-                GalleryViewPage()),
-            buildAccountOptionRow(context, 'Bestuur / Team RYE',
-                FontAwesomeIcons.users, PDFPageBoard()),
-            buildAccountOptionRow(
-                context,
-                DemoLocalizations.of(context)!.trans('social'),
-                FontAwesomeIcons.hashtag,
-                SocialPage()),
-            // buildAccountOptionRow(
-            //     context,
-            //     DemoLocalizations.of(context)!.trans('privacyAndSecurity'),
-            //     FontAwesomeIcons.shieldAlt,
-            //     null),
+                // buildAccountOptionRow(
+                //     context,
+                //     DemoLocalizations.of(context)!.trans('privacyAndSecurity'),
+                //     FontAwesomeIcons.shieldAlt,
+                //     null),
 
-            //TODO maybe add later a "Auto load video's on cellular" Switch
+                //TODO maybe add later a "Auto load video's on cellular" Switch
+                buildAccountOptionRow(context, 'Pictures',
+                    FontAwesomeIcons.images, GalleryViewPage()),
+                buildAccountOptionRow(context, 'Bestuur / Team RYE',
+                    FontAwesomeIcons.users, PDFPageBoard()),
+                buildAccountOptionRow(
+                    context,
+                    DemoLocalizations.of(context)!.trans('social'),
+                    FontAwesomeIcons.hashtag,
+                    SocialPage()),
+                buildNotificationOptionRow(
+                    "Auto load video's",
+                    FontAwesomeIcons.wifi,
+                    Platform.isIOS
+                        ? CupertinoSwitch(
+                            activeColor: Palette.accentColor,
+                            value: isSwitchedFT,
+                            onChanged: (bool value) {
+                              setState(() {
+                                isSwitchedFT = value;
+                                saveSwitchState(value);
+                                print('Saved state is $isSwitchedFT');
+                              });
+                              print(isSwitchedFT);
+                            },
+                          )
+                        : Switch(
+                            activeColor: Palette.accentColor,
+                            value: isSwitchedFT,
+                            onChanged: (bool value) {
+                              setState(() {
+                                isSwitchedFT = value;
+                                saveSwitchState(value);
+                                print('Saved state is $isSwitchedFT');
+                              });
+                              print(isSwitchedFT);
+                            },
+                          )),
 
-            buildNotificationOptionRow(
-                "Auto load video's",
-                FontAwesomeIcons.wifi,
-                Platform.isIOS
-                    ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
-                        value: isSwitchedFT,
-                        onChanged: (bool value) {
-                          setState(() {
-                            isSwitchedFT = value;
-                            saveSwitchState(value);
-                            print('Saved state is $isSwitchedFT');
-                          });
-                          print(isSwitchedFT);
-                        },
-                      )
-                    : Switch(
-                        activeColor: Palette.accentColor,
-                        value: isSwitchedFT,
-                        onChanged: (bool value) {
-                          setState(() {
-                            isSwitchedFT = value;
-                            saveSwitchState(value);
-                            print('Saved state is $isSwitchedFT');
-                          });
-                          print(isSwitchedFT);
-                        },
-                      )),
-
-            // buildNotificationOptionRow(
-            //     DemoLocalizations.of(context).trans('new4You'),
-            //     Platform.isIOS
-            //         ? CupertinoSwitch(
-            //             activeColor: Palette.accentColor,
-            //             value: slider1,
-            //             onChanged: (value) {
-            //               setState(() {
-            //                 slider1 = value;
-            //               });
-            //             },
-            //           )
-            //         : Switch(
-            //             activeColor: Palette.accentColor,
-            //             value: slider1,
-            //             onChanged: (value) {
-            //               setState(() {
-            //                 slider1 = value;
-            //               });
-            //             },
-            //           )),
-            buildAccountOptionRow(context, 'Counselor',
-                FontAwesomeIcons.handsHelping, CounselorListPage()),
-            //TODO Make Emergency page with contacts
-            GestureDetector(
-                child: Container(
-              padding: EdgeInsets.zero,
-              child: ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  child: Container(
-                    child: FaIcon(FontAwesomeIcons.firstAid,
-                        color: Palette.emergencyRed),
-                  ),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Emergency",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Palette.emergencyRed,
+                // buildNotificationOptionRow(
+                //     DemoLocalizations.of(context).trans('new4You'),
+                //     Platform.isIOS
+                //         ? CupertinoSwitch(
+                //             activeColor: Palette.accentColor,
+                //             value: slider1,
+                //             onChanged: (value) {
+                //               setState(() {
+                //                 slider1 = value;
+                //               });
+                //             },
+                //           )
+                //         : Switch(
+                //             activeColor: Palette.accentColor,
+                //             value: slider1,
+                //             onChanged: (value) {
+                //               setState(() {
+                //                 slider1 = value;
+                //               });
+                //             },
+                //           )),
+                buildAccountOptionRow(context, 'Counselor',
+                    FontAwesomeIcons.handsHelping, CounselorListPage()),
+                //TODO Make Emergency page with contacts
+                GestureDetector(
+                    child: Container(
+                  padding: EdgeInsets.zero,
+                  child: ListTile(
+                    leading: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      child: Container(
+                        child: FaIcon(FontAwesomeIcons.firstAid,
+                            color: Palette.emergencyRed),
                       ),
                     ),
-                    Icon(Icons.arrow_forward_ios, color: Palette.emergencyRed),
-                  ],
-                ),
-                onTap: () {
-                  String title = "Emergency Page";
-                  String message =
-                      "This page is not yet ready, \nNeeds to go to a Emergency page with contact information";
-                  String action = "Close";
-                  showMaterialDialog(context, title, message, action);
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Emergency',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Palette.emergencyRed,
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward_ios,
+                            color: Palette.emergencyRed),
+                      ],
+                    ),
+                    onTap: () {
+                      String title = 'Emergency Page';
+                      String message =
+                          'This page is not yet ready, \nNeeds to go to a Emergency page with contact information';
+                      String action = 'Close';
+                      showMaterialDialog(context, title, message, action);
 
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (BuildContext context) {
-                  //       return AlertDialog(
-                  //         title: Text("Emergency Page"),
-                  //         content: Column(
-                  //           mainAxisSize: MainAxisSize.min,
-                  //           children: [
-                  //             Text(
-                  //                 "Needs to go to a Emergency page with contact information"),
-                  //           ],
-                  //         ),
-                  //         actions: [
-                  //           TextButton(
-                  //               onPressed: () {
-                  //                 Navigator.of(context).pop();
-                  //               },
-                  //               child: Text("Close")),
-                  //         ],
-                  //       );
-                  //     });
-                },
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (BuildContext context) {
+                      //       return AlertDialog(
+                      //         title: Text("Emergency Page"),
+                      //         content: Column(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: [
+                      //             Text(
+                      //                 "Needs to go to a Emergency page with contact information"),
+                      //           ],
+                      //         ),
+                      //         actions: [
+                      //           TextButton(
+                      //               onPressed: () {
+                      //                 Navigator.of(context).pop();
+                      //               },
+                      //               child: Text("Close")),
+                      //         ],
+                      //       );
+                      //     });
+                    },
+                  ),
+                )),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              'Development',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: kSecondaryBgColor,
+                borderRadius: BorderRadius.circular(kBorderRadius),
+                boxShadow: [kBoxShadow]),
+            child: ListTile(
+              leading: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                child: Container(
+                  child: FaIcon(
+                    FontAwesomeIcons.code,
+                    color: Palette.indigo,
+                  ),
+                ),
               ),
-            )),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                Text(
-                  "Development",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            GestureDetector(
-                child: Container(
-              padding: EdgeInsets.zero,
-              child: ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  child: Container(
-                    child: FaIcon(
-                      FontAwesomeIcons.code,
-                      color: Palette.lightIndigo,
-                    ),
-                  ),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Contributors",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Palette.grey,
-                      ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Contributors',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
                       color: Palette.grey,
                     ),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ContributorsPage()),
-                  );
-                },
-              ),
-            )),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  RichText(
-                      text: TextSpan(
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(fontSize: 14),
-                          children: [
-                        TextSpan(
-                          text: 'Privacy Policy',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              launch(
-                                "https://www.rotary.nl/yep/yep-app/privacy-policy.html",
-                                forceSafariVC: false,
-                              );
-                            },
-                        ),
-                      ])),
-                  RichText(
-                      text: TextSpan(
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(fontSize: 14),
-                          children: [
-                        TextSpan(
-                          text: 'Terms & Conditions',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              launch(
-                                "https://www.rotary.nl/yep/yep-app/terms-and-conditions.html",
-                                forceSafariVC: false,
-                              );
-                            },
-                        ),
-                      ])),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Palette.grey,
+                  ),
                 ],
               ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ContributorsPage()),
+                );
+              },
             ),
-            Center(
-              child: Text(
-                'App version: ${_packageInfo.version} (${_packageInfo.buildNumber})',
-                style: TextStyle(color: Color(0xFF777777)),
-              ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 14),
+                        children: [
+                      TextSpan(
+                        text: 'Privacy Policy',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch(
+                              'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
+                              forceSafariVC: false,
+                            );
+                          },
+                      ),
+                    ])),
+                RichText(
+                    text: TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontSize: 14),
+                        children: [
+                      TextSpan(
+                        text: 'Terms & Conditions',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            launch(
+                              'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
+                              forceSafariVC: false,
+                            );
+                          },
+                      ),
+                    ])),
+              ],
             ),
-            SizedBox(
-              height: 20,
+          ),
+          Center(
+            child: Text(
+              'App version: ${_packageInfo.version} (${_packageInfo.buildNumber})',
+              style: TextStyle(color: Color(0xFF777777)),
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+        ],
       ),
     );
   }
@@ -379,7 +383,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Container(
             child: FaIcon(
               icon,
-              color: Palette.lightIndigo,
+              color: Palette.indigo,
             ),
           ),
         ),
@@ -410,32 +414,42 @@ class _SettingsPageState extends State<SettingsPage> {
     return GestureDetector(
         child: Container(
       padding: EdgeInsets.zero,
+      // color: Palette.themeCardShadeColor,
       child: ListTile(
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0.0),
-          child: Container(
-            child: FaIcon(
-              icon,
-              color: Palette.lightIndigo,
-            ),
-          ),
+        leading: FaIcon(
+          icon,
+          color: Palette.indigo,
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Palette.grey,
+        title: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Palette.grey,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Palette.grey,
+                  ),
+                ],
               ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
-            ),
-          ],
+              Transform.translate(
+                offset: Offset(0, 15),
+                child: Divider(
+                  thickness: 0.1,
+                  height: 0.1,
+                ),
+              ),
+            ],
+          ),
         ),
         /*
         onTap: () {

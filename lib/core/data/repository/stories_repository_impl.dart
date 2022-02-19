@@ -55,7 +55,7 @@ class StoriesRepositoryImpl implements StoriesRepository {
   }
 
   List<Story> encodeStories(String data) {
-    final List decoded = json.decode(data)["stories"] as List;
+    final List decoded = json.decode(data)['stories'] as List;
     final List<Story> stories = [];
     for (Map<String, dynamic> item in decoded) {
       stories.add(Story.fromJson(item));

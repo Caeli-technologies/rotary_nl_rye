@@ -22,13 +22,13 @@ Future<void> getInitialMessages(BuildContext context) async {
   FirebaseMessaging.instance
       .getInitialMessage()
       .then((RemoteMessage? message) async {
-    if (message?.data["navigation"] == "/news") {
+    if (message?.data['navigation'] == '/news') {
       // test
       final prefs = await SharedPreferences.getInstance();
-      prefs.setInt("newsBadge", 1);
+      prefs.setInt('newsBadge', 1);
       // end test
       _removeBadge();
-      String id = message?.data["id"];
+      String id = message?.data['id'];
       print('news id $id');
       List<News> _newsList = await _repo.getNewsData();
       print('news fetched ${_newsList[int.parse(id)].toString()}');
@@ -53,7 +53,7 @@ Future<void> onMessage(BuildContext context) async {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     // test
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt("newsBadge", 1);
+    prefs.setInt('newsBadge', 1);
 // end test
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
@@ -105,12 +105,12 @@ Future<void> onMessageOpenedApp(BuildContext context) async {
 
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
     print('A new onMessageOpenedApp event was published!');
-    if (message.data["navigation"] == "/news") {
+    if (message.data['navigation'] == '/news') {
       // test
       final prefs = await SharedPreferences.getInstance();
-      prefs.setInt("newsBadge", 1);
+      prefs.setInt('newsBadge', 1);
 // end test
-      String id = message.data["id"];
+      String id = message.data['id'];
       print('news id $id');
       List<News> _newsList = await _repo.getNewsData();
       print('news fetched ${_newsList[int.parse(id)].toString()}');

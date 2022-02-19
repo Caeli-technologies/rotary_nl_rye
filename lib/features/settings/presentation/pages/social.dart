@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -49,7 +48,7 @@ class _SocialPageState extends State<SocialPage> {
           ),
         ),
         title: Text(
-          "Socials",
+          'Socials',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),

@@ -3,13 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:badges/badges.dart';
 
-class HomeCardItem extends StatelessWidget {
+class HomeCardItemSingle extends StatelessWidget {
   final String title, description;
   final IconData icon;
   final int currentNewsIndex;
   final pushTo;
 
-  HomeCardItem(
+  HomeCardItemSingle(
       {required this.title,
       required this.icon,
       required this.description,
@@ -23,10 +23,12 @@ class HomeCardItem extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: [kSubtleBoxShadow],
           borderRadius: BorderRadius.circular(kBorderRadius),
+          boxShadow: [kSubtleBoxShadow],
         ),
         child: MaterialButton(
+          elevation: 0,
+          highlightElevation: 0,
           onPressed: () {
             if (pushTo != null) {
               Navigator.push(
@@ -36,9 +38,7 @@ class HomeCardItem extends StatelessWidget {
             }
           },
           color: Palette.themeCardShadeColor,
-          height: 120,
-          elevation: 0,
-          highlightElevation: 0,
+          height: 80,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(kBorderRadius)),
           child: Row(
@@ -63,7 +63,7 @@ class HomeCardItem extends StatelessWidget {
                             ),
                           ))
                       : Container(
-                          margin: EdgeInsets.only(bottom: 16),
+                          margin: EdgeInsets.only(bottom: 10),
                           child: FaIcon(
                             icon,
                             color: Palette.lightIndigo,

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
@@ -30,7 +29,7 @@ class StoryDetails extends StatefulWidget {
 class _StoryDetailsState extends State<StoryDetails> {
   final translator = GoogleTranslator();
   bool isTranslating = false;
-  String heading = "Placeholder";
+  String heading = 'Placeholder';
   List<Widget> translate = [];
   bool _isLoading = false;
   double progressPercent = 0;
@@ -38,7 +37,7 @@ class _StoryDetailsState extends State<StoryDetails> {
   int translationIndex = 0;
 
   bool translationSuccess = true;
-  String errorMessage = "";
+  String errorMessage = '';
 
   @override
   void dispose() {
@@ -136,7 +135,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                             const SizedBox(
                               width: 7,
                             ),
-                            Text("Share")
+                            Text('Share')
                           ],
                         )),
                     PopupMenuDivider(),
@@ -151,7 +150,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                             const SizedBox(
                               width: 7,
                             ),
-                            Text("Translate")
+                            Text('Translate')
                           ],
                         )),
                   ],
@@ -380,7 +379,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    "${this.progressPercent * 100}%",
+                                    '${this.progressPercent * 100}%',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -388,7 +387,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    "COMPLETED",
+                                    'COMPLETED',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -406,7 +405,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                             child: Text(
                               (isTranslating)
                                   ? heading
-                                  : (widget.story.message[0]["heading"]),
+                                  : (widget.story.message[0]['heading']),
                               style: TextStyle(
                                   color: Palette.titleText,
                                   fontSize: 25.0,
@@ -436,12 +435,12 @@ class _StoryDetailsState extends State<StoryDetails> {
           resultList.add(paragraphItem(text: text));
         }
       } else if (bodyItem['imageUrl'] != null) {
-        resultList.add(imageItem(url: bodyItem["imageUrl"]));
+        resultList.add(imageItem(url: bodyItem['imageUrl']));
       } else if (bodyItem['videoUrl'] != null) {
-        resultList.add(videoItem(url: bodyItem["videoUrl"]));
+        resultList.add(videoItem(url: bodyItem['videoUrl']));
       } else if (bodyItem['subHeader'] != null) {
         index++;
-        resultList.add(subHeaderItem(text: bodyItem["subHeader"]));
+        resultList.add(subHeaderItem(text: bodyItem['subHeader']));
       }
     }
 
@@ -451,7 +450,7 @@ class _StoryDetailsState extends State<StoryDetails> {
   Future<void> translated(List newsBody) async {
     translate.clear();
     translationIndex = 0;
-    heading = await header(widget.story.message[0]["heading"]);
+    heading = await header(widget.story.message[0]['heading']);
     setState(() {
       translationIndex++;
       progressPercent = translationIndex / index;
@@ -465,7 +464,7 @@ class _StoryDetailsState extends State<StoryDetails> {
           if (translationSuccess) {
             translationSuccess = await value['success'];
           }
-          if (errorMessage == "") {
+          if (errorMessage == '') {
             errorMessage = await value['message'];
           }
           translate.add(paragraphItem(text: translation));
@@ -484,7 +483,7 @@ class _StoryDetailsState extends State<StoryDetails> {
         if (translationSuccess) {
           translationSuccess = await value['success'];
         }
-        if (errorMessage == "") {
+        if (errorMessage == '') {
           errorMessage = await value['message'];
         }
         translate.add(subHeaderItem(text: translation));
@@ -505,7 +504,7 @@ class _StoryDetailsState extends State<StoryDetails> {
     if (translationSuccess) {
       translationSuccess = value['success'];
     }
-    if (errorMessage == "") {
+    if (errorMessage == '') {
       errorMessage = value['message'];
     }
 
@@ -681,7 +680,7 @@ class _StoryDetailsState extends State<StoryDetails> {
   void selectedItem(BuildContext context, item) {
     switch (item) {
       case 0:
-        print("0");
+        print('0');
         break;
       case 1:
         print('platform${Platform.localeName}');
@@ -689,7 +688,7 @@ class _StoryDetailsState extends State<StoryDetails> {
           _isLoading = true;
           isTranslating = !isTranslating;
           FutureBuilder(
-            future: translated(widget.story.message[1]["body"]),
+            future: translated(widget.story.message[1]['body']),
             builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
               if (!translationSuccess && isTranslating) {
                 print('show dialog');

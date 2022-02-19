@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class Device {
@@ -11,29 +9,29 @@ class Device {
   static bool isDark = false;
 
   static String convert(int millisecondsSinceEpoch) {
-    String result = "";
+    String result = '';
 
     List months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "September",
-      "October",
-      "November",
-      "December"
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'September',
+      'October',
+      'November',
+      'December'
     ];
 
     result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch)
         .day
         .toString();
-    result += " ";
+    result += ' ';
     result += months[
         DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).month - 1];
-    result += " ";
+    result += ' ';
     result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch)
         .year
         .toString();
@@ -139,3 +137,17 @@ class Palette {
   }
 }
 // 042a49
+
+Color kSecondaryBgColor = Colors.grey.shade100;
+Color kSeperatorColor = Colors.grey.shade700;
+double kBorderRadius = 10;
+BoxShadow kBoxShadow = BoxShadow(
+    color: Colors.black.withOpacity(0.1),
+    offset: Offset(0, 7),
+    blurRadius: 30,
+    spreadRadius: 0);
+BoxShadow kSubtleBoxShadow = BoxShadow(
+    color: Colors.black.withOpacity(0.1),
+    offset: Offset(0, 7),
+    blurRadius: 20,
+    spreadRadius: -2);

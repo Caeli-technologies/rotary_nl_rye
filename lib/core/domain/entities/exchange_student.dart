@@ -28,12 +28,12 @@ class ExchangeStudent {
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
-        "description": description,
-        "exchangeYear": exchangeYear,
-        "country": country,
-        "sponsorDistrict": sponsorDistrict,
-        "hostDistrict": hostDistrict,
-        "imageUrl": imageUrl
+        'name': name,
+        'description': description,
+        'exchangeYear': exchangeYear,
+        'country': country,
+        'sponsorDistrict': sponsorDistrict,
+        'hostDistrict': hostDistrict,
+        'imageUrl': imageUrl
       };
 }

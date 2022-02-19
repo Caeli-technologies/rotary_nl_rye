@@ -23,7 +23,7 @@ class ExchangeStudentsRepositoryImpl implements ExchangeStudentRepository {
   }
 
   Future<List<ExchangeStudent>> get() async {
-    await Repo().initData("", "");
+    await Repo().initData('', '');
 
     List<ExchangeStudent> exchangeStudents = await getExchangeStudentsNews();
     _controller.sink.add(exchangeStudents);

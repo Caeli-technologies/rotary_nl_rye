@@ -5,7 +5,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/view_photo_full_screen.dart';
@@ -29,7 +28,7 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
 
   Future<String> fetchDataFromApi() async {
     var jsonData = await http.get(Uri.parse(
-        "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/archive/archive-images.json"));
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/archive/archive-images.json'));
     var fetchData = jsonDecode(jsonData.body);
 
     setState(() {
@@ -39,7 +38,7 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
       });
     });
     // print(imageList);
-    return "Success";
+    return 'Success';
   }
 
   // List<String> imageList = [
@@ -88,7 +87,7 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
             ),
           ),
           title: Text(
-            "Gallery View",
+            'Gallery View',
             textScaleFactor: 1.2,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -111,7 +110,7 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
                                 return ViewPhotos(
                                   imageIndex: index,
                                   imageList: imageList,
-                                  heroTitle: "image$index",
+                                  heroTitle: 'image$index',
                                 );
                               },
                               fullscreenDialog: true));

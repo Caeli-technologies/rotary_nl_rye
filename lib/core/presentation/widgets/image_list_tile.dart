@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
@@ -8,6 +7,7 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
+import 'package:skeletons/skeletons.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
@@ -327,7 +327,7 @@ class InboundDistrictListTile extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               width: Device.width - 150,
-              child: Text("${item.number} - ${item.districtName}",
+              child: Text('${item.number} - ${item.districtName}',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
@@ -399,7 +399,7 @@ class InboundsStudentsListTile extends StatelessWidget {
               fontWeight: FontWeight.w600,
             )),
         subtitle: Text(
-          "From: ${item.place}",
+          'From: ${item.place}',
           style: TextStyle(
             fontWeight: FontWeight.w500,
             color: Palette.grey,
@@ -559,22 +559,7 @@ class ContributorsListTile extends StatelessWidget {
           );
         },
         contentPadding: EdgeInsets.all(0),
-        leading: CachedNetworkImage(
-          height: 55,
-          width: 55,
-          imageUrl: item.imageUrl,
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
+        leading: UniformCircleAvatar(imageUrl: item.imageUrl),
         title: Text(item.name,
             style: TextStyle(
               color: Palette.indigo,
@@ -593,6 +578,37 @@ class ContributorsListTile extends StatelessWidget {
           color: Palette.indigo,
         ),
       ),
+    );
+  }
+}
+
+class UniformCircleAvatar extends StatelessWidget {
+  const UniformCircleAvatar({
+    Key? key,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      height: 55,
+      width: 55,
+      imageUrl: imageUrl,
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      placeholder: (context, url) => SkeletonAvatar(
+        style: SkeletonAvatarStyle(shape: BoxShape.circle),
+      ),
+      errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
 }
