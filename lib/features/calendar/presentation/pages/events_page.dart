@@ -1,13 +1,20 @@
 import 'dart:collection';
-
-import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:intl/intl.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../../models/event_result.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../data/utils.dart';
+import '../../models/event_result.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -16,6 +23,7 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   late final ValueNotifier<List<Events>> _selectedEvents;
+  final String localLanguage = Platform.localeName;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
@@ -97,35 +105,19 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("Initial kEvents is empty becuase its null.");
+    print('Initial kEvents is empty becuase its null.');
     print(kEvents.length);
     return Scaffold(
         appBar: AppBar(
+          systemOverlayStyle:
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? SystemUiOverlayStyle.dark
+                  : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           title: Text(
-            "Calendar",
+            'Calendar',
             textScaleFactor: 1.4,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
@@ -138,14 +130,16 @@ class _CalendarPageState extends State<CalendarPage> {
                 return Center(child: CircularProgressIndicator());
               }
               kEvents = snapshot.data as LinkedHashMap<DateTime, List<Events>>;
-              print("Got data for kEvents");
+              print('Got data for kEvents');
               print(kEvents.length);
+              print(localLanguage);
               return Column(
                 children: [
                   TableCalendar<Events>(
                     firstDay: kFirstDay,
                     lastDay: kLastDay,
                     focusedDay: _focusedDay,
+                    locale: localLanguage,
                     selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                     rangeStartDay: _rangeStart,
                     rangeEndDay: _rangeEnd,
@@ -155,8 +149,21 @@ class _CalendarPageState extends State<CalendarPage> {
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     calendarStyle: CalendarStyle(
                       // Use `CalendarStyle` to customize the UI
+                      outsideTextStyle: const TextStyle(color: Colors.red),
+                      // defaultTextStyle: const TextStyle(color: Colors.black54),
                       outsideDaysVisible: false,
+
+                      //TODO change colour dark mode
+                      markerDecoration: const BoxDecoration(
+                          color: Colors.red, shape: BoxShape.circle),
                     ),
+
+                    //TODO add this to the lang files
+                    availableCalendarFormats: const {
+                      CalendarFormat.month: 'Month',
+                      CalendarFormat.twoWeeks: '2 weeks',
+                      CalendarFormat.week: 'Week'
+                    },
                     onDaySelected: _onDaySelected,
                     onRangeSelected: _onRangeSelected,
                     onFormatChanged: (format) {
@@ -169,6 +176,39 @@ class _CalendarPageState extends State<CalendarPage> {
                     onPageChanged: (focusedDay) {
                       _focusedDay = focusedDay;
                     },
+                    calendarBuilders: CalendarBuilders(
+                      //TODO still needs to be added to the Color Pallete
+                      dowBuilder: (context, day) {
+                        if (day.weekday == DateTime.saturday) {
+                          final text = DateFormat.E(localLanguage).format(day);
+
+                          return Center(
+                            child: Text(
+                              text,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          );
+                        }
+                        if (day.weekday == DateTime.sunday) {
+                          final text = DateFormat.E(localLanguage).format(day);
+
+                          return Center(
+                            child: Text(
+                              text,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          );
+                        } else {
+                          final text = DateFormat.E(localLanguage).format(day);
+                          return Center(
+                            child: Text(
+                              text,
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          );
+                        }
+                      },
+                    ),
                   ),
                   const SizedBox(height: 8.0),
                   Expanded(
@@ -188,29 +228,46 @@ class _CalendarPageState extends State<CalendarPage> {
                                           horizontal: 4.0),
                                       child: Container(
                                           decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: Palette.imageBlox,
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                               boxShadow: [
                                                 BoxShadow(
-                                                    color: Colors.grey.shade400,
+                                                    color:
+                                                        Palette.imageShadowBox2,
                                                     spreadRadius: 0.1,
                                                     blurRadius: 25.0,
                                                     offset: Offset(0.0, 1.0)),
                                                 BoxShadow(
-                                                    color: Colors.white,
+                                                    color:
+                                                        Palette.imageShadowBox1,
                                                     spreadRadius: 0.1,
                                                     blurRadius: 25.0,
                                                     offset: Offset(0.0, 1.0))
                                               ]),
-                                          child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                "https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png",
-                                                width: 50.0,
-                                                height: 50.0,
-                                              ))),
+                                          child: CachedNetworkImage(
+                                            height: 50,
+                                            width: 50,
+                                            imageUrl:
+                                                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
+                                            imageBuilder:
+                                                (context, imageProvider) =>
+                                                    Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) => Center(
+                                                child:
+                                                    CircularProgressIndicator()),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
+                                          )),
                                     ),
                                     title: Row(
                                       mainAxisAlignment:
@@ -218,7 +275,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                       children: <Widget>[
                                         SizedBox(
                                           width: Device.width - 260,
-                                          child: Text("${value[index].summary}",
+                                          child: Text('${value[index].summary}',
                                               maxLines: 2,
                                               overflow: TextOverflow.ellipsis,
                                               softWrap: false,
@@ -228,11 +285,12 @@ class _CalendarPageState extends State<CalendarPage> {
                                                   fontWeight: FontWeight.w700)),
                                         ),
                                         Text(
-                                            "${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}",
+                                            '${DateFormat.yMMMMd(defaultLocale).format(value[index].start.dateTime)}',
                                             style: TextStyle(
                                                 inherit: true,
                                                 fontSize: 14.0,
-                                                color: Colors.black45)),
+                                                color:
+                                                    Palette.descriptionText)),
                                       ],
                                     ),
                                     subtitle: Padding(
@@ -252,11 +310,13 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 style: TextStyle(
                                                     inherit: true,
                                                     fontSize: 14.0,
-                                                    color: Colors.black45)),
+                                                    color: Palette
+                                                        .descriptionText)),
                                           ),
                                         ],
                                       ),
                                     ),
+
                                     //onTap: () => print('\nTitle: ${value[index].title} \ndescription: ${value[index].description}'),
                                     onTap: () {
                                       showDialog(
@@ -269,11 +329,11 @@ class _CalendarPageState extends State<CalendarPage> {
                                                 startDate: value[index]
                                                     .start
                                                     .dateTime
-                                                    .toString(),
+                                                    .toIso8601String(),
                                                 endDate: value[index]
                                                     .end
                                                     .dateTime
-                                                    .toString(),
+                                                    .toIso8601String(),
                                                 organizer: value[index]
                                                     .organizer
                                                     .email,
@@ -286,7 +346,8 @@ class _CalendarPageState extends State<CalendarPage> {
                                 );
                               } else {
                                 return const Center(
-                                    child: Text('No events found'));
+                                    child: Text(
+                                        'No events found')); //TODO add to lang file
                               }
                             });
                       },
@@ -314,112 +375,101 @@ class DialogPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date =
-        DateFormat.yMMMMd(defaultLocale).format(DateTime.parse(startDate));
-    final weekDay =
-        DateFormat.EEEE(defaultLocale).format(DateTime.parse(startDate));
-    final startTime =
-        DateFormat.jm(defaultLocale).format(DateTime.parse(startDate));
+    final startFullDate = DateFormat.yMMMMd(defaultLocale)
+        .format(DateTime.parse(startDate).toLocal());
+    final endFullDate = DateFormat.yMMMMd(defaultLocale)
+        .format(DateTime.parse(endDate).toLocal());
+    final startWeekDay = DateFormat.EEEE(defaultLocale)
+        .format(DateTime.parse(startDate).toLocal());
+    final endWeekDay = DateFormat.EEEE(defaultLocale)
+        .format(DateTime.parse(endDate).toLocal());
+    final startTime = DateFormat.jm(defaultLocale)
+        .format(DateTime.parse(startDate).toLocal());
     final endTime =
-        DateFormat.jm(defaultLocale).format(DateTime.parse(endDate));
+        DateFormat.jm(defaultLocale).format(DateTime.parse(endDate).toLocal());
 
-    return new AlertDialog(
-      title: Text(title ?? 'there is no Title'),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "$weekDay, $date | $startTime - $endTime",
-            style: const TextStyle(color: Colors.black87, fontSize: 12.0),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
+    RegExp exp =
+        new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    Iterable<RegExpMatch> matches = exp.allMatches(description ?? '');
+    // String sendLink = description!.substring(matches.start, matches.end))
+
+    // Widget _detectMultipleDays() {
+    //   if (startFullDate == endFullDate) {
+    //     return SizedBox.shrink();
+    //   } else {
+    //     return Padding(
+    //       padding: const EdgeInsets.only(top: 5.0, bottom: 16),
+    //       child: Row(
+    //         children: <Widget>[
+    //           Padding(
+    //             padding: const EdgeInsets.only(bottom: 0.0),
+    //             child: FaIcon(
+    //               FontAwesomeIcons.clock,
+    //               color: Palette.lightIndigo,
+    //               size: 20,
+    //             ),
+    //           ),
+    //           Expanded(
+    //             child: Padding(
+    //               padding: EdgeInsets.only(left: 12.0),
+    //               child: Text(
+    //                 '$startTime - $endTime',
+    //                 style: const TextStyle(fontSize: 12.0),
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     );
+    //   }
+    // }
+    return Platform.isIOS
+        ? new CupertinoAlertDialog(
+            title: Text(title ?? 'there is no Title'),
+            content: new Column(
+              // mainAxisSize: MainAxisSize.min,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Text(
+                  startTime == endTime
+                      // just add everything as a single
+                      // ? "$startWeekDay, $startFullDate - \n$endWeekDay, $endFullDate"
+                      ? '$startWeekDay, $startFullDate'
+                      : '$startWeekDay, $startFullDate \n$startTime - $endTime',
+                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
+                ),
+
+                // _detectMultipleDays(),
+
+                //TODO fix padding location link
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 0.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.mapMarkerAlt,
-                    color: Palette.lightIndigo,
-                    size: 20,
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0),
-                    child: Text(
-                      location ?? 'there is no location',
-                      style: TextStyle(fontSize: 12.0),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 0.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.alignLeft,
-                    color: Palette.lightIndigo,
-                    size: 20,
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0),
-                    child: Text(
-                      description ?? 'there is no description',
-                      style: TextStyle(fontSize: 12.0),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 0.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.calendarDay,
-                    color: Palette.lightIndigo,
-                    size: 20,
-                  ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(organizer,
-                            style: TextStyle(
-                                inherit: true,
-                                fontSize: 14.0,
-                                color: Colors.black)),
-                      ],
-                    ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 0.0),
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: AbsorbPointer(
+                    absorbing: (location == null),
+                    child: TextButton(
+                      onPressed: () {
+                        if (location != null) {
+                          MapsLauncher.launchQuery(location!);
+                        }
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 0.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.mapMarkerAlt,
+                              color: Palette.iconColor,
+                              size: 20,
+                            ),
+                          ),
                           Expanded(
-                            child: SizedBox(
-                              child: Text("Created by: $creator",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: false,
-                                  style: TextStyle(
-                                      inherit: true,
-                                      fontSize: 12.0,
-                                      color: Colors.black45)),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0),
+                              child: Text(
+                                location ?? 'there is no location',
+                                style: TextStyle(fontSize: 13.0),
+                              ),
                             ),
                           ),
                         ],
@@ -427,19 +477,442 @@ class DialogPage1 extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.alignLeft,
+                          color: Palette.iconColor,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          description ?? 'there is no description',
+                          style: TextStyle(fontSize: 13.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // ignore: unrelated_type_equality_checks
+                // (matches == ("Instance of '_RegExpMatch'"))
+                //?
+                exp.hasMatch(description ?? '') == true
+                    ? CupertinoButton.filled(
+                        minSize: 5,
+                        child: Text('Link'),
+                        onPressed: () {
+                          matches.forEach((match) {
+                            String sendLink =
+                                description!.substring(match.start, match.end);
+                            launch(
+                              sendLink,
+                              forceSafariVC: false,
+                            );
+                          });
+                        })
+                    : SizedBox.shrink(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.calendarDay,
+                          color: Palette.iconColor,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          organizer,
+                          style: TextStyle(fontSize: 13.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Text(
+
+                //       "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate",
+                //   style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
+                // ),
+                Text('Created by: $creator',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(
+                        inherit: true,
+                        fontSize: 12.0,
+                        color: Palette.creatorText))
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 16.0),
+                //   child: Row(
+                //     children: <Widget>[
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 5.0),
+                //         child: FaIcon(
+                //           FontAwesomeIcons.calendarDay,
+                //           color: Palette.lightIndigo,
+                //           size: 20,
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: ListTile(
+                //           title: Row(
+                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //             children: <Widget>[
+                //               Text(organizer,
+                //                   style:
+                //                       TextStyle(inherit: true, fontSize: 14.0)),
+                //             ],
+                //           ),
+                //           subtitle: Padding(
+                //             padding: const EdgeInsets.only(top: 0.0),
+                //             child: Row(
+                //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //               children: <Widget>[
+                //                 Expanded(
+                //                   child: SizedBox(
+                //                     child: Text("Created by: $creator",
+                //                         maxLines: 2,
+                //                         overflow: TextOverflow.ellipsis,
+                //                         softWrap: false,
+                //                         style: TextStyle(
+                //                             inherit: true,
+                //                             fontSize: 12.0,
+                //                             color: Palette.creatorText)),
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
               ],
             ),
+            actions: <Widget>[
+              new CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Okay, got it!'),
+              ),
+            ],
           )
-        ],
-      ),
-      actions: <Widget>[
-        new TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Okay, got it!'),
-        ),
-      ],
-    );
+        : new AlertDialog(
+            title: Text(title ?? 'there is no Title'),
+            content: new Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  startTime == endTime
+                      // just add everything as a single
+                      // ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+                      ? '$startWeekDay, $startFullDate'
+                      : '$startWeekDay, $startFullDate | $startTime - $endTime',
+                  style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
+                ),
+                // _detectMultipleDays(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: AbsorbPointer(
+                    absorbing: (location == null),
+                    child: TextButton(
+                      onPressed: () {
+                        if (location != null) {
+                          MapsLauncher.launchQuery(location!);
+                        }
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 0.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.mapMarkerAlt,
+                              color: Palette.lightIndigo,
+                              size: 20,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0),
+                              child: Text(
+                                location ?? 'there is no location',
+                                style: TextStyle(fontSize: 12.0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.alignLeft,
+                          color: Palette.lightIndigo,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 12.0),
+                          child: Text(
+                            description ?? 'there is no description',
+                            style: TextStyle(fontSize: 12.0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                exp.hasMatch(description ?? '') == true
+                    ? Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.link,
+                              color: Palette.lightIndigo,
+                              size: 20,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                                padding: EdgeInsets.only(),
+                                child: TextButton(
+                                    onPressed: () {
+                                      matches.forEach((match) {
+                                        String sendLink = description!
+                                            .substring(match.start, match.end);
+                                        launch(
+                                          sendLink,
+                                          forceSafariVC: false,
+                                        );
+                                      });
+                                    },
+                                    child: Text('Link'))),
+                          ),
+                        ],
+                      )
+                    : SizedBox.shrink(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.calendarDay,
+                          color: Palette.lightIndigo,
+                          size: 20,
+                        ),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(organizer,
+                                  style:
+                                      TextStyle(inherit: true, fontSize: 14.0)),
+                            ],
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Expanded(
+                                  child: SizedBox(
+                                    child: Text('Created by: $creator',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: false,
+                                        style: TextStyle(
+                                            inherit: true,
+                                            fontSize: 12.0,
+                                            color: Palette.creatorText)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            actions: <Widget>[
+              new TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Okay, got it!'),
+              ),
+            ],
+
+            // actions: <Widget>[
+            //   action != null
+            //       ? TextButton(
+            //           child: Text(action),
+            //           onPressed: () {
+            //             Navigator.pop(context);
+            //           },
+            //         )
+            //       : TextButton(
+            //           child: Text("OK"),
+            //           onPressed: () {
+            //             Navigator.pop(context);
+            //           },
+            //         )
+            // ],
+          );
+
+    // test
+    // return new AlertDialog(
+    //   title: Text(title ?? 'there is no Title'),
+    //   content: new Column(
+    //     mainAxisSize: MainAxisSize.min,
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: <Widget>[
+    //       Text(
+    //         startTime == endTime
+    //             ? "$startWeekDay, $startFullDate - $endWeekDay, $endFullDate"
+    //             : "$startWeekDay, $startFullDate | $startTime - $endTime",
+    //         style: TextStyle(color: Palette.bodyText, fontSize: 12.0),
+    //       ),
+    //       // _detectMultipleDays(),
+    //       Padding(
+    //         padding: const EdgeInsets.only(top: 16.0),
+    //         child: AbsorbPointer(
+    //           absorbing: (location == null),
+    //           child: TextButton(
+    //             onPressed: () {
+    //               if (location != null) {
+    //                 MapsLauncher.launchQuery(location!);
+    //               }
+    //             },
+    //             child: Row(
+    //               children: <Widget>[
+    //                 Padding(
+    //                   padding: const EdgeInsets.only(bottom: 0.0),
+    //                   child: FaIcon(
+    //                     FontAwesomeIcons.mapMarkerAlt,
+    //                     color: Palette.lightIndigo,
+    //                     size: 20,
+    //                   ),
+    //                 ),
+    //                 Expanded(
+    //                   child: Padding(
+    //                     padding: EdgeInsets.only(left: 12.0),
+    //                     child: Text(
+    //                       location ?? 'there is no location',
+    //                       style: TextStyle(fontSize: 12.0),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       Padding(
+    //         padding: const EdgeInsets.only(top: 16.0),
+    //         child: Row(
+    //           children: <Widget>[
+    //             Padding(
+    //               padding: const EdgeInsets.only(left: 5.0),
+    //               child: FaIcon(
+    //                 FontAwesomeIcons.alignLeft,
+    //                 color: Palette.lightIndigo,
+    //                 size: 20,
+    //               ),
+    //             ),
+    //             Expanded(
+    //               child: Padding(
+    //                 padding: EdgeInsets.only(left: 12.0),
+    //                 child: Text(
+    //                   description ?? 'there is no description',
+    //                   style: TextStyle(fontSize: 12.0),
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //       Padding(
+    //         padding: const EdgeInsets.only(top: 16.0),
+    //         child: Row(
+    //           children: <Widget>[
+    //             Padding(
+    //               padding: const EdgeInsets.only(left: 5.0),
+    //               child: FaIcon(
+    //                 FontAwesomeIcons.calendarDay,
+    //                 color: Palette.lightIndigo,
+    //                 size: 20,
+    //               ),
+    //             ),
+    //             Expanded(
+    //               child: ListTile(
+    //                 title: Row(
+    //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                   children: <Widget>[
+    //                     Text(organizer,
+    //                         style: TextStyle(inherit: true, fontSize: 14.0)),
+    //                   ],
+    //                 ),
+    //                 subtitle: Padding(
+    //                   padding: const EdgeInsets.only(top: 0.0),
+    //                   child: Row(
+    //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                     children: <Widget>[
+    //                       Expanded(
+    //                         child: SizedBox(
+    //                           child: Text("Created by: $creator",
+    //                               maxLines: 2,
+    //                               overflow: TextOverflow.ellipsis,
+    //                               softWrap: false,
+    //                               style: TextStyle(
+    //                                   inherit: true,
+    //                                   fontSize: 12.0,
+    //                                   color: Palette.creatorText)),
+    //                         ),
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    //   actions: <Widget>[
+    //     new TextButton(
+    //       onPressed: () {
+    //         Navigator.of(context).pop();
+    //       },
+    //       child: const Text('Okay, got it!'),
+    //     ),
+    //   ],
+    // );
   }
 }

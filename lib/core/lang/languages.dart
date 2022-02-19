@@ -1,6 +1,9 @@
-// @dart=2.9
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -9,15 +12,15 @@ class DemoLocalizations {
 
   final Locale locale;
 
-  static DemoLocalizations of(BuildContext context) {
+  static DemoLocalizations? of(BuildContext context) {
     return Localizations.of<DemoLocalizations>(context, DemoLocalizations);
   }
 
-  Map<String, String> _sentences;
+  late Map<String, String> _sentences;
 
   Future<bool> load() async {
-    String data = await rootBundle.loadString(
-        'assets/lang/${this.locale.languageCode}-${this.locale.countryCode}.json');
+    String data = await rootBundle
+        .loadString('assets/lang/${this.locale.languageCode}.json');
     Map<String, dynamic> _result = json.decode(data);
 
     this._sentences = new Map();
@@ -29,7 +32,7 @@ class DemoLocalizations {
   }
 
   String trans(String key) {
-    return this._sentences[key];
+    return this._sentences[key]!;
   }
 }
 
@@ -40,35 +43,29 @@ class DemoLocalizationsDelegate
   @override
   bool isSupported(Locale locale) => [
         'en',
-        'fr',
         'de',
         'nl',
-        'dk',
-        'no',
-        'pl',
-        'it',
-        'se',
+        'pt',
         'zh',
-        'si',
         'es',
-        'id',
-        'ar',
-        'he'
       ].contains(locale.languageCode);
 
   @override
   Future<DemoLocalizations> load(Locale locale) async {
 // flutter 0.11 localeResolutionCallback fix, change it if fixed
-    if (locale == null || isSupported(locale) == false) {
-      debugPrint('*app_locale_delegate* fallback to locale ');
+    if (isSupported(locale) == false) {
+      print('*app_locale_delegate* fallback to locale ');
 
-      locale = Locale('en', 'US'); // fallback to default language
+      locale = Locale('en', ''); // fallback to default language
     }
 
     DemoLocalizations localizations = new DemoLocalizations(locale);
     await localizations.load();
 
-    print("Load ${locale.languageCode}-${locale.countryCode}");
+    if (kDebugMode) {
+      log('Load ${locale.languageCode}');
+      log('Platform.localeName: ' + Platform.localeName.substring(0, 2));
+    }
 
     return localizations;
   }

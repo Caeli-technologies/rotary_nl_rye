@@ -1,29 +1,22 @@
-import 'package:rotary_nl_rye/features/stories/presentation/models/image_list_tile_item.dart';
+import 'package:rotary_nl_rye/core/presentation/models/image_list_tile_item.dart';
 
 class Organization extends ImageListTileItem {
   final String name;
-  final String rotarian;
-  final String role;
   final String bio;
   final String district;
   final String imageUrl;
-  final String email1;
-  final String email2;
-  final String phoneNumber1;
-  final String phoneNumber2;
+  final String? email;
+  final String? phoneNumber;
   final String club;
-  final Map<String, dynamic> exchangeInfo;
+  final List<String> functions;
+
   Organization(
       {required this.name,
-      required this.rotarian,
-      required this.role,
       required this.bio,
       required this.district,
       required this.imageUrl,
-      required this.email1,
-      required this.email2,
-      required this.phoneNumber1,
-      required this.phoneNumber2,
+      this.email,
+      this.phoneNumber,
       required this.club,
-      required this.exchangeInfo});
+      required this.functions});
 }

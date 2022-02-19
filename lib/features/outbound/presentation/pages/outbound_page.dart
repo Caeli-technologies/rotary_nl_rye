@@ -1,7 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import 'long_term/long_term_outbound_page.dart';
+import 'short_term/camps_and_tours/camps_and_tours_outbound_page.dart';
+import 'short_term/family_to_family/family_to_family_outbound_page.dart';
 
 class OutboundPage extends StatefulWidget {
   @override
@@ -13,35 +20,21 @@ class _OutboundPageState extends State<OutboundPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.dark
+                : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
-          "Outbound",
+          'Outbound',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
+        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -49,61 +42,69 @@ class _OutboundPageState extends State<OutboundPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+                padding: EdgeInsets.only(top: 20.0),
                 child: Text(
-                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op uitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
+                  style: TextStyle(fontSize: 16.0),
                 ),
               ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Long Term Exchange Program',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, "Hoe schrijf ik mezelf in",
-                  FontAwesomeIcons.pencilAlt, null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, "Waar moet ik aan voldoen",
-                  FontAwesomeIcons.exclamation, null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
+
+              buildProgramOptionRow(
                   context,
-                  "Wat moet ik doen voor de selectiedag",
-                  FontAwesomeIcons.voteYea,
-                  null),
+                  'Long Term Exchange Program',
+                  'Year Exchange',
+                  FontAwesomeIcons.hashtag,
+                  LongTermExchangeOutboundPage()),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Short Term Exchange Program',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(
+              buildProgramOptionRow(
                   context,
-                  "Wat moet ik doen voor het selectieweekend",
-                  FontAwesomeIcons.clipboardCheck,
+                  'NGSE',
+                  'New Generations Service Exchange',
+                  FontAwesomeIcons.hashtag,
+                  // TODO not yet ready
+                  // NGSEOutboundPage()
                   null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
+              buildProgramOptionRow(
                   context,
-                  "Hoe maak ik een goede top 3 van landen waar ik naar toe wil ",
-                  FontAwesomeIcons.globe,
-                  null),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, "Hoe bereid ik me voor",
-                  FontAwesomeIcons.toolbox, null),
+                  'FAMILY TO FAMILY',
+                  'Exchange between families',
+                  FontAwesomeIcons.hashtag,
+                  FamilyToFamilyOutboundPage()),
+              buildProgramOptionRow(context, 'CAMPS & TOURS', 'Summer Camps',
+                  FontAwesomeIcons.hashtag, CampsAndToursOutboundPage()),
+
               // the end
               SizedBox(
-                height: 20,
+                height: 40,
               ),
             ],
           )
@@ -112,45 +113,69 @@ class _OutboundPageState extends State<OutboundPage> {
     );
   }
 
-  GestureDetector buildOutboundOptionRow(
+  Container buildProgramOptionRow(
     BuildContext context,
     String title,
+    subtitle,
     IconData icon,
     pushTo,
   ) {
-    return GestureDetector(
-        child: Padding(
-      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+    return Container(
+      padding: EdgeInsets.all(8.0),
       child: ListTile(
         leading: Padding(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Container(
-            child: FaIcon(
-              icon,
-              color: Palette.lightIndigo,
+              child: CachedNetworkImage(
+            height: 50,
+            width: 50,
+            imageUrl:
+                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
             ),
-          ),
+            placeholder: (context, url) =>
+                Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          )),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 120,
-              child: Text(title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palette.grey,
-                    fontWeight: FontWeight.w500,
-                  )),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
+              width: Device.width - 150,
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                    inherit: true, fontWeight: FontWeight.w700, fontSize: 16.0),
+              ),
             ),
           ],
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(
+                width: Device.width - 150,
+                child: Text(subtitle,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(
+                        inherit: true,
+                        fontSize: 14.0,
+                        color: Palette.descriptionText)),
+              ),
+            ],
+          ),
         ),
         onTap: () {
           if (pushTo != null) {
@@ -158,9 +183,18 @@ class _OutboundPageState extends State<OutboundPage> {
               context,
               MaterialPageRoute(builder: (context) => pushTo),
             );
+          } else {
+            String title = 'Comming soon';
+            String message = 'This page is not yet ready';
+            showMaterialDialog(
+              context,
+              title,
+              message,
+              null,
+            );
           }
         },
       ),
-    ));
+    );
   }
 }

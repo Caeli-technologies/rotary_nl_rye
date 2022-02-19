@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/services.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SocialPage extends StatefulWidget {
+  final int? id;
+
+  SocialPage({this.id});
+
   @override
-  _SocialPageState createState() => _SocialPageState();
+  _SocialPageState createState() => _SocialPageState(id: id);
 }
 
-const _url = 'https://www.cylog.org/headers/';
-
 class _SocialPageState extends State<SocialPage> {
+  final int? id;
+  _SocialPageState({this.id});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.dark
+                : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Container(
@@ -39,7 +48,7 @@ class _SocialPageState extends State<SocialPage> {
           ),
         ),
         title: Text(
-          "Socials",
+          'Socials',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -53,27 +62,30 @@ class _SocialPageState extends State<SocialPage> {
             children: <Widget>[
               buildLinkOptionRow(
                   context,
-                  'test1 ',
+                  'www.rotary.nl',
+                  Palette.socialBlue,
                   'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-                  ''),
+                  'http://www.rotary.nl/'),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildLinkOptionRow(
                   context,
-                  'test2 ',
+                  'www.rotaryyep.nl',
+                  Palette.grey,
                   'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-                  ''),
+                  'http://www.rotaryyep.nl/'),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
-              buildLinkOptionRow(
-                  context,
-                  'test3 ',
-                  'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-                  ''),
+              // buildLinkOptionRow(
+              //     context,
+              //     'test3 ',
+              //     Palette.socialBlue,
+              //     'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
+              //     ''),
             ],
           )
         ],
@@ -81,52 +93,66 @@ class _SocialPageState extends State<SocialPage> {
     );
   }
 
-  GestureDetector buildLinkOptionRow(
-      BuildContext context, String title, String imageUrl, String linkUrl) {
+  GestureDetector buildLinkOptionRow(BuildContext context, String title, colour,
+      String imageUrl, String linkUrl) {
     return GestureDetector(
       child: Container(
         padding: EdgeInsets.all(8.0),
         child: ListTile(
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Container(
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      imageUrl,
-                      width: 55.0,
-                      height: 55.0,
-                    ))),
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              SizedBox(
-                width: Device.width - 150,
-                child: Text(title,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                    style: TextStyle(
-                      inherit: true,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                      color: Palette.grey,
-                    )),
+            leading: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Container(
+                child: CachedNetworkImage(
+                  height: 55,
+                  width: 55,
+                  imageUrl: imageUrl,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  ),
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 15,
-                color: Palette.grey,
-              ),
-            ],
-          ),
-          onTap: _launchURL,
-        ),
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                SizedBox(
+                  width: Device.width - 150,
+                  child: Text(title,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      style: TextStyle(
+                          inherit: true,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w500,
+                          color: colour)),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 15,
+                  color: Palette.grey,
+                ),
+              ],
+            ),
+            onTap: () async {
+              final url = linkUrl;
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              } else {
+                throw 'Could not launch $url';
+              }
+            }),
       ),
     );
   }
 }
-
-void _launchURL() async =>
-    await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';

@@ -1,5 +1,11 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:quick_actions/quick_actions.dart';
+import 'package:rotary_nl_rye/core/firebase/check_update.dart';
+import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
+import 'package:rotary_nl_rye/core/firebase/firebase_dynamic_links.dart';
 
 import '../../../features/about/presentation/pages/about_page.dart';
 import '../../../features/contact/presentation/pages/contact_page.dart';
@@ -15,6 +21,109 @@ class PageNavigator extends StatefulWidget {
 }
 
 class _PageNavigatorState extends State<PageNavigator> {
+  String _appBadgeSupported = 'Unknown';
+
+  @override
+  initState() {
+    initDynamicLinks(context);
+    appBadgeSupportedState();
+    //FCM start
+    getToken();
+    getInitialMessages(context);
+    onMessage(context);
+    onMessageOpenedApp(context);
+    //FCm end
+    _removeBadge();
+    super.initState();
+    // versionCheck firebase remote config
+    try {
+      versionCheck(context);
+    } catch (e) {
+      print(e);
+    }
+
+// render complex SVG
+    Future.wait([
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ca.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/mx.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/pe.svg'),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ec.svg'),
+        null,
+      ),
+    ]);
+    // end
+
+// QuickActions start
+
+    // final QuickActions quickActions = QuickActions();
+    // quickActions.initialize((shortcutType) {
+    //   if (shortcutType == 'action_news') {
+    //     print('The user tapped on the "news view" action.');
+    //   }
+    //   if (shortcutType == 'action_calendar') {
+    //     print('The user tapped on the "calendar view" action.');
+    //   }
+    //   if (shortcutType == 'action_emergency') {
+    //     print('The user tapped on the "emergency view" action.');
+    //   }
+    //   // More handling code...
+    // });
+    // quickActions.setShortcutItems(<ShortcutItem>[
+    //   const ShortcutItem(
+    //       type: 'action_news', localizedTitle: 'News', icon: 'home'),
+    //   const ShortcutItem(
+    //       type: 'action_calendar',
+    //       localizedTitle: 'Calendar',
+    //       icon: 'icon_help'),
+    //   const ShortcutItem(
+    //       type: 'action_emergency',
+    //       localizedTitle: 'Emergency',
+    //       icon: 'icon_help')
+    // ]);
+// QuickActions end
+  }
+
+// app Badge Supported
+  appBadgeSupportedState() async {
+    String appBadgeSupported;
+    try {
+      bool res = await FlutterAppBadger.isAppBadgeSupported();
+      if (res) {
+        appBadgeSupported = 'Supported';
+      } else {
+        appBadgeSupported = 'Not supported';
+      }
+    } on PlatformException {
+      appBadgeSupported = 'Failed to get badge support.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _appBadgeSupported = appBadgeSupported;
+    });
+
+    print('Badge supported: $_appBadgeSupported\n');
+  }
+// end
+
   @override
   Widget build(BuildContext context) {
     // TODO add it to theme data
@@ -46,3 +155,11 @@ class _PageNavigatorState extends State<PageNavigator> {
     );
   }
 }
+
+void _removeBadge() {
+  FlutterAppBadger.removeBadge();
+}
+
+// void _addBadge() {
+//   FlutterAppBadger.updateBadgeCount(1);
+// }
