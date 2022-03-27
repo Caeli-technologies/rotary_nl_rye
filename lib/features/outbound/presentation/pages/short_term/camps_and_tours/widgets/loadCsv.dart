@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:skeletons/skeletons.dart';
 
 class LoadCsv extends StatefulWidget {
@@ -18,8 +19,6 @@ class _LoadCsvState extends State<LoadCsv> {
   List<List<dynamic>> _data = [];
 
   Future<List<List>?> getData() async {
-    // final responseData = await http.get(
-    //     Uri.parse("https://stadler.caeli-tech.com/testApp/sql/list_train.php"));
     final response = await http.get(
         Uri.parse(
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv'),
@@ -46,32 +45,6 @@ class _LoadCsvState extends State<LoadCsv> {
     }
   }
 
-  // Future<List<List>> csvToList() async {
-  //   var csvfile = await http.get(
-  //     Uri.parse(
-  //         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/book1.csv"),
-  //   );
-  //   csv.CsvToListConverter converter =
-  //       new csv.CsvToListConverter(eol: '\r\n', fieldDelimiter: ';');
-  //   List<List> listCreated = converter.convert(
-  //       csvfile.body); // the csv file is converted to a 2-Dimensional list
-  //   setState(() {
-  //     _data = listCreated;
-  //   });
-  //   return listCreated;
-  // }
-
-  // // This function is triggered when the floating button is pressed
-  // void _loadCSV() async {
-  //   final _rawData = await rootBundle.loadString("assets/csv/Book1.csv");
-  //   List<List<dynamic>> _listData = CsvToListConverter(
-  //     fieldDelimiter: ";",
-  //   ).convert(_rawData);
-  //   setState(() {
-  //     _data = _listData;
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -88,27 +61,7 @@ class _LoadCsvState extends State<LoadCsv> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           title: Text(
             'Camps & Tours List',
             textScaleFactor: 1.2,
@@ -541,7 +494,7 @@ class TravelCard extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   FaIcon(
-                                    FontAwesomeIcons.birthdayCake,
+                                    FontAwesomeIcons.cakeCandles,
                                     color: Palette.lightIndigo,
                                     size: 20,
                                   ),
@@ -623,7 +576,7 @@ class TravelCard extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   FaIcon(
-                                    FontAwesomeIcons.calendarAlt,
+                                    FontAwesomeIcons.calendarDays,
                                     color: Palette.lightIndigo,
                                     size: 20,
                                   ),

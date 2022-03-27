@@ -11,6 +11,7 @@ import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:translator/translator.dart';
 
 class StoryDetails extends StatefulWidget {
@@ -69,27 +70,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                 MediaQuery.of(context).platformBrightness == Brightness.light
                     ? SystemUiOverlayStyle.dark
                     : SystemUiOverlayStyle.light,
-            leading: Container(
-              margin: EdgeInsets.only(left: 10, top: 10),
-              width: 40,
-              height: 40,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-              child: RawMaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: new Icon(
-                  Icons.arrow_back,
-                  color: Palette.accentColor,
-                  size: 30.0,
-                ),
-                shape: new CircleBorder(),
-                elevation: 2.0,
-                fillColor: Palette.themeShadeColor,
-                padding: const EdgeInsets.all(5.0),
-              ),
-            ),
+            leading: UniformBackButton(),
             // actions: [
             //   Container(
             //     margin: EdgeInsets.only(right: 10, top: 10),

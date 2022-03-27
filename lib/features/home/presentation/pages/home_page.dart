@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
+import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item_rotary.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item_single.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
@@ -116,7 +117,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               currentNewsIndex: _currentNewsIndex,
                             ),
                             HomeCardItem(
-                              icon: FontAwesomeIcons.calendarAlt,
+                              icon: FontAwesomeIcons.calendarDays,
                               title: 'Calendar',
                               description:
                                   'people that are going to the netherlands',
@@ -145,7 +146,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 pushTo: InboundPage(),
                                 currentNewsIndex: 0),
                             HomeCardItem(
-                                icon: FontAwesomeIcons.redoAlt,
+                                icon: FontAwesomeIcons.rotateRight,
                                 title: 'Rebound',
                                 description: 'rebound page',
                                 pushTo: CountriesPage(),
@@ -159,10 +160,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           children: <Widget>[
                             HomeCardItemSingle(
                                 icon: FontAwesomeIcons.campground,
-                                title: 'Outbound - Camps and Tours List',
+                                title: 'Camps & Tours List',
                                 description:
                                     'students that are going to a diffrent country',
                                 pushTo: LoadCsv(),
+                                currentNewsIndex: 0),
+                            HomeCardItemSingleRotary(
+                                title: 'Rotary Club Info',
+                                description: 'rebound page',
+                                pushTo: CountriesPage(),
                                 currentNewsIndex: 0),
                           ],
                         ),

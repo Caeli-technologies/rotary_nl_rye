@@ -192,7 +192,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 //             },
                 //           )),
                 buildAccountOptionRow(context, 'Counselor',
-                    FontAwesomeIcons.handsHelping, CounselorListPage()),
+                    FontAwesomeIcons.handshakeAngle, CounselorListPage()),
                 //TODO Make Emergency page with contacts
                 GestureDetector(
                     child: Container(
@@ -201,7 +201,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     leading: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: Container(
-                        child: FaIcon(FontAwesomeIcons.firstAid,
+                        child: FaIcon(FontAwesomeIcons.kitMedical,
                             color: Palette.emergencyRed),
                       ),
                     ),

@@ -377,12 +377,12 @@ class DialogPage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final startFullDate = DateFormat.yMMMMd(defaultLocale)
         .format(DateTime.parse(startDate).toLocal());
-    final endFullDate = DateFormat.yMMMMd(defaultLocale)
-        .format(DateTime.parse(endDate).toLocal());
+    // final endFullDate = DateFormat.yMMMMd(defaultLocale)
+    //     .format(DateTime.parse(endDate).toLocal());
     final startWeekDay = DateFormat.EEEE(defaultLocale)
         .format(DateTime.parse(startDate).toLocal());
-    final endWeekDay = DateFormat.EEEE(defaultLocale)
-        .format(DateTime.parse(endDate).toLocal());
+    // final endWeekDay = DateFormat.EEEE(defaultLocale)
+    //     .format(DateTime.parse(endDate).toLocal());
     final startTime = DateFormat.jm(defaultLocale)
         .format(DateTime.parse(startDate).toLocal());
     final endTime =
@@ -458,7 +458,7 @@ class DialogPage1 extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0.0),
                             child: FaIcon(
-                              FontAwesomeIcons.mapMarkerAlt,
+                              FontAwesomeIcons.locationDot,
                               color: Palette.iconColor,
                               size: 20,
                             ),
@@ -637,7 +637,7 @@ class DialogPage1 extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0.0),
                             child: FaIcon(
-                              FontAwesomeIcons.mapMarkerAlt,
+                              FontAwesomeIcons.locationDot,
                               color: Palette.lightIndigo,
                               size: 20,
                             ),
