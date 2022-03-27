@@ -9,6 +9,8 @@ import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
 import 'package:skeletons/skeletons.dart';
 
+import '../../../features/uniform_widgets/uniform_circle_avatar.dart';
+
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
   final item;
@@ -139,21 +141,8 @@ class ContactListTile extends StatelessWidget {
           );
         },
         contentPadding: EdgeInsets.all(0),
-        leading: CachedNetworkImage(
-          height: 55,
-          width: 55,
+        leading: UniformCircleAvatar(
           imageUrl: item.imageUrl,
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
         title: Text(item.name,
             style: TextStyle(
@@ -198,22 +187,7 @@ class RotexContactListTile extends StatelessWidget {
           );
         },
         contentPadding: EdgeInsets.all(0),
-        leading: CachedNetworkImage(
-          height: 55,
-          width: 55,
-          imageUrl: item.imageUrl,
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
+        leading: UniformCircleAvatar(imageUrl: item.imageUrl),
         title: Text(item.name,
             style: TextStyle(
               color: Palette.indigo,
@@ -578,37 +552,6 @@ class ContributorsListTile extends StatelessWidget {
           color: Palette.indigo,
         ),
       ),
-    );
-  }
-}
-
-class UniformCircleAvatar extends StatelessWidget {
-  const UniformCircleAvatar({
-    Key? key,
-    required this.imageUrl,
-  }) : super(key: key);
-
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      height: 55,
-      width: 55,
-      imageUrl: imageUrl,
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      placeholder: (context, url) => SkeletonAvatar(
-        style: SkeletonAvatarStyle(shape: BoxShape.circle),
-      ),
-      errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
 }
