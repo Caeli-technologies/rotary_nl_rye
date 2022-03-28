@@ -1,5 +1,3 @@
-// @dart=2.9
-
 // 🎯 Dart imports:
 import 'dart:async';
 import 'dart:io';
@@ -54,12 +52,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 // }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
-AndroidNotificationChannel channel;
-// late AndroidNotificationChannel channel;
+late AndroidNotificationChannel channel;
 
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-// late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

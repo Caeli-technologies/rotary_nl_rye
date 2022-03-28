@@ -10,13 +10,13 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
@@ -119,39 +119,69 @@ class _PDFPageState extends State<PDFPage> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(
-                      width: 200,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: CircleProgressBar(
-                          foregroundColor:
-                              (progress >= 0.8) ? Colors.green : Colors.orange,
-                          backgroundColor: foreground.withOpacity(0.2),
-                          value: (progress / 100),
-                        ),
+                    new CircularPercentIndicator(
+                      animation: true,
+                      animateFromLastPercent: true,
+                      radius: 80.0,
+                      lineWidth: 8.0,
+                      percent: (progress / 100),
+                      center: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            '${(progress).round()}%',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'COMPLETED',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '$progress%',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Palette.bodyText,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'COMPLETED',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Palette.bodyText,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                      progressColor: Colors.green,
+                    )
+
+                    // Container(
+                    //   width: 200,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(20.0),
+                    //     child: CircleProgressBar(
+                    //       foregroundColor:
+                    //           (progress >= 0.8) ? Colors.green : Colors.orange,
+                    //       backgroundColor: foreground.withOpacity(0.2),
+                    //       value: (progress / 100),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     Text(
+                    //       '$progress%',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //           color: Palette.bodyText,
+                    //           fontSize: 30.0,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Text(
+                    //       'COMPLETED',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //           color: Palette.bodyText,
+                    //           fontSize: 15.0,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

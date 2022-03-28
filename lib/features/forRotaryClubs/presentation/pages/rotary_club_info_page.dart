@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
@@ -28,7 +29,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          'Long Term Inbound',
+          'voor Rotary Clubs',
           textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -44,7 +45,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Text(
-                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
+                  'nog een title \n\neen leuk tekstje denk ik?',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -55,33 +56,68 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, 'Welcome to the Netherlands!',
-                  FontAwesomeIcons.doorOpen, null),
+              buildInboundOptionRow(
+                context,
+                'Info voor de Jeugdcommissaris',
+                FontAwesomeIcons.solidUser,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-jeugdcommissaris-versie-2021.pdf',
+                ),
+              ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, 'Flight and Arrival', FontAwesomeIcons.plane, null),
+                context,
+                'Info Gastgezin',
+                FontAwesomeIcons.peopleRoof,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-gastgezin-versie-2021.pdf',
+                ),
+              ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, 'Language', FontAwesomeIcons.language, null),
+                context,
+                'Info Penningmeester',
+                FontAwesomeIcons.piggyBank,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-penningmeester-club-versie-2021.pdf',
+                ),
+              ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
 
               buildInboundOptionRow(
-                  context, 'Insurance', FontAwesomeIcons.umbrella, null),
+                context,
+                'Info Counselor',
+                FontAwesomeIcons.handsHoldingChild,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-counselor-versie-2021.pdf',
+                ),
+              ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, 'Travel', FontAwesomeIcons.passport, null),
+                context,
+                'First night questions',
+                FontAwesomeIcons.question,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/questions-first-night-host-family.pdf',
+                ),
+              ),
               Divider(
                 height: 15,
                 thickness: 2,

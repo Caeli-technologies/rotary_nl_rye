@@ -16,11 +16,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/lang/languages.dart';
+import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/gallery_view.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
-import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_board.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 import 'counselor_list_page.dart';
 
@@ -139,8 +139,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 //TODO maybe add later a "Auto load video's on cellular" Switch
                 buildAccountOptionRow(context, 'Pictures',
                     FontAwesomeIcons.images, GalleryViewPage()),
-                buildAccountOptionRow(context, 'Bestuur / Team RYE',
-                    FontAwesomeIcons.users, PDFPageBoard()),
+                buildAccountOptionRow(
+                  context,
+                  'Bestuur / Team RYE',
+                  FontAwesomeIcons.users,
+                  PDFPageWithShare(
+                    pdfUrl:
+                        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/pdf/r.i.-multidistrict-youth-exchange-program-the-netherlands-2021-2022.pdf',
+                  ),
+                ),
                 buildAccountOptionRow(
                     context,
                     DemoLocalizations.of(context)!.trans('social'),

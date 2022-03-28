@@ -10,16 +10,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rotary_nl_rye/core/firebase/check_update.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_dynamic_links.dart';
-import '../../../features/about/presentation/pages/about_page.dart';
-import '../../../features/contact/presentation/pages/contact_page.dart';
-import '../../../features/faq/presentation/pages/question_page.dart';
-import '../../../features/home/presentation/pages/home_page.dart';
-import '../../../features/settings/presentation/pages/settings_page.dart';
-import '../../prop.dart';
-import 'bottom_navigation_bar.dart';
-
-// import 'package:quick_actions/quick_actions.dart';
-
+import 'package:rotary_nl_rye/core/presentation/widgets/bottom_navigation_bar.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/about/presentation/pages/about_page.dart';
+import 'package:rotary_nl_rye/features/contact/presentation/pages/contact_page.dart';
+import 'package:rotary_nl_rye/features/faq/presentation/pages/question_page.dart';
+import 'package:rotary_nl_rye/features/home/presentation/pages/home_page.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/settings_page.dart';
 
 class PageNavigator extends StatefulWidget {
   @override
@@ -72,35 +69,6 @@ class _PageNavigatorState extends State<PageNavigator> {
       ),
     ]);
     // end
-
-// QuickActions start
-
-    // final QuickActions quickActions = QuickActions();
-    // quickActions.initialize((shortcutType) {
-    //   if (shortcutType == 'action_news') {
-    //     print('The user tapped on the "news view" action.');
-    //   }
-    //   if (shortcutType == 'action_calendar') {
-    //     print('The user tapped on the "calendar view" action.');
-    //   }
-    //   if (shortcutType == 'action_emergency') {
-    //     print('The user tapped on the "emergency view" action.');
-    //   }
-    //   // More handling code...
-    // });
-    // quickActions.setShortcutItems(<ShortcutItem>[
-    //   const ShortcutItem(
-    //       type: 'action_news', localizedTitle: 'News', icon: 'home'),
-    //   const ShortcutItem(
-    //       type: 'action_calendar',
-    //       localizedTitle: 'Calendar',
-    //       icon: 'icon_help'),
-    //   const ShortcutItem(
-    //       type: 'action_emergency',
-    //       localizedTitle: 'Emergency',
-    //       icon: 'icon_help')
-    // ]);
-// QuickActions end
   }
 
 // app Badge Supported

@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
-import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/long_term_inbound_page.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/rotary_club_info_page.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/carousel_display.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item_rotary.dart';
