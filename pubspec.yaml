@@ -76,7 +76,8 @@ dependencies:
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_lints: ^1.0.4
-  flutter_native_splash: ^2.1.1
+  flutter_native_splash: ^2.1.2+1
+  import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
 
@@ -129,3 +130,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+import_sorter:
+  emojis: true

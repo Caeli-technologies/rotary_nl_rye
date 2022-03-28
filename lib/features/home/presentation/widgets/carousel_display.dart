@@ -1,8 +1,13 @@
+// 🎯 Dart imports:
 import 'dart:ui';
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
+// 🌎 Project imports:
 import '../../../../core/prop.dart';
 
 class Carousel extends StatefulWidget {

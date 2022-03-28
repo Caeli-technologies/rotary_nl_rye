@@ -1,8 +1,11 @@
+// 📦 Package imports:
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // service locator
 final sl = GetIt.instance;

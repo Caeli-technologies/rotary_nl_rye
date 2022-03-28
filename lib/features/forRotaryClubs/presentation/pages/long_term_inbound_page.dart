@@ -9,20 +9,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'information/flight_and_arrival.dart';
-import 'information/insurance.dart';
-import 'information/language.dart';
-import 'information/travel.dart';
-import 'information/welcome_in_the_netherlands.dart';
 
-class LongTermExchangeInboundPage extends StatefulWidget {
+class ForRotaryClubsPage extends StatefulWidget {
   @override
-  _LongTermExchangeInboundPageState createState() =>
-      _LongTermExchangeInboundPageState();
+  _ForRotaryClubsPageState createState() => _ForRotaryClubsPageState();
 }
 
-class _LongTermExchangeInboundPageState
-    extends State<LongTermExchangeInboundPage> {
+class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,32 +56,32 @@ class _LongTermExchangeInboundPageState
                 thickness: 2,
               ),
               buildInboundOptionRow(context, 'Welcome to the Netherlands!',
-                  FontAwesomeIcons.doorOpen, WelcomeInTheNetherlandsPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, 'Flight and Arrival',
-                  FontAwesomeIcons.plane, FlightAndArrivalPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(context, 'Language',
-                  FontAwesomeIcons.language, LanguagePage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-
-              buildInboundOptionRow(context, 'Insurance',
-                  FontAwesomeIcons.umbrella, InsurancePage()),
+                  FontAwesomeIcons.doorOpen, null),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
-                  context, 'Travel', FontAwesomeIcons.passport, TravelPage()),
+                  context, 'Flight and Arrival', FontAwesomeIcons.plane, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(
+                  context, 'Language', FontAwesomeIcons.language, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+
+              buildInboundOptionRow(
+                  context, 'Insurance', FontAwesomeIcons.umbrella, null),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(
+                  context, 'Travel', FontAwesomeIcons.passport, null),
               Divider(
                 height: 15,
                 thickness: 2,

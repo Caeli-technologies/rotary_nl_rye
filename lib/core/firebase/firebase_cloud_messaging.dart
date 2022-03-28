@@ -1,14 +1,19 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> getToken() async {
   FirebaseMessaging.instance.getToken().then((token) {

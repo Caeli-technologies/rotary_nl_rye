@@ -1,11 +1,20 @@
+// 🎯 Dart imports:
 import 'dart:io';
 
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/gallery_view.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
@@ -13,10 +22,6 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/pdf_viewer_board.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'counselor_list_page.dart';
 
 class SettingsPage extends StatefulWidget {

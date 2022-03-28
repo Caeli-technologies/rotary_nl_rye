@@ -1,6 +1,9 @@
 // @dart=2.9
+
+// 🎯 Dart imports:
 import 'dart:math' as Math;
 
+// 🐦 Flutter imports:
 import 'package:flutter/widgets.dart';
 
 /// Draws a circular animated progress bar.

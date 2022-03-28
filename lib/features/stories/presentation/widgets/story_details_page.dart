@@ -1,18 +1,25 @@
+// 🎯 Dart imports:
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:translator/translator.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'package:translator/translator.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 
 class StoryDetails extends StatefulWidget {
   @override

@@ -1,13 +1,20 @@
+// 🎯 Dart imports:
 import 'dart:async';
+
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// ignore: import_of_legacy_library_into_null_safe
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 
 class PDFPageViewer extends StatefulWidget {
   final String title;

@@ -1,7 +1,13 @@
+// 🎯 Dart imports:
 import 'dart:async';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';

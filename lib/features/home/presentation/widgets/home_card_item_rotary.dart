@@ -1,19 +1,19 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 
 class HomeCardItemSingleRotary extends StatelessWidget {
-  final String title, description;
-  // final icon;
+  final String title;
   final int currentNewsIndex;
   final pushTo;
 
   HomeCardItemSingleRotary(
-      {required this.title,
-      // required this.icon,
-      required this.description,
-      this.pushTo,
-      required this.currentNewsIndex});
+      {required this.title, this.pushTo, required this.currentNewsIndex});
 
   @override
   Widget build(BuildContext context) {

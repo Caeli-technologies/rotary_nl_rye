@@ -1,13 +1,18 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/data/long_term_organization_list.dart';
-import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/rotex_list.dart';
+import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
 
 class ContactPage extends StatefulWidget {
   @override

@@ -1,12 +1,15 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:quick_actions/quick_actions.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/firebase/check_update.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_dynamic_links.dart';
-
 import '../../../features/about/presentation/pages/about_page.dart';
 import '../../../features/contact/presentation/pages/contact_page.dart';
 import '../../../features/faq/presentation/pages/question_page.dart';
@@ -14,6 +17,9 @@ import '../../../features/home/presentation/pages/home_page.dart';
 import '../../../features/settings/presentation/pages/settings_page.dart';
 import '../../prop.dart';
 import 'bottom_navigation_bar.dart';
+
+// import 'package:quick_actions/quick_actions.dart';
+
 
 class PageNavigator extends StatefulWidget {
   @override

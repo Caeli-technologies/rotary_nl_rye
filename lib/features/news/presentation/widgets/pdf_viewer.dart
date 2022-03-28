@@ -1,19 +1,26 @@
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:io';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 
 class PDFPage extends StatefulWidget {
   final News data;
