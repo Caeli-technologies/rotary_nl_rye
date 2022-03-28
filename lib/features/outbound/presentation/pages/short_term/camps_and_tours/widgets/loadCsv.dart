@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
@@ -50,12 +51,6 @@ class _LoadCsvState extends State<LoadCsv> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    // getData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -76,142 +71,67 @@ class _LoadCsvState extends State<LoadCsv> {
         body: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
           child: FutureBuilder<List<List>?>(
-            future: getData(), // async work
-            builder:
-                (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return SkeletonListView();
-              } else {
-                if (snapshot.hasError)
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                else
-                  // return Center(child: new Text('${snapshot.data}'));  // snapshot.data  :- get your object which is pass from your downloadData() function
-                  return ListView.builder(
-                    padding: EdgeInsets.only(top: 10, bottom: 30),
-                    itemCount: _data.length,
-                    itemBuilder: (_, index) {
-                      if (index == 0) {
-                        // return the header
-                        return SizedBox.shrink();
-                      }
-                      return GestureDetector(
-                          onTap: () {
-                            print('title: ' +
-                                snapshot.data![index][2].toString());
+              future: getData(), // async work
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return SkeletonListView();
+                } else {
+                  if (snapshot.hasData) {
+                    // return Center(child: new Text('${snapshot.data}'));  // snapshot.data  :- get your object which is pass from your downloadData() function
+                    return ListView.builder(
+                      padding: EdgeInsets.only(top: 10, bottom: 30),
+                      itemCount: _data.length,
+                      itemBuilder: (_, index) {
+                        if (index == 0) {
+                          // return the header
+                          return SizedBox.shrink();
+                        }
+                        return GestureDetector(
+                            onTap: () {
+                              print('title: ' +
+                                  snapshot.data![index][2].toString());
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PDFPageViewer(
-                                        title:
-                                            snapshot.data![index][2].toString(),
-                                        pdfURL:
-                                            snapshot.data![index][9].toString(),
-                                      )),
-                            );
-                            // needs to go to the pdf
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: TravelCard(
-                              startDate: snapshot.data![index][0].toString(),
-                              endDate: snapshot.data![index][1].toString(),
-                              title: snapshot.data![index][2].toString(),
-                              hostCountryCode:
-                                  snapshot.data![index][3].toString(),
-                              hostCountry: snapshot.data![index][4].toString(),
-                              hostDistrict: snapshot.data![index][5].toString(),
-                              ageMin: snapshot.data![index][6].toString(),
-                              ageMax: snapshot.data![index][7].toString(),
-                              contribution: snapshot.data![index][8].toString(),
-                              invitation: snapshot.data![index][9].toString(),
-                            ),
-                          ));
-                    },
-                  );
-              }
-            },
-
-            // return ListView.builder(
-            //   padding: EdgeInsets.only(top: 10, bottom: 30),
-            //   itemCount: _data.length,
-            //   itemBuilder: (_, index) {
-            //     if (index == 0) {
-            //       // return the header
-            //       return SizedBox.shrink();
-            //     }
-            //     return GestureDetector(
-            //         onTap: () {
-            //           print("number " + _data[index][8].toString());
-
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute(
-            //                 builder: (context) => PDFPageViewer(
-            //                       pdfURL: _data[index][9].toString(),
-            //                     )),
-            //           );
-            //           // needs to go to the pdf
-            //         },
-            //         child: Container(
-            //           padding: EdgeInsets.only(bottom: 10),
-            //           child: TravelCard(
-            //             number: _data[index][0].toString(),
-            //             date: _data[index][1].toString(),
-            //             title: _data[index][2].toString(),
-            //             hostCountryCode: _data[index][3].toString(),
-            //             hostCountry: _data[index][4].toString(),
-            //             hostDistrict: _data[index][5].toString(),
-            //             ageMin: _data[index][6].toString(),
-            //             ageMax: _data[index][7].toString(),
-            //             contribution: _data[index][8].toString(),
-            //             invitation: _data[index][9].toString(),
-            //           ),
-            //         ));
-            //   },
-            // );
-
-            // return ListView.builder(
-            //   padding: EdgeInsets.only(top: 10, bottom: 30),
-            //   itemCount: snapshot.data.length,
-            //   itemBuilder: (_, index) {
-            //     if (index == 0) {
-            //       // return the header
-            //       return SizedBox.shrink();
-            //     }
-            //     return GestureDetector(
-            //         onTap: () {
-            //           print("number " + snapshot.data[index][8].toString());
-
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute(
-            //                 builder: (context) => PDFPageViewer(
-            //                       pdfURL: snapshot.data[index][9].toString(),
-            //                     )),
-            //           );
-            //           // needs to go to the pdf
-            //         },
-            //         child: Container(
-            //           padding: EdgeInsets.only(bottom: 10),
-            //           child: TravelCard(
-            //             number: snapshot.data[index][0].toString(),
-            //             date: snapshot.data[index][1].toString(),
-            //             title: snapshot.data[index][2].toString(),
-            //             hostCountryCode: snapshot.data[index][3].toString(),
-            //             hostCountry: snapshot.data[index][4].toString(),
-            //             hostDistrict: snapshot.data[index][5].toString(),
-            //             ageMin: snapshot.data[index][6].toString(),
-            //             ageMax: snapshot.data[index][7].toString(),
-            //             contribution: snapshot.data[index][8].toString(),
-            //             invitation: snapshot.data[index][9].toString(),
-            //           ),
-            //         ));
-            //   },
-            // ),
-          ),
-          // floatingActionButton:
-          //     FloatingActionButton(child: Icon(Icons.refresh), onPressed: _loadCSV),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PDFPageViewer(
+                                          title: snapshot.data![index][2]
+                                              .toString(),
+                                          pdfURL: snapshot.data![index][9]
+                                              .toString(),
+                                        )),
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: TravelCard(
+                                startDate: snapshot.data![index][0].toString(),
+                                endDate: snapshot.data![index][1].toString(),
+                                title: snapshot.data![index][2].toString(),
+                                hostCountryCode:
+                                    snapshot.data![index][3].toString(),
+                                hostCountry:
+                                    snapshot.data![index][4].toString(),
+                                hostDistrict:
+                                    snapshot.data![index][5].toString(),
+                                ageMin: snapshot.data![index][6].toString(),
+                                ageMax: snapshot.data![index][7].toString(),
+                                contribution:
+                                    snapshot.data![index][8].toString(),
+                                invitation: snapshot.data![index][9].toString(),
+                                full: snapshot.data![index][10].toString(),
+                              ),
+                            ));
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
+                  // By default show a loading spinner.
+                  return SkeletonListView();
+                }
+              }),
         ));
   }
 }
@@ -226,7 +146,8 @@ class TravelCard extends StatelessWidget {
       ageMin,
       ageMax,
       contribution,
-      invitation;
+      invitation,
+      full;
 
   TravelCard({
     required this.startDate,
@@ -239,6 +160,7 @@ class TravelCard extends StatelessWidget {
     required this.ageMax,
     required this.contribution,
     required this.invitation,
+    required this.full,
   });
 
   @override
@@ -257,10 +179,23 @@ class TravelCard extends StatelessWidget {
                       child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      full.isNotEmpty
+                          ? Container(
+                              padding: EdgeInsets.only(left: 12, top: 6),
+                              child: Badge(
+                                toAnimate: false,
+                                shape: BadgeShape.square,
+                                badgeColor: Colors.red,
+                                borderRadius: BorderRadius.circular(8),
+                                badgeContent: Text('VOL',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            )
+                          : SizedBox.shrink(),
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 10),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.85,
+                          width: MediaQuery.of(context).size.width * 0.70,
                           child: Text(title,
                               textScaleFactor: 1.1,
                               maxLines: 2,
