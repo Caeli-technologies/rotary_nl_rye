@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'class_of/class_of.dart';
 import 'information/comply_with.dart';
 import 'information/how_to_sign_up.dart';
 import 'information/selection_day.dart';
@@ -51,13 +52,19 @@ class _LongTermExchangeOutboundPageState
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Text(
-                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo\'n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildOutboundOptionRow(context, 'Class of 2022-2023',
+                  FontAwesomeIcons.peopleGroup, ClassOfPage()),
               Divider(
                 height: 15,
                 thickness: 2,

@@ -456,7 +456,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
         break;
       case 1:
-        print('platform${Platform.localeName}');
+        print('platform ${Platform.localeName}');
         setState(() {
           _isLoading = true;
           isTranslating = !isTranslating;
