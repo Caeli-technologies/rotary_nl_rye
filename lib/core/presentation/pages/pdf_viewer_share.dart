@@ -17,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 
@@ -196,19 +197,21 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
         await dynamicLinks.buildShortLink(parameters);
     url = shortLink.shortUrl;
 
-    setState(() {
-      _linkMessage = url.toString();
-    });
+    if (this.mounted) {
+      setState(() {
+        _linkMessage = url.toString();
+      });
+    }
   }
 
   _createShareURL() async {
     _createDynamicLink(pdfUrl);
 
-    if (await canLaunch(_linkMessage!)) {
+    if (await canLaunchUrlString(_linkMessage!)) {
       await Share.share(
           Platform.isIOS
-              ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
-              : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+              ? 'Hierbij verstuur ik een linkje van een Document: $_linkMessage' // iOS
+              : 'Hierbij verstuur ik een linkje van een Document: $_linkMessage', //android
           subject: 'look at this nice app :)');
     } else {
       throw 'Could not launch $_linkMessage';

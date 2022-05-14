@@ -11,16 +11,12 @@ import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
-import 'AlgemeneInformatie/algemeneInfo.dart';
-import 'Jeugdcommissaris/jeugd_commissaris.dart';
-import 'belangrijkeDocumenten/important_documents.dart';
-
-class ForRotaryClubsPage extends StatefulWidget {
+class ImportantDocumentsPage extends StatefulWidget {
   @override
-  _ForRotaryClubsPageState createState() => _ForRotaryClubsPageState();
+  _ImportantDocumentsPageState createState() => _ImportantDocumentsPageState();
 }
 
-class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
+class _ImportantDocumentsPageState extends State<ImportantDocumentsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,16 +41,15 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: Text(
-                  'Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent te sponsoren en daarmee dus ook een jaar lang een kind binnen jullie club te ontvangen en te begeleiden. Misschien zijn jullie benaderd door een scholier van buiten jullie of mogelijk vanuit de wens van één van jullie clubleden.',
-                  style: TextStyle(fontSize: 16.0),
-                ),
+              Divider(
+                height: 15,
+                thickness: 2,
               ),
-              SizedBox(
-                height: 20,
+              buildInboundOptionRow(
+                context,
+                'MDJC noodprocedure',
+                FontAwesomeIcons.kitMedical,
+                null,
               ),
               Divider(
                 height: 15,
@@ -62,56 +57,39 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
               ),
               buildInboundOptionRow(
                 context,
-                'Algemene Informatie',
-                FontAwesomeIcons.info,
-                AlgemeneInfoPage(),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Info voor de Jeugdcommissaris',
-                FontAwesomeIcons.solidUser,
-                InfoForJeugdcommissarisPage(),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Info Gastgezin',
+                'Code of Policies \'Regels en Interventies\'',
                 FontAwesomeIcons.peopleRoof,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-gastgezin-22-23-def.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/jaaruitwisseling-regels-en-interventies-v7-1-2020.pdf',
                 ),
               ),
-
               Divider(
                 height: 15,
                 thickness: 2,
               ),
               buildInboundOptionRow(
                 context,
-                'Info Counselor',
-                FontAwesomeIcons.handsHoldingChild,
+                "MDJC gedragscode - VJV - \n'Vrijwilliger Jeugd Verklaring'",
+                FontAwesomeIcons.peopleGroup,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-counselor-versie-2022-def.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/verklaring-jeugd-vrijwilliger-met-addendum-okt22-def.pdf',
                 ),
               ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
+
               buildInboundOptionRow(
                 context,
-                'Belangrijke Documenten',
-                FontAwesomeIcons.triangleExclamation,
-                ImportantDocumentsPage(),
+                'First Night Questions',
+                FontAwesomeIcons.question,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/questions-first-night-host-family.pdf',
+                ),
               ),
               Divider(
                 height: 15,
