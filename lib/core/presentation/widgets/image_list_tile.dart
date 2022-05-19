@@ -6,7 +6,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
-import 'package:skeletons/skeletons.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
