@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -130,10 +130,9 @@ class _SocialPageState extends State<SocialPage> {
             ),
             onTap: () async {
               final url = linkUrl;
-              if (await canLaunch(url)) {
-                await launch(
+              if (await canLaunchUrlString(url)) {
+                await launchUrlString(
                   url,
-                  forceSafariVC: false,
                 );
               } else {
                 throw 'Could not launch $url';

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
@@ -145,7 +145,8 @@ class ContributorsDetails extends StatelessWidget {
                                     FontAwesomeIcons.instagram,
                                     color: Color(0xFFbc2a8d),
                                   ),
-                                  onPressed: () => launch(person.instagramUrl),
+                                  onPressed: () =>
+                                      canLaunchUrlString(person.instagramUrl),
                                 ),
                               ],
                             ),
@@ -162,7 +163,8 @@ class ContributorsDetails extends StatelessWidget {
                                     FontAwesomeIcons.linkedinIn,
                                     color: Color(0xFF0e76a8),
                                   ),
-                                  onPressed: () => launch(person.linkedinUrl),
+                                  onPressed: () =>
+                                      canLaunchUrlString(person.linkedinUrl),
                                 ),
                               ],
                             ),
@@ -179,7 +181,8 @@ class ContributorsDetails extends StatelessWidget {
                                     FontAwesomeIcons.github,
                                     color: Color(0xFF000333),
                                   ),
-                                  onPressed: () => launch(person.githubUrl),
+                                  onPressed: () =>
+                                      canLaunchUrlString(person.githubUrl),
                                 ),
                               ],
                             ),
@@ -196,7 +199,8 @@ class ContributorsDetails extends StatelessWidget {
                                     FontAwesomeIcons.globe,
                                     color: Color(0xFF0e76a8),
                                   ),
-                                  onPressed: () => launch(person.websiteUrl),
+                                  onPressed: () =>
+                                      canLaunchUrlString(person.websiteUrl),
                                 ),
                               ],
                             ),

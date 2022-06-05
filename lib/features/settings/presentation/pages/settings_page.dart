@@ -12,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/lang/languages.dart';
@@ -339,9 +339,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch(
+                            launchUrlString(
                               'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
-                              forceSafariVC: false,
                             );
                           },
                       ),
@@ -358,9 +357,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch(
+                            launchUrlString(
                               'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
-                              forceSafariVC: false,
                             );
                           },
                       ),

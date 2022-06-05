@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -603,7 +603,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('http://rotaryyep.nl/zomerkampen');
+                            launchUrlString('http://rotaryyep.nl/zomerkampen');
                           },
                       ),
                       TextSpan(
@@ -615,7 +615,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch(
+                            launchUrlString(
                                 'http://rotaryyep.nl/campsandtours/outbound');
                           },
                       ),
@@ -694,7 +694,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('mailto:zomerkamp@rotaryyep.nl');
+                            launchUrlString('mailto:zomerkamp@rotaryyep.nl');
                           },
                       ),
                     ])),

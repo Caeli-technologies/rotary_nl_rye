@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
@@ -187,7 +187,7 @@ class CounselorDetails extends StatelessWidget {
                         ),
                         child: RawMaterialButton(
                             onPressed: () {
-                              launch('mailto:${person.email}');
+                              canLaunchUrlString('mailto:${person.email}');
                             },
                             shape: new RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0)),
@@ -206,7 +206,7 @@ class CounselorDetails extends StatelessWidget {
                             color: Colors.blue[400]),
                         child: RawMaterialButton(
                           onPressed: () {
-                            launch('tel:${person.phoneNumber}');
+                            canLaunchUrlString('tel:${person.phoneNumber}');
                           },
                           shape: new RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(35.0)),

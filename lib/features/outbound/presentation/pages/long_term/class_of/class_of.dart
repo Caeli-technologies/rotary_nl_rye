@@ -1,14 +1,12 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// 📦 Package imports:
-import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
-
 // 🌎 Project imports:
+import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/outbound/data/outbound_list.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-
 import 'class_of_details_page.dart';
 
 class ClassOfPage extends StatefulWidget {

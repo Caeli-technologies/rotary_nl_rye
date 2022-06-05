@@ -10,13 +10,14 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 
@@ -79,14 +80,56 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: UniformBackButton(),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                CupertinoIcons.share,
-                color: Palette.indigo,
+          actions: [
+            Container(
+              margin: EdgeInsets.only(right: 10, top: 5),
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Palette.themeShadeColor,
+                borderRadius: BorderRadius.circular(40.0),
               ),
-              onPressed: _createShareURL,
-            )
+              child: PopupMenuButton<int>(
+                // color: Colors.black,
+                itemBuilder: (context) => [
+                  PopupMenuItem<int>(
+                      value: 0,
+                      child: Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.share,
+                            color: Palette.lightIndigo,
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text('Share in-app Link')
+                        ],
+                      )),
+                  PopupMenuDivider(),
+                  PopupMenuItem<int>(
+                      value: 1,
+                      child: Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.filePdf,
+                            color: Palette.lightIndigo,
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text('Share Document')
+                        ],
+                      )),
+                ],
+                onSelected: (item) => selectedItem(context, item),
+                icon: FaIcon(
+                  FontAwesomeIcons.list,
+                  color: Palette.accentColor,
+                  size: 22.0,
+                ),
+              ),
+            ),
           ],
         ),
         body: Stack(
@@ -203,17 +246,34 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
     }
   }
 
-  _createShareURL() async {
+  Future<void> selectedItem(BuildContext context, item) async {
     _createDynamicLink(pdfUrl);
 
-    if (await canLaunchUrlString(_linkMessage!)) {
-      await Share.share(
-          Platform.isIOS
-              ? 'Hierbij verstuur ik een linkje van een Document: $_linkMessage' // iOS
-              : 'Hierbij verstuur ik een linkje van een Document: $_linkMessage', //android
-          subject: 'look at this nice app :)');
-    } else {
-      throw 'Could not launch $_linkMessage';
+    switch (item) {
+      case 0:
+        if (await canLaunchUrlString(_linkMessage!)) {
+          await Share.share(
+              Platform.isIOS
+                  ? 'Hierbij verstuur ik een linkje van een Document: $_linkMessage' // iOS
+                  : 'Hierbij verstuur ik een linkje van een Document: $_linkMessage', //android
+              subject: 'look at this nice app :)');
+        } else {
+          throw 'Could not launch $_linkMessage';
+        }
+
+        break;
+
+      case 1:
+        if (await canLaunchUrlString(_linkMessage!)) {
+          await Share.shareFiles([pdfUrl],
+              text:
+                  'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
+              subject: 'look at this nice app :)');
+        } else {
+          throw 'Could not launch $_linkMessage';
+        }
+
+        break;
     }
   }
 }

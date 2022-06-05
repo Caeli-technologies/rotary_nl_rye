@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -80,7 +80,7 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('mailto:interesse@rotaryyep.nl');
+                            launchUrlString('mailto:interesse@rotaryyep.nl');
                           },
                       )
                     ])),

@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/lang/languages.dart';
@@ -158,7 +158,8 @@ class RotexDetails extends StatelessWidget {
                                     FontAwesomeIcons.instagram,
                                     color: Color(0xFFbc2a8d),
                                   ),
-                                  onPressed: () => launch(person.instagramUrl),
+                                  onPressed: () =>
+                                      launchUrlString(person.instagramUrl),
                                 ),
                               ],
                             ),
@@ -175,7 +176,8 @@ class RotexDetails extends StatelessWidget {
                                     FontAwesomeIcons.snapchat,
                                     color: Color.fromARGB(221, 201, 198, 8),
                                   ),
-                                  onPressed: () => launch(person.snapchatUrl),
+                                  onPressed: () =>
+                                      launchUrlString(person.snapchatUrl),
                                 ),
                               ],
                             ),
@@ -192,7 +194,8 @@ class RotexDetails extends StatelessWidget {
                                     FontAwesomeIcons.linkedinIn,
                                     color: Color(0xFF0e76a8),
                                   ),
-                                  onPressed: () => launch(person.linkedinUrl),
+                                  onPressed: () =>
+                                      launchUrlString(person.linkedinUrl),
                                 ),
                               ],
                             ),
@@ -209,7 +212,8 @@ class RotexDetails extends StatelessWidget {
                                     FontAwesomeIcons.facebookF,
                                     color: Color(0xFF3b5998),
                                   ),
-                                  onPressed: () => launch(person.facebookUrl),
+                                  onPressed: () =>
+                                      launchUrlString(person.facebookUrl),
                                 ),
                               ],
                             ),
@@ -226,7 +230,8 @@ class RotexDetails extends StatelessWidget {
                                     FontAwesomeIcons.globe,
                                     color: Color(0xFF0e76a8),
                                   ),
-                                  onPressed: () => launch(person.websiteUrl),
+                                  onPressed: () =>
+                                      launchUrlString(person.websiteUrl),
                                 ),
                               ],
                             ),
@@ -304,7 +309,7 @@ class RotexDetails extends StatelessWidget {
                             ),
                             child: RawMaterialButton(
                                 onPressed: () {
-                                  launch('mailto:${person.email}');
+                                  launchUrlString('mailto:${person.email}');
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
@@ -346,7 +351,7 @@ class RotexDetails extends StatelessWidget {
                     //         color: Colors.blue[400]),
                     //     child: RawMaterialButton(
                     //       onPressed: () {
-                    //         launch("tel:${person.phoneNumber}");
+                    //         launchUrlString("tel:${person.phoneNumber}");
                     //       },
                     //       shape: new RoundedRectangleBorder(
                     //           borderRadius: BorderRadius.circular(35.0)),

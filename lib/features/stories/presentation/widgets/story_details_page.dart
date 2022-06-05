@@ -58,16 +58,6 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   @override
   Widget build(BuildContext context) {
-    Color foreground = Colors.red;
-
-    if (progressPercent >= 0.8) {
-      foreground = Colors.green;
-    } else if (progressPercent >= 0.4) {
-      foreground = Colors.orange;
-    }
-
-    Color background = foreground.withOpacity(0.2);
-
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
@@ -78,29 +68,6 @@ class _StoryDetailsState extends State<StoryDetails> {
                     ? SystemUiOverlayStyle.dark
                     : SystemUiOverlayStyle.light,
             leading: UniformBackButton(),
-            // actions: [
-            //   Container(
-            //     margin: EdgeInsets.only(right: 10, top: 10),
-            //     width: 40,
-            //     height: 40,
-            //     decoration:
-            //         BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            //     child: RawMaterialButton(
-            //       onPressed: () {
-            //         //
-            //       },
-            //       child: new FaIcon(
-            //         FontAwesomeIcons.ellipsisV,
-            //         color: Palette.accentColor,
-            //         size: 20.0,
-            //       ),
-            //       shape: new CircleBorder(),
-            //       elevation: 2.0,
-            //       fillColor: Palette.themeShadeColor,
-            //       padding: const EdgeInsets.all(5.0),
-            //     ),
-            //   ),
-            // ],
             actions: [
               Container(
                 margin: EdgeInsets.only(right: 10, top: 5),

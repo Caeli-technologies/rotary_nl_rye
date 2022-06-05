@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
@@ -241,7 +241,8 @@ class _LongTermExchangeProgramPageState
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('mailto:longtermchair@rotaryyep.nl');
+                            launchUrlString(
+                                'mailto:longtermchair@rotaryyep.nl');
                           },
                       ),
                     ])),

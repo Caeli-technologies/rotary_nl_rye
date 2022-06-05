@@ -1,9 +1,9 @@
 // 🐦 Flutter imports:
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 // 📦 Package imports:
+import 'package:badges/badges.dart';
 import 'package:csv/csv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

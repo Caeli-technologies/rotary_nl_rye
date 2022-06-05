@@ -6,11 +6,11 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'information/camps_tours.dart';
 import 'information/family_to_family.dart';
 import 'information/long_term_exchange.dart';

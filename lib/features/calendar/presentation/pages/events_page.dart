@@ -13,7 +13,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -514,9 +514,8 @@ class DialogPage1 extends StatelessWidget {
                           matches.forEach((match) {
                             String sendLink =
                                 description!.substring(match.start, match.end);
-                            launch(
+                            launchUrlString(
                               sendLink,
-                              forceSafariVC: false,
                             );
                           });
                         })
@@ -704,9 +703,8 @@ class DialogPage1 extends StatelessWidget {
                                       matches.forEach((match) {
                                         String sendLink = description!
                                             .substring(match.start, match.end);
-                                        launch(
+                                        launchUrlString(
                                           sendLink,
-                                          forceSafariVC: false,
                                         );
                                       });
                                     },

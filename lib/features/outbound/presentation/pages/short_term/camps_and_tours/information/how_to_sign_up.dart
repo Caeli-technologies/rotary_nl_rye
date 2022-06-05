@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -74,7 +74,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('mailto:interesse@rotaryyep.nl');
+                            launchUrlString('mailto:interesse@rotaryyep.nl');
                           },
                       ),
                       TextSpan(
@@ -89,7 +89,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                     child: Center(
                       child: CupertinoButton.filled(
                         onPressed: () {
-                          launch(
+                          launchUrlString(
                               'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20Camps%20and%20Tours');
                         },
                         child:
