@@ -745,4 +745,23 @@ List<Outbounds> outboundList = [
     to: 'Brazilië',
     toFlag: 'br',
   ),
+  // Eva Poelhekke
+  Outbounds(
+    name: 'Eva Poelhekke',
+    bio:
+        'Hoi! Mijn naam is Eva Poelhekke en ik ben 16 jaar. Ik ga na de zomervakantie voor een jaar naar Italië en heb hier heel veel zin in! Ik vind het wel heel erg spannend want in eerste instantie kon ik geen Rotary club vinden maar omdat er iemand uitviel kon ik alsnog zijn/haar plek innemen en kon ik alsnog naar Italië! \nIk ben geplaatst op het eiland Sardinië en kom daar in Nuoro, een klein plaatsje in het westen van het eiland te wonen. \nHeb ontzettend veel in dit nieuwe avontuur! En kijk er naar uit om een nieuwe taal en cultuur te leren! Arrivederci! \n\nGroetjes Eva',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/22-23/eva-poelhekke.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Italië',
+    toFlag: 'it',
+  ),
 ];

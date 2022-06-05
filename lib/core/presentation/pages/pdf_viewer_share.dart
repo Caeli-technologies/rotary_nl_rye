@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // 🐦 Flutter imports:
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -82,13 +84,13 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
           leading: UniformBackButton(),
           actions: [
             Container(
-              margin: EdgeInsets.only(right: 10, top: 5),
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Palette.themeShadeColor,
-                borderRadius: BorderRadius.circular(40.0),
-              ),
+              // margin: EdgeInsets.only(right: 10, top: 5),
+              // width: 50,
+              // height: 50,
+              // decoration: BoxDecoration(
+              //   color: Palette.themeShadeColor,
+              //   borderRadius: BorderRadius.circular(40.0),
+              // ),
               child: PopupMenuButton<int>(
                 // color: Colors.black,
                 itemBuilder: (context) => [
@@ -125,7 +127,7 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
                 onSelected: (item) => selectedItem(context, item),
                 icon: FaIcon(
                   FontAwesomeIcons.list,
-                  color: Palette.accentColor,
+                  color: Palette.indigo,
                   size: 22.0,
                 ),
               ),
@@ -264,11 +266,18 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
         break;
 
       case 1:
+        Directory tempDir = await getTemporaryDirectory();
+        String fielName = pdfUrl.split('/').last;
+
+        final path = '${tempDir.path}/${fielName}';
+
+        await Dio().download(pdfUrl, path);
+
         if (await canLaunchUrlString(_linkMessage!)) {
-          await Share.shareFiles([pdfUrl],
+          await Share.shareFiles([path],
               text:
                   'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
-              subject: 'look at this nice app :)');
+              subject: fielName);
         } else {
           throw 'Could not launch $_linkMessage';
         }

@@ -38,7 +38,7 @@ List<Organization> longTermOrganizationList = [
   Organization(
     name: 'Marga Oosterveld',
     bio:
-        'Hallo, ik ben een oud uitwisselingsstudent of exchangee zoals dat heet. In het jaar 1988 – 1989 ben ik met Rotary een jaar naar het buitenland geweest. “Class of 89” noemen ze dat in Amerika. Eigenlijk wilde ik graag naar het noordoosten, maar ik kwam terecht in het zuidwesten van de USA. Totaal anders dan Nederland met indianen en cowboys, midden in de woestijn en in de bergen. Het is niet altijd makkelijk en soms best wel even slikken, maar als je dat lukt, heb je de tijd van je leven. Nu ben ik contactpersoon tussen de districten in de USA, Canada en Zuid Afrika om Rotary Clubs te vinden die willen uitwisselen met Nederland voor a lifetime in a year !!',
+        'Hallo, ik ben een oud uitwisselingsstudent of exchangee zoals dat heet. In het jaar 1988 - 1989 ben ik met Rotary een jaar naar het buitenland geweest. “Class of 89” noemen ze dat in Amerika. Eigenlijk wilde ik graag naar het noordoosten, maar ik kwam terecht in het zuidwesten van de USA. Totaal anders dan Nederland met indianen en cowboys, midden in de woestijn en in de bergen. Het is niet altijd makkelijk en soms best wel even slikken, maar als je dat lukt, heb je de tijd van je leven. Nu ben ik contactpersoon tussen de districten in de USA, Canada en Zuid Afrika om Rotary Clubs te vinden die willen uitwisselen met Nederland voor a lifetime in a year !!',
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg',
     email: 'usacanada@rotaryyep.nl',
@@ -109,9 +109,9 @@ List<Organization> longTermOrganizationList = [
   Organization(
     name: 'Bas Siebring',
     bio:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+        'Mijn naam is Bas Siebring. In het dagelijks leven ben ik docent scheikunde. Omdat ik een aantal jaar in Canada en Nieuw-Zeeland gewoond en gewerkt heb, geef ik nu (in Nederland) een deel van mijn lessen in het Engels op een school die tweetalig onderwijs aanbiedt.\n\n Toen een aantal jaar geleden er een kans lag om bij de Dutch Orientation Course mee te helpen als docent, heb ik die kans met beide handen gegrepen. Inbounds helpen de Nederlandse taal onder de knie te krijgen lijkt ook wel een beetje op Nederlandse leerlingen helpen Engels te leren. \n\n Integreren in een ander land in een andere cultuur, ik heb het zelf twee keer mogen doen in zowel Canada als Nieuw-Zeeland. Zo\'n "inburgeringsproces" gaat gepaard met ups en downs. Mijn doel is om er voor te zorgen dat de DOC voor elke deelnemer één van die ups is; en dat het daarnaast een ervaring is die inbounds voorbereidt en helpt om in de rest van het exchange jaar nog veel meer ups te mogen meemaken.\n Want ondanks dat we in Nederland graag showen hoe goed ons Engels is, is het leren van de taal van het land waar je op uitwisseling bent (dus ook Nederlands in Nederland!) naar mijn mening essentieel om de uitwisseling tot een waar succes te maken: het opent deuren die anders wellicht gesloten waren gebleven.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/bas-siebring.jpeg',
     email: 'docteacher@rotaryyep.nl',
     phoneNumber: null,
     club: '',
@@ -120,20 +120,6 @@ List<Organization> longTermOrganizationList = [
       'Teacher Orientation Course',
     ],
   ),
-  // Organization(
-  //   name: "Luke Klazema",
-  //   bio:
-  //       "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-  //   imageUrl:
-  //       "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-  //   email: "docteacher@rotaryyep.nl",
-  //   phoneNumber: "",
-  //   club: '',
-  //   district: '',
-  //   functions: [
-  //     "Teacher Orientation Course",
-  //   ],
-  // ),
   Organization(
     name: 'Hilleke van der Veer',
     bio:

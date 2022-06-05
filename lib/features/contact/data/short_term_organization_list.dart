@@ -72,4 +72,18 @@ List<Organization> shortTermOrganizationList = [
       'NGSE',
     ],
   ),
+  Organization(
+    name: 'Henk van Bruggen',
+    bio:
+        'Mijn naam is Henk van Bruggen. Ik ben oud Rotarylid van de club Ermelo-Putten en momenteel lid van de Past Rotaryclub. Ondanks het feit dat ik al gepensioneerd ben, houd ik mij zakelijk nog steeds bezig met onderwijs- en arbeidsmarktprojecten, zoals ik dat de afgelopen 35 jaar ook heb gedaan. \n\nIk heb mij recent aangemeld als vrijwilliger voor het programma NGSE (New Generation Service Exchange). \n\nHet lijkt me geweldig om wat te kunnen betekenen voor jong volwassenen die hun scoop willen verbreden door in het buitenland (werk)ervaring op te doen en/of nieuwe dingen te leren.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/henk-van-bruggen.png',
+    email: 'ngse@rotaryyep.nl',
+    phoneNumber: null,
+    club: '',
+    district: '',
+    functions: [
+      'NGSE',
+    ],
+  ),
 ];
