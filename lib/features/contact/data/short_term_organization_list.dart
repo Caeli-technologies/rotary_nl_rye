@@ -1,3 +1,4 @@
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 
 List<Organization> shortTermOrganizationList = [
@@ -63,6 +64,20 @@ List<Organization> shortTermOrganizationList = [
         'Hallo. Mijn naam is Sabine. Na ruim zes jaar actief meegedraaid te hebben bij het Long Term youth exchange programma van Rotary, heb ik een start gemaakt met het opzetten van een uitwisselingsprogramma voor jonge volwassenen binnen de kaders van Rotary: New Generation Service Exchange (NGSE). Dit programma is bedoeld om jongeren tussen 18 en 30 jaar een mogelijkheid te bieden in een ander land voor een stage, studie of buitenlandse werkervaring enkele weken (max 3 maanden) door te brengen.  Een lokale Rotary club zorgt ter plaatse voor huisvesting, bij voorkeur in een of meer gastgezinnen. Deelname aan de service projecten van de Hostclub ter plaatse wordt ook zeer op prijs gesteld.\n\nZin om meer te weten? Mail me gerust met een korte omschrijving van jouw project. ',
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/sabine-vergroesen.jpg',
+    email: 'ngse@rotaryyep.nl',
+    phoneNumber: null,
+    club: '',
+    district: '',
+    functions: [
+      'NGSE',
+    ],
+  ),
+  Organization(
+    name: 'Henk van Bruggen',
+    bio:
+        'Mijn naam is Henk van Bruggen. Ik ben oud Rotarylid van de club Ermelo-Putten en momenteel lid van de Past Rotaryclub. Ondanks het feit dat ik al gepensioneerd ben, houd ik mij zakelijk nog steeds bezig met onderwijs- en arbeidsmarktprojecten, zoals ik dat de afgelopen 35 jaar ook heb gedaan. \n\nIk heb mij recent aangemeld als vrijwilliger voor het programma NGSE (New Generation Service Exchange). \n\nHet lijkt me geweldig om wat te kunnen betekenen voor jong volwassenen die hun scoop willen verbreden door in het buitenland (werk)ervaring op te doen en/of nieuwe dingen te leren.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/henk-van-bruggen.png',
     email: 'ngse@rotaryyep.nl',
     phoneNumber: null,
     club: '',

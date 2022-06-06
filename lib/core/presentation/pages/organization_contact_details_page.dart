@@ -1,18 +1,25 @@
 //TODO this is just a test. maybe we can build on this.
 
+// 🎯 Dart imports:
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class OrganizationDetails extends StatelessWidget {
   final Organization person;
@@ -31,26 +38,7 @@ class OrganizationDetails extends StatelessWidget {
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
           'Organization',
           textScaleFactor: 1.4,
@@ -294,7 +282,7 @@ class OrganizationDetails extends StatelessWidget {
                     //                 FontAwesomeIcons.snapchatGhost,
                     //                 color: Color(0xFFFFFC00),
                     //               ),
-                    //               onPressed: () => launch(person.snapchatUrl),
+                    //               onPressed: () => canLaunchUrlString(person.snapchatUrl),
                     //             ),
                     //           ],
                     //         ),
@@ -311,7 +299,7 @@ class OrganizationDetails extends StatelessWidget {
                     //                 FontAwesomeIcons.linkedinIn,
                     //                 color: Color(0xFF0e76a8),
                     //               ),
-                    //               onPressed: () => launch(person.linkedinUrl),
+                    //               onPressed: () => canLaunchUrlString(person.linkedinUrl),
                     //             ),
                     //           ],
                     //         ),
@@ -328,7 +316,7 @@ class OrganizationDetails extends StatelessWidget {
                     //                 FontAwesomeIcons.facebookF,
                     //                 color: Color(0xFF3b5998),
                     //               ),
-                    //               onPressed: () => launch(person.facebookUrl),
+                    //               onPressed: () => canLaunchUrlString(person.facebookUrl),
                     //             ),
                     //           ],
                     //         ),
@@ -345,7 +333,7 @@ class OrganizationDetails extends StatelessWidget {
                     //                 FontAwesomeIcons.globe,
                     //                 color: Color(0xFF0e76a8),
                     //               ),
-                    //               onPressed: () => launch(person.websiteUrl),
+                    //               onPressed: () => canLaunchUrlString(person.websiteUrl),
                     //             ),
                     //           ],
                     //         ),
@@ -479,7 +467,7 @@ class OrganizationDetails extends StatelessWidget {
                             ),
                             child: RawMaterialButton(
                                 onPressed: () {
-                                  launch('mailto:${person.email}');
+                                  canLaunchUrlString('mailto:${person.email}');
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
@@ -500,7 +488,7 @@ class OrganizationDetails extends StatelessWidget {
                                 color: Colors.blue[400]),
                             child: RawMaterialButton(
                               onPressed: () {
-                                launch('tel:${person.phoneNumber}');
+                                canLaunchUrlString('tel:${person.phoneNumber}');
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(35.0)),

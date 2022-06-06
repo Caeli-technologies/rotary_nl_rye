@@ -1,17 +1,25 @@
+// 🎯 Dart imports:
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:translator/translator.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
-import 'package:translator/translator.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 
 class StoryDetails extends StatefulWidget {
   @override
@@ -50,16 +58,6 @@ class _StoryDetailsState extends State<StoryDetails> {
 
   @override
   Widget build(BuildContext context) {
-    Color foreground = Colors.red;
-
-    if (progressPercent >= 0.8) {
-      foreground = Colors.green;
-    } else if (progressPercent >= 0.4) {
-      foreground = Colors.orange;
-    }
-
-    Color background = foreground.withOpacity(0.2);
-
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
@@ -69,50 +67,7 @@ class _StoryDetailsState extends State<StoryDetails> {
                 MediaQuery.of(context).platformBrightness == Brightness.light
                     ? SystemUiOverlayStyle.dark
                     : SystemUiOverlayStyle.light,
-            leading: Container(
-              margin: EdgeInsets.only(left: 10, top: 10),
-              width: 40,
-              height: 40,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-              child: RawMaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: new Icon(
-                  Icons.arrow_back,
-                  color: Palette.accentColor,
-                  size: 30.0,
-                ),
-                shape: new CircleBorder(),
-                elevation: 2.0,
-                fillColor: Palette.themeShadeColor,
-                padding: const EdgeInsets.all(5.0),
-              ),
-            ),
-            // actions: [
-            //   Container(
-            //     margin: EdgeInsets.only(right: 10, top: 10),
-            //     width: 40,
-            //     height: 40,
-            //     decoration:
-            //         BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            //     child: RawMaterialButton(
-            //       onPressed: () {
-            //         //
-            //       },
-            //       child: new FaIcon(
-            //         FontAwesomeIcons.ellipsisV,
-            //         color: Palette.accentColor,
-            //         size: 20.0,
-            //       ),
-            //       shape: new CircleBorder(),
-            //       elevation: 2.0,
-            //       fillColor: Palette.themeShadeColor,
-            //       padding: const EdgeInsets.all(5.0),
-            //     ),
-            //   ),
-            // ],
+            leading: UniformBackButton(),
             actions: [
               Container(
                 margin: EdgeInsets.only(right: 10, top: 5),
@@ -364,38 +319,35 @@ class _StoryDetailsState extends State<StoryDetails> {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              Container(
-                                width: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: CircleProgressBar(
-                                    backgroundColor: background,
-                                    foregroundColor: foreground,
-                                    value: this.progressPercent,
-                                  ),
+                              CircularPercentIndicator(
+                                animation: true,
+                                animateFromLastPercent: true,
+                                radius: 60.0,
+                                lineWidth: 5.0,
+                                percent: this.progressPercent,
+                                center: new Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      '${(this.progressPercent * 100).round()}%',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 30.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'COMPLETED',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    '${this.progressPercent * 100}%',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'COMPLETED',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                                progressColor: Colors.green,
+                              )
                             ],
                           ),
                         )

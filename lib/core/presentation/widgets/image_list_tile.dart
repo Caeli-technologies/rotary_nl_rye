@@ -1,13 +1,19 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
-import 'package:skeletons/skeletons.dart';
+import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
+import '../../../features/uniform_widgets/uniform_circle_avatar.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;
@@ -139,21 +145,8 @@ class ContactListTile extends StatelessWidget {
           );
         },
         contentPadding: EdgeInsets.all(0),
-        leading: CachedNetworkImage(
-          height: 55,
-          width: 55,
+        leading: UniformCircleAvatar(
           imageUrl: item.imageUrl,
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
         title: Text(item.name,
             style: TextStyle(
@@ -198,22 +191,7 @@ class RotexContactListTile extends StatelessWidget {
           );
         },
         contentPadding: EdgeInsets.all(0),
-        leading: CachedNetworkImage(
-          height: 55,
-          width: 55,
-          imageUrl: item.imageUrl,
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
+        leading: UniformCircleAvatar(imageUrl: item.imageUrl),
         title: Text(item.name,
             style: TextStyle(
               color: Palette.indigo,
@@ -226,6 +204,96 @@ class RotexContactListTile extends StatelessWidget {
             color: Palette.grey,
           ),
         ),
+        trailing: Icon(
+          Icons.keyboard_arrow_right,
+          size: 30,
+          color: Palette.indigo,
+        ),
+      ),
+    );
+  }
+}
+
+class OutboundStudentListTile extends StatelessWidget {
+  final classOfDetailsPage;
+  final Outbounds item;
+  const OutboundStudentListTile({
+    this.classOfDetailsPage,
+    required this.item,
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      child: ListTile(
+        onTap: () {
+          print(item.name);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => classOfDetailsPage),
+          );
+        },
+        contentPadding: EdgeInsets.all(0),
+        leading: UniformCircleAvatar(imageUrl: item.imageUrl),
+        title: Text(item.name,
+            style: TextStyle(
+              color: Palette.indigo,
+              fontWeight: FontWeight.w600,
+            )),
+        subtitle: Row(
+          children: [
+            Text(item.from,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  inherit: true,
+                  fontSize: 14.0,
+                  color: Colors.grey[600],
+                )),
+            SizedBox(
+              width: 2,
+            ),
+            SvgPicture.asset('assets/icons/flags/${item.fromFlag}.svg',
+                height: 15),
+            SizedBox(
+              width: 5,
+            ),
+            FaIcon(
+              FontAwesomeIcons.arrowRightLong,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(item.to,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  inherit: true,
+                  fontSize: 14.0,
+                  color: Colors.grey[600],
+                )),
+            SizedBox(
+              width: 2,
+            ),
+            item.toFlag == null
+                ? SizedBox.shrink()
+                : SvgPicture.asset('assets/icons/flags/${item.toFlag}.svg',
+                    height: 15)
+          ],
+        ),
+        //                       Text(
+        //   item.from,
+        //   style: TextStyle(
+        //     fontWeight: FontWeight.w500,
+        //     color: Palette.grey,
+        //   ),
+        // ),
         trailing: Icon(
           Icons.keyboard_arrow_right,
           size: 30,
@@ -578,37 +646,6 @@ class ContributorsListTile extends StatelessWidget {
           color: Palette.indigo,
         ),
       ),
-    );
-  }
-}
-
-class UniformCircleAvatar extends StatelessWidget {
-  const UniformCircleAvatar({
-    Key? key,
-    required this.imageUrl,
-  }) : super(key: key);
-
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      height: 55,
-      width: 55,
-      imageUrl: imageUrl,
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      placeholder: (context, url) => SkeletonAvatar(
-        style: SkeletonAvatarStyle(shape: BoxShape.circle),
-      ),
-      errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
 }

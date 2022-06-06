@@ -1,17 +1,21 @@
-// @dart=2.9
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// 🌎 Project imports:
 import 'core/custom_routes.dart';
 import 'core/data/initData.dart';
 import 'core/lang/languages.dart';
@@ -48,12 +52,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 // }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
-AndroidNotificationChannel channel;
-// late AndroidNotificationChannel channel;
+late AndroidNotificationChannel channel;
 
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-// late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

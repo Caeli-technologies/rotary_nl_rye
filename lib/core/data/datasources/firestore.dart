@@ -1,5 +1,8 @@
+// 📦 Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/data/datasources/config.dart';
 
 class FireStoreUrls {

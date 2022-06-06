@@ -1,9 +1,15 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'class_of/class_of.dart';
 import 'information/comply_with.dart';
 import 'information/how_to_sign_up.dart';
 import 'information/selection_day.dart';
@@ -28,26 +34,7 @@ class _LongTermExchangeOutboundPageState
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
           'Long Term Outbound',
           textScaleFactor: 1.2,
@@ -65,7 +52,7 @@ class _LongTermExchangeOutboundPageState
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Text(
-                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
+                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo\'n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -76,8 +63,14 @@ class _LongTermExchangeOutboundPageState
                 height: 15,
                 thickness: 2,
               ),
+              buildOutboundOptionRow(context, 'Class of 2022-2023',
+                  FontAwesomeIcons.peopleGroup, ClassOfPage()),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
               buildOutboundOptionRow(context, 'Hoe schrijf ik mezelf in',
-                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
+                  FontAwesomeIcons.pencil, HowToSignUpPage()),
               Divider(
                 height: 15,
                 thickness: 2,
@@ -91,7 +84,7 @@ class _LongTermExchangeOutboundPageState
               buildOutboundOptionRow(
                   context,
                   'Wat moet ik doen voor de selectiedag',
-                  FontAwesomeIcons.voteYea,
+                  FontAwesomeIcons.checkToSlot,
                   SelectionDayPage()),
               Divider(
                 height: 15,

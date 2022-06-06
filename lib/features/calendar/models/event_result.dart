@@ -1,6 +1,8 @@
 // To parse this JSON data, do
 //
 //     final eventResult = eventResultFromJson(jsonString);
+
+// 🎯 Dart imports:
 import 'dart:convert';
 
 EventResult eventResultFromJson(String str) =>

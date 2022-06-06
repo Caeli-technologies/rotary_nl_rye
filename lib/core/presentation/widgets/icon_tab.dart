@@ -1,4 +1,7 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IconTab extends StatelessWidget {
@@ -8,6 +11,6 @@ class IconTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(height: 90, child: Tab(icon: FaIcon(iconData, size: 35)));
+    return Container(height: 70, child: Tab(icon: FaIcon(iconData, size: 30)));
   }
 }

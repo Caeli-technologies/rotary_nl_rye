@@ -1,10 +1,15 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
+
+// 📦 Package imports:
 import 'package:badges/badges.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/prop.dart';
 
 class HomeCardItemSingle extends StatelessWidget {
-  final String title, description;
+  final String title;
   final IconData icon;
   final int currentNewsIndex;
   final pushTo;
@@ -12,7 +17,6 @@ class HomeCardItemSingle extends StatelessWidget {
   HomeCardItemSingle(
       {required this.title,
       required this.icon,
-      required this.description,
       this.pushTo,
       required this.currentNewsIndex});
 

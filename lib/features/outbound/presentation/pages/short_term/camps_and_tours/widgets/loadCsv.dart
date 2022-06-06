@@ -1,13 +1,19 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
+// 📦 Package imports:
+import 'package:badges/badges.dart';
 import 'package:csv/csv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:http/http.dart' as http;
 import 'package:skeletons/skeletons.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class LoadCsv extends StatefulWidget {
   @override
@@ -18,8 +24,6 @@ class _LoadCsvState extends State<LoadCsv> {
   List<List<dynamic>> _data = [];
 
   Future<List<List>?> getData() async {
-    // final responseData = await http.get(
-    //     Uri.parse("https://stadler.caeli-tech.com/testApp/sql/list_train.php"));
     final response = await http.get(
         Uri.parse(
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv'),
@@ -46,38 +50,6 @@ class _LoadCsvState extends State<LoadCsv> {
     }
   }
 
-  // Future<List<List>> csvToList() async {
-  //   var csvfile = await http.get(
-  //     Uri.parse(
-  //         "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/book1.csv"),
-  //   );
-  //   csv.CsvToListConverter converter =
-  //       new csv.CsvToListConverter(eol: '\r\n', fieldDelimiter: ';');
-  //   List<List> listCreated = converter.convert(
-  //       csvfile.body); // the csv file is converted to a 2-Dimensional list
-  //   setState(() {
-  //     _data = listCreated;
-  //   });
-  //   return listCreated;
-  // }
-
-  // // This function is triggered when the floating button is pressed
-  // void _loadCSV() async {
-  //   final _rawData = await rootBundle.loadString("assets/csv/Book1.csv");
-  //   List<List<dynamic>> _listData = CsvToListConverter(
-  //     fieldDelimiter: ";",
-  //   ).convert(_rawData);
-  //   setState(() {
-  //     _data = _listData;
-  //   });
-  // }
-
-  @override
-  void initState() {
-    super.initState();
-    // getData();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,27 +60,7 @@ class _LoadCsvState extends State<LoadCsv> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           title: Text(
             'Camps & Tours List',
             textScaleFactor: 1.2,
@@ -119,142 +71,67 @@ class _LoadCsvState extends State<LoadCsv> {
         body: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
           child: FutureBuilder<List<List>?>(
-            future: getData(), // async work
-            builder:
-                (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return SkeletonListView();
-              } else {
-                if (snapshot.hasError)
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                else
-                  // return Center(child: new Text('${snapshot.data}'));  // snapshot.data  :- get your object which is pass from your downloadData() function
-                  return ListView.builder(
-                    padding: EdgeInsets.only(top: 10, bottom: 30),
-                    itemCount: _data.length,
-                    itemBuilder: (_, index) {
-                      if (index == 0) {
-                        // return the header
-                        return SizedBox.shrink();
-                      }
-                      return GestureDetector(
-                          onTap: () {
-                            print('title: ' +
-                                snapshot.data![index][2].toString());
+              future: getData(), // async work
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return SkeletonListView();
+                } else {
+                  if (snapshot.hasData) {
+                    // return Center(child: new Text('${snapshot.data}'));  // snapshot.data  :- get your object which is pass from your downloadData() function
+                    return ListView.builder(
+                      padding: EdgeInsets.only(top: 10, bottom: 30),
+                      itemCount: _data.length,
+                      itemBuilder: (_, index) {
+                        if (index == 0) {
+                          // return the header
+                          return SizedBox.shrink();
+                        }
+                        return GestureDetector(
+                            onTap: () {
+                              print('title: ' +
+                                  snapshot.data![index][2].toString());
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PDFPageViewer(
-                                        title:
-                                            snapshot.data![index][2].toString(),
-                                        pdfURL:
-                                            snapshot.data![index][9].toString(),
-                                      )),
-                            );
-                            // needs to go to the pdf
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: TravelCard(
-                              startDate: snapshot.data![index][0].toString(),
-                              endDate: snapshot.data![index][1].toString(),
-                              title: snapshot.data![index][2].toString(),
-                              hostCountryCode:
-                                  snapshot.data![index][3].toString(),
-                              hostCountry: snapshot.data![index][4].toString(),
-                              hostDistrict: snapshot.data![index][5].toString(),
-                              ageMin: snapshot.data![index][6].toString(),
-                              ageMax: snapshot.data![index][7].toString(),
-                              contribution: snapshot.data![index][8].toString(),
-                              invitation: snapshot.data![index][9].toString(),
-                            ),
-                          ));
-                    },
-                  );
-              }
-            },
-
-            // return ListView.builder(
-            //   padding: EdgeInsets.only(top: 10, bottom: 30),
-            //   itemCount: _data.length,
-            //   itemBuilder: (_, index) {
-            //     if (index == 0) {
-            //       // return the header
-            //       return SizedBox.shrink();
-            //     }
-            //     return GestureDetector(
-            //         onTap: () {
-            //           print("number " + _data[index][8].toString());
-
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute(
-            //                 builder: (context) => PDFPageViewer(
-            //                       pdfURL: _data[index][9].toString(),
-            //                     )),
-            //           );
-            //           // needs to go to the pdf
-            //         },
-            //         child: Container(
-            //           padding: EdgeInsets.only(bottom: 10),
-            //           child: TravelCard(
-            //             number: _data[index][0].toString(),
-            //             date: _data[index][1].toString(),
-            //             title: _data[index][2].toString(),
-            //             hostCountryCode: _data[index][3].toString(),
-            //             hostCountry: _data[index][4].toString(),
-            //             hostDistrict: _data[index][5].toString(),
-            //             ageMin: _data[index][6].toString(),
-            //             ageMax: _data[index][7].toString(),
-            //             contribution: _data[index][8].toString(),
-            //             invitation: _data[index][9].toString(),
-            //           ),
-            //         ));
-            //   },
-            // );
-
-            // return ListView.builder(
-            //   padding: EdgeInsets.only(top: 10, bottom: 30),
-            //   itemCount: snapshot.data.length,
-            //   itemBuilder: (_, index) {
-            //     if (index == 0) {
-            //       // return the header
-            //       return SizedBox.shrink();
-            //     }
-            //     return GestureDetector(
-            //         onTap: () {
-            //           print("number " + snapshot.data[index][8].toString());
-
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute(
-            //                 builder: (context) => PDFPageViewer(
-            //                       pdfURL: snapshot.data[index][9].toString(),
-            //                     )),
-            //           );
-            //           // needs to go to the pdf
-            //         },
-            //         child: Container(
-            //           padding: EdgeInsets.only(bottom: 10),
-            //           child: TravelCard(
-            //             number: snapshot.data[index][0].toString(),
-            //             date: snapshot.data[index][1].toString(),
-            //             title: snapshot.data[index][2].toString(),
-            //             hostCountryCode: snapshot.data[index][3].toString(),
-            //             hostCountry: snapshot.data[index][4].toString(),
-            //             hostDistrict: snapshot.data[index][5].toString(),
-            //             ageMin: snapshot.data[index][6].toString(),
-            //             ageMax: snapshot.data[index][7].toString(),
-            //             contribution: snapshot.data[index][8].toString(),
-            //             invitation: snapshot.data[index][9].toString(),
-            //           ),
-            //         ));
-            //   },
-            // ),
-          ),
-          // floatingActionButton:
-          //     FloatingActionButton(child: Icon(Icons.refresh), onPressed: _loadCSV),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PDFPageViewer(
+                                          title: snapshot.data![index][2]
+                                              .toString(),
+                                          pdfURL: snapshot.data![index][9]
+                                              .toString(),
+                                        )),
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: TravelCard(
+                                startDate: snapshot.data![index][0].toString(),
+                                endDate: snapshot.data![index][1].toString(),
+                                title: snapshot.data![index][2].toString(),
+                                hostCountryCode:
+                                    snapshot.data![index][3].toString(),
+                                hostCountry:
+                                    snapshot.data![index][4].toString(),
+                                hostDistrict:
+                                    snapshot.data![index][5].toString(),
+                                ageMin: snapshot.data![index][6].toString(),
+                                ageMax: snapshot.data![index][7].toString(),
+                                contribution:
+                                    snapshot.data![index][8].toString(),
+                                invitation: snapshot.data![index][9].toString(),
+                                full: snapshot.data![index][10].toString(),
+                              ),
+                            ));
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
+                  // By default show a loading spinner.
+                  return SkeletonListView();
+                }
+              }),
         ));
   }
 }
@@ -269,7 +146,8 @@ class TravelCard extends StatelessWidget {
       ageMin,
       ageMax,
       contribution,
-      invitation;
+      invitation,
+      full;
 
   TravelCard({
     required this.startDate,
@@ -282,6 +160,7 @@ class TravelCard extends StatelessWidget {
     required this.ageMax,
     required this.contribution,
     required this.invitation,
+    required this.full,
   });
 
   @override
@@ -300,10 +179,23 @@ class TravelCard extends StatelessWidget {
                       child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      full.isNotEmpty
+                          ? Container(
+                              padding: EdgeInsets.only(left: 12, top: 6),
+                              child: Badge(
+                                toAnimate: false,
+                                shape: BadgeShape.square,
+                                badgeColor: Colors.red,
+                                borderRadius: BorderRadius.circular(8),
+                                badgeContent: Text('VOL',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            )
+                          : SizedBox.shrink(),
                       Container(
                         padding: EdgeInsets.only(left: 10, top: 10),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.85,
+                          width: MediaQuery.of(context).size.width * 0.70,
                           child: Text(title,
                               textScaleFactor: 1.1,
                               maxLines: 2,
@@ -541,7 +433,7 @@ class TravelCard extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   FaIcon(
-                                    FontAwesomeIcons.birthdayCake,
+                                    FontAwesomeIcons.cakeCandles,
                                     color: Palette.lightIndigo,
                                     size: 20,
                                   ),
@@ -623,7 +515,7 @@ class TravelCard extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   FaIcon(
-                                    FontAwesomeIcons.calendarAlt,
+                                    FontAwesomeIcons.calendarDays,
                                     color: Palette.lightIndigo,
                                     size: 20,
                                   ),

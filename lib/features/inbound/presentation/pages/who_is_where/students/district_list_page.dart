@@ -1,10 +1,13 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/inbound/data/district_list.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
-
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'students_list_page.dart';
 
 class DistrictsListPage extends StatelessWidget {
@@ -22,26 +25,7 @@ class DistrictsListPage extends StatelessWidget {
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
           'Districts Year ${year.year}',
           textScaleFactor: 0.9,

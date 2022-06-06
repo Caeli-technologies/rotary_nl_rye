@@ -1,8 +1,13 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 
+// 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'information/comply_with.dart';
 import 'information/how_to_sign_up.dart';
 import 'information/which_countries.dart';
@@ -25,26 +30,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
           'Camps & Tours',
           textScaleFactor: 1.2,
@@ -74,7 +60,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                 thickness: 2,
               ),
               buildOutboundOptionRow(context, 'Hoe schrijf ik mezelf in',
-                  FontAwesomeIcons.pencilAlt, HowToSignUpPage()),
+                  FontAwesomeIcons.pencil, HowToSignUpPage()),
               Divider(
                 height: 15,
                 thickness: 2,
@@ -86,7 +72,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
                 thickness: 2,
               ),
               buildOutboundOptionRow(context, 'Met welke landen?',
-                  FontAwesomeIcons.globeEurope, WhichCountriesPage()),
+                  FontAwesomeIcons.earthEurope, WhichCountriesPage()),
               Divider(
                 height: 15,
                 thickness: 2,

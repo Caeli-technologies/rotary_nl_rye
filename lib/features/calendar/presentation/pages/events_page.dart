@@ -1,18 +1,23 @@
+// 🎯 Dart imports:
 import 'dart:collection';
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:table_calendar/table_calendar.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../../data/utils.dart';
 import '../../models/event_result.dart';
 
@@ -377,12 +382,12 @@ class DialogPage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final startFullDate = DateFormat.yMMMMd(defaultLocale)
         .format(DateTime.parse(startDate).toLocal());
-    final endFullDate = DateFormat.yMMMMd(defaultLocale)
-        .format(DateTime.parse(endDate).toLocal());
+    // final endFullDate = DateFormat.yMMMMd(defaultLocale)
+    //     .format(DateTime.parse(endDate).toLocal());
     final startWeekDay = DateFormat.EEEE(defaultLocale)
         .format(DateTime.parse(startDate).toLocal());
-    final endWeekDay = DateFormat.EEEE(defaultLocale)
-        .format(DateTime.parse(endDate).toLocal());
+    // final endWeekDay = DateFormat.EEEE(defaultLocale)
+    //     .format(DateTime.parse(endDate).toLocal());
     final startTime = DateFormat.jm(defaultLocale)
         .format(DateTime.parse(startDate).toLocal());
     final endTime =
@@ -458,7 +463,7 @@ class DialogPage1 extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0.0),
                             child: FaIcon(
-                              FontAwesomeIcons.mapMarkerAlt,
+                              FontAwesomeIcons.locationDot,
                               color: Palette.iconColor,
                               size: 20,
                             ),
@@ -509,9 +514,8 @@ class DialogPage1 extends StatelessWidget {
                           matches.forEach((match) {
                             String sendLink =
                                 description!.substring(match.start, match.end);
-                            launch(
+                            launchUrlString(
                               sendLink,
-                              forceSafariVC: false,
                             );
                           });
                         })
@@ -637,7 +641,7 @@ class DialogPage1 extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0.0),
                             child: FaIcon(
-                              FontAwesomeIcons.mapMarkerAlt,
+                              FontAwesomeIcons.locationDot,
                               color: Palette.lightIndigo,
                               size: 20,
                             ),
@@ -699,9 +703,8 @@ class DialogPage1 extends StatelessWidget {
                                       matches.forEach((match) {
                                         String sendLink = description!
                                             .substring(match.start, match.end);
-                                        launch(
+                                        launchUrlString(
                                           sendLink,
-                                          forceSafariVC: false,
                                         );
                                       });
                                     },

@@ -1,3 +1,4 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
 class Device {
@@ -113,7 +114,7 @@ class Palette {
       indigo = Colors.indigo[800]!;
       themeShadeColor = Colors.grey[100]!;
       themeContactTabShadeColor = Colors.grey[50]!;
-      themeCardShadeColor = Colors.grey[200]!;
+      themeCardShadeColor = Colors.grey[100]!;
       //text
       titleText = Colors.black87;
       bodyText = Colors.black;
@@ -147,7 +148,7 @@ BoxShadow kBoxShadow = BoxShadow(
     blurRadius: 30,
     spreadRadius: 0);
 BoxShadow kSubtleBoxShadow = BoxShadow(
-    color: Colors.black.withOpacity(0.1),
-    offset: Offset(0, 7),
+    color: Colors.black.withOpacity(0.08),
+    offset: Offset(0, 4),
     blurRadius: 20,
     spreadRadius: -2);

@@ -1,9 +1,15 @@
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:url_launcher/url_launcher_string.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class HowToSignUpPage extends StatefulWidget {
   @override
@@ -26,26 +32,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
           'Hoe schrijf ik mezelf in',
           textScaleFactor: 1,
@@ -87,7 +74,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('mailto:interesse@rotaryyep.nl');
+                            launchUrlString('mailto:interesse@rotaryyep.nl');
                           },
                       ),
                       TextSpan(
@@ -102,7 +89,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                     child: Center(
                       child: CupertinoButton.filled(
                         onPressed: () {
-                          launch(
+                          launchUrlString(
                               'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20Camps%20and%20Tours');
                         },
                         child:

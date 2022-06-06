@@ -1,11 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class FamilyToFamilyProgramPage extends StatefulWidget {
   @override
@@ -32,7 +38,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
         image:
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture3.png',
         text:
-            'Stijn bij de natuurlijke thermale baden van Mendoza met gastgezin en match ‘Fran’ in Argentinië'),
+            'Stijn bij de natuurlijke thermale baden van Mendoza met gastgezin en match \'Fran\' in Argentinië'),
     CarouselModel(
         image:
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture4.png',
@@ -184,26 +190,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.only(left: 10, top: 5),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-          child: RawMaterialButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: new Icon(
-              Icons.arrow_back,
-              color: Palette.accentColor,
-              size: 30.0,
-            ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Palette.themeShadeColor,
-            padding: const EdgeInsets.all(5.0),
-          ),
-        ),
+        leading: UniformBackButton(),
         title: Text(
           'Family To Family',
           textScaleFactor: 1,
@@ -588,7 +575,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                 ),
               ),
 
-//end
+              //end
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
                 child: Text(
@@ -719,7 +706,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launch('mailto:interesse@rotaryyep.nl');
+                            launchUrlString('mailto:interesse@rotaryyep.nl');
                           },
                       ),
                     ])),

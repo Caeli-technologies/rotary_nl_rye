@@ -1,18 +1,26 @@
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:io';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar_news.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/domain/entities/news.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 
 class PDFPage extends StatefulWidget {
   final News data;
@@ -73,7 +81,6 @@ class _PDFPageState extends State<PDFPage> {
 
   @override
   Widget build(BuildContext context) {
-    Color foreground = Colors.green;
     return Scaffold(
         appBar: AppBar(
           systemOverlayStyle:
@@ -82,27 +89,7 @@ class _PDFPageState extends State<PDFPage> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -131,39 +118,69 @@ class _PDFPageState extends State<PDFPage> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(
-                      width: 200,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: CircleProgressBar(
-                          foregroundColor:
-                              (progress >= 0.8) ? Colors.green : Colors.orange,
-                          backgroundColor: foreground.withOpacity(0.2),
-                          value: (progress / 100),
-                        ),
+                    new CircularPercentIndicator(
+                      animation: true,
+                      animateFromLastPercent: true,
+                      radius: 80.0,
+                      lineWidth: 8.0,
+                      percent: (progress / 100),
+                      center: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            '${(progress).round()}%',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'COMPLETED',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '$progress%',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Palette.bodyText,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'COMPLETED',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Palette.bodyText,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                      progressColor: Colors.green,
+                    )
+
+                    // Container(
+                    //   width: 200,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(20.0),
+                    //     child: CircleProgressBar(
+                    //       foregroundColor:
+                    //           (progress >= 0.8) ? Colors.green : Colors.orange,
+                    //       backgroundColor: foreground.withOpacity(0.2),
+                    //       value: (progress / 100),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     Text(
+                    //       '$progress%',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //           color: Palette.bodyText,
+                    //           fontSize: 30.0,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Text(
+                    //       'COMPLETED',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //           color: Palette.bodyText,
+                    //           fontSize: 15.0,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
@@ -232,7 +249,7 @@ class _PDFPageState extends State<PDFPage> {
   _createShareURL() async {
     _createDynamicLink(id = widget.data.id.toString());
 
-    if (await canLaunch(_linkMessage!)) {
+    if (await canLaunchUrlString(_linkMessage!)) {
       await Share.share(
           Platform.isIOS
               ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS

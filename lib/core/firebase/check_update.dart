@@ -1,10 +1,15 @@
+// 🎯 Dart imports:
 import 'dart:io';
+
+// 🐦 Flutter imports:
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/cupertino.dart';
+
+// 📦 Package imports:
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 const APP_STORE_URL =
     'https://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftwareUpdate?id=1567096118&mt=8';
@@ -100,8 +105,8 @@ _showVersionDialog(context) async {
 }
 
 _launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrlString(url)) {
+    await canLaunchUrlString(url);
   } else {
     throw 'Could not launch $url';
   }

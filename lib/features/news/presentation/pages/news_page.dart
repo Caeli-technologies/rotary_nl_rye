@@ -1,12 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../core/domain/entities/news.dart';
 import '../../../../core/prop.dart';
 

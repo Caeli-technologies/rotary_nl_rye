@@ -1,5 +1,8 @@
+// 📦 Package imports:
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
+// 🌎 Project imports:
 import '../error/failures.dart';
 
 abstract class UseCase<Type, Params> {

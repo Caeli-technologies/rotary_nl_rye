@@ -1,20 +1,26 @@
+// 🎯 Dart imports:
 import 'dart:io';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:rotary_nl_rye/core/presentation/widgets/circle_progress_bar.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
@@ -69,16 +75,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   @override
   Widget build(BuildContext context) {
-    Color foreground = Colors.red;
-
-    if (progressPercent >= 0.8) {
-      foreground = Colors.green;
-    } else if (progressPercent >= 0.4) {
-      foreground = Colors.orange;
-    }
-
-    Color background = foreground.withOpacity(0.2);
-
     return Scaffold(
         appBar: AppBar(
           systemOverlayStyle:
@@ -87,27 +83,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           actions: [
             Container(
               margin: EdgeInsets.only(right: 10, top: 5),
@@ -192,38 +168,67 @@ class _NonPDFPageState extends State<NonPDFPage> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(
-                      width: 200,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: CircleProgressBar(
-                          backgroundColor: background,
-                          foregroundColor: foreground,
-                          value: this.progressPercent,
-                        ),
+                    CircularPercentIndicator(
+                      animation: true,
+                      animateFromLastPercent: true,
+                      radius: 80.0,
+                      lineWidth: 8.0,
+                      percent: this.progressPercent,
+                      center: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            '${(this.progressPercent * 100).round()}%',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'COMPLETED',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '${(this.progressPercent * 100).round()}%',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'COMPLETED',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                      progressColor: Colors.green,
+                    )
+                    // Container(
+                    //   width: 200,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(20.0),
+                    //     child: CircleProgressBar(
+                    //       backgroundColor: background,
+                    //       foregroundColor: foreground,
+                    //       value: this.progressPercent,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     Text(
+                    //       '${(this.progressPercent * 100).round()}%',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //           color: Colors.black,
+                    //           fontSize: 30.0,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Text(
+                    //       'COMPLETED',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //           color: Colors.black,
+                    //           fontSize: 15.0,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               )
@@ -426,7 +431,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
         _createDynamicLink(
             id = widget.data.id.toString()); //TODO add the parameters here
 
-        if (await canLaunch(_linkMessage!)) {
+        if (await canLaunchUrlString(_linkMessage!)) {
           await Share.share(
               Platform.isIOS
                   ? 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
@@ -439,7 +444,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
         break;
       case 1:
-        print('platform${Platform.localeName}');
+        print('platform ${Platform.localeName}');
         setState(() {
           _isLoading = true;
           isTranslating = !isTranslating;

@@ -1,13 +1,19 @@
+// 🎯 Dart imports:
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:transparent_image/transparent_image.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:rotary_nl_rye/core/prop.dart';
+// 📦 Package imports:
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:http/http.dart' as http;
+import 'package:transparent_image/transparent_image.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/view_photo_full_screen.dart';
+import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 //TODO still need to add this somewhere
 
@@ -65,27 +71,7 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
                   : SystemUiOverlayStyle.light,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: Container(
-            margin: EdgeInsets.only(left: 10, top: 5),
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(40.0)),
-            child: RawMaterialButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: new Icon(
-                Icons.arrow_back,
-                color: Palette.accentColor,
-                size: 30.0,
-              ),
-              shape: new CircleBorder(),
-              elevation: 2.0,
-              fillColor: Palette.themeShadeColor,
-              padding: const EdgeInsets.all(5.0),
-            ),
-          ),
+          leading: UniformBackButton(),
           title: Text(
             'Gallery View',
             textScaleFactor: 1.2,

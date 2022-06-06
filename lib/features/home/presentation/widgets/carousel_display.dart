@@ -1,6 +1,13 @@
+// 🎯 Dart imports:
+import 'dart:ui';
+
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
+// 🌎 Project imports:
 import '../../../../core/prop.dart';
 
 class Carousel extends StatefulWidget {
@@ -13,8 +20,8 @@ class _CarouselState extends State<Carousel> {
 
   List<CarouselModel> carousels = [
     // CarouselModel(
-    //     image: "assets/image/homepage/4bc2b606-ddf3-4c28-930d-e4d1ad8118d4.jpg",
-    //     text: "Informatiedag online op 2 oktober a.s."),
+    //     image: 'assets/image/homepage/Informatiedag-3-september-22.png',
+    //     text: 'Informatiedag op 3 september a.s.'),
     CarouselModel(
         image: 'assets/image/homepage/shelterbox.jpg',
         text: 'Social actief zijn'),
@@ -60,33 +67,45 @@ class _CarouselState extends State<Carousel> {
               scale: 1,
               itemCount: carousels.length,
               itemBuilder: (BuildContext context, index) {
-                return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                        image: AssetImage(
-                          carousels[index].image,
-                        ),
-                        fit: BoxFit.cover),
-                  ),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                      height: 30,
+                return Stack(
+                  alignment: Alignment.bottomLeft,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.blue.shade900),
-                      padding: EdgeInsets.all(5),
-                      child: FittedBox(
-                        fit: BoxFit.fitHeight,
-                        child: Text(
-                          carousels[index].text,
-                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        image: DecorationImage(
+                            image: AssetImage(
+                              carousels[index].image,
+                            ),
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 28, vertical: 12),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(kBorderRadius),
+                                color: Colors.black12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              child: Text(
+                                carousels[index].text,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 );
               },
             ),
