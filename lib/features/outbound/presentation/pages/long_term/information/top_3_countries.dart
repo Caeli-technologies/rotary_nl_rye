@@ -102,7 +102,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                       ),
                       TextSpan(
                           text: ' (Onderaan de pagina)',
-                          style: TextStyle(fontSize: 13)),
+                          style: TextStyle(fontSize: 14)),
                     ])),
               ),
               Padding(

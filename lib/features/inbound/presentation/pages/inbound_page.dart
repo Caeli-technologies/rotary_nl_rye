@@ -13,7 +13,6 @@ import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'long_term/long_term_inbound_page.dart';
-import 'who_is_where/who_is_where.dart';
 
 class InboundPage extends StatefulWidget {
   @override
@@ -162,19 +161,19 @@ class _InboundPageState extends State<InboundPage> {
                   // CampsAndToursInboundPage(),
                   null),
 
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRowWhoIsWhere(
-                  context,
-                  'Inbounds, Who is Where?',
-                  FontAwesomeIcons.streetView,
-                  WhoIsWherePage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
+              // buildInboundOptionRowWhoIsWhere(
+              //     context,
+              //     'Inbounds, Who is Where?',
+              //     FontAwesomeIcons.streetView,
+              //     WhoIsWherePage()),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
               // the end
               SizedBox(
                 height: 20,

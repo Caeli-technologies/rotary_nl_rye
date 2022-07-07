@@ -132,13 +132,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         Row(
                           children: <Widget>[
                             HomeCardItem(
-                                icon: FontAwesomeIcons.reply,
-                                title: 'Outbound',
+                                icon: FontAwesomeIcons.planeDeparture,
+                                title: 'Op Exchange',
                                 pushTo: OutboundPage(),
                                 currentNewsIndex: 0),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.share,
-                                title: 'Inbound',
+                            HomeCardItemToNL(
+                                icon: FontAwesomeIcons.planeArrival,
+                                title: 'To ',
                                 pushTo: InboundPage(),
                                 currentNewsIndex: 0),
                             HomeCardItem(

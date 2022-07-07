@@ -441,7 +441,7 @@ class DialogPage1 extends StatelessWidget {
                       // ? "$startWeekDay, $startFullDate - \n$endWeekDay, $endFullDate"
                       ? '$startWeekDay, $startFullDate'
                       : '$startWeekDay, $startFullDate \n$startTime - $endTime',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 13.0),
+                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
                 ),
 
                 // _detectMultipleDays(),
@@ -473,7 +473,7 @@ class DialogPage1 extends StatelessWidget {
                               padding: EdgeInsets.only(left: 12.0),
                               child: Text(
                                 location ?? 'there is no location',
-                                style: TextStyle(fontSize: 13.0),
+                                style: TextStyle(fontSize: 14.0),
                               ),
                             ),
                           ),
@@ -497,7 +497,7 @@ class DialogPage1 extends StatelessWidget {
                       Expanded(
                         child: Text(
                           description ?? 'there is no description',
-                          style: TextStyle(fontSize: 13.0),
+                          style: TextStyle(fontSize: 14.0),
                         ),
                       ),
                     ],
@@ -535,7 +535,7 @@ class DialogPage1 extends StatelessWidget {
                       Expanded(
                         child: Text(
                           organizer,
-                          style: TextStyle(fontSize: 13.0),
+                          style: TextStyle(fontSize: 14.0),
                         ),
                       ),
                     ],

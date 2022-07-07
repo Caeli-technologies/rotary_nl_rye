@@ -57,6 +57,24 @@ class _LongTermExchangeOutboundPageState
                 ),
               ),
               SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: SizedBox.fromSize(
+                    // size: Size.fromRadius(48), // Image radius
+                    child: Image(
+                        image: AssetImage('assets/image/classOff22.jpeg'),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+              ),
+              SizedBox(
                 height: 20,
               ),
               Divider(

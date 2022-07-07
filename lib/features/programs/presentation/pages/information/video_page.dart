@@ -57,7 +57,7 @@ class _VideoPageState extends State<VideoPage> {
               //   padding: const EdgeInsets.only(top: 10.0),
               //   child: Text(
               //     "moet nog text voor worden gemaakt",
-              //     style: TextStyle(color: Colors.black, fontSize: 13.0),
+              //     style: TextStyle(color: Colors.black, fontSize: 14.0),
               //   ),
               // ),
               // Padding(
@@ -88,21 +88,21 @@ class _VideoPageState extends State<VideoPage> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
                   '- Het opbouwen van goede relaties met andere landen',
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   '- Het houdt de club jong',
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   '- De jongere ontwikkelt zichzelf en zijn/haar omgeving',
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               // the end dont touch XD

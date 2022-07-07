@@ -67,7 +67,7 @@ class _SelectionDayPageState extends State<SelectionDayPage> {
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
                   '- Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis van Nederland.',
-                  style: TextStyle(fontSize: 13.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
               ),
               Padding(
