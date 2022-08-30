@@ -18,6 +18,13 @@ class ClassOfPage extends StatefulWidget {
 
 class _ClassOfPageState extends State<ClassOfPage> {
   @override
+  void initState() {
+    super.initState();
+
+    outboundList.sort((a, b) => a.name.compareTo(b.name));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
