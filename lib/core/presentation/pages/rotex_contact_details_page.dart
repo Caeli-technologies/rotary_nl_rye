@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
@@ -308,8 +309,14 @@ class RotexDetails extends StatelessWidget {
                               color: Colors.grey[200],
                             ),
                             child: RawMaterialButton(
-                                onPressed: () {
-                                  launchUrlString('mailto:${person.email}');
+                                onPressed: () async {
+                                  final sms =
+                                      Uri.parse('mailto:${person.email}');
+                                  if (await canLaunchUrl(sms)) {
+                                    launchUrl(sms);
+                                  } else {
+                                    throw 'Could not launch $sms';
+                                  }
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
