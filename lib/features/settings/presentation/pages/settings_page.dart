@@ -16,13 +16,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/lang/languages.dart';
-import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/gallery_view.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
-import 'counselor_list_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -30,9 +27,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  var slider1 = true;
-  var slider2 = true;
-  var slider3 = true;
   bool isSwitchedFT = false;
 
   PackageInfo _packageInfo = PackageInfo(
@@ -130,24 +124,18 @@ class _SettingsPageState extends State<SettingsPage> {
                 boxShadow: [kBoxShadow]),
             child: Column(
               children: [
-                // buildAccountOptionRow(
-                //     context,
-                //     DemoLocalizations.of(context)!.trans('privacyAndSecurity'),
-                //     FontAwesomeIcons.shieldAlt,
-                //     null),
-
                 //TODO maybe add later a "Auto load video's on cellular" Switch
                 buildAccountOptionRow(context, 'Pictures',
                     FontAwesomeIcons.images, GalleryViewPage()),
-                buildAccountOptionRow(
-                  context,
-                  'Bestuur / Team RYE',
-                  FontAwesomeIcons.users,
-                  PDFPageWithShare(
-                    pdfUrl:
-                        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/pdf/r.i.-multidistrict-youth-exchange-program-the-netherlands-2021-2022.pdf',
-                  ),
-                ),
+                // buildAccountOptionRow(
+                //   context,
+                //   'Bestuur / Team RYE',
+                //   FontAwesomeIcons.users,
+                //   PDFPageWithShare(
+                //     pdfUrl:
+                //         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/pdf/r.i.-multidistrict-youth-exchange-program-the-netherlands-2021-2022.pdf',
+                //   ),
+                // ),
                 buildAccountOptionRow(
                     context,
                     DemoLocalizations.of(context)!.trans('social'),
@@ -203,66 +191,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 //               });
                 //             },
                 //           )),
-                buildAccountOptionRow(context, 'Counselor',
-                    FontAwesomeIcons.handshakeAngle, CounselorListPage()),
-                //TODO Make Emergency page with contacts
-                GestureDetector(
-                    child: Container(
-                  padding: EdgeInsets.zero,
-                  child: ListTile(
-                    leading: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                      child: Container(
-                        child: FaIcon(FontAwesomeIcons.kitMedical,
-                            color: Palette.emergencyRed),
-                      ),
-                    ),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Emergency',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Palette.emergencyRed,
-                          ),
-                        ),
-                        Icon(Icons.arrow_forward_ios,
-                            color: Palette.emergencyRed),
-                      ],
-                    ),
-                    onTap: () {
-                      String title = 'Emergency Page';
-                      String message =
-                          'This page is not yet ready, \nNeeds to go to a Emergency page with contact information';
-                      String action = 'Close';
-                      showMaterialDialog(context, title, message, action);
-
-                      // showDialog(
-                      //     context: context,
-                      //     builder: (BuildContext context) {
-                      //       return AlertDialog(
-                      //         title: Text("Emergency Page"),
-                      //         content: Column(
-                      //           mainAxisSize: MainAxisSize.min,
-                      //           children: [
-                      //             Text(
-                      //                 "Needs to go to a Emergency page with contact information"),
-                      //           ],
-                      //         ),
-                      //         actions: [
-                      //           TextButton(
-                      //               onPressed: () {
-                      //                 Navigator.of(context).pop();
-                      //               },
-                      //               child: Text("Close")),
-                      //         ],
-                      //       );
-                      //     });
-                    },
-                  ),
-                )),
               ],
             ),
           ),
