@@ -120,7 +120,7 @@ class _PageNavigatorState extends State<PageNavigator> {
       length: 5,
       child: Scaffold(
         bottomNavigationBar: Container(
-          padding: EdgeInsets.only(bottom: 20.0),
+          padding: EdgeInsets.only(top: 10, bottom: 20.0),
           color: Palette.themeShadeColor,
           child: TabBar(
             tabs: [
