@@ -29,10 +29,10 @@
 		<key>CFBundleSignature</key>
 		<string>????</string>
 		<key>LSApplicationQueriesSchemes</key>
-<array>
-  <string>sms</string>
-  <string>tel</string>
-</array>
+		<array>
+			<string>sms</string>
+			<string>tel</string>
+		</array>
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>
@@ -90,6 +90,6 @@
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-</dict>
+		<true/>
+	</dict>
 </plist>
