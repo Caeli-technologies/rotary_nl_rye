@@ -52,3 +52,4 @@ app.*.map.json
 
 # api keys
 assets/keys/deepl.json
+.dccache
