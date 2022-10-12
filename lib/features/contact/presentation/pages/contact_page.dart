@@ -10,6 +10,7 @@ import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_detai
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/contact/data/MDJC.dart';
 import 'package:rotary_nl_rye/features/contact/data/long_term_organization_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/rotex_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
@@ -41,7 +42,7 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           systemOverlayStyle:
@@ -86,6 +87,12 @@ class _ContactPageState extends State<ContactPage> {
                 height: 40,
                 alignment: Alignment.center,
                 color: Palette.themeContactTabShadeColor,
+                child: Text('MDJC'),
+              ),
+              Container(
+                height: 40,
+                alignment: Alignment.center,
+                color: Palette.themeContactTabShadeColor,
                 child: Text('Long Term'),
               ),
               Container(
@@ -107,6 +114,14 @@ class _ContactPageState extends State<ContactPage> {
           //height: Device.height - 277,
           margin: EdgeInsets.only(left: 5, right: 5),
           child: TabBarView(children: [
+            ListView.builder(
+              shrinkWrap: false,
+              itemBuilder: (context, index) => ContactListTile(
+                  item: mdjcList[index],
+                  contactDetailsPage:
+                      OrganizationDetails(person: mdjcList[index])),
+              itemCount: mdjcList.length,
+            ),
             ListView.builder(
               shrinkWrap: false,
               itemBuilder: (context, index) => ContactListTile(

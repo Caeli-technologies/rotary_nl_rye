@@ -5,23 +5,23 @@ import 'package:flutter/services.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/outbound/data/outbound_list.dart';
+import 'package:rotary_nl_rye/features/inbound/data/inbound_list.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'class_of_details_page.dart';
 
-class ClassOfPage extends StatefulWidget {
+class ClassOfPageInbounds extends StatefulWidget {
   @override
-  _ClassOfPageState createState() => _ClassOfPageState();
+  _ClassOfPageInboundsState createState() => _ClassOfPageInboundsState();
 
-  ClassOfPage({Key? key}) : super(key: key);
+  ClassOfPageInbounds({Key? key}) : super(key: key);
 }
 
-class _ClassOfPageState extends State<ClassOfPage> {
+class _ClassOfPageInboundsState extends State<ClassOfPageInbounds> {
   @override
   void initState() {
     super.initState();
 
-    outboundList.sort((a, b) => a.name.compareTo(b.name));
+    inboundList.sort((a, b) => a.name.compareTo(b.name));
   }
 
   @override
@@ -44,10 +44,11 @@ class _ClassOfPageState extends State<ClassOfPage> {
           )),
       body: ListView.builder(
         shrinkWrap: false,
-        itemBuilder: (context, index) => OutboundStudentListTile(
-            item: outboundList[index],
-            classOfDetailsPage: ClassOfDetails(person: outboundList[index])),
-        itemCount: outboundList.length,
+        itemBuilder: (context, index) => InboundStudentListTile(
+            item: inboundList[index],
+            classOfDetailsPage:
+                ClassOfDetailsInbounds(person: inboundList[index])),
+        itemCount: inboundList.length,
       ),
     );
   }

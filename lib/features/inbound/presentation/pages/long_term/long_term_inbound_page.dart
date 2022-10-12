@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/pages/long_term/class_of/class_of.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'information/flight_and_arrival.dart';
 import 'information/insurance.dart';
@@ -47,17 +48,23 @@ class _LongTermExchangeInboundPageState
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: Text(
-                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              //   child: Text(
+              //     'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
+              //     style: TextStyle(fontSize: 16.0),
+              //   ),
+              // ),
               SizedBox(
                 height: 20,
               ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+              buildInboundOptionRow(context, 'Class of 2022-2023',
+                  FontAwesomeIcons.peopleGroup, ClassOfPageInbounds()),
               Divider(
                 height: 15,
                 thickness: 2,

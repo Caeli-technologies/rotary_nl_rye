@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
@@ -466,8 +466,14 @@ class OrganizationDetails extends StatelessWidget {
                               color: Colors.grey[200],
                             ),
                             child: RawMaterialButton(
-                                onPressed: () {
-                                  canLaunchUrlString('mailto:${person.email}');
+                                onPressed: () async {
+                                  final email =
+                                      Uri.parse('mailto:${person.email}');
+                                  if (await canLaunchUrl(email)) {
+                                    launchUrl(email);
+                                  } else {
+                                    throw 'Could not launch $email';
+                                  }
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
@@ -487,8 +493,14 @@ class OrganizationDetails extends StatelessWidget {
                                     color: Colors.blue.shade100, width: 5),
                                 color: Colors.blue[400]),
                             child: RawMaterialButton(
-                              onPressed: () {
-                                canLaunchUrlString('tel:${person.phoneNumber}');
+                              onPressed: () async {
+                                final sms =
+                                    Uri.parse('tel:${person.phoneNumber}');
+                                if (await canLaunchUrl(sms)) {
+                                  launchUrl(sms);
+                                } else {
+                                  throw 'Could not launch $sms';
+                                }
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(35.0)),

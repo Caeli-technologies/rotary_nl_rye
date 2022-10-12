@@ -10,8 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/models/district.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/models/year.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
 import '../../../features/uniform_widgets/uniform_circle_avatar.dart';
 
@@ -304,122 +303,93 @@ class OutboundStudentListTile extends StatelessWidget {
   }
 }
 
-class InboundYearListTile extends StatelessWidget {
-  final districtListPage;
-  final YearList item;
-
-  const InboundYearListTile({
-    this.districtListPage,
+class InboundStudentListTile extends StatelessWidget {
+  final classOfDetailsPage;
+  final Inbounds item;
+  const InboundStudentListTile({
+    this.classOfDetailsPage,
     required this.item,
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        child: Padding(
-      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: ListTile(
-        leading: Padding(
-          padding: EdgeInsets.zero,
-          child: Container(
-            child: FaIcon(
-              item.icon,
-              color: Palette.lightIndigo,
-              // color: Color(0xFF640e23),
-              size: 32,
-            ),
-          ),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SizedBox(
-              width: Device.width - 120,
-              child: Text(item.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palette.grey,
-                    fontWeight: FontWeight.w500,
-                  )),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
-            ),
-          ],
-        ),
         onTap: () {
-          print(item.year);
+          print(item.name);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => districtListPage),
+            MaterialPageRoute(builder: (context) => classOfDetailsPage),
           );
         },
-      ),
-    ));
-  }
-}
-
-class InboundDistrictListTile extends StatelessWidget {
-  final studentsListPage;
-  final DistrictList item;
-
-  const InboundDistrictListTile({
-    required this.studentsListPage,
-    required this.item,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        child: Padding(
-      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
-      child: ListTile(
-        leading: Padding(
-          padding: EdgeInsets.zero,
-          child: Container(
-            child: FaIcon(
-              item.icon,
-              color: Palette.lightIndigo,
-              size: 40,
-            ),
-          ),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
+        contentPadding: EdgeInsets.all(0),
+        leading: UniformCircleAvatar(imageUrl: item.imageUrl),
+        title: Text(item.name,
+            style: TextStyle(
+              color: Palette.indigo,
+              fontWeight: FontWeight.w600,
+            )),
+        subtitle: Row(
+          children: [
+            Text(item.from,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  inherit: true,
+                  fontSize: 14.0,
+                  color: Colors.grey[600],
+                )),
             SizedBox(
-              width: Device.width - 150,
-              child: Text('${item.number} - ${item.districtName}',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palette.grey,
-                    fontWeight: FontWeight.w500,
-                  )),
+              width: 2,
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
+            SvgPicture.asset('assets/icons/flags/${item.fromFlag}.svg',
+                height: 15),
+            SizedBox(
+              width: 5,
             ),
+            FaIcon(
+              FontAwesomeIcons.arrowRightLong,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(item.to,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  inherit: true,
+                  fontSize: 14.0,
+                  color: Colors.grey[600],
+                )),
+            SizedBox(
+              width: 2,
+            ),
+            item.toFlag == null
+                ? SizedBox.shrink()
+                : SvgPicture.asset('assets/icons/flags/${item.toFlag}.svg',
+                    height: 15)
           ],
         ),
-        onTap: () {
-          print(item.number);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => studentsListPage),
-          );
-        },
+        //                       Text(
+        //   item.from,
+        //   style: TextStyle(
+        //     fontWeight: FontWeight.w500,
+        //     color: Palette.grey,
+        //   ),
+        // ),
+        trailing: Icon(
+          Icons.keyboard_arrow_right,
+          size: 30,
+          color: Palette.indigo,
+        ),
       ),
-    ));
+    );
   }
 }
 

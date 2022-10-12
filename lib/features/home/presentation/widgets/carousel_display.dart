@@ -19,9 +19,9 @@ class _CarouselState extends State<Carousel> {
   int _current = 0;
 
   List<CarouselModel> carousels = [
-    // CarouselModel(
-    //     image: 'assets/image/homepage/Informatiedag-3-september-22.png',
-    //     text: 'Informatiedag op 3 september a.s.'),
+    CarouselModel(
+        image: 'assets/image/homepage/selectiedag_8_oktober.png',
+        text: '8 oktober a.s.'),
     CarouselModel(
         image: 'assets/image/homepage/shelterbox.jpg',
         text: 'Social actief zijn'),
@@ -92,7 +92,7 @@ class _CarouselState extends State<Carousel> {
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(kBorderRadius),
-                                color: Colors.black12),
+                                color: Colors.black38),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),

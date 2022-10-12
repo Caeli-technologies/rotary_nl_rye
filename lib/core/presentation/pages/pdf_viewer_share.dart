@@ -21,8 +21,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
-// ignore: import_of_legacy_library_into_null_safe
-
 class PDFPageWithShare extends StatefulWidget {
   final String pdfUrl;
 

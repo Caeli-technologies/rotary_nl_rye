@@ -6,19 +6,18 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
-class RotexDetails extends StatelessWidget {
-  final person;
-  RotexDetails({required this.person});
+class ClassOfDetailsInbounds extends StatelessWidget {
+  final Inbounds person;
+  ClassOfDetailsInbounds({required this.person});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class RotexDetails extends StatelessWidget {
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          'Rotex',
+          'Inbounds',
           textScaleFactor: 1.4,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
@@ -106,23 +105,61 @@ class RotexDetails extends StatelessWidget {
                             ),
                             SizedBox(
                               width: Device.width - 150,
-                              child: Text(person.role,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: false,
-                                  style: TextStyle(
-                                    inherit: true,
-                                    fontSize: 14.0,
+                              child: Row(
+                                children: [
+                                  Text(person.from,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        inherit: true,
+                                        fontSize: 14.0,
+                                        color: Colors.grey[600],
+                                      )),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  SvgPicture.asset(
+                                      'assets/icons/flags/${person.fromFlag}.svg',
+                                      height: 15),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  FaIcon(
+                                    FontAwesomeIcons.arrowRightLong,
                                     color: Colors.grey,
-                                  )),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(person.to,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        inherit: true,
+                                        fontSize: 14.0,
+                                        color: Colors.grey[600],
+                                      )),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  person.toFlag == null
+                                      ? SizedBox.shrink()
+                                      : SvgPicture.asset(
+                                          'assets/icons/flags/${person.toFlag}.svg',
+                                          height: 15)
+                                ],
+                              ),
                             ),
                           ],
                         )
                       ],
                     ),
-                    SvgPicture.asset('assets/icons/custom/rotex_logo_light.svg',
-                        // color: Color(0xFFf7a81b),
-                        height: 30),
+                    // SvgPicture.asset('assets/icons/flags/${person.flag}.svg',
+                    //     height: 20)
                   ],
                 ),
               ),
@@ -160,7 +197,7 @@ class RotexDetails extends StatelessWidget {
                                     color: Color(0xFFbc2a8d),
                                   ),
                                   onPressed: () =>
-                                      launchUrlString(person.instagramUrl),
+                                      launchUrlString('${person.instagramUrl}'),
                                 ),
                               ],
                             ),
@@ -178,25 +215,7 @@ class RotexDetails extends StatelessWidget {
                                     color: Color.fromARGB(221, 201, 198, 8),
                                   ),
                                   onPressed: () =>
-                                      launchUrlString(person.snapchatUrl),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.linkedinUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.linkedinIn,
-                                    color: Color(0xFF0e76a8),
-                                  ),
-                                  onPressed: () =>
-                                      launchUrlString(person.linkedinUrl),
+                                      launchUrlString('${person.snapchatUrl}'),
                                 ),
                               ],
                             ),
@@ -214,7 +233,7 @@ class RotexDetails extends StatelessWidget {
                                     color: Color(0xFF3b5998),
                                   ),
                                   onPressed: () =>
-                                      launchUrlString(person.facebookUrl),
+                                      launchUrlString('${person.facebookUrl}'),
                                 ),
                               ],
                             ),
@@ -232,7 +251,7 @@ class RotexDetails extends StatelessWidget {
                                     color: Color(0xFF0e76a8),
                                   ),
                                   onPressed: () =>
-                                      launchUrlString(person.websiteUrl),
+                                      launchUrlString('${person.websiteUrl}'),
                                 ),
                               ],
                             ),
@@ -242,7 +261,6 @@ class RotexDetails extends StatelessWidget {
               ),
 
               person.websiteUrl == null &&
-                      person.linkedinUrl == null &&
                       person.facebookUrl == null &&
                       person.instagramUrl == null &&
                       person.snapchatUrl == null
@@ -279,12 +297,11 @@ class RotexDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
-                  DemoLocalizations.of(context)!.trans(person.bio),
+                  person.bio,
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
               person.websiteUrl == null &&
-                      person.linkedinUrl == null &&
                       person.facebookUrl == null &&
                       person.instagramUrl == null &&
                       person.snapchatUrl == null
@@ -309,14 +326,8 @@ class RotexDetails extends StatelessWidget {
                               color: Colors.grey[200],
                             ),
                             child: RawMaterialButton(
-                                onPressed: () async {
-                                  final sms =
-                                      Uri.parse('mailto:${person.email}');
-                                  if (await canLaunchUrl(sms)) {
-                                    launchUrl(sms);
-                                  } else {
-                                    throw 'Could not launch $sms';
-                                  }
+                                onPressed: () {
+                                  launchUrlString('mailto:${person.email}');
                                 },
                                 shape: new RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
@@ -347,44 +358,6 @@ class RotexDetails extends StatelessWidget {
                                 size: 40,
                               ),
                             )),
-
-                    // Container(
-                    //     height: 65.0,
-                    //     width: 230.0,
-                    //     decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(35.0),
-                    //         border: Border.all(
-                    //             color: Colors.blue.shade100, width: 5),
-                    //         color: Colors.blue[400]),
-                    //     child: RawMaterialButton(
-                    //       onPressed: () {
-                    //         launchUrlString("tel:${person.phoneNumber}");
-                    //       },
-                    //       shape: new RoundedRectangleBorder(
-                    //           borderRadius: BorderRadius.circular(35.0)),
-                    //       child: Row(
-                    //         children: <Widget>[
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(left: 25.0),
-                    //             child: FaIcon(
-                    //               FontAwesomeIcons.whatsapp,
-                    //               color: Color(
-                    //                 0xFF25D366,
-                    //               ),
-                    //               size: 30,
-                    //             ),
-                    //           ),
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(left: 20.0),
-                    //             child: Text(
-                    //               'Whatsapp me ',
-                    //               style: TextStyle(
-                    //                   color: Colors.white, fontSize: 18.0),
-                    //             ),
-                    //           )
-                    //         ],
-                    //       ),
-                    //     ))
                   ],
                 ),
               ),

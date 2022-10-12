@@ -1,18 +1,22 @@
 // 🎯 Dart imports:
 import 'dart:async';
+import 'dart:io';
 
 // 🐦 Flutter imports:
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 
@@ -71,28 +75,19 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
           leading: UniformBackButton(),
           actions: <Widget>[
             IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.copy,
+                icon: FaIcon(
+                  FontAwesomeIcons.filePdf,
                   color: Palette.indigo,
                 ),
-                onPressed: () {
-                  Clipboard.setData(new ClipboardData(text: 'Your Copy text'))
-                      .then((_) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Copied to your clipboard !',
-                          style: TextStyle(
-                              color:
-                                  (MediaQuery.of(context).platformBrightness ==
-                                          Brightness.light)
-                                      ? Colors.black
-                                      : Colors.white)),
-                      backgroundColor:
-                          (MediaQuery.of(context).platformBrightness ==
-                                  Brightness.light)
-                              ? Colors.grey[350]
-                              : Palette.themeShadeColor,
-                    ));
-                  });
+                onPressed: () async {
+                  Directory tempDir = await getTemporaryDirectory();
+                  String fielName = pdfURL.split('/').last;
+
+                  final path = '${tempDir.path}/${fielName}';
+
+                  await Dio().download(pdfURL, path);
+
+                  await Share.shareFiles([path], subject: fielName);
                 })
           ],
           title: Text(

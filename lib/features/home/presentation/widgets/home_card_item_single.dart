@@ -24,7 +24,7 @@ class HomeCardItemSingle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.only(left: 5, right: 5),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kBorderRadius),
