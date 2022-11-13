@@ -105,8 +105,8 @@ List<Inbounds> inboundList = [
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: '?',
-    fromFlag: 'eu',
+    from: 'USA',
+    fromFlag: 'us',
     to: 'Nederland',
     toFlag: 'nl',
   ),
@@ -159,8 +159,8 @@ List<Inbounds> inboundList = [
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: '?',
-    fromFlag: 'eu',
+    from: 'Spain',
+    fromFlag: 'es',
     to: 'Nederland',
     toFlag: 'nl',
   ),
@@ -382,8 +382,8 @@ List<Inbounds> inboundList = [
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: '?',
-    fromFlag: 'eu',
+    from: 'Italy',
+    fromFlag: 'it',
     to: 'Nederland',
     toFlag: 'nl',
   ),
@@ -460,6 +460,234 @@ List<Inbounds> inboundList = [
     websiteUrl: null,
     from: 'Argentina',
     fromFlag: 'ar',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Stella Favini
+  Inbounds(
+    name: 'Stella Favini',
+    bio:
+        'I’m Stella, i’m 17, i’m from Verona in Italy and i’m going to Lelystad.  \n\nI play tamburello a particular italian sport similar to tennis, i really like go out with my friends and stay with my family.  \n\nI’m really happy to do this experience with a lot of people, i hope to have an amazing year in the netherlands, meet new people and practice my english and learn dutch. \n\nI have to say thank you to rotary for give to me the possibility to do this experience.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/stella-favini.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Italy',
+    fromFlag: 'it',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Manoela
+  Inbounds(
+    name: 'Manoela',
+    bio:
+        'Hi, my name is Manoela, I am 16 years old and I am from Brazil \n\nMy city in the Netherlands is called Gorinchem and in Brazil it is called Assis, in the state of Sao Paulo. My district is 4510 \n\nI love read, watch some movies and listen music \n\nI hope to know more about the culture,  learn the language, see a lot of new things, new people, new places and have the best exchange experience',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/manoela.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Brazilië',
+    fromFlag: 'br',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Luisa Dominigues Santello
+  Inbounds(
+    name: 'Luisa Dominigues Santello',
+    bio:
+        'Hallo! Hoe gaat het? \n\nI am Luisa, I am 17 years old and I am from Brazil. \n\nI will live this year (2022-2023) in Drachten, a city in Friesland, that is in the north of Nederlands.  \n\nI am from a big city in Brazil, at least it seems big to me, it is called Presidente Prudente and it is in the countyside of São Paulo state.  \n\nMy district in Brazil is 4510 and here in the Netherlands it is 1590. \n\nI like to go out with my friends, talk a lot, watch movies and tv series and visit new places.  \n\nI hope here I make friends, learn about Dutch culture, learn Dutch, open my mind and become a citizen of the world. This exchange is a dream becoming real, I hope to live an amazing life here with a lot of experiences.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/luisa-dominigues-santello.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Brazilië',
+    fromFlag: 'br',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Amelia Choi
+  Inbounds(
+    name: 'Amelia Choi',
+    bio:
+        'Hallo, I’m Amelia Choi and I’m from Houston, Texas.  I’m 18 years old and I enjoy going to concerts, trying new foods, and traveling.\n\nI’m currently living in Alphen aan den Rijn and I’m in rotary district 1570.  The Netherlands has been so much fun so far, and I’m excited to explore new places and meet new people.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/amelia-choi.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'USA',
+    fromFlag: 'us',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Iago Gramoza Niort
+  Inbounds(
+    name: 'Iago Gramoza Niort',
+    bio:
+        "Hello my name is Iago, I'm 17 years old, I live in France but I born in Brazil. I like to play football volleyball and tennis. I'm a very happy gay every time, I like so much ti laugh. I'm from the 1650 district in France and here in Nederland I'm in Venlo Limburg. You can add me on Instagram if you want.",
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/iago-gramoza-niort.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: 'https://www.instagram.com/gramoza_/',
+    websiteUrl: null,
+    from: 'France',
+    fromFlag: 'fr',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Avery Wolff
+  Inbounds(
+    name: 'Avery Wolff',
+    bio:
+        'Hi! My name is Avery Wolff and I am from Houston, Texas. I am so excited for the coming year and all the wonderful cultural experiences. I am 18 years old and i am staying in Meppel. \n\nIn houston, I am from district 5890 along with another inbound student. I am so excited about the food and biking! As well as sharing my culture and traditions and experiencing others',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/avery-wolff.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'USA',
+    fromFlag: 'us',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Maureen Alcántara Pena
+  Inbounds(
+    name: 'Maureen Alcántara Pena',
+    bio:
+        'My name is Maureen Alcántara Peña, I am 18 years old and I am from Mexico State, Mexico.\n\nThe things I enjoy doing are running, I also like music, that’s why I play the piano, and I also like animals, especially cats. \n\nIn this exchange year I will be going to a small village called Wierden district 1560, and I hope I have a great time here, get to know other people, other places and learn about them.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/maureen-alcantara-pena.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: 'https://www.snapchat.com/add/maualc08/',
+    facebookUrl: null,
+    instagramUrl: 'https://www.instagram.com/maau.alc/',
+    websiteUrl: null,
+    from: 'Mexico',
+    fromFlag: 'mx',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Monica Beninatto
+  Inbounds(
+    name: 'Monica Beninatto',
+    bio:
+        'Hi i’m monica, I’m 17 and I’m from Italy. I’m very happy to be here and I think that it’s an experience that everybody have to do it.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/monica-beninatto.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Italy',
+    fromFlag: 'it',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Sophie Kilmer
+  Inbounds(
+    name: 'Sophie Kilmer',
+    bio:
+        'Hi! My name is Sophie Kilmer. I’m 16 and my pronouns are she/her. I’m from Gig Harbor, a small town in Washington state and I’ll be spending this year in Lelystad! \n\nI love to read, watch movies and listen to music. I play the cello and back home I’m in an orchestra. I also enjoy hanging out with my friends and I love to travel.\n\nI’ve been interested in exchange since I first heard about it several years ago. I’m so excited to be in the Netherlands and look forward to learning as much as I can this year.',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'USA',
+    fromFlag: 'us',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Telma Siponen
+  Inbounds(
+    name: 'Telma Siponen',
+    bio:
+        'Hi I’m Telma Siponen! I’m doing my exchange year in Meppel (district 1590). \n\nIn Finland I do theater and love to read! I also walk with my dog a lot. Hope that my exchange year gives me new friends and experiences! Netherlands is a beautiful country and I can’t wait to explore it!! ',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/telma-siponen.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: 'https://www.snapchat.com/add/telmaelviira/',
+    facebookUrl: null,
+    instagramUrl: 'https://www.instagram.com/telmaelviira/',
+    websiteUrl: null,
+    from: 'Finland',
+    fromFlag: 'fi',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Sini
+  Inbounds(
+    name: 'Sini',
+    bio:
+        'Hi im sini. Im 16 and im from Finland. Im very happy to be here and think that the experience is something everyone should do.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/sini.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Finland',
+    fromFlag: 'fi',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Pablo Puertas Aizcorbe
+  Inbounds(
+    name: 'Pablo Puertas Aizcorbe',
+    bio:
+        'Hello my name is Pablo, I’m 16 years old and I live in the north of Spain in a small city called Pamplona. \n\nNowadays I live in Netherlands also in the north in a village called Heiloo ( District 1580 ).\n\nOne of my hobbies is to playing ice hockey as well I like to hang out with my friends and also I love to spend time with my family.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/22-23/pablo-puertas-aizcorbe.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Spain',
+    fromFlag: 'es',
     to: 'Nederland',
     toFlag: 'nl',
   ),

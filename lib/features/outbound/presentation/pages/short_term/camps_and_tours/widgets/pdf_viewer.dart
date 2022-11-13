@@ -87,7 +87,7 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
 
                   await Dio().download(pdfURL, path);
 
-                  await Share.shareFiles([path], subject: fielName);
+                  await Share.shareXFiles([XFile(path)], subject: fielName);
                 })
           ],
           title: Text(
