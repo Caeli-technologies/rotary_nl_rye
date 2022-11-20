@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 4.0.1+77
+version: 4.0.2+78
 
 # authors:
 #   - Ruben Talstra <info@caeli-tech.com>
@@ -29,18 +29,18 @@ dependencies:
   cached_network_image: ^3.2.2
   carousel_slider: ^4.1.1
   chewie: ^1.3.5
-  cloud_firestore: ^4.0.5
+  cloud_firestore: ^4.1.0
   csv: ^5.0.1
   cupertino_icons: ^1.0.5
   dartz: ^0.10.1
   equatable: ^2.0.5
-  firebase_analytics: ^10.0.5
-  firebase_auth: ^4.1.2
-  firebase_core: ^2.2.0
-  firebase_crashlytics: ^3.0.5
-  firebase_dynamic_links: ^5.0.5
-  firebase_messaging: ^14.1.0
-  firebase_remote_config: ^3.0.5
+  firebase_analytics: ^10.0.6
+  firebase_auth: ^4.1.3
+  firebase_core: ^2.3.0
+  firebase_crashlytics: ^3.0.6
+  firebase_dynamic_links: ^5.0.6
+  firebase_messaging: ^14.1.1
+  firebase_remote_config: ^3.0.6
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
@@ -56,10 +56,10 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   maps_launcher: ^2.0.1
   mockito: ^5.3.2
-  package_info_plus: ^3.0.1
+  package_info_plus: ^3.0.2
   path_provider: ^2.0.11
   photo_view: ^0.14.0
-  share_plus: ^6.2.0
+  share_plus: ^6.3.0
   shared_preferences: ^2.0.15
   skeletons: ^0.0.3
   table_calendar: ^3.0.8
@@ -72,7 +72,7 @@ dependencies:
 
 dev_dependencies:
   dependency_validator: ^3.2.2
-  flutter_launcher_icons: ^0.10.0
+  flutter_launcher_icons: ^0.11.0
   flutter_lints: ^2.0.1
   flutter_native_splash: ^2.2.14
   import_sorter: ^4.6.0
