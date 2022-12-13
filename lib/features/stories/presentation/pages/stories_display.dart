@@ -14,6 +14,7 @@ import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_video.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import '../../../../core/prop.dart';
+import '../../../../injection_container.dart';
 import '../widgets/story_details_page.dart';
 
 class StoriesDisplay extends StatefulWidget {
@@ -29,7 +30,7 @@ class StoriesDisplay extends StatefulWidget {
 class _StoriesDisplayState extends State<StoriesDisplay> {
   _StoriesDisplayState({required this.student});
 
-  final storyBloc = StudentsBloc();
+  final storyBloc = StudentsBloc(sl(), sl());
 
   // List<Story> stories = [];
   // bool _isLoading = true;

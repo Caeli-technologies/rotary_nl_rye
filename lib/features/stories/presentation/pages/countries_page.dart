@@ -9,6 +9,7 @@ import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:rotary_nl_rye/injection_container.dart';
 import 'exchange_students_page.dart';
 
 class CountriesPage extends StatefulWidget {
@@ -25,7 +26,7 @@ class CountriesPage extends StatefulWidget {
 //https://kangabru.xyz/2020/05/29/zero-to-hero-2.html#preload-svgs
 
 class _CountriesPageState extends State<CountriesPage> {
-  final studentBloc = new StudentsBloc();
+  final studentBloc = new StudentsBloc(sl(), sl());
 
   @override
   void initState() {

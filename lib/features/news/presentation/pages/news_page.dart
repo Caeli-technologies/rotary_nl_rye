@@ -13,6 +13,7 @@ import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import '../../../../core/domain/entities/news.dart';
 import '../../../../core/prop.dart';
+import '../../../../injection_container.dart';
 
 class NewsPage extends StatefulWidget {
   // final News news;
@@ -24,7 +25,7 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  final _newsBloc = NewsBloc();
+  final _newsBloc = NewsBloc(sl());
   //_NewsPageState({required News news}) : _news = news;
   //final News _news;
   // List _stories = [];
