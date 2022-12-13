@@ -17,7 +17,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
 import 'core/custom_routes.dart';
-import 'core/data/initData.dart';
 import 'core/lang/languages.dart';
 import 'core/presentation/widgets/page_navigator.dart';
 import 'injection_container.dart' as di;
@@ -110,8 +109,6 @@ Future<void> main() async {
 
     runApp(new MyApp());
   }, FirebaseCrashlytics.instance.recordError);
-  final _repo = Repo();
-  _repo.initData('', '');
   // Pass all uncaught errors from the framework to Crashlytics.
 }
 

@@ -1,15 +1,20 @@
 // 🎯 Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
-import 'package:rotary_nl_rye/core/data/datasources/config.dart';
-import 'package:rotary_nl_rye/core/data/initData.dart';
+import 'package:rotary_nl_rye/core/data/datasources/caching/shared_preferences_cache.dart';
+import 'package:rotary_nl_rye/core/domain/repository/exchange_student_repository.dart';
+import 'package:rotary_nl_rye/core/domain/repository/stories_repository.dart';
+
 import 'entities/exchange_student.dart';
 import 'entities/story.dart';
 
 class StudentsBloc {
+  final StoriesRepository storiesRepository;
+  final ExchangeStudentRepository exchangeStudentRepository;
+
+  StudentsBloc(this.storiesRepository, this.exchangeStudentRepository);
+
   final _studentController =
       StreamController<List<ExchangeStudent>>.broadcast();
   final _storyController = StreamController<List<Story>>.broadcast();
@@ -17,24 +22,20 @@ class StudentsBloc {
   get studentList => _studentController.stream;
   get storyList => _storyController.stream;
 
-  final Cache cache = new Cache();
+  final SharedPreferencesCache cache = new SharedPreferencesCache();
 
   void getExchangeStudentList() async {
-    await Repo().initData('', '');
-    final List temp = json.decode(await cache.getByKey(Config.spExchangeStudentsKey)) as List;
-    final List<ExchangeStudent> exchangeStudents = [];
-    temp.forEach((json) {exchangeStudents.add(ExchangeStudent.fromJson(json));});
+    final List<ExchangeStudent>? exchangeStudents = await exchangeStudentRepository.exchangeStudents;
+    if (exchangeStudents == null) {
+      return;
+    }
     _studentController.sink.add(exchangeStudents);
   }
 
   void getStoriesList(String studentExchangeYear, String studentName) async {
-    final List<Story> stories = [];
-    try {
-      await Repo().initData(studentExchangeYear, studentName);
-      final List temp = json.decode(await cache.getByKey(studentExchangeYear + studentName)) as List;
-      temp.forEach((json) {stories.add(Story.fromJson(json));});
-    } catch (error) {
-      print(error);
+    final List<Story>? stories = await storiesRepository.getStories(studentExchangeYear, studentName);
+    if (stories == null) {
+      return;
     }
     _storyController.sink.add(stories);
   }

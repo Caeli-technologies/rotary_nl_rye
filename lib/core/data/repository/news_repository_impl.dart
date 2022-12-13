@@ -3,59 +3,46 @@ import 'dart:async';
 import 'dart:convert';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
+import 'package:rotary_nl_rye/core/data/datasources/caching/cache.dart';
 import 'package:rotary_nl_rye/core/data/datasources/config.dart';
-import 'package:rotary_nl_rye/core/data/datasources/firestore.dart';
+import 'package:rotary_nl_rye/core/data/datasources/url_provider.dart';
 import 'package:rotary_nl_rye/core/data/datasources/http.dart';
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/core/domain/repository/news_repository.dart';
-import '../initData.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
-  final _controller = StreamController<List<News>>.broadcast();
-  final Cache cache = new Cache();
+  final Cache cache;
+
+  NewsRepositoryImpl(this.cache);
 
   @override
-  get news => _controller.stream;
-
-  @override
-  Future<void> dispose() async {
-    await _controller.close();
+  Future<List<News>?> get news async{
+    String? rawData =
+    await _getNewsDataLocal();
+    if (rawData == null) {
+      rawData = await _getNewsDataRemote();
+      if (rawData == null) {
+        return null;
+      }
+      await _cacheNews(rawData);
+    }
+    return _parseRaw(rawData);
   }
 
-  Future<List<News>> get() async {
-    await Repo().initData('', '');
-
-    List<News> news = await getCachedNews();
-    _controller.sink.add(news);
-
-    return news;
+  Future<String?> _getNewsDataRemote() async {
+    return ApiResponse.getContent(await UrlProvider.getNewsUrl());
   }
 
-  Future<List<News>> getCachedNews() async {
-    final List temp = json.decode(await cache.getByKey(Config.spNewsKey));
-    final List<News> news = [];
-    temp.forEach((json) {news.add(News.fromJson(json));});
-    return news;
+  Future<String?> _getNewsDataLocal() async {
+    return await cache.getByKey(Config.spNewsKey);
   }
 
-  Future<void> cacheNews() async {
-    String data = await getNewsData();
-
-    List<News> news = encodeNews(data);
-
-    await cache.store(Config.spNewsKey, json.encode(news));
+  Future<void> _cacheNews(final String news) async {
+    await cache.store(Config.spNewsKey, news);
   }
 
-  Future<String> getNewsData() async {
-    final ApiResponse apiResponse = new ApiResponse();
-    final String url = await FireStoreUrls.getUrl(Config.fbNewsKey);
-    final String data = await apiResponse.getBody(url);
-    return data;
-  }
-
-  List<News> encodeNews(String data) {
-    final List decoded = json.decode(data)[Config.apiNewsKey] as List;
+  List<News> _parseRaw(final String rawData) {
+    final List decoded = json.decode(rawData)[Config.apiNewsKey] as List;
     final List<News> news = [];
     for (Map<String, dynamic> item in decoded) {
       news.add(News.fromJson(item));

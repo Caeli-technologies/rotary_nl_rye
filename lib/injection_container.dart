@@ -4,7 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
+import 'package:rotary_nl_rye/core/data/datasources/caching/shared_preferences_cache.dart';
 import 'package:rotary_nl_rye/core/network/network_info.dart';
 
 // service locator
@@ -19,9 +19,9 @@ Future<void> init() async {
   // sl.registerLazySingleton(() => GetStories(sl()));
 
   // temp solluction
-  final Cache cache = new Cache();
+  final SharedPreferencesCache cache = new SharedPreferencesCache();
 
-  await cache.clear();
+  await cache.invalidate();
   // final today = DateTime(now.year, now.month, now.day);
   // final toDaysAgo = DateTime(now.year, now.month, now.day - 2);
 

@@ -69,6 +69,7 @@ dependencies:
   video_player: ^2.4.7
   wakelock: ^0.6.2
   percent_indicator: ^4.2.2
+  image_downloader: ^0.31.0
 
 dev_dependencies:
   dependency_validator: ^3.2.2

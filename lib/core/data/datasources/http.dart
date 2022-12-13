@@ -1,11 +1,21 @@
 // 📦 Package imports:
-import 'package:http/http.dart' as http;
+import 'dart:typed_data';
+
+import 'package:http/http.dart';
 
 class ApiResponse {
-  Future<String> getBody(String url) async {
-    http.Response? response;
+  static Future<String> getContent(String url) async {
+    return (await _getResponse(url)).body;
+  }
+
+  static Future<Uint8List> getFileContent(String url) async {
+    return (await _getResponse(url)).bodyBytes;
+  }
+
+  static Future<Response> _getResponse(final String url) async {
+    final Response? response;
     try {
-      response = await http.get(
+      response = await get(
         Uri.parse(url),
         headers: {
           'Content-Type': 'application/json',
@@ -19,6 +29,6 @@ class ApiResponse {
       throw 'response ${response.statusCode}';
     }
 
-    return response.body;
+    return response;
   }
 }

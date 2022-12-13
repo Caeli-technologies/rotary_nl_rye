@@ -1,44 +1,49 @@
 // 🎯 Dart imports:
 import 'dart:async';
-import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
-import 'package:rotary_nl_rye/core/data/datasources/config.dart';
-import 'package:rotary_nl_rye/core/data/datasources/firestore.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:rotary_nl_rye/core/data/datasources/url_provider.dart';
 import 'package:rotary_nl_rye/core/domain/entities/image.dart';
 import 'package:rotary_nl_rye/core/domain/repository/header_image_repository.dart';
-import '../initData.dart';
 
-class HeaderImageRepositoryImpl implements HeaderImageRepository{
-  final _controller = StreamController<HeaderImage>.broadcast();
-  final Cache cache = new Cache();
+import '../datasources/http.dart';
 
+class HeaderImageRepositoryImpl implements HeaderImageRepository {
   @override
-  get headerImage => _controller.stream;
-
-  @override
-  Future<void> dispose() async {
-    await _controller.close();
+  Future<HeaderImage?> get headerImage async {
+    File? file =
+    await _getHeaderImageDataLocal();
+    if (file == null) {
+      final Uint8List? rawData = await _getHeaderImageDataRemote();
+      if (rawData == null) {
+        return null;
+      }
+      file = await _cacheHeaderImage(rawData);
+    }
+    return _parseRaw(file);
   }
 
-  Future<HeaderImage> getHeaderImageData() async {
-    await Repo().initData('', '');
-
-    HeaderImage headerImage = await getCachedHeaderImage();
-    _controller.sink.add(headerImage);
-
-    return headerImage;
+  Future<Uint8List?> _getHeaderImageDataRemote() async {
+    return await ApiResponse.getFileContent(
+        await UrlProvider.getExchangeStudentUrl());
   }
 
-  Future<HeaderImage> getCachedHeaderImage() async {
-    final HeaderImage headerImage = json.decode(await cache.getByKey(Config.spImageHeaderKey));
-    return headerImage;
+  Future<File?> _getHeaderImageDataLocal() async {
+    final documentDirectory = await getApplicationDocumentsDirectory();
+    return await File(documentDirectory.path + '/images/headerImage.png');
   }
 
-  Future<void> cacheImageHeader() async {
-    final String url = await FireStoreUrls.getUrl(Config.fbImageHeaderKey);
+  Future<File> _cacheHeaderImage(final Uint8List bytes) async {
+    final documentDirectory = await getApplicationDocumentsDirectory();
+    final File file = new File(documentDirectory.path + '/images/headerImage.png');
+    file.writeAsBytesSync(bytes);
+    return file;
+  }
 
-    await cache.store(Config.spImageHeaderKey, url);
+  HeaderImage _parseRaw(final File file) {
+    return HeaderImage(image: file);
   }
 }
