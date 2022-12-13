@@ -1,22 +1,24 @@
 // 🎯 Dart imports:
 import 'dart:async';
 
-// 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
 // 📦 Package imports:
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/social.dart';
 
+import '../../injection_container.dart';
+import '../data/repository/news_repository_impl.dart';
+
 Future<void> initDynamicLinks(BuildContext context) async {
-  NewsBloc _repo = NewsBloc();
+  final _repo = NewsRepositoryImpl(sl());
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   //  "onLink" is when the app is open and on the homescreen.
@@ -55,22 +57,24 @@ Future<void> initDynamicLinks(BuildContext context) async {
     if (deepLink.path == '/news') {
       String? id = deepLink.queryParameters['id'];
       print('news id $id');
-      List<News> _newsList = await _repo.getNewsData();
-      print('news fetched ${_newsList[int.parse(id!)].toString()}');
-      _newsList[int.parse(id)].isPdf
-          ? Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PDFPage(
-                        pdfUrl: _newsList[int.parse(id)].pdf!,
-                        data: _newsList[int.parse(id)],
-                      )),
-            )
-          : Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      NonPDFPage(data: _newsList[int.parse(id)])));
+      List<News>? _newsList = await _repo.news;
+      if (_newsList != null) {
+        print('news fetched ${_newsList[int.parse(id!)].toString()}');
+        _newsList[int.parse(id)].isPdf
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PDFPage(
+                          pdfUrl: _newsList[int.parse(id)].pdf!,
+                          data: _newsList[int.parse(id)],
+                        )),
+              )
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        NonPDFPage(data: _newsList[int.parse(id)])));
+      }
     }
     // still need some work
     Navigator.pushNamed(context, '${deepLink.path}');
@@ -112,21 +116,23 @@ Future<void> initDynamicLinks(BuildContext context) async {
   }
   if (deepLink?.path == '/news') {
     String? id = deepLink?.queryParameters['id'];
-    List<News> _newsList = await _repo.getNewsData();
+    List<News>? _newsList = await _repo.news;
 
-    _newsList[int.parse(id!)].isPdf
-        ? Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PDFPage(
-                    pdfUrl: _newsList[int.parse(id)].pdf!,
-                    data: _newsList[int.parse(id)])),
-          )
-        : Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    NonPDFPage(data: _newsList[int.parse(id)])));
+    if (_newsList != null) {
+      _newsList[int.parse(id!)].isPdf
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PDFPage(
+                      pdfUrl: _newsList[int.parse(id)].pdf!,
+                      data: _newsList[int.parse(id)])),
+            )
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      NonPDFPage(data: _newsList[int.parse(id)])));
+    }
   }
   // still need some work
   // Navigator.pushNamed(context, '${deepLink?.path}');
