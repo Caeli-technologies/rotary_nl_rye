@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 // 📦 Package imports:
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:csv/csv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -182,9 +182,9 @@ class TravelCard extends StatelessWidget {
                       full.isNotEmpty
                           ? Container(
                               padding: EdgeInsets.only(left: 12, top: 6),
-                              child: Badge(
+                              child: badges.Badge(
                                 toAnimate: false,
-                                shape: BadgeShape.square,
+                                shape: badges.BadgeShape.square,
                                 badgeColor: Colors.red,
                                 borderRadius: BorderRadius.circular(8),
                                 badgeContent: Text('VOL',
