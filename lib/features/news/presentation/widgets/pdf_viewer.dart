@@ -18,7 +18,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 
@@ -27,6 +28,7 @@ class PDFPage extends StatefulWidget {
   final String pdfUrl;
 
   PDFPage({required this.data, required this.pdfUrl});
+
   @override
   _PDFPageState createState() => _PDFPageState(pdfUrl: pdfUrl, data: data);
 }
@@ -81,25 +83,16 @@ class _PDFPageState extends State<PDFPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                CupertinoIcons.share,
-                color: Palette.indigo,
-              ),
-              onPressed: _createShareURL,
-            )
-          ],
-        ),
+    return RotaryScaffold(
+        actions: [
+          IconButton(
+            icon: Icon(
+              CupertinoIcons.share,
+              color: Palette.indigo,
+            ),
+            onPressed: _createShareURL,
+          )
+        ],
         body: Stack(
           children: <Widget>[
             PDF(
@@ -217,8 +210,8 @@ class _PDFPageState extends State<PDFPage> {
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarynl.page.link',
-      link: Uri.parse(
-          'https://rotarynl.page.link/news?id=$id'), //change this to the url in the main.dart
+      link: Uri.parse('https://rotarynl.page.link/news?id=$id'),
+      //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
@@ -253,7 +246,8 @@ class _PDFPageState extends State<PDFPage> {
       await Share.share(
           Platform.isIOS
               ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage' // iOS
-              : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage', //android
+              : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
+          //android
           subject: 'look at this nice app :)');
     } else {
       throw 'Could not launch $_linkMessage';

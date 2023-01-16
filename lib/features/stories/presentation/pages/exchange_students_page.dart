@@ -11,7 +11,8 @@ import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
 import 'package:rotary_nl_rye/features/stories/presentation/pages/stories_display.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class ExchangeStudentsPage extends StatelessWidget {
   final Country country;
@@ -21,22 +22,8 @@ class ExchangeStudentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          country.name,
-          textScaleFactor: 1.5,
-          style: TextStyle(
-              color: Palette.indigo, fontWeight: FontWeight.bold, fontSize: 15),
-        ),
-      ),
+    return RotaryScaffold(
+      title: country.name,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),

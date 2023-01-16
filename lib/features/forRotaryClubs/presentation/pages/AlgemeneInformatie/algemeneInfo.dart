@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class AlgemeneInfoPage extends StatefulWidget {
   @override
@@ -14,21 +15,8 @@ class AlgemeneInfoPage extends StatefulWidget {
 class _AlgemeneInfoPageState extends State<AlgemeneInfoPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Algemene Informatie',
-          textScaleFactor: 1,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Algemene Informatie',
       body: ListView(
         padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: true,
@@ -37,16 +25,6 @@ class _AlgemeneInfoPageState extends State<AlgemeneInfoPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 5.0),
-              //   child: Text(
-              //     'Sponsoring - wat houdt het in?',
-              //     style: TextStyle(
-              //         color: Palette.titleText,
-              //         fontSize: 20.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(

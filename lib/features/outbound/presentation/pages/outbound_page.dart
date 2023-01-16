@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'long_term/long_term_outbound_page.dart';
 import 'short_term/camps_and_tours/camps_and_tours_outbound_page.dart';
 import 'short_term/family_to_family/family_to_family_outbound_page.dart';
@@ -22,21 +22,8 @@ class OutboundPage extends StatefulWidget {
 class _OutboundPageState extends State<OutboundPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Outbound',
-          textScaleFactor: 1.4,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Outbound',
       body: ListView(
         padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: true,

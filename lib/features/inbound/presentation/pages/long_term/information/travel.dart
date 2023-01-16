@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class TravelPage extends StatefulWidget {
   @override
@@ -19,21 +19,8 @@ class _TravelPageState extends State<TravelPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Travel',
-          textScaleFactor: 1,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Travel',
       body: ListView(
         padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: false,
@@ -42,16 +29,6 @@ class _TravelPageState extends State<TravelPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "AANMELDEN?",
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: RichText(

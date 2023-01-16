@@ -20,7 +20,8 @@ import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class NonPDFPage extends StatefulWidget {
   @override
@@ -75,94 +76,80 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          actions: [
-            Container(
-              margin: EdgeInsets.only(right: 10, top: 5),
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Palette.themeShadeColor,
-                borderRadius: BorderRadius.circular(40.0),
-              ),
-              child: Platform.localeName == 'NL'
-                  ? PopupMenuButton<int>(
-                      // color: Colors.black,
-                      itemBuilder: (context) => [
-                        PopupMenuItem<int>(
-                            value: 0,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  CupertinoIcons.share,
-                                  color: Palette.lightIndigo,
-                                ),
-                                const SizedBox(
-                                  width: 7,
-                                ),
-                                Text('Share')
-                              ],
-                            )),
-                      ],
-                      onSelected: (item) => selectedItem(context, item),
-                    )
-                  : PopupMenuButton<int>(
-                      // color: Colors.black,
-                      itemBuilder: (context) => [
-                        PopupMenuItem<int>(
-                            value: 0,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  CupertinoIcons.share,
-                                  color: Palette.lightIndigo,
-                                ),
-                                const SizedBox(
-                                  width: 7,
-                                ),
-                                Text('Share')
-                              ],
-                            )),
-                        PopupMenuDivider(),
-                        PopupMenuItem<int>(
-                            value: 1,
-                            child: Row(
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.language,
-                                  color: Palette.lightIndigo,
-                                ),
-                                const SizedBox(
-                                  width: 7,
-                                ),
-                                Text('Translate')
-                              ],
-                            )),
-                      ],
-                      onSelected: (item) => selectedItem(context, item),
-                      icon: FaIcon(
-                        FontAwesomeIcons.list,
-                        color: Palette.accentColor,
-                        size: 22.0,
-                      ),
-                    ),
+    return RotaryScaffold(
+        title: widget.data.title,
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 10, top: 5),
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Palette.themeShadeColor,
+              borderRadius: BorderRadius.circular(40.0),
             ),
-          ],
-          title: Text(
-            widget.data.title,
-            textScaleFactor: 1.4,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+            child: Platform.localeName == 'NL'
+                ? PopupMenuButton<int>(
+                    // color: Colors.black,
+                    itemBuilder: (context) => [
+                      PopupMenuItem<int>(
+                          value: 0,
+                          child: Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.share,
+                                color: Palette.lightIndigo,
+                              ),
+                              const SizedBox(
+                                width: 7,
+                              ),
+                              Text('Share')
+                            ],
+                          )),
+                    ],
+                    onSelected: (item) => selectedItem(context, item),
+                  )
+                : PopupMenuButton<int>(
+                    // color: Colors.black,
+                    itemBuilder: (context) => [
+                      PopupMenuItem<int>(
+                          value: 0,
+                          child: Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.share,
+                                color: Palette.lightIndigo,
+                              ),
+                              const SizedBox(
+                                width: 7,
+                              ),
+                              Text('Share')
+                            ],
+                          )),
+                      PopupMenuDivider(),
+                      PopupMenuItem<int>(
+                          value: 1,
+                          child: Row(
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.language,
+                                color: Palette.lightIndigo,
+                              ),
+                              const SizedBox(
+                                width: 7,
+                              ),
+                              Text('Translate')
+                            ],
+                          )),
+                    ],
+                    onSelected: (item) => selectedItem(context, item),
+                    icon: FaIcon(
+                      FontAwesomeIcons.list,
+                      color: Palette.accentColor,
+                      size: 22.0,
+                    ),
+                  ),
           ),
-        ),
+        ],
         body: _isLoading
             ? Center(
                 child: Stack(
@@ -197,38 +184,6 @@ class _NonPDFPageState extends State<NonPDFPage> {
                       ),
                       progressColor: Colors.green,
                     )
-                    // Container(
-                    //   width: 200,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(20.0),
-                    //     child: CircleProgressBar(
-                    //       backgroundColor: background,
-                    //       foregroundColor: foreground,
-                    //       value: this.progressPercent,
-                    //     ),
-                    //   ),
-                    // ),
-                    // Column(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: <Widget>[
-                    //     Text(
-                    //       '${(this.progressPercent * 100).round()}%',
-                    //       textAlign: TextAlign.center,
-                    //       style: TextStyle(
-                    //           color: Colors.black,
-                    //           fontSize: 30.0,
-                    //           fontWeight: FontWeight.bold),
-                    //     ),
-                    //     Text(
-                    //       'COMPLETED',
-                    //       textAlign: TextAlign.center,
-                    //       style: TextStyle(
-                    //           color: Colors.black,
-                    //           fontSize: 15.0,
-                    //           fontWeight: FontWeight.bold),
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               )
@@ -370,26 +325,7 @@ class _NonPDFPageState extends State<NonPDFPage> {
                           )),
                 );
               },
-              child:
-                  // Row(
-                  //   children: <Widget>[
-                  //     Padding(
-                  //       padding: const EdgeInsets.only(left: 25.0),
-                  //       child: FaIcon(
-                  //         FontAwesomeIcons.phone,
-                  //         color: Colors.white,
-                  //       ),
-                  //     ),
-                  //     Padding(
-                  //       padding: const EdgeInsets.only(left: 20.0),
-                  //       child: Text(
-                  //         'Call me ',
-                  //         style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-                  Text('Open PDF'),
+              child: Text('Open PDF'),
             ),
           ),
         ));
@@ -484,8 +420,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarynl.page.link',
-      link: Uri.parse(
-          'https://rotarynl.page.link/news?id=$id'), //change this to the url in the main.dart
+      link: Uri.parse('https://rotarynl.page.link/news?id=$id'),
+      //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,

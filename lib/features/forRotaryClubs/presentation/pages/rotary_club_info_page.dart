@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'AlgemeneInformatie/algemeneInfo.dart';
 import 'Jeugdcommissaris/jeugd_commissaris.dart';
 import 'belangrijkeDocumenten/important_documents.dart';
@@ -22,21 +22,8 @@ class ForRotaryClubsPage extends StatefulWidget {
 class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'voor Rotary Clubs',
-          textScaleFactor: 1.2,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'voor Rotary Clubs',
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

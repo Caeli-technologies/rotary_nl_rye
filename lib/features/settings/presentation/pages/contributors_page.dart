@@ -1,13 +1,12 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/contributors_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class ContributorsPage extends StatefulWidget {
   @override
@@ -18,24 +17,9 @@ class _ContributorsPageState extends State<ContributorsPage> {
   @override
   Widget build(BuildContext context) {
     {
-      return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'Contributors',
-            textScaleFactor: 1.4,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
-        ),
+      return RotaryScaffold(
+        title: 'Contributors',
         body: Container(
-          // height: Device.height - 277,
           margin: EdgeInsets.only(left: 20, right: 20),
           child: ListView.builder(
             shrinkWrap: true,

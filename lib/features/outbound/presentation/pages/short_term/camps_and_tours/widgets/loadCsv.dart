@@ -1,6 +1,5 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 // 📦 Package imports:
 import 'package:badges/badges.dart' as badges;
@@ -13,7 +12,8 @@ import 'package:skeletons/skeletons.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class LoadCsv extends StatefulWidget {
   @override
@@ -52,22 +52,8 @@ class _LoadCsvState extends State<LoadCsv> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'Camps & Tours List',
-            textScaleFactor: 1.2,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
-        ),
+    return RotaryScaffold(
+        title: 'Camps & Tours List',
         body: Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
           child: FutureBuilder<List<List>?>(

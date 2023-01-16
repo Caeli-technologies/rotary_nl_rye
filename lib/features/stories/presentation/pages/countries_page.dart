@@ -8,14 +8,11 @@ import 'package:rotary_nl_rye/core/domain/exchangeStudents.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:rotary_nl_rye/injection_container.dart';
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'exchange_students_page.dart';
 
 class CountriesPage extends StatefulWidget {
-  // final List<ExchangeStudent> students;
-  //
-  // const CountriesPage({required this.students});
 
   @override
   _CountriesPageState createState() => _CountriesPageState();
@@ -42,21 +39,8 @@ class _CountriesPageState extends State<CountriesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Countries',
-          textScaleFactor: 1.4,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Countries',
       body: Container(
         child: StreamBuilder<List<ExchangeStudent>>(
             stream: studentBloc.studentList,

@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'information/comply_with.dart';
 import 'information/countries_preference.dart';
 import 'information/how_to_sign_up.dart';
@@ -22,21 +22,8 @@ class _FamilyToFamilyOutboundPageState
     extends State<FamilyToFamilyOutboundPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Family to Family',
-          textScaleFactor: 1.2,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Family to Family',
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

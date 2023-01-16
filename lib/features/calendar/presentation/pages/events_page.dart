@@ -17,7 +17,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import '../../data/utils.dart';
 import '../../models/event_result.dart';
 
@@ -112,23 +112,9 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     print('Initial kEvents is empty becuase its null.');
     print(kEvents.length);
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'Calendar',
-            textScaleFactor: 1.4,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
-        ),
-        body: FutureBuilder(
+    return RotaryScaffold(
+        title: 'Calendar',
+        body:  FutureBuilder(
             future: getEvents,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

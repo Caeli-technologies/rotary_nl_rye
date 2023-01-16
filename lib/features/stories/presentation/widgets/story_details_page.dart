@@ -16,8 +16,9 @@ import 'package:translator/translator.dart';
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/core/translation/translate.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../core/presentation/uniform_widgets/back_button.dart';
+import '../../../../core/translation/translate.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 
@@ -136,17 +137,7 @@ class _StoryDetailsState extends State<StoryDetails> {
         body: Container(
           child: Column(
             children: <Widget>[
-              // Container(
-              //     width: double.infinity,
-              //     decoration: BoxDecoration(
-              //         color: Palette.themeShadeColor,
-              //         borderRadius: BorderRadius.only(
-              //             bottomLeft: Radius.circular(40.0),
-              //             bottomRight: Radius.circular(40.0))),
-
               Container(
-                  // margin: EdgeInsets.only(top: size.height * 0.45),
-                  // width: double.infinity,
                   decoration: BoxDecoration(
                       color: Palette.themeShadeColor,
                       borderRadius: BorderRadius.only(
@@ -224,88 +215,6 @@ class _StoryDetailsState extends State<StoryDetails> {
                               )
                             ],
                           ),
-
-                          // Align(
-                          //   alignment: Alignment.topLeft,
-                          //   child: Container(
-                          //     padding: EdgeInsets.only(left: 40, top: 30),
-                          //     child: Text(
-                          //       widget.story.country,
-                          //       textScaleFactor: 2,
-                          //       style: TextStyle(
-                          //         color: Palette.indigo,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // Align(
-                          //   alignment: Alignment.topLeft,
-                          //   child: Container(
-                          //     padding: EdgeInsets.only(left: 40, top: 5),
-                          //     child: Text(
-                          //       widget.story.name,
-                          //       textScaleFactor: 1,
-                          //       style: TextStyle(
-                          //         color: Palette.grey,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // Align(
-                          //     alignment: Alignment.topLeft,
-                          //     child: Container(
-                          //         padding: EdgeInsets.only(
-                          //             left: 40, top: 15, right: 40, bottom: 10),
-                          //         child: Wrap(
-                          //           runSpacing: 15.0,
-                          //           spacing: 30.0,
-                          //           children: <Widget>[
-                          //             RichText(
-                          //               text: TextSpan(children: [
-                          //                 WidgetSpan(
-                          //                     child: FaIcon(
-                          //                   FontAwesomeIcons.planeDeparture,
-                          //                   color: Palette.lightIndigo,
-                          //                 )),
-                          //                 WidgetSpan(
-                          //                     child: Container(
-                          //                   margin: EdgeInsets.only(
-                          //                       left: 10, bottom: 3.6),
-                          //                   child: Text(
-                          //                     widget.story.departureDate
-                          //                         .toString(),
-                          //                     textScaleFactor: 1.2,
-                          //                     style: TextStyle(
-                          //                         color: Palette.lightIndigo),
-                          //                   ),
-                          //                 ))
-                          //               ]),
-                          //             ),
-                          //             RichText(
-                          //               text: TextSpan(children: [
-                          //                 WidgetSpan(
-                          //                     child: FaIcon(
-                          //                   FontAwesomeIcons.planeArrival,
-                          //                   color: Palette.lightIndigo,
-                          //                 )),
-                          //                 WidgetSpan(
-                          //                     child: Container(
-                          //                   margin: EdgeInsets.only(
-                          //                       left: 10, bottom: 3.6),
-                          //                   child: Text(
-                          //                     widget.story.arrivalDate
-                          //                         .toString(),
-                          //                     textScaleFactor: 1.2,
-                          //                     style: TextStyle(
-                          //                         color: Palette.lightIndigo),
-                          //                   ),
-                          //                 ))
-                          //               ]),
-                          //             ),
-                          //           ],
-                          //         ))),
                         ]),
                   )),
 
@@ -499,135 +408,6 @@ class _StoryDetailsState extends State<StoryDetails> {
       ),
     );
   }
-  // List<Widget> _text(List x) {
-  //   print(x.toString());
-  //   index = 1;
-  //   List<Widget> list = [];
-  //   for (Map<String, dynamic> y in x) {
-  //     if (y['paragraph'] != null) {
-  //       for (String a in y['paragraph']) {
-  //         index++;
-  //         list.add(Padding(
-  //           padding: const EdgeInsets.only(top: 10.0),
-  //           child: Text(
-  //             a,
-  //             style: TextStyle(color: Colors.black, fontSize: 16.0),
-  //           ),
-  //         ));
-  //       }
-  //     } else if (y['imageUrl'] != null) {
-  //       list.add(
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 10),
-  //           child: Image.network(y['imageUrl']),
-  //         ),
-  //       );
-  //     } else if (y['videoUrl'] != null) {
-  //       list.add(Padding(
-  //           padding: const EdgeInsets.only(top: 10.0),
-  //           child: NativeVideo(url: y["videoUrl"])));
-  //     } else if (y['subHeader'] != null) {
-  //       index++;
-  //       list.add(
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 25),
-  //           child: Text(
-  //             y['subHeader'],
-  //             style: TextStyle(
-  //                 color: Colors.black,
-  //                 fontSize: 14.0,
-  //                 fontWeight: FontWeight.bold),
-  //           ),
-  //         ),
-  //       );
-  //     }
-  //   }
-
-  //   return list;
-  // }
-
-  // void translated(List x) async {
-  //   translate.clear();
-  //   translationIndex = 0;
-  //   print(x.toString());
-  //   Random random = Random();
-  //   header(story.message[0]["heading"]);
-  //   setState(() {
-  //     translationIndex++;
-  //     progressPercent = translationIndex / index;
-  //   });
-
-  //   for (Map<String, dynamic> y in x) {
-  //     if (y['paragraph'] != null) {
-  //       for (String a in y['paragraph']) {
-  //         await Future.delayed(
-  //           Duration(
-  //             seconds: (random.nextInt(2) + 2),
-  //           ),
-  //         ); // to prevent triggering of google recaptcha
-  //         String value = await trans(a);
-  //         print('paragraph :$value');
-  //         translate.add(
-  //           Padding(
-  //             padding: const EdgeInsets.only(top: 10.0),
-  //             child: Text(
-  //               value,
-  //               style: TextStyle(color: Colors.black, fontSize: 16.0),
-  //             ),
-  //           ),
-  //         );
-  //         setState(() {
-  //           translationIndex++;
-  //           progressPercent = translationIndex / index;
-  //         });
-  //         await Future.delayed(
-  //           Duration(
-  //             seconds: (random.nextInt(2) + 2),
-  //           ),
-  //         ); // to be adjusted
-  //       }
-  //     } else if (y['imageUrl'] != null) {
-  //       translate.add(
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 10),
-  //           child: Image.network(y['imageUrl']),
-  //         ),
-  //       );
-  //     } else if (y['videoUrl'] != null) {
-  //       translate.add(
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 10.0),
-  //           child: NativeVideo(url: y["videoUrl"]),
-  //         ),
-  //       );
-  //     } else if (y['subHeader'] != null) {
-  //       await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
-  //       String value = await trans(y['subHeader']);
-  //       print('subHeader :$value');
-  //       translate.add(
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 25),
-  //           child: Text(
-  //             value,
-  //             style: TextStyle(
-  //               color: Colors.black,
-  //               fontSize: 14.0,
-  //               fontWeight: FontWeight.bold,
-  //             ),
-  //           ),
-  //         ),
-  //       );
-  //       setState(() {
-  //         translationIndex++;
-  //         progressPercent = translationIndex / index;
-  //       });
-  //       await Future.delayed(Duration(seconds: (random.nextInt(2) + 2)));
-  //     }
-  //   }
-  //   setState(() {
-  //     _isLoading = false;
-  //   });
-  // }
 
   void selectedItem(BuildContext context, item) {
     switch (item) {
@@ -669,22 +449,4 @@ class _StoryDetailsState extends State<StoryDetails> {
         break;
     }
   }
-
-  // void header(String x) async {
-  //   await Future.delayed(Duration(seconds: 2));
-  //   heading = await trans(x);
-  //   print('header :$heading');
-  //   await Future.delayed(Duration(seconds: 2));
-  // }
-
-  // Future<String> trans(x) async {
-  //   print('trans to $localeLanguage');
-  //   if (supportedLangs.containsValue(localeLanguage)) {
-  //     var y = await translator.translate(x, to: "$localeLanguage");
-  //     return y.text;
-  //   } else {
-  //     var y = await translator.translate(x, to: "en");
-  //     return y.text;
-  //   }
-  // }
 }

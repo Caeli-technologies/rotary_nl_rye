@@ -10,7 +10,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class CampsAndToursProgramPage extends StatefulWidget {
   @override
@@ -128,21 +129,8 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Camps & Tours',
-          textScaleFactor: 1,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Camps & Tours',
       body: ListView(
         padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: false,

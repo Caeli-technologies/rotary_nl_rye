@@ -8,8 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class HowToSignUpPage extends StatefulWidget {
   @override
@@ -24,21 +24,8 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Hoe schrijf ik mezelf in',
-          textScaleFactor: 1,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Hoe schrijf ik mezelf in',
       body: ListView(
         padding: EdgeInsets.only(left: 20, top: 15, right: 20),
         shrinkWrap: false,
@@ -47,16 +34,6 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "AANMELDEN?",
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: RichText(

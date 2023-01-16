@@ -15,8 +15,9 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 
@@ -64,16 +65,9 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          actions: <Widget>[
+    return RotaryScaffold(
+      title: widget.title,
+          actions: [
             IconButton(
                 icon: FaIcon(
                   FontAwesomeIcons.filePdf,
@@ -90,13 +84,6 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
                   await Share.shareXFiles([XFile(path)], subject: fielName);
                 })
           ],
-          title: Text(
-            widget.title,
-            textScaleFactor: 1.0,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
-        ),
         body: Stack(
           children: <Widget>[
             PDF(

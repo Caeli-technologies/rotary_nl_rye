@@ -10,67 +10,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import '../../../../core/domain/entities/news.dart';
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import '../../../../core/prop.dart';
 import '../../../../injection_container.dart';
 
 class NewsPage extends StatefulWidget {
-  // final News news;
-
-// NewsPage({required this.news});
-
   @override
   _NewsPageState createState() => _NewsPageState();
 }
 
 class _NewsPageState extends State<NewsPage> {
   final _newsBloc = NewsBloc(sl());
-  //_NewsPageState({required News news}) : _news = news;
-  //final News _news;
-  // List _stories = [];
-  // bool _isLoading = true;
-
-  //Fetch content from the json file
-  // Future readJson(String url) async {
-  //   final response = await data.getDataNews(url);
-  //   //await rootBundle.loadString('assets/test/news.json');
-  //   final info = await json.decode(response);
-  //   setState(() {
-  //     _stories = info["news"];
-  //     _isLoading = false;
-  //   });
-  // }
-  //
-  // _updateNews(News news) {
-  //   readJson(news.jsonUrl);
-  // }
-
-  // late List data;
-  // late List<String> imageList = [];
-
-  // Future<String> fetchDataFromApi() async {
-  //   var jsonData = await http.get(Uri.parse(
-  //       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/new-header.json"));
-  //   var fetchData = jsonDecode(jsonData.body);
-
-  //   setState(() {
-  //     data = fetchData;
-  //     data.forEach((element) {
-  //       imageList.add(element);
-  //     });
-  //   });
-  //   // print(imageList);
-  //   return "Success";
-  // }
 
   @override
   initState() {
     super.initState();
     _newsBloc.getNewsData();
     _removeBadge();
-
-    // fetchDataFromApi();
   }
 
   void _removeBadge() async {
@@ -88,22 +45,8 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'News',
-            textScaleFactor: 1.4,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
-        ),
+    return RotaryScaffold(
+        title: 'News',
         body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.only(left: 15, right: 15),
@@ -123,16 +66,7 @@ class _NewsPageState extends State<NewsPage> {
                                 child: Text(snapshot.error.toString()),
                               );
                             } else if (snapshot.hasData) {
-                              return
-
-                                  // CachedNetworkImageRotary(
-                                  //     imageUrl: snapshot.data!);
-                                  //     Image.network(
-                                  //   snapshot.data!,
-                                  //   fit: BoxFit.cover,
-                                  // );
-
-                                  CachedNetworkImage(
+                              return CachedNetworkImage(
                                 height: 55,
                                 width: 55,
                                 imageUrl: snapshot.data!,

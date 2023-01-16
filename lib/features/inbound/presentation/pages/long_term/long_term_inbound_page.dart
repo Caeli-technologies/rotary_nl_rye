@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/long_term/class_of/class_of.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'information/flight_and_arrival.dart';
 import 'information/insurance.dart';
 import 'information/language.dart';
@@ -26,21 +26,8 @@ class _LongTermExchangeInboundPageState
     extends State<LongTermExchangeInboundPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Long Term Inbound',
-          textScaleFactor: 1.2,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Long Term Inbound',
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
@@ -48,14 +35,6 @@ class _LongTermExchangeInboundPageState
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-              //   child: Text(
-              //     'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo’n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
-              //     style: TextStyle(fontSize: 16.0),
-              //   ),
-              // ),
               SizedBox(
                 height: 20,
               ),

@@ -12,7 +12,7 @@ import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 import 'package:rotary_nl_rye/core/domain/exchangeStudents.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_video.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 import '../../../../core/prop.dart';
 import '../../../../injection_container.dart';
 import '../widgets/story_details_page.dart';
@@ -32,32 +32,12 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
 
   final storyBloc = StudentsBloc(sl(), sl());
 
-  // List<Story> stories = [];
-  // bool _isLoading = true;
   final ExchangeStudent student;
-
-  // Fetch content from the json file
-  // Future readJson() async {
-  //   // final String response =
-  //   //     await rootBundle.loadString('assets/test/stories.json');
-  //   final data = null; //await getDataStories(
-  //   //    "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rebounds/students/${student.exchangeYear}/${student.name.replaceAll(" ", "_").toLowerCase()}.json");
-  //   setState(() {
-  //     if (data == null) {
-  //       print('data $data');
-  //       stories = [];
-  //     } else {
-  //       stories = data;
-  //     }
-  //     _isLoading = false;
-  //   });
-  // }
 
   @override
   void initState() {
     storyBloc.getStoriesList(student.exchangeYear, student.name);
     super.initState();
-//    readJson();
   }
 
   @override
@@ -104,16 +84,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
               child: Text(
                   'A problem occured. Maybe there is no data present yet')));
     }
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-        ),
+    return RotaryScaffold(
         body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.only(left: 15, right: 15),

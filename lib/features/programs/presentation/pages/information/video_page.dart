@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class VideoPage extends StatefulWidget {
   @override
@@ -20,21 +20,8 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          "Promo Video's",
-          textScaleFactor: 1,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Promo Video''s',
       body: ListView(
         padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: false,
@@ -43,33 +30,6 @@ class _VideoPageState extends State<VideoPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 20.0),
-              //   child: Text(
-              //     "moet nog text komen",
-              //     style: TextStyle(
-              //         color: Colors.red,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 10.0),
-              //   child: Text(
-              //     "moet nog text voor worden gemaakt",
-              //     style: TextStyle(color: Colors.black, fontSize: 14.0),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "Algemene video",
-              //     style: TextStyle(
-              //         color: Colors.red,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: NativeVideo(

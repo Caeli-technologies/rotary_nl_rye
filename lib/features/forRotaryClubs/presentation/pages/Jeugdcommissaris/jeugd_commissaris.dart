@@ -9,7 +9,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class InfoForJeugdcommissarisPage extends StatefulWidget {
   @override
@@ -21,21 +22,8 @@ class _InfoForJeugdcommissarisPageState
     extends State<InfoForJeugdcommissarisPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Info Jeugdcommissaris',
-          textScaleFactor: 1.0,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Info Jeugdcommissaris',
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

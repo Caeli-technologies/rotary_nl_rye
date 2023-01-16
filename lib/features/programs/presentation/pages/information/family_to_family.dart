@@ -11,7 +11,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class FamilyToFamilyProgramPage extends StatefulWidget {
   @override
@@ -170,33 +171,9 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
   ];
 
   @override
-  initState() {
-    super.initState();
-    // fetch from inetrnet localy
-    // WidgetsBinding.instance!.addPostFrameCallback((_) {
-    //   images.forEach((imageUrl) {
-    //     precacheImage(NetworkImage(imageUrl), context);
-    //   });
-    // });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Family To Family',
-          textScaleFactor: 1,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Family To Family',
       body: ListView(
         padding: EdgeInsets.only(left: 16, top: 15, right: 16),
         shrinkWrap: false,
