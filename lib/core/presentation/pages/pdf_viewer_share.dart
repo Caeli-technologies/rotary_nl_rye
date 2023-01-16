@@ -19,12 +19,13 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import '../uniform_widgets/rotary_scaffold.dart';
 
 class PDFPageWithShare extends StatefulWidget {
   final String pdfUrl;
 
   PDFPageWithShare({required this.pdfUrl});
+
   @override
   _PDFPageWithShareState createState() =>
       _PDFPageWithShareState(pdfUrl: pdfUrl);
@@ -71,67 +72,51 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          actions: [
-            Container(
-              // margin: EdgeInsets.only(right: 10, top: 5),
-              // width: 50,
-              // height: 50,
-              // decoration: BoxDecoration(
-              //   color: Palette.themeShadeColor,
-              //   borderRadius: BorderRadius.circular(40.0),
-              // ),
-              child: PopupMenuButton<int>(
-                // color: Colors.black,
-                itemBuilder: (context) => [
-                  PopupMenuItem<int>(
-                      value: 0,
-                      child: Row(
-                        children: [
-                          Icon(
-                            CupertinoIcons.share,
-                            color: Palette.lightIndigo,
-                          ),
-                          const SizedBox(
-                            width: 7,
-                          ),
-                          Text('Share in-app Link')
-                        ],
-                      )),
-                  PopupMenuDivider(),
-                  PopupMenuItem<int>(
-                      value: 1,
-                      child: Row(
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.filePdf,
-                            color: Palette.lightIndigo,
-                          ),
-                          const SizedBox(
-                            width: 7,
-                          ),
-                          Text('Share Document')
-                        ],
-                      )),
-                ],
-                onSelected: (item) => selectedItem(context, item),
-                icon: FaIcon(
-                  FontAwesomeIcons.list,
-                  color: Palette.indigo,
-                  size: 22.0,
-                ),
+    return RotaryScaffold(
+        actions: [
+          Container(
+            child: PopupMenuButton<int>(
+              // color: Colors.black,
+              itemBuilder: (context) => [
+                PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: [
+                        Icon(
+                          CupertinoIcons.share,
+                          color: Palette.lightIndigo,
+                        ),
+                        const SizedBox(
+                          width: 7,
+                        ),
+                        Text('Share in-app Link')
+                      ],
+                    )),
+                PopupMenuDivider(),
+                PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.filePdf,
+                          color: Palette.lightIndigo,
+                        ),
+                        const SizedBox(
+                          width: 7,
+                        ),
+                        Text('Share Document')
+                      ],
+                    )),
+              ],
+              onSelected: (item) => selectedItem(context, item),
+              icon: FaIcon(
+                FontAwesomeIcons.list,
+                color: Palette.indigo,
+                size: 22.0,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
         body: Stack(
           children: <Widget>[
             PDF(
@@ -215,8 +200,8 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://rotarynl.page.link',
-      link: Uri.parse(
-          'https://rotarynl.page.link/pdfUrl?url=$pdfUrl'), //change this to the url in the main.dart
+      link: Uri.parse('https://rotarynl.page.link/pdfUrl?url=$pdfUrl'),
+      //change this to the url in the main.dart
       androidParameters: AndroidParameters(
         packageName: 'com.caelitechnologies.rotary_nl_rye',
         minimumVersion: 1,
@@ -255,7 +240,8 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
           await Share.share(
               Platform.isIOS
                   ? 'Hierbij verstuur ik een linkje van een Document: $_linkMessage' // iOS
-                  : 'Hierbij verstuur ik een linkje van een Document: $_linkMessage', //android
+                  : 'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
+              //android
               subject: 'look at this nice app :)');
         } else {
           throw 'Could not launch $_linkMessage';

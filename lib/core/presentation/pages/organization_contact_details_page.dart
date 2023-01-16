@@ -19,7 +19,8 @@ import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../uniform_widgets/rotary_scaffold.dart';
 
 class OrganizationDetails extends StatelessWidget {
   final Organization person;
@@ -30,21 +31,8 @@ class OrganizationDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Organization',
-          textScaleFactor: 1.4,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Organization',
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
@@ -181,163 +169,6 @@ class OrganizationDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                    // person.phoneNumber == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding: EdgeInsets.zero,
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             Platform.isIOS == true
-                    //                 ? CupertinoButton(
-                    //                     child: FaIcon(
-                    //                       FontAwesomeIcons.instagram,
-                    //                       color: Color(0xFFbc2a8d),
-                    //                       size: 30,
-                    //                     ),
-                    //                     onPressed: () => openwhatsapp(
-                    //                         context, person.phoneNumber!),
-                    //                     padding: EdgeInsets.zero,
-                    //                   )
-                    //                 : TextButton(
-                    //                     child: FaIcon(
-                    //                       FontAwesomeIcons.whatsapp,
-                    //                       color: Color(0xFF25D366),
-                    //                     ),
-                    //                     onPressed: () => openwhatsapp(
-                    //                         context, person.phoneNumber!),
-                    //                   ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    // person.phoneNumber == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding: EdgeInsets.zero,
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             Platform.isIOS == true
-                    //                 ? CupertinoButton(
-                    //                     child: FaIcon(
-                    //                       FontAwesomeIcons.whatsapp,
-                    //                       color: Color(
-                    //                         0xFF25D366,
-                    //                       ),
-                    //                       size: 30,
-                    //                     ),
-                    //                     onPressed: () => openwhatsapp(
-                    //                         context, person.phoneNumber!),
-                    //                     padding: EdgeInsets.zero,
-                    //                   )
-                    //                 : TextButton(
-                    //                     child: FaIcon(
-                    //                       FontAwesomeIcons.whatsapp,
-                    //                       color: Color(0xFF25D366),
-                    //                     ),
-                    //                     onPressed: () => openwhatsapp(
-                    //                         context, person.phoneNumber!),
-                    //                   ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    // person.phoneNumber == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding: EdgeInsets.zero,
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             Platform.isIOS == true
-                    //                 ? CupertinoButton(
-                    //                     child: FaIcon(
-                    //                       FontAwesomeIcons.whatsapp,
-                    //                       color: Color(
-                    //                         0xFF25D366,
-                    //                       ),
-                    //                       size: 30,
-                    //                     ),
-                    //                     onPressed: () => openwhatsapp(
-                    //                         context, person.phoneNumber!),
-                    //                     padding: EdgeInsets.zero,
-                    //                   )
-                    //                 : TextButton(
-                    //                     child: FaIcon(
-                    //                       FontAwesomeIcons.whatsapp,
-                    //                       color: Color(0xFF25D366),
-                    //                     ),
-                    //                     onPressed: () => openwhatsapp(
-                    //                         context, person.phoneNumber!),
-                    //                   ),
-                    //           ],
-                    //         ),
-                    //       ),
-
-                    // person.snapchatUrl == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding:
-                    //             const EdgeInsets.only(right: 10.0, left: 10.0),
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             TextButton(
-                    //               child: FaIcon(
-                    //                 FontAwesomeIcons.snapchatGhost,
-                    //                 color: Color(0xFFFFFC00),
-                    //               ),
-                    //               onPressed: () => canLaunchUrlString(person.snapchatUrl),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    // person.linkedinUrl == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding:
-                    //             const EdgeInsets.only(right: 10.0, left: 10.0),
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             TextButton(
-                    //               child: FaIcon(
-                    //                 FontAwesomeIcons.linkedinIn,
-                    //                 color: Color(0xFF0e76a8),
-                    //               ),
-                    //               onPressed: () => canLaunchUrlString(person.linkedinUrl),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    // person.facebookUrl == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding:
-                    //             const EdgeInsets.only(right: 10.0, left: 10.0),
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             TextButton(
-                    //               child: FaIcon(
-                    //                 FontAwesomeIcons.facebookF,
-                    //                 color: Color(0xFF3b5998),
-                    //               ),
-                    //               onPressed: () => canLaunchUrlString(person.facebookUrl),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    // person.websiteUrl == null
-                    //     ? SizedBox.shrink()
-                    //     : Padding(
-                    //         padding:
-                    //             const EdgeInsets.only(right: 10.0, left: 10.0),
-                    //         child: Stack(
-                    //           children: <Widget>[
-                    //             TextButton(
-                    //               child: FaIcon(
-                    //                 FontAwesomeIcons.globe,
-                    //                 color: Color(0xFF0e76a8),
-                    //               ),
-                    //               onPressed: () => canLaunchUrlString(person.websiteUrl),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
                   ],
                 ),
               ),

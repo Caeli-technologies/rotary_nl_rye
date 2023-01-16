@@ -3,17 +3,14 @@ import 'dart:convert';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // 📦 Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:http/http.dart' as http;
-import 'package:transparent_image/transparent_image.dart';
-
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/view_photo_full_screen.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+import '../../uniform_widgets/rotary_scaffold.dart';
 
 //TODO still need to add this somewhere
 
@@ -63,23 +60,9 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'Gallery View',
-            textScaleFactor: 1.2,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
-        ),
-        body: Container(
+    return RotaryScaffold(
+        title: 'Gallery View',
+        body:  Container(
             margin: EdgeInsets.all(12),
             child: MasonryGridView.count(
               crossAxisCount: 2,

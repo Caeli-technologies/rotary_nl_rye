@@ -12,7 +12,8 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
-import '../../../features/uniform_widgets/uniform_circle_avatar.dart';
+
+import '../uniform_widgets/uniform_circle_avatar.dart';
 
 class SVGListTile extends StatelessWidget {
   final descriptionPage;

@@ -5,29 +5,21 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class ContributorsDetails extends StatelessWidget {
   final person;
+
   ContributorsDetails({required this.person});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-      ),
+    return RotaryScaffold(
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

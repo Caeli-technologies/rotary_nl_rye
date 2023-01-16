@@ -12,12 +12,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+import '../uniform_widgets/rotary_scaffold.dart';
 
 class InboundsDetails extends StatelessWidget {
   final person;
   final int districtnumber;
   final String year;
+
   InboundsDetails(
       {required this.person, required this.districtnumber, required this.year});
 
@@ -25,21 +27,8 @@ class InboundsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     double currentYear = double.parse(year.trim().replaceAll('-', ''));
 
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: UniformBackButton(),
-        title: Text(
-          'Student Profile',
-          textScaleFactor: 1.2,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return RotaryScaffold(
+      title: 'Student Profile',
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
@@ -254,14 +243,6 @@ class InboundsDetails extends StatelessWidget {
                   thickness: 2,
                 ),
               ),
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
-              //   child: Text(
-              //     "District: $districtnumber - ${person.district}",
-              //     style: TextStyle(color: Colors.grey[400], fontSize: 15.0),
-              //   ),
-              // ),
               Padding(
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
@@ -338,87 +319,6 @@ class InboundsDetails extends StatelessWidget {
                             ),
                           ),
                         ]),
-
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
-              //   child: Text(
-              //     "About me",
-              //     style: TextStyle(
-              //         color: Colors.grey[600],
-              //         fontSize: 18.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       top: 0.0, left: 30.0, bottom: 0.0, right: 300),
-              //   child: Divider(
-              //     height: 15,
-              //     thickness: 2,
-              //   ),
-              // ),
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
-              //   child: Text(
-              //     person.bio,
-              //     style: TextStyle(fontSize: 16.0),
-              //   ),
-              // ),
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: <Widget>[
-              //       Container(
-              //         height: 70.0,
-              //         width: 70.0,
-              //         decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(30.0),
-              //           color: Colors.grey[200],
-              //         ),
-              //         child: Center(
-              //             child: Icon(
-              //           Icons.present_to_all,
-              //           color: Colors.black,
-              //           size: 25,
-              //         )),
-              //       ),
-              //       Container(
-              //         height: 65.0,
-              //         width: 200.0,
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(35.0),
-              //             border:
-              //                 Border.all(color: Colors.blue.shade100, width: 5),
-              //             color: Colors.blue[400]),
-              //         child: Center(
-              //           child: Row(
-              //             children: <Widget>[
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 25.0),
-              //                 child: Icon(
-              //                   Icons.call,
-              //                   color: Colors.white,
-              //                 ),
-              //               ),
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 25.0),
-              //                 child: Text(
-              //                   'WhatsApp',
-              //                   style: TextStyle(
-              //                       color: Colors.white, fontSize: 18.0),
-              //                 ),
-              //               )
-              //             ],
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )
             ],
           )
         ],
