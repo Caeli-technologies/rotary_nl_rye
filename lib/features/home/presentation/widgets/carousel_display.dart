@@ -71,7 +71,6 @@ class _CarouselState extends State<Carousel> {
                   alignment: Alignment.bottomLeft,
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kBorderRadius),
                         image: DecorationImage(
@@ -81,25 +80,21 @@ class _CarouselState extends State<Carousel> {
                             fit: BoxFit.cover),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 28, vertical: 12),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(kBorderRadius),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(kBorderRadius),
-                                color: Colors.black38),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Text(
-                                carousels[index].text,
-                                style: TextStyle(color: Colors.white),
-                              ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(kBorderRadius),
+                              color: Colors.black38),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Text(
+                              carousels[index].text,
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),

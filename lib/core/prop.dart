@@ -121,3 +121,8 @@ BoxShadow kSubtleBoxShadow = BoxShadow(
     offset: Offset(0, 4),
     blurRadius: 20,
     spreadRadius: -2);
+
+TextStyle heading = TextStyle(
+  fontSize: 14,
+  color: Palette.indigo,
+);

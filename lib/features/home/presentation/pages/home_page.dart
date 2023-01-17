@@ -1,26 +1,24 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 // 📦 Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/rotary_club_info_page.dart';
+import 'package:rotary_nl_rye/features/home/presentation/widgets/card_items/calendar_card.dart';
+import 'package:rotary_nl_rye/features/home/presentation/widgets/card_items/news_card.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/carousel_display.dart';
-import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item.dart';
-import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item_rotary.dart';
-import 'package:rotary_nl_rye/features/home/presentation/widgets/home_card_item_single.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
-import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
-import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
-import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/loadCsv.dart';
-import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../widgets/card_item.dart';
+import '../widgets/card_items/camps_and_tours_card.dart';
+import '../widgets/card_items/outbound_card.dart';
+import '../widgets/card_items/program_card.dart';
+import '../widgets/card_items/rebound_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,46 +26,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  // _HomePageState() {
-  //   // FirebaseAuth.instance.signInAnonymously().then(
-  //   //     (UserCredential userCredential) =>
-  //   //         _currentSubscription = data.loadNews().listen(_updateNews));
-  // }
-
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
   SharedPreferences? sharedPreferences;
   int _currentNewsIndex = 0;
-
-  // Future readJson(String url) async {
-  //   // final String response =
-  //   //     await rootBundle.loadString('assets/test/stories.json');
-  //   final data = await api.getDataStudentList(url);
-  //   exchangeStudents = data;
-  //   setState(() {
-  //     _isLoading = false;
-  //   });
-  // }
-
-  // _updateNews(DocumentSnapshot<Map<String, dynamic>> snapshot) {
-  //   _isLoading = false;
-  //   _news = data.getNewsFromQuery(snapshot);
-  //   readJson(_news.students);
-  // }
 
   @override
   initState() {
     super.initState();
     // TODO: implement dispose
     _loadBadge();
-  }
-
-  @override
-  void dispose() {
-    //  _currentSubscription.cancel();
-
-    // TODO: implement dispose
-    super.dispose();
   }
 
   void _loadBadge() async {
@@ -87,86 +55,121 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             )
           : Container(
               child: ListView(
+                padding:
+                    EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 26),
                 physics: ClampingScrollPhysics(),
                 children: <Widget>[
                   Container(
                     height: 90,
-                    margin: EdgeInsets.only(
-                        left: 16, right: 16, bottom: 24, top: 10),
                     child: SvgPicture.asset(
                         'assets/image/rotary_rye_nl_logo_home.svg'),
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
 
                   // Slider images
                   Carousel(),
 
-                  // navigator buttons
-                  Container(
-                    margin: EdgeInsets.only(top: 24, left: 16, right: 16),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.list,
-                                title: 'Programs',
-                                pushTo: ProgramPage(),
-                                currentNewsIndex: 0),
-                            HomeCardItem(
-                              icon: FontAwesomeIcons.newspaper,
-                              title: 'News',
-                              pushTo: NewsPage(),
-                              currentNewsIndex: _currentNewsIndex,
+                  SizedBox(
+                    height: 24,
+                  ),
+
+                  // navigation panes
+                  StaggeredGrid.count(
+                    crossAxisCount: 6,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 8,
+                    children: [
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 2,
+                        mainAxisCellCount: 2,
+                        child: ProgramCard(),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 2,
+                        mainAxisCellCount: 2,
+                        child: NewsCard(),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 2,
+                        mainAxisCellCount: 2,
+                        child: CalendarCard(),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 2,
+                        mainAxisCellCount: 2,
+                        child: OutboundCard(),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 2,
+                        mainAxisCellCount: 2,
+                        child: CardItem(
+                          icon: FaIcon(
+                            FontAwesomeIcons.planeArrival,
+                            color: Palette.lightIndigo,
+                            size: 35,
+                          ),
+                          title: Row(
+                            children: [
+                              Text(
+                                'To ',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Palette.indigo,
+                                ),
+                              ),
+                              // airplain
+                              FaIcon(
+                                FontAwesomeIcons.arrowRightLong,
+                                color: Palette.lightIndigo,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              // NL
+                              SvgPicture.asset(
+                                'assets/icons/flags/nl.svg',
+                                height: 15,
+                                width: 15,
+                                fit: BoxFit.contain,
+                              ),
+                            ],
+                          ),
+                          pushTo: InboundPage(),
+                        ),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 2,
+                        mainAxisCellCount: 2,
+                        child: ReboundCard(),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 3,
+                        mainAxisCellCount: 1.5,
+                        child: CampsAndToursCard(),
+                      ),
+                      StaggeredGridTile.count(
+                        crossAxisCellCount: 3,
+                        mainAxisCellCount: 1.5,
+                        child: CardItem(
+                          icon: SvgPicture.asset(
+                              'assets/icons/custom/rotary-logo-icon.svg',
+                              // color: Color(0xFFf7a81b),
+                              color: Palette.lightIndigo,
+                              height: 35),
+                          title: Text(
+                            'voor Rotary Clubs',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Palette.indigo,
                             ),
-                            HomeCardItem(
-                              icon: FontAwesomeIcons.calendarDays,
-                              title: 'Calendar',
-                              pushTo: CalendarPage(),
-                              currentNewsIndex: 0,
-                            ),
-                          ],
+                          ),
+                          pushTo: ForRotaryClubsPage(),
                         ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.planeDeparture,
-                                title: 'Op Exchange',
-                                pushTo: OutboundPage(),
-                                currentNewsIndex: 0),
-                            HomeCardItemToNL(
-                                icon: FontAwesomeIcons.planeArrival,
-                                title: 'To ',
-                                pushTo: InboundPage(),
-                                currentNewsIndex: 0),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.rotateRight,
-                                title: 'Rebound',
-                                pushTo: CountriesPage(),
-                                currentNewsIndex: 0),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            HomeCardItemSingle(
-                                icon: FontAwesomeIcons.campground,
-                                title: 'Camps & Tours List',
-                                pushTo: LoadCsv(),
-                                currentNewsIndex: 0),
-                            HomeCardItemSingleRotary(
-                                title: 'voor Rotary Clubs',
-                                pushTo: ForRotaryClubsPage(),
-                                currentNewsIndex: 0),
-                          ],
-                        ),
-                        SizedBox(height: 30),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
