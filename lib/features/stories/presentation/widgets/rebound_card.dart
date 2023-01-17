@@ -1,7 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../stories/presentation/pages/countries_page.dart';
-import 'icon_with_text_card.dart';
+import '../pages/countries_page.dart';
+import '../../../home/presentation/widgets/icon_with_text_card.dart';
 
 class ReboundCard extends IconWithTextCard {
   ReboundCard()

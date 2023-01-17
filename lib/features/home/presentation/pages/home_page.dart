@@ -8,17 +8,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/rotary_club_info_page.dart';
-import 'package:rotary_nl_rye/features/home/presentation/widgets/card_items/calendar_card.dart';
-import 'package:rotary_nl_rye/features/home/presentation/widgets/card_items/news_card.dart';
+import 'package:rotary_nl_rye/features/calendar/presentation/widgets/calendar_card.dart';
+import 'package:rotary_nl_rye/features/news/presentation/widgets/news_card.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/carousel_display.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/card_item.dart';
-import '../widgets/card_items/camps_and_tours_card.dart';
-import '../widgets/card_items/outbound_card.dart';
-import '../widgets/card_items/program_card.dart';
-import '../widgets/card_items/rebound_card.dart';
+import '../../../outbound/presentation/widgets/camps_and_tours_card.dart';
+import '../../../inbound/presentation/widgets/inbound_card.dart';
+import '../../../outbound/presentation/widgets/outbound_card.dart';
+import '../../../programs/presentation/widgets/program_card.dart';
+import '../../../stories/presentation/widgets/rebound_card.dart';
+import '../../../forRotaryClubs/presentation/widgets/rotary_club_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -104,41 +106,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       StaggeredGridTile.count(
                         crossAxisCellCount: 2,
                         mainAxisCellCount: 2,
-                        child: CardItem(
-                          icon: FaIcon(
-                            FontAwesomeIcons.planeArrival,
-                            color: Palette.lightIndigo,
-                            size: 35,
-                          ),
-                          title: Row(
-                            children: [
-                              Text(
-                                'To ',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Palette.indigo,
-                                ),
-                              ),
-                              // airplain
-                              FaIcon(
-                                FontAwesomeIcons.arrowRightLong,
-                                color: Palette.lightIndigo,
-                                size: 20,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              // NL
-                              SvgPicture.asset(
-                                'assets/icons/flags/nl.svg',
-                                height: 15,
-                                width: 15,
-                                fit: BoxFit.contain,
-                              ),
-                            ],
-                          ),
-                          pushTo: InboundPage(),
-                        ),
+                        child: InboundCard(),
                       ),
                       StaggeredGridTile.count(
                         crossAxisCellCount: 2,
@@ -153,21 +121,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       StaggeredGridTile.count(
                         crossAxisCellCount: 3,
                         mainAxisCellCount: 1.5,
-                        child: CardItem(
-                          icon: SvgPicture.asset(
-                              'assets/icons/custom/rotary-logo-icon.svg',
-                              // color: Color(0xFFf7a81b),
-                              color: Palette.lightIndigo,
-                              height: 35),
-                          title: Text(
-                            'voor Rotary Clubs',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Palette.indigo,
-                            ),
-                          ),
-                          pushTo: ForRotaryClubsPage(),
-                        ),
+                        child: RotaryClubCard(),
                       ),
                     ],
                   ),
