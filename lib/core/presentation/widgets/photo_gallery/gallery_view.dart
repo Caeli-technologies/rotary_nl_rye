@@ -3,13 +3,14 @@ import 'dart:convert';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
 // 📦 Package imports:
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:http/http.dart' as http;
-// 🌎 Project imports:
-import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/view_photo_full_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/view_photo_full_screen.dart';
 import '../../uniform_widgets/rotary_scaffold.dart';
 
 //TODO still need to add this somewhere

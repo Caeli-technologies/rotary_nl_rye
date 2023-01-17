@@ -8,10 +8,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-
-import '../pages/program_page.dart';
 import '../../../home/presentation/widgets/card_item.dart';
 import '../../../home/presentation/widgets/icon_with_text_card.dart';
+import '../pages/program_page.dart';
 
 class ProgramCard extends IconWithTextCard {
   ProgramCard()

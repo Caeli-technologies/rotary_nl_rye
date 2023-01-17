@@ -4,15 +4,20 @@ import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-
 import 'back_button.dart';
 
 class RotaryScaffold extends StatelessWidget {
   final String? title;
   final List<Widget>? actions;
   final Widget body;
+  final bool returnButtonShown;
 
-  const RotaryScaffold({Key? key, this.title, this.actions, required this.body})
+  const RotaryScaffold(
+      {Key? key,
+      this.title,
+      this.actions,
+      required this.body,
+      this.returnButtonShown = true})
       : super(key: key);
 
   @override
@@ -25,11 +30,11 @@ class RotaryScaffold extends StatelessWidget {
                 : SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: UniformBackButton(),
+        leading: returnButtonShown ? UniformBackButton() : null,
         title: title != null
             ? Text(
                 title!,
-                textScaleFactor: 1.4,
+                textScaleFactor: 1.3,
                 style: TextStyle(
                     color: Palette.indigo, fontWeight: FontWeight.bold),
               )

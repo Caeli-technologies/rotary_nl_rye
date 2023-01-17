@@ -12,7 +12,6 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
-
 import '../uniform_widgets/uniform_circle_avatar.dart';
 
 class SVGListTile extends StatelessWidget {
@@ -587,35 +586,32 @@ class ContributorsListTile extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-      child: ListTile(
-        onTap: () {
-          print(item.name);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => contributorsDetailsPage),
-          );
-        },
-        contentPadding: EdgeInsets.all(0),
-        leading: UniformCircleAvatar(imageUrl: item.imageUrl),
-        title: Text(item.name,
-            style: TextStyle(
-              color: Palette.indigo,
-              fontWeight: FontWeight.w600,
-            )),
-        subtitle: Text(
-          item.description,
+    return ListTile(
+      onTap: () {
+        print(item.name);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => contributorsDetailsPage),
+        );
+      },
+      contentPadding: EdgeInsets.all(0),
+      leading: UniformCircleAvatar(imageUrl: item.imageUrl),
+      title: Text(item.name,
           style: TextStyle(
-            fontWeight: FontWeight.w500,
-            color: Palette.grey,
-          ),
+            color: Palette.indigo,
+            fontWeight: FontWeight.w600,
+          )),
+      subtitle: Text(
+        item.description,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          color: Palette.grey,
         ),
-        trailing: Icon(
-          Icons.keyboard_arrow_right,
-          size: 30,
-          color: Palette.indigo,
-        ),
+      ),
+      trailing: Icon(
+        Icons.keyboard_arrow_right,
+        size: 30,
+        color: Palette.indigo,
       ),
     );
   }

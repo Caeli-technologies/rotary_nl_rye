@@ -16,7 +16,6 @@ import 'package:translator/translator.dart';
 import 'package:rotary_nl_rye/core/domain/entities/story.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
 import '../../../../core/presentation/uniform_widgets/back_button.dart';
 import '../../../../core/translation/translate.dart';
 

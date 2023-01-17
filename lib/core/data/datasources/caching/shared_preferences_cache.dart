@@ -1,6 +1,8 @@
 // 📦 Package imports:
-import 'package:rotary_nl_rye/core/data/datasources/caching/cache.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/data/datasources/caching/cache.dart';
 
 /// Stores data in a key value pair. No critical or sensitive data should be stored.
 class SharedPreferencesCache implements Cache {

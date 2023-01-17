@@ -3,20 +3,19 @@ import 'dart:async';
 import 'dart:io';
 
 // 🐦 Flutter imports:
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
+import 'package:dio/dio.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:share_plus/share_plus.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:share_plus/share_plus.dart';
-
 import '../../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 // ignore: import_of_legacy_library_into_null_safe

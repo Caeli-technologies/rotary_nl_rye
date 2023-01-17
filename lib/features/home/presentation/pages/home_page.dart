@@ -1,26 +1,22 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 // 📦 Package imports:
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// 🌎 Project imports:
-import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/rotary_club_info_page.dart';
-import 'package:rotary_nl_rye/features/calendar/presentation/widgets/calendar_card.dart';
-import 'package:rotary_nl_rye/features/news/presentation/widgets/news_card.dart';
-import 'package:rotary_nl_rye/features/home/presentation/widgets/carousel_display.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/pages/inbound_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../widgets/card_item.dart';
-import '../../../outbound/presentation/widgets/camps_and_tours_card.dart';
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
+import 'package:rotary_nl_rye/features/calendar/presentation/widgets/calendar_card.dart';
+import 'package:rotary_nl_rye/features/home/presentation/widgets/carousel_display.dart';
+import 'package:rotary_nl_rye/features/news/presentation/widgets/news_card.dart';
+import '../../../forRotaryClubs/presentation/widgets/rotary_club_card.dart';
 import '../../../inbound/presentation/widgets/inbound_card.dart';
+import '../../../outbound/presentation/widgets/camps_and_tours_card.dart';
 import '../../../outbound/presentation/widgets/outbound_card.dart';
 import '../../../programs/presentation/widgets/program_card.dart';
 import '../../../stories/presentation/widgets/rebound_card.dart';
-import '../../../forRotaryClubs/presentation/widgets/rotary_club_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -91,7 +87,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       StaggeredGridTile.count(
                         crossAxisCellCount: 2,
                         mainAxisCellCount: 2,
-                        child: NewsCard(),
+                        child: NewsCard(
+                          notificationCount: _currentNewsIndex,
+                        ),
                       ),
                       StaggeredGridTile.count(
                         crossAxisCellCount: 2,

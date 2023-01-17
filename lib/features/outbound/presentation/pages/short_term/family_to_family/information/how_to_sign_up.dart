@@ -8,8 +8,10 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
-
 import '../../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
+
+// 🌎 Project imports:
+
 
 class HowToSignUpPage extends StatefulWidget {
   @override

@@ -1,6 +1,7 @@
-// 📦 Package imports:
+// 🎯 Dart imports:
 import 'dart:typed_data';
 
+// 📦 Package imports:
 import 'package:http/http.dart';
 
 class ApiResponse {

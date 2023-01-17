@@ -3,12 +3,12 @@ import 'dart:async';
 import 'dart:io';
 
 // 🐦 Flutter imports:
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
+import 'package:dio/dio.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

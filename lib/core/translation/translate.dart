@@ -11,8 +11,10 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
-
 import '../data/translation/deeplSupportedLang.dart';
+
+// 🌎 Project imports:
+
 
 class Translate {
   static Future<Map<String, dynamic>> text(

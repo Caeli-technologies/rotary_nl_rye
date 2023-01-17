@@ -6,14 +6,13 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
+import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import '../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class ClassOfDetailsInbounds extends StatelessWidget {

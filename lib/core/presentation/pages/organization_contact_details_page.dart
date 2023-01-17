@@ -19,7 +19,6 @@ import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
-
 import '../uniform_widgets/rotary_scaffold.dart';
 
 class OrganizationDetails extends StatelessWidget {

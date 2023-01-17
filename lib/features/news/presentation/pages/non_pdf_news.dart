@@ -20,7 +20,6 @@ import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
-
 import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class NonPDFPage extends StatefulWidget {

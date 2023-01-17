@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
+import 'package:rotary_nl_rye/core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 
@@ -245,60 +245,6 @@ class ContributorsDetails extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: <Widget>[
-              //       Container(
-              //         height: 70.0,
-              //         width: 70.0,
-              //         decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(30.0),
-              //           color: Colors.grey[200],
-              //         ),
-              //         child: Center(
-              //             child: Icon(
-              //           Icons.present_to_all,
-              //           color: Colors.black,
-              //           size: 25,
-              //         )),
-              //       ),
-              //       Container(
-              //         height: 65.0,
-              //         width: 240.0,
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(35.0),
-              //             border:
-              //                 Border.all(color: Colors.blue.shade100, width: 5),
-              //             color: Colors.blue[400]),
-              //         child: Center(
-              //           child: Row(
-              //             children: <Widget>[
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 25.0),
-              //                 child: Icon(
-              //                   Icons.call,
-              //                   color: Colors.white,
-              //                 ),
-              //               ),
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 25.0),
-              //                 child: Text(
-              //                   'Send a e-mail',
-              //                   style: TextStyle(
-              //                       color: Colors.white, fontSize: 18.0),
-              //                 ),
-              //               )
-              //             ],
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )
             ],
           )
         ],

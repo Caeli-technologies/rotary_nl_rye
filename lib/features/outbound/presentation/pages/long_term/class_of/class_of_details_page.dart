@@ -13,7 +13,6 @@ import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
-
 import '../../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class ClassOfDetails extends StatelessWidget {

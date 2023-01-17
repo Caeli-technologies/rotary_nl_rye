@@ -1,10 +1,14 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// 🌎 Project imports:
 import '../../../../core/prop.dart';
-import '../pages/inbound_page.dart';
 import '../../../home/presentation/widgets/card_item.dart';
+import '../pages/inbound_page.dart';
 
 class InboundCard extends CardItem {
   InboundCard()

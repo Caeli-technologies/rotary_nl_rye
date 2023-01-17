@@ -18,7 +18,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
 import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 // ignore: import_of_legacy_library_into_null_safe

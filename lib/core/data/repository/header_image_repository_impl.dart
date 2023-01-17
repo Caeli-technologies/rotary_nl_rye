@@ -3,12 +3,13 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
-// 🌎 Project imports:
+// 📦 Package imports:
 import 'package:path_provider/path_provider.dart';
+
+// 🌎 Project imports:
 import 'package:rotary_nl_rye/core/data/datasources/url_provider.dart';
 import 'package:rotary_nl_rye/core/domain/entities/image.dart';
 import 'package:rotary_nl_rye/core/domain/repository/header_image_repository.dart';
-
 import '../datasources/http.dart';
 
 class HeaderImageRepositoryImpl implements HeaderImageRepository {

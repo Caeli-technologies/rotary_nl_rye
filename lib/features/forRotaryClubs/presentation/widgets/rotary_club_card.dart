@@ -1,9 +1,13 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_svg/svg.dart';
 
+// 🌎 Project imports:
 import '../../../../core/prop.dart';
-import '../pages/rotary_club_info_page.dart';
 import '../../../home/presentation/widgets/card_item.dart';
+import '../pages/rotary_club_info_page.dart';
 
 class RotaryClubCard extends CardItem {
   RotaryClubCard()

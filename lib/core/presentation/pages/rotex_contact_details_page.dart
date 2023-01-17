@@ -14,7 +14,6 @@ import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/open_whatsapp.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
 import '../uniform_widgets/rotary_scaffold.dart';
 
 class RotexDetails extends StatelessWidget {

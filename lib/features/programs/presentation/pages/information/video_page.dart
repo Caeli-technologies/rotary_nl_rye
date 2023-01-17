@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/native_video.dart';
-
 import '../../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
 class VideoPage extends StatefulWidget {

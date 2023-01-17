@@ -1,11 +1,15 @@
+// 🎯 Dart imports:
 import 'dart:convert';
 import 'dart:ui';
 
+// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
 
-import '../../domain/repository/translate_repository.dart';
+// 📦 Package imports:
 import 'package:http/http.dart' as http;
 
+// 🌎 Project imports:
+import '../../domain/repository/translate_repository.dart';
 import '../datasources/caching/cache.dart';
 import '../network/network_info.dart';
 import '../translation/deeplSupportedLang.dart';

@@ -1,8 +1,9 @@
-// 🐦 Flutter imports:
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../pages/events_page.dart';
+// 🌎 Project imports:
 import '../../../home/presentation/widgets/icon_with_text_card.dart';
+import '../pages/events_page.dart';
 
 class CalendarCard extends IconWithTextCard {
   CalendarCard()

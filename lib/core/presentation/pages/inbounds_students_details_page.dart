@@ -12,7 +12,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/widgets/full_screen_image.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-
 import '../uniform_widgets/rotary_scaffold.dart';
 
 class InboundsDetails extends StatelessWidget {

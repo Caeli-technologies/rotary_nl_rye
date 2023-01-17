@@ -5,8 +5,8 @@ import 'dart:convert';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/data/datasources/caching/cache.dart';
 import 'package:rotary_nl_rye/core/data/datasources/config.dart';
-import 'package:rotary_nl_rye/core/data/datasources/url_provider.dart';
 import 'package:rotary_nl_rye/core/data/datasources/http.dart';
+import 'package:rotary_nl_rye/core/data/datasources/url_provider.dart';
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
 import 'package:rotary_nl_rye/core/domain/repository/exchange_student_repository.dart';
 

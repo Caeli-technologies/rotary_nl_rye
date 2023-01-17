@@ -373,7 +373,7 @@ class DialogPage1 extends StatelessWidget {
         DateFormat.jm(defaultLocale).format(DateTime.parse(endDate).toLocal());
 
     RegExp exp =
-        new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+        new RegExp(r'(?:(?:https?|ftp)://)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
     Iterable<RegExpMatch> matches = exp.allMatches(description ?? '');
 
     return Platform.isIOS
