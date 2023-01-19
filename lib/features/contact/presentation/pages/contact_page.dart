@@ -8,12 +8,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
+import 'package:rotary_nl_rye/core/presentation/uniform_widgets/rotary_list_tile.dart';
+import 'package:rotary_nl_rye/core/presentation/uniform_widgets/rotary_scaffold.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/data/MDJC.dart';
 import 'package:rotary_nl_rye/features/contact/data/long_term_organization_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/rotex_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
+import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
+
+import '../../../../core/presentation/uniform_widgets/rotary_list_view.dart';
+import '../../../../core/presentation/uniform_widgets/uniform_circle_avatar.dart';
+import '../widgets/contact_list_view.dart';
 
 class ContactPage extends StatefulWidget {
   @override
@@ -43,32 +50,11 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          centerTitle: false,
-          title: Text(
-            'Contact List',
-            textScaleFactor: 1.7,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
+      child: RotaryScaffold(
+        title: 'Contact List',
+        returnButtonShown: false,
 //TODO  need a search function to it :)
-          // actions: <Widget>[
-          //   IconButton(
-          //     onPressed: () {},
-          //     icon: FaIcon(
-          //       FontAwesomeIcons.search,
-          //       color: Palette.lightIndigo,
-          //     ),
-          //   )
-          // ],
-          bottom: TabBar(
+        /*bottom: TabBar(
             labelColor: Palette.selectedlabelColor,
             unselectedLabelColor: Palette.unselectedLabelColor,
             indicatorPadding: EdgeInsets.all(0.0),
@@ -108,45 +94,26 @@ class _ContactPageState extends State<ContactPage> {
                 child: Text('Rotex'),
               ),
             ],
-          ),
-        ),
-        body: Container(
-          //height: Device.height - 277,
-          margin: EdgeInsets.only(left: 5, right: 5),
-          child: TabBarView(children: [
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
-                  item: mdjcList[index],
-                  contactDetailsPage:
-                      OrganizationDetails(person: mdjcList[index])),
-              itemCount: mdjcList.length,
+          ),*/
+        body: TabBarView(
+          children: [
+            ContactListView(
+              contacts: mdjcList,
+              context: context,
             ),
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
-                  item: longTermOrganizationList[index],
-                  contactDetailsPage: OrganizationDetails(
-                      person: longTermOrganizationList[index])),
-              itemCount: longTermOrganizationList.length,
+            ContactListView(
+              contacts: longTermOrganizationList,
+              context: context,
             ),
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
-                  item: shortTermOrganizationList[index],
-                  contactDetailsPage: OrganizationDetails(
-                      person: shortTermOrganizationList[index])),
-              itemCount: shortTermOrganizationList.length,
+            ContactListView(
+              contacts: shortTermOrganizationList,
+              context: context,
             ),
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => RotexContactListTile(
-                  item: rotexList[index],
-                  rotexContactDetailsPage:
-                      RotexDetails(person: rotexList[index])),
-              itemCount: rotexList.length,
+            ContactListView(
+              contacts: rotexList as List<Organization>,
+              context: context,
             ),
-          ]),
+          ],
         ),
       ),
     );

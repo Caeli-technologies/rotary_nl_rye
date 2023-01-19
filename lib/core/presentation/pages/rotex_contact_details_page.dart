@@ -24,7 +24,7 @@ class RotexDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RotaryScaffold(
-      title: 'Rotext',
+      title: 'Rotex',
       body:  ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

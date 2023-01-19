@@ -21,10 +21,10 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import '../uniform_widgets/rotary_scaffold.dart';
 
-class OrganizationDetails extends StatelessWidget {
-  final Organization person;
+class ContactDetailsPage extends StatelessWidget {
+  final Organization contact;
 
-  OrganizationDetails({required this.person});
+  ContactDetailsPage({required this.contact});
 
   final List<Widget> fx = [];
 
@@ -57,12 +57,12 @@ class OrganizationDetails extends StatelessWidget {
                               Navigator.of(context).push(PageRouteBuilder(
                                   opaque: false,
                                   pageBuilder: (BuildContext context, _, __) =>
-                                      FullScreenImage(url: person.imageUrl)));
+                                      FullScreenImage(url: contact.imageUrl)));
                             },
                             child: CachedNetworkImage(
                               height: 60,
                               width: 60,
-                              imageUrl: person.imageUrl,
+                              imageUrl: contact.imageUrl,
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
@@ -86,7 +86,7 @@ class OrganizationDetails extends StatelessWidget {
                           children: <Widget>[
                             SizedBox(
                               width: Device.width - 150,
-                              child: Text(person.name,
+                              child: Text(contact.name,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: false,
@@ -101,7 +101,7 @@ class OrganizationDetails extends StatelessWidget {
                             ),
                             SizedBox(
                               width: Device.width - 150,
-                              child: Text(person.functions[0],
+                              child: Text(contact.functions[0],
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: false,
@@ -121,7 +121,7 @@ class OrganizationDetails extends StatelessWidget {
                 ),
               ),
 
-              person.phoneNumber == null
+              contact.phoneNumber == null
                   ? SizedBox.shrink()
                   : Padding(
                       padding: const EdgeInsets.only(
@@ -138,7 +138,7 @@ class OrganizationDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    person.phoneNumber == null
+                    contact.phoneNumber == null
                         ? SizedBox.shrink()
                         : Padding(
                             padding: EdgeInsets.zero,
@@ -154,7 +154,7 @@ class OrganizationDetails extends StatelessWidget {
                                           size: 30,
                                         ),
                                         onPressed: () => openwhatsapp(
-                                            context, person.phoneNumber!),
+                                            context, contact.phoneNumber!),
                                         padding: EdgeInsets.zero,
                                       )
                                     : TextButton(
@@ -163,7 +163,7 @@ class OrganizationDetails extends StatelessWidget {
                                           color: Color(0xFF25D366),
                                         ),
                                         onPressed: () => openwhatsapp(
-                                            context, person.phoneNumber!),
+                                            context, contact.phoneNumber!),
                                       ),
                               ],
                             ),
@@ -172,7 +172,7 @@ class OrganizationDetails extends StatelessWidget {
                 ),
               ),
 
-              person.phoneNumber == null
+              contact.phoneNumber == null
                   ? SizedBox.shrink()
                   : Padding(
                       padding: const EdgeInsets.only(
@@ -207,7 +207,7 @@ class OrganizationDetails extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (var x in person.functions)
+                    for (var x in contact.functions)
                       Text(
                         '- $x',
                         style: TextStyle(fontSize: 15.0),
@@ -241,7 +241,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 0.0, left: 30.0, bottom: 0.0),
                 child: Text(
-                  'Club District: ${person.district}',
+                  'Club District: ${contact.district}',
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
@@ -249,7 +249,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 2.0, left: 30.0, bottom: 15.0),
                 child: Text(
-                  'Club name: ${person.club}',
+                  'Club name: ${contact.club}',
                   style: TextStyle(fontSize: 15.0),
                 ),
               ),
@@ -276,7 +276,7 @@ class OrganizationDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
-                  person.bio,
+                  contact.bio,
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -286,7 +286,7 @@ class OrganizationDetails extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    person.email == null
+                    contact.email == null
                         ? SizedBox.shrink()
                         : Container(
                             height: 70.0,
@@ -298,7 +298,7 @@ class OrganizationDetails extends StatelessWidget {
                             child: RawMaterialButton(
                                 onPressed: () async {
                                   final email =
-                                      Uri.parse('mailto:${person.email}');
+                                      Uri.parse('mailto:${contact.email}');
                                   if (await canLaunchUrl(email)) {
                                     launchUrl(email);
                                   } else {
@@ -312,7 +312,7 @@ class OrganizationDetails extends StatelessWidget {
                                   color: Colors.black,
                                   size: 30,
                                 ))),
-                    person.phoneNumber == null
+                    contact.phoneNumber == null
                         ? SizedBox.shrink()
                         : Container(
                             height: 65.0,
@@ -325,7 +325,7 @@ class OrganizationDetails extends StatelessWidget {
                             child: RawMaterialButton(
                               onPressed: () async {
                                 final sms =
-                                    Uri.parse('tel:${person.phoneNumber}');
+                                    Uri.parse('tel:${contact.phoneNumber}');
                                 if (await canLaunchUrl(sms)) {
                                   launchUrl(sms);
                                 } else {
