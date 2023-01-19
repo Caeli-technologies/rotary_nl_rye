@@ -1,9 +1,8 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/core/presentation/uniform_widgets/rotary_list_view.dart';
 import '../../../../core/presentation/uniform_widgets/last_updated_at.dart';
 import '../../../../core/presentation/uniform_widgets/rotary_scaffold.dart';
 
@@ -18,10 +17,8 @@ class _AboutPageState extends State<AboutPage> {
     return RotaryScaffold(
       title: 'About Us',
       returnButtonShown: false,
-      body: ListView(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 20, bottom: 30),
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
+      body: RotaryListView(
+        listTiles: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

@@ -1,6 +1,9 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 🌎 Project imports:
+import '../../prop.dart';
+
 class FooterNote extends StatelessWidget {
   final String text;
 
@@ -11,9 +14,9 @@ class FooterNote extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: TextStyle(
-          color: Color(0xFF777777),
-        ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: kNodeColor,
+            ),
       ),
     );
   }

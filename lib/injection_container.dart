@@ -1,5 +1,6 @@
 // 📦 Package imports:
 import 'package:get_it/get_it.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/data/datasources/caching/cache.dart';
@@ -16,14 +17,26 @@ import 'core/domain/repository/stories_repository.dart';
 // service locator
 final sl = GetIt.instance;
 
+PackageInfo packageInfo = PackageInfo(
+  appName: 'Unkwown',
+  packageName: 'Unkwown',
+  version: 'Unkwown',
+  buildNumber: 'Unkwown',
+);
+
 Future<void> init() async {
+  packageInfo = await PackageInfo.fromPlatform();
+
   /// Data layer
 
   // Repository
-  sl.registerLazySingleton<ExchangeStudentRepository>(() => ExchangeStudentsRepositoryImpl(sl()));
-  sl.registerLazySingleton<HeaderImageRepository>(() => HeaderImageRepositoryImpl());
+  sl.registerLazySingleton<ExchangeStudentRepository>(
+      () => ExchangeStudentsRepositoryImpl(sl()));
+  sl.registerLazySingleton<HeaderImageRepository>(
+      () => HeaderImageRepositoryImpl());
   sl.registerLazySingleton<NewsRepository>(() => NewsRepositoryImpl(sl()));
-  sl.registerLazySingleton<StoriesRepository>(() => StoriesRepositoryImpl(sl()));
+  sl.registerLazySingleton<StoriesRepository>(
+      () => StoriesRepositoryImpl(sl()));
 
   // Cache
   sl.registerLazySingleton<Cache>(() => SharedPreferencesCache());

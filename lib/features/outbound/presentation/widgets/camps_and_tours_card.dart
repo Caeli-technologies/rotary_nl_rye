@@ -9,7 +9,7 @@ class CampsAndToursCard extends IconWithTextCard {
   CampsAndToursCard()
       : super(
           title: 'Camps & Tours List',
-          iconData: FontAwesomeIcons.rotateRight,
+          iconData: FontAwesomeIcons.campground,
           pushTo: LoadCsv(),
         );
 }

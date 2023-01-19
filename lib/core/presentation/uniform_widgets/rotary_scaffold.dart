@@ -28,6 +28,7 @@ class RotaryScaffold extends StatelessWidget {
             MediaQuery.of(context).platformBrightness == Brightness.light
                 ? SystemUiOverlayStyle.dark
                 : SystemUiOverlayStyle.light,
+        toolbarHeight: 70,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: returnButtonShown ? UniformBackButton() : null,
