@@ -8,8 +8,8 @@ import '../pages/outbound_page.dart';
 class OutboundCard extends IconWithTextCard {
   OutboundCard()
       : super(
-    title: 'News',
-    iconData: FontAwesomeIcons.planeDeparture,
-    pushTo: OutboundPage(),
-  );
+          title: 'Outbound',
+          iconData: FontAwesomeIcons.planeDeparture,
+          pushTo: OutboundPage(),
+        );
 }
