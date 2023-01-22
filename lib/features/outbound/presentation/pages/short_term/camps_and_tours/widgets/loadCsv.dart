@@ -26,7 +26,7 @@ class _LoadCsvState extends State<LoadCsv> {
   Future<List<List>?> getData() async {
     final response = await http.get(
         Uri.parse(
-            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv'),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2023.csv'),
         headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
     try {
       if (response.statusCode == 200) {
