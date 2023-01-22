@@ -53,7 +53,6 @@ class _ContactPageState extends State<ContactPage> {
       child: RotaryScaffold(
         title: 'Contact List',
         returnButtonShown: false,
-//TODO  need a search function to it :)
         /*bottom: TabBar(
             labelColor: Palette.selectedlabelColor,
             unselectedLabelColor: Palette.unselectedLabelColor,
@@ -110,7 +109,7 @@ class _ContactPageState extends State<ContactPage> {
               context: context,
             ),
             ContactListView(
-              contacts: rotexList as List<Organization>,
+              contacts: rotexList,
               context: context,
             ),
           ],

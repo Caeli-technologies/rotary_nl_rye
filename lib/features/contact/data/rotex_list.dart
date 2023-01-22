@@ -15,7 +15,7 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/nikkimureau/',
       websiteUrl: 'https://www.nikkimureau.com',
       linkedinUrl: 'https://www.linkedin.com/in/nikki-m-b60b7013a/',
-      role: 'Voorzitter'),
+      role: ['Voorzitter']),
 // Sanne Pipping
   Rotex(
       name: 'Sanne Pipping',
@@ -29,7 +29,7 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/sannepipping/',
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Penningmeester'),
+      role: ['Penningmeester']),
 // Timo Homburg
   Rotex(
       name: 'Timo Homburg',
@@ -43,23 +43,24 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/thtimo_/',
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Secretaris'),
+      role: ['Secretaris']),
 
 // Victor Storm van ‘s Gravesande
   Rotex(
-    name: 'Victor Storm van \'s Gravesande',
-    bio: 'victorStormBio',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/victor-storm.jpg',
-    email: null,
-    phoneNumber: null,
-    facebookUrl: null,
-    snapchatUrl: null,
-    instagramUrl: 'https://www.instagram.com/vicvipster/',
-    websiteUrl: null,
-    linkedinUrl: null,
-    role: 'Commissie Inbound - Commissiehoofd',
-  ),
+      name: 'Victor Storm van \'s Gravesande',
+      bio: 'victorStormBio',
+      imageUrl:
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/rotex/victor-storm.jpg',
+      email: null,
+      phoneNumber: null,
+      facebookUrl: null,
+      snapchatUrl: null,
+      instagramUrl: 'https://www.instagram.com/vicvipster/',
+      websiteUrl: null,
+      linkedinUrl: null,
+      role: [
+        'Commissie Inbound - Commissiehoofd',
+      ]),
 // Daniek de Koning
   Rotex(
       name: 'Daniek de Koning',
@@ -73,7 +74,7 @@ List<Rotex> rotexList = [
       snapchatUrl: null,
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie Inbound'),
+      role: ['Commissie Inbound']),
 
 // Kevin Kooistra
   Rotex(
@@ -88,7 +89,7 @@ List<Rotex> rotexList = [
       websiteUrl: null,
       snapchatUrl: 'https://www.snapchat.com/add/kevin_kooistra/',
       linkedinUrl: null,
-      role: 'Commissie Inbound'),
+      role: ['Commissie Inbound']),
 
 // Pascal Stomp
   Rotex(
@@ -103,7 +104,7 @@ List<Rotex> rotexList = [
       instagramUrl: null,
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie Pre-Rebound - Commissiehoofd'),
+      role: ['Commissie Pre-Rebound - Commissiehoofd']),
 
 // Emil Laitervo
   Rotex(
@@ -118,7 +119,7 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/emil.laitervo/',
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie Pre-Rebound'),
+      role: ['Commissie Pre-Rebound']),
 
 // Ties Kraai
   Rotex(
@@ -133,7 +134,7 @@ List<Rotex> rotexList = [
       instagramUrl: null,
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie Pre-Rebound'),
+      role: ['Commissie Pre-Rebound']),
 
   // Anne Lucas
   Rotex(
@@ -148,7 +149,7 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/annelucas_/',
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie Pre-Rebound'),
+      role: ['Commissie Pre-Rebound']),
 
 // Fleur Heupers
   Rotex(
@@ -163,7 +164,7 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/fleurheupers/',
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie Extern - Commissiehoofd'),
+      role: ['Commissie Extern - Commissiehoofd']),
 // Julia Brok
   Rotex(
       name: 'Julia Brok',
@@ -177,5 +178,5 @@ List<Rotex> rotexList = [
       instagramUrl: 'https://www.instagram.com/juliabrok_/',
       websiteUrl: null,
       linkedinUrl: null,
-      role: 'Commissie PR - Extern'),
+      role: ['Commissie PR - Extern']),
 ];
