@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
@@ -55,8 +55,9 @@ class HomeCardItemSingle extends StatelessWidget {
                   icon == FontAwesomeIcons.newspaper && currentNewsIndex > 0
                       ? Container(
                           margin: EdgeInsets.only(bottom: 16),
-                          child: Badge(
-                            position: BadgePosition.topEnd(top: -15, end: -15),
+                          child: badges.Badge(
+                            position:
+                                badges.BadgePosition.topEnd(top: -15, end: -15),
                             badgeContent: Text(currentNewsIndex.toString(),
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.white)),

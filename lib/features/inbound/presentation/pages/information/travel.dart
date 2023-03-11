@@ -8,7 +8,6 @@ import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 // 📦 Package imports:
 
-
 // ignore: unused_import
 
 class TravelPage extends StatefulWidget {
@@ -63,7 +62,7 @@ class _TravelPageState extends State<TravelPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
@@ -85,7 +84,7 @@ class _TravelPageState extends State<TravelPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
@@ -100,7 +99,7 @@ class _TravelPageState extends State<TravelPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(

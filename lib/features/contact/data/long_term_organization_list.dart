@@ -21,18 +21,16 @@ List<Organization> longTermOrganizationList = [
     ],
   ),
   Organization(
-    name: 'Clasine Scheepers',
-    bio:
-        'Sinds 2017 ben ik lid van team Longterm. Ongelofelijk leuk om Nederlandse jongeren te begeleiden in hun avontuur voor jaaruitwisseling en om buitenlandse jongeren vervolgens hier in Nederland te ontvangen die een jaar lang worden ondergedompeld in hagelslag, stroopwafels en (het aller moeilijkst) de Nederlandse taal. Zo gaaf om dit elke keer met ons team te organiseren en te regelen. Begin 2021 ben ik secretaris MDJC – weer een nieuwe avontuur. \n\nIn mijn familie zijn er velen inmiddels op exchange geweest waaronder mijn man en dochter. Een van de gastgezinnen uit Amerika bezoeken we nog jaarlijks. Je krijgt er echt een nieuwe familie bij. Zelf hebben we nu drie keer een exchange student in huis gehad. Dan merk je van dichtbij waar ze tegenaan lopen in een nieuwe omgeving, andere cultuur en met een vreemde taal. Fijn om hen te helpen hun weg te vinden, een verrijking van je eigen leven.',
+    name: 'Toon ter Ellen',
+    bio: '',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/clasine-schepers.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/toon-ter-ellen.jpg',
     email: 'longtermin@rotaryyep.nl',
-    phoneNumber: '+31652710977',
-    club: 'RC Huizen',
-    district: '1570 MIDDEN-NEDERLAND',
+    phoneNumber: null,
+    club: '',
+    district: '',
     functions: [
-      'Secretaris MDJC',
-      'Inbound coördinator en secretaris LTEP',
+      'Inbound coördinator',
     ],
   ),
   Organization(
@@ -144,9 +142,6 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: null,
     club: 'Ermelo',
     district: '1560 OOST-NEDERLAND',
-    functions: [
-      'District Jeugd Commissaris',
-      'Evenementen',
-    ],
+    functions: ['inbound coördinator', 'DJC 1560'],
   ),
 ];

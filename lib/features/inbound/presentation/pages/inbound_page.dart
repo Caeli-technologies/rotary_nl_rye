@@ -51,7 +51,7 @@ class _InboundPageState extends State<InboundPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 16),
                         children: [
                       TextSpan(

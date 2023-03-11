@@ -63,7 +63,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(

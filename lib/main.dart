@@ -154,9 +154,9 @@ class MyApp extends StatelessWidget {
         }
         return supportedLocales.first;
       },
-      theme: ThemeData.light(),
+      theme: ThemeData.light(useMaterial3: true),
       // Provide light theme.
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(useMaterial3: true),
       // Provide dark theme.
       themeMode: ThemeMode.system,
       title: 'Rotary youth Exchange',

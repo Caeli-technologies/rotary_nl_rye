@@ -60,7 +60,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 15),
                         children: [
                       TextSpan(
@@ -78,7 +78,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 15),
                         children: [
                       TextSpan(
@@ -111,7 +111,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 15),
                         children: [
                       TextSpan(

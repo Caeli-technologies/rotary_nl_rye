@@ -36,7 +36,7 @@ class _ProgramPageState extends State<ProgramPage> {
         leading: UniformBackButton(),
         title: Text(
           'Programs',
-          textScaleFactor: 1,
+          textScaleFactor: 1.7,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -123,7 +123,7 @@ class _ProgramPageState extends State<ProgramPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(

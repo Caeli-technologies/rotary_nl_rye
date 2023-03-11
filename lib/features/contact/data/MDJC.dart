@@ -25,10 +25,7 @@ List<Organization> mdjcList = [
     phoneNumber: '+31652710977',
     club: 'RC Huizen',
     district: '1570 MIDDEN-NEDERLAND',
-    functions: [
-      'Secretaris MDJC',
-      'Inbound coördinator en secretaris LTEP',
-    ],
+    functions: ['Secretaris MDJC'],
   ),
   Organization(
     name: 'Johan de Loyer',
@@ -85,7 +82,7 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Danielle Alders',
+    name: 'Ernst Ziengs',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -94,13 +91,13 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1550',
+      'DJC 1550',
     ],
   ),
   Organization(
     name: 'Patty van Vierzen',
     bio:
-        'Ik ben Patty van Vierzen, District Jeugd Commissaris (DJC) van D1560. Ik ben getrouwd met Peter van Vierzen en wij hebben samen vier fantastische kinderen.\n\nIn 2017 ben ik gevraagd om lid te worden van Rotaryclub Ermelo. Als enthousiast vrijwilliger ben ik toegetreden tot deze geweldig mooie Rotaryclub. Het voelde meteen als een warm bad en ik heb de Rotary gedachte dan ook direct omarmd. Omdat ik mij graag op districtsniveau of landelijk niveau wilde inzetten voor Rotary ben ik in 2019 benaderd om District Jeugd Commissaris te worden van D1560. Daar heb ik volmondig JA op gezegd want door de fantastische lange en korte uitwisselingsprogramma’s van Rotary bieden wij onze jongeren de gelegenheid persoonlijk leiderschap te ontwikkelen, wereldwijde vriendschappen te sluiten, kennis te maken met andere culturen, waardoor flexibiliteit, begrip en tolerantie ontstaat en Wereldvrede binnen bereik komt te liggen. Het is een geweldige levenservaring en dat is ook mijn motivatie om mij vol enthousiasme in te zetten voor Rotary Jeugd.\n\nIn het dagelijks leven werk ik als projectassistente bij congresbureau Mark Two Academy en bij GGDNOG waar ik betrokken ben bij het vaccinatieproces inzake Covid-19.\n\nDaarnaast ben ik als bestuurslid verbonden aan stichting Ruby and Rose, een stichting die aandacht vraagt voor meer onderzoek naar en awareness voor gynaecologische kankers, www.rubyandrose.nl.\n\nMijn hobby’s zijn: verre reizen maken, skiën en wandelen',
+        'Ik ben Patty van Vierzen, District Jeugd Commissaris (DJC) van D1560. Ik ben getrouwd met Peter van Vierzen en wij hebben samen vier fantastische kinderen.\n\nIn 2017 ben ik gevraagd om lid te worden van Rotaryclub Ermelo. Als enthousiast vrijwilliger ben ik toegetreden tot deze geweldig mooie Rotaryclub. Het voelde meteen als een warm bad en ik heb de Rotary gedachte dan ook direct omarmd. Omdat ik mij graag op districtsniveau of landelijk niveau wilde inzetten voor Rotary ben ik in 2019 benaderd om District Jeugd Commissaris te worden van D1560. Daar heb ik volmondig JA op gezegd want door de fantastische lange en korte uitwisselingsprogramma’s van Rotary bieden wij onze jongeren de gelegenheid persoonlijk leiderschap te ontwikkelen, wereldwijde vriendschappen te sluiten, kennis te maken met andere culturen, waardoor flexibiliteit, begrip en tolerantie ontstaat en Wereldvrede binnen bereik komt te liggen. Het is een geweldige levenservaring en dat is ook mijn motivatie om mij vol enthousiasme in te zetten voor Rotary Jeugd.\n\nIn het dagelijks leven ben ik werkzaam als receptioniste bij Autobedrijf Broekhuis en bij de GGDNOG, waar ik betrokken ben bij het vaccinatieproces inzake Covid-19.\n\nMijn hobby\'s zijn: verre reizen maken, skiën en wandelen',
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/patty-van-vierzen.jpg',
     email: 'DJC1560@rotaryyep.nl',
@@ -108,7 +105,7 @@ List<Organization> mdjcList = [
     club: 'Ermelo',
     district: '1560 OOST-NEDERLAND',
     functions: [
-      'District 1560',
+      'DJC 1560',
     ],
   ),
   Organization(
@@ -121,7 +118,7 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1570',
+      'DJC 1570',
     ],
   ),
   Organization(
@@ -134,7 +131,7 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1580',
+      'DJC 1580',
     ],
   ),
   Organization(
@@ -148,11 +145,11 @@ List<Organization> mdjcList = [
     club: 'Rotary Club Oosterwolde',
     district: '1590 NOORD-NEDERLAND',
     functions: [
-      'District 1590',
+      'DJC 1590',
     ],
   ),
   Organization(
-    name: 'Gerben Hillebrand',
+    name: 'Elzeline Fischer',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -161,7 +158,7 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1600',
+      'DJC 1600',
     ],
   ),
   Organization(
@@ -174,7 +171,7 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1610',
+      'DJC 1610',
     ],
   ),
   Organization(
@@ -191,7 +188,7 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Marja van Rheenen',
+    name: 'Aad Otto',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
