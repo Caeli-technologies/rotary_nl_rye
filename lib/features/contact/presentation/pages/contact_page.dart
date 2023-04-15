@@ -2,9 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// 📦 Package imports:
-import 'package:flutter_svg/flutter_svg.dart';
-
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
@@ -25,18 +22,6 @@ class _ContactPageState extends State<ContactPage> {
   @override
   initState() {
     super.initState();
-    // Future.wait([
-    //   precachePicture(
-    //     ExactAssetPicture(SvgPicture.svgStringDecoderBuilder,
-    //         'assets/icons/custom/rotary-logo-icon.svg'),
-    //     null,
-    //   ),
-    //   precachePicture(
-    //     ExactAssetPicture(SvgPicture.svgStringDecoderBuilder,
-    //         'assets/icons/custom/rotex_logo_light.svg'),
-    //     null,
-    //   ),
-    // ]);
   }
 
   @override
@@ -58,16 +43,6 @@ class _ContactPageState extends State<ContactPage> {
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),
-//TODO  need a search function to it :)
-          // actions: <Widget>[
-          //   IconButton(
-          //     onPressed: () {},
-          //     icon: FaIcon(
-          //       FontAwesomeIcons.search,
-          //       color: Palette.lightIndigo,
-          //     ),
-          //   )
-          // ],
           bottom: TabBar(
             labelColor: Palette.selectedlabelColor,
             unselectedLabelColor: Palette.unselectedLabelColor,

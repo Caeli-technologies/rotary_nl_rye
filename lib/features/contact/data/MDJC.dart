@@ -52,19 +52,6 @@ List<Organization> mdjcList = [
     district: '1590 NOORD-NEDERLAND',
     functions: [
       'Longterm Chair',
-    ],
-  ),
-  Organization(
-    name: 'Marja Hofland',
-    bio:
-        "Hallo, mijn naam is Marja Hofland.\nAls kersverse voorzitter STEP ga ik me inzetten om de short term programma's nog succesvoller te maken samen met alle coördinatoren.\nAls HBO student aan de Hogeschool van Amsterdam ben ik in 1987-1988 vijf maanden op stage gegaan in Seattle, USA. Het was echt een bijzonder mooie ervaring die mijn leven enorm verrijkt heeft. Daarvoor heb ik in 1984-1985 door West-Afrika gereisd met een vrachtwagen, dwars door de Sahara. Andere culturen van dichtbij leren kennen is iets prachtigs. Je wordt er een completer mens van. En van de hitte naar de kou: ik heb ook een winter in een Oostenrijks gezin doorgebracht waar ik nog steeds jaarlijks een paar maal terugkeer om samen met mijn Oostenrijkse vrienden te gaan skiën en in de zomer met mijn mountainbike door de bergen te crossen. Heerlijk!\n\nOp jezelf aangewezen zijn in een onbekende wereld is het grootste kado dat je jezelf kunt geven.\nNaast de zomerkampen en de family to family programma's ben ik van mening dat het NGSE programma voor studenten tot 30 jaar een prachtige kans is om met ondersteuning van Rotary een buitenlandse stage te doen. Dit programma verdient meer bekendheid!\nSinds 2006 ben ik lid van Rotaryclub Schouwen-Duiveland, waar wij met ons gezin vanuit Den Haag 17 jaar geleden zijn neergestreken. Naast Rotarylid zing ik in een kamerkoor en als arbeidsdeskundige werk ik dagelijks in de verzuim- en re-integratie wereld vanuit mijn eigen bedrijf. Dit vanuit het perspectief: wat kan wel? \nIk kijk uit naar vele deelnemers van onze prachtige Rotary programma's. ",
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/marja-hofland.jpg',
-    email: 'shortterm@rotaryyep.nl',
-    phoneNumber: null,
-    club: 'RC Schouwen-Duiveland',
-    district: '1610 ZUIDWEST-NEDERLAND',
-    functions: [
       'Shortterm Chair',
     ],
   ),
@@ -86,7 +73,7 @@ List<Organization> mdjcList = [
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'danielle.alders@wyo.nl',
+    email: 'youth@rotary-d1550.org',
     phoneNumber: null,
     club: '',
     district: '',
@@ -109,11 +96,11 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Lucien Krapels Schram',
+    name: 'Erna van Dijk',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'lucien.g.a.krapels.schram@gmail.com',
+    email: 'erna@vandijkmedischadvies.nl',
     phoneNumber: null,
     club: '',
     district: '',
@@ -141,7 +128,7 @@ List<Organization> mdjcList = [
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg',
     email: 'marga_bart@yahoo.com',
-    phoneNumber: '+31636527122',
+    phoneNumber: '+31629586813',
     club: 'Rotary Club Oosterwolde',
     district: '1590 NOORD-NEDERLAND',
     functions: [
@@ -153,7 +140,7 @@ List<Organization> mdjcList = [
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'gerben.hillebrand@gmail.com',
+    email: 'djc@rotary-d1600.nl',
     phoneNumber: null,
     club: '',
     district: '',
@@ -162,7 +149,7 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Hans Maathuis (a.i.)',
+    name: 'Natasja Rensen',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -188,29 +175,16 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Aad Otto',
+    name: 'Guido Rijninks',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'marja.vanrheenen@gmail.com',
+    email: 'educatour@home.nl',
     phoneNumber: null,
     club: '',
     district: '',
     functions: [
       'District Governor Youth',
-    ],
-  ),
-  Organization(
-    name: 'Marco Beijersbergen',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'admin@rotaryyep.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'ICT Communication',
     ],
   ),
   Organization(
