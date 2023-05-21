@@ -187,17 +187,17 @@ List<Organization> mdjcList = [
       'District Governor Youth',
     ],
   ),
-  Organization(
-    name: 'Harry van Montfort',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'webmaster@rotaryyep.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'webmaster',
-    ],
-  ),
+  // Organization(
+  //   name: 'Harry van Montfort',
+  //   bio: '',
+  //   imageUrl:
+  //       'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+  //   email: 'webmaster@rotaryyep.nl',
+  //   phoneNumber: null,
+  //   club: '',
+  //   district: '',
+  //   functions: [
+  //     'webmaster',
+  //   ],
+  // ),
 ];

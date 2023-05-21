@@ -72,19 +72,35 @@ class _EmergencyPageState extends State<EmergencyPage> {
               index: 0,
             ),
             EmergencyCardItem(
-              title: 'Clasine Scheepers',
+              title: 'Patty van Vierzen',
               function: 'Inbound Coordinator',
-              mobileNumber: '06 52 71 09 77',
+              mobileNumber: '06 34 02 14 03',
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
             EmergencyCardItem(
-              title: 'Ben Mureau',
-              function: 'Insurance and Visa',
-              mobileNumber: '06 51 91 12 44',
+              title: 'Toon ter Ellen',
+              function: 'Inbound Coordinator',
+              mobileNumber: '06 13 60 29 87',
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
+
+            EmergencyCardItem(
+              title: 'Marga Oosterveld',
+              function: 'Outbound Coordinator',
+              mobileNumber: '06 29 58 68 13',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+            EmergencyCardItem(
+              title: 'Judith Siebring',
+              function: 'Outbound Coordinator',
+              mobileNumber: '06 52 68 22 75',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+
             EmergencyCardItem(
               title: 'Hilleke van der Veer',
               function: 'National counselor',
@@ -97,7 +113,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                'Confidants (not connected to Rotary) in case of f.e. sexual harassment:',
+                'Confidants (not connected to Rotary) in case of f.e. sexual harassment, Police could also be notified in case of breaking a law:',
                 style: TextStyle(
                   color: Palette.bodyText,
                   fontSize: 15.0,

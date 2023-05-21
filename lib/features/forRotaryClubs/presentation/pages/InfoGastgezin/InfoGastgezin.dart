@@ -11,14 +11,12 @@ import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
-class InfoForJeugdcommissarisPage extends StatefulWidget {
+class InfoGastgezinPage extends StatefulWidget {
   @override
-  _InfoForJeugdcommissarisPageState createState() =>
-      _InfoForJeugdcommissarisPageState();
+  _InfoGastgezinPageState createState() => _InfoGastgezinPageState();
 }
 
-class _InfoForJeugdcommissarisPageState
-    extends State<InfoForJeugdcommissarisPage> {
+class _InfoGastgezinPageState extends State<InfoGastgezinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +29,8 @@ class _InfoForJeugdcommissarisPageState
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          'Info Jeugdcommissaris',
-          textScaleFactor: 1.0,
+          'Info Gastgezin',
+          textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -49,102 +47,11 @@ class _InfoForJeugdcommissarisPageState
               ),
               buildInboundOptionRow(
                 context,
-                'Draaiboek Jeugdcommissaris',
-                FontAwesomeIcons.book,
+                'Draaiboek Gastgezin',
+                FontAwesomeIcons.peopleRoof,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/draaiboek-jeugdcommissaris-versie-2023.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Document huisbezoek',
-                FontAwesomeIcons.personWalkingLuggage,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/huisbezoek-gastgezinnen-23-24-def.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Verzamelformulier VOG gegevens',
-                FontAwesomeIcons.passport,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/formulier-aanlevering-vog-aanvragen-2022-2023.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Verklaring Jeugd Vrijwilliger (VJV)',
-                FontAwesomeIcons.handsHoldingChild,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/verklaring-jeugd-vrijwilliger-met-addendum-okt22-def.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Presentielijst DJC training',
-                FontAwesomeIcons.euroSign,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/presentielijst-training-clubs-gastouders-2023-2024.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Schooldocument',
-                FontAwesomeIcons.school,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/rotary-exchange-voor-middelbare-scholen-2022-2023.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Actielijst voorbereiding komst Jaarkind',
-                FontAwesomeIcons.clipboardList,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/actielijst-rotary-clubs-2023-2024-voorbereiding-ontvangst-inbound-student-def-1.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Rules and Information Inbounds',
-                FontAwesomeIcons.scaleUnbalanced,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/rules-and-information-for-inbound-exchange-students-to-the-netherlands-2022-2023-def-2.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/draaiboek-gastgezin-versie-2023.pdf',
                 ),
               ),
               Divider(
@@ -154,7 +61,21 @@ class _InfoForJeugdcommissarisPageState
 
               buildInboundOptionRow(
                 context,
-                'Reis Regels',
+                'First Night Questions',
+                FontAwesomeIcons.question,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/questions-first-night-host-family.pdf',
+                ),
+              ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+
+              buildInboundOptionRow(
+                context,
+                'Travel rules within and outside the Netherlands',
                 FontAwesomeIcons.personWalkingLuggage,
                 PDFPageWithShare(
                   pdfUrl:

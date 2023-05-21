@@ -15,8 +15,8 @@ List<Organization> longTermOrganizationList = [
     functions: [
       'Chair Longterm Year Exchange',
       'Chair Shortterm Exchange',
-      'Coordinator Long term Asia / Oceania / Europe',
-      'Coordinator Europe Tour',
+      'Coördinator Long term Asia / Oceania / Europe',
+      'Coördinator Europe Tour',
       'Chair long term selection',
       'ROTEX contact person',
     ],
@@ -51,22 +51,30 @@ List<Organization> longTermOrganizationList = [
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg',
     email: 'longtermout@rotaryyep.nl',
-    phoneNumber: '+31636527122',
+    phoneNumber: '+31629586813',
     club: 'Rotary Club Oosterwolde',
     district: '1590 NOORD-NEDERLAND',
-    functions: ['Coordinator USAS & Canada', 'Coordinator Europe'],
+    functions: [
+      'Coördinator USAS & Canada',
+      'Coördinator Europe',
+      'Coördinator Azie'
+    ],
   ),
   Organization(
     name: 'Judith Siebring',
     bio:
-        'Mijn naam is Judith Siebring, outbound coordinator longterm RYE voor de regio\'s Midden- en Zuid-Amerika. \n\nOp mijn 16e (lang geleden… ;-)) ben ik een jaar naar London, Ontario, Canada geweest op uitwisseling via de Rotary. Ik heb een fantastisch jaar gehad waar ik nog ontzettend vaak aan terugdenk. Het heeft ook veel impact gehad op latere keuzes en ervaringen in mijn leven. Reizen, andere mensen, talen en culturen leren kennen; het zit in mijn bloed. Zo heb ik tijdens mijn studie ook nog een jaar in Uruguay in Zuid-Amerika gestudeerd, en heb ik later nog in Canada en Nieuw-Zeeland gewoond en gewerkt. Inmiddels woon ik alweer een aantal jaar in Emmen en ben daar lid geworden van Rotaryclub Emmen-‘t Loo. Ik ben blij dat ik nu mijn steentje kan bijdragen aan het RYE-programma als jeugdcommissaris in mijn club, gastouder én als outbound coordinator voor de regio’s Midden- en Zuid-Amerika. Ik kijk er naar uit om jongeren een stapje op weg te helpen naar en tijdens het jaar van hun leven, met al z\'n ups en downs. Daarnaast ben ik blij dat ik de kans krijg om mijn Spaans een beetje te oefenen en contacten te onderhouden met mijn \'Rotary collega\'s\' in het prachtige Zuid-Amerika.',
+        'Mijn naam is Judith Siebring, outbound Coördinator longterm RYE voor de regio\'s Midden- en Zuid-Amerika. \n\nOp mijn 16e (lang geleden… ;-)) ben ik een jaar naar London, Ontario, Canada geweest op uitwisseling via de Rotary. Ik heb een fantastisch jaar gehad waar ik nog ontzettend vaak aan terugdenk. Het heeft ook veel impact gehad op latere keuzes en ervaringen in mijn leven. Reizen, andere mensen, talen en culturen leren kennen; het zit in mijn bloed. Zo heb ik tijdens mijn studie ook nog een jaar in Uruguay in Zuid-Amerika gestudeerd, en heb ik later nog in Canada en Nieuw-Zeeland gewoond en gewerkt. Inmiddels woon ik alweer een aantal jaar in Emmen en ben daar lid geworden van Rotaryclub Emmen-‘t Loo. Ik ben blij dat ik nu mijn steentje kan bijdragen aan het RYE-programma als jeugdcommissaris in mijn club, gastouder én als outbound Coördinator voor de regio’s Midden- en Zuid-Amerika. Ik kijk er naar uit om jongeren een stapje op weg te helpen naar en tijdens het jaar van hun leven, met al z\'n ups en downs. Daarnaast ben ik blij dat ik de kans krijg om mijn Spaans een beetje te oefenen en contacten te onderhouden met mijn \'Rotary collega\'s\' in het prachtige Zuid-Amerika.',
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg',
     email: 'longtermout@rotaryyep.nl',
     phoneNumber: '+31652682275',
     club: 'RC Emmen-\'t Loo',
     district: '1590 NOORD-NEDERLAND',
-    functions: ['Coordinator Europe', 'Coordinator South & Central America'],
+    functions: [
+      'Coördinator Europe',
+      'Coördinator South & Central America',
+      'Coördinator Zuid Amerika'
+    ],
   ),
   Organization(
     name: 'Ben Mureau',
@@ -79,7 +87,7 @@ List<Organization> longTermOrganizationList = [
     club: 'RC Oldenzaal',
     district: '1560 OOST-NEDERLAND',
     functions: [
-      'Administrator Lonterm Inbound',
+      'Administrator Longterm',
     ],
   ),
   Organization(
@@ -92,7 +100,7 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: '+31629523379',
     club: 'Rotaryclub Meppel',
     district: '1590 NOORD-NEDERLAND',
-    functions: ['Coordinator Dutch Orientations Course (DOC)'],
+    functions: ['Coördinator Dutch Orientations Course (DOC)'],
   ),
   Organization(
     name: 'Bas Siebring',
@@ -104,6 +112,6 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: null,
     club: '',
     district: '',
-    functions: ['Coordinator Dutch Orientations Course (DOC)'],
+    functions: ['Coördinator Dutch Orientations Course (DOC)'],
   ),
 ];

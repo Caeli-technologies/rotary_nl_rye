@@ -6,9 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
+// import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/InfoCounselor/InfoCounselor.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/InfoGastgezin/InfoGastgezin.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'AlgemeneInformatie/algemeneInfo.dart';
 import 'Jeugdcommissaris/jeugd_commissaris.dart';
@@ -83,10 +85,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
                 context,
                 'Info Gastgezin',
                 FontAwesomeIcons.peopleRoof,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-gastgezin-22-23-def.pdf',
-                ),
+                InfoGastgezinPage(),
               ),
 
               Divider(
@@ -97,10 +96,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
                 context,
                 'Info Counselor',
                 FontAwesomeIcons.handsHoldingChild,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-counselor-versie-2022-def.pdf',
-                ),
+                InfoCounselorPage(),
               ),
               Divider(
                 height: 15,
@@ -151,7 +147,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 120,
+              width: Device.width - 130,
               child: Text(title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
