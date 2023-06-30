@@ -51,6 +51,35 @@ class _EmergencyPageState extends State<EmergencyPage> {
                   image: AssetImage('assets/image/112_logo.png'),
                   fit: BoxFit.cover),
             ),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Text(
+                'Neem direct contact op met Inbound coördinator:',
+                style: TextStyle(
+                  color: Palette.bodyText,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+
+            EmergencyCardItem(
+              title: 'Patty van Vierzen',
+              function: 'Inbound Coordinator',
+              mobileNumber: '06 34 02 14 03',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+            EmergencyCardItem(
+              title: 'Toon ter Ellen',
+              function: 'Inbound Coordinator',
+              mobileNumber: '06 13 60 29 87',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
@@ -71,21 +100,6 @@ class _EmergencyPageState extends State<EmergencyPage> {
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
-            EmergencyCardItem(
-              title: 'Patty van Vierzen',
-              function: 'Inbound Coordinator',
-              mobileNumber: '06 34 02 14 03',
-              icon: FontAwesomeIcons.phone,
-              index: 0,
-            ),
-            EmergencyCardItem(
-              title: 'Toon ter Ellen',
-              function: 'Inbound Coordinator',
-              mobileNumber: '06 13 60 29 87',
-              icon: FontAwesomeIcons.phone,
-              index: 0,
-            ),
-
             EmergencyCardItem(
               title: 'Marga Oosterveld',
               function: 'Outbound Coordinator',
