@@ -1,39 +1,48 @@
 class ExchangeStudent {
   final String name;
   final String description;
-  final String exchangeYear;
-
-  final String country, sponsorDistrict, hostDistrict;
+  final String bio;
   final String imageUrl;
+  String? video;
+  final String from;
+  final String fromFlag;
+  final String to;
+  final String toFlag;
 
   ExchangeStudent({
     required this.name,
     required this.description,
-    required this.exchangeYear,
-    required this.country,
-    required this.sponsorDistrict,
-    required this.hostDistrict,
+    required this.bio,
     required this.imageUrl,
+    this.video,
+    required this.from,
+    required this.fromFlag,
+    required this.to,
+    required this.toFlag,
   });
 
   factory ExchangeStudent.fromJson(Map<String, dynamic> json) =>
       ExchangeStudent(
         name: json['name'],
         description: json['description'],
-        exchangeYear: json['exchangeYear'],
-        country: json['country'],
-        sponsorDistrict: json['sponsorDistrict'],
-        hostDistrict: json['hostDistrict'],
+        bio: json['bio'],
         imageUrl: json['imageUrl'],
+        video: json['videoUrl'],
+        from: json['from'],
+        fromFlag: json['fromFlag'],
+        to: json['to'],
+        toFlag: json['toFlag'],
       );
 
   Map<String, dynamic> toJson() => {
         'name': name,
-        'description': description,
-        'exchangeYear': exchangeYear,
-        'country': country,
-        'sponsorDistrict': sponsorDistrict,
-        'hostDistrict': hostDistrict,
-        'imageUrl': imageUrl
+        'description': bio,
+        'bio': bio,
+        'imageUrl': imageUrl,
+        'videoUrl': video,
+        'from': from,
+        'fromFlag': fromFlag,
+        'to': to,
+        'toFlag': toFlag,
       };
 }

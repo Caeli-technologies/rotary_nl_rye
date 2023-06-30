@@ -33,9 +33,12 @@ class ExchangeStudentsRepositoryImpl implements ExchangeStudentRepository {
   }
 
   Future<List<ExchangeStudent>> getExchangeStudentsNews() async {
-    final List temp = json.decode(await cache.getByKey(Config.spExchangeStudentsKey));
+    final List temp =
+        json.decode(await cache.getByKey(Config.spExchangeStudentsKey));
     final List<ExchangeStudent> exchangeStudents = [];
-    temp.forEach((json) {exchangeStudents.add(ExchangeStudent.fromJson(json));});
+    temp.forEach((json) {
+      exchangeStudents.add(ExchangeStudent.fromJson(json));
+    });
     return exchangeStudents;
   }
 
@@ -57,7 +60,7 @@ class ExchangeStudentsRepositoryImpl implements ExchangeStudentRepository {
 
   List<ExchangeStudent> encodeExchangeStudents(String data) {
     final List decoded =
-    json.decode(data)[Config.apiExchangeStudentsKey] as List;
+        json.decode(data)[Config.apiExchangeStudentsKey] as List;
     final List<ExchangeStudent> exchangeStudents = [];
     for (Map<String, dynamic> item in decoded) {
       exchangeStudents.add(ExchangeStudent.fromJson(item));

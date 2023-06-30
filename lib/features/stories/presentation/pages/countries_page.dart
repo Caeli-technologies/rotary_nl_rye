@@ -9,7 +9,7 @@ import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/stories/models/country.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'exchange_students_page.dart';
+import 'exchange_students_List.dart';
 
 class CountriesPage extends StatefulWidget {
   // final List<ExchangeStudent> students;
@@ -66,20 +66,23 @@ class _CountriesPageState extends State<CountriesPage> {
                   child: Text(snapshot.error.toString()),
                 );
               } else if (snapshot.hasData) {
-                // print(
-                // 'snapshot has data ${snapshot.data.toString()}');
-
                 return ListView.builder(
                   padding: EdgeInsets.only(left: 20, right: 20),
-                  itemBuilder: (context, index) => SVGListTile(
-                      item: countries[index],
+                  itemBuilder: (context, index) {
+                    var sortedCountries = countries
+                      ..sort((a, b) => a.name.compareTo(b.name));
+
+                    return CountryListTile(
+                      country: sortedCountries[index],
                       descriptionPage: ExchangeStudentsPage(
-                        country: countries[index],
+                        country: sortedCountries[index],
                         students: snapshot.data!
                             .where((element) =>
-                                element.country == countries[index].name)
+                                element.to == sortedCountries[index].name)
                             .toList(),
-                      )),
+                      ),
+                    );
+                  },
                   itemCount: countries.length,
                 );
               } else {
@@ -190,8 +193,28 @@ List<Country> countries = [
     description: '',
   ),
   Country(
-    name: 'United States of America',
+    name: 'USA',
     imageUrl: 'assets/icons/flags/us.svg',
+    description: '',
+  ),
+  Country(
+    name: 'Spain',
+    imageUrl: 'assets/icons/flags/es.svg',
+    description: '',
+  ),
+  Country(
+    name: 'Europa',
+    imageUrl: 'assets/icons/flags/eu.svg',
+    description: '',
+  ),
+  Country(
+    name: 'Switzerland',
+    imageUrl: 'assets/icons/flags/ch.svg',
+    description: '',
+  ),
+  Country(
+    name: 'France',
+    imageUrl: 'assets/icons/flags/fr.svg',
     description: '',
   ),
 ];

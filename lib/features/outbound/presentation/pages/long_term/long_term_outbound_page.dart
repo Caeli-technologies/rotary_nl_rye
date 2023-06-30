@@ -81,7 +81,7 @@ class _LongTermExchangeOutboundPageState
                 height: 15,
                 thickness: 2,
               ),
-              buildOutboundOptionRow(context, 'Class of 2022-2023',
+              buildOutboundOptionRow(context, 'Class of 2023-2024',
                   FontAwesomeIcons.peopleGroup, ClassOfPage()),
               Divider(
                 height: 15,
@@ -163,17 +163,20 @@ class _LongTermExchangeOutboundPageState
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SizedBox(
-              width: Device.width - 120,
-              child: Text(title,
+            Expanded(
+              child: Container(
+                constraints: BoxConstraints(maxWidth: Device.width - 150),
+                child: Text(
+                  title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  softWrap: false,
                   style: TextStyle(
                     fontSize: 15,
                     color: Palette.grey,
                     fontWeight: FontWeight.w500,
-                  )),
+                  ),
+                ),
+              ),
             ),
             Icon(
               Icons.arrow_forward_ios,

@@ -59,14 +59,16 @@ late AndroidNotificationChannel channel;
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
-Future<void> main() async {
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  // Initialize Firebase as the first thing
   await Firebase.initializeApp();
 
-  // Pass all uncaught errors from the framework to Crashlytics.
+  // Now Firebase features can be used
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   if (Platform.isAndroid) {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -101,22 +103,22 @@ Future<void> main() async {
       sound: true,
     );
   }
+
   if (kDebugMode) {
     // Force disable Crashlytics collection while doing every day development.
     // Temporarily toggle this to true if you want to test crash reporting in your app.
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
-  runZonedGuarded<Future<void>>(() async {
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await di.init();
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
-    runApp(new MyApp());
-  }, FirebaseCrashlytics.instance.recordError);
+  await di.init();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+
+  runApp(new MyApp());
+
+  // Assuming _repo is an instance of a class that requires initialization after runApp
   final _repo = Repo();
   _repo.initData('', '');
-  // Pass all uncaught errors from the framework to Crashlytics.
 }
 
 class MyApp extends StatelessWidget {

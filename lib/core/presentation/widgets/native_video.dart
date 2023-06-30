@@ -46,7 +46,8 @@ class _NativeVideoState extends State<NativeVideo> {
   }
 
   void loadVideo() async {
-    _videoPlayerController = VideoPlayerController.network(widget.url);
+    _videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.url));
     await Future.wait([
       // _videoPlayerController.initialize(),
     ]);
