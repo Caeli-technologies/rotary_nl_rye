@@ -55,7 +55,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                'Neem direct contact op met Inbound coördinator:',
+                'Neem direct contact op met Inbound coördinator en daaronder de Outbound coördinatoren:',
                 style: TextStyle(
                   color: Palette.bodyText,
                   fontSize: 15.0,
@@ -79,6 +79,20 @@ class _EmergencyPageState extends State<EmergencyPage> {
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
+            EmergencyCardItem(
+              title: 'Marga Oosterveld',
+              function: 'Outbound Coordinator',
+              mobileNumber: '06 29 58 68 13',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+            EmergencyCardItem(
+              title: 'Judith Siebring',
+              function: 'Outbound Coordinator',
+              mobileNumber: '06 52 68 22 75',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
 
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
@@ -95,22 +109,15 @@ class _EmergencyPageState extends State<EmergencyPage> {
 
             EmergencyCardItem(
               title: 'Barbara Tusveld',
-              function: 'Chairperson',
+              function: 'Chair exchange program',
               mobileNumber: '06 55 12 85 29',
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
             EmergencyCardItem(
-              title: 'Marga Oosterveld',
-              function: 'Outbound Coordinator',
-              mobileNumber: '06 29 58 68 13',
-              icon: FontAwesomeIcons.phone,
-              index: 0,
-            ),
-            EmergencyCardItem(
-              title: 'Judith Siebring',
-              function: 'Outbound Coordinator',
-              mobileNumber: '06 52 68 22 75',
+              title: 'Clasine Scheepers',
+              function: 'Secretary Board',
+              mobileNumber: '06 52 71 09 77',
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
