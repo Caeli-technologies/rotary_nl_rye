@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rotary_nl_rye/features/programs/presentation/pages/promo/podcast_page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
@@ -15,7 +16,7 @@ import 'information/camps_tours.dart';
 import 'information/family_to_family.dart';
 import 'information/long_term_exchange.dart';
 import 'information/ngse.dart';
-import 'information/video_page.dart';
+import 'promo/video_page.dart';
 
 class ProgramPage extends StatefulWidget {
   @override
@@ -150,7 +151,7 @@ class _ProgramPageState extends State<ProgramPage> {
               Row(
                 children: [
                   Text(
-                    'Promo Video ',
+                    'Promo',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -159,7 +160,9 @@ class _ProgramPageState extends State<ProgramPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildProgramOptionRow(context, 'Promo Video', 'For everyone',
+              buildProgramOptionRow(context, 'Podcast', 'For everyone',
+                  FontAwesomeIcons.hashtag, PodcastPage()),
+              buildProgramOptionRow(context, 'Video', 'For everyone',
                   FontAwesomeIcons.hashtag, VideoPage()),
               SizedBox(
                 height: 20,

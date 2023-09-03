@@ -115,6 +115,7 @@ void main() async {
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
   runApp(new MyApp());
+  // FlutterNativeSplash.remove();
 
   // Assuming _repo is an instance of a class that requires initialization after runApp
   final _repo = Repo();

@@ -1,4 +1,4 @@
-package com.example.rotary_nl_rye
+package com.caelitechnologies.rotary_nl_rye
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -28,7 +28,7 @@ List<Organization> mdjcList = [
     functions: ['Secretaris MDJC'],
   ),
   Organization(
-    name: 'Johan de Loyer',
+    name: ' Evert Marseille',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -97,12 +97,13 @@ List<Organization> mdjcList = [
   ),
   Organization(
     name: 'Erna van Dijk',
-    bio: '',
+    bio:
+        'Ik ben Erna van Dijk. Sinds 2013 ben ik lid van de Rotary en sinds 1 juli 2023 District Jeugd Commissaris van D1570. In 1987-88 heb ik zelf meegedaan aan een uitwisselingsprogramma en heb ik een jaar in El Paso, Texas gewoond. Ik heb dit als een hele waardevolle periode ervaren en wil graag mijn steentje bijdragen om jongeren ook een fantastische buitenland ervaring te laten hebben. \n\n In het dagelijks leven ben ik werkzaam als bedrijfsarts. Ik woon samen met mijn vriend, mijn zoon en zijn zoon en 2 dochters. Een samengesteld gezin dus. \n\n Rotary is mijn grootste hobby, maar daarnaast ben ik ook lid van toastmasters. Verder vul ik mijn vrije tijd met tuinieren,  wandelen, dansen en mijn kippen, katten en hond.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg',
     email: 'erna@vandijkmedischadvies.nl',
     phoneNumber: null,
-    club: '',
+    club: 'Scherpenzeel- Woudenberg',
     district: '',
     functions: [
       'DJC 1570',
@@ -137,9 +138,10 @@ List<Organization> mdjcList = [
   ),
   Organization(
     name: 'Elzeline Fischer',
-    bio: '',
+    bio:
+        'Sinds November 2022 ben ik de District Jeugd Commissaris van D1600 (DJC). Ik ben in 1974 in Leeuwarden geboren. Mijn vader is Rotarian bij RC Leeuwarden-Zuid. In 1992-1993 ben ik via Rotary uitgezonden naar Boyne City, Michigan in District 6290. Dit is een land-overschrijdend district! Michigan USA en Ontario Canada liggen hier o.a. in. Ik ben getrouwd met Pierre en samen hebben we twee kinderen. Sinds 2021 ben ik lid van Rotary. Dat lidmaatschap ben ik vooral aangegaan omdat ik het Jeugdprogramma van Rotary onovertroffen vind. We bieden veel aan voor een grote groep jonge mensen. En deze groep nieuwe kansen bieden en zich helpen ontwikkelen in hun zelfbeeld en wereldbeeld is volgens mij het begin van een mooiere wereld voor iedereen. \n\n Naast mijn inzet voor Rotary, werk ik als Freelancer in de culturele sector, vooral op het gebied van projectondersteuning. ',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/elzeline-fischer.png',
     email: 'djc@rotary-d1600.nl',
     phoneNumber: null,
     club: '',
