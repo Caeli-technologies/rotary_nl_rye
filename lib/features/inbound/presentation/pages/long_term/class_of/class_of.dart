@@ -37,7 +37,7 @@ class _ClassOfPageInboundsState extends State<ClassOfPageInbounds> {
           // centerTitle: false,
           leading: UniformBackButton(),
           title: Text(
-            'Class Of 2022-23',
+            'Class Of 2023-24',
             textScaleFactor: 1.2,
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),

@@ -114,4 +114,16 @@ List<Organization> longTermOrganizationList = [
     district: '',
     functions: ['Coördinator Dutch Orientations Course (DOC)'],
   ),
+  Organization(
+    name: 'Steven Stolp',
+    bio:
+        'Als scholier had ik geen flauw benul van het bestaan van uitwisselingen. In mijn studententijd heb ik dat ingehaald door mijn eigen exchanges te organiseren, (korter) werken en later studeren in (zuid) Frankrijk en vervolgens langer naar Ouagadougou in Burkina Faso, West-Afrika. Buiten de Nederlandse context ontwikkel je je net wat anders. Dat gun ik iedereen, en de wereld. \n\n In het dagelijks leven werk ik in de gezondheidszorg als bedrijfskundige in verschillende rollen. De “net iets andere blik” komt daar van pas. Daarnaast sport ik graag en volgens sommigen veel, het liefst met gezinsleden of vrienden.\n\n In mijn vrije tijd wil ik vooral met plezier aan leuke dingen bijdragen. Daarom ben ik van “de activiteiten”. Met het team van de long term exchange, Rotex (oud exchangestudenten) en de uitwisselingsstudenten ondernemen we samen van alles. Daarbij hebben we lol en leren we elke dag weer van alles van elkaar.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/steven-stolp.png',
+    email: null,
+    phoneNumber: null,
+    club: 'RC Bennekom',
+    district: '1560 OOST-NEDERLAND',
+    functions: ['Activities inbounds'],
+  ),
 ];

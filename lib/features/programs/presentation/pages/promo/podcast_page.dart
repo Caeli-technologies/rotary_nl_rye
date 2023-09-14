@@ -56,6 +56,20 @@ class _PodcastPageState extends State<PodcastPage> {
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
         children: <Widget>[
+          Text(
+            'Podcast - wat zijn de ervaringen van een tweetal gastouders?',
+            style: TextStyle(
+                color: Palette.bodyText,
+                fontSize: 15.0,
+                fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 6.0),
+            child: Text(
+              'Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Hoe leuk (of niet) is dat nou? Wat brengt het jullie en wat voor invloed heeft het? Luister naar de ervaringen van deze gastouders die in 2022-2023 een exchange student in huis hebben gehad.',
+              style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
+            ),
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -93,52 +107,12 @@ class _PodcastPageState extends State<PodcastPage> {
                   );
                 },
               ),
-
               Padding(
-                padding: const EdgeInsets.only(top: 30.0),
+                padding: const EdgeInsets.only(top: 0),
                 child: Text(
-                  'Waarom doen we dit?',
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  '- Het opbouwen van goede relaties met andere landen',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  '- Het houdt de club jong',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  '- De jongere ontwikkelt zichzelf en zijn/haar omgeving',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              // the end dont touch XD
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Center(
-                  child: Image.asset(
-                    'assets/image/rotary_blue.png',
-                    height: 55.0,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Center(
-                  child: Text(
-                    'Update: 3 september 2023',
-                    style: TextStyle(color: Color(0xFF777777)),
-                  ),
+                  'Let op: deze podcasts worden gestreamed dan kan het zijn dat jouw provider je hiervoor kosten in rekening brengt.',
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic, color: Palette.grey),
                 ),
               ),
               SizedBox(

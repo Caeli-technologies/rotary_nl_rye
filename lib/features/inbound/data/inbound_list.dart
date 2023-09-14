@@ -43,9 +43,10 @@ List<Inbounds> inboundList = [
   // Luke Christopherson
   Inbounds(
     name: 'Luke Christopherson',
-    bio: '',
+    bio:
+        'I am from Chelan, a small town in eastern Washington State, USA. I am very passionate about sports, art, history and geography. I have been wanted to go on an exchange year for a long time, and am very grateful that I have the opportunity now! I am currently living in Arnhem, Gelderland(District 1560). I am very excited for the adventure I am taking on!',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/luke-christopherson.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -121,7 +122,7 @@ List<Inbounds> inboundList = [
     bio:
         'Hello, My name is Alaina Jackson and I am from Rotterdam New York. I am 16 years old and I have one brother named Caelum who is 18. I have traveled to many countries before such as Japan and Mexico, but this is my first time in Europe! Some things I enjoy are classical ballet dancing and art. I have been dancing since I was 3 years old and currently perform shows such as the Nutcracker with a company in upstate New York. Other than the arts, I enjoy going to school and learning subjects such as math and history. \n\n Currently I am living in Gouda, and I am loving my time here so far! I am very excited to continue exploring the culture and learn more about the Netherlands!',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/alaina-jackson.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -156,9 +157,10 @@ List<Inbounds> inboundList = [
   // Juliana Novo Rojas
   Inbounds(
     name: 'Juliana Novo Rojas',
-    bio: '',
+    bio:
+        'Hii, my name is Juliana but people call me Juli, I’m 15 years old. I come from Alicant, a city in Spain. My family is from Colombia, but me and my brother were born in Spain where we live with our parents. This year I will stay in Bennekom, Gelderland.\n\n I’m keen on doing windsurf, surf and everything that has to be with the sea. Also I love traveling, knowing new people, listening to music and playing the ukelele.\n\n I wish this will be a great year, and I’m looking forward to meet all the exchange students that are here in the Nederlands.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/juliana-novo-rojas.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -287,9 +289,10 @@ List<Inbounds> inboundList = [
   //Owen Scruggs
   Inbounds(
     name: 'Owen Scruggs',
-    bio: '',
+    bio:
+        ' Hoi! Mijn naam is Owen en ik kom uit Jacksonville, Florida in de Verenigde Staten van Amerika. Ik ben zeventien jaar en woon in Wierden voor mijn uitwisseling. Ik kom uit district 6970 van noord Florida. Ik ben zo blij dat ik hier in Nederland ben, het is een prachtig land en de mensen hier zijn zo aardig! Ik kon me geen betere plek wensen dan hier. Bedankt allemaal om deze kans mogelijk te maken!',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/owen-scruggs.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,

@@ -4,13 +4,14 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/organization.
 List<Organization> mdjcList = [
   Organization(
     name: 'Fred Dijkers',
-    bio: '',
+    bio:
+        'In het Rotaryjaar 2018-19 mocht ik functioneren als jeugdgouverneur voor de zeven Nederlandse districten. In die tijd leerde ik het werk van de MDJC kennen en waarderen. Na dat jaar ben ik onverwacht bij het bestuur gekomen wegens een ontstane vacature van de voorzitter. Hoewel mijn functioneren bedoeld was als ‘interim’ bleef ik betrokken omdat zich in korte tijd veel lastige problemen voordeden. Gelukkig konden we daar als bestuur samen goed uitkomen. Maar al die inspanningen bleken wel zeer te binden. Het MDJC-vaarwater is nu gelukkig veel rustiger. \n\n Van beroep ben ik 33 jaar huisarts geweest in een dorp, samen met mijn echtgenote. Met haar kreeg ik vier kinderen en die brachten mij weer tien kleinkinderen. Daar ben ik erg blij mee. Helaas is mijn echtgenote na een langdurig ziekbed in 2011 overleden. \n\n Naast mijn werk in de praktijk werkte ik parttime bij de huisartsopleiding in het LUMC. Ook was ik bestuurder in vele organisaties, vooral in de medische sector.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/fred-dijkers.jpg',
     email: 'chair@rotaryyep.nl',
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'Hoeksche Waard',
+    district: '1610 Zuidwest-Nederland',
     functions: [
       'Chair',
     ],
@@ -28,7 +29,7 @@ List<Organization> mdjcList = [
     functions: ['Secretaris MDJC'],
   ),
   Organization(
-    name: ' Evert Marseille',
+    name: 'Evert Marseille',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -144,7 +145,7 @@ List<Organization> mdjcList = [
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/elzeline-fischer.png',
     email: 'djc@rotary-d1600.nl',
     phoneNumber: null,
-    club: '',
+    club: 'RC Leeuwarden-Zuid',
     district: '',
     functions: [
       'DJC 1600',
