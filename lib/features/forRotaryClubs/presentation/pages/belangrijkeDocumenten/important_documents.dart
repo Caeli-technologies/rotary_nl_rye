@@ -74,7 +74,7 @@ class _ImportantDocumentsPageState extends State<ImportantDocumentsPage> {
                 FontAwesomeIcons.peopleGroup,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/verklaring-jeugd-vrijwilliger-met-addendum-okt22-def.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/gedragscode-vrijwilligers-mdjc-2.pdf',
                 ),
               ),
               Divider(
@@ -130,7 +130,7 @@ class _ImportantDocumentsPageState extends State<ImportantDocumentsPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 120,
+              width: Device.width - 130,
               child: Text(title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

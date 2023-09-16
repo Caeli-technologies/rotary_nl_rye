@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/emergency/presentation/widgets/emergency_card_item.dart';
 
@@ -52,6 +51,49 @@ class _EmergencyPageState extends State<EmergencyPage> {
                   image: AssetImage('assets/image/112_logo.png'),
                   fit: BoxFit.cover),
             ),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Text(
+                'Neem direct contact op met Inbound coördinator en daaronder de Outbound coördinatoren:',
+                style: TextStyle(
+                  color: Palette.bodyText,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+
+            EmergencyCardItem(
+              title: 'Patty van Vierzen',
+              function: 'Inbound Coordinator',
+              mobileNumber: '06 34 02 14 03',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+            EmergencyCardItem(
+              title: 'Toon ter Ellen',
+              function: 'Inbound Coordinator',
+              mobileNumber: '06 13 60 29 87',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+            EmergencyCardItem(
+              title: 'Marga Oosterveld',
+              function: 'Outbound Coordinator',
+              mobileNumber: '06 29 58 68 13',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+            EmergencyCardItem(
+              title: 'Judith Siebring',
+              function: 'Outbound Coordinator',
+              mobileNumber: '06 52 68 22 75',
+              icon: FontAwesomeIcons.phone,
+              index: 0,
+            ),
+
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
@@ -67,25 +109,19 @@ class _EmergencyPageState extends State<EmergencyPage> {
 
             EmergencyCardItem(
               title: 'Barbara Tusveld',
-              function: 'Chairperson',
+              function: 'Chair exchange program',
               mobileNumber: '06 55 12 85 29',
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
             EmergencyCardItem(
               title: 'Clasine Scheepers',
-              function: 'Inbound Coordinator',
+              function: 'Secretary Board',
               mobileNumber: '06 52 71 09 77',
               icon: FontAwesomeIcons.phone,
               index: 0,
             ),
-            EmergencyCardItem(
-              title: 'Ben Mureau',
-              function: 'Insurance and Visa',
-              mobileNumber: '06 51 91 12 44',
-              icon: FontAwesomeIcons.phone,
-              index: 0,
-            ),
+
             EmergencyCardItem(
               title: 'Hilleke van der Veer',
               function: 'National counselor',
@@ -98,7 +134,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                'Confidants (not connected to Rotary) in case of f.e. sexual harassment:',
+                'Confidants (not connected to Rotary) in case of f.e. sexual harassment, Police could also be notified in case of breaking a law:',
                 style: TextStyle(
                   color: Palette.bodyText,
                   fontSize: 15.0,

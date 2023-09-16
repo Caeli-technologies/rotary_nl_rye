@@ -96,7 +96,7 @@ class _AboutPageState extends State<AboutPage> {
                   text: TextSpan(
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2!
+                          .bodyMedium!
                           .copyWith(fontSize: 15),
                       children: [
                         TextSpan(
@@ -126,7 +126,7 @@ class _AboutPageState extends State<AboutPage> {
                   text: TextSpan(
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2!
+                          .bodyMedium!
                           .copyWith(fontSize: 15),
                       children: [
                         TextSpan(
@@ -157,7 +157,7 @@ class _AboutPageState extends State<AboutPage> {
                   text: TextSpan(
                       style: Theme.of(context)
                           .textTheme
-                          .bodyText2!
+                          .bodyMedium!
                           .copyWith(fontSize: 15),
                       children: [
                         TextSpan(

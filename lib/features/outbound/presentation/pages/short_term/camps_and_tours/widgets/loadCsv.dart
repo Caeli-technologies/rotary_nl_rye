@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 // 📦 Package imports:
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:csv/csv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,7 +26,7 @@ class _LoadCsvState extends State<LoadCsv> {
   Future<List<List>?> getData() async {
     final response = await http.get(
         Uri.parse(
-            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen-2022.csv'),
+            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen.csv'),
         headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
     try {
       if (response.statusCode == 200) {
@@ -170,7 +170,7 @@ class TravelCard extends StatelessWidget {
           color: Palette.themeShadeColor,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
-          height: hostCountryCode.contains('/') ? 230 : 200,
+          height: null,
           child: Container(
             child: Column(
               children: <Widget>[
@@ -182,11 +182,15 @@ class TravelCard extends StatelessWidget {
                       full.isNotEmpty
                           ? Container(
                               padding: EdgeInsets.only(left: 12, top: 6),
-                              child: Badge(
-                                toAnimate: false,
-                                shape: BadgeShape.square,
-                                badgeColor: Colors.red,
-                                borderRadius: BorderRadius.circular(8),
+                              child: badges.Badge(
+                                badgeAnimation: badges.BadgeAnimation.fade(
+                                    toAnimate: false),
+                                badgeStyle: badges.BadgeStyle(
+                                  shape: badges.BadgeShape.square,
+                                  badgeColor: Colors.red,
+                                  borderRadius: BorderRadius.circular(8),
+                                  elevation: 0,
+                                ),
                                 badgeContent: Text('VOL',
                                     style: TextStyle(color: Colors.white)),
                               ),

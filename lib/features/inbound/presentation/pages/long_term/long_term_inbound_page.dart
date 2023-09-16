@@ -63,7 +63,7 @@ class _LongTermExchangeInboundPageState
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(context, 'Class of 2022-2023',
+              buildInboundOptionRow(context, 'Class of 2023-2024',
                   FontAwesomeIcons.peopleGroup, ClassOfPageInbounds()),
               Divider(
                 height: 15,
@@ -135,7 +135,7 @@ class _LongTermExchangeInboundPageState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 120,
+              width: Device.width - 130,
               child: Text(title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

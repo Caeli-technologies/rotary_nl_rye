@@ -1,4 +1,4 @@
-package com.example.rotary_nl_rye
+package com.caelitechnologies.rotary_nl_rye
 import io.flutter.app.FlutterApplication
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.PluginRegistrantCallback

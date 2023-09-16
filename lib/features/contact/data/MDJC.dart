@@ -4,13 +4,14 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/organization.
 List<Organization> mdjcList = [
   Organization(
     name: 'Fred Dijkers',
-    bio: '',
+    bio:
+        'In het Rotaryjaar 2018-19 mocht ik functioneren als jeugdgouverneur voor de zeven Nederlandse districten. In die tijd leerde ik het werk van de MDJC kennen en waarderen. Na dat jaar ben ik onverwacht bij het bestuur gekomen wegens een ontstane vacature van de voorzitter. Hoewel mijn functioneren bedoeld was als ‘interim’ bleef ik betrokken omdat zich in korte tijd veel lastige problemen voordeden. Gelukkig konden we daar als bestuur samen goed uitkomen. Maar al die inspanningen bleken wel zeer te binden. Het MDJC-vaarwater is nu gelukkig veel rustiger. \n\n Van beroep ben ik 33 jaar huisarts geweest in een dorp, samen met mijn echtgenote. Met haar kreeg ik vier kinderen en die brachten mij weer tien kleinkinderen. Daar ben ik erg blij mee. Helaas is mijn echtgenote na een langdurig ziekbed in 2011 overleden. \n\n Naast mijn werk in de praktijk werkte ik parttime bij de huisartsopleiding in het LUMC. Ook was ik bestuurder in vele organisaties, vooral in de medische sector.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/fred-dijkers.jpg',
     email: 'chair@rotaryyep.nl',
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'Hoeksche Waard',
+    district: '1610 Zuidwest-Nederland',
     functions: [
       'Chair',
     ],
@@ -25,13 +26,10 @@ List<Organization> mdjcList = [
     phoneNumber: '+31652710977',
     club: 'RC Huizen',
     district: '1570 MIDDEN-NEDERLAND',
-    functions: [
-      'Secretaris MDJC',
-      'Inbound coördinator en secretaris LTEP',
-    ],
+    functions: ['Secretaris MDJC'],
   ),
   Organization(
-    name: 'Johan de Loyer',
+    name: 'Evert Marseille',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -55,19 +53,6 @@ List<Organization> mdjcList = [
     district: '1590 NOORD-NEDERLAND',
     functions: [
       'Longterm Chair',
-    ],
-  ),
-  Organization(
-    name: 'Marja Hofland',
-    bio:
-        "Hallo, mijn naam is Marja Hofland.\nAls kersverse voorzitter STEP ga ik me inzetten om de short term programma's nog succesvoller te maken samen met alle coördinatoren.\nAls HBO student aan de Hogeschool van Amsterdam ben ik in 1987-1988 vijf maanden op stage gegaan in Seattle, USA. Het was echt een bijzonder mooie ervaring die mijn leven enorm verrijkt heeft. Daarvoor heb ik in 1984-1985 door West-Afrika gereisd met een vrachtwagen, dwars door de Sahara. Andere culturen van dichtbij leren kennen is iets prachtigs. Je wordt er een completer mens van. En van de hitte naar de kou: ik heb ook een winter in een Oostenrijks gezin doorgebracht waar ik nog steeds jaarlijks een paar maal terugkeer om samen met mijn Oostenrijkse vrienden te gaan skiën en in de zomer met mijn mountainbike door de bergen te crossen. Heerlijk!\n\nOp jezelf aangewezen zijn in een onbekende wereld is het grootste kado dat je jezelf kunt geven.\nNaast de zomerkampen en de family to family programma's ben ik van mening dat het NGSE programma voor studenten tot 30 jaar een prachtige kans is om met ondersteuning van Rotary een buitenlandse stage te doen. Dit programma verdient meer bekendheid!\nSinds 2006 ben ik lid van Rotaryclub Schouwen-Duiveland, waar wij met ons gezin vanuit Den Haag 17 jaar geleden zijn neergestreken. Naast Rotarylid zing ik in een kamerkoor en als arbeidsdeskundige werk ik dagelijks in de verzuim- en re-integratie wereld vanuit mijn eigen bedrijf. Dit vanuit het perspectief: wat kan wel? \nIk kijk uit naar vele deelnemers van onze prachtige Rotary programma's. ",
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/marja-hofland.jpg',
-    email: 'shortterm@rotaryyep.nl',
-    phoneNumber: null,
-    club: 'RC Schouwen-Duiveland',
-    district: '1610 ZUIDWEST-NEDERLAND',
-    functions: [
       'Shortterm Chair',
     ],
   ),
@@ -85,22 +70,22 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Danielle Alders',
+    name: 'Ernst Ziengs',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'danielle.alders@wyo.nl',
+    email: 'youth@rotary-d1550.org',
     phoneNumber: null,
     club: '',
     district: '',
     functions: [
-      'District 1550',
+      'DJC 1550',
     ],
   ),
   Organization(
     name: 'Patty van Vierzen',
     bio:
-        'Ik ben Patty van Vierzen, District Jeugd Commissaris (DJC) van D1560. Ik ben getrouwd met Peter van Vierzen en wij hebben samen vier fantastische kinderen.\n\nIn 2017 ben ik gevraagd om lid te worden van Rotaryclub Ermelo. Als enthousiast vrijwilliger ben ik toegetreden tot deze geweldig mooie Rotaryclub. Het voelde meteen als een warm bad en ik heb de Rotary gedachte dan ook direct omarmd. Omdat ik mij graag op districtsniveau of landelijk niveau wilde inzetten voor Rotary ben ik in 2019 benaderd om District Jeugd Commissaris te worden van D1560. Daar heb ik volmondig JA op gezegd want door de fantastische lange en korte uitwisselingsprogramma’s van Rotary bieden wij onze jongeren de gelegenheid persoonlijk leiderschap te ontwikkelen, wereldwijde vriendschappen te sluiten, kennis te maken met andere culturen, waardoor flexibiliteit, begrip en tolerantie ontstaat en Wereldvrede binnen bereik komt te liggen. Het is een geweldige levenservaring en dat is ook mijn motivatie om mij vol enthousiasme in te zetten voor Rotary Jeugd.\n\nIn het dagelijks leven werk ik als projectassistente bij congresbureau Mark Two Academy en bij GGDNOG waar ik betrokken ben bij het vaccinatieproces inzake Covid-19.\n\nDaarnaast ben ik als bestuurslid verbonden aan stichting Ruby and Rose, een stichting die aandacht vraagt voor meer onderzoek naar en awareness voor gynaecologische kankers, www.rubyandrose.nl.\n\nMijn hobby’s zijn: verre reizen maken, skiën en wandelen',
+        'Ik ben Patty van Vierzen, District Jeugd Commissaris (DJC) van D1560. Ik ben getrouwd met Peter van Vierzen en wij hebben samen vier fantastische kinderen.\n\nIn 2017 ben ik gevraagd om lid te worden van Rotaryclub Ermelo. Als enthousiast vrijwilliger ben ik toegetreden tot deze geweldig mooie Rotaryclub. Het voelde meteen als een warm bad en ik heb de Rotary gedachte dan ook direct omarmd. Omdat ik mij graag op districtsniveau of landelijk niveau wilde inzetten voor Rotary ben ik in 2019 benaderd om District Jeugd Commissaris te worden van D1560. Daar heb ik volmondig JA op gezegd want door de fantastische lange en korte uitwisselingsprogramma’s van Rotary bieden wij onze jongeren de gelegenheid persoonlijk leiderschap te ontwikkelen, wereldwijde vriendschappen te sluiten, kennis te maken met andere culturen, waardoor flexibiliteit, begrip en tolerantie ontstaat en Wereldvrede binnen bereik komt te liggen. Het is een geweldige levenservaring en dat is ook mijn motivatie om mij vol enthousiasme in te zetten voor Rotary Jeugd.\n\nIn het dagelijks leven ben ik werkzaam als receptioniste bij Autobedrijf Broekhuis en bij de GGDNOG, waar ik betrokken ben bij het vaccinatieproces inzake Covid-19.\n\nMijn hobby\'s zijn: verre reizen maken, skiën en wandelen',
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/patty-van-vierzen.jpg',
     email: 'DJC1560@rotaryyep.nl',
@@ -108,20 +93,21 @@ List<Organization> mdjcList = [
     club: 'Ermelo',
     district: '1560 OOST-NEDERLAND',
     functions: [
-      'District 1560',
+      'DJC 1560',
     ],
   ),
   Organization(
-    name: 'Lucien Krapels Schram',
-    bio: '',
+    name: 'Erna van Dijk',
+    bio:
+        'Ik ben Erna van Dijk. Sinds 2013 ben ik lid van de Rotary en sinds 1 juli 2023 District Jeugd Commissaris van D1570. In 1987-88 heb ik zelf meegedaan aan een uitwisselingsprogramma en heb ik een jaar in El Paso, Texas gewoond. Ik heb dit als een hele waardevolle periode ervaren en wil graag mijn steentje bijdragen om jongeren ook een fantastische buitenland ervaring te laten hebben. \n\n In het dagelijks leven ben ik werkzaam als bedrijfsarts. Ik woon samen met mijn vriend, mijn zoon en zijn zoon en 2 dochters. Een samengesteld gezin dus. \n\n Rotary is mijn grootste hobby, maar daarnaast ben ik ook lid van toastmasters. Verder vul ik mijn vrije tijd met tuinieren,  wandelen, dansen en mijn kippen, katten en hond.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'lucien.g.a.krapels.schram@gmail.com',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg',
+    email: 'erna@vandijkmedischadvies.nl',
     phoneNumber: null,
-    club: '',
+    club: 'Scherpenzeel- Woudenberg',
     district: '',
     functions: [
-      'District 1570',
+      'DJC 1570',
     ],
   ),
   Organization(
@@ -134,7 +120,7 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1580',
+      'DJC 1580',
     ],
   ),
   Organization(
@@ -144,28 +130,29 @@ List<Organization> mdjcList = [
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg',
     email: 'marga_bart@yahoo.com',
-    phoneNumber: '+31636527122',
+    phoneNumber: '+31629586813',
     club: 'Rotary Club Oosterwolde',
     district: '1590 NOORD-NEDERLAND',
     functions: [
-      'District 1590',
+      'DJC 1590',
     ],
   ),
   Organization(
-    name: 'Gerben Hillebrand',
-    bio: '',
+    name: 'Elzeline Fischer',
+    bio:
+        'Sinds November 2022 ben ik de District Jeugd Commissaris van D1600 (DJC). Ik ben in 1974 in Leeuwarden geboren. Mijn vader is Rotarian bij RC Leeuwarden-Zuid. In 1992-1993 ben ik via Rotary uitgezonden naar Boyne City, Michigan in District 6290. Dit is een land-overschrijdend district! Michigan USA en Ontario Canada liggen hier o.a. in. Ik ben getrouwd met Pierre en samen hebben we twee kinderen. Sinds 2021 ben ik lid van Rotary. Dat lidmaatschap ben ik vooral aangegaan omdat ik het Jeugdprogramma van Rotary onovertroffen vind. We bieden veel aan voor een grote groep jonge mensen. En deze groep nieuwe kansen bieden en zich helpen ontwikkelen in hun zelfbeeld en wereldbeeld is volgens mij het begin van een mooiere wereld voor iedereen. \n\n Naast mijn inzet voor Rotary, werk ik als Freelancer in de culturele sector, vooral op het gebied van projectondersteuning. ',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'gerben.hillebrand@gmail.com',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/elzeline-fischer.png',
+    email: 'djc@rotary-d1600.nl',
     phoneNumber: null,
-    club: '',
+    club: 'RC Leeuwarden-Zuid',
     district: '',
     functions: [
-      'District 1600',
+      'DJC 1600',
     ],
   ),
   Organization(
-    name: 'Hans Maathuis (a.i.)',
+    name: 'Natasja Rensen',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
@@ -174,7 +161,7 @@ List<Organization> mdjcList = [
     club: '',
     district: '',
     functions: [
-      'District 1610',
+      'DJC 1610',
     ],
   ),
   Organization(
@@ -191,11 +178,11 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Marja van Rheenen',
+    name: 'Guido Rijninks',
     bio: '',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'marja.vanrheenen@gmail.com',
+    email: 'educatour@home.nl',
     phoneNumber: null,
     club: '',
     district: '',
@@ -203,30 +190,17 @@ List<Organization> mdjcList = [
       'District Governor Youth',
     ],
   ),
-  Organization(
-    name: 'Marco Beijersbergen',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'admin@rotaryyep.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'ICT Communication',
-    ],
-  ),
-  Organization(
-    name: 'Harry van Montfort',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'webmaster@rotaryyep.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'webmaster',
-    ],
-  ),
+  // Organization(
+  //   name: 'Harry van Montfort',
+  //   bio: '',
+  //   imageUrl:
+  //       'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+  //   email: 'webmaster@rotaryyep.nl',
+  //   phoneNumber: null,
+  //   club: '',
+  //   district: '',
+  //   functions: [
+  //     'webmaster',
+  //   ],
+  // ),
 ];

@@ -20,8 +20,8 @@ class _CarouselState extends State<Carousel> {
 
   List<CarouselModel> carousels = [
     CarouselModel(
-        image: 'assets/image/homepage/selectiedag_8_oktober.png',
-        text: '8 oktober a.s.'),
+        image: 'assets/image/homepage/informatiedag-16-september-23.jpg',
+        text: '16 september a.s.'),
     CarouselModel(
         image: 'assets/image/homepage/shelterbox.jpg',
         text: 'Social actief zijn'),

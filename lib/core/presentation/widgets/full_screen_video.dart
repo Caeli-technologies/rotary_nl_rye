@@ -53,7 +53,8 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
   }
 
   void loadVideo() async {
-    _videoPlayerController = VideoPlayerController.network(story.video);
+    _videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(story.video));
     await Future.wait([
       // _videoPlayerController.initialize(),
     ]);

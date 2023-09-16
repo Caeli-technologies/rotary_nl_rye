@@ -3,31 +3,22 @@ import 'package:rotary_nl_rye/features/contact/presentation/models/organization.
 
 List<Organization> shortTermOrganizationList = [
   Organization(
-    name: 'Marja Hofland',
+    name: 'Barbara Tusveld',
     bio:
-        "Hallo, mijn naam is Marja Hofland.\nAls kersverse voorzitter STEP ga ik me inzetten om de short term programma's nog succesvoller te maken samen met alle coördinatoren.\nAls HBO student aan de Hogeschool van Amsterdam ben ik in 1987-1988 vijf maanden op stage gegaan in Seattle, USA. Het was echt een bijzonder mooie ervaring die mijn leven enorm verrijkt heeft. Daarvoor heb ik in 1984-1985 door West-Afrika gereisd met een vrachtwagen, dwars door de Sahara. Andere culturen van dichtbij leren kennen is iets prachtigs. Je wordt er een completer mens van. En van de hitte naar de kou: ik heb ook een winter in een Oostenrijks gezin doorgebracht waar ik nog steeds jaarlijks een paar maal terugkeer om samen met mijn Oostenrijkse vrienden te gaan skiën en in de zomer met mijn mountainbike door de bergen te crossen. Heerlijk!\n\nOp jezelf aangewezen zijn in een onbekende wereld is het grootste kado dat je jezelf kunt geven.\nNaast de zomerkampen en de family to family programma's ben ik van mening dat het NGSE programma voor studenten tot 30 jaar een prachtige kans is om met ondersteuning van Rotary een buitenlandse stage te doen. Dit programma verdient meer bekendheid!\nSinds 2006 ben ik lid van Rotaryclub Schouwen-Duiveland, waar wij met ons gezin vanuit Den Haag 17 jaar geleden zijn neergestreken. Naast Rotarylid zing ik in een kamerkoor en als arbeidsdeskundige werk ik dagelijks in de verzuim- en re-integratie wereld vanuit mijn eigen bedrijf. Dit vanuit het perspectief: wat kan wel? \nIk kijk uit naar vele deelnemers van onze prachtige Rotary programma's. ",
+        'Als voorzitter van de Longterm commissie ben ik enorm trots dat we met ons team elk jaar voor 40 - 50 scholieren een jaar uitwisseling kunnen realiseren.\nHet is een “lifetime in a year” en niet een “year in a lifetime”\nIk ben zelf uitwisselingsstudent geweest in 1984. Nog steeds bezoek ik mijn gastouders jaarlijks in Amerika. Onze kinderen zijn ook beiden op uitwisseling geweest en intussen hebben wij al 5 bonus kinderen uit de hele wereld en als het aan ons ligt komen er nog heel veel bij.\nNaast deze mooie vrijwillersbaan bij Rotary werk ik als trainer/coach en deels als leerkracht. Ik ben dol op reizen en lopen met onze twee honden. ',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/marja-hofland.jpg',
-    email: 'shortterm@rotaryyep.nl',
-    phoneNumber: null,
-    club: 'RC Schouwen-Duiveland',
-    district: '1610 ZUIDWEST-NEDERLAND',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg',
+    email: 'longtermchair@rotaryyep.nl',
+    phoneNumber: '+31655128529',
+    club: 'RC Lelystad',
+    district: '1590 NOORD-NEDERLAND',
     functions: [
-      ' Chair Shortterm Exchange',
-    ],
-  ),
-  Organization(
-    name: 'Hans Lodder',
-    bio:
-        "Ik ben Hans Lodder, assistant voor het Short Term Exchnage Programma. Zelf benik sinds mei 2018 lid van de RC Delft Vrijhof. Tot 2017 was ik marine officier en heb in mijn carriere veel over de aardbol mogen zwerven en in diverse landen gewoond en gewerkt. Daardoor heb ik zelf kunnen zien wat zo een ervaring doet voor kinderen die ineens in een volledig andere omgeving en taal behoorlijk zelf hun weg moeten gaan vinden. Sinds 2017 ben ik met, wat heet, Functioneel leeftijds ontslag. \n\nMomenteel heb ik diverse functies. Ik ben in 2018 gevraagd om samen met een collega uit Sint Maarten de Integriteitskamer van Sint Maarten op te zetten, de eerste en tevens nog steeds enige, in ons Koninkrijk. Na dit opzetten ben ik sinds 2019 lid van de Integriteistkamer van Sint Maarten. Tevens ben ik voorzitter van de Raad va Toezicht van de StichtingChristelijk Onderwijs Delft en vice voorzitter van het medisch en farmaceutisch museum De Griffioen te Delft. Ik ben in 2020-2021 voorzitter van on ze RC geweest en nu secretaris van de club.  \n\nThuis hebben we twee schoolgaande kinderen, een hond en een kat. Mijn hobbies zijn fietsen, golf en geschiedenis.  \n\nIk ben lid geworden van de MDJC omdat ik door mijn vele ervarungen in het buitenland gezien heb hoe goed het is dat de jeugd, onze toekomst, al vroeg elkaar beter leert kennen. Ik heb jonegeren uit diverse landen welke zo ongeveer op voet van oorlog staan, prima mer elkaar zien samenwerken, spelen en discusieren. Ergens tussen die jeugd en volwasen worden gaat het blijknaar fout. De programma's van het YEP kunnen zeker helpen daar verbetering in te brengen, hoe klein ook.",
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/hans-lodder.jpg',
-    email: 'shortterm@rotaryyep.nl',
-    phoneNumber: null,
-    club: 'RC Delft Vrijhof',
-    district: '1600 ZUID-HOLLAND',
-    functions: [
-      'Assitant Short Term Exchange Program',
+      'Chair Shortterm Exchange',
+      'Chair Longterm Year Exchange',
+      'Coordinator Long term Asia / Oceania / Europe',
+      'Coordinator Europe Tour',
+      'Chair long term selection',
+      'ROTEX contact person',
     ],
   ),
   Organization(
@@ -59,45 +50,59 @@ List<Organization> shortTermOrganizationList = [
     ],
   ),
   Organization(
-    name: 'Petra van Wouw',
+    name: 'Jan van Aller',
     bio:
-        'Ik ben Petra van Wouw-Diekmeier. Lid van Rotary sinds 2017. Mijn club is Rotary Etten-Leur. Een zeer actieve club, zeker op het gebied van Jeugd.  In 2020 ben ik gevraagd als Regio Jeugd Commisaris District 1610 regio 3. Helaas hebben hier door de Corona situatie nog niet heel veel activiteiten plaats kunnen vinden. Sinds juli 2021 ben ik Coordinator Family-2-Family voor het Noordelijk Halfrond. Hopelijk kunnen we snel van start met het oppakken van de uitwisselingen! Ik heb er in ieder geval veel zin in om nader kennis te maken met de jeugd die er op uit wil.\n\nWie ben ik? Van beroep ben ik grimeur en kostuummaker. Op dit moment ben ik aan het omscholen tot meubelstoffeerder. De situatie is onduidelijk wat er in de toekomst met de theaters gaat gebeuren en stilzitten is niet een van mijn deugden. Dus, tijd voor iets anders. Heel erg leuk, nieuwe materialen, gereedschappen en mensen. En toch mijn creatieve kant blijven triggeren. We zullen zien wat de toekomst gaat brengen. Combineren van beide beroepen kan natuurlijk ook altijd nog.\n\nNaast mijn werk heb ik als hobby’s mijn twee honden (Engelse Cocker Spaniels), die ik regelmatig show en ballroom-dansen.\n\nNieuwe uitdagingen vind ik geweldig. Vandaar mijn enthousiasme voor jeugd. Daar is immers nog alles mogelijk! Zij kijken naar de toekomst en zien nog alle mogelijkheden. Graag wil ik hen begeleiden in de kansen die Rotary biedt op het gebied van jeugduitwisselingen. Ben je geinteresseerd, stuur me dan een mailtje. Dan gaan we kijken wat er kan.',
+        'Ik ben Jan van Aller, assistent bij het Short Term Exchange Programma. \n\nIn 2021 verscheen een landelijke oproep om de gelederen van het RYEX-werk te komen versterken. Ik heb me toen aangemeld. Omdat er door Corona een hoop stil was komen te liggen is er in deze fase weer veel te doen om de lopende programma’s opnieuw op te tuigen en uit te voeren, en ik vind het mooi en zinvol om daar samen met de anderen uitvoering aan te geven. \n\nIk ben sinds 2015 lid van RC Haarlem-Centrum; daarvoor was ik lid van RC Alkmaar. Ik merk dat de betrokkenheid van lokale clubs bij de uitwisselingen sterk kan verschillen. mede daarom vind ik het de moeite waard om vanuit het landelijke level de lokale clubs te ondersteunen, te informeren en zo nodig te enthousiasmeren. \n\nUit mijn vrienden- en familiekring weet ik van dichtbij, hoe ontzettend waardevol de uitwisselingen zijn. Uiteraard in de eerste plaats voor de deelnemers zelf. Uit hun ervaringen blijkt vaak dat het ‘life-changing’  periodes zijn geweest die hen enorm hebben geholpen om maatschappelijk betrokken (wereld)burgers te worden. Hoe mooi is dat! – En ook voor deelnemende clubs hebben de uitwisselingen zeker een meerwaarde. \n\nIk ben werkzaam als geestelijk verzorger bij de Politie; een vrij nieuwe werksoort , die we volop aan het ontwikkelen zijn. Daarvoor ben ik in drie kerken ( P.K.N. ) voorganger geweest: Rotterdam, Uitgeest, Haarlem. En verder ben ik 10 jaar geestelijk verzorger bij de K. Marine geweest. We hebben naast veel plekken in NL ook een aantal jaren op Curaçao gewoond. Dat de wereld groter is dan Nederland hebben onze drie dochters dus intensief ervaren. \n\nDat is ook mijn drive om me aan te melden voor MDJC: jongen mensen de kans geven om hun steentje bij te dragen aan een wereld waarin er meer begrip is voor de verschillen, waarmee we samen deze aarde een stukje bewoonbaar proberen te maken! \n\nIk houd van zeilen ( ook op zee), trimzwemmen, lezen ( geschiedenis en romans) en speel piano, kamermuziek in verschillende samenstellingen. \n\nVerder ben ik voor Rotary momenteel betrokken bij het opzetten van een landelijk netwerk van Vertrouwenspersonen. Ik maak op mijn vakgebied deel uit van een Tuchtcollege. Daarnaast ben ik mentor voor beginnende predikanten en geestelijk verzorgers. In Utrecht ben ik verder o.a. lid van de redactie van het magazine van de Geertekerk. \n\nGetrouwd met Marthe de Vries; we hebben drie studerende dochters.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/petra-van-wouw.jpg',
-    email: 'f2f@rotaryyep.nl',
-    phoneNumber: '+31622520236',
-    club: 'Rotary Etten-Leur',
-    district: '1610 ZUIDWEST-NEDERLAND',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/jan-van-aller.jpg',
+    email: 'gjvanaller@gmail.com',
+    phoneNumber: '+31630005630',
+    club: 'RC Haarlem-Centrum',
+    district: '1580 NOORD-HOLLAND',
     functions: [
-      'Family2Family',
+      'Coordinator Family to Family',
     ],
   ),
   Organization(
-    name: 'Sabine Vergroesen',
+    name: 'Hans Lodder',
     bio:
-        'Hallo. Mijn naam is Sabine. Na ruim zes jaar actief meegedraaid te hebben bij het Long Term youth exchange programma van Rotary, heb ik een start gemaakt met het opzetten van een uitwisselingsprogramma voor jonge volwassenen binnen de kaders van Rotary: New Generation Service Exchange (NGSE). Dit programma is bedoeld om jongeren tussen 18 en 30 jaar een mogelijkheid te bieden in een ander land voor een stage, studie of buitenlandse werkervaring enkele weken (max 3 maanden) door te brengen.  Een lokale Rotary club zorgt ter plaatse voor huisvesting, bij voorkeur in een of meer gastgezinnen. Deelname aan de service projecten van de Hostclub ter plaatse wordt ook zeer op prijs gesteld.\n\nZin om meer te weten? Mail me gerust met een korte omschrijving van jouw project. ',
+        'Ik ben Hans Lodder, assistant voor het Short Term Exchnage Programma. Zelf ben ik sinds mei 2018 lid van de RC Delft Vrijhof. Tot 2017 was ik marine officier en heb in mijn carriere veel over de aardbol mogen zwerven en in diverse landen gewoond en gewerkt. Daardoor heb ik zelf kunnen zien wat zo een ervaring doet voor kinderen die ineens in een volledig andere omgeving en taal behoorlijk zelf hun weg moeten gaan vinden. Sinds 2017 ben ik met, wat heet, Functioneel leeftijds ontslag. \n\nMomenteel heb ik diverse functies. Ik ben in 2018 gevraagd om samen met een collega uit Sint Maarten de Integriteitskamer van Sint Maarten op te zetten. De eerste en tevens nog steeds enige, in ons Koninkrijk. Na dit opzetten ben ik sinds 2019 lid van de Integriteistkamer van Sint Maarten. Tevens ben ik voorzitter van de Raad van Toezicht van de Stichting Christelijk Onderwijs Delft en vice voorzitter van het medisch en farmaceutisch museum De Griffioen te Delft. Ik ben in 2020-2021 voorzitter van on ze RC geweest en nu secretaris van de club. \n\nThuis hebben we twee schoolgaande kinderen, een hond en een kat. Mijn hobbies zijn fietsen, golf en geschiedenis. \n\nIk ben lid geworden van de MDJC omdat door mijn vele ervarungen in het buitenland ik heb gezien hoe goed het is dat de jeugd, onze toekomst, al vroeg elkaar beter leert kennen. Ik heb jonegeren uit diverse landen welke zo ongeveer op voet van oorlog staan, prima met elkaar zien samenwerken, spelen en discusieren. Ergens tussen die jeugd en volwasen worden gaat het blijknaar fout. De programma\'s van het YEP kunnen zeker helpen daar verbetering in te brengen, hoe klein ook.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/sabine-vergroesen.jpg',
-    email: 'ngse@rotaryyep.nl',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/hans-lodder.jpg',
+    email: 'shortterm@rotaryyep.nl',
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'RC Delft Vrijhof',
+    district: '1600 ZUID-HOLLAND',
     functions: [
-      'NGSE',
+      'Coordinator Family to Family',
     ],
   ),
-  Organization(
-    name: 'Henk van Bruggen',
-    bio:
-        'Mijn naam is Henk van Bruggen. Ik ben oud Rotarylid van de club Ermelo-Putten en momenteel lid van de Past Rotaryclub. Ondanks het feit dat ik al gepensioneerd ben, houd ik mij zakelijk nog steeds bezig met onderwijs- en arbeidsmarktprojecten, zoals ik dat de afgelopen 35 jaar ook heb gedaan. \n\nIk heb mij recent aangemeld als vrijwilliger voor het programma NGSE (New Generation Service Exchange). \n\nHet lijkt me geweldig om wat te kunnen betekenen voor jong volwassenen die hun scoop willen verbreden door in het buitenland (werk)ervaring op te doen en/of nieuwe dingen te leren.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/henk-van-bruggen.png',
-    email: 'ngse@rotaryyep.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'NGSE',
-    ],
-  ),
+  // Organization(
+  //   name: 'Sabine Vergroesen',
+  //   bio:
+  //       'Hallo. Mijn naam is Sabine. Na ruim zes jaar actief meegedraaid te hebben bij het Long Term youth exchange programma van Rotary, heb ik een start gemaakt met het opzetten van een uitwisselingsprogramma voor jonge volwassenen binnen de kaders van Rotary: New Generation Service Exchange (NGSE). Dit programma is bedoeld om jongeren tussen 18 en 30 jaar een mogelijkheid te bieden in een ander land voor een stage, studie of buitenlandse werkervaring enkele weken (max 3 maanden) door te brengen.  Een lokale Rotary club zorgt ter plaatse voor huisvesting, bij voorkeur in een of meer gastgezinnen. Deelname aan de service projecten van de Hostclub ter plaatse wordt ook zeer op prijs gesteld.\n\nZin om meer te weten? Mail me gerust met een korte omschrijving van jouw project. ',
+  //   imageUrl:
+  //       'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/sabine-vergroesen.jpg',
+  //   email: 'ngse@rotaryyep.nl',
+  //   phoneNumber: null,
+  //   club: '',
+  //   district: '',
+  //   functions: [
+  //     'NGSE',
+  //   ],
+  // ),
+  // Organization(
+  //   name: 'Henk van Bruggen',
+  //   bio:
+  //       'Mijn naam is Henk van Bruggen. Ik ben oud Rotarylid van de club Ermelo-Putten en momenteel lid van de Past Rotaryclub. Ondanks het feit dat ik al gepensioneerd ben, houd ik mij zakelijk nog steeds bezig met onderwijs- en arbeidsmarktprojecten, zoals ik dat de afgelopen 35 jaar ook heb gedaan. \n\nIk heb mij recent aangemeld als vrijwilliger voor het programma NGSE (New Generation Service Exchange). \n\nHet lijkt me geweldig om wat te kunnen betekenen voor jong volwassenen die hun scoop willen verbreden door in het buitenland (werk)ervaring op te doen en/of nieuwe dingen te leren.',
+  //   imageUrl:
+  //       'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/henk-van-bruggen.png',
+  //   email: 'ngse@rotaryyep.nl',
+  //   phoneNumber: null,
+  //   club: '',
+  //   district: '',
+  //   functions: [
+  //     'NGSE',
+  //   ],
+  // ),
 ];

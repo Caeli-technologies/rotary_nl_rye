@@ -59,7 +59,7 @@ class _InsurancePageState extends State<InsurancePage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(

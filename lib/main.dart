@@ -12,6 +12,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,12 +59,16 @@ late AndroidNotificationChannel channel;
 /// Initialize the [FlutterLocalNotificationsPlugin] package.
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase as the first thing
   await Firebase.initializeApp();
 
-  // Pass all uncaught errors from the framework to Crashlytics.
+  // Now Firebase features can be used
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   if (Platform.isAndroid) {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -97,22 +103,23 @@ Future<void> main() async {
       sound: true,
     );
   }
+
   if (kDebugMode) {
     // Force disable Crashlytics collection while doing every day development.
     // Temporarily toggle this to true if you want to test crash reporting in your app.
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
-  runZonedGuarded<Future<void>>(() async {
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await di.init();
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
-    runApp(new MyApp());
-  }, FirebaseCrashlytics.instance.recordError);
+  await di.init();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+
+  runApp(new MyApp());
+  // FlutterNativeSplash.remove();
+
+  // Assuming _repo is an instance of a class that requires initialization after runApp
   final _repo = Repo();
   _repo.initData('', '');
-  // Pass all uncaught errors from the framework to Crashlytics.
 }
 
 class MyApp extends StatelessWidget {
@@ -154,9 +161,9 @@ class MyApp extends StatelessWidget {
         }
         return supportedLocales.first;
       },
-      theme: ThemeData.light(),
+      theme: ThemeData.light(useMaterial3: true),
       // Provide light theme.
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(useMaterial3: true),
       // Provide dark theme.
       themeMode: ThemeMode.system,
       title: 'Rotary youth Exchange',

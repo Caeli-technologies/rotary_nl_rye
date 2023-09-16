@@ -49,11 +49,11 @@ class _InfoForJeugdcommissarisPageState
               ),
               buildInboundOptionRow(
                 context,
-                'Handboek Jeugdcommissaris',
+                'Draaiboek Jeugdcommissaris',
                 FontAwesomeIcons.book,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/draaiboek-jeugdcommissaris-versie-2022-def.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/draaiboek-jeugdcommissaris-versie-2023.pdf',
                 ),
               ),
               Divider(
@@ -66,7 +66,7 @@ class _InfoForJeugdcommissarisPageState
                 FontAwesomeIcons.personWalkingLuggage,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/huisbezoek-gastgezinnen22-22-def.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/huisbezoek-gastgezinnen-23-24-def.pdf',
                 ),
               ),
               Divider(
@@ -105,7 +105,7 @@ class _InfoForJeugdcommissarisPageState
                 FontAwesomeIcons.euroSign,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/presentielijst-training-clubs-gastouders-2022-2023.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/presentielijst-training-clubs-gastouders-2023-2024.pdf',
                 ),
               ),
               Divider(
@@ -131,13 +131,41 @@ class _InfoForJeugdcommissarisPageState
                 FontAwesomeIcons.clipboardList,
                 PDFPageWithShare(
                   pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/actielijst-rotary-clubs-2022-2023-voorbereiding-ontvangst-inbound-student-def.pdf',
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/actielijst-rotary-clubs-2023-2024-voorbereiding-ontvangst-inbound-student-def-1.pdf',
                 ),
               ),
               Divider(
                 height: 15,
                 thickness: 2,
               ),
+              buildInboundOptionRow(
+                context,
+                'Rules and Information Inbounds',
+                FontAwesomeIcons.scaleUnbalanced,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/rules-and-information-for-inbound-exchange-students-to-the-netherlands-2022-2023-def-2.pdf',
+                ),
+              ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+
+              buildInboundOptionRow(
+                context,
+                'Reis Regels',
+                FontAwesomeIcons.personWalkingLuggage,
+                PDFPageWithShare(
+                  pdfUrl:
+                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/travel-rules-within-and-outside-the-netherlands-2023-2024.pdf',
+                ),
+              ),
+              Divider(
+                height: 15,
+                thickness: 2,
+              ),
+
               // the end
               SizedBox(
                 height: 20,
@@ -173,7 +201,7 @@ class _InfoForJeugdcommissarisPageState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(
-              width: Device.width - 120,
+              width: Device.width - 130,
               child: Text(title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

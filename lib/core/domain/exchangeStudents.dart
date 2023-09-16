@@ -3,47 +3,32 @@ import 'dart:async';
 import 'dart:convert';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
-import 'package:rotary_nl_rye/core/data/datasources/config.dart';
-import 'package:rotary_nl_rye/core/data/initData.dart';
+import 'package:flutter/services.dart';
 import 'entities/exchange_student.dart';
-import 'entities/story.dart';
 
 class StudentsBloc {
-  final _studentController =
-      StreamController<List<ExchangeStudent>>.broadcast();
-  final _storyController = StreamController<List<Story>>.broadcast();
+  final _studentListController = StreamController<List<ExchangeStudent>>();
 
-  get studentList => _studentController.stream;
-  get storyList => _storyController.stream;
+  Stream<List<ExchangeStudent>> get studentList =>
+      _studentListController.stream;
+  Future<void> getExchangeStudentList() async {
+    String data = await rootBundle.loadString('assets/students/list.json');
+    Map<String, dynamic> jsonResult = jsonDecode(data)['list'];
 
-  final Cache cache = new Cache();
+    List<ExchangeStudent> students = [];
 
-  void getExchangeStudentList() async {
-    await Repo().initData('', '');
-    final List temp = json.decode(await cache.getByKey(Config.spExchangeStudentsKey)) as List;
-    final List<ExchangeStudent> exchangeStudents = [];
-    temp.forEach((json) {exchangeStudents.add(ExchangeStudent.fromJson(json));});
-    _studentController.sink.add(exchangeStudents);
-  }
-
-  void getStoriesList(String studentExchangeYear, String studentName) async {
-    final List<Story> stories = [];
-    try {
-      await Repo().initData(studentExchangeYear, studentName);
-      final List temp = json.decode(await cache.getByKey(studentExchangeYear + studentName)) as List;
-      temp.forEach((json) {stories.add(Story.fromJson(json));});
-    } catch (error) {
-      print(error);
+    // Loop through each year's list
+    for (var yearList in jsonResult.values) {
+      // Loop through each student in the year's list
+      for (var item in yearList) {
+        students.add(ExchangeStudent.fromJson(item));
+      }
     }
-    _storyController.sink.add(stories);
+
+    _studentListController.sink.add(students);
   }
 
-  disposeStudent() {
-    _studentController.close();
-  }
-
-  disposeStory() {
-    _storyController.close();
+  void disposeStudent() {
+    _studentListController.close();
   }
 }

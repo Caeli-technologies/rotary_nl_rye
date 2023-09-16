@@ -12,6 +12,8 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
+import 'package:rotary_nl_rye/features/stories/models/country.dart';
+import 'package:rotary_nl_rye/features/stories/presentation/pages/exchange_students_List.dart';
 import '../../../features/uniform_widgets/uniform_circle_avatar.dart';
 
 class SVGListTile extends StatelessWidget {
@@ -49,6 +51,54 @@ class SVGListTile extends StatelessWidget {
           ),
         ),
         title: Text(item.name,
+            style: TextStyle(
+              color: Palette.indigo,
+            )),
+        trailing: Icon(
+          Icons.keyboard_arrow_right,
+          size: 30,
+          color: Palette.indigo,
+        ),
+      ),
+    );
+  }
+}
+
+class CountryListTile extends StatelessWidget {
+  final ExchangeStudentsPage descriptionPage;
+  final Country country;
+
+  const CountryListTile({
+    required this.descriptionPage,
+    required this.country,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      child: ListTile(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => descriptionPage),
+          );
+        },
+        contentPadding: EdgeInsets.all(0),
+        leading: ClipRRect(
+          child: Container(
+            height: 55,
+            width: 55,
+            child: SvgPicture.asset(
+              country.imageUrl,
+              height: 50,
+              width: 50,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+        title: Text(country.name,
             style: TextStyle(
               color: Palette.indigo,
             )),

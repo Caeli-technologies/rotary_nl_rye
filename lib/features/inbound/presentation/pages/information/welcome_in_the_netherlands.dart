@@ -60,7 +60,7 @@ class _WelcomeInTheNetherlandsPageState
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
@@ -68,7 +68,7 @@ class _WelcomeInTheNetherlandsPageState
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       TextSpan(
                         text:
-                            ' We are very excited about your upcoming stay with us and looking forward to meeting you. We hope and believe that you will enjoy your stay with us. We have an exciting and active Rotary International Youth Exchange Program with approx. 35-50 exchange students arriving in our country. You will make friends from all over the world, in addition to making many Dutch friends in your school and Rotary.',
+                            ' We are very excited about your upcoming stay with us and looking forward to meeting you. We hope and believe that you will enjoy your stay with us. We have an exciting and active Rotary International Youth Exchange Program with approx. 18 exchange students arriving in our country. You will make friends from all over the world, in addition to making many Dutch friends in your school and Rotary.',
                       ),
                     ])),
               ),
@@ -79,7 +79,7 @@ class _WelcomeInTheNetherlandsPageState
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
@@ -94,7 +94,7 @@ class _WelcomeInTheNetherlandsPageState
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(

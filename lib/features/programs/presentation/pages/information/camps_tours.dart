@@ -591,7 +591,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
@@ -663,7 +663,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(
@@ -682,7 +682,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                     text: TextSpan(
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                         children: [
                       TextSpan(

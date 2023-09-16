@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rotary_nl_rye">
+    package="com.caelitechnologies.rotary_nl_rye">
     <uses-permission
         android:name="android.permission.INTERNET"/>
+           <uses-permission android:name="android.permission.WAKE_LOCK" />
+   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <queries>
         <!-- If your app opens https URLs -->
         <intent>
@@ -41,7 +43,7 @@
     </queries>
     <application
         android:label="Rotary Youth Exchange NL"
-        android:name=".Application"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <!-- Add custom icon to the notifications -->
         <meta-data

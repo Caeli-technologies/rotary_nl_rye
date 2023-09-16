@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:flutter_app_badger/flutter_app_badger.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
@@ -47,28 +47,28 @@ class _PageNavigatorState extends State<PageNavigator> {
     }
 
 // render complex SVG
-    Future.wait([
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ca.svg'),
-        null,
-      ),
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/mx.svg'),
-        null,
-      ),
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/pe.svg'),
-        null,
-      ),
-      precachePicture(
-        ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ec.svg'),
-        null,
-      ),
-    ]);
+    // Future.wait([
+    //   precachePicture(
+    //     ExactAssetPicture(
+    //         SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ca.svg'),
+    //     null,
+    //   ),
+    //   precachePicture(
+    //     ExactAssetPicture(
+    //         SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/mx.svg'),
+    //     null,
+    //   ),
+    //   precachePicture(
+    //     ExactAssetPicture(
+    //         SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/pe.svg'),
+    //     null,
+    //   ),
+    //   precachePicture(
+    //     ExactAssetPicture(
+    //         SvgPicture.svgStringDecoderBuilder, 'assets/icons/flags/ec.svg'),
+    //     null,
+    //   ),
+    // ]);
     // end
   }
 

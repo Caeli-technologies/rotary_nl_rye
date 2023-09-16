@@ -272,7 +272,7 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
         await Dio().download(pdfUrl, path);
 
         if (await canLaunchUrlString(_linkMessage!)) {
-          await Share.shareFiles([path],
+          await Share.shareXFiles([XFile(path)],
               text:
                   'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
               subject: fielName);

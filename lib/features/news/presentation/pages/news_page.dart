@@ -244,7 +244,7 @@ class TravelCard extends StatelessWidget {
           color: Palette.themeShadeColor,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SizedBox(
-          height: 120,
+          height: null,
           child: Container(
             child: Row(
               children: <Widget>[
@@ -273,7 +273,7 @@ class TravelCard extends StatelessWidget {
                 //       child: Image.asset(image),
                 //     )),
                 SizedBox(
-                  height: 120,
+                  height: null,
                   child: Container(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

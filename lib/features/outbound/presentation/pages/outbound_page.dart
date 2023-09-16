@@ -149,15 +149,19 @@ class _OutboundPageState extends State<OutboundPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SizedBox(
-              width: Device.width - 150,
-              child: Text(
-                title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                softWrap: false,
-                style: TextStyle(
-                    inherit: true, fontWeight: FontWeight.w700, fontSize: 16.0),
+            Expanded(
+              child: Container(
+                constraints: BoxConstraints(maxWidth: Device.width - 150),
+                child: Text(
+                  title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    inherit: true,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16.0,
+                  ),
+                ),
               ),
             ),
           ],
@@ -167,16 +171,20 @@ class _OutboundPageState extends State<OutboundPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              SizedBox(
-                width: Device.width - 150,
-                child: Text(subtitle,
+              Expanded(
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: Device.width - 150),
+                  child: Text(
+                    subtitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    softWrap: false,
                     style: TextStyle(
-                        inherit: true,
-                        fontSize: 14.0,
-                        color: Palette.descriptionText)),
+                      inherit: true,
+                      fontSize: 14.0,
+                      color: Palette.descriptionText,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
