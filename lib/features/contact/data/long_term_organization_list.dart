@@ -126,4 +126,16 @@ List<Organization> longTermOrganizationList = [
     district: '1560 OOST-NEDERLAND',
     functions: ['Activities inbounds'],
   ),
+  Organization(
+    name: 'Hilleke van der Veer',
+    bio:
+        'Mijn naam is Hilleke van der Veer en ik ben de landelijke counselor van de inbounds. \n\nOp mijn 17e ben ik zelf op uitwisseling geweest naar een klein plaatsje genaamd Loveland in Colorado. Dit was een geweldige ervaring waar ik met veel plezier op terug kijk en die ik elke jongere gun. En daarom vind ik het zo fijn om deel uit te maken van dit geweldige team dat zich met veel enthousiasme inzet om de uitwisselingsstudenten een onvergetelijke ervaring te bezorgen hier in Nederland. \n Ik woon in Enschede samen met Frank en onze drie kinderen. Onze dochter Jasmijn is op uitwisseling geweest naar Barrie in Ontario Canada en heeft daar vrienden gemaakt uit de hele wereld. Sinds 2017 hebben wij 4 exchange studenten uit Italië en Brazilië in ons huis mogen verwelkomen met wie we als gezin nog altijd warme banden onderhouden.\n In het dagelijks leven werk ik als psycholoog bij een grote ggz instelling en word ik gedetacheerd bij huisartsenpraktijken. Mijn hobby’s zijn: wandelen, reizen, stijldansen, lezen, naar het theater gaan en lekker eten.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/hilleke-van-der-veer-2.jpg',
+    email: null,
+    phoneNumber: null,
+    club: '',
+    district: '',
+    functions: ['National Counselor'],
+  ),
 ];

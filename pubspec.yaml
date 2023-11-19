@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 7.1.2+91
+version: 7.2.0+92
 
 # authors:
 #   - Ruben Talstra <info@caeli-tech.com>
@@ -25,56 +25,56 @@ environment:
 
 dependencies:
   badges: ^3.1.2
-  dio: ^5.3.2
-  cached_network_image: ^3.2.3
+  dio: ^5.3.3
+  cached_network_image: ^3.3.0
   carousel_slider: ^4.2.1
-  chewie: ^1.7.0
-  cloud_firestore: ^4.9.1
-  csv: ^5.0.2
+  chewie: ^1.7.1
+  cloud_firestore: ^4.13.1
+  csv: ^5.1.1
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1
   equatable: ^2.0.5
-  firebase_analytics: ^10.4.5
-  firebase_auth: ^4.9.0
-  firebase_core: ^2.15.1
-  firebase_crashlytics: ^3.3.5
-  firebase_dynamic_links: ^5.3.5
-  firebase_messaging: ^14.6.7
-  firebase_remote_config: ^4.2.5
+  firebase_analytics: ^10.7.0
+  firebase_auth: ^4.14.0
+  firebase_core: ^2.22.0
+  firebase_crashlytics: ^3.4.4
+  firebase_dynamic_links: ^5.4.4
+  firebase_messaging: ^14.7.4
+  firebase_remote_config: ^4.3.4
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
   flutter_cached_pdfview: ^0.4.2
-  flutter_local_notifications: ^15.1.1
+  flutter_local_notifications: ^16.1.0
   flutter_localizations:
     sdk: flutter
   flutter_staggered_grid_view: ^0.7.0
-  flutter_svg: ^2.0.7
+  flutter_svg: ^2.0.9
   flutter_swiper_null_safety: ^1.0.2
-  font_awesome_flutter: ^10.5.0
-  get_it: ^7.6.2
+  font_awesome_flutter: ^10.6.0
+  get_it: ^7.6.4
   internet_connection_checker: ^1.0.0+1
   maps_launcher: ^2.2.0
-  mockito: ^5.4.2
-  package_info_plus: ^4.1.0
+  mockito: ^5.4.3
+  package_info_plus: ^4.2.0
   path_provider: ^2.1.1
   photo_view: ^0.14.0
-  share_plus: ^7.1.0
-  shared_preferences: ^2.2.1
+  share_plus: ^7.2.1
+  shared_preferences: ^2.2.2
   skeletons: ^0.0.3
   table_calendar: ^3.0.9
   translator: ^0.1.7
   transparent_image: ^2.0.1
-  url_launcher: ^6.1.14
-  video_player: ^2.7.1
+  url_launcher: ^6.2.1
+  video_player: ^2.8.1
   percent_indicator: ^4.2.3
-  audioplayers: ^5.1.0
+  audioplayers: ^5.2.1
 
 dev_dependencies:
-  dependency_validator: ^3.2.2
+  dependency_validator: ^3.2.3
   flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^2.0.3
-  flutter_native_splash: ^2.3.2
+  flutter_lints: ^3.0.1
+  flutter_native_splash: ^2.3.5
   import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
