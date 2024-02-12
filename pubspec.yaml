@@ -25,56 +25,59 @@ environment:
 
 dependencies:
   badges: ^3.1.2
-  dio: ^5.3.3
-  cached_network_image: ^3.3.0
+  dio: ^5.4.0
+  cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
-  chewie: ^1.7.1
-  cloud_firestore: ^4.13.1
+  chewie: ^1.7.5
+  cloud_firestore: ^4.15.4
   csv: ^5.1.1
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1
   equatable: ^2.0.5
-  firebase_analytics: ^10.7.0
-  firebase_auth: ^4.14.0
-  firebase_core: ^2.22.0
-  firebase_crashlytics: ^3.4.4
-  firebase_dynamic_links: ^5.4.4
-  firebase_messaging: ^14.7.4
-  firebase_remote_config: ^4.3.4
+  firebase_analytics: ^10.8.5
+  firebase_auth: ^4.17.4
+  firebase_core: ^2.25.4
+  firebase_crashlytics: ^3.4.14
+  firebase_dynamic_links: ^5.4.13
+  firebase_messaging: ^14.7.15
+  firebase_remote_config: ^4.3.13
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
   flutter_cached_pdfview: ^0.4.2
-  flutter_local_notifications: ^16.1.0
+  flutter_local_notifications: ^16.3.2
   flutter_localizations:
     sdk: flutter
   flutter_staggered_grid_view: ^0.7.0
   flutter_svg: ^2.0.9
   flutter_swiper_null_safety: ^1.0.2
-  font_awesome_flutter: ^10.6.0
-  get_it: ^7.6.4
+  font_awesome_flutter: ^10.7.0
+  get_it: ^7.6.7
   internet_connection_checker: ^1.0.0+1
   maps_launcher: ^2.2.0
-  mockito: ^5.4.3
-  package_info_plus: ^4.2.0
-  path_provider: ^2.1.1
+  mockito: ^5.4.4
+  package_info_plus: ^5.0.1
+  path_provider: ^2.1.2
   photo_view: ^0.14.0
-  share_plus: ^7.2.1
+  share_plus: ^7.2.2
   shared_preferences: ^2.2.2
   skeletons: ^0.0.3
-  table_calendar: ^3.0.9
-  translator: ^0.1.7
+  table_calendar: ^3.1.0
+  translator: ^1.0.0
   transparent_image: ^2.0.1
-  url_launcher: ^6.2.1
-  video_player: ^2.8.1
+  url_launcher: ^6.2.4
+  video_player: ^2.8.2
   percent_indicator: ^4.2.3
   audioplayers: ^5.2.1
+
+dependency_overrides:
+  intl: ^0.19.0
 
 dev_dependencies:
   dependency_validator: ^3.2.3
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.1
-  flutter_native_splash: ^2.3.5
+  flutter_native_splash: ^2.3.10
   import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
