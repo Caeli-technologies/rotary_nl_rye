@@ -176,9 +176,10 @@ List<Inbounds> inboundList = [
   // Keona Olney
   Inbounds(
     name: 'Keona Olney',
-    bio: '',
+    bio:
+        'Hallo! My name is keona. I come from a small town on north Vancouver island, Bc Canada, called port hardy. I am currently 17, and turning 18 beginning of June. I live with my mom and dad, two cats, and as well two dogs. I also have a sister who is in university. For my exchange year I will be in Sneek, district 1590.\n\n I have been playing ice hockey since I was little, growing up in the arena on skates. I as well have been working for for a few years now, which has become another big hobby of mine. \n\n I have always loved traveling which brought me to rotary exchange. I am beyond thankful I was given this opportunity to explore, learn, and challenge myself.',
     imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/keona-olney.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -193,7 +194,7 @@ List<Inbounds> inboundList = [
 
   // Sabrina Pinterich Almeida
   Inbounds(
-    name: 'Juliana Novo Rojas',
+    name: 'Sabrina Pinterich Almeida',
     bio:
         'Hallo! Mijn naam is Sabrina, ik ben zestien jaar en ik kom uit Curitiba in Brazilië.\n\n I was born and have lived my whole life in Curitiba, the capital of the state of Paraná in the south of Brazil. \n I’ve danced ballet since I was 3 years old and swim since I was 2. I’m also the public relations of my Interact Club in Curitiba. \n\n I love reading, traveling, listening to music and spending time with family and friends. \n\n My district in Brazil is 4730 and in Nederland is 1560. I’ll be living in a city called Winterswijk in Gelderland. \n\n I’m so excited to learn a new language, meet new people and a new culture. I’ve always dreamed of an exchange year so I’m so grateful for this opportunity and I’m going to make the most out of it!',
     imageUrl:

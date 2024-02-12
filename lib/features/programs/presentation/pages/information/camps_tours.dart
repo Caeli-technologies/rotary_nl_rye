@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/loadCsv.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
@@ -599,24 +600,27 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                             'Door de buitenlandse organisator worden uitnodigingen aan de MDJC (= Multi District Jeugdzaken Commissie van Rotary) gestuurd om een jongen of meisje van een bepaalde leeftijd en in een speciale periode aan hun Camp of Tour te laten deelnemen. Deze uitnodigingen worden direct na ontvangst op de site ',
                       ),
                       TextSpan(
-                        text: 'rotaryyep.nl/zomerkampen',
+                        text: 'Summer Camps',
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launchUrlString('http://rotaryyep.nl/zomerkampen');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoadCsv()),
+                            );
                           },
                       ),
                       TextSpan(
                         text:
-                            ' geplaatst ter info. Je treft deze op de site aan vanaf half januari t/m begin mei. Dus hier vind je steeds het meest actuele aanbod over de Camps & Tours uit de deelnemende landen. Je kunt de coördinator ook direct laten weten als je interesse hebt om deel te nemen aan een bepaald Camp of Tour. Aanmelden via links op deze ',
+                            ' geplaatst ter info. Je treft deze op de site aan vanaf half januari t/m begin mei. Dus hier vind je steeds het meest actuele aanbod over de Camps & Tours uit de deelnemende landen. Je kunt de coördinator ook direct laten weten als je interesse hebt om deel te nemen aan een bepaald Camp of Tour. Aanmelden via deze email: ',
                       ),
                       TextSpan(
-                        text: 'pagina.',
+                        text: 'zomerkamp@rotaryyep.nl',
                         style: TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            launchUrlString(
-                                'http://rotaryyep.nl/campsandtours/outbound');
+                            launchUrlString('mailto:zomerkamp@rotaryyep.nl');
                           },
                       ),
                     ])),
