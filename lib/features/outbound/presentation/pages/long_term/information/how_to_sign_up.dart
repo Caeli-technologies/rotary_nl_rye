@@ -35,7 +35,7 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
         leading: UniformBackButton(),
         title: Text(
           'Hoe schrijf ik mezelf in',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

@@ -51,7 +51,7 @@ class _StoriesDisplayState extends State<StoriesDisplay> {
         leading: UniformBackButton(),
         title: Text(
           'Rebounds',
-          textScaleFactor: 1.4,
+          textScaler: TextScaler.linear(1.4),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

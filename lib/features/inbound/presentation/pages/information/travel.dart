@@ -34,7 +34,7 @@ class _TravelPageState extends State<TravelPage> {
         leading: UniformBackButton(),
         title: Text(
           'Travel',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

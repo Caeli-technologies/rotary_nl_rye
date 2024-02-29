@@ -39,7 +39,7 @@ class ExchangeStudentsPage extends StatelessWidget {
         leading: UniformBackButton(),
         title: Text(
           country.name,
-          textScaleFactor: 1.5,
+          textScaler: TextScaler.linear(1.5),
           style: TextStyle(
             color: Palette.indigo,
             fontWeight: FontWeight.bold,

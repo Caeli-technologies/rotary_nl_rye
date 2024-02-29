@@ -3,17 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 // 📦 Package imports:
-import 'package:badges/badges.dart' as badges;
 import 'package:csv/csv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:skeletons/skeletons.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/pdf_viewer.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class LoadCsv extends StatefulWidget {
   @override
@@ -21,118 +18,75 @@ class LoadCsv extends StatefulWidget {
 }
 
 class _LoadCsvState extends State<LoadCsv> {
-  List<List<dynamic>> _data = [];
+  late Future<List<List<dynamic>>> _futureData;
 
-  Future<List<List>?> getData() async {
+  @override
+  void initState() {
+    super.initState();
+    _futureData = getData();
+  }
+
+  Future<List<List<dynamic>>> getData() async {
     final response = await http.get(
         Uri.parse(
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen.csv'),
         headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
-    try {
-      if (response.statusCode == 200) {
-        List<List<dynamic>> _listData = CsvToListConverter(
-          eol: '\r\n',
-          fieldDelimiter: ';',
-        ).convert(response.body);
-
-        setState(() {
-          _data = _listData;
-        });
-
-        return _listData;
-      } else {
-        // ignore: null_check_always_fails
-        return null!;
-      }
-    } catch (e) {
-      // ignore: null_check_always_fails
-      return null;
+    if (response.statusCode == 200) {
+      return CsvToListConverter(eol: '\r\n', fieldDelimiter: ';')
+          .convert(response.body);
+    } else {
+      throw Exception('Failed to load CSV data');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'Camps & Tours List',
-            textScaleFactor: 1.2,
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
+          statusBarColor: Colors.transparent, // iOS
+          statusBarBrightness: Brightness.light, // Android
         ),
-        body: Padding(
-          padding: EdgeInsets.only(left: 15, right: 15),
-          child: FutureBuilder<List<List>?>(
-              future: getData(), // async work
-              builder:
-                  (BuildContext context, AsyncSnapshot<List<List>?> snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return SkeletonListView();
-                } else {
-                  if (snapshot.hasData) {
-                    // return Center(child: new Text('${snapshot.data}'));  // snapshot.data  :- get your object which is pass from your downloadData() function
-                    return ListView.builder(
-                      padding: EdgeInsets.only(top: 10, bottom: 30),
-                      itemCount: _data.length,
-                      itemBuilder: (_, index) {
-                        if (index == 0) {
-                          // return the header
-                          return SizedBox.shrink();
-                        }
-                        return GestureDetector(
-                            onTap: () {
-                              print('title: ' +
-                                  snapshot.data![index][2].toString());
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PDFPageViewer(
-                                          title: snapshot.data![index][2]
-                                              .toString(),
-                                          pdfURL: snapshot.data![index][9]
-                                              .toString(),
-                                        )),
-                              );
-                            },
-                            child: Container(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: TravelCard(
-                                startDate: snapshot.data![index][0].toString(),
-                                endDate: snapshot.data![index][1].toString(),
-                                title: snapshot.data![index][2].toString(),
-                                hostCountryCode:
-                                    snapshot.data![index][3].toString(),
-                                hostCountry:
-                                    snapshot.data![index][4].toString(),
-                                hostDistrict:
-                                    snapshot.data![index][5].toString(),
-                                ageMin: snapshot.data![index][6].toString(),
-                                ageMax: snapshot.data![index][7].toString(),
-                                contribution:
-                                    snapshot.data![index][8].toString(),
-                                invitation: snapshot.data![index][9].toString(),
-                                full: snapshot.data![index][10].toString(),
-                              ),
-                            ));
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-                  // By default show a loading spinner.
-                  return SkeletonListView();
-                }
-              }),
-        ));
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text('Camps & Tours List',
+            textScaler: TextScaler.linear(1.2),
+            style:
+                TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold)),
+      ),
+      body: FutureBuilder<List<List<dynamic>>>(
+        future: _futureData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator(); // Placeholder widget like a loading spinner
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                if (index == 0) return SizedBox.shrink(); // Skip header
+                return TravelCard(
+                  startDate: snapshot.data![index][0].toString(),
+                  endDate: snapshot.data![index][1].toString(),
+                  title: snapshot.data![index][2].toString(),
+                  hostCountryCode: snapshot.data![index][3].toString(),
+                  hostCountry: snapshot.data![index][4].toString(),
+                  hostDistrict: snapshot.data![index][5].toString(),
+                  ageMin: snapshot.data![index][6].toString(),
+                  ageMax: snapshot.data![index][7].toString(),
+                  contribution: snapshot.data![index][8].toString(),
+                  invitation: snapshot.data![index][9].toString(),
+                  full: snapshot.data![index][10].toString(),
+                );
+              },
+            );
+          } else {
+            return SizedBox.shrink(); // Fallback placeholder
+          }
+        },
+      ),
+    );
   }
 }
 
@@ -149,7 +103,7 @@ class TravelCard extends StatelessWidget {
       invitation,
       full;
 
-  TravelCard({
+  const TravelCard({
     required this.startDate,
     required this.endDate,
     required this.title,
@@ -165,398 +119,173 @@ class TravelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
+    List<String> hostCountries = hostCountry.split('/');
+    List<String> hostCountryCodes = hostCountryCode.split('/');
+
+    return GestureDetector(
+        onTap: () {
+          print('Tapped on: $title');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PDFPageViewer(
+                title: title,
+                pdfURL: invitation,
+              ),
+            ),
+          );
+        },
+        child: Card(
+          elevation: 4.0,
+          margin: const EdgeInsets.all(8.0),
           color: Palette.themeShadeColor,
-          borderRadius: BorderRadius.all(Radius.circular(14))),
-      child: SizedBox(
-          height: null,
-          child: Container(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
-              children: <Widget>[
-                SizedBox(
-                  child: Container(
-                      child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      full.isNotEmpty
-                          ? Container(
-                              padding: EdgeInsets.only(left: 12, top: 6),
-                              child: badges.Badge(
-                                badgeAnimation: badges.BadgeAnimation.fade(
-                                    toAnimate: false),
-                                badgeStyle: badges.BadgeStyle(
-                                  shape: badges.BadgeShape.square,
-                                  badgeColor: Colors.red,
-                                  borderRadius: BorderRadius.circular(8),
-                                  elevation: 0,
-                                ),
-                                badgeContent: Text('VOL',
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                            )
-                          : SizedBox.shrink(),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (full.isNotEmpty) // Check if 'full' is not empty
                       Container(
-                        padding: EdgeInsets.only(left: 10, top: 10),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.70,
-                          child: Text(title,
-                              textScaleFactor: 1.1,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: false,
-                              style: TextStyle(
-                                color: Palette.indigo,
-                                fontWeight: FontWeight.bold,
-                              )),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6.0, vertical: 2.0),
+                        margin: const EdgeInsets.only(
+                            right:
+                                8.0), // Add some space between the "FULL" label and the title
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Text(
+                          'FULL',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
                         ),
                       ),
-                    ],
-                  )),
+                    Expanded(
+                      // Use Expanded to ensure the title can take up the remaining space
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                          color: Palette.indigo,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  child: Container(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      hostCountryCode.contains('/')
-                          ? Column(children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(top: 10),
-                                child: Row(
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.only(left: 20),
-                                      child: Row(
-                                        children: <Widget>[
-                                          FaIcon(
-                                            FontAwesomeIcons.solidFlag,
-                                            color: Palette.lightIndigo,
-                                            size: 20,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 12),
-                                            child: Text(
-                                              'Host Country:',
-                                              textScaleFactor: 1.2,
-                                              style: TextStyle(
-                                                color: Palette.indigo,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 30),
-                                      child: Row(
-                                        children: <Widget>[
-                                          SvgPicture.asset(
-                                            "assets/icons/flags/${hostCountryCode.split('/')[0]}.svg",
-                                            height: 20,
-                                            width: 50,
-                                            fit: BoxFit.contain,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 10),
-                                            child: Text(
-                                              hostCountry.split('/')[0],
-                                              textScaleFactor: 1.2,
-                                              style: TextStyle(
-                                                color: Palette.indigo,
-                                                // fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(top: 10),
-                                child: Row(
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.only(left: 184),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                left: 5, right: 5),
-                                            child: Text(
-                                              '/ ',
-                                              textScaleFactor: 1.2,
-                                              style: TextStyle(
-                                                color: Palette.indigo,
-                                                // fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          SvgPicture.asset(
-                                            "assets/icons/flags/${hostCountryCode.split('/')[1]}.svg",
-                                            height: 20,
-                                            width: 50,
-                                            fit: BoxFit.contain,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 10),
-                                            child: Text(
-                                              hostCountry.split('/')[1],
-                                              textScaleFactor: 1.2,
-                                              style: TextStyle(
-                                                color: Palette.indigo,
-                                                // fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ])
-                          : Container(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.only(left: 20),
-                                    child: Row(
-                                      children: <Widget>[
-                                        FaIcon(
-                                          FontAwesomeIcons.solidFlag,
-                                          color: Palette.lightIndigo,
-                                          size: 20,
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 12),
-                                          child: Text(
-                                            'Host Country:',
-                                            textScaleFactor: 1.2,
-                                            style: TextStyle(
-                                              color: Palette.indigo,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(left: 30),
-                                    child: Row(
-                                      children: <Widget>[
-                                        SvgPicture.asset(
-                                          'assets/icons/flags/$hostCountryCode.svg',
-                                          height: 20,
-                                          width: 50,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            hostCountry,
-                                            textScaleFactor: 1.2,
-                                            style: TextStyle(
-                                              color: Palette.indigo,
-                                              // fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.thumbtack,
-                                    color: Palette.lightIndigo,
-                                    size: 20,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 17),
-                                    child: Text(
-                                      'Host District:',
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            hostDistrict.contains('/')
-                                ? Container(
-                                    margin: EdgeInsets.only(left: 37),
-                                    child: Text(
-                                      hostDistrict.split('/')[0] +
-                                          ' / ' +
-                                          hostDistrict.split('/')[1],
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    margin: EdgeInsets.only(left: 37),
-                                    child: Text(
-                                      hostDistrict,
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(left: 19),
-                              child: Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.cakeCandles,
-                                    color: Palette.lightIndigo,
-                                    size: 20,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 16),
-                                    child: Text(
-                                      'Min - Max:',
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 61),
-                              child: Text(
-                                ageMin + ' - ' + ageMax + ' Years',
-                                textScaleFactor: 1.2,
-                                style: TextStyle(
-                                  color: Palette.indigo,
-                                  // fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.euroSign,
-                                    color: Palette.lightIndigo,
-                                    size: 20,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      'Contribution:',
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 37),
-                              child: Text(
-                                contribution,
-                                textScaleFactor: 1.2,
-                                style: TextStyle(
-                                  color: Palette.indigo,
-                                  // fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  FaIcon(
-                                    FontAwesomeIcons.calendarDays,
-                                    color: Palette.lightIndigo,
-                                    size: 20,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 14),
-                                    child: Text(
-                                      'Date:',
-                                      textScaleFactor: 1.2,
-                                      style: TextStyle(
-                                        color: Palette.indigo,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 30),
-                              child: Text(
-                                startDate + ' - ' + endDate,
-                                textScaleFactor: 1.2,
-                                style: TextStyle(
-                                  color: Palette.indigo,
-                                  // fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
-                ),
+
+                // if (full.isNotEmpty)
+                //   Align(
+                //     alignment: Alignment.topRight,
+                //     child: Container(
+                //       padding: const EdgeInsets.all(6.0),
+                //       decoration: BoxDecoration(
+                //         color: Colors.red,
+                //         borderRadius: BorderRadius.circular(14),
+                //       ),
+                //       child: Text(
+                //         'FULL',
+                //         style: TextStyle(
+                //             color: Colors.white, fontWeight: FontWeight.bold),
+                //       ),
+                //     ),
+                //   ),
+                // Text(
+                //   title,
+                //   style: TextStyle(
+                //     color: Palette.indigo,
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 20,
+                //   ),
+                // ),
+                SizedBox(height: 10),
+                buildInfoRow(
+                    context, 'Host Country: ', hostCountries, hostCountryCodes),
+                SizedBox(height: 10),
+                buildSimpleInfoRow('Host District: ', hostDistrict,
+                    FontAwesomeIcons.locationDot),
+                SizedBox(height: 10),
+                buildSimpleInfoRow('Age Range: ', '$ageMin - $ageMax years',
+                    FontAwesomeIcons.cakeCandles),
+                SizedBox(height: 10),
+                buildSimpleInfoRow(
+                    'Contribution: ', contribution, FontAwesomeIcons.euroSign),
+                SizedBox(height: 10),
+                buildSimpleInfoRow('Date: ', '$startDate - $endDate',
+                    FontAwesomeIcons.calendarDays),
               ],
             ),
-          )),
+          ),
+        ));
+  }
+
+  Widget buildInfoRow(BuildContext context, String label, List<String> values,
+      List<String> codes) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Icon(FontAwesomeIcons.solidFlag, size: 16, color: Palette.lightIndigo),
+        SizedBox(width: 8),
+        Expanded(
+          child: Text(label,
+              style: TextStyle(
+                  color: Palette.indigo, fontWeight: FontWeight.bold)),
+        ),
+        Expanded(
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.end, // Aligns the flags to the right
+            children: [
+              for (int i = 0; i < codes.length; i++)
+                Row(
+                  children: [
+                    if (i > 0) ...[
+                      // Adds a separator if there's more than one flag
+                      SizedBox(width: 10),
+                      Text('/',
+                          style: TextStyle(
+                              color: Palette.indigo,
+                              fontWeight: FontWeight.bold)),
+                      SizedBox(width: 10),
+                    ],
+                    SvgPicture.asset(
+                      'assets/icons/flags/${codes[i]}.svg',
+                      width: 30,
+                      height: 20,
+                    ),
+                    SizedBox(width: 5),
+                    Text(values[i], style: TextStyle(color: Palette.indigo)),
+                  ],
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildSimpleInfoRow(String label, String value, IconData icon) {
+    return Row(
+      children: [
+        Icon(icon, size: 16, color: Palette.lightIndigo),
+        SizedBox(width: 8),
+        Text(label,
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold)),
+        Expanded(
+          child: Text(value,
+              textAlign: TextAlign.end,
+              style: TextStyle(color: Palette.indigo)),
+        ),
+      ],
     );
   }
 }

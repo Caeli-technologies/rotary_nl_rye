@@ -25,7 +25,7 @@ class _AlgemeneInfoPageState extends State<AlgemeneInfoPage> {
         leading: UniformBackButton(),
         title: Text(
           'Algemene Informatie',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

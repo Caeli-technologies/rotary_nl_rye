@@ -193,7 +193,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
         leading: UniformBackButton(),
         title: Text(
           'Family To Family',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -293,7 +293,8 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                                                 0.8,
                                             child: Text(
                                                 localimages1[index].text,
-                                                textScaleFactor: 1,
+                                                textScaler:
+                                                    TextScaler.linear(1),
                                                 maxLines: 100,
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
@@ -418,7 +419,8 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                                                 0.8,
                                             child: Text(
                                                 localimages2[index].text,
-                                                textScaleFactor: 1,
+                                                textScaler:
+                                                    TextScaler.linear(1),
                                                 maxLines: 100,
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
@@ -530,7 +532,8 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
                                                 0.8,
                                             child: Text(
                                                 localimages3[index].text,
-                                                textScaleFactor: 1,
+                                                textScaler:
+                                                    TextScaler.linear(1),
                                                 maxLines: 100,
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
@@ -659,7 +662,7 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  'De kosten zijn: €150 euro excl. verzekering, ticket, zakgeld en ziektekosten.',
+                  'De kosten zijn €150 euro ex BTW (€181,50 incl. BTW) maar excl. verzekering, ticket, zakgeld en ziektekosten.',
                   style: TextStyle(fontSize: 14.0),
                 ),
               ),

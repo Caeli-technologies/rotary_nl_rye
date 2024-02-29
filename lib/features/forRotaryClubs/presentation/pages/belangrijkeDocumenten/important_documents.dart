@@ -30,7 +30,7 @@ class _ImportantDocumentsPageState extends State<ImportantDocumentsPage> {
         leading: UniformBackButton(),
         title: Text(
           'voor Rotary Clubs',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -45,16 +45,16 @@ class _ImportantDocumentsPageState extends State<ImportantDocumentsPage> {
                 height: 15,
                 thickness: 2,
               ),
-              buildInboundOptionRow(
-                context,
-                'MDJC noodprocedure',
-                FontAwesomeIcons.kitMedical,
-                null,
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
+              // buildInboundOptionRow(
+              //   context,
+              //   'MDJC noodprocedure',
+              //   FontAwesomeIcons.kitMedical,
+              //   null,
+              // ),
+              // Divider(
+              //   height: 15,
+              //   thickness: 2,
+              // ),
               buildInboundOptionRow(
                 context,
                 'Code of Policies \'Regels en Interventies\'',

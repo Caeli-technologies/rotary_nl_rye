@@ -24,7 +24,7 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  final _newsBloc = NewsBloc();
+  final NewsBloc _newsBloc = NewsBloc();
   //_NewsPageState({required News news}) : _news = news;
   //final News _news;
   // List _stories = [];
@@ -64,19 +64,15 @@ class _NewsPageState extends State<NewsPage> {
   // }
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _newsBloc.getNewsData();
     _removeBadge();
-
-    // fetchDataFromApi();
   }
 
-  void _removeBadge() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      prefs.setInt('newsBadge', 0);
-    });
+  Future<void> _removeBadge() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('newsBadge', 0);
   }
 
   @override
@@ -88,232 +84,155 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'News',
-            textScaleFactor: 1.4,
+      appBar: AppBar(
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.dark
+                : SystemUiOverlayStyle.light,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: UniformBackButton(),
+        title: Text('News',
+            textScaler: TextScaler.linear(1.2),
             style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold)),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          children: [
+            _buildHeaderStreamBuilder(),
+            const SizedBox(height: 10),
+            const Divider(thickness: 2),
+            _buildNewsStreamBuilder(),
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: ListView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 170,
-                      child: StreamBuilder<String>(
-                          stream: _newsBloc.header,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError) {
-                              print(snapshot.error.toString());
-                              return Center(
-                                child: Text(snapshot.error.toString()),
-                              );
-                            } else if (snapshot.hasData) {
-                              return
+      ),
+    );
+  }
 
-                                  // CachedNetworkImageRotary(
-                                  //     imageUrl: snapshot.data!);
-                                  //     Image.network(
-                                  //   snapshot.data!,
-                                  //   fit: BoxFit.cover,
-                                  // );
+  Widget _buildHeaderStreamBuilder() {
+    return StreamBuilder<String>(
+      stream: _newsBloc.header,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return CachedNetworkImage(
+            height: 170,
+            width: double.infinity,
+            imageUrl: snapshot.data!,
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
+            ),
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          );
+        } else if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
 
-                                  CachedNetworkImage(
-                                height: 55,
-                                width: 55,
-                                imageUrl: snapshot.data!,
-                                //"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover),
-                                  ),
-                                ),
-                                placeholder: (context, url) =>
-                                    Center(child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              );
-                            } else {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                          }),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.64,
-                      child: StreamBuilder<List<News>>(
-                          stream: _newsBloc.news,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError) {
-                              print(snapshot.error.toString());
-                              return Center(
-                                child: Text(snapshot.error.toString()),
-                              );
-                            } else if (snapshot.hasData) {
-                              // print(
-                              //     'snapshot has data ${snapshot.data.toString()}');
-                              return ListView.builder(
-                                padding: EdgeInsets.only(top: 10, bottom: 30),
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return GestureDetector(
-                                      onTap: () => {
-                                            snapshot.data![index].isPdf
-                                                ? Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            PDFPage(
-                                                                pdfUrl: snapshot
-                                                                    .data![
-                                                                        index]
-                                                                    .pdf!,
-                                                                data: snapshot
-                                                                        .data![
-                                                                    index])),
-                                                  )
-                                                : Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            NonPDFPage(
-                                                              data: snapshot
-                                                                  .data![index],
-                                                            ))),
-                                          },
+  Widget _buildNewsStreamBuilder() {
+    return StreamBuilder<List<News>>(
+      stream: _newsBloc.news,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.64,
+            child: ListView.separated(
+              // Use ListView.separated for easy spacing
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () => _handleNewsTap(context, snapshot.data![index]),
+                child: NewsCard(news: snapshot.data![index]),
+              ),
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: 10), // Spacing between items
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
 
-//TODO not everything is a pdf news post. if the post contains text it needs to push to a different page where the text can be displayed.
-
-                                      child: Container(
-                                        padding: EdgeInsets.only(bottom: 10),
-                                        child: TravelCard(
-                                          image: snapshot.data![index].images,
-                                          title: snapshot.data![index].title,
-                                          description:
-                                              snapshot.data![index].description,
-                                        ),
-                                      ));
-                                },
-                              );
-                            } else {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                          }),
-                    )
-                  ])),
-        ));
+  void _handleNewsTap(BuildContext context, News news) {
+    if (news.isPdf) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PDFPage(pdfUrl: news.pdf!, data: news)));
+    } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NonPDFPage(data: news)));
+    }
   }
 }
 
-class TravelCard extends StatelessWidget {
-  final String title, description, image;
+class NewsCard extends StatelessWidget {
+  final News news;
 
-  TravelCard(
-      {required this.title, required this.description, required this.image});
+  const NewsCard({Key? key, required this.news}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Palette.themeShadeColor,
-          borderRadius: BorderRadius.all(Radius.circular(14))),
-      child: SizedBox(
-          height: null,
-          child: Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: 120,
-                  child: CachedNetworkImage(
-                    imageUrl: image,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.contain),
-                      ),
-                    ),
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
-                // SizedBox(
-                //     height: 120,
-                //     child: ClipRRect(
-                //       borderRadius: new BorderRadius.circular(14.0),
-                //       child: Image.asset(image),
-                //     )),
-                SizedBox(
-                  height: null,
-                  child: Container(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(left: 10, top: 12),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.47,
-                          child: Text(title,
-                              textScaleFactor: 1.2,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: false,
-                              style: TextStyle(
-                                color: Palette.indigo,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10, top: 4),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.47,
-                          child: Text(description,
-                              textScaleFactor: 0.7,
-                              maxLines: 4,
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: false,
-                              style: TextStyle(color: Palette.grey)),
-                        ),
-                      )
-                    ],
-                  )),
-                ),
-              ],
+        color: Palette.themeShadeColor,
+        borderRadius: const BorderRadius.all(Radius.circular(14)),
+      ),
+      child: Row(
+        children: <Widget>[
+          CachedNetworkImage(
+            width: MediaQuery.of(context).size.width * 0.4,
+            height: 120,
+            imageUrl: news.images,
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14),
+                image:
+                    DecorationImage(image: imageProvider, fit: BoxFit.contain),
+              ),
             ),
-          )),
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    news.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Palette.indigo, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    news.description,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Palette.grey),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

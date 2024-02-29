@@ -31,7 +31,7 @@ class _CountriesPreferencePageState extends State<CountriesPreferencePage> {
         leading: UniformBackButton(),
         title: Text(
           'Landenvoorkeur',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

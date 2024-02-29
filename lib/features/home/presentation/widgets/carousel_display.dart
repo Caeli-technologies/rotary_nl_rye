@@ -20,23 +20,17 @@ class _CarouselState extends State<Carousel> {
 
   List<CarouselModel> carousels = [
     CarouselModel(
-        image: 'assets/image/homepage/digitale_informatie_ochtend_2024.jpg',
-        text: 'Digitale informatie ochtend'),
+        image: 'assets/image/homepage/Digitale_infomarkt_25_mei_2024.jpg',
+        text: null),
     CarouselModel(
-        image: 'assets/image/homepage/PHOTO-2023-11-16-20-04-48.jpg',
-        text: 'Class of 2024'),
+        image: 'assets/image/homepage/class_2024.jpg', text: 'Class of 2024'),
     CarouselModel(
-        image: 'assets/image/homepage/shelterbox.jpg',
-        text: 'Social actief zijn'),
+        image: 'assets/image/homepage/afscheid_bestuur_rotex.jpg',
+        text: 'Afscheid Rotex Bestuur'),
+    CarouselModel(image: 'assets/image/homepage/Cream_Black.jpg', text: null),
     CarouselModel(
-        image: 'assets/image/b70db74b-aebe-470d-8c47-306640be9a00.jpg',
-        text: 'Vergroten van je Horizon'),
-    CarouselModel(
-        image: 'assets/image/homepage/barbara_with_students.jpg',
-        text: 'Nieuwe vrienden maken'),
-    CarouselModel(
-        image: 'assets/image/homepage/saying_goodby_2.jpeg',
-        text: 'Jezelf nog beter leren kennen')
+        image: 'assets/image/homepage/prebounds_in_action.jpg', text: null),
+    CarouselModel(image: 'assets/image/homepage/Cream_Black.jpg', text: null)
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -69,45 +63,47 @@ class _CarouselState extends State<Carousel> {
               layout: SwiperLayout.DEFAULT,
               scale: 1,
               itemCount: carousels.length,
-              itemBuilder: (BuildContext context, index) {
+              itemBuilder: (BuildContext context, int index) {
                 return Stack(
                   alignment: Alignment.bottomLeft,
-                  children: [
+                  children: <Widget>[
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kBorderRadius),
                         image: DecorationImage(
-                            image: AssetImage(
-                              carousels[index].image,
-                            ),
-                            fit: BoxFit.cover),
+                          image: AssetImage(carousels[index].image),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 28, vertical: 12),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(kBorderRadius),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                          child: Container(
-                            decoration: BoxDecoration(
+                    if (carousels[index].text != null &&
+                        carousels[index].text!.isNotEmpty)
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 28, vertical: 12),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(kBorderRadius),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                            child: Container(
+                              decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(kBorderRadius),
-                                color: Colors.black38),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Text(
-                                carousels[index].text,
-                                style: TextStyle(color: Colors.white),
+                                color: Colors.black38,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: Text(
+                                  carousels[index].text!,
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 );
               },
@@ -146,7 +142,8 @@ class _CarouselState extends State<Carousel> {
 }
 
 class CarouselModel {
-  final String image, text;
+  final String image;
+  final String? text;
 
-  CarouselModel({required this.image, required this.text});
+  CarouselModel({required this.image, this.text});
 }

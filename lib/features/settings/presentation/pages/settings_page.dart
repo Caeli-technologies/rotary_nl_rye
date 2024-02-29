@@ -85,7 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
         centerTitle: false,
         title: Text(
           DemoLocalizations.of(context)!.trans('settingsTitle'),
-          textScaleFactor: 1.7,
+          textScaler: TextScaler.linear(1.7),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[

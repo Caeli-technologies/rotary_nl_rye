@@ -28,7 +28,7 @@ class _NGSEInboundPageState extends State<NGSEInboundPage> {
         leading: UniformBackButton(),
         title: Text(
           'NGSE Inbound',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

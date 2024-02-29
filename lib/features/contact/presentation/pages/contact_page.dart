@@ -30,16 +30,15 @@ class _ContactPageState extends State<ContactPage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: MediaQuery.of(context).platformBrightness,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           centerTitle: false,
           title: Text(
             'Contact List',
-            textScaleFactor: 1.7,
+            textScaler: TextScaler.linear(1.7),
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),

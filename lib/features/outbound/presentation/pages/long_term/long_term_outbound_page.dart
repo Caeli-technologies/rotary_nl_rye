@@ -37,7 +37,7 @@ class _LongTermExchangeOutboundPageState
         leading: UniformBackButton(),
         title: Text(
           'Long Term Outbound',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

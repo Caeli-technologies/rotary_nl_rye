@@ -30,7 +30,7 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
         leading: UniformBackButton(),
         title: Text(
           'Voor wie?',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

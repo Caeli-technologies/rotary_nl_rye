@@ -24,7 +24,7 @@ class _AboutPageState extends State<AboutPage> {
         centerTitle: false,
         title: Text(
           'About Us',
-          textScaleFactor: 1.7,
+          textScaler: TextScaler.linear(1.7),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

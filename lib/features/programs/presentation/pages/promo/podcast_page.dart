@@ -47,7 +47,7 @@ class _PodcastPageState extends State<PodcastPage> {
         leading: UniformBackButton(),
         title: Text(
           'Promo Podcast',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

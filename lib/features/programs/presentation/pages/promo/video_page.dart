@@ -31,7 +31,7 @@ class _VideoPageState extends State<VideoPage> {
         leading: UniformBackButton(),
         title: Text(
           "Promo Video's",
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

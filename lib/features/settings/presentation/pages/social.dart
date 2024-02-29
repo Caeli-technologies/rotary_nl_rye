@@ -36,7 +36,7 @@ class _SocialPageState extends State<SocialPage> {
         leading: UniformBackButton(),
         title: Text(
           'Socials',
-          textScaleFactor: 1.4,
+          textScaler: TextScaler.linear(1.4),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

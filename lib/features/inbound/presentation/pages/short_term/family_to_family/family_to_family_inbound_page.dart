@@ -29,7 +29,7 @@ class _FamilyToFamilyInboundPageState extends State<FamilyToFamilyInboundPage> {
         leading: UniformBackButton(),
         title: Text(
           'Family to Family Inbound',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

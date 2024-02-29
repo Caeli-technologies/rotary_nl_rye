@@ -36,7 +36,6 @@ class InboundsDetails extends StatelessWidget {
         leading: UniformBackButton(),
         title: Text(
           'Student Profile',
-          textScaleFactor: 1.2,
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

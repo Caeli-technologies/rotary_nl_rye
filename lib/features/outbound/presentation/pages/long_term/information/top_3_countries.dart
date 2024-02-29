@@ -32,7 +32,7 @@ class _Top3CountriesPageState extends State<Top3CountriesPage> {
         leading: UniformBackButton(),
         title: Text(
           'Goede top 3 van landen',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
