@@ -114,16 +114,15 @@ class _CalendarPageState extends State<CalendarPage> {
     print(kEvents.length);
     return Scaffold(
         appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: MediaQuery.of(context).platformBrightness,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: UniformBackButton(),
           title: Text(
             'Calendar',
-            textScaleFactor: 1.4,
+            textScaler: TextScaler.linear(1.4),
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),

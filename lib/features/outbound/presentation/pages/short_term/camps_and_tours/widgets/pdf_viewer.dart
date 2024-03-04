@@ -66,10 +66,9 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: MediaQuery.of(context).platformBrightness,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: UniformBackButton(),
@@ -92,7 +91,7 @@ class _PDFPageViewerState extends State<PDFPageViewer> {
           ],
           title: Text(
             widget.title,
-            textScaleFactor: 1.0,
+            textScaler: TextScaler.linear(1),
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),

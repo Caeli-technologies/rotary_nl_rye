@@ -29,7 +29,7 @@ class _NGSEOutboundPageState extends State<NGSEOutboundPage> {
         leading: UniformBackButton(),
         title: Text(
           'NGSE',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

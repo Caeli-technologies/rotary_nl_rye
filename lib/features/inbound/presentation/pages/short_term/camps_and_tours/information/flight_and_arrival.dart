@@ -30,7 +30,7 @@ class _FlightAndArrivalPageState extends State<FlightAndArrivalPage> {
         leading: UniformBackButton(),
         title: Text(
           'Flight and Arrival',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

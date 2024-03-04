@@ -33,7 +33,7 @@ class _CampsAndToursOutboundPageState extends State<CampsAndToursOutboundPage> {
         leading: UniformBackButton(),
         title: Text(
           'Camps & Tours',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

@@ -140,7 +140,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
         leading: UniformBackButton(),
         title: Text(
           'Camps & Tours',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -237,7 +237,8 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                                                 0.8,
                                             child: Text(
                                                 localimages1[index].text,
-                                                textScaleFactor: 1,
+                                                textScaler:
+                                                    TextScaler.linear(1),
                                                 maxLines: 100,
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
@@ -358,7 +359,8 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                                                 0.8,
                                             child: Text(
                                                 localimages2[index].text,
-                                                textScaleFactor: 1,
+                                                textScaler:
+                                                    TextScaler.linear(1),
                                                 maxLines: 100,
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
@@ -470,7 +472,8 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
                                                 0.8,
                                             child: Text(
                                                 localimages3[index].text,
-                                                textScaleFactor: 1,
+                                                textScaler:
+                                                    TextScaler.linear(1),
                                                 maxLines: 100,
                                                 overflow: TextOverflow.ellipsis,
                                                 softWrap: false,
@@ -714,7 +717,7 @@ class _CampsAndToursProgramPageState extends State<CampsAndToursProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  'De kosten voor aanmelding zijn € 100.-. * (kosten kunnen per jaar verschillen) \n\nDe aanmelding staat open tot mei. \n\nNaast het inschrijfgeld moet men rekening houden met de volgende kosten:',
+                  'de kosten voor aanmelding zijn 100,-- ex BTW (121 euro incl. BTW) (kosten kunnen per jaar verschillen) \n\nDe aanmelding staat open tot mei. \n\nNaast het inschrijfgeld moet men rekening houden met de volgende kosten:',
                   style: TextStyle(fontSize: 14.0),
                 ),
               ),

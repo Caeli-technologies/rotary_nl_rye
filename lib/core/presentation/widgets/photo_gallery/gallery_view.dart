@@ -65,16 +65,15 @@ class _GalleryViewPageState extends State<GalleryViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: MediaQuery.of(context).platformBrightness,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: UniformBackButton(),
           title: Text(
             'Gallery View',
-            textScaleFactor: 1.2,
+            textScaler: TextScaler.linear(1.2),
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),

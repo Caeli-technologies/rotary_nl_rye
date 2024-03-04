@@ -33,7 +33,7 @@ class _FamilyToFamilyOutboundPageState
         leading: UniformBackButton(),
         title: Text(
           'Family to Family',
-          textScaleFactor: 1.2,
+          textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

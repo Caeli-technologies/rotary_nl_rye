@@ -38,7 +38,7 @@ class _LongTermExchangeProgramPageState
         leading: UniformBackButton(),
         title: Text(
           'Long Term Exchange Program',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -258,7 +258,7 @@ class _LongTermExchangeProgramPageState
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  'De kosten voor de jongere bedragen vanaf € 2.400,-- incl. zakgeld exclusief ticket en andere onkosten.',
+                  'De kosten voor de jongere bedragen vanaf € 2.400,-- Exclusief BTW. zakgeld exclusief ticket en andere onkosten.',
                   style: TextStyle(fontSize: 14.0),
                 ),
               ),

@@ -34,7 +34,7 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
         leading: UniformBackButton(),
         title: Text(
           'Met welke landen?',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

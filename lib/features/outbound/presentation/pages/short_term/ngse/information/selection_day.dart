@@ -30,7 +30,7 @@ class _SelectionDayPageState extends State<SelectionDayPage> {
         leading: UniformBackButton(),
         title: Text(
           'Selectie dag',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

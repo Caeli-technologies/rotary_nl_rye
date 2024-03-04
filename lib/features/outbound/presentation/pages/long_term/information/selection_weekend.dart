@@ -30,7 +30,7 @@ class _SelectionWeekendPageState extends State<SelectionWeekendPage> {
         leading: UniformBackButton(),
         title: Text(
           'Selectie weekend',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

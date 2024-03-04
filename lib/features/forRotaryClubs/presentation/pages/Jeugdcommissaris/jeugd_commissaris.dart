@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/show_alert_dialog.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
@@ -19,223 +18,106 @@ class InfoForJeugdcommissarisPage extends StatefulWidget {
 
 class _InfoForJeugdcommissarisPageState
     extends State<InfoForJeugdcommissarisPage> {
+  final List<Map<String, dynamic>> infoOptions = [
+    {
+      'title': 'Handboek Jeugdcommissaris',
+      'icon': FontAwesomeIcons.book,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/handboek-jeugdcommissaris-versie-2024-2025-def.pdf'),
+    },
+    {
+      'title': 'Document huisbezoek',
+      'icon': FontAwesomeIcons.personWalkingLuggage,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/huisbezoek-gastgezinnen-24-25-def.pdf'),
+    },
+    {
+      'title': 'Verzamelformulier VOG gegevens',
+      'icon': FontAwesomeIcons.passport,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/formulier-aanlevering-vog-aanvragen-2022-2023.pdf'),
+    },
+    {
+      'title': 'Verklaring Jeugd Vrijwilliger (VJV)',
+      'icon': FontAwesomeIcons.handsHoldingChild,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/verklaring-jeugd-vrijwilliger-met-addendum-okt22-def.pdf'),
+    },
+    {
+      'title': 'Presentielijst DJC training',
+      'icon': FontAwesomeIcons.euroSign,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/presentielijst-training-clubs-gastouders-24-25.pdf'),
+    },
+    {
+      'title': 'Schooldocument',
+      'icon': FontAwesomeIcons.school,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/rotary-exchange-voor-middelbare-scholen-2022-2023.pdf'),
+    },
+    {
+      'title': 'Actielijst voorbereiding komst Jaarkind',
+      'icon': FontAwesomeIcons.clipboardList,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/actielijst-rotary-clubs-2023-2024-voorbereiding-ontvangst-inbound-student-def-1.pdf'),
+    },
+    {
+      'title': 'Rules and Information Inbounds',
+      'icon': FontAwesomeIcons.scaleUnbalanced,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/24-25rules-and-information-for-inbound-exchange-students-to-the-netherlands.pdf'),
+    },
+    {
+      'title': 'Reis Regels',
+      'icon': FontAwesomeIcons.personWalkingLuggage,
+      'page': PDFPageWithShare(
+          pdfUrl:
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/travel-rules-within-and-outside-the-netherlands-2024-2025.pdf'),
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle:
-            MediaQuery.of(context).platformBrightness == Brightness.light
-                ? SystemUiOverlayStyle.dark
-                : SystemUiOverlayStyle.light,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarBrightness: MediaQuery.of(context).platformBrightness,
+        ),
         backgroundColor: Colors.transparent,
-        elevation: 0.0,
+        elevation: 0,
         leading: UniformBackButton(),
-        title: Text(
-          'Info Jeugdcommissaris',
-          textScaleFactor: 1.0,
-          style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-        ),
+        title: Text('Info Jeugdcommissaris',
+            textScaler: TextScaler.linear(1),
+            style:
+                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold)),
       ),
-      body: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Divider(
-                height: 15,
-                thickness: 2,
+      body: ListView.builder(
+        itemCount: infoOptions.length,
+        itemBuilder: (context, index) {
+          final option = infoOptions[index];
+          return Column(
+            children: [
+              ListTile(
+                leading: FaIcon(option['icon'], color: Palette.lightIndigo),
+                title: Text(option['title'],
+                    style: TextStyle(color: Palette.grey)),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => option['page'])),
+                trailing: Icon(Icons.arrow_forward_ios, color: Palette.grey),
               ),
-              buildInboundOptionRow(
-                context,
-                'Draaiboek Jeugdcommissaris',
-                FontAwesomeIcons.book,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/draaiboek-jeugdcommissaris-versie-2023.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Document huisbezoek',
-                FontAwesomeIcons.personWalkingLuggage,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/huisbezoek-gastgezinnen-23-24-def.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Verzamelformulier VOG gegevens',
-                FontAwesomeIcons.passport,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/formulier-aanlevering-vog-aanvragen-2022-2023.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Verklaring Jeugd Vrijwilliger (VJV)',
-                FontAwesomeIcons.handsHoldingChild,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/verklaring-jeugd-vrijwilliger-met-addendum-okt22-def.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Presentielijst DJC training',
-                FontAwesomeIcons.euroSign,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/presentielijst-training-clubs-gastouders-2023-2024.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Schooldocument',
-                FontAwesomeIcons.school,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/rotary-exchange-voor-middelbare-scholen-2022-2023.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Actielijst voorbereiding komst Jaarkind',
-                FontAwesomeIcons.clipboardList,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/actielijst-rotary-clubs-2023-2024-voorbereiding-ontvangst-inbound-student-def-1.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildInboundOptionRow(
-                context,
-                'Rules and Information Inbounds',
-                FontAwesomeIcons.scaleUnbalanced,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/rules-and-information-for-inbound-exchange-students-to-the-netherlands-2022-2023-def-2.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-
-              buildInboundOptionRow(
-                context,
-                'Reis Regels',
-                FontAwesomeIcons.personWalkingLuggage,
-                PDFPageWithShare(
-                  pdfUrl:
-                      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/travel-rules-within-and-outside-the-netherlands-2023-2024.pdf',
-                ),
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-
-              // the end
-              SizedBox(
-                height: 20,
-              ),
+              Divider(height: 20, thickness: 2),
             ],
-          )
-        ],
-      ),
-    );
-  }
-
-  GestureDetector buildInboundOptionRow(
-    BuildContext context,
-    String title,
-    IconData icon,
-    pushTo,
-  ) {
-    return GestureDetector(
-        child: Padding(
-      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
-      child: ListTile(
-        leading: Padding(
-          padding: EdgeInsets.zero,
-          child: Container(
-            child: FaIcon(
-              icon,
-              color: Palette.lightIndigo,
-              size: 27,
-            ),
-          ),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SizedBox(
-              width: Device.width - 130,
-              child: Text(title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palette.grey,
-                    fontWeight: FontWeight.w500,
-                  )),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
-            ),
-          ],
-        ),
-        onTap: () {
-          if (pushTo != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => pushTo),
-            );
-          } else {
-            String title = 'Comming soon';
-            String message = 'This page is not yet ready';
-            showMaterialDialog(
-              context,
-              title,
-              message,
-              null,
-            );
-          }
+          );
         },
       ),
-    ));
+    );
   }
 }

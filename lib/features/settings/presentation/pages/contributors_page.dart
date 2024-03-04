@@ -20,16 +20,15 @@ class _ContributorsPageState extends State<ContributorsPage> {
     {
       return Scaffold(
         appBar: AppBar(
-          systemOverlayStyle:
-              MediaQuery.of(context).platformBrightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark
-                  : SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: MediaQuery.of(context).platformBrightness,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: UniformBackButton(),
           title: Text(
             'Contributors',
-            textScaleFactor: 1.4,
+            textScaler: TextScaler.linear(1.4),
             style:
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
           ),

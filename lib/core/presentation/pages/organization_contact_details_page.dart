@@ -41,7 +41,7 @@ class OrganizationDetails extends StatelessWidget {
         leading: UniformBackButton(),
         title: Text(
           'Organization',
-          textScaleFactor: 1.4,
+          textScaler: TextScaler.linear(1.4),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),

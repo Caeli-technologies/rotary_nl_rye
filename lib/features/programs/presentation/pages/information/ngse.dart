@@ -25,7 +25,7 @@ class _NGSEProgramPageState extends State<NGSEProgramPage> {
         leading: UniformBackButton(),
         title: Text(
           'NGSE',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
@@ -99,7 +99,7 @@ class _NGSEProgramPageState extends State<NGSEProgramPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  'Bij inschrijving betaalt de kandidaat aan NGSE € 50,00. Wanneer de kandidaat daadwerkelijk wordt uitgezonden komen daar nog bemiddelingskosten bij. Die worden ingeschat op circa € 300,00.',
+                  'bij inschrijving betaalt de kandidaat aan NGSE €150,00 ex BTW (€181,50 incl. BTW) inschrijfkosten.',
                   style: TextStyle(fontSize: 14.0),
                 ),
               ),

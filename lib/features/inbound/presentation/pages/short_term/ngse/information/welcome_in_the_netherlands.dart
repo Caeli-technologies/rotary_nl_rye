@@ -32,7 +32,7 @@ class _WelcomeInTheNetherlandsPageState
         leading: UniformBackButton(),
         title: Text(
           'Welcome to the Netherlands!',
-          textScaleFactor: 1,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
       ),
