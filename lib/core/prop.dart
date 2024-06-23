@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class Device {
   Device._();
+
   static final Device instance = Device._();
 
   static double width = 0;
@@ -10,9 +11,9 @@ class Device {
   static bool isDark = false;
 
   static String convert(int millisecondsSinceEpoch) {
-    String result = '';
-
-    List months = [
+    final DateTime dateTime =
+        DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+    const List<String> months = [
       'January',
       'February',
       'March',
@@ -20,112 +21,101 @@ class Device {
       'May',
       'June',
       'July',
+      'August',
       'September',
       'October',
       'November',
-      'December'
+      'December',
     ];
 
-    result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch)
-        .day
-        .toString();
-    result += ' ';
-    result += months[
-        DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch).month - 1];
-    result += ' ';
-    result += DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch)
-        .year
-        .toString();
-
-    return result;
+    return '${dateTime.day} ${months[dateTime.month - 1]} ${dateTime.year}';
   }
 }
 
 class Palette {
   Palette._();
-  static final Palette _instance = Palette._();
 
-  static Color indigo = 0 as Color;
-  static Color themeShadeColor = 0 as Color;
-  static Color themeContactTabShadeColor = 0 as Color;
-  static Color themeCardShadeColor = 0 as Color;
-  static Color accentColor = 0 as Color;
-  static Color grey = 0 as Color;
-  static Color lightIndigo = 0 as Color;
-  static Color imageBackgroundColor = 0 as Color;
+  static late Color indigo;
+  static late Color themeShadeColor;
+  static late Color themeContactTabShadeColor;
+  static late Color themeCardShadeColor;
+  static late Color accentColor;
+  static late Color grey;
+  static late Color lightIndigo;
+  static late Color imageBackgroundColor;
+
   // text
-  static Color titleText = 0 as Color;
-  static Color bodyText = 0 as Color;
+  static late Color titleText;
+  static late Color bodyText;
+
   // contact page
-  static Color selectedlabelColor = 0 as Color;
-  static Color unselectedLabelColor = 0 as Color;
+  static late Color selectedLabelColor;
+  static late Color unselectedLabelColor;
+
   // FAQ page
-  static Color isExpandedNo = 0 as Color;
-  static Color isExpandedYes = 0 as Color;
+  static late Color isExpandedNo;
+  static late Color isExpandedYes;
+
   // Settings Page
-  static Color emergencyRed = 0 as Color;
-  static Color socialBlue = 0 as Color;
+  static late Color emergencyRed;
+  static late Color socialBlue;
+
   // Calendar Page
-  static Color imageBlox = 0 as Color;
-  static Color imageShadowBox1 = 0 as Color;
-  static Color imageShadowBox2 = 0 as Color;
-  static Color descriptionText = 0 as Color;
-  static Color creatorText = 0 as Color;
-  static Color iconColor = 0 as Color;
+  static late Color imageBlox;
+  static late Color imageShadowBox1;
+  static late Color imageShadowBox2;
+  static late Color descriptionText;
+  static late Color creatorText;
+  static late Color iconColor;
 
-  static Palette get instance {
-    _instance.set();
-    return _instance;
-  }
+  static void initialize(bool isDarkMode) {
+    accentColor = const Color(0xFF39B6F5);
+    grey = Colors.grey.shade600;
+    lightIndigo = Colors.indigo.shade100;
+    imageBackgroundColor = const Color(0xFF46C5D4);
 
-  set() {
-    accentColor = Color.fromRGBO(57, 182, 245, 1);
-    grey = Colors.grey[600]!;
-    lightIndigo = Colors.indigo[100]!;
-    imageBackgroundColor = Color.fromRGBO(70, 197, 212, 1);
-
-    if (Device.isDark) {
+    if (isDarkMode) {
       // Dark
-      indigo = Colors.indigo[400]!;
-      themeShadeColor = Colors.grey[800]!;
+      indigo = Colors.indigo.shade400;
+      themeShadeColor = Colors.grey.shade800;
       themeContactTabShadeColor = Colors.grey[850]!;
-      themeCardShadeColor = Colors.grey[800]!;
+      themeCardShadeColor = Colors.grey.shade800;
       // text
       titleText = Colors.grey[350]!;
-      bodyText = Colors.grey[300]!;
+      bodyText = Colors.grey.shade300;
       // contact page
-      selectedlabelColor = Colors.indigo[400]!;
-      unselectedLabelColor = Colors.grey[500]!;
+      selectedLabelColor = Colors.indigo.shade400;
+      unselectedLabelColor = Colors.grey.shade500;
       // FAQ page
-      isExpandedNo = Colors.indigo[100]!;
-      isExpandedYes = Colors.indigoAccent[100]!;
+      isExpandedNo = Colors.indigo.shade100;
+      isExpandedYes = Colors.indigoAccent.shade100;
       // Settings Page
-      emergencyRed = Colors.red[600]!;
+      emergencyRed = Colors.red.shade600;
       socialBlue = Colors.blue;
       // Calendar Page
-      imageBlox = Colors.grey[700]!;
+      imageBlox = Colors.grey.shade700;
       imageShadowBox1 = Colors.grey[850]!;
       imageShadowBox2 = Colors.grey.shade700;
-      descriptionText = Colors.grey[300]!;
-      creatorText = Colors.grey[400]!;
-      iconColor = Colors.indigo[100]!;
+      descriptionText = Colors.grey.shade300;
+      creatorText = Colors.grey.shade400;
+      iconColor = Colors.indigo.shade100;
     } else {
-      // light
-      indigo = Colors.indigo[800]!;
-      themeShadeColor = Colors.grey[100]!;
-      themeContactTabShadeColor = Colors.grey[50]!;
-      themeCardShadeColor = Colors.grey[100]!;
-      //text
+      // Light
+      indigo = Colors.indigo.shade800;
+      themeShadeColor = Colors.grey.shade100;
+      themeContactTabShadeColor = Colors.grey.shade50;
+      themeCardShadeColor = Colors.grey.shade100;
+      // text
       titleText = Colors.black87;
       bodyText = Colors.black;
-      //contact page
-      selectedlabelColor = Color(0xff525c6e);
-      unselectedLabelColor = Color(0xffacb3bf);
-      //FAQ page
-      isExpandedNo = Colors.grey[700]!;
-      isExpandedYes = Colors.indigo[700]!;
+      // contact page
+      selectedLabelColor = const Color(0xFF525C6E);
+      unselectedLabelColor = const Color(0xFFACB3BF);
+      // FAQ page
+      isExpandedNo = Colors.grey.shade700;
+      isExpandedYes = Colors.indigo.shade700;
       // Settings Page
-      emergencyRed = Colors.red[900]!;
+      emergencyRed = Colors.red.shade900;
       socialBlue = Colors.blue;
       // Calendar Page
       imageBlox = Colors.white;
@@ -133,22 +123,24 @@ class Palette {
       imageShadowBox2 = Colors.grey.shade400;
       descriptionText = Colors.black45;
       creatorText = Colors.black45;
-      iconColor = Colors.indigoAccent[100]!;
+      iconColor = Colors.indigoAccent.shade100;
     }
   }
 }
-// 042a49
 
-Color kSecondaryBgColor = Colors.grey.shade100;
-Color kSeperatorColor = Colors.grey.shade700;
-double kBorderRadius = 10;
-BoxShadow kBoxShadow = BoxShadow(
-    color: Colors.black.withOpacity(0.1),
-    offset: Offset(0, 7),
-    blurRadius: 30,
-    spreadRadius: 0);
-BoxShadow kSubtleBoxShadow = BoxShadow(
-    color: Colors.black.withOpacity(0.08),
-    offset: Offset(0, 4),
-    blurRadius: 20,
-    spreadRadius: -2);
+// Common constants for styling
+const Color kSecondaryBgColor = Color(0xFFF5F5F5);
+const Color kSeparatorColor = Color(0xFFBDBDBD);
+const double kBorderRadius = 10.0;
+const BoxShadow kBoxShadow = BoxShadow(
+  color: Color(0x1A000000),
+  offset: Offset(0, 7),
+  blurRadius: 30,
+  spreadRadius: 0,
+);
+const BoxShadow kSubtleBoxShadow = BoxShadow(
+  color: Color(0x14000000),
+  offset: Offset(0, 4),
+  blurRadius: 20,
+  spreadRadius: -2,
+);

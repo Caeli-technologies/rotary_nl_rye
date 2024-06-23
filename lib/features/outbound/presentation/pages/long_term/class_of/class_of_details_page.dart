@@ -17,6 +17,7 @@ import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class ClassOfDetails extends StatelessWidget {
   final Outbounds person;
+
   ClassOfDetails({required this.person});
 
   @override
@@ -38,357 +39,254 @@ class ClassOfDetails extends StatelessWidget {
       ),
       body: ListView(
         shrinkWrap: true,
-        scrollDirection: Axis.vertical,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 15,
-                  bottom: 16,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        InkWell(
-                            borderRadius: BorderRadius.circular(60),
-                            onTap: () {
-                              Navigator.of(context).push(PageRouteBuilder(
-                                  opaque: false,
-                                  pageBuilder: (BuildContext context, _, __) =>
-                                      FullScreenImage(url: person.imageUrl)));
-                            },
-                            child: CachedNetworkImage(
-                              height: 60,
-                              width: 60,
-                              imageUrl: person.imageUrl,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            )),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(
-                              width: Device.width - 150,
-                              child: Text(person.name,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: false,
-                                  style: TextStyle(
-                                    inherit: true,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            SizedBox(
-                              width: Device.width - 150,
-                              child: Row(
-                                children: [
-                                  Text(person.from,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: false,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        inherit: true,
-                                        fontSize: 14.0,
-                                        color: Colors.grey[600],
-                                      )),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/icons/flags/${person.fromFlag}.svg',
-                                      height: 15),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.arrowRightLong,
-                                    color: Colors.grey,
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(person.to,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: false,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        inherit: true,
-                                        fontSize: 14.0,
-                                        color: Colors.grey[600],
-                                      )),
-                                  SizedBox(
-                                    width: 2,
-                                  ),
-                                  person.toFlag == null
-                                      ? SizedBox.shrink()
-                                      : SvgPicture.asset(
-                                          'assets/icons/flags/${person.toFlag}.svg',
-                                          height: 15)
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    // SvgPicture.asset('assets/icons/flags/${person.flag}.svg',
-                    //     height: 20)
-                  ],
-                ),
-              ),
-              person.websiteUrl == null &&
-                      person.facebookUrl == null &&
-                      person.instagramUrl == null &&
-                      person.snapchatUrl == null &&
-                      person.phoneNumber == null
-                  ? SizedBox.shrink()
-                  : Padding(
-                      padding: const EdgeInsets.only(
-                          top: 0.0, left: 20.0, bottom: 0.0, right: 20),
-                      child: Divider(
-                        height: 15,
-                        thickness: 2,
-                      ),
-                    ),
-              //TODO if he has one of the socials not. then it doen't need to show up!
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    person.instagramUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.instagram,
-                                    color: Color(0xFFbc2a8d),
-                                  ),
-                                  onPressed: () =>
-                                      launchUrlString('${person.instagramUrl}'),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.snapchatUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.snapchat,
-                                    color: Color.fromARGB(221, 201, 198, 8),
-                                  ),
-                                  onPressed: () =>
-                                      launchUrlString('${person.snapchatUrl}'),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.linkedinUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.linkedinIn,
-                                    color: Color(0xFF0e76a8),
-                                  ),
-                                  onPressed: () =>
-                                      launchUrlString('${person.linkedinUrl}'),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.facebookUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.facebookF,
-                                    color: Color(0xFF3b5998),
-                                  ),
-                                  onPressed: () =>
-                                      launchUrlString('${person.facebookUrl}'),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.websiteUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.globe,
-                                    color: Color(0xFF0e76a8),
-                                  ),
-                                  onPressed: () =>
-                                      launchUrlString('${person.websiteUrl}'),
-                                ),
-                              ],
-                            ),
-                          ),
-                  ],
-                ),
-              ),
-
-              person.websiteUrl == null &&
-                      person.linkedinUrl == null &&
-                      person.facebookUrl == null &&
-                      person.instagramUrl == null &&
-                      person.snapchatUrl == null
-                  ? SizedBox.shrink()
-                  : Padding(
-                      padding: const EdgeInsets.only(
-                          top: 0.0, left: 20.0, bottom: 10.0, right: 20),
-                      child: Divider(
-                        height: 15,
-                        thickness: 2,
-                      ),
-                    ),
-
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
-                child: Text(
-                  'About me',
-                  style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 0.0, left: 30.0, bottom: 0.0, right: 300),
-                child: Divider(
-                  height: 15,
-                  thickness: 2,
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
-                child: Text(
-                  person.bio,
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
-              person.websiteUrl == null &&
-                      person.linkedinUrl == null &&
-                      person.facebookUrl == null &&
-                      person.instagramUrl == null &&
-                      person.snapchatUrl == null
-                  ? SizedBox(
-                      height: 40,
-                    )
-                  : SizedBox.shrink(),
-
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 15.0, left: 30.0, right: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    person.email == null
-                        ? SizedBox.shrink()
-                        : Container(
-                            height: 70.0,
-                            width: 70.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30.0),
-                              color: Colors.grey[200],
-                            ),
-                            child: RawMaterialButton(
-                                onPressed: () {
-                                  launchUrlString('mailto:${person.email}');
-                                },
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0)),
-                                child: FaIcon(
-                                  FontAwesomeIcons.envelope,
-                                  color: Colors.black,
-                                  size: 30,
-                                ))),
-                    person.phoneNumber == null
-                        ? SizedBox.shrink()
-                        : Container(
-                            height: 70.0,
-                            width: 70.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30.0),
-                              color: Colors.grey[200],
-                            ),
-                            child: RawMaterialButton(
-                              onPressed: () =>
-                                  openwhatsapp(context, person.phoneNumber!),
-                              shape: new RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              child: FaIcon(
-                                FontAwesomeIcons.whatsapp,
-                                color: Color(
-                                  0xFF25D366,
-                                ),
-                                size: 40,
-                              ),
-                            )),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 40,
-              ),
-            ],
-          )
+          buildProfileHeader(context),
+          if (hasSocialMediaLinks() || person.phoneNumber != null)
+            buildDivider(),
+          if (hasSocialMediaLinks()) buildSocialMediaLinks(),
+          if (hasSocialMediaLinks()) buildDivider(),
+          buildAboutSection(),
+          buildContactOptions(context),
+          SizedBox(height: 40),
         ],
       ),
     );
+  }
+
+  Widget buildProfileHeader(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              InkWell(
+                borderRadius: BorderRadius.circular(60),
+                onTap: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                      opaque: false,
+                      pageBuilder: (BuildContext context, _, __) =>
+                          FullScreenImage(url: person.imageUrl)));
+                },
+                child: CachedNetworkImage(
+                  height: 60,
+                  width: 60,
+                  imageUrl: person.imageUrl,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
+              SizedBox(width: 12),
+              buildPersonInfo(context),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPersonInfo(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          width: Device.width - 150,
+          child: Text(
+            person.name,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+            style: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        SizedBox(height: 4),
+        buildLocationInfo(),
+      ],
+    );
+  }
+
+  Widget buildLocationInfo() {
+    return Row(
+      children: [
+        Text(
+          person.from,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          softWrap: false,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 14.0,
+            color: Colors.grey[600],
+          ),
+        ),
+        SizedBox(width: 2),
+        SvgPicture.asset(
+          'assets/icons/flags/${person.fromFlag}.svg',
+          height: 15,
+        ),
+        SizedBox(width: 5),
+        FaIcon(
+          FontAwesomeIcons.arrowRightLong,
+          color: Colors.grey,
+        ),
+        SizedBox(width: 5),
+        Text(
+          person.to,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          softWrap: false,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 14.0,
+            color: Colors.grey[600],
+          ),
+        ),
+        SizedBox(width: 2),
+        if (person.toFlag != null)
+          SvgPicture.asset(
+            'assets/icons/flags/${person.toFlag}.svg',
+            height: 15,
+          ),
+      ],
+    );
+  }
+
+  Widget buildDivider() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Divider(
+        height: 15,
+        thickness: 2,
+      ),
+    );
+  }
+
+  Widget buildSocialMediaLinks() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          if (person.instagramUrl != null)
+            buildSocialMediaIcon(FontAwesomeIcons.instagram, Color(0xFFbc2a8d),
+                person.instagramUrl),
+          if (person.snapchatUrl != null)
+            buildSocialMediaIcon(FontAwesomeIcons.snapchat,
+                Color.fromARGB(221, 201, 198, 8), person.snapchatUrl),
+          if (person.linkedinUrl != null)
+            buildSocialMediaIcon(FontAwesomeIcons.linkedinIn, Color(0xFF0e76a8),
+                person.linkedinUrl),
+          if (person.facebookUrl != null)
+            buildSocialMediaIcon(FontAwesomeIcons.facebookF, Color(0xFF3b5998),
+                person.facebookUrl),
+          if (person.websiteUrl != null)
+            buildSocialMediaIcon(
+                FontAwesomeIcons.globe, Color(0xFF0e76a8), person.websiteUrl),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSocialMediaIcon(IconData icon, Color color, String? url) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: TextButton(
+        child: FaIcon(icon, color: color),
+        onPressed: () => launchUrlString('$url'),
+      ),
+    );
+  }
+
+  Widget buildAboutSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 20.0,
+            left: 20.0,
+          ),
+          child: Text(
+            'About me',
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Divider(height: 15, thickness: 2, endIndent: 250),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text(
+            person.bio,
+            style: TextStyle(fontSize: 16.0),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildContactOptions(context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0, left: 30.0, right: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          if (person.email != null)
+            buildContactIcon(FontAwesomeIcons.envelope, Colors.black,
+                'mailto:${person.email}'),
+          if (person.phoneNumber != null)
+            buildContactIcon(FontAwesomeIcons.whatsapp, Color(0xFF25D366),
+                () => openwhatsapp(context, person.phoneNumber!)),
+        ],
+      ),
+    );
+  }
+
+  Widget buildContactIcon(IconData icon, Color color, dynamic onTap) {
+    return Container(
+      height: 70.0,
+      width: 70.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Colors.grey[200],
+      ),
+      child: RawMaterialButton(
+        onPressed: onTap is String ? () => launchUrlString(onTap) : onTap,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        child: FaIcon(
+          icon,
+          color: color,
+          size: 30,
+        ),
+      ),
+    );
+  }
+
+  bool hasSocialMediaLinks() {
+    return person.instagramUrl != null ||
+        person.snapchatUrl != null ||
+        person.linkedinUrl != null ||
+        person.facebookUrl != null ||
+        person.websiteUrl != null;
   }
 }

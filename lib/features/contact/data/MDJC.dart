@@ -30,15 +30,16 @@ List<Organization> mdjcList = [
   ),
   Organization(
     name: 'Evert Marseille',
-    bio: '',
+    bio:
+        'Sinds 1988 ben ik Rotary lid en ondanks mijn gevorderde leeftijd ben ik in juni 2023 door mijn clubgenoot Barbara gevraagd om penningmeester te worden. Bestuurlijk bezig zijn is mij met de paplepel ingegoten, dus ik vind het een hele eer om als oudje bezig te kunnen zijn met de ontwikkeling van jonge mensen die door een uitwisseling levenservaring kunnen opdoen.\n\n In mijn actieve beroepsperiode was ik accountant en heb ik ook nog 20 jaar deel uitgemaakt van de Lelystadse gemeenteraad.\n\n Ik ben gehuwd en heb 3 kinderen en 6 kleinkinderen. Wij hebben zelf ook veel mooie reizen gemaakt en daarmee ervaren hoe belangrijk het is om te zien hoe het leven in geheel andere landen is.\n Helaas is dit door de ziekte van mijn echtgenote niet meer mogelijk. Alle reden voor mij om mij naast mijn taak als mantelzorger ook op bestuurlijk gebied in te zetten.',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     email: 'finance@rotaryyep.nl',
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'RC Lelystad',
+    district: '1590 Noord Nederland',
     functions: [
-      'Treasurer',
+      'Penningmeester',
     ],
   ),
   Organization(
@@ -56,32 +57,22 @@ List<Organization> mdjcList = [
       'Shortterm Chair',
     ],
   ),
-  Organization(
-    name: 'Pieter Postma',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'compliance@rotaryyep.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'Compliance Officer',
-    ],
-  ),
+
   Organization(
     name: 'Ernst Ziengs',
-    bio: '',
+    bio:
+        'Mijn naam is Ernst Ziengs. 53 jaar oud en woon in Weert samen met mijn vrouw Ellen en onze zonen Tijn (16) en Vigo.  Ben ongeveer 10 jaar lid van Rotary Weert-Land van Horne. Daar ook voorzitter geweest en via Rotary en rechtstreeks doe ik veel vrijwilligerswerk. Zes jaar geleden heb ik wat tegenslag gehad met mijn gezondheid. Gevolg is dat ik opnieuw moest leren spreken, lopen en veel dingen opnieuw moest leren doen. In dit “terug komen” ben ik enorm geholpen door mijn gezin, vrienden en familie. Bij al die hulpvaardige mensen horen ook zeker mensen van de Rotery.\n\n In mijn wil terug te komen in het leven speelt jeugd een voorname rol. Ik werk 2 dagen per week bij Fontys in Eindhoven. Jonge mensen iets proberen over te dragen kennis en vaardigheden houdt mijzelf ook jong en actief in deze tijd. Precies mijn ambitie als DJC van district 1550.\n\n Naast de Exchanges is de vijfde Avenue Jeugd één van de leukste en meest uitgebreide Avenues. Als DJC mag ik deze ook, samen met alle clubs en regio’s tot een succes proberen te maken!',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     email: 'youth@rotary-d1550.org',
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'RC Weert-Land van Horne',
+    district: '1550',
     functions: [
       'DJC 1550',
     ],
   ),
+
   Organization(
     name: 'Patty van Vierzen',
     bio:
@@ -103,24 +94,11 @@ List<Organization> mdjcList = [
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg',
     email: 'erna@vandijkmedischadvies.nl',
-    phoneNumber: null,
+    phoneNumber: '+31612300695',
     club: 'Scherpenzeel- Woudenberg',
     district: '',
     functions: [
       'DJC 1570',
-    ],
-  ),
-  Organization(
-    name: 'Peter Franssen',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'peterfranssenrotary@gmail.com',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'DJC 1580',
     ],
   ),
   Organization(
@@ -152,19 +130,6 @@ List<Organization> mdjcList = [
     ],
   ),
   Organization(
-    name: 'Natasja Rensen',
-    bio: '',
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'djc@rotary-d1610.nl',
-    phoneNumber: null,
-    club: '',
-    district: '',
-    functions: [
-      'DJC 1610',
-    ],
-  ),
-  Organization(
     name: 'Leoni Oude Nijhuis',
     bio: '',
     imageUrl:
@@ -177,19 +142,52 @@ List<Organization> mdjcList = [
       'Youth Protection Officer',
     ],
   ),
+
   Organization(
-    name: 'Guido Rijninks',
-    bio: '',
+    name: 'Thijs Kaas',
+    bio:
+        'Sinds kort fungeer ik als DJC voor D1610, hierbij moet ik mijn weg nog wel een beetje vinden maar het is een leuke uitdaging. \n\n Al sinds 1999 met heel veel plezier lid van Rotary, en wel club Roosendaal, een organisatie die ook mij veel heeft gebracht onder meer ook door deel te nemen aan diverse programma’s en de verschillende commissies.\n Rotary is een krachtige organisatie waar ik graag mijn bijdrage lever waar mogelijk.\n Ik heb mogen deelnemen aan o.a. jeugd uitwisselingen, dat is toch iets wat mij heeft meeste voldoening heeft gebracht, een GSE-team mogen leiden naar India, Ryla’s, Wandelen voor Water, kleine en grotere fundraisingprojecten van onze club, organiseren van een Discon, NGSE programma’s en voorlichting geven aan clubs over de NGSE.\n\n Vele jaren ben ik werkzaam geweest in managementfuncties, sales en marketing en heb daar veel internationale ervaringen opgedaan. Dit bij zowel grote bedrijven als kleinere familieondernemingen.\n Ruim 20 jaar geleden heb ik het bedrijf overgenomen waar ik werkzaam was en was daarmee de franchisegever voor een groot aantal ondernemers in Nederland en België. Chem-Dry, een organisatie die zijn oorsprong heeft in de Verenigde Staten en in vele landen opereert. Enorm leuk om ondernemers te kunnen helpen succesvol te worden en marktleider te zijn in het segment van vloer en meubelonderhoud.\n\n Recent heb ik het bedrijf verkocht en geniet nu nog meer, want als redelijke Bourgondiër is dat een van mijn karaktertrekken, genieten, relativeren maar wel je verantwoordelijkheid nemen.\n\n Yvonne en ik hebben 4 zonen en 3 kleindochters en we genieten nog iedere dag van hen allemaal.',
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    email: 'educatour@home.nl',
+    email: null,
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'RC Roosendaal',
+    district: '1610 Zuidwest-Nederland',
     functions: [
-      'District Governor Youth',
+      'DJC 1610',
     ],
   ),
+
+  Organization(
+    name: 'Pieter Postma',
+    bio:
+        'Sinds 2009 ben ik met veel plezier lid van Rotary. Als snel raakte ik betrokken bij de jeugduitwisseling. Ik kan me erg goed vinden in de gedachten achter de programma’s, namelijk de persoonlijke ontwikkeling van de jongeren, kennis maken met andere culturen en op die manier bijdragen aan wat meer internationaal begrip.\n Mijn kinderen zijn alle drie via Rotary een jaar weggeweest en zelf hebben we ook lange tijd jongeren in huis gehad die via het Rotary-programma in Nederland waren. Dat opvangen van die jongeren was voor ons gezin ook een mooie ervaring. Nadat ik eerst een tijd lang binnen de jeugdcommissie van onze club actief ben geweest, werd ik in 2016 District Jeugdcommissaris van district 1580. Daarmee belandde ik ook in de landelijke jeugdcommissie (MDJC) en daar ben ik nu nog steeds actief.\n In het dagelijks leven ben ik als fiscalist werkzaam bij een belastingadvieskantoor.',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: 'compliance@rotaryyep.nl',
+    phoneNumber: null,
+    club: 'RC Heiloo',
+    district: '1580 ',
+    functions: [
+      'Compliance Officer',
+    ],
+  ),
+
+  Organization(
+    name: 'Mario Meeuwse',
+    bio:
+        'Mijn naam is Mario Meeuwse en ik ben District Jeugd Commissaris van District 1580.\n Gedurende mijn Rotaract lidmaatschap en later Rotary heb ik veel uitwisselingen meegemaakt.\n Daarnaast was ik actief in voor de Rotary Youth Leadership Award commissie in District 1610.\n Ook heb ik veel internationale activiteiten bijgewoond zoals (wereld)congressen en (district)conferenties.\n Zelf heb ik een Group Study Exchange gedaan naar Japan, waar ik met veel dankbaarheid en plezier op terugkijk.\n Een geweldige ervaring naar een land met een heel andere cultuur met enthousiaste mensen binnen de Rotary familie.\n Daarom wil ik ook een steentje bijdragen aan uitwisselingen en de jeugd een onvergetelijke ervaring bezorgen.\n\n Ik woon in Aalsmeer met Jikkemine en onze twee zonen.\n Wij hebben elkaar leren kennen toen wij Rotaracters waren op weg naar Santiago de Compostella tijdens het 100 jarige bestaan van Rotary.\n\n In het dagelijks leven ben ik accountmanager Grootzakelijk bij de Rabobank, gespecialiseerd in ICT & Zorg.\n Mijn hobby’s zijn: reizen, talen, skiën, zeilen & zwemmen.',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: null,
+    phoneNumber: null,
+    club: 'RC Haarlemmermeer',
+    district: '1580',
+    functions: [
+      'DJC 1580',
+    ],
+  ),
+
   // Organization(
   //   name: 'Harry van Montfort',
   //   bio: '',

@@ -13,7 +13,7 @@ class ComplyWithPage extends StatefulWidget {
 
 class _ComplyWithPageState extends State<ComplyWithPage> {
   @override
-  initState() {
+  void initState() {
     super.initState();
   }
 
@@ -35,23 +35,11 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "AANMELDEN?",
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
@@ -59,8 +47,6 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
                   style: TextStyle(fontSize: 14.0),
                 ),
               ),
-
-              // the end dont touch XD
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Center(
@@ -79,11 +65,9 @@ class _ComplyWithPageState extends State<ComplyWithPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 60,
-              ),
+              SizedBox(height: 60),
             ],
-          )
+          ),
         ],
       ),
     );

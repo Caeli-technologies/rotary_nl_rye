@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/features/programs/presentation/pages/promo/podcast_page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
@@ -16,14 +15,10 @@ import 'information/camps_tours.dart';
 import 'information/family_to_family.dart';
 import 'information/long_term_exchange.dart';
 import 'information/ngse.dart';
+import 'promo/podcast_page.dart';
 import 'promo/video_page.dart';
 
-class ProgramPage extends StatefulWidget {
-  @override
-  _ProgramPageState createState() => _ProgramPageState();
-}
-
-class _ProgramPageState extends State<ProgramPage> {
+class ProgramPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,235 +37,156 @@ class _ProgramPageState extends State<ProgramPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  'Interesse?',
-                  style: TextStyle(
-                      color: Palette.titleText,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  'Wil je:',
-                  style: TextStyle(
-                      color: Palette.bodyText,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  '- Andere culturen leren?',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 2.0),
-                child: Text(
-                  '- Een andere taal leren,',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 2.0),
-                child: Text(
-                  '- Vrienden krijgen over de hele wereld',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 2.0),
-                child: Text(
-                  '- Ambasseur van Nederland zijn voor Rotary',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6.0),
-                child: Text(
-                  'Ben je tussen 15 en 18½ jaar oud op het moment van vertrek. \nSociaal en avontuurlijk, flexibel en klaar om het bekende achter je te laten en nieuwe dingen te ontdekken?',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6.0),
-                child: Text(
-                  'Dan zit je bij ons goed! Met de steun van Rotary kunnen gemiddeld meer dan 40 jongeren deelnemen aan de jaarlijkse uitwisseling en ruim 50 jongeren aan onze zomerkampen en korte uitwisselingen.',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6.0),
-                child: Text(
-                  'Ben je ouder maakt niet uit. Met de New Generation Service Exchange kun je deelnemen tussen de 18 en 30 jaar.',
-                  style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text:
-                            'Deelname aan ons exchange programma is niet gebonden aan het Rotary clublidmaatschap van een ouder. Jongeren die willen deelnemen aan een uitwisseling kunnen zich opgeven via het emailadres: ',
-                      ),
-                      TextSpan(
-                        text: 'interesse@rotaryyep.nl',
-                        style: TextStyle(color: Colors.blue),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            launchUrlString('mailto:interesse@rotaryyep.nl');
-                          },
-                      ),
-                      TextSpan(
-                        text:
-                            ' Er is wel een selectieprocedure. Van de ouders wordt gevraagd om hun huis op te stellen om jonge buitenlanders voor minimaal 3- maanden in hun gezin op te nemen.',
-                      ),
-                    ])),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Promo',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildProgramOptionRow(context, 'Podcast', 'For everyone',
-                  FontAwesomeIcons.hashtag, PodcastPage()),
-              buildProgramOptionRow(context, 'Video', 'For everyone',
-                  FontAwesomeIcons.hashtag, VideoPage()),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Long Term Exchange Program',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-
-              buildProgramOptionRow(
-                  context,
-                  'Long Term Exchange Program',
-                  'Year Exchange',
-                  FontAwesomeIcons.hashtag,
-                  LongTermExchangeProgramPage()),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Short Term Exchange Program',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildProgramOptionRow(
-                  context,
-                  'NGSE',
-                  'New Generations Service Exchange',
-                  FontAwesomeIcons.hashtag,
-                  NGSEProgramPage()),
-              buildProgramOptionRow(
-                  context,
-                  'FAMILY TO FAMILY',
-                  'Exchange between families',
-                  FontAwesomeIcons.hashtag,
-                  FamilyToFamilyProgramPage()),
-              buildProgramOptionRow(context, 'CAMPS & TOURS', 'Summer Camps',
-                  FontAwesomeIcons.hashtag, CampsAndToursProgramPage()),
-
-              // the end
-              SizedBox(
-                height: 40,
-              ),
-            ],
-          )
+          _buildHeader('Interesse?'),
+          _buildText(
+              'Wil je:\n- Andere culturen leren?\n- Een andere taal leren,\n- Vrienden krijgen over de hele wereld\n- Ambasseur van Nederland zijn voor Rotary\n'
+              '\n'
+              'Ben je tussen 15 en 18½ jaar oud op het moment van vertrek. Sociaal en avontuurlijk, flexibel en klaar om het bekende achter je te laten en nieuwe dingen te ontdekken? '
+              'Dan zit je bij ons goed! Met de steun van Rotary kunnen gemiddeld meer dan 40 jongeren deelnemen aan de jaarlijkse uitwisseling en ruim 50 jongeren aan onze zomerkampen en korte uitwisselingen.'
+              'Ben je ouder maakt niet uit. Met de New Generation Service Exchange kun je deelnemen tussen de 18 en 30 jaar.'),
+          _buildRichText(context),
+          SizedBox(height: 10),
+          _buildSectionHeader('Promo'),
+          Divider(height: 15, thickness: 2),
+          _buildProgramOptionRow(context, 'Podcast', 'For everyone',
+              FontAwesomeIcons.hashtag, PodcastPage()),
+          _buildProgramOptionRow(context, 'Video', 'For everyone',
+              FontAwesomeIcons.hashtag, VideoPage()),
+          SizedBox(height: 20),
+          _buildSectionHeader('Long Term Exchange Program'),
+          Divider(height: 15, thickness: 2),
+          _buildProgramOptionRow(
+              context,
+              'Long Term Exchange Program',
+              'Year Exchange',
+              FontAwesomeIcons.hashtag,
+              LongTermExchangeProgramPage()),
+          SizedBox(height: 10),
+          _buildSectionHeader('Short Term Exchange Program'),
+          Divider(height: 15, thickness: 2),
+          _buildProgramOptionRow(
+              context,
+              'NGSE',
+              'New Generations Service Exchange',
+              FontAwesomeIcons.hashtag,
+              NGSEProgramPage()),
+          _buildProgramOptionRow(
+              context,
+              'FAMILY TO FAMILY',
+              'Exchange between families',
+              FontAwesomeIcons.hashtag,
+              FamilyToFamilyProgramPage()),
+          _buildProgramOptionRow(context, 'CAMPS & TOURS', 'Summer Camps',
+              FontAwesomeIcons.hashtag, CampsAndToursProgramPage()),
+          SizedBox(height: 40),
         ],
       ),
     );
   }
 
-  Container buildProgramOptionRow(
+  Widget _buildHeader(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Text(
+        text,
+        style: TextStyle(
+            color: Palette.titleText,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _buildText(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Text(
+        text,
+        style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
+      ),
+    );
+  }
+
+  Widget _buildRichText(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: RichText(
+          text: TextSpan(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
+              children: [
+            TextSpan(
+              text:
+                  'Deelname aan ons exchange programma is niet gebonden aan het Rotary clublidmaatschap van een ouder. Jongeren die willen deelnemen aan een uitwisseling kunnen zich opgeven via het emailadres: ',
+            ),
+            TextSpan(
+              text: 'interesse@rotaryyep.nl',
+              style: TextStyle(color: Colors.blue),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  launchUrlString('mailto:interesse@rotaryyep.nl');
+                },
+            ),
+            TextSpan(
+              text:
+                  ' Er is wel een selectieprocedure. Van de ouders wordt gevraagd om hun huis op te stellen om jonge buitenlanders voor minimaal 3- maanden in hun gezin op te nemen.',
+            ),
+          ])),
+    );
+  }
+
+  Widget _buildSectionHeader(String text) {
+    return Row(
+      children: [
+        Text(
+          text,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProgramOptionRow(
     BuildContext context,
     String title,
-    subtitle,
+    String subtitle,
     IconData icon,
-    pushTo,
+    Widget pushTo,
   ) {
     return Container(
       padding: EdgeInsets.all(8.0),
       child: ListTile(
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0.0),
-          child: Container(
-              child: CachedNetworkImage(
-            height: 50,
-            width: 50,
-            imageUrl:
-                'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-              ),
+        leading: CachedNetworkImage(
+          height: 50,
+          width: 50,
+          imageUrl:
+              'https://www.rotary.org/sites/all/themes/rotary_rotaryorg/images/favicons/favicon-194x194.png',
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
             ),
-            placeholder: (context, url) =>
-                Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error),
-          )),
+          ),
+          placeholder: (context, url) =>
+              Center(child: CircularProgressIndicator()),
+          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              child: Container(
-                constraints: BoxConstraints(maxWidth: Device.width - 150),
-                child: Text(
-                  title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    inherit: true,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16.0,
-                  ),
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  inherit: true,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.0,
                 ),
               ),
             ),
@@ -282,17 +198,14 @@ class _ProgramPageState extends State<ProgramPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Expanded(
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: Device.width - 150),
-                  child: Text(
-                    subtitle,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      inherit: true,
-                      fontSize: 14.0,
-                      color: Palette.descriptionText,
-                    ),
+                child: Text(
+                  subtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    inherit: true,
+                    fontSize: 14.0,
+                    color: Palette.descriptionText,
                   ),
                 ),
               ),
@@ -300,12 +213,10 @@ class _ProgramPageState extends State<ProgramPage> {
           ),
         ),
         onTap: () {
-          if (pushTo != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => pushTo),
-            );
-          }
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => pushTo),
+          );
         },
       ),
     );

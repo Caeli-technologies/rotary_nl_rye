@@ -13,11 +13,6 @@ class FlightAndArrivalPage extends StatefulWidget {
 
 class _FlightAndArrivalPageState extends State<FlightAndArrivalPage> {
   @override
-  initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -35,102 +30,80 @@ class _FlightAndArrivalPageState extends State<FlightAndArrivalPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Text(
-                  'Flight',
-                  style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                          text: '\u2022',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(
-                        text:
-                            ' You should obtain a changeable open return airline ticket',
-                      ),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                          text: '\u2022',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(
-                        text:
-                            ' Your arrival airport is Amsterdam (Schiphol) Airport',
-                      ),
-                    ])),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Text(
-                  'Arrival',
-                  style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-
-              // the end dont touch XD
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Center(
-                  child: Image.asset(
-                    'assets/image/rotary_blue.png',
-                    height: 55.0,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Center(
-                  child: Text(
-                    'Update: 31 May 2021',
-                    style: TextStyle(color: Color(0xFF777777)),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          )
+          buildSectionTitle('Flight'),
+          buildBulletPoint(
+              'You should obtain a changeable open return airline ticket'),
+          buildBulletPoint(
+              'Your arrival airport is Amsterdam (Schiphol) Airport'),
+          SizedBox(height: 25),
+          buildSectionTitle('Arrival'),
+          SizedBox(height: 30),
+          buildRotaryImage(),
+          buildUpdateText(),
+          SizedBox(height: 60),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Padding buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 25.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          decoration: TextDecoration.underline,
+          fontSize: 14.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Padding buildBulletPoint(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('\u2022', style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(width: 5),
+          Expanded(
+            child: Text(
+              text,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding buildRotaryImage() {
+    return Padding(
+        padding: const EdgeInsets.only(top: 30.0),
+        child: Center(
+          child: Image.asset(
+            'assets/image/rotary_blue.png',
+            height: 55.0,
+          ),
+        ));
+  }
+
+  Padding buildUpdateText() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Center(
+        child: Text(
+          'Update: 31 May 2021',
+          style: TextStyle(color: Color(0xFF777777)),
+        ),
+      ),
+    );
   }
 }

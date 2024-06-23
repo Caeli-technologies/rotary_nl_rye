@@ -58,11 +58,11 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
         image:
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture7.png',
         text:
-            'Lutra haar familie maken met Lot een trip door ‘de Gouden Driehoek in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur.'),
+            'Lutra haar familie maken met Lot een trip door \'de Gouden Driehoek\' in Noord India: Delhi, Jaipur en Agra  (foto met de Thai Mahal op de achtergrond. Lutra woont in Nagpur.)'),
     CarouselModel(
         image:
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-1.png',
-        text: '‘EVEN VERWISSELD VAN NATIONAL COSTUME’'),
+        text: '\'EVEN VERWISSELD VAN NATIONAL COSTUME\''),
     CarouselModel(
         image:
             'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/programs/f_to_f/Picture8-2.png',
@@ -160,8 +160,8 @@ class _FamilyToFamilyProgramPageState extends State<FamilyToFamilyProgramPage> {
       ],
     ),
     DataRow(
-      color: MaterialStateColor.resolveWith(
-          (states) => Palette.themeCardShadeColor),
+      color:
+          WidgetStateColor.resolveWith((states) => Palette.themeCardShadeColor),
       cells: <DataCell>[
         DataCell(Text('Totaal')),
         DataCell(Text('€1.300.- tot 2.050.-')),

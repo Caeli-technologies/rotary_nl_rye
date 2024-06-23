@@ -20,7 +20,7 @@ import 'package:rotary_nl_rye/features/news/presentation/pages/news_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/outbound_page.dart';
 import 'package:rotary_nl_rye/features/outbound/presentation/pages/short_term/camps_and_tours/widgets/loadCsv.dart';
 import 'package:rotary_nl_rye/features/programs/presentation/pages/program_page.dart';
-import 'package:rotary_nl_rye/features/stories/presentation/pages/countries_page.dart';
+import 'package:rotary_nl_rye/features/rebounds/presentation/pages/CountriesPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,46 +28,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  // _HomePageState() {
-  //   // FirebaseAuth.instance.signInAnonymously().then(
-  //   //     (UserCredential userCredential) =>
-  //   //         _currentSubscription = data.loadNews().listen(_updateNews));
-  // }
-
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
   SharedPreferences? sharedPreferences;
   int _currentNewsIndex = 0;
 
-  // Future readJson(String url) async {
-  //   // final String response =
-  //   //     await rootBundle.loadString('assets/test/stories.json');
-  //   final data = await api.getDataStudentList(url);
-  //   exchangeStudents = data;
-  //   setState(() {
-  //     _isLoading = false;
-  //   });
-  // }
-
-  // _updateNews(DocumentSnapshot<Map<String, dynamic>> snapshot) {
-  //   _isLoading = false;
-  //   _news = data.getNewsFromQuery(snapshot);
-  //   readJson(_news.students);
-  // }
-
   @override
-  initState() {
+  void initState() {
     super.initState();
-    // TODO: implement dispose
     _loadBadge();
-
-    // whenever your initialization is completed, remove the splash screen:
     FlutterNativeSplash.remove();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   void _loadBadge() async {
@@ -81,96 +51,96 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: _isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Container(
-              child: ListView(
+      body: SafeArea(
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : ListView(
                 physics: ClampingScrollPhysics(),
+                padding: const EdgeInsets.all(16),
                 children: <Widget>[
                   Container(
                     height: 90,
                     margin: EdgeInsets.only(
-                        left: 16, right: 16, bottom: 24, top: 10),
+                        left: 16, right: 16, bottom: 24, top: 16),
                     child: SvgPicture.asset(
-                        'assets/image/rotary_rye_nl_logo_home.svg'),
-                  ),
-
-                  // Slider images
-                  Carousel(),
-
-                  // navigator buttons
-                  Container(
-                    margin: EdgeInsets.only(top: 24, left: 16, right: 16),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.list,
-                                title: 'Programs',
-                                pushTo: ProgramPage(),
-                                currentNewsIndex: 0),
-                            HomeCardItem(
-                              icon: FontAwesomeIcons.newspaper,
-                              title: 'News',
-                              pushTo: NewsPage(),
-                              currentNewsIndex: _currentNewsIndex,
-                            ),
-                            HomeCardItem(
-                              icon: FontAwesomeIcons.calendarDays,
-                              title: 'Calendar',
-                              pushTo: CalendarPage(),
-                              currentNewsIndex: 0,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.planeDeparture,
-                                title: 'Op Exchange',
-                                pushTo: OutboundPage(),
-                                currentNewsIndex: 0),
-                            HomeCardItemToNL(
-                                icon: FontAwesomeIcons.planeArrival,
-                                title: 'To ',
-                                pushTo: InboundPage(),
-                                currentNewsIndex: 0),
-                            HomeCardItem(
-                                icon: FontAwesomeIcons.rotateRight,
-                                title: 'Rebound',
-                                pushTo: CountriesPage(),
-                                currentNewsIndex: 0),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            HomeCardItemSingle(
-                                icon: FontAwesomeIcons.campground,
-                                title: 'Camps & Tours List',
-                                pushTo: LoadCsv(),
-                                currentNewsIndex: 0),
-                            HomeCardItemSingleRotary(
-                                title: 'voor Rotary Clubs',
-                                pushTo: ForRotaryClubsPage(),
-                                currentNewsIndex: 0),
-                          ],
-                        ),
-                        SizedBox(height: 30),
-                      ],
+                      'assets/image/rotary_rye_nl_logo_home.svg',
                     ),
                   ),
+                  Carousel(),
+                  SizedBox(height: 16),
+                  _buildNavigatorButtons(),
                 ],
               ),
+      ),
+    );
+  }
+
+  Widget _buildNavigatorButtons() {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            HomeCardItem(
+              icon: FontAwesomeIcons.list,
+              title: 'Programs',
+              pushTo: ProgramPage(),
+              currentNewsIndex: 0,
             ),
+            HomeCardItem(
+              icon: FontAwesomeIcons.newspaper,
+              title: 'News',
+              pushTo: NewsPage(),
+              currentNewsIndex: _currentNewsIndex,
+            ),
+            HomeCardItem(
+              icon: FontAwesomeIcons.calendarDays,
+              title: 'Calendar',
+              pushTo: CalendarPage(),
+              currentNewsIndex: 0,
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: <Widget>[
+            HomeCardItem(
+              icon: FontAwesomeIcons.planeDeparture,
+              title: 'Op Exchange',
+              pushTo: OutboundPage(),
+              currentNewsIndex: 0,
+            ),
+            HomeCardItemToNL(
+              icon: FontAwesomeIcons.planeArrival,
+              title: 'To',
+              pushTo: InboundPage(),
+              currentNewsIndex: 0,
+            ),
+            HomeCardItem(
+              icon: FontAwesomeIcons.rotateRight,
+              title: 'Rebound',
+              pushTo: CountriesPage(),
+              currentNewsIndex: 0,
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: <Widget>[
+            HomeCardItemSingle(
+              icon: FontAwesomeIcons.campground,
+              title: 'Camps & Tours List',
+              pushTo: LoadCsv(),
+              currentNewsIndex: 0,
+            ),
+            HomeCardItemSingleRotary(
+              title: 'voor Rotary Clubs',
+              pushTo: ForRotaryClubsPage(),
+              currentNewsIndex: 0,
+            ),
+          ],
+        ),
+        const SizedBox(height: 30),
+      ],
     );
   }
 }

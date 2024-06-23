@@ -15,69 +15,73 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 8.0.0+93
+version: 8.0.1+94
 
 # authors:
 #   - Ruben Talstra <info@caeli-tech.com>
 #   - Jannik Norden <dev.janniknorden@gmail.com>
 environment:
-  sdk: ">=3.1.0 <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   badges: ^3.1.2
-  dio: ^5.4.0
+  dio: ^5.4.3
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
-  chewie: ^1.7.5
-  cloud_firestore: ^4.15.4
-  csv: ^5.1.1
-  cupertino_icons: ^1.0.6
+  chewie: ^1.8.1
+  cloud_firestore: ^5.0.1
+  csv: ^6.0.0
+  cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   equatable: ^2.0.5
-  firebase_analytics: ^10.8.5
-  firebase_auth: ^4.17.4
-  firebase_core: ^2.25.4
-  firebase_crashlytics: ^3.4.14
-  firebase_dynamic_links: ^5.4.13
-  firebase_messaging: ^14.7.15
-  firebase_remote_config: ^4.3.13
+  firebase_analytics: ^11.0.1
+  firebase_auth: ^5.1.0
+  firebase_core: ^3.1.0
+  firebase_crashlytics: ^4.0.1
+  firebase_dynamic_links: ^6.0.1
+  firebase_messaging: ^15.0.1
+  firebase_remote_config: ^5.0.1
   flutter:
     sdk: flutter
-  flutter_app_badger: ^1.5.0
+  flutter_app_badger:
+    git:
+      url: https://github.com/g123k/flutter_app_badger.git
   flutter_cached_pdfview: ^0.4.2
-  flutter_local_notifications: ^16.3.2
+  flutter_local_notifications: ^17.1.2
   flutter_localizations:
     sdk: flutter
   flutter_staggered_grid_view: ^0.7.0
-  flutter_svg: ^2.0.9
+  flutter_svg: ^2.0.10
   flutter_swiper_null_safety: ^1.0.2
   font_awesome_flutter: ^10.7.0
-  get_it: ^7.6.7
+  get_it: ^7.7.0
   internet_connection_checker: ^1.0.0+1
-  maps_launcher: ^2.2.0
+  # maps_launcher: ^2.2.1
+  map_launcher: ^3.3.1
+  geocoding: ^3.0.0
   mockito: ^5.4.4
-  package_info_plus: ^5.0.1
-  path_provider: ^2.1.2
-  photo_view: ^0.14.0
-  share_plus: ^7.2.2
-  shared_preferences: ^2.2.2
-  skeletons: ^0.0.3
-  table_calendar: ^3.1.0
+  package_info_plus: ^8.0.0
+  path_provider: ^2.1.3
+  photo_view: ^0.15.0
+  share_plus: ^9.0.0
+  shared_preferences: ^2.2.3
+  flutter_skeleton_ui: ^0.0.6
+  table_calendar: ^3.1.2
   translator: ^1.0.0
   transparent_image: ^2.0.1
-  url_launcher: ^6.2.4
-  video_player: ^2.8.2
+  url_launcher: ^6.3.0
+  video_player: ^2.8.7
   percent_indicator: ^4.2.3
-  audioplayers: ^5.2.1
+  audioplayers: ^6.0.0
 
-dependency_overrides:
-  intl: ^0.19.0
+  http: ^1.2.1
+  flutter_cache_manager: ^3.3.2
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
-  dependency_validator: ^3.2.3
+  dependency_validator: ^4.1.0
   flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^3.0.1
-  flutter_native_splash: ^2.3.10
+  flutter_lints: ^4.0.0
   import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
