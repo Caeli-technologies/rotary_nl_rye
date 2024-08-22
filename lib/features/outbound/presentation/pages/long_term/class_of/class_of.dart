@@ -35,7 +35,7 @@ class _ClassOfPageState extends State<ClassOfPage> {
         elevation: 0.0,
         leading: UniformBackButton(),
         title: Text(
-          'Class Of 2023-24',
+          'Class Of 2024-25',
           textScaler: TextScaler.linear(1.2),
           style: TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
         ),
