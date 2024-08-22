@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/inbound/data/inbound_list.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:rotary_nl_rye/features/widgets/list_tiles.dart';
 import 'class_of_details_page.dart';
 
 class ClassOfPageInbounds extends StatefulWidget {

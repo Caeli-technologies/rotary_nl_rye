@@ -14,11 +14,6 @@ class VideoPage extends StatefulWidget {
 
 class _VideoPageState extends State<VideoPage> {
   @override
-  initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,106 +31,49 @@ class _VideoPageState extends State<VideoPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 20.0),
-              //   child: Text(
-              //     "moet nog text komen",
-              //     style: TextStyle(
-              //         color: Colors.red,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 10.0),
-              //   child: Text(
-              //     "moet nog text voor worden gemaakt",
-              //     style: TextStyle(color: Colors.black, fontSize: 14.0),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "Algemene video",
-              //     style: TextStyle(
-              //         color: Colors.red,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: NativeVideo(
-                    url:
-                        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4'),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Text(
-                  'Waarom doen we dit?',
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
-                  '- Het opbouwen van goede relaties met andere landen',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  '- Het houdt de club jong',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  '- De jongere ontwikkelt zichzelf en zijn/haar omgeving',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-              // the end dont touch XD
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Center(
-                  child: Image.asset(
-                    'assets/image/rotary_blue.png',
-                    height: 55.0,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Center(
-                  child: Text(
-                    'Update: 27 mei 2021',
-                    style: TextStyle(color: Color(0xFF777777)),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          )
+          NativeVideo(
+            url:
+                'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4',
+          ),
+          SizedBox(height: 30),
+          Text(
+            'Waarom doen we dit?',
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10),
+          buildInfoText('- Het opbouwen van goede relaties met andere landen'),
+          buildInfoText('- Het houdt de club jong'),
+          buildInfoText(
+              '- De jongere ontwikkelt zichzelf en zijn/haar omgeving'),
+          SizedBox(height: 30),
+          Center(
+            child: Image.asset(
+              'assets/image/rotary_blue.png',
+              height: 55.0,
+            ),
+          ),
+          SizedBox(height: 15),
+          Center(
+            child: Text(
+              'Update: 27 mei 2021',
+              style: TextStyle(color: Color(0xFF777777)),
+            ),
+          ),
+          SizedBox(height: 60),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Widget buildInfoText(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 14.0),
+      ),
+    );
   }
 }

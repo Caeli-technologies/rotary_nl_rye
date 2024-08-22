@@ -11,17 +11,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
-class HowToSignUpPage extends StatefulWidget {
-  @override
-  _HowToSignUpPageState createState() => _HowToSignUpPageState();
-}
-
-class _HowToSignUpPageState extends State<HowToSignUpPage> {
-  @override
-  initState() {
-    super.initState();
-  }
-
+class HowToSignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,114 +30,63 @@ class _HowToSignUpPageState extends State<HowToSignUpPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 20, top: 15, right: 20),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "AANMELDEN?",
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 16),
-                        children: [
-                      TextSpan(
-                        text: 'Je stuurt een gezellig email bericht naar: ',
-                      ),
-                      TextSpan(
-                        text: 'interesse@rotaryyep.nl.',
-                        style: TextStyle(color: Colors.blue),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            launchUrlString(
-                                'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F');
-                          },
-                      ),
-                      TextSpan(
-                        text:
-                            ' Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen. ',
-                      ),
-                    ])),
-              ),
-              Padding(
-                  padding: const EdgeInsets.only(top: 40.0, bottom: 30),
-                  child: Container(
-                    child: Center(
-                      child: CupertinoButton.filled(
-                        onPressed: () {
-                          launchUrlString(
-                              'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F');
-                        },
-                        child:
-                            // Row(
-                            //   children: <Widget>[
-                            //     Padding(
-                            //       padding: const EdgeInsets.only(left: 25.0),
-                            //       child: FaIcon(
-                            //         FontAwesomeIcons.phone,
-                            //         color: Colors.white,
-                            //       ),
-                            //     ),
-                            //     Padding(
-                            //       padding: const EdgeInsets.only(left: 20.0),
-                            //       child: Text(
-                            //         'Call me ',
-                            //         style: TextStyle(color: Colors.white, fontSize: 18.0),
-                            //       ),
-                            //     )
-                            //   ],
-                            // ),
-                            Text('Verstuur een Email'),
-                      ),
-                    ),
-                  )),
-
-              // the end dont touch XD
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Center(
-                  child: Image.asset(
-                    'assets/image/rotary_blue.png',
-                    height: 55.0,
-                  ),
+          Text(
+            'Je stuurt een gezellig email bericht naar:',
+            style:
+                Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),
+          ),
+          RichText(
+            text: TextSpan(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 16),
+              children: [
+                TextSpan(
+                  text: 'interesse@rotaryyep.nl.',
+                  style: TextStyle(color: Colors.blue),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      launchUrlString(
+                          'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F');
+                    },
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Center(
-                  child: Text(
-                    'Update: 31 May 2021',
-                    style: TextStyle(color: Color(0xFF777777)),
-                  ),
+                TextSpan(
+                  text:
+                      ' Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.',
                 ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          )
+              ],
+            ),
+          ),
+          SizedBox(height: 40),
+          Center(
+            child: CupertinoButton.filled(
+              onPressed: () {
+                launchUrlString(
+                    'mailto:interesse@rotaryyep.nl?subject=interrese%20in%20F2F');
+              },
+              child: Text('Verstuur een Email'),
+            ),
+          ),
+          SizedBox(height: 30),
+          Center(
+            child: Image.asset(
+              'assets/image/rotary_blue.png',
+              height: 55.0,
+            ),
+          ),
+          SizedBox(height: 15),
+          Center(
+            child: Text(
+              'Update: 31 May 2021',
+              style: TextStyle(color: Color(0xFF777777)),
+            ),
+          ),
+          SizedBox(height: 60),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

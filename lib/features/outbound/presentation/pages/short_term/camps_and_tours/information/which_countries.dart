@@ -39,23 +39,11 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "AANMELDEN?",
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
@@ -66,14 +54,14 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
+                  text: TextSpan(
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontSize: 14),
+                    children: [
                       TextSpan(
-                        text: 'aanmelden via het emailadres ',
+                        text: 'Aanmelden via het emailadres ',
                       ),
                       TextSpan(
                         text: 'interesse@rotaryyep.nl.',
@@ -82,11 +70,11 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
                           ..onTap = () {
                             launchUrlString('mailto:interesse@rotaryyep.nl');
                           },
-                      )
-                    ])),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-
-              // the end dont touch XD
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Center(
@@ -113,10 +101,5 @@ class _WhichCountriesPageState extends State<WhichCountriesPage> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

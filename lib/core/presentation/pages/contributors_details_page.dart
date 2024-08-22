@@ -48,32 +48,33 @@ class ContributorsDetails extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         InkWell(
-                            borderRadius: BorderRadius.circular(60),
-                            onTap: () {
-                              Navigator.of(context).push(PageRouteBuilder(
-                                  opaque: false,
-                                  pageBuilder: (BuildContext context, _, __) =>
-                                      FullScreenImage(url: person.imageUrl)));
-                            },
-                            child: CachedNetworkImage(
-                              height: 60,
-                              width: 60,
-                              imageUrl: person.imageUrl,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
+                          borderRadius: BorderRadius.circular(60),
+                          onTap: () {
+                            Navigator.of(context).push(PageRouteBuilder(
+                              opaque: false,
+                              pageBuilder: (BuildContext context, _, __) =>
+                                  FullScreenImage(url: person.imageUrl),
+                            ));
+                          },
+                          child: CachedNetworkImage(
+                            height: 60,
+                            width: 60,
+                            imageUrl: person.imageUrl,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            )),
+                            ),
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          ),
+                        ),
                         SizedBox(
                           width: 12,
                         ),
@@ -126,89 +127,43 @@ class ContributorsDetails extends StatelessWidget {
                         thickness: 2,
                       ),
                     ),
-              //TODO if he has one of the socials not. then it doen't need to show up!
               Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    person.instagramUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.instagram,
-                                    color: Color(0xFFbc2a8d),
-                                  ),
-                                  onPressed: () =>
-                                      canLaunchUrlString(person.instagramUrl),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.linkedinUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.linkedinIn,
-                                    color: Color(0xFF0e76a8),
-                                  ),
-                                  onPressed: () =>
-                                      canLaunchUrlString(person.linkedinUrl),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.githubUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.github,
-                                    color: Color(0xFF000333),
-                                  ),
-                                  onPressed: () =>
-                                      canLaunchUrlString(person.githubUrl),
-                                ),
-                              ],
-                            ),
-                          ),
-                    person.websiteUrl == null
-                        ? SizedBox.shrink()
-                        : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.globe,
-                                    color: Color(0xFF0e76a8),
-                                  ),
-                                  onPressed: () =>
-                                      canLaunchUrlString(person.websiteUrl),
-                                ),
-                              ],
-                            ),
-                          ),
+                    if (person.instagramUrl != null)
+                      _buildContactButton(
+                        icon: FontAwesomeIcons.instagram,
+                        color: Color(0xFFbc2a8d),
+                        backgroundColor: Colors.transparent,
+                        onPressed: () => launchUrlString(person.instagramUrl),
+                      ),
+                    if (person.linkedinUrl != null)
+                      _buildContactButton(
+                        icon: FontAwesomeIcons.linkedinIn,
+                        color: Color(0xFF0e76a8),
+                        backgroundColor: Colors.transparent,
+                        onPressed: () => launchUrlString(person.linkedinUrl),
+                      ),
+                    if (person.githubUrl != null)
+                      _buildContactButton(
+                        icon: FontAwesomeIcons.github,
+                        color: Color(0xFF000333),
+                        backgroundColor: Colors.transparent,
+                        onPressed: () => launchUrlString(person.githubUrl),
+                      ),
+                    if (person.websiteUrl != null)
+                      _buildContactButton(
+                        icon: FontAwesomeIcons.globe,
+                        color: Color(0xFF0e76a8),
+                        backgroundColor: Colors.transparent,
+                        onPressed: () => launchUrlString(person.websiteUrl),
+                      ),
                   ],
                 ),
               ),
-
               person.websiteUrl == null &&
                       person.linkedinUrl == null &&
                       person.githubUrl == null &&
@@ -222,7 +177,6 @@ class ContributorsDetails extends StatelessWidget {
                         thickness: 2,
                       ),
                     ),
-
               Padding(
                 padding:
                     const EdgeInsets.only(top: 20.0, left: 30.0, bottom: 0.0),
@@ -253,63 +207,54 @@ class ContributorsDetails extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-
-              // Padding(
-              //   padding:
-              //       const EdgeInsets.only(top: 50.0, left: 30.0, right: 20.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: <Widget>[
-              //       Container(
-              //         height: 70.0,
-              //         width: 70.0,
-              //         decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(30.0),
-              //           color: Colors.grey[200],
-              //         ),
-              //         child: Center(
-              //             child: Icon(
-              //           Icons.present_to_all,
-              //           color: Colors.black,
-              //           size: 25,
-              //         )),
-              //       ),
-              //       Container(
-              //         height: 65.0,
-              //         width: 240.0,
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(35.0),
-              //             border:
-              //                 Border.all(color: Colors.blue.shade100, width: 5),
-              //             color: Colors.blue[400]),
-              //         child: Center(
-              //           child: Row(
-              //             children: <Widget>[
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 25.0),
-              //                 child: Icon(
-              //                   Icons.call,
-              //                   color: Colors.white,
-              //                 ),
-              //               ),
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 25.0),
-              //                 child: Text(
-              //                   'Send a e-mail',
-              //                   style: TextStyle(
-              //                       color: Colors.white, fontSize: 18.0),
-              //                 ),
-              //               )
-              //             ],
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )
             ],
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildContactButton({
+    required IconData icon,
+    required Color color,
+    required Color backgroundColor,
+    Color? borderColor,
+    required Function onPressed,
+    bool isWide = false,
+    String? text,
+  }) {
+    return Container(
+      height: 65.0,
+      width: isWide ? 180.0 : 70.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(isWide ? 35.0 : 30.0),
+        color: backgroundColor,
+        border: borderColor != null
+            ? Border.all(color: borderColor, width: 5)
+            : null,
+      ),
+      child: TextButton(
+        onPressed: () => onPressed(),
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(isWide ? 35.0 : 30.0),
+          ),
+          padding: EdgeInsets.zero,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FaIcon(icon, color: color, size: 30),
+            if (isWide && text != null)
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  text,
+                  style: TextStyle(color: color, fontSize: 18.0),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

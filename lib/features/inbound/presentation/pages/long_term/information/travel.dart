@@ -35,106 +35,60 @@ class _TravelPageState extends State<TravelPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 25.0),
-              //   child: Text(
-              //     "AANMELDEN?",
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontSize: 14.0,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text:
-                            'The rules of Rotary Youth Exchange do not allow travelling outside the scope of the Rotary program. However, you may travel with your host family or members of your host club or other Rotarians, or other authorized persons (for instance on a school trip), but ',
-                      ),
-                      TextSpan(
-                          text: 'not alone.',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(
-                        text:
-                            ' This rule applies for both travelling inside the Netherlands as well as abroad.',
-                      ),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                          text:
-                              'Visits to family or friends abroad are not permitted!',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: RichText(
-                    text: TextSpan(
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 14),
-                        children: [
-                      TextSpan(
-                        text:
-                            'One of your host families might suggest to participate in a holiday somewhere abroad. This is usually OK when you will have a written approval from your parents.',
-                      ),
-                    ])),
-              ),
-              // the end dont touch XD
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Center(
-                  child: Image.asset(
-                    'assets/image/rotary_blue.png',
-                    height: 55.0,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Center(
-                  child: Text(
-                    'Update: 31 May 2021',
-                    style: TextStyle(color: Color(0xFF777777)),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          )
+          buildContentText(
+            'The rules of Rotary Youth Exchange do not allow travelling outside the scope of the Rotary program. However, you may travel with your host family or members of your host club or other Rotarians, or other authorized persons (for instance on a school trip), but not alone. This rule applies for both travelling inside the Netherlands as well as abroad.',
+          ),
+          buildContentText(
+            'Visits to family or friends abroad are not permitted!',
+            isBold: true,
+          ),
+          buildContentText(
+            'One of your host families might suggest to participate in a holiday somewhere abroad. This is usually OK when you will have a written approval from your parents.',
+          ),
+          buildRotaryImage(),
+          buildUpdateText(),
+          SizedBox(height: 60),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Padding buildContentText(String text, {bool isBold = false}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: 14,
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+            ),
+      ),
+    );
+  }
+
+  Padding buildRotaryImage() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Center(
+        child: Image.asset(
+          'assets/image/rotary_blue.png',
+          height: 55.0,
+        ),
+      ),
+    );
+  }
+
+  Padding buildUpdateText() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Center(
+        child: Text(
+          'Update: 31 May 2021',
+          style: TextStyle(color: Color(0xFF777777)),
+        ),
+      ),
+    );
   }
 }

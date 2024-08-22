@@ -1,13 +1,12 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/info_list_tile.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class InfoGastgezinPage extends StatefulWidget {
@@ -38,7 +37,6 @@ class _InfoGastgezinPageState extends State<InfoGastgezinPage> {
           pdfUrl:
               'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/travel-rules-within-and-outside-the-netherlands-2024-2025.pdf'),
     },
-    // Add more options as needed
   ];
 
   @override
@@ -60,19 +58,11 @@ class _InfoGastgezinPageState extends State<InfoGastgezinPage> {
       body: ListView.builder(
         itemCount: infoOptions.length,
         itemBuilder: (BuildContext context, int index) {
-          Map<String, dynamic> option = infoOptions[index];
-          return Column(
-            children: [
-              ListTile(
-                leading: FaIcon(option['icon'], color: Palette.lightIndigo),
-                title: Text(option['title'],
-                    style: TextStyle(color: Palette.grey)),
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => option['page'])),
-                trailing: Icon(Icons.arrow_forward_ios, color: Palette.grey),
-              ),
-              Divider(height: 20, thickness: 2),
-            ],
+          final option = infoOptions[index];
+          return InfoListTile(
+            title: option['title'],
+            icon: option['icon'],
+            page: option['page'],
           );
         },
       ),

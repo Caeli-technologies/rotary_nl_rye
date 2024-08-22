@@ -13,7 +13,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,50 +23,22 @@ import 'core/lang/languages.dart';
 import 'core/presentation/widgets/page_navigator.dart';
 import 'injection_container.dart' as di;
 
-// void main() async {
-//   runZonedGuarded<Future<void>>(() async {
-//     WidgetsFlutterBinding.ensureInitialized();
-//     await Firebase.initializeApp();
-//     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-//     await di.init();
-//     SystemChrome.setPreferredOrientations(
-//         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
-
-//     runApp(new MyApp());
-//   }, FirebaseCrashlytics.instance.recordError);
-// }
-
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  if (Firebase.apps.isEmpty) await Firebase.initializeApp();
+  await Firebase.initializeApp();
+  print('Handling a background message: ${message.messageId}');
 
-  print('Got a message whilst in the BACKGROUND or TERMINATED!');
-
-  // test
   final prefs = await SharedPreferences.getInstance();
   prefs.setInt('newsBadge', 1);
-  // end test
 }
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   await Firebase.initializeApp();
-//   print("Handling a background message ${message.data}");
-// }
-
-/// Create a [AndroidNotificationChannel] for heads up notifications
 late AndroidNotificationChannel channel;
-
-/// Initialize the [FlutterLocalNotificationsPlugin] package.
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase as the first thing
   await Firebase.initializeApp();
-
-  // Now Firebase features can be used
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   if (Platform.isAndroid) {
@@ -75,38 +46,10 @@ void main() async {
   }
 
   if (!kIsWeb) {
-    channel = const AndroidNotificationChannel(
-      'high_importance_channel', // id
-      'High Importance Notifications', // title
-      description:
-          'This channel is used for important notifications.', // description
-      importance: Importance.high,
-    );
-
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-    /// Create an Android Notification Channel.
-    ///
-    /// We use this channel in the `AndroidManifest.xml` file to override the
-    /// default FCM channel to enable heads up notifications.
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
-
-    /// Update the iOS foreground notification presentation options to allow
-    /// heads up notifications.
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+    _initializeNotifications();
   }
 
   if (kDebugMode) {
-    // Force disable Crashlytics collection while doing every day development.
-    // Temporarily toggle this to true if you want to test crash reporting in your app.
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
 
@@ -114,62 +57,74 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
-  runApp(new MyApp());
-  // FlutterNativeSplash.remove();
+  runApp(MyApp());
 
-  // Assuming _repo is an instance of a class that requires initialization after runApp
   final _repo = Repo();
   _repo.initData('', '');
 }
 
+Future<void> _initializeNotifications() async {
+  channel = const AndroidNotificationChannel(
+    'high_importance_channel',
+    'High Importance Notifications',
+    description: 'This channel is used for important notifications.',
+    importance: Importance.high,
+  );
+
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+}
+
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: [
-        const DemoLocalizationsDelegate(),
+      localizationsDelegates: const [
+        DemoLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('en', 'US'),
-        const Locale('en', 'GB'),
-        const Locale('nl', ''),
-        const Locale('de', ''),
-        const Locale('pt', 'PT'),
-        const Locale('pt', 'BR'),
-        const Locale.fromSubtags(
-            languageCode: 'zh',
-            scriptCode: 'Hans',
-            countryCode: 'CN'), // 'zh_Hans_CN'
-        const Locale.fromSubtags(
-            languageCode: 'zh',
-            scriptCode: 'Hant',
-            countryCode: 'TW'), // 'zh_Hant_TW'
-        const Locale('es', ''),
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('en', 'GB'),
+        Locale('nl', ''),
+        Locale('de', ''),
+        Locale('pt', 'PT'),
+        Locale('pt', 'BR'),
+        Locale.fromSubtags(
+            languageCode: 'zh', scriptCode: 'Hans', countryCode: 'CN'),
+        Locale.fromSubtags(
+            languageCode: 'zh', scriptCode: 'Hant', countryCode: 'TW'),
+        Locale('es', ''),
       ],
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) {
           return supportedLocales.first;
         }
         for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.countryCode == locale.countryCode) {
+          if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }
         return supportedLocales.first;
       },
       theme: ThemeData.light(useMaterial3: true),
-      // Provide light theme.
       darkTheme: ThemeData.dark(useMaterial3: true),
-      // Provide dark theme.
       themeMode: ThemeMode.system,
-      title: 'Rotary youth Exchange',
+      title: 'Rotary Youth Exchange',
       debugShowCheckedModeBanner: false,
       home: PageNavigator(),
-      //routing in "lib/core/custom_routes.dart"
       routes: customRoutes,
     );
   }

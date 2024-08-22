@@ -35,13 +35,14 @@ List<Organization> longTermOrganizationList = [
   ),
   Organization(
     name: 'Toon ter Ellen',
-    bio: '',
+    bio:
+        'Mijn naam is Toon ter Ellen, coördinator inbound van het Rotary Longterm Exchange Program.\n\n Zelf ben ik in 2016-2017 een jaar op exchange geweest. Toen heb ik een jaar in Brazilië gewoond, de beste ervaring van mijn leven. Deze ervaring heeft me er ook toe gedreven me te blijven inzetten voor de Rotary Youth Exchange.\n\n Voor mijn tijd bij de MDJC ben ik vier jaar lid en bestuur geweest van Rotex, de vereniging van oud-uitwisselingsstudenten. \n\n Dit programma is een geweldig en voor iedereen die de kans krijgt heb ik maar één advies: doen!',
     imageUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/toon-ter-ellen.jpg',
     email: 'longtermin@rotaryyep.nl',
     phoneNumber: null,
-    club: '',
-    district: '',
+    club: 'RC Leefklimaat',
+    district: '1560',
     functions: ['Inbound coördinator'],
   ),
   Organization(
@@ -54,11 +55,7 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: '+31629586813',
     club: 'Rotary Club Oosterwolde',
     district: '1590 NOORD-NEDERLAND',
-    functions: [
-      'Coördinator USAS & Canada',
-      'Coördinator Europe',
-      'Coördinator Azie'
-    ],
+    functions: ['Coördinator USAS & Canada', 'Coördinator Europe'],
   ),
   Organization(
     name: 'Judith Siebring',
@@ -72,8 +69,7 @@ List<Organization> longTermOrganizationList = [
     district: '1590 NOORD-NEDERLAND',
     functions: [
       'Coördinator Europe',
-      'Coördinator South & Central America',
-      'Coördinator Zuid Amerika'
+      'Coordinator Zuid-/Midden-Amerika',
     ],
   ),
   Organization(
@@ -136,6 +132,18 @@ List<Organization> longTermOrganizationList = [
     phoneNumber: null,
     club: '',
     district: '',
-    functions: ['National Counselor'],
+    functions: ['Landelijk counselor'],
+  ),
+  Organization(
+    name: 'Carlo ter Ellen',
+    bio:
+        'Mijn naam is Carlo ter Ellen en ik ben (samen met Hilleke van der Veer) landelijk counselor van de inbounds.\n\n Onze zoon Toon (inbound coördinator) is op zijn 15e een jaar op uitwisseling naar Brazilië geweest. Een prachtige ervaring voor Toon, maar ook erg leuk voor ons omdat we gastouder konden zijn voor meerdere uitwisselingsstudenten en een prachtige reis hebben gemaakt naar Brazilië.  We hebben nog steeds warme contacten met een uitwisselingsgezin in Brazilië.\n\n Deze ervaring heeft ervoor gezorgd dat ik me graag wil inzetten om de uitwisselingsstudenten in Nederland een mooie en zorgeloze tijd te bezorgen. Ik woon in Oldenzaal samen met mijn vrouw Janet. Onze kinderen Toon en Margriet staan inmiddels op eigen benen en wonen niet meer thuis. Toon studeert nog en is daarnaast heel actief binnen Rotary als inboundcoördinator.\n\n In het dagelijks leven werk ik bij DPG Media, bekend van AD en in onze regio De Twentsche Courant Tubantia. Ik ben daar coördinator beeld en fotojournalist. Mijn hobby\'s zijn: wijn, wandelen, lekker eten en een beetje rondrijden met een oude cabrio.\n\n',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: null,
+    phoneNumber: null,
+    club: 'Oldenzaal',
+    district: '1560',
+    functions: ['Landelijk counselor'],
   ),
 ];

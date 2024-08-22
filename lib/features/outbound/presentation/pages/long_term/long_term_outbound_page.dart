@@ -42,130 +42,102 @@ class _LongTermExchangeOutboundPageState
         ),
       ),
       body: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: Text(
-                  'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo\'n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: SizedBox.fromSize(
-                    // size: Size.fromRadius(48), // Image radius
-                    child: Image(
-                        image: AssetImage('assets/image/classOff22.jpeg'),
-                        fit: BoxFit.cover),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, 'Class of 2023-2024',
-                  FontAwesomeIcons.peopleGroup, ClassOfPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, 'Hoe schrijf ik mezelf in',
-                  FontAwesomeIcons.pencil, HowToSignUpPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, 'Waar moet ik aan voldoen',
-                  FontAwesomeIcons.exclamation, ComplyWithPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
-                  context,
-                  'Wat moet ik doen voor de selectiedag',
-                  FontAwesomeIcons.checkToSlot,
-                  SelectionDayPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
-                  context,
-                  'Wat moet ik doen voor het selectieweekend',
-                  FontAwesomeIcons.clipboardCheck,
-                  SelectionWeekendPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(
-                  context,
-                  'Hoe maak ik een goede top 3 van landen waar ik naar toe wil ',
-                  FontAwesomeIcons.globe,
-                  Top3CountriesPage()),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              buildOutboundOptionRow(context, 'Hoe bereid ik me voor',
-                  FontAwesomeIcons.suitcase, null),
-
-              // the end
-              SizedBox(
-                height: 20,
-              ),
-            ],
-          )
+          Text(
+            'Kandidaten \n\nWat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor jaaruitwisseling. Wereldwijd gaan er jaarlijks zo\'n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie. Wie weet ben jij komend schooljaar een van die studenten.',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              'assets/image/classOff22.jpeg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: 20),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Class of 2024-2025',
+            FontAwesomeIcons.peopleGroup,
+            ClassOfPage(),
+          ),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Hoe schrijf ik mezelf in',
+            FontAwesomeIcons.pencil,
+            HowToSignUpPage(),
+          ),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Waar moet ik aan voldoen',
+            FontAwesomeIcons.exclamation,
+            ComplyWithPage(),
+          ),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Wat moet ik doen voor de selectiedag',
+            FontAwesomeIcons.checkToSlot,
+            SelectionDayPage(),
+          ),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Wat moet ik doen voor het selectieweekend',
+            FontAwesomeIcons.clipboardCheck,
+            SelectionWeekendPage(),
+          ),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Hoe maak ik een goede top 3 van landen waar ik naar toe wil',
+            FontAwesomeIcons.globe,
+            Top3CountriesPage(),
+          ),
+          Divider(height: 15, thickness: 2),
+          buildOutboundOptionRow(
+            context,
+            'Hoe bereid ik me voor',
+            FontAwesomeIcons.suitcase,
+            null,
+          ),
+          SizedBox(height: 20),
         ],
       ),
     );
   }
 
   GestureDetector buildOutboundOptionRow(
-    BuildContext context,
-    String title,
-    IconData icon,
-    pushTo,
-  ) {
+      BuildContext context, String title, IconData icon, Widget? pushTo) {
     return GestureDetector(
-        child: Padding(
-      padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
-      child: ListTile(
-        leading: Padding(
-          padding: EdgeInsets.zero,
-          child: Container(
-            child: FaIcon(
-              icon,
-              color: Palette.lightIndigo,
-              size: 27,
-            ),
+      onTap: () {
+        if (pushTo != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => pushTo),
+          );
+        } else {
+          showMaterialDialog(
+              context, 'Coming soon', 'This page is not yet ready', null);
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: ListTile(
+          leading: FaIcon(
+            icon,
+            color: Palette.lightIndigo,
+            size: 27,
           ),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                constraints: BoxConstraints(maxWidth: Device.width - 150),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
                 child: Text(
                   title,
                   maxLines: 2,
@@ -177,26 +149,14 @@ class _LongTermExchangeOutboundPageState
                   ),
                 ),
               ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Palette.grey,
-            ),
-          ],
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Palette.grey,
+              ),
+            ],
+          ),
         ),
-        onTap: () {
-          if (pushTo != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => pushTo),
-            );
-          } else {
-            String title = 'Comming soon';
-            String message = 'This page is not yet ready';
-            showMaterialDialog(context, title, message, null);
-          }
-        },
       ),
-    ));
+    );
   }
 }

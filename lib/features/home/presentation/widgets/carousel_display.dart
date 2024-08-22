@@ -20,17 +20,24 @@ class _CarouselState extends State<Carousel> {
 
   List<CarouselModel> carousels = [
     CarouselModel(
-        image: 'assets/image/homepage/Digitale_infomarkt_25_mei_2024.jpg',
+        image: 'assets/image/homepage/Informatiedag_14_september_2024.jpg',
         text: null),
     CarouselModel(
-        image: 'assets/image/homepage/class_2024.jpg', text: 'Class of 2024'),
+        image: 'assets/image/homepage/Koningsdag_Emmen_27_april_2024.png',
+        text: null),
     CarouselModel(
-        image: 'assets/image/homepage/afscheid_bestuur_rotex.jpg',
-        text: 'Afscheid Rotex Bestuur'),
-    CarouselModel(image: 'assets/image/homepage/Cream_Black.jpg', text: null),
+        image:
+            'assets/image/homepage/Nederland_herdenkt-inbounds_4_mei_2024.png',
+        text: null),
     CarouselModel(
-        image: 'assets/image/homepage/prebounds_in_action.jpg', text: null),
-    CarouselModel(image: 'assets/image/homepage/Cream_Black.jpg', text: null)
+        image: 'assets/image/homepage/Inbounds_Bezoek_Beurs_van_Berlage.jpg',
+        text: null),
+    CarouselModel(
+        image: 'assets/image/homepage/Farewell_Inbounds_2023-2024_mei_2024.jpg',
+        text: null),
+    CarouselModel(
+        image: 'assets/image/homepage/Testimonial_Schouwen-Duiveland.png',
+        text: null),
   ];
 
   List<T> map<T>(List list, Function handler) {

@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/contributors_details_page.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
+import 'package:rotary_nl_rye/features/widgets/list_tiles.dart';
 
 class ContributorsPage extends StatefulWidget {
   @override
@@ -17,40 +17,37 @@ class ContributorsPage extends StatefulWidget {
 class _ContributorsPageState extends State<ContributorsPage> {
   @override
   Widget build(BuildContext context) {
-    {
-      return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarBrightness: MediaQuery.of(context).platformBrightness,
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: UniformBackButton(),
-          title: Text(
-            'Contributors',
-            textScaler: TextScaler.linear(1.4),
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        systemOverlayStyle:
+            MediaQuery.of(context).platformBrightness == Brightness.light
+                ? SystemUiOverlayStyle.dark
+                : SystemUiOverlayStyle.light,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: UniformBackButton(),
+        title: Text(
+          'Contributors',
+          style: TextStyle(
+              color: Palette.indigo, fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        body: Container(
-          // height: Device.height - 277,
-          margin: EdgeInsets.only(left: 20, right: 20),
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) => ContributorsListTile(
-                item: contributors[index],
-                contributorsDetailsPage:
-                    ContributorsDetails(person: contributors[index])),
-            itemCount: contributors.length,
+      ),
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: ListView.builder(
+          itemBuilder: (context, index) => ContributorsListTile(
+            item: contributors[index],
+            contributorsDetailsPage:
+                ContributorsDetails(person: contributors[index]),
           ),
+          itemCount: contributors.length,
         ),
-      );
-    }
+      ),
+    );
   }
 }
 
-List<Contributor> contributors = [
+final List<Contributor> contributors = [
   Contributor(
     name: 'Ruben Talstra',
     description: 'Flutter Dev',
@@ -110,5 +107,5 @@ List<Contributor> contributors = [
     linkedinUrl: '',
     email: 'frostedfox@example.com',
     phoneNumber: '888 444 7676',
-  )
+  ),
 ];

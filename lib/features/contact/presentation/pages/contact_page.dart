@@ -5,25 +5,21 @@ import 'package:flutter/services.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/organization_contact_details_page.dart';
 import 'package:rotary_nl_rye/core/presentation/pages/rotex_contact_details_page.dart';
-import 'package:rotary_nl_rye/core/presentation/widgets/image_list_tile.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/contact/data/MDJC.dart';
 import 'package:rotary_nl_rye/features/contact/data/long_term_organization_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/rotex_list.dart';
 import 'package:rotary_nl_rye/features/contact/data/short_term_organization_list.dart';
+import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
+import 'package:rotary_nl_rye/features/contact/presentation/models/rotex.dart';
+import 'package:rotary_nl_rye/features/widgets/list_tiles.dart';
 
 class ContactPage extends StatefulWidget {
   @override
   _ContactPageState createState() => _ContactPageState();
 }
 
-//TODO needs to look like the story page. nut then only for contacts of the organication and Rotex (https://rotex.org/who-we-are/)
 class _ContactPageState extends State<ContactPage> {
-  @override
-  initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,91 +34,69 @@ class _ContactPageState extends State<ContactPage> {
           centerTitle: false,
           title: Text(
             'Contact List',
-            textScaler: TextScaler.linear(1.7),
-            style:
-                TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Palette.indigo,
+              fontWeight: FontWeight.bold,
+              fontSize: 24, // Adjusted for readability
+            ),
           ),
           bottom: TabBar(
-            labelColor: Palette.selectedlabelColor,
+            labelColor: Palette.selectedLabelColor,
             unselectedLabelColor: Palette.unselectedLabelColor,
-            indicatorPadding: EdgeInsets.all(0.0),
             indicatorWeight: 4.0,
-            labelPadding: EdgeInsets.only(left: 0.0, right: 0.0),
-            indicator: ShapeDecoration(
-                shape: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 0,
-                        style: BorderStyle.solid)),
-                gradient: LinearGradient(
-                    colors: [Color(0xff0081ff), Color(0xff01ff80)])),
-            tabs: <Widget>[
-              Container(
-                height: 40,
-                alignment: Alignment.center,
-                color: Palette.themeContactTabShadeColor,
-                child: Text('MDJC'),
+            indicator: const UnderlineTabIndicator(
+              borderSide: BorderSide(
+                width: 4.0,
+                color: Color(0xff0081ff),
               ),
-              Container(
-                height: 40,
-                alignment: Alignment.center,
-                color: Palette.themeContactTabShadeColor,
-                child: Text('Long Term'),
-              ),
-              Container(
-                height: 40,
-                alignment: Alignment.center,
-                color: Palette.themeContactTabShadeColor,
-                child: Text('Short Term'),
-              ),
-              Container(
-                height: 40,
-                alignment: Alignment.center,
-                color: Palette.themeContactTabShadeColor,
-                child: Text('Rotex'),
-              ),
+            ),
+            tabs: const [
+              Tab(text: 'MDJC'),
+              Tab(text: 'Long Term'),
+              Tab(text: 'Short Term'),
+              Tab(text: 'Rotex'),
             ],
           ),
         ),
-        body: Container(
-          //height: Device.height - 277,
-          margin: EdgeInsets.only(left: 5, right: 5),
-          child: TabBarView(children: [
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
-                  item: mdjcList[index],
-                  contactDetailsPage:
-                      OrganizationDetails(person: mdjcList[index])),
-              itemCount: mdjcList.length,
-            ),
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
-                  item: longTermOrganizationList[index],
-                  contactDetailsPage: OrganizationDetails(
-                      person: longTermOrganizationList[index])),
-              itemCount: longTermOrganizationList.length,
-            ),
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => ContactListTile(
-                  item: shortTermOrganizationList[index],
-                  contactDetailsPage: OrganizationDetails(
-                      person: shortTermOrganizationList[index])),
-              itemCount: shortTermOrganizationList.length,
-            ),
-            ListView.builder(
-              shrinkWrap: false,
-              itemBuilder: (context, index) => RotexContactListTile(
-                  item: rotexList[index],
-                  rotexContactDetailsPage:
-                      RotexDetails(person: rotexList[index])),
-              itemCount: rotexList.length,
-            ),
-          ]),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          child: TabBarView(
+            children: [
+              _buildContactList(
+                  mdjcList, (item) => OrganizationDetails(person: item)),
+              _buildContactList(longTermOrganizationList,
+                  (item) => OrganizationDetails(person: item)),
+              _buildContactList(shortTermOrganizationList,
+                  (item) => OrganizationDetails(person: item)),
+              _buildContactList(
+                  rotexList, (item) => RotexDetails(person: item)),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildContactList(
+      List<dynamic> list, Widget Function(dynamic) detailsPageBuilder) {
+    return ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        final item = list[index];
+        if (item is Organization) {
+          return ContactListTile(
+            item: item,
+            contactDetailsPage: detailsPageBuilder(item),
+          );
+        } else if (item is Rotex) {
+          return RotexContactListTile(
+            item: item,
+            rotexContactDetailsPage: detailsPageBuilder(item),
+          );
+        } else {
+          return SizedBox.shrink();
+        }
+      },
     );
   }
 }

@@ -18,20 +18,23 @@ class _PodcastPageState extends State<PodcastPage> {
 
   List<Podcast> podcasts = [
     Podcast(
-        title: 'Episode 1: Rotary Sharon en Michel Teunissen',
-        duration: '23:04',
-        audioUrl:
-            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-sharon-en-michel-teunissen.mp3'),
+      title: 'Episode 1: Rotary Sharon en Michel Teunissen',
+      duration: '23:04',
+      audioUrl:
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-sharon-en-michel-teunissen.mp3',
+    ),
     Podcast(
-        title: 'Episode 2: Rotary Ellen en Steven Stolp',
-        duration: '26:03',
-        audioUrl:
-            'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-ellen-en-steven-stolp.mp3'),
+      title: 'Episode 2: Rotary Ellen en Steven Stolp',
+      duration: '26:03',
+      audioUrl:
+          'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-ellen-en-steven-stolp.mp3',
+    ),
   ];
 
   @override
-  initState() {
-    super.initState();
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
   }
 
   @override
@@ -52,9 +55,7 @@ class _PodcastPageState extends State<PodcastPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(left: 16, top: 15, right: 16),
-        shrinkWrap: false,
-        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
           Text(
             'Podcast - wat zijn de ervaringen van een tweetal gastouders?',
@@ -70,64 +71,60 @@ class _PodcastPageState extends State<PodcastPage> {
               style: TextStyle(color: Palette.bodyText, fontSize: 14.0),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: podcasts.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: IconButton(
-                      icon: currentlyPlayingIndex == index
-                          ? Icon(Icons.pause_circle_filled)
-                          : Icon(Icons.play_circle_fill),
-                      onPressed: () async {
-                        if (currentlyPlayingIndex == index) {
-                          await audioPlayer.pause();
-                          setState(() {
-                            currentlyPlayingIndex = null;
-                          });
-                        } else {
-                          await audioPlayer.play(
-                              UrlSource(podcasts[index].audioUrl),
-                              mode: PlayerMode.mediaPlayer);
-
-                          setState(() {
-                            currentlyPlayingIndex = index;
-                          });
-                        }
-                      },
-                    ),
-                    title: Text(podcasts[index].title),
-                    subtitle: Text(podcasts[index].duration),
-                    trailing: Icon(Icons.more_vert),
-                    onTap: null,
-                  );
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 0),
-                child: Text(
-                  'Let op: deze podcasts worden gestreamed dan kan het zijn dat jouw provider je hiervoor kosten in rekening brengt.',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, color: Palette.grey),
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          )
+          _buildPodcastList(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              'Let op: deze podcasts worden gestreamed dan kan het zijn dat jouw provider je hiervoor kosten in rekening brengt.',
+              style:
+                  TextStyle(fontStyle: FontStyle.italic, color: Palette.grey),
+            ),
+          ),
+          SizedBox(height: 60),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Widget _buildPodcastList() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: podcasts.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          leading: IconButton(
+            icon: Icon(
+              currentlyPlayingIndex == index
+                  ? Icons.pause_circle_filled
+                  : Icons.play_circle_fill,
+            ),
+            onPressed: () => _onPlayPauseButtonPressed(index),
+          ),
+          title: Text(podcasts[index].title),
+          subtitle: Text(podcasts[index].duration),
+          trailing: Icon(Icons.more_vert),
+          onTap: null,
+        );
+      },
+    );
+  }
+
+  Future<void> _onPlayPauseButtonPressed(int index) async {
+    if (currentlyPlayingIndex == index) {
+      await audioPlayer.pause();
+      setState(() {
+        currentlyPlayingIndex = null;
+      });
+    } else {
+      await audioPlayer.play(
+        UrlSource(podcasts[index].audioUrl),
+        mode: PlayerMode.mediaPlayer,
+      );
+      setState(() {
+        currentlyPlayingIndex = index;
+      });
+    }
   }
 }
 
@@ -136,6 +133,9 @@ class Podcast {
   final String duration;
   final String audioUrl;
 
-  Podcast(
-      {required this.title, required this.duration, required this.audioUrl});
+  Podcast({
+    required this.title,
+    required this.duration,
+    required this.audioUrl,
+  });
 }

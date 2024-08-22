@@ -6,14 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
-// import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/InfoCounselor/InfoCounselor.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/InfoGastgezin/InfoGastgezin.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/AlgemeneInformatie/algemeneInfo.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/Jeugdcommissaris/jeugd_commissaris.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/belangrijkeDocumenten/important_documents.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
-import 'AlgemeneInformatie/algemeneInfo.dart';
-import 'Jeugdcommissaris/jeugd_commissaris.dart';
-import 'belangrijkeDocumenten/important_documents.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/widgets/option_row_data.dart';
 
 class ForRotaryClubsPage extends StatefulWidget {
   @override
@@ -21,6 +21,19 @@ class ForRotaryClubsPage extends StatefulWidget {
 }
 
 class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
+  final List<OptionRowData> options = [
+    OptionRowData(
+        'Algemene Informatie', FontAwesomeIcons.info, AlgemeneInfoPage()),
+    OptionRowData('Info voor de Jeugdcommissaris', FontAwesomeIcons.solidUser,
+        InfoForJeugdcommissarisPage()),
+    OptionRowData(
+        'Info Gastgezin', FontAwesomeIcons.peopleRoof, InfoGastgezinPage()),
+    OptionRowData('Info Counselor', FontAwesomeIcons.handsHoldingChild,
+        InfoCounselorPage()),
+    OptionRowData('Belangrijke Documenten',
+        FontAwesomeIcons.triangleExclamation, ImportantDocumentsPage()),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,21 +51,8 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
                 TextStyle(color: Palette.indigo, fontWeight: FontWeight.bold)),
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: options.length,
         itemBuilder: (context, index) {
-          final List<OptionRowData> options = [
-            OptionRowData('Algemene Informatie', FontAwesomeIcons.info,
-                AlgemeneInfoPage()),
-            OptionRowData('Info voor de Jeugdcommissaris',
-                FontAwesomeIcons.solidUser, InfoForJeugdcommissarisPage()),
-            OptionRowData('Info Gastgezin', FontAwesomeIcons.peopleRoof,
-                InfoGastgezinPage()),
-            OptionRowData('Info Counselor', FontAwesomeIcons.handsHoldingChild,
-                InfoCounselorPage()),
-            OptionRowData('Belangrijke Documenten',
-                FontAwesomeIcons.triangleExclamation, ImportantDocumentsPage()),
-          ];
-
           return Column(
             children: [
               if (index == 0)
@@ -65,7 +65,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
                   ),
                 ),
               Divider(height: 20, thickness: 2),
-              buildInboundOptionRow(context, options[index]),
+              buildOptionRow(context, options[index]),
             ],
           );
         },
@@ -73,8 +73,7 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
     );
   }
 
-  GestureDetector buildInboundOptionRow(
-      BuildContext context, OptionRowData data) {
+  GestureDetector buildOptionRow(BuildContext context, OptionRowData data) {
     return GestureDetector(
       onTap: () => Navigator.push(
           context, MaterialPageRoute(builder: (context) => data.pushTo)),
@@ -89,12 +88,4 @@ class _ForRotaryClubsPageState extends State<ForRotaryClubsPage> {
       ),
     );
   }
-}
-
-class OptionRowData {
-  final String title;
-  final IconData icon;
-  final Widget pushTo;
-
-  OptionRowData(this.title, this.icon, this.pushTo);
 }
