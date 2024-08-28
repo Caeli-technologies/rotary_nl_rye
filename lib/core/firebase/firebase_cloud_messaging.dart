@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter_native_badge/flutter_native_badge.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -137,6 +137,6 @@ Future<void> onMessageOpenedApp(BuildContext context) async {
   });
 }
 
-void _removeBadge() {
-  FlutterAppBadger.removeBadge();
+Future<void> _removeBadge() async {
+  await FlutterNativeBadge.clearBadgeCount();
 }

@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:flutter_native_badge/flutter_native_badge.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/firebase/check_update.dart';
 import 'package:rotary_nl_rye/core/firebase/firebase_cloud_messaging.dart';
-import 'package:rotary_nl_rye/core/firebase/firebase_dynamic_links.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/about/presentation/pages/about_page.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/pages/contact_page.dart';
@@ -25,6 +24,7 @@ class PageNavigator extends StatefulWidget {
 class _PageNavigatorState extends State<PageNavigator> {
   String _appBadgeSupported = 'Unknown';
   int _selectedIndex = 0;
+  bool _isSupported = false;
 
   @override
   void initState() {
@@ -33,7 +33,6 @@ class _PageNavigatorState extends State<PageNavigator> {
   }
 
   Future<void> _initializeApp() async {
-    await initDynamicLinks(context);
     await _checkAppBadgeSupport();
     await _initializeFCM();
     _removeBadge();
@@ -57,9 +56,9 @@ class _PageNavigatorState extends State<PageNavigator> {
 
   Future<void> _checkAppBadgeSupport() async {
     try {
-      bool isSupported = await FlutterAppBadger.isAppBadgeSupported();
+      _isSupported = await FlutterNativeBadge.isSupported();
       setState(() {
-        _appBadgeSupported = isSupported ? 'Supported' : 'Not supported';
+        _appBadgeSupported = _isSupported ? 'Supported' : 'Not supported';
       });
       print('Badge supported: $_appBadgeSupported\n');
     } on PlatformException {
@@ -69,8 +68,8 @@ class _PageNavigatorState extends State<PageNavigator> {
     }
   }
 
-  void _removeBadge() {
-    FlutterAppBadger.removeBadge();
+  Future<void> _removeBadge() async {
+    await FlutterNativeBadge.clearBadgeCount();
   }
 
   void _onItemTapped(int index) {

@@ -1,22 +1,16 @@
 // 🐦 Flutter imports:
 import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
-import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class PDFPage extends StatefulWidget {
@@ -35,7 +29,7 @@ class _PDFPageState extends State<PDFPage> {
 
   _PDFPageState({required this.pdfUrl, required this.data});
 
-  String? _linkMessage;
+  // String? _linkMessage;
   String? id;
 
   final Completer<PDFViewController> _pdfViewController =
@@ -43,12 +37,10 @@ class _PDFPageState extends State<PDFPage> {
   final StreamController<String> _pageCountController =
       StreamController<String>();
 
-  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
-
   @override
   void initState() {
     super.initState();
-    _createDynamicLink(id = widget.data.id.toString());
+    // _createDynamicLink(id = widget.data.id.toString());
     _removeBadge();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -80,15 +72,15 @@ class _PDFPageState extends State<PDFPage> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: UniformBackButton(),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                CupertinoIcons.share,
-                color: Palette.indigo,
-              ),
-              onPressed: _createShareURL,
-            )
-          ],
+          // actions: <Widget>[
+          //   IconButton(
+          //     icon: Icon(
+          //       CupertinoIcons.share,
+          //       color: Palette.indigo,
+          //     ),
+          //     onPressed: _createShareURL,
+          //   )
+          // ],
         ),
         body: Stack(
           children: <Widget>[
@@ -167,41 +159,41 @@ class _PDFPageState extends State<PDFPage> {
         ));
   }
 
-  Future<void> _createDynamicLink(String id) async {
-    final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://rotarynl.page.link',
-      link: Uri.parse('https://rotarynl.page.link/news?id=$id'),
-      androidParameters: AndroidParameters(
-        packageName: 'com.caelitechnologies.rotary_nl_rye',
-        minimumVersion: 1,
-      ),
-      iosParameters: IOSParameters(
-        bundleId: 'com.caelitechnologies.rotary-nl-rye',
-        minimumVersion: '1',
-        appStoreId: '1567096118',
-      ),
-    );
+  // Future<void> _createDynamicLink(String id) async {
+  //   final DynamicLinkParameters parameters = DynamicLinkParameters(
+  //     uriPrefix: 'https://rotarynl.page.link',
+  //     link: Uri.parse('https://rotarynl.page.link/news?id=$id'),
+  //     androidParameters: AndroidParameters(
+  //       packageName: 'com.caelitechnologies.rotary_nl_rye',
+  //       minimumVersion: 1,
+  //     ),
+  //     iosParameters: IOSParameters(
+  //       bundleId: 'com.caelitechnologies.rotary-nl-rye',
+  //       minimumVersion: '1',
+  //       appStoreId: '1567096118',
+  //     ),
+  //   );
 
-    final ShortDynamicLink shortLink =
-        await dynamicLinks.buildShortLink(parameters);
-    final Uri url = shortLink.shortUrl;
+  //   final ShortDynamicLink shortLink =
+  //       await dynamicLinks.buildShortLink(parameters);
+  //   final Uri url = shortLink.shortUrl;
 
-    setState(() {
-      _linkMessage = url.toString();
-    });
-  }
+  //   setState(() {
+  //     _linkMessage = url.toString();
+  //   });
+  // }
 
-  _createShareURL() async {
-    _createDynamicLink(id = widget.data.id.toString());
+  // _createShareURL() async {
+  //   _createDynamicLink(id = widget.data.id.toString());
 
-    if (await canLaunchUrlString(_linkMessage!)) {
-      await Share.share(
-          Platform.isIOS
-              ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage'
-              : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
-          subject: 'look at this nice app :)');
-    } else {
-      throw 'Could not launch $_linkMessage';
-    }
-  }
+  //   if (await canLaunchUrlString(_linkMessage!)) {
+  //     await Share.share(
+  //         Platform.isIOS
+  //             ? 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage'
+  //             : 'Hier mot nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
+  //         subject: 'look at this nice app :)');
+  //   } else {
+  //     throw 'Could not launch $_linkMessage';
+  //   }
+  // }
 }
