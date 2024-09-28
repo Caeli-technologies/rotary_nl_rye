@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 
-// 🧑‍💻 External packages:
+// 📦 Package imports:
 import 'package:dio/dio.dart';
 
 // 🌎 Project imports:
 import 'entities/news.dart';
+
+// 🧑‍💻 External packages:
+
 
 class NewsBloc {
   final _newsController = StreamController<List<News>>.broadcast();

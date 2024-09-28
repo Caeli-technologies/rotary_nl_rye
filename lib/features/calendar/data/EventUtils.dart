@@ -6,8 +6,10 @@ import 'dart:convert';
 
 // 📦 Package imports:
 import 'package:http/http.dart' as http;
-import 'package:rotary_nl_rye/features/calendar/models/EventModel.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+// 🌎 Project imports:
+import 'package:rotary_nl_rye/features/calendar/models/EventModel.dart';
 
 late Map<String, dynamic> data;
 late List<Events> events;

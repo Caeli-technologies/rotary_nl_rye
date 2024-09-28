@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/uniform_circle_avatar.dart';
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/uniform_circle_avatar.dart';
 
 class ContactListTile extends StatelessWidget {
   final Widget contactDetailsPage;

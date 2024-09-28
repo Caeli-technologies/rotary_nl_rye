@@ -1,10 +1,8 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'dart:io' show Platform; // For platform detection
 
 // 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter/cupertino.dart'; // For iOS Cupertino components
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -13,6 +11,11 @@ import 'package:rotary_nl_rye/features/contact/presentation/pages/contact_page.d
 import 'package:rotary_nl_rye/features/emergency/presentation/pages/emergency_page.dart';
 import 'package:rotary_nl_rye/features/home/presentation/pages/home_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/SettingsPage.dart';
+
+import 'dart:io' show Platform; // For platform detection
+
+import 'package:flutter/cupertino.dart'; // For iOS Cupertino components
+
 
 class PageNavigator extends StatefulWidget {
   @override
