@@ -6,7 +6,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,93 +14,99 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rotary_nl_rye/core/translation/deeplSupportedLang.dart';
 
 class Translate {
-  static Future<Map<String, dynamic>> text(
-      {required String inputText, String inputLang = 'NL'}) async {
+  static final Dio _dio = Dio(); // Initialize Dio
+
+  static Future<Map<String, dynamic>> text({
+    required String inputText,
+    String inputLang = 'NL',
+  }) async {
     Map<String, dynamic> result = {
-      'translation': '',
+      'translation': inputText, // Fallback to the input text
       'success': false,
-      'message': ''
+      'message': '',
     };
 
-    var lang = fetchLang();
+    String lang = fetchLang();
 
-    // check if input lang is different from the text
+    // Check if the input language matches the translation language
     if (lang == inputLang) {
-      result['translation'] = inputLang;
-      result['message'] = 'Text lang = to Translate lang';
-
-      return result;
-    }
-
-    print('Translating');
-
-    // check cache
-    SharedPreferences cache = await SharedPreferences.getInstance();
-    final key = lang + '+' + inputText;
-    if (cache.containsKey(key)) {
-      print('Retrieving from cache');
-      result['translation'] = Future.value(cache.getString(key));
+      result['message'] = 'Text language is the same as the target language';
       result['success'] = true;
-
       return result;
     }
 
-    // check network connection
-    if (!(await new InternetConnectionChecker().hasConnection)) {
-      result['translation'] = inputLang;
-      result['message'] = 'No connection';
-      result['success'] = false;
+    print('Translating...');
 
+    // Check cache for the translation
+    SharedPreferences cache = await SharedPreferences.getInstance();
+    final key = '$lang+$inputText';
+
+    if (cache.containsKey(key)) {
+      print('Retrieving translation from cache');
+      result['translation'] = cache.getString(key)!;
+      result['success'] = true;
       return result;
     }
 
-    // fallback to english
-    if (!(deeplSupportedLangs.containsValue(lang))) {
-      print('Language not supported. Fallback to english');
+    // Check internet connection
+    if (!(await InternetConnectionChecker().hasConnection)) {
+      result['message'] = 'No internet connection';
+      return result;
+    }
+
+    // Fallback to English if the language is not supported by DeepL
+    if (!deeplSupportedLangs.containsValue(lang)) {
+      print('Language not supported, falling back to English');
       lang = 'EN-US';
     }
 
-    print('Retrieving from deepl api');
+    // Fetch translation from DeepL API using Dio
+    print('Fetching translation from DeepL API...');
     final response = await getTranslation(lang, inputText);
-    final status = response.statusCode;
 
-    // check if api call was succes
-    if (status != 200) {
-      result['translation'] = inputText;
-      result['message'] = 'Api call failed with status: $status';
-
+    if (response.statusCode != 200) {
+      result['message'] = 'API call failed with status: ${response.statusCode}';
       return result;
     }
 
-    final body = jsonDecode(response.body);
-    result['translation'] = body['translations'][0]['text'];
-    result['success'] = true;
+    try {
+      final body = jsonDecode(response.data);
+      final translation = body['translations'][0]['text'];
+      result['translation'] = translation;
+      result['success'] = true;
 
-    print('Cache data');
-    cache.setString(key, result['translation']);
+      // Cache the translation
+      print('Caching translation...');
+      cache.setString(key, translation);
+    } catch (e) {
+      print('Error parsing translation response: $e');
+      result['message'] = 'Error parsing translation response';
+    }
 
     return result;
   }
 
-  static Future<http.Response> getTranslation(String lang, String input) async {
+  static Future<Response> getTranslation(String lang, String input) async {
     String data = await rootBundle.loadString('assets/keys/deepl.json');
     String key = json.decode(data)['key'];
-    return http.post(
-        Uri.parse('https://api-free.deepl.com/v2/translate?auth_key=$key'),
-        headers: <String, String>{
-          'Host': 'api-free.deepl.com',
-        },
-        body: <String, String>{
-          'text': input,
-          'target_lang': lang
-        });
+
+    return _dio.post(
+      'https://api-free.deepl.com/v2/translate',
+      options: Options(
+        headers: {'Host': 'api-free.deepl.com'},
+      ),
+      data: {
+        'text': input,
+        'target_lang': lang,
+        'auth_key': key,
+      },
+    );
   }
 
   static String fetchLang() {
-    if (Platform.localeName.split('_')[0] == 'zh') {
-      return 'ZH';
-    } else {
-      return Platform.localeName.split('_').join('-').toUpperCase();
-    }
+    String locale = Platform.localeName.split('_')[0];
+    return locale == 'zh'
+        ? 'ZH'
+        : Platform.localeName.split('_').join('-').toUpperCase();
   }
 }

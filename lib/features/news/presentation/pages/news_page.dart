@@ -2,10 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// 📦 Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/news.dart';
 import 'package:rotary_nl_rye/features/news/presentation/pages/non_pdf_news.dart';
@@ -27,12 +23,6 @@ class _NewsPageState extends State<NewsPage> {
   void initState() {
     super.initState();
     _newsBloc.getNewsData();
-    _removeBadge();
-  }
-
-  Future<void> _removeBadge() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('newsBadge', 0);
   }
 
   @override
@@ -62,7 +52,7 @@ class _NewsPageState extends State<NewsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            _buildHeaderStreamBuilder(),
+            _buildLocalHeader(),
             const SizedBox(height: 10),
             const Divider(thickness: 2),
             _buildNewsStreamBuilder(),
@@ -72,30 +62,19 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 
-  Widget _buildHeaderStreamBuilder() {
-    return StreamBuilder<String>(
-      stream: _newsBloc.header,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return CachedNetworkImage(
-            height: 170,
-            width: double.infinity,
-            imageUrl: snapshot.data!,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-              ),
-            ),
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          );
-        } else if (snapshot.hasError) {
-          return Center(child: Text(snapshot.error.toString()));
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+  // Updated method for loading the header as a local asset
+  Widget _buildLocalHeader() {
+    return Container(
+      height: 170,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(
+          image: AssetImage(
+              'assets/image/homepage/Informatiedag_14_september_2024.jpg'), // Local asset path
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 

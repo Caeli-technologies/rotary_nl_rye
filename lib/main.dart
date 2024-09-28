@@ -1,57 +1,23 @@
-// 🎯 Dart imports:
-import 'dart:async';
-import 'dart:io';
-
 // 🐦 Flutter imports:
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
-import 'core/custom_routes.dart';
-import 'core/data/initData.dart';
 import 'core/lang/languages.dart';
 import 'core/presentation/widgets/page_navigator.dart';
 import 'injection_container.dart' as di;
-
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print('Handling a background message: ${message.messageId}');
-
-  final prefs = await SharedPreferences.getInstance();
-  prefs.setInt('newsBadge', 1);
-}
-
-late AndroidNotificationChannel channel;
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  if (Platform.isAndroid) {
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  }
-
-  if (!kIsWeb) {
-    _initializeNotifications();
-  }
-
-  if (kDebugMode) {
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-  }
 
   await di.init();
   SystemChrome.setPreferredOrientations(
@@ -59,33 +25,20 @@ void main() async {
 
   runApp(MyApp());
 
-  final _repo = Repo();
-  _repo.initData('', '');
+  FlutterNativeSplash.remove();
 }
 
-Future<void> _initializeNotifications() async {
-  channel = const AndroidNotificationChannel(
-    'high_importance_channel',
-    'High Importance Notifications',
-    description: 'This channel is used for important notifications.',
-    importance: Importance.high,
-  );
-
-  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
+class _MyAppState extends State<MyApp> {
+  // Create an instance of FirebaseAnalytics
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -124,8 +77,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       title: 'Rotary Youth Exchange',
       debugShowCheckedModeBanner: false,
+      navigatorObservers: <NavigatorObserver>[observer], // Add observer here
       home: PageNavigator(),
-      routes: customRoutes,
     );
   }
 }

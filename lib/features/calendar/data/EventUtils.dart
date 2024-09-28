@@ -33,22 +33,30 @@ Future<LinkedHashMap<DateTime, List<Events>>> getData() async {
   events = EventResult.fromJson(data).events;
 
   eventsHashMap.clear();
+
   for (var event in events) {
     DateTime eventStart = event.start.dateTime;
     DateTime eventEnd = event.end.dateTime;
 
-    if (eventStart.isBefore(eventEnd)) {
+    // Single-day event: Add the event if the start and end date are the same
+    if (isSameDay(eventStart, eventEnd)) {
+      if (!eventsHashMap.containsKey(eventStart)) {
+        eventsHashMap[eventStart] = [];
+      }
+      eventsHashMap[eventStart]!.add(event);
+    } else {
+      // Multi-day event: Add the event to each day between start and end
       eventEnd =
           eventEnd.subtract(Duration(days: 1)); // Ensure end date is exclusive
-    }
 
-    for (DateTime date = eventStart;
-        date.isBefore(eventEnd) || isSameDay(date, eventEnd);
-        date = date.add(Duration(days: 1))) {
-      if (!eventsHashMap.containsKey(date)) {
-        eventsHashMap[date] = [];
+      for (DateTime date = eventStart;
+          date.isBefore(eventEnd) || isSameDay(date, eventEnd);
+          date = date.add(Duration(days: 1))) {
+        if (!eventsHashMap.containsKey(date)) {
+          eventsHashMap[date] = [];
+        }
+        eventsHashMap[date]!.add(event);
       }
-      eventsHashMap[date]!.add(event);
     }
   }
 

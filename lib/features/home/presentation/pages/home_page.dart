@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/exchange_student.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:rotary_nl_rye/features/calendar/presentation/pages/events_page.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/rotary_club_info_page.dart';
 import 'package:rotary_nl_rye/features/home/presentation/widgets/carousel_display.dart';
@@ -31,20 +30,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   bool _isLoading = false;
   List<ExchangeStudent> exchangeStudents = [];
   SharedPreferences? sharedPreferences;
-  int _currentNewsIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _loadBadge();
-    FlutterNativeSplash.remove();
-  }
-
-  void _loadBadge() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _currentNewsIndex = (prefs.getInt('newsBadge') ?? 0);
-    });
   }
 
   @override
@@ -84,19 +73,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               icon: FontAwesomeIcons.list,
               title: 'Programs',
               pushTo: ProgramPage(),
-              currentNewsIndex: 0,
             ),
             HomeCardItem(
               icon: FontAwesomeIcons.newspaper,
               title: 'News',
               pushTo: NewsPage(),
-              currentNewsIndex: _currentNewsIndex,
             ),
             HomeCardItem(
               icon: FontAwesomeIcons.calendarDays,
               title: 'Calendar',
               pushTo: CalendarPage(),
-              currentNewsIndex: 0,
             ),
           ],
         ),
@@ -107,19 +93,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               icon: FontAwesomeIcons.planeDeparture,
               title: 'Op Exchange',
               pushTo: OutboundPage(),
-              currentNewsIndex: 0,
             ),
             HomeCardItemToNL(
               icon: FontAwesomeIcons.planeArrival,
               title: 'To',
               pushTo: InboundPage(),
-              currentNewsIndex: 0,
             ),
             HomeCardItem(
               icon: FontAwesomeIcons.rotateRight,
               title: 'Rebound',
               pushTo: CountriesPage(),
-              currentNewsIndex: 0,
             ),
           ],
         ),
@@ -130,12 +113,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               icon: FontAwesomeIcons.campground,
               title: 'Camps & Tours List',
               pushTo: LoadCsv(),
-              currentNewsIndex: 0,
             ),
             HomeCardItemSingleRotary(
               title: 'voor Rotary Clubs',
               pushTo: ForRotaryClubsPage(),
-              currentNewsIndex: 0,
             ),
           ],
         ),

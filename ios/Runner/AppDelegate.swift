@@ -1,6 +1,6 @@
-import UIKit
 import Flutter
-import Firebase
+import UIKit
+import Firebase  // Add this import
 
 @main
 @objc class AppDelegate: FlutterAppDelegate {
@@ -8,11 +8,10 @@ import Firebase
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-      FirebaseApp.configure()
-    if #available(iOS 10.0, *) {
-      UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
-    }
-
+    FirebaseApp.configure()  // Initialize Firebase
+      if #available(iOS 10.0, *) {
+        UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
+      }
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

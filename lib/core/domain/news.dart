@@ -2,36 +2,52 @@
 import 'dart:async';
 import 'dart:convert';
 
+// 🧑‍💻 External packages:
+import 'package:dio/dio.dart';
+
 // 🌎 Project imports:
-import 'package:rotary_nl_rye/core/data/datasources/cache.dart';
-import 'package:rotary_nl_rye/core/data/datasources/config.dart';
-import 'package:rotary_nl_rye/core/data/initData.dart';
 import 'entities/news.dart';
 
 class NewsBloc {
-  final _headerController = StreamController<String>.broadcast();
   final _newsController = StreamController<List<News>>.broadcast();
+  final Dio _dio = Dio(); // Create an instance of Dio
 
-  final Cache cache = new Cache();
-
-  get header => _headerController.stream;
   get news => _newsController.stream;
 
+  final String url =
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/news.json';
+
   Future<List<News>> getNewsData() async {
-    await Repo().initData('', '');
-    final String imageHeader = await cache.getByKey(Config.spImageHeaderKey);
-    _headerController.sink.add(imageHeader);
+    try {
+      // Fetch the news data from the URL using Dio
+      final response = await _dio.get(url);
 
-    final List temp = json.decode(await cache.getByKey(Config.spNewsKey));
-    final List<News> news = [];
-    temp.forEach((json) {news.add(News.fromJson(json));});
-    _newsController.sink.add(news);
+      if (response.statusCode == 200) {
+        // Decode the response as a Map
+        final Map<String, dynamic> jsonResponse = response.data;
 
-    return news;
+        // Access the 'news' field which contains the list of news items
+        final List<dynamic> newsList = jsonResponse['news'];
+
+        // Convert the list to List<News> using the News model
+        final List<News> news =
+            newsList.map((json) => News.fromJson(json)).toList();
+
+        _newsController.sink.add(news);
+
+        return news;
+      } else {
+        throw Exception('Failed to load news data');
+      }
+    } catch (e) {
+      // Handle errors and optionally add logging here
+      print('Error fetching news data: $e');
+      _newsController.sink.addError(e);
+      return [];
+    }
   }
 
   Future<void> dispose() async {
     await _newsController.close();
-    await _headerController.close();
   }
 }

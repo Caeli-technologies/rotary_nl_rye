@@ -1,3 +1,4 @@
+**/dgph
 *.mode1v3
 *.mode2v3
 *.moved-aside
@@ -14,7 +15,6 @@ Icon?
 profile
 xcuserdata
 **/.generated/
-/build/
 Flutter/App.framework
 Flutter/Flutter.framework
 Flutter/Flutter.podspec
