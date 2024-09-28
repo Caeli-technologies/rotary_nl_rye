@@ -71,24 +71,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter_launcher_icons:
-  image_path: "icon/icon.jpg"
-  android: true
-  ios: true
-  min_sdk_android: 21 # android min sdk min:16, default 21
-  web:
-    generate: false
-    image_path: "icon/icon.jpg"
-    background_color: "#42a5f5"
-    theme_color: "#42a5f5"
-  windows:
-    generate: false
-    image_path: "icon/icon.jpg"
-    icon_size: 48 # min:48, max:256, default: 48
-  macos:
-    generate: false
-    image_path: "icon/icon.jpg"
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
@@ -106,6 +88,7 @@ flutter:
     - assets/image/homepage/
     - assets/icons/flags/
     - assets/icons/custom/
+    - assets/icons/icon.png
     - assets/lang/
     - assets/keys/deepl.json
     - assets/students/list.json
