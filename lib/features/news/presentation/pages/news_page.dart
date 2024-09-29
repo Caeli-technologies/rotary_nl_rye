@@ -71,7 +71,7 @@ class _NewsPageState extends State<NewsPage> {
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
           image: AssetImage(
-              'assets/image/homepage/Informatiedag_14_september_2024.jpg'), // Local asset path
+              'assets/image/homepage/Rebounddag_2024_Laren.png'), // Local asset path
           fit: BoxFit.cover,
         ),
       ),

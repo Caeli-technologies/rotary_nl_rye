@@ -47,7 +47,7 @@ class _LongTermExchangeInboundPageState
             height: 15,
             thickness: 2,
           ),
-          buildInboundOptionRow(context, 'Class of 2023-2024',
+          buildInboundOptionRow(context, 'Class of 2024-2025',
               FontAwesomeIcons.peopleGroup, ClassOfPageInbounds()),
           Divider(
             height: 15,
