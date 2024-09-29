@@ -1,7 +1,7 @@
-// 🐦 Flutter imports:
+// 🎯 Dart imports:
 import 'dart:io';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,9 +9,7 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/domain/entities/news.dart';
@@ -20,6 +18,10 @@ import 'package:rotary_nl_rye/core/prop.dart';
 import 'package:rotary_nl_rye/core/translation/translate.dart';
 import 'package:rotary_nl_rye/features/news/presentation/widgets/pdf_viewer.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+
+// import 'package:share_plus/share_plus.dart';
+// import 'package:url_launcher/url_launcher_string.dart';
+
 
 class NonPDFPage extends StatefulWidget {
   final News data;
@@ -42,10 +44,8 @@ class _NonPDFPageState extends State<NonPDFPage> {
   bool translationSuccess = true;
   String errorMessage = '';
 
-  String? _linkMessage;
+  // String? _linkMessage;
   String? id;
-
-  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   @override
   void dispose() {
@@ -54,13 +54,13 @@ class _NonPDFPageState extends State<NonPDFPage> {
     translate.clear();
     index = 0;
     translationIndex = 0;
-    _linkMessage = null;
+    // _linkMessage = null;
   }
 
   @override
   void initState() {
     super.initState();
-    _createDynamicLink(id = widget.data.id.toString());
+    // _createDynamicLink(id = widget.data.id.toString());
     _removeBadge();
   }
 
@@ -90,19 +90,19 @@ class _NonPDFPageState extends State<NonPDFPage> {
             ),
             child: PopupMenuButton<int>(
               itemBuilder: (context) => [
-                PopupMenuItem<int>(
-                    value: 0,
-                    child: Row(
-                      children: [
-                        Icon(
-                          CupertinoIcons.share,
-                          color: Palette.lightIndigo,
-                        ),
-                        const SizedBox(width: 7),
-                        Text('Share')
-                      ],
-                    )),
-                if (Platform.localeName != 'NL') PopupMenuDivider(),
+                // PopupMenuItem<int>(
+                //     value: 0,
+                //     child: Row(
+                //       children: [
+                //         Icon(
+                //           CupertinoIcons.share,
+                //           color: Palette.lightIndigo,
+                //         ),
+                //         const SizedBox(width: 7),
+                //         Text('Share')
+                //       ],
+                //     )),
+                // if (Platform.localeName != 'NL') PopupMenuDivider(),
                 if (Platform.localeName != 'NL')
                   PopupMenuItem<int>(
                       value: 1,
@@ -347,17 +347,17 @@ class _NonPDFPageState extends State<NonPDFPage> {
   Future<void> selectedItem(BuildContext context, item) async {
     switch (item) {
       case 0:
-        _createDynamicLink(id = widget.data.id.toString());
+        // _createDynamicLink(id = widget.data.id.toString());
 
-        if (await canLaunchUrlString(_linkMessage!)) {
-          await Share.share(
-              Platform.isIOS
-                  ? 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage'
-                  : 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
-              subject: 'look at this nice app :)');
-        } else {
-          throw 'Could not launch $_linkMessage';
-        }
+        // if (await canLaunchUrlString(_linkMessage!)) {
+        //   await Share.share(
+        //       Platform.isIOS
+        //           ? 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage'
+        //           : 'Hier moet nog een leuk stukje komen. + de link naar de juiste pagina $_linkMessage',
+        //       subject: 'look at this nice app :)');
+        // } else {
+        //   throw 'Could not launch $_linkMessage';
+        // }
 
         break;
       case 1:
@@ -393,27 +393,27 @@ class _NonPDFPageState extends State<NonPDFPage> {
     }
   }
 
-  Future<void> _createDynamicLink(String id) async {
-    final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://rotarynl.page.link',
-      link: Uri.parse('https://rotarynl.page.link/news?id=$id'),
-      androidParameters: AndroidParameters(
-        packageName: 'com.caelitechnologies.rotary_nl_rye',
-        minimumVersion: 1,
-      ),
-      iosParameters: IOSParameters(
-        bundleId: 'com.caelitechnologies.rotary-nl-rye',
-        minimumVersion: '1.0.0',
-        appStoreId: '1567096118',
-      ),
-    );
+  // Future<void> _createDynamicLink(String id) async {
+  //   final DynamicLinkParameters parameters = DynamicLinkParameters(
+  //     uriPrefix: 'https://rotarynl.page.link',
+  //     link: Uri.parse('https://rotarynl.page.link/news?id=$id'),
+  //     androidParameters: AndroidParameters(
+  //       packageName: 'com.caelitechnologies.rotary_nl_rye',
+  //       minimumVersion: 1,
+  //     ),
+  //     iosParameters: IOSParameters(
+  //       bundleId: 'com.caelitechnologies.rotary-nl-rye',
+  //       minimumVersion: '1.0.0',
+  //       appStoreId: '1567096118',
+  //     ),
+  //   );
 
-    final ShortDynamicLink shortLink =
-        await dynamicLinks.buildShortLink(parameters);
-    final Uri url = shortLink.shortUrl;
+  //   final ShortDynamicLink shortLink =
+  //       await dynamicLinks.buildShortLink(parameters);
+  //   final Uri url = shortLink.shortUrl;
 
-    setState(() {
-      _linkMessage = url.toString();
-    });
-  }
+  //   setState(() {
+  //     _linkMessage = url.toString();
+  //   });
+  // }
 }

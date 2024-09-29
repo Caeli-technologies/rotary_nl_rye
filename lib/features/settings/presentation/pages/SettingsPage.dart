@@ -1,6 +1,7 @@
-// 🐦 Flutter imports:
+// 🎯 Dart imports:
 import 'dart:io';
 
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:rotary_nl_rye/core/lang/languages.dart';
 import 'package:rotary_nl_rye/core/presentation/widgets/photo_gallery/gallery_view.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/SocialPage.dart';
+import 'package:rotary_nl_rye/features/settings/presentation/pages/contributors_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override

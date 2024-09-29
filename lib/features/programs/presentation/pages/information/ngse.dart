@@ -1,6 +1,8 @@
 // 🐦 Flutter imports:
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart'; // Add this import
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -32,23 +34,32 @@ class _NGSEProgramPageState extends State<NGSEProgramPage> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         children: <Widget>[
-          buildSectionTitle('NGSE: deelnemen'),
-          buildSectionTitle('NGSE: deelnemen', fontSize: 17.0),
+          buildSectionTitle('NGSE: Op zoek naar een stage of werkervaring?'),
           buildParagraph(
-              'NGSE behoort tot de vijfde service avenue van Rotary International, net als de Internationale Jeugduitwisselingen, Interact, Rotaract en RYLA.'),
+              'Op zoek naar een (internationale) stage of werkervaring? Rotary NGSE kan je helpen!'),
           buildParagraph(
-              'NGSE (New Generations Service Exchange) is een relatief nieuw Rotary uitwisselingsprogramma voor jonge volwassenen tussen de 18 en 30 jaar. Het is bedoeld voor jongeren die graag ervaring willen opdoen in het buitenland. Dit kan zijn als onderdeel van hun studie of als (meekijk) stage. Maar ook kan het worden ingezet om werkervaring op te doen buiten Nederland. De nadruk bij NGSE ligt op vocational en service-activiteiten. Deze kunnen ook via de clubactiviteiten van de Rotary Club ter plaatse (hostclub) worden uitgeoefend. Dankzij de NGSE leert de uitgezonden jongere over het leven in een ander land, over andere onderwijssystemen en andere arbeidsculturen. Voor jonge volwassenen vergroot dit hun wereld en hun netwerk. Door ideeën uit te wisselen en geïnspireerd te raken ontwikkelen zij ook hun kijk op de wereld (en op hun eigen zelfbeeld.) Zelfstandigheid, zelfvertrouwen en leiderschap kunnen hierdoor groeien.'),
-          buildSectionTitle(
-              'AANMELDEN - UITZENDEN EN ONTVANGEN DOOR NGSE & ROTARY CLUBS'),
+              'Het vinden van een passende (internationale) stage binnen je studie valt vaak niet mee. Contacten via je opleiding zijn er weinig of passen niet in het beeld van een stage die jij voor je ziet. Ook leads via familie of vrienden kosten veel tijd maar leveren niet altijd op wat jij hoopt.'),
           buildParagraph(
-              'Voor deze vorm van uitwisseling is geen wederkerigheid vereist. Een kandidaat kan zich bij een Rotary Club (sponsorclub) in zijn buurt aanmelden of rechtstreeks bij de NGSE-coördinator. De uitzendende Rotary Club mag financieel bijdragen, maar hoeft dat niet te doen. De NGSEcoördinator gaat op zoek naar een passende gastclub (hostclub) in het buitenland. Die hostclub en de kandidaat gaan samen op zoek naar een passend gastgezin of passende woonruimte en indien van toepassing, ook een passende onderwijsinstelling of werkgever. Als tegenprestatie houdt de uitgezonden jongere contact met de hostclub en helpt die club bij serviceprojecten, vocational projecten of andere humanitaire acties. Zo ontstaan soms wel levenslange contacten en vriendschappen. De hostclub kan natuurlijk ook zelf een jongvolwassene uitsturen naar Nederland en rekenen op de gastvrijheid van de sponsorclub van de uitgezonden Nederlandse NGSE-jongere. Maar dit is geen vanzelfsprekende zaak.'),
+              'Het wereldwijde netwerk van Rotary kan jou helpen – sinds een aantal jaren heeft Rotary de New Generations Service Exchange (NGSE) opgericht. Een programma gericht op jou als student of als werkzoekende die wel wat aanvulling op zijn/haar cv kan gebruiken. Ben je tussen de 18 en 30 jaar dan kun je je hiervoor aanmelden. De duur van een stage of werkervaring kan variëren - bij internationale stages buiten Europa geldt een duur van drie maanden voor een stage dit i.v.m. het visum. Bij andere stages kan dit variëren afhankelijk van jouw ideeën en die van de Rotary hostclub (ontvangende club).'),
+          SizedBox(height: 20),
+          buildImage('assets/image/RPFYA.png'),
+          buildSectionTitle('AANMELDEN - UITZENDEN EN ONTVANGEN'),
+          buildParagraphWithLink(
+              'Op de site van Rotary International kun je nog meer info over NGSE vinden: ',
+              'https://www.rotary.org/en/our-programs/new-generations-service-exchange'),
+          buildSectionTitle('KOSTEN'),
           buildParagraph(
-              'Iedere Rotary Club kan zichzelf ook aanmelden om als \'host\' of gastclub te fungeren, ook al is er nog geen aanmelding vanuit het buitenland.'),
-          buildSectionTitle('DUUR VAN UITWISSELING & KOSTEN'),
+              'Enerzijds verwachten we van jou dat je jouw hostclub helpt met hun (service) projecten tijdens jouw stage bij hen. Zo leer jij hen en zij jou kennen. Hier kunnen mooie verdere contacten uit ontstaan.'),
           buildParagraph(
-              'De duur van deze NGSE uitwisseling is variabel, maar bij werkervaringsstages geldt een maximum van drie maanden. Een visumaanvraag is veelal niet nodig of eenvoudig. Langere periodes (tot maximaal 6 maanden) zijn bespreekbaar afhankelijk van het gastland. De studie of stageplek voor de kandidaat moet geregeld zijn vóór de aankomst van de kandidaat in het gastland. Alle kosten zijn voor de kandidaat: reis, visum, inentingen, studie en verzekeringen.'),
-          buildParagraph(
-              'Bij inschrijving betaalt de kandidaat aan NGSE €150,00 ex BTW (€181,50 incl. BTW) inschrijfkosten.'),
+              'Deelname aan het NGSE programma kost in totaal €150,- ex BTW. De kosten voor reis, visum, inentingen, studie en verzekeringen zijn voor eigen rekening.'),
+          buildParagraphWithLink(
+              'Wil je meer weten of heb je vragen wat NGSE voor jou kan doen? Stuur een mailtje naar ',
+              'interesse@rotaryyep.nl'),
+          buildSectionTitle('Testimonies'),
+          buildTestimony(
+              'Tara Higgins: “When we travel, this amazing thing happens. We let down our guard. You’re constantly exposed to new experiences and new people. I’m so grateful for Rotary for allowing me to experience that.” Tara spent eight weeks in Ireland visiting a number of classrooms to improve her skills as a teacher.'),
+          buildTestimony(
+              'James Kolasinski: “The experience was beyond what I could have ever hoped for: Not only was the breadth of work experience completely unexpected, the hospitality I experienced was second to none.” James spent a month in Texas, USA, as a medical student in order to better understand international health care systems.'),
           buildEndSection(),
         ],
       ),
@@ -75,6 +86,54 @@ class _NGSEProgramPageState extends State<NGSEProgramPage> {
     );
   }
 
+  Widget buildParagraphWithLink(String text, String link) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: text,
+              style: TextStyle(fontSize: 14.0, color: Colors.black),
+            ),
+            TextSpan(
+              text: link,
+              style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => launchUrl(Uri.parse(link)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildTestimony(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      child: Text(
+        text,
+        style: TextStyle(
+            fontStyle: FontStyle.italic,
+            fontSize: 14.0,
+            color: Colors.grey[700]),
+      ),
+    );
+  }
+
+  Widget buildImage(String path) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: Image.asset(
+        path,
+        height: 200.0,
+      ),
+    );
+  }
+
   Widget buildEndSection() {
     return Column(
       children: <Widget>[
@@ -91,7 +150,7 @@ class _NGSEProgramPageState extends State<NGSEProgramPage> {
           padding: const EdgeInsets.only(top: 15.0),
           child: Center(
             child: Text(
-              'Update: 20 oktober 2020',
+              'Update: 29 september 2024',
               style: TextStyle(color: Color(0xFF777777)),
             ),
           ),

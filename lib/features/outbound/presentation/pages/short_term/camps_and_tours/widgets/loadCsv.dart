@@ -4,9 +4,9 @@ import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 // 📦 Package imports:
 import 'package:csv/csv.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -19,6 +19,7 @@ class LoadCsv extends StatefulWidget {
 
 class _LoadCsvState extends State<LoadCsv> {
   late Future<List<List<dynamic>>> _futureData;
+  final Dio _dio = Dio();
 
   @override
   void initState() {
@@ -27,17 +28,22 @@ class _LoadCsvState extends State<LoadCsv> {
   }
 
   Future<List<List<dynamic>>> getData() async {
-    final response = await http.get(
-      Uri.parse(
+    try {
+      final response = await _dio.get(
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/outbounds/camps-and-tours/zomerkampen.csv',
-      ),
-      headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'},
-    );
-    if (response.statusCode == 200) {
-      return CsvToListConverter(eol: '\r\n', fieldDelimiter: ';')
-          .convert(response.body);
-    } else {
-      throw Exception('Failed to load CSV data');
+        options: Options(
+          headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return CsvToListConverter(eol: '\r\n', fieldDelimiter: ';')
+            .convert(response.data);
+      } else {
+        throw Exception('Failed to load CSV data');
+      }
+    } catch (e) {
+      throw Exception('Error fetching data: $e');
     }
   }
 

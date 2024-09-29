@@ -50,13 +50,13 @@ flutter_native_splash:
     # 640 pixels in diameter.
     # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
     # 768 pixels in diameter.
-    #image: assets/android12splash.png
+    image: assets/icons/icon.png
 
     # Splash screen background color.
     #color: "#42a5f5"
 
     # App icon background color.
-    #icon_background_color: "#111111"
+    icon_background_color: "#42a5f5"
 
     # The branding property allows you to specify an image used as branding in the splash screen.
     #branding: assets/dart.png
@@ -66,12 +66,11 @@ flutter_native_splash:
     # parameters from above.
     #image_dark: assets/android12splash-invert.png
     #color_dark: "#042a49"
-    #icon_background_color_dark: "#eeeeee"
+    icon_background_color_dark: "#042a49"
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
   android: true
-  ios: true
   web: false
 
   # Platform specific images can be specified with the following parameters, which will override
@@ -100,7 +99,7 @@ flutter_native_splash:
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
   # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
   # fill_vertical, left, right, start, or top.
-  android_gravity: center
+  # android_gravity: center
   #
   # ios_content_mode can be one of the following iOS UIView.ContentMode (see
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,

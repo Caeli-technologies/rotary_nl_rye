@@ -1,24 +1,31 @@
 // 📦 Package imports:
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class ApiResponse {
+  final Dio _dio = Dio();
+
   Future<String> getBody(String url) async {
-    http.Response? response;
+    Response<String>? response;
+
     try {
-      response = await http.get(
-        Uri.parse(url),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      // Send GET request using Dio
+      response = await _dio.get(
+        url,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
       );
     } catch (e) {
-      throw Exception('unable to fetch from url $e');
+      // Handle Dio-specific exceptions
+      throw Exception('Unable to fetch from url: $e');
     }
 
     if (response.statusCode != 200) {
-      throw 'response ${response.statusCode}';
+      throw Exception('Error: Response status code ${response.statusCode}');
     }
 
-    return response.body;
+    return response.data ?? '';
   }
 }

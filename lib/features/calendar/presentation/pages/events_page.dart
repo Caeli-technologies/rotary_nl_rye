@@ -12,16 +12,16 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:map_launcher/map_launcher.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:rotary_nl_rye/features/calendar/data/EventUtils.dart';
-import 'package:rotary_nl_rye/features/calendar/models/EventModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/calendar/data/EventUtils.dart';
+import 'package:rotary_nl_rye/features/calendar/models/EventModel.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class CalendarPage extends StatefulWidget {

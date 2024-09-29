@@ -1,13 +1,15 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/pdf_viewer_share.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/info_list_tile.dart';
 import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/info_list_tile.dart';
 
 class InfoForJeugdcommissarisPage extends StatefulWidget {
   @override
@@ -44,7 +46,7 @@ class _InfoForJeugdcommissarisPageState
       'icon': FontAwesomeIcons.handsHoldingChild,
       'page': PDFPageWithShare(
           pdfUrl:
-              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/verklaring-jeugd-vrijwilliger-met-addendum-okt22-def.pdf'),
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/24-25/verklaring-jeugd-vrijwilliger-gedragscode-mdjc-jan23-definitieve-versie.pdf'),
     },
     {
       'title': 'Presentielijst DJC training',
@@ -65,7 +67,7 @@ class _InfoForJeugdcommissarisPageState
       'icon': FontAwesomeIcons.clipboardList,
       'page': PDFPageWithShare(
           pdfUrl:
-              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/actielijst-rotary-clubs-2023-2024-voorbereiding-ontvangst-inbound-student-def-1.pdf'),
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/24-25/actielijst-rotary-clubs-2025-2026-voorbereiding-ontvangst-inbound-student-def.pdf'),
     },
     {
       'title': 'Rules and Information Inbounds',

@@ -7,13 +7,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
+import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/AlgemeneInformatie/algemeneInfo.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/InfoCounselor/InfoCounselor.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/InfoGastgezin/InfoGastgezin.dart';
-import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/AlgemeneInformatie/algemeneInfo.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/Jeugdcommissaris/jeugd_commissaris.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/pages/belangrijkeDocumenten/important_documents.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:rotary_nl_rye/features/forRotaryClubs/presentation/widgets/option_row_data.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 
 class ForRotaryClubsPage extends StatefulWidget {
   @override

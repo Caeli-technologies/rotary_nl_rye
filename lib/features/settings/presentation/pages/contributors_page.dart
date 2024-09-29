@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/presentation/pages/contributors_details_page.dart';
 import 'package:rotary_nl_rye/core/prop.dart';
-import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:rotary_nl_rye/features/settings/presentation/pages/models/contributor.dart';
+import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'package:rotary_nl_rye/features/widgets/list_tiles.dart';
 
 class ContributorsPage extends StatefulWidget {

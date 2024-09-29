@@ -3,13 +3,11 @@ import 'dart:async';
 import 'dart:io';
 
 // 🐦 Flutter imports:
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -40,14 +38,13 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
       Completer<PDFViewController>();
   final StreamController<String> _pageCountController =
       StreamController<String>();
-  final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   String? _linkMessage;
 
   @override
   void initState() {
     super.initState();
-    _createDynamicLink(pdfUrl);
+    // _createDynamicLink(pdfUrl);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
@@ -78,17 +75,17 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
           Container(
             child: PopupMenuButton<int>(
               itemBuilder: (context) => [
-                PopupMenuItem<int>(
-                  value: 0,
-                  child: Row(
-                    children: [
-                      Icon(CupertinoIcons.share, color: Palette.lightIndigo),
-                      const SizedBox(width: 7),
-                      Text('Share in-app Link'),
-                    ],
-                  ),
-                ),
-                PopupMenuDivider(),
+                // PopupMenuItem<int>(
+                //   value: 0,
+                //   child: Row(
+                //     children: [
+                //       Icon(CupertinoIcons.share, color: Palette.lightIndigo),
+                //       const SizedBox(width: 7),
+                //       Text('Share in-app Link'),
+                //     ],
+                //   ),
+                // ),
+                // PopupMenuDivider(),
                 PopupMenuItem<int>(
                   value: 1,
                   child: Row(
@@ -186,47 +183,47 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
     );
   }
 
-  Future<void> _createDynamicLink(String pdfUrl) async {
-    setState(() {});
+  // Future<void> _createDynamicLink(String pdfUrl) async {
+  //   setState(() {});
 
-    final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://rotarynl.page.link',
-      link: Uri.parse('https://rotarynl.page.link/pdfUrl?url=$pdfUrl'),
-      androidParameters: AndroidParameters(
-        packageName: 'com.caelitechnologies.rotary_nl_rye',
-        minimumVersion: 1,
-      ),
-      iosParameters: IOSParameters(
-        bundleId: 'com.caelitechnologies.rotary-nl-rye',
-        minimumVersion: '1',
-        appStoreId: '1567096118',
-      ),
-    );
+  //   final DynamicLinkParameters parameters = DynamicLinkParameters(
+  //     uriPrefix: 'https://rotarynl.page.link',
+  //     link: Uri.parse('https://rotarynl.page.link/pdfUrl?url=$pdfUrl'),
+  //     androidParameters: AndroidParameters(
+  //       packageName: 'com.caelitechnologies.rotary_nl_rye',
+  //       minimumVersion: 1,
+  //     ),
+  //     iosParameters: IOSParameters(
+  //       bundleId: 'com.caelitechnologies.rotary-nl-rye',
+  //       minimumVersion: '1',
+  //       appStoreId: '1567096118',
+  //     ),
+  //   );
 
-    final ShortDynamicLink shortLink =
-        await dynamicLinks.buildShortLink(parameters);
-    final Uri url = shortLink.shortUrl;
+  //   final ShortDynamicLink shortLink =
+  //       await dynamicLinks.buildShortLink(parameters);
+  //   final Uri url = shortLink.shortUrl;
 
-    if (mounted) {
-      setState(() {
-        _linkMessage = url.toString();
-      });
-    }
-  }
+  //   if (mounted) {
+  //     setState(() {
+  //       _linkMessage = url.toString();
+  //     });
+  //   }
+  // }
 
   Future<void> _selectedItem(BuildContext context, int item) async {
-    _createDynamicLink(pdfUrl);
+    // _createDynamicLink(pdfUrl);
 
     switch (item) {
       case 0:
-        if (_linkMessage != null && await canLaunchUrlString(_linkMessage!)) {
-          await Share.share(
-            'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
-            subject: 'Look at this nice app :)',
-          );
-        } else {
-          throw 'Could not launch $_linkMessage';
-        }
+        // if (_linkMessage != null && await canLaunchUrlString(_linkMessage!)) {
+        //   await Share.share(
+        //     'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
+        //     subject: 'Look at this nice app :)',
+        //   );
+        // } else {
+        //   throw 'Could not launch $_linkMessage';
+        // }
         break;
       case 1:
         Directory tempDir = await getTemporaryDirectory();

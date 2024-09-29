@@ -52,7 +52,7 @@ class _LongTermExchangeOutboundPageState
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.asset(
-              'assets/image/classOff22.jpeg',
+              'assets/image/Class_of_2024-2025_outbunds.jpg',
               fit: BoxFit.cover,
             ),
           ),

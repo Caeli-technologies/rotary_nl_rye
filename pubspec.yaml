@@ -15,51 +15,35 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 8.0.2+95
+version: 9.0.0+98
 
 # authors:
 #   - Ruben Talstra <info@caeli-tech.com>
 #   - Jannik Norden <dev.janniknorden@gmail.com>
 environment:
-  sdk: ">=3.3.0 <4.0.0"
+  sdk: ^3.5.1
 
 dependencies:
-  badges: ^3.1.2
-  dio: ^5.6.0
+  dio: ^5.7.0
   cached_network_image: ^3.4.1
   carousel_slider: ^5.0.0
-  chewie: ^1.8.3
-  cloud_firestore: ^5.2.1
+  chewie: ^1.8.5
   csv: ^6.0.0
   cupertino_icons: ^1.0.8
-  dartz: ^0.10.1
-  equatable: ^2.0.5
-  firebase_analytics: ^11.2.1
-  firebase_auth: ^5.1.4
-  firebase_core: ^3.3.0
-  firebase_crashlytics: ^4.0.4
-  firebase_dynamic_links: ^6.0.4
-  firebase_messaging: ^15.0.4
-  firebase_remote_config: ^5.0.4
+  firebase_analytics: ^11.3.3
+  firebase_core: ^3.6.0
   flutter:
     sdk: flutter
-  flutter_app_badger:
-    git:
-      url: https://github.com/g123k/flutter_app_badger.git
   flutter_cached_pdfview: ^0.4.2
-  flutter_local_notifications: ^17.2.2
   flutter_localizations:
     sdk: flutter
   flutter_staggered_grid_view: ^0.7.0
   flutter_svg: ^2.0.10
-  flutter_swiper_null_safety: ^1.0.2
   font_awesome_flutter: ^10.7.0
-  get_it: ^7.7.0
-  internet_connection_checker: ^2.0.0
-  # maps_launcher: ^2.2.1
-  map_launcher: ^3.4.0
+  get_it: ^8.0.0
+  internet_connection_checker: ^1.0.0
+  map_launcher: ^3.5.0
   geocoding: ^3.0.0
-  mockito: ^5.4.4
   package_info_plus: ^8.0.2
   path_provider: ^2.1.4
   photo_view: ^0.15.0
@@ -72,27 +56,20 @@ dependencies:
   url_launcher: ^6.3.0
   video_player: ^2.9.1
   percent_indicator: ^4.2.3
-  audioplayers: ^6.0.0
+  audioplayers: ^6.1.0
 
   http: ^1.2.2
   flutter_cache_manager: ^3.4.1
   flutter_native_splash: ^2.4.1
   
-dependency_overrides:
-  web: ^1.0.0
 
 dev_dependencies:
-  dependency_validator: ^4.1.0
-  flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^4.0.0
+  dependency_validator: ^4.1.1
+  flutter_launcher_icons: ^0.14.1
+  flutter_lints: ^5.0.0
   import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
-
-flutter_icons:
-  image_path: "icon/icon.jpg"
-  android: true
-  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -111,6 +88,7 @@ flutter:
     - assets/image/homepage/
     - assets/icons/flags/
     - assets/icons/custom/
+    - assets/icons/icon.png
     - assets/lang/
     - assets/keys/deepl.json
     - assets/students/list.json

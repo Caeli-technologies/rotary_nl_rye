@@ -2,127 +2,108 @@
 import 'package:rotary_nl_rye/features/inbound/presentation/models/ClassOf.dart';
 
 List<Inbounds> inboundList = [
-  // João Vitor Alberti Rech
+  // Aiden Almaraz
   Inbounds(
-    name: 'João Vitor',
+    name: 'Aiden Almaraz',
     bio:
-        'Hallo! Hoe gaat het?\n\n Mijn naam is João Vitor, ik ben 17 jaar en ik kom uit Brazilië.\n\n I live in Bauru, a city in the state of São Paulo. My Rotary club in Brazil is Rotary Club Bauru Vitória Régia and my district is 4510.\n\n In the Netherlands, I’m living in Maarssen, a city next to Utrecht. I’m being hosted by the Rotary Club Maarssen, in district 1570.\n\n In Brazil, my house has 6nmembers: my mother, who participates in the Rotary Club Bauru Vitória Régia; my father, who works very hard; my sister, who is in the university studying to be a dentist; me, who participated in the Interact Club Bauru Aeroporto, and my two pets: a cat and a dog.\n\n I love reading and listening to music. My favorite book is “Enquanto eu não te encontro”, a Brazilian book by Pedro Rhuas, and my favorite singer is Lana Del Rey.\n\n I always wanted to do an exchange program, visit another country, learn a new language. I know about the Rotary and the RYE since I was a kid because some of my cousins already did the program.\n\n I hope I can meet a lot of people, make a lot of friends and learn Dutch. \n\n I’m so happy of finally making my dream come true in an amazing country!',
+        'Hello, my name is Aiden Almaraz and I am from Roger, Arkansas which is North East of Texas. Most people ask me, why leave the U.S and come here? Well the reason is because I’ve wanted to experience the world since I was young due to my grandma. She has traveled all over the world and has experienced so many things I won’t even experience. She would tell me bed time stories of her edventures. When I got older I heard of this opportunity and I grabbed it and didn’t let go. I’m currently staying in Eemnes with my wonderful host family. Out of this year I want to learn a third language and become well embedded with the culture here. ',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/joao-vitor-alberti-rech.jpeg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/aiden-almaraz.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'Brazilië',
-    fromFlag: 'br',
+    from: 'USA',
+    fromFlag: 'us',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  // Mili Alfonso Bermudez
+  // Annabel Austin
   Inbounds(
-    name: 'Milagros Alfonso',
+    name: 'Annabel Austin',
     bio:
-        'Hallo! Ik ben Milagros Alfonso, from La Falda a small city in Cordoba, Argentina. I am 16 years and I love reading, listening to music, playing piano, visiting museums and having new experiences! \n I am very excited for the exchange year in the Netherlands, I’ll be in Medemblik on the district 1580.\n I am sure that this will be a year full of learning and great experiences🫶',
+        'My name is Annabel Austin and I’m fifteen years old. I come from Switzerland (near Lucerne), and I have always wanted to do an exchange year. In my exchange, I want to visit many new places, make friends for life, experience the Dutch culture and learn Dutch. I want to get out of my comfort zone and grow to be more open. Now I’m living in Harderwijk, while I really like the city and my host family, I sometimes still miss my family at home. I\'m looking forward to having a once in a lifetime opportunity!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/milagros-alfonso.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/annabel-austin.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'Argentinië',
+    from: 'Switzerland ',
+    fromFlag: 'ch',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Martina Barra Ponce
+  Inbounds(
+    name: 'Martina Barra Ponce',
+    bio:
+        'I’m Martina Barra Ponce and I’m from Catamarca, Argentina. Currently I’m living in the city of Lelystad in the Netherlands and since I’m a kid I have always dreamed of making an exchange because I love traveling and get to know new cultures. So this programe (Rotary Youth Exchange) gave the opportunity to do that. This year I’m really looking forward to learn Dutch and also be able to get used to this totally new culture.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/martina-barra-ponce.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Argentina ',
     fromFlag: 'ar',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  // Luke Christopherson
+  // Paola Bellu
   Inbounds(
-    name: 'Luke Christopherson',
+    name: 'Paola Bellu',
     bio:
-        'I am from Chelan, a small town in eastern Washington State, USA. I am very passionate about sports, art, history and geography. I have been wanted to go on an exchange year for a long time, and am very grateful that I have the opportunity now! I am currently living in Arnhem, Gelderland(District 1560). I am very excited for the adventure I am taking on!',
+        'Hi I’m Paola, I’m from Italy and I’m 17 years old. I’m staying in Delft for my exchange and I’m loving it. I chose to do the Rotary Youth Exchange because I really love to travel and see new places and get to know new people and I really want and hope to achieve my goal to make new friends and see more cities as possible as well to learn a new, hard, language.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/luke-christopherson.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/paola-bellu.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'USA',
-    fromFlag: 'us',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Ella Day
-  Inbounds(
-    name: 'Ella Day',
-    bio:
-        'Hoi! My name is Ella Day. I am 17 years old and grew up in Okotoks Alberta, Canada. I\'m from District 5360.  I\'ll be spending my exchange year in Emmen. \n I love to read (40+ books so far this year), camp, bike, and play softball. \n I feel so lucky to have been selected for this wonderful opportunity and can\'t wait to see where it leads me, how I can grow my understanding of the Dutch language and culture, and most importantly how it will help me to grow as a person. ',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/ella-day.png',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Canada',
-    fromFlag: 'ca',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Angelica Galdini
-  Inbounds(
-    name: 'Angelica Galdini',
-    bio:
-        'Hello, I am Angelica Galdini, I’m 17 years old and I am from Como in Italy. \n\n In the Nederland I will spend the whole year in Maarssen.\n\n I like listening to music, going out with my friends and spending time with my family. \n\n I have always loved to travel, to know new cultures, visit new places and I’m really happy to be here. \n\n I hope this experience will make me grow and know new people from all the world!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/angelica-galdini.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Italië',
+    from: 'Italy',
     fromFlag: 'it',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  // Elena Guererro Hutt
+  // Carlotta Beraudi
   Inbounds(
-    name: 'Elena Guererro Hutt',
+    name: 'Carlotta Beraudi',
     bio:
-        'Hello! My name is Elena, I come from Mexico City. I am 16 years old, I love to cook and play basketball, I like to try new things and create new memories. I will currently be living in Epe and I’m in Rotary District 1560. \n\n "I\'m delighted to meet new people and share my new experiences!"',
+        'hi everyone, i’m carlotta and i’m from Italy, now i’m an exchange student in the netherlands more  specifically in Franeker. I’m a very chaotic and outgoing girl ( It\'s another way of saying that I talk a lot and make friends with everyone😂) the thing that i hate the most is not doing nothing. I love staying with other people and interact with everyone, i love to hang out and know new things. this is also one of the reasons of my exchange:get involved. i’ve thought a lot about my qualities and i’ve realised that this is one of the best ways to raise myself, i’ve understood that the thing that i needed was a personal grown. the others reason aremy desire to discover new cultures and languages. I hope that at end of this exchange i’ll be a different person, more mature and more open to all the experiences that my life deserves for me!!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/elena-guererro-hutt.jpeg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/carlotta-beraudi.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'Mexico',
-    fromFlag: 'mx',
+    from: 'Italy',
+    fromFlag: 'it',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  // Alaina Jackson
+  // Kimball Coffey
   Inbounds(
-    name: 'Alaina Jackson',
+    name: 'Kimball Coffey',
     bio:
-        'Hello, My name is Alaina Jackson and I am from Rotterdam New York. I am 16 years old and I have one brother named Caelum who is 18. I have traveled to many countries before such as Japan and Mexico, but this is my first time in Europe! Some things I enjoy are classical ballet dancing and art. I have been dancing since I was 3 years old and currently perform shows such as the Nutcracker with a company in upstate New York. Other than the arts, I enjoy going to school and learning subjects such as math and history. \n\n Currently I am living in Gouda, and I am loving my time here so far! I am very excited to continue exploring the culture and learn more about the Netherlands!',
+        'Hi! My name is Kimball Coffey and I am from Syracuse, New York in the United States. I am 17 years old and have 4 siblings back home. I am a sporty person and I enjoy cycling, baseball, and athletics. I also have quite the talent for languages and can speak English, Spanish, as well as a bit of French and Arabic. This year, I will live in Franeker in Friesland. I wanted to go on an exchange because I think it could be an eye opening opportunity to go and live amongst people of another culture. This year, I want to learn to speak Dutch as well as Frisian if possible, meet new people, and get to know everything that there is about the Netherlands.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/alaina-jackson.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/kimball-coffey.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -135,203 +116,70 @@ List<Inbounds> inboundList = [
     toFlag: 'nl',
   ),
 
-  // Lexis Jones
+  // Renzo Curra
   Inbounds(
-    name: 'Lexis Jones',
+    name: 'Renzo Curra',
     bio:
-        'Hello! My name is Lexis. I am from a very small town called Scranton in Kansas which only has a population of 700. I’m 16, but soon to be 17 this coming October. I live with my two brothers, mom, dog and cat, who is called Bee! For my exchange I will be going to Bussum, which is district 1570.\n\n I have a few hobbies! I’ve been drawing since I was 10 and still do. It one of my favorite creative outlets, and you can usually find my doodling in all sorts of papers! The past few years I’ve also crocheted, although I’m still quite slow at it and it’s usually a on and off hobby. I have plants in my room I also take care of. My favorite ones are my vibes which I cut and propagated myself. Lastly, I really enjoy going on walks/hikes!\n\n I’ve wanted to be an exchange student since I was 13, and I’m so thankful I was given this opportunity to be able to travel to a new country and learn all the new customs. Along with any history that comes with the Netherlands! <3',
+        'Hoi! I am Renzo Curra, from Olavarria and small city in Buenos Aires, Argentina, i live with my mum (mariana) and my dad (Gustavo) and my sister (Renata) she lives in another city because she is studing at university, i am 16 years old,i am a good person, i am so funny, i laugh all the time, i am so extrovert, i  like to meet new people. I am living in Oegstgeest with Jonneke (my host mum) and Frank (my host dad) i lived a few days with my host sister (Thil) but now she is in Italy. I am doing the Rotary Youth Exchange because i think is a good experience because is it only once in a lifetime at this age, i think is good apportunity because it opens your mind and helps you to think differently. In this year i want to meet people, try new food, learn another lenguage, see another culture, make friends from another country.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/lexis-jones.jpeg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/renzo-curra.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'USA',
-    fromFlag: 'us',
+    from: 'Argentina ',
+    fromFlag: 'ar',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  // Juliana Novo Rojas
+  // Mélusine Garnier
   Inbounds(
-    name: 'Juliana Novo Rojas',
+    name: 'Mélusine Garnier',
     bio:
-        'Hii, my name is Juliana but people call me Juli, I’m 15 years old. I come from Alicant, a city in Spain. My family is from Colombia, but me and my brother were born in Spain where we live with our parents. This year I will stay in Bennekom, Gelderland.\n\n I’m keen on doing windsurf, surf and everything that has to be with the sea. Also I love traveling, knowing new people, listening to music and playing the ukelele.\n\n I wish this will be a great year, and I’m looking forward to meet all the exchange students that are here in the Nederlands.',
+        '''Hoii! My name is Mélusine. I’m from France. When you think of France, you probably think of Paris and the Eiffel Tower but France it’s not only Paris. I was born in Paris, and now I live in Clermont Ferrand, since my second birthday. It would be a lie if I said my city is the prettiest in the world, but the landscapes make it beautiful. Now I live in Venlo, in Limburg. That means a lot of traditions and different dialects every 5 km. Limbourg is, for me, the family oriented part of The Netherlands. I wanted to go on RYE because since I was a child my dream was going abroad, visiting the world, meet new people, making connections… I’m in the youngest part of rotary (interact) so for me it’s was the perfect thing to do. Continue in my Rotary way and in the same realize my dream. I want to become fluent in Dutch, make friends for like, and "live the country" like a real Dutchie. This year will be the best of my life.''',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/juliana-novo-rojas.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/melusine-garnier.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'Spanje',
-    fromFlag: 'es',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Keona Olney
-  Inbounds(
-    name: 'Keona Olney',
-    bio:
-        'Hallo! My name is keona. I come from a small town on north Vancouver island, Bc Canada, called port hardy. I am currently 17, and turning 18 beginning of June. I live with my mom and dad, two cats, and as well two dogs. I also have a sister who is in university. For my exchange year I will be in Sneek, district 1590.\n\n I have been playing ice hockey since I was little, growing up in the arena on skates. I as well have been working for for a few years now, which has become another big hobby of mine. \n\n I have always loved traveling which brought me to rotary exchange. I am beyond thankful I was given this opportunity to explore, learn, and challenge myself.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/keona-olney.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Canada',
-    fromFlag: 'ca',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Sabrina Pinterich Almeida
-  Inbounds(
-    name: 'Sabrina Pinterich Almeida',
-    bio:
-        'Hallo! Mijn naam is Sabrina, ik ben zestien jaar en ik kom uit Curitiba in Brazilië.\n\n I was born and have lived my whole life in Curitiba, the capital of the state of Paraná in the south of Brazil. \n I’ve danced ballet since I was 3 years old and swim since I was 2. I’m also the public relations of my Interact Club in Curitiba. \n\n I love reading, traveling, listening to music and spending time with family and friends. \n\n My district in Brazil is 4730 and in Nederland is 1560. I’ll be living in a city called Winterswijk in Gelderland. \n\n I’m so excited to learn a new language, meet new people and a new culture. I’ve always dreamed of an exchange year so I’m so grateful for this opportunity and I’m going to make the most out of it!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/sabrina-pinterich-almeida.jpeg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Brazilië',
-    fromFlag: 'br',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Julia Piovesan
-  Inbounds(
-    name: 'Julia Piovesan',
-    bio:
-        'Hallo , Ik heet Julia Piovesan, I ben zeventien jaar en Ik kom uit Brazilië!\n\n I live São Paulo, in the southwest region of Brazil, one of the biggest city in the world!\n My birthday is 10 of July, My sign is Cancer ♋️ and I love this kind of things, also love reading books, listening to music, watching series, go to the gym, travel and go to the beach (I am a fan of this one).\n\n So the dream of doing an exchange program came from many years ago, when I was little I already had it in my mind that I really wanted to do an exchange program, my aunt did it and other people in my family also did it so that made me want to do it and dream about it! \n\n I hope to have the best year of my life here in the Netherlands and see and know a lot from here, from the culture, the incredible places and views, and of course learn the language!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/julia-piovesan.jpeg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Brazilië',
-    fromFlag: 'br',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Kaylavondra Radinka
-  Inbounds(
-    name: 'Kaylavondra Radinka',
-    bio:
-        '“You know, there’s a difference between like and love. I like my Skechers, but I love my Prada backpack.” Here is a quote from one of my favorite movies, 10 Things I Hate About You. I like to chill and read books at home, but I love exploring. So, here I am in another country to do my hobby, traveling and learning. \n\n Im Radinka Kaylavondra, people usually call me Kayla. I come from Surabaya, Indonesia, and I will be living in Lochem for a year. I have always wanted to study abroad since I was very little, so going on this exchange is the first step I take to achieve my dream. I really hope that through this exchange, I will be able to speak a new language, make a lot of new friends with people from all over the world, and ultimately to gain new experiences. \n\n Ik hou van Nederland! ',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/kaylavondra-radinka.jpeg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Indonesië',
-    fromFlag: 'in',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Jackson Rose
-  Inbounds(
-    name: 'Jackson Rose',
-    bio:
-        'Hello, my name is Jackson, I am 15 (soon to be 16) years old. I am from Canada and I live in a small town in B.C named Cranbrook, and I am going to Zwolle for my exchange year.\n\n I like to cook, bike, and do anything that has to do with sports. I consider myself fairly outgoing and enjoy meeting new people. I am very excited for the upcoming year!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/Jackson-Rose.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Canada',
-    fromFlag: 'ca',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Arthur Rougier
-  Inbounds(
-    name: 'Arthur Rougier',
-    bio:
-        'Hoi, ik ben Arthur, ik kom uit Frankrijk, Vichy ligt in de Auvergne, midden Frankrijk. En ik ben 15 jaar oud (16 in Oktober). In Nederland, ik woon in Etten Leur, district 1610. Ik hou van piano spelen, film kijken, sportschool, pretpark en skiën.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/arthur-rougier.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Frankrijk',
+    from: 'France',
     fromFlag: 'fr',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  //Owen Scruggs
+  // Javiera Gurdet Agurto
   Inbounds(
-    name: 'Owen Scruggs',
+    name: 'Javiera Gurdet Agurto',
     bio:
-        ' Hoi! Mijn naam is Owen en ik kom uit Jacksonville, Florida in de Verenigde Staten van Amerika. Ik ben zeventien jaar en woon in Wierden voor mijn uitwisseling. Ik kom uit district 6970 van noord Florida. Ik ben zo blij dat ik hier in Nederland ben, het is een prachtig land en de mensen hier zijn zo aardig! Ik kon me geen betere plek wensen dan hier. Bedankt allemaal om deze kans mogelijk te maken!',
+        'Hi, my name is Javiera Gurdet, I am from Vallenar, Chile. I am 15 years old and I currently live in Den hout, Achterstraat 3, with Petra and her family. I wanted to go on an exchange because I want to try new things, cultures, languages, different ways of seeing life. Since I was very young I have liked adventures and new challenges, that is why one of my dreams was to go on an exchange, I never lost faith in being able to achieve it and now I am here! This year I want to learn the language, culture, get to know the gastronomy, I really want to learn urban legends about this country, meet new people, get to know a different reality than what I was used to, but the most important thing is that I want to grow as a person, I want to be the best version of myself, I want to give my best so that more people can fulfill their dreams just like I did, I want to achieve every goal that I set for myself, I want to help others in everything I can, I want to bring innovative things to Chile, things that can really contribute to us; But more than just wanting this, I know that I will achieve everything I set out to do.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/owen-scruggs.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
     facebookUrl: null,
     instagramUrl: null,
     websiteUrl: null,
-    from: 'USA',
-    fromFlag: 'us',
+    from: 'Chile',
+    fromFlag: 'cl',
     to: 'Nederland',
     toFlag: 'nl',
   ),
 
-  // Senja Ulvinen
+  // Mónica Gomez Gonzalez
   Inbounds(
-    name: 'Senja Ulvinen',
+    name: 'Mónica Gomez Gonzalez',
     bio:
-        'Hoi, my name is Senja Ulvinen and I’m 17 years old. I come from small town called Lapua. Lapua is located in the west of Finland (D1385). My family includes my dad and my mom and three little brothers. We also have a dog.\n\n I enjoy reading books and watching movies or series. I like to spend time with my friends and family but I also like to be by myself. I’m joyful and cheery. I like to make people happy and laugh. I’m tolerant of other people. I like to see and experience new things. So the exchange year is perfect for me.\n\n Here in The Netherlands I live in Dronten (D1590), I think it’s a nice village. People here are friendly and I’m having good time here. \n\n I look forward to what the future holds. I hope to make unforgettable memories and many new friends.',
+        'Hi, my name is Mony Gómez and I’m Mexican,  I am 16 years old and now I’m living probably one of the biggest adventures of my life, I’m doing an exchange year in the Netherlands, specifically in a small but beautiful village, believe me when I say small (700 inhabitants), Vierhouten, and it’s situated in the middle of the Netherlands. I decided to go abroad just for knowing and living something different, as I said, I believe that  this will be a great adventure, I hope to know the language, food, culture, traditions, make friends and relationships that last for years, also I’ll love to leave a bit of myself and Mexico in the Dutch hearts. I just expect to have fun experiencing the typical Dutch life.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/senja-ulvinen.jpeg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    from: 'Finland',
-    fromFlag: 'fi',
-    to: 'Nederland',
-    toFlag: 'nl',
-  ),
-
-  // Valentina Velazco Garay
-  Inbounds(
-    name: 'Valentina Velazco Garay',
-    bio:
-        'I’m Valentina from Mexico and I love to learn new lenguages and traditions',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/23-24/valentina-velazco-garay.jpeg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/monica-gomez-gonzalez.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -344,21 +192,283 @@ List<Inbounds> inboundList = [
     toFlag: 'nl',
   ),
 
-  // name
-  // Inbounds(
-  //   name: 'name',
-  //   bio: 'test',
-  //   imageUrl:
-  //       'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-  //   email: null,
-  //   phoneNumber: null,
-  //   snapchatUrl: 'https://www.snapchat.com/add/juliaaltieri20/',
-  //   facebookUrl: null,
-  //   instagramUrl: 'https://www.instagram.com/juli.altieri/',
-  //   websiteUrl: null,
-  //   from: 'Canada',
-  //   fromFlag: 'ca',
-  //   to: 'Nederland',
-  //   toFlag: 'nl',
-  // ),
+  // Kali Harkness
+  Inbounds(
+    name: 'Kali Harkness',
+    bio:
+        'My name is Kali Harkness and I\'m a Canadian from BC. My current host family is in Hezze but later in the year I\'ll be moving to Valkenswaard where my host club is located. The idea of gaining a better understanding of the world and also learning a new language really appealed to me and is the base for why I wanted to go on this exchange. In my year here I really just want to work on putting myself out there, trying new things and being involved as well learning the language and working on personal interests such as improving my art skills. Things will change and new opportunities will arise, I want to achieve the most I am capable of, my idea of what that is right now is vague.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/kali-harkness.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Canada',
+    fromFlag: 'ca',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Rafael Macias Gonzalez
+  Inbounds(
+    name: 'Rafael Macias Gonzalez',
+    bio:
+        'Hallo!, I ‘am Rafael Macias from Teodelina a small city in Santa fe ,Argentina.  My district in Argentina is 4945. I’m 17 years old  I am living in Enkhuizen ,Noord of holland  I’m part of the district 1580 I decided to enter the Exchange program because it is a way to get know different cultures, open your mind, connect with the world and make new contacts. I\'m living a dream because I wanted to do this a few years ago, it is a unique opportunity so I hope to do it in the best way possible and make the most beautiful memories. A bit about me:  I like to play football and dive. I am a curious boy, I like to learn from others, spend time with friends and enjoy life. This year in Netherlands I hope to learn a little of the language, get to know its culture and visit places and it would be a dream to meet the queen of Netherlands who is from Argentina. If you want to contact me this is my instagram Rafamacias10 and my email Rafa10macias@gmail.com',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/rafael-macias-gonzalez.jpg',
+    email: 'Rafa10macias@gmail.com',
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: 'https://www.instagram.com/Rafamacias10/',
+    websiteUrl: null,
+    from: 'Argentina ',
+    fromFlag: 'ar',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Maggie Reissig
+  Inbounds(
+    name: 'Maggie Reissig',
+    bio:
+        'Hi! My name is Maggie Reissig, and I’m from the United States. When I applied last September, I had no idea what I had in store for me. I had never imagined myself being able to stay in a small city called Baarlo, 4,000 miles from home. All my life, I have wanted to travel and explore the world, and there was no better way to push myself than to get on a plane and go a year experiencing everything I can. I want more than anything to gain perspective, and be able to speak and understand more than one language. My goals for this year are to see as much as possible, and learn as much language as possible.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/maggie-reissig.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'USA',
+    fromFlag: 'us',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Stella Riccio
+  Inbounds(
+    name: 'Stella Riccio',
+    bio:
+        'I’m Stella, I’m 17 and I’m from Cagliari.\n\n My mother and my father are Anna and Roberto and my sister and my brother are Grazia and Mario. I have a dog named Emma. I like reading and shopping. I’m living here in Netherland (my first choice) in a place called Venlo with Gunda and Willem, my first host family. I like them, they are so nice with me and we visited some nice places.\n\n At the beginning I was disoriented, but now I’m fine and I really like staying here.\n\n I heard about the possibility of staying here from my family, because my father is an ex-rotarian. I hope this year I will be able to live in another place so far from Italy and to learn the dutch.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/stella-riccio.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Italy',
+    fromFlag: 'it',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Ximena Reyes Flores
+  Inbounds(
+    name: 'Ximena Reyes Flores',
+    bio:
+        'I´m Ximena Reyes, I come from the northwest of Mexico and I\'m currently living in Enschede for my exchange year. I decided to live the experience of an exchange year because I love traveling and new experiences as much as I love knowing new people. I love having a lot of fun and learning how different cultures are all around the world. I really want to achieve a very good level in Dutch and make friendships for life. ',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/ximena-reyes-flores.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Mexico',
+    fromFlag: 'mx',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Kaleena Sahim
+  Inbounds(
+    name: 'Kaleena Sahim',
+    bio:
+        'I’m Kaleena Sahim and i’m from the United States, specifically Washington state. this year I am staying in Schiedam. I wanted to go on a a youth exchange because I didn’t feel that I was being pushed to grow at school both academically and socially while in the States. This year I hope to grow as a person, learn new things as well as find myself as a person.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/kaleena-sahim.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'USA',
+    fromFlag: 'us',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Nínive Santos de Siquiera
+  Inbounds(
+    name: 'Nínive Santos de Siquiera',
+    bio:
+        'Hello, my name is Nínive. Im from Brazil, Im staying at Waalwijk in the Nederlands. I wanted to do the Rotary youth exchange because since I was a little girl, I wanted to do an exchange program and learn a new culture/language! My main goal this year is to learn dutch!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/ninive-santos-de-siquiera.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Brazil',
+    fromFlag: 'br',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Sebastián Silva Ramos
+  Inbounds(
+    name: 'Sebastián Silva Ramos',
+    bio:
+        'Hello! My name is Sebastian Silva, and I’m 17 years old from Quito, Ecuador. This year, I’m embarking on an exciting adventure, living in Roosendaal in the southern Netherlands. I’m passionate about football and look forward to diving into this new chapter of my life. I chose to make this move because I believe it will be one of the most rewarding experiences, offering me the chance to learn the language, meet new people, and immerse myself in the culture of this amazing country.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/sebastian-silva-ramos.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Ecuador',
+    fromFlag: 'ec',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Alberto Silvestri
+  Inbounds(
+    name: 'Alberto Silvestri',
+    bio:
+        'My name is Alberto, I’m from Italy and I was born in Siena. Here in the Netherlands, I’m staying in Roosendaal. I wanted to do the Rotary Youth Exchange because I liked the idea behind it: changing host families three times during the year to push us out of our comfort zone. This year, I especially want to grow by experiencing and getting used to different situations, trying to adapt to new challenges, and learning new things, like the language.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/alberto-silvestri.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Italy',
+    fromFlag: 'it',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Wheel Srisopon
+  Inbounds(
+    name: 'Wheel Srisopon',
+    bio:
+        'Hallo! I’m Wheel, Rotary Youth Exchange from Thailand, district 3350. In the Netherlands, I live in Scherpenzeel with the Rotary club of Scherpenzeel-Woenberg, district 1570. Being an exchange student has always been my dream since I was young, and with the Rotary, I have got a very amazing opportunity to be here in the Netherlands. My biggest goal from this exchange year is to have a wonderful experience in the Netherlands and to be able to speak in Dutch. I really enjoyed living here so far. The people, the host-family and of course the Rotary are very nice and kind. I’m looking forward to more amazing experiences in the Netherlands!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/wheel-srisopon.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Thailand',
+    fromFlag: 'th',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Renan Thomé
+  Inbounds(
+    name: 'Renan Thomé',
+    bio:
+        'Hello, my name is Renan Russo, I am 17 years old and I come from Brazil. In my country, I really like playing football, skateboarding and going to the beach. here, I am living in Den Hout, a small village in the province.I wanted to join RYEP because I believe it is an opportunity to acquire a lot of knowledge and open your mind to other cultures and I chose the Netherlands because it is a very unique country! It is a very eco-friendly country, with solar panels, windmills and bicycles (I love cycling). I also want to learn Dutch, as we have Dutch-speaking neighbors (Suriname). During my stay here, I plan to explore more and more Dutch culture, learn the language, make friends and visit the most famous places in the country.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/renan-thome.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Brazil',
+    fromFlag: 'br',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Maria Eduarda Zanelato
+  Inbounds(
+    name: 'Maria Eduarda Zanelato',
+    bio:
+        'Hi, I\'m Duda, from Brazil, and I\'m staying in the city of Haaksbergen, NL. I have wanted to do an exchange since I was twelve years old, I have always been curious to know a new language, culture and customs, Rotary is providing this for me. During this year of exchange I hope to get to know the country and its customs, in addition to growing as a person, with more responsibilities and deciding which way to follow in the future 😀',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/24-25/maria-eduarda-zanelato.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: 'Brazil',
+    fromFlag: 'br',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+
+  // Venla Laine
+  Inbounds(
+    name: 'Venla Laine',
+    bio: '',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: '?',
+    fromFlag: 'eu',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+  // Luke Reid
+  Inbounds(
+    name: 'Luke Reid',
+    bio: '',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: '?',
+    fromFlag: 'eu',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
+  // Alexina Taylor
+  Inbounds(
+    name: 'Alexina Taylor',
+    bio: '',
+    imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    from: '?',
+    fromFlag: 'eu',
+    to: 'Nederland',
+    toFlag: 'nl',
+  ),
 ];

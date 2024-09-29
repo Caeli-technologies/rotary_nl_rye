@@ -9,11 +9,12 @@ import 'package:rotary_nl_rye/core/prop.dart';
 
 class HomeCardItemSingleRotary extends StatelessWidget {
   final String title;
-  final int currentNewsIndex;
-  final pushTo;
+  final Widget pushTo;
 
-  HomeCardItemSingleRotary(
-      {required this.title, this.pushTo, required this.currentNewsIndex});
+  HomeCardItemSingleRotary({
+    required this.title,
+    required this.pushTo,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +30,10 @@ class HomeCardItemSingleRotary extends StatelessWidget {
           elevation: 0,
           highlightElevation: 0,
           onPressed: () {
-            if (pushTo != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => pushTo),
-              );
-            }
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pushTo),
+            );
           },
           color: Palette.themeCardShadeColor,
           height: 80,
