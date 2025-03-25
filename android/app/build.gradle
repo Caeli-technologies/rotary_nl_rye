@@ -17,8 +17,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.caelitechnologies.rotary_nl_rye"
     compileSdk = flutter.compileSdkVersion
-    // ndkVersion = flutter.ndkVersion
-    ndkVersion = "26.1.10909125"
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -72,8 +71,6 @@ flutter {
 }
 
 dependencies {
-    // Your other dependencies...
-
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     // Add core library desugaring dependency
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.2'

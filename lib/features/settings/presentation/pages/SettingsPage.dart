@@ -117,7 +117,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 FontAwesomeIcons.wifi,
                 Platform.isIOS
                     ? CupertinoSwitch(
-                        activeColor: Palette.accentColor,
+                        activeTrackColor: Palette.accentColor,
                         value: isSwitchedFT,
                         onChanged: _saveSwitchState,
                       )

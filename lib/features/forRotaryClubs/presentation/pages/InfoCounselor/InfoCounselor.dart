@@ -23,7 +23,7 @@ class _InfoCounselorPageState extends State<InfoCounselorPage> {
       'icon': FontAwesomeIcons.handsHoldingChild,
       'page': PDFPageWithShare(
           pdfUrl:
-              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/handboek-counselor-versie-2024-2025-def.pdf'),
+              'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/handboek-counselor-versie-2025-2026-def.pdf'),
     },
     {
       'title': 'First Night Questions',

@@ -16,6 +16,8 @@ class _CarouselState extends State<Carousel> {
   int _current = 0;
 
   final List<CarouselModel> carousels = [
+    CarouselModel(
+        image: 'assets/image/homepage/Digitale-infomarkt-24-mei-2025.png'),
     CarouselModel(image: 'assets/image/homepage/Rebounddag_2024_Laren.png'),
     CarouselModel(image: 'assets/image/homepage/Inboundweekend_sept24.png'),
     CarouselModel(image: 'assets/image/homepage/Rotex24-25.png'),
