@@ -13,7 +13,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
 import 'package:rotary_nl_rye/core/prop.dart';
@@ -38,8 +37,6 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
       Completer<PDFViewController>();
   final StreamController<String> _pageCountController =
       StreamController<String>();
-
-  String? _linkMessage;
 
   @override
   void initState() {
@@ -232,16 +229,8 @@ class _PDFPageWithShareState extends State<PDFPageWithShare> {
 
         await Dio().download(pdfUrl, path);
 
-        if (_linkMessage != null && await canLaunchUrlString(_linkMessage!)) {
-          await Share.shareXFiles(
-            [XFile(path)],
-            text:
-                'Hierbij verstuur ik een linkje van een Document: $_linkMessage',
-            subject: fileName,
-          );
-        } else {
-          throw 'Could not launch $_linkMessage';
-        }
+        await Share.shareXFiles([XFile(path)], subject: fileName);
+
         break;
     }
   }
