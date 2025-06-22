@@ -2,13 +2,12 @@
 import 'package:rotary_nl_rye/features/outbound/presentation/models/ClassOf.dart';
 
 List<Outbounds> outboundList = [
-  // Fien ten Hoeve
   Outbounds(
-    name: 'Fien ten Hoeve',
+    name: 'Fleur Altena',
     bio:
-        'Hiii, \nIk ben Fien uit Franeker in Friesland en ik ga dit jaar op uitwisseling met Rotary. Ik ben nu 17 jaar en word in de zomer 18, waarna ik een jaar naar de prachtige stad Rome ga in Italië. \nIk zal vanaf september in jaar 4 zitten in Rome. Volgens mijn gastbroer kom ik gelukkig in een klas met leerlingen van ongeveer dezelfde leeftijd. Ik heb in Italië een vakkenpakket dat aardig aansluit op het vakkenpakket dat ik nu ook heb, wat voornamelijk beta vakken zijn. \nAangezien er weinig mensen goed Engels spreken in Italië, zullen de eerste paar maanden vast wat pittiger worden, maar toch kijk ik er heel erg naar uit om de cultuur te leren kennen, de taal te leren en vooral om heel veel Italiaanse gerechten te eten!!',
+        'Hee ik ben Fleur Altena en 18 jaar oud. Ik had nooit verwacht dat ik echt op Exchange zou gaan maar het is echt zo! Ik mag naar mijn droom locatie in Italië namelijk Cagliari, Sardinië! Ik kan niet wachten om Italiaans te leren spreken en de cultuur daar te ontdekken, maar het aller belangrijkste; ik kan niet wachten op een tweede thuis. Het jaar zal vast vol ups en downs zitten, maar het wordt het dubbel en dwars waard.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/fien-ten-hoeve.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/fleur-altena.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -18,177 +17,15 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'Italië',
+    to: 'Italy',
     toFlag: 'it',
   ),
-
-  // Fien Theewen
   Outbounds(
-    name: 'Fien Theewen',
+    name: 'Rachelle van Dam',
     bio:
-        'Hey! \nIk ben Fien Theewen, ik ben 16 jaar oud en ik woon in Venlo. Voor mijn exchange year ga ik naar Jacksonville Florida, in het stadje Fernandina beach! \nMijn ouders kwamen vorig jaar bij mij met het idee om een exchange year te gaan doen. Het sprak mij meteen aan, en ben meteen gaan kijken naar de eerste meeting met rotary voor zo’n exhange year. \nIk kijk heel erg naar dit jaar uit. Ik hoop veel vrienden te maken, veel dingen te leren en het beste uit mezelf te halen, en een echte Amerikaanse high school ervaring mee te maken. En natuurlijk genieten van alle avonturen!',
+        'Hoi!\n Ik ben Rachelle van Dam 16 jaar oud en woon in Lochem. Ik ga naar Canada district 5360 in de stad Cochrane. Toen ik klein was hoorde ik al veel verhalen van mijn familie over de Rotary, namelijk mijn moeder, vader en broer zijn ook met de Rotary een jaar op uitwisseling geweest. Sinds dat ik klein was wou ik dit ook altijd al doen. En nu is het zo ver! Ik hoop dat ik veel nieuwe dingen ga leren en ontdekken en dat ik mijn Engels kan verbeteren. Ook hoop ik dat ik vrienden voor het leven ga maken. Ik heb er ontzettend veel zin in en kan niet wachten!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/fien-theewen.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'USA',
-    toFlag: 'us',
-  ),
-
-  // Jasper Verhofstad
-  Outbounds(
-    name: 'Jasper Verhofstad',
-    bio:
-        'Hoi! \nIk ben Jasper Verhofstad, 17 jaar oud en woon in Baarlo. \nIk ga op exchange naar Finland! Ik hoop dat ik een goede band opbouw met mijn gastgezinnen en vrienden die ik daar maak. \nOok hoop ik de Finse cultuur en taal te leren. \nIk kan niet wachten om het grootste avontuur van mijn leven aan te gaan en in augustus het vliegtuig op te stappen!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/jasper-verhofstad.png',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Finland',
-    toFlag: 'fi',
-  ),
-
-  // Vincent Kemper
-  Outbounds(
-    name: 'Vincent Kemper',
-    bio:
-        'Hoi, \nIk ben Vincent en ik ben nu nog 15 jaar oud maar 16 jaar als ik op exchange ga. Ik heb geen broertjes of zusjes. Ik woon in Venlo, Limburg. Ik ga op exchange naar Centraal Amerika, district 6110. \nIk heb nog geen contact met mijn gastouders daar. Ik hoop dat ik een geweldige exchange ervaring zal hebben en een hoop leuke dingen ga meemaken. \nIk spreek al vloeiend Engels maar maak nog veel fouten en heb nog een flink Nederlands accent als ik Engels spreek. Ik kijk enorm uit om naar high school te gaan. Ik speel basketbal en ik hoop dat ik daar in het basketbal team kom. \nIk heb er enorm veel zin in!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/vincent-kemper.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'USA',
-    toFlag: 'us',
-  ),
-
-  // Carleen Bruining
-  Outbounds(
-    name: 'Carleen Bruining',
-    bio:
-        'Hoi, \nIk ben Carleen, ik ben momenteel 18 jaar oud. Ik ga over twee maanden naar Mexico! Ik heb al contact gehad met mijn gastgezin, ze waren heel aardig. Ze leken super enthousiast om mij als gastkind te hebben en ze hebben veel katten, dus mijn enthousiasme is enorm! Ik verblijf in een vrij kleine stad tussen Toluca en Mexico-Stad. Mijn stad ligt ook bovenop een berg, wat betekent dat ik altijd minstens 2800 meter hoog zal zijn. Ik heb dit programma gekozen om mijn horizon echt te verbreden en een totaal nieuwe cultuur te leren kennen en er hopelijk deel van uit te maken. Ik wilde ook een nieuwe taal leren en Spaans leek me de beste optie vanwege de veelzijdigheid ervan. Ik kijk er vooral naar uit om nieuwe mensen te ontmoeten en de natuur, culturele gebruiken, nieuwe gerechten enz. te ontdekken. Op dit moment ben ik nog steeds bezig met het verkrijgen van mijn visum en hopelijk land ik over ongeveer twee maanden in Mexico!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/carleen-bruining.png',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Mexico',
-    toFlag: 'mx',
-  ),
-
-  // Tim Hilderink
-  Outbounds(
-    name: 'Tim Hilderink',
-    bio:
-        'Hallo!! \nIk ben Tim Hilderink, ik ben 17 jaar en ik ga naar Brazilië op Exchange in het jaar 2024-2025 naar het dorpje Canela in de buurt van Porto Alegre. \nIk woon in Haaksbergen een dorpje in de buurt van Enschede met mijn ouders, broer en mijn hond Sepp. Ik heb dit jaar 5 havo gedaan en ik ben hopelijk geslaagd, wat ik hier na wil doen weet ik nog niet zo goed maar daar heb ik nu genoeg tijd voor gekregen om even goed over na te denken. In mijn vrije tijd speel ik hockey en padel. \nIk kijk met heel veel plezier uit naar het aankomende jaar en al helemaal na alle leuke activiteiten die ik met de Rotary en Rotex heb gedaan. Het lijkt me ook heel leuk om het Portugees onder de knie te hebben maar het is wel een hele lastige taal ook heb ik zin om alle nieuwe mensen van de school daar te ontmoeten. Ik ben echt super blij dat ik dit ga doen en ik ben heel dankbaar voor de kans die mij geboden is.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/tim-hilderink.png',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Brazilië',
-    toFlag: 'br',
-  ),
-
-  // Izak van Os
-  Outbounds(
-    name: 'Izak van Os',
-    bio:
-        'Hoi, \nIk ben Izak van Os. \nIk ben 16 jaar oud en ik ga op exchange naar Brazilië. Daar verblijf ik in Assis, een stadje in het zuidwesten van de staat Sao Paulo. \nOm eerlijk te zijn weet ik nog helemaal niet wat ik moet verwachten. Van verschillende leden van de Rotex moet ik geloven dat het als een blonde en lange buitenlander niet moeilijk is om vrienden te maken. Dus daar verheug ik wel op. \nMijn gastmoeder had al vroeg contact opgezocht met mijn ouders via Whatsapp. Ik daarentegen heb alleen contact met het nichtje van mijn hostouders die in hetzelfde huis woont. Veel mensen uit Assis zijn me al gaan volgen op Insta, dus ik verwacht een warm welkom.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/izak-van-os.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Brazilië',
-    toFlag: 'br',
-  ),
-
-  // Myrthe de Jong
-  Outbounds(
-    name: 'Myrthe de Jong',
-    bio:
-        'Hiii, \nIk ben Myrthe de Jong, \nik ben nu 17 jaar. Nu woon ik nog in Alphen a/d Rijn maar over een paar maandjes ga ik naar Poulsbo North kitsap in de USA!! \nIk heb een hele leuke sponsor club, deze club is in Neede , dat is praktisch gezien aan de andere kant van het land. Ik ben daar wel al op een hele leuke kennismaking geweest en ben dankbaar dat ze mijn sponsorclub willen zijn. \nIk ben heel erg benieuwd hoe het in de USA zal gaan en hoe verschillend het van Nederland is. Ik heb heel veel zin om daar achter te komen en vindt het stiekem toch wel spannend nu het steeds dichterbij komt. \n“Lifetime in a year” \nI am looking forward to it!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/myrthe-de-jong.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'USA',
-    toFlag: 'us',
-  ),
-
-  // Lysanne Smits
-  Outbounds(
-    name: 'Lysanne Smits',
-    bio:
-        'Heyhoi! \nIk ben Lysanne Smits en ben op dit moment 17 jaar. Ik kom uit het kleine stadje Franeker in Friesland. Sporten is mijn grootste hobby! Ook speel ik de klarinet. \nIn 2024-2025 ga ik op uitwisseling naar Italië! Ik kom terecht in de stad Cremona. De stad van Stradivarius. Als muziekliefhebber vind ik dit enorm leuk! \nIk ga naar een scientifico school met voornamelijk beta-vakken. Dit gaat pittig worden in het italiaans maar het komt goed overeen met mijn vakkenpakket in Nederland dus dat is handig :) \nIk kijk enorm uit naar dit jaar. Het zal zeker niet makkelijk worden maar heb zin om de uitdaging uit te gaan! Het zal een leuk avontuur worden.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/lysanne-smits.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Italië',
-    toFlag: 'it',
-  ),
-
-  // Emily Odink
-  Outbounds(
-    name: 'Emily Odink',
-    bio:
-        'Hoi, \nIk ben Emily Odink 16 jaar oud en ik woon in Lelystad. Dit jaar ga ik naar Rossland een klein stadje in British Colombia, Canada. Het ligt tussen de bergen, dus in de zomer wordt er gemountainbiked en in de winter geskied hier kijk ik erg naar uit. \nDit jaar hoop ik veel nieuwe mensen te leren kennen en levenslange vriendschappen te sluiten. Ook ben ik benieuwd naar het Canadese school leven. Ik kan niet wachten tot het zover is :)',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/emily-odink.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/rachelle-van-dam.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -201,14 +38,12 @@ List<Outbounds> outboundList = [
     to: 'Canada',
     toFlag: 'ca',
   ),
-
-  // Rinske Baarda
   Outbounds(
-    name: 'Rinske Baarda',
+    name: 'Job Dekker',
     bio:
-        'Ciao! \nIk ben Rinske Baarda en ik ben 17 jaar oud. Ik ga komend schooljaar naar Lecco in Italië. Dat is een stad boven Milaan in district 2042. \nIk heb er heel veel zin in! Mij lijkt het heel interessant om over de cultuur te leren en het leven daar te ervaren. Ook hoop ik de taal goed te leren. Daar ben ik als voorbereiding al een beetje mee bezig. Ik heb al contact met mijn eerste gastgezin en ik kan niet wachten om ze te ontmoeten en een geweldige tijd met de gastgezinnen te beleven. \nIk heb tot nu toe veel plezier beleefd tijdens de selectie- en trainingsdagen en ik vond het heel leuk om de andere prebounds beter te leren kennen. Nu zijn we een hele leuke, hechte groep. Dit hoop ik ook te krijgen met mijn nieuwe vrienden en de andere exchangestudenten in Italië. \nIk heb heel veel zin in mijn avontuur :) \nArrivederci!',
+        'Hoi!\n Ik ben Job. Ik ben 16 jaar oud. Ik woon in Epe. Ik ga naar San Carlos de Bariloche in Argentinië. Ik heb al contact gehad met mijn gastfamilie. Ik ben daar, net als de plek waar ik naartoe ga, heel blij mee, want Bariloche is precies wat ik wilde. Ik kijk vooral uit naar ontdekken van de nieuwe cultuur en het leren van Spaans.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/rinske-baarda.png',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/job-dekker.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -218,77 +53,15 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'Italië',
-    toFlag: 'it',
-  ),
-
-  // Marcella Jorge Vaz
-  Outbounds(
-    name: 'Marcella Jorge Vaz',
-    bio:
-        'Hi! \nIk ben Marcella, ik ben 17 jaar en ik ga voor mijn exchange year 24/25 naar Amerika, New York state. En ik heb hier natuurlijk super veel zin in! Het lijkt me sinds ik een jaar of 12 ben al echt super leuk om naar een Amerikaanse High School te gaan, dus het is echt een droom voor mij die uitkomt. En dit is ook echt iets wat je maar 1 keer in je leven kan doen, dus ik vind het heel leuk dat ik dit mag meemaken aankomend schooljaar. \nHet district waar ik heenga is district 7120, en ik kom in een van de plaatsjes Palymra of Macedon terecht dichtbij Rochester, ook ligt het dichtbij Canada en bij de waterval Niagara Falls. De school waar ik heenga heet Pal-Mac high school en ik heb hier natuurlijk al van alles opgezocht op internet en het ziet er uit als een hele leuke school. De school waar ik naartoe ga weet ik dus al wel, maar mijn gastfamilie heb ik nog niet dus dat is nog even afwachten wie dat zullen gaan worden. \nIk heb er in ieder geval heel veel zin in en ik hoop dat ik een heel leuk jaar ga hebben in Amerika. En ook hoop ik dat ik veel nieuwe dingen zal leren en ontdekken over de Amerikaanse cultuur. \nAls je mijn tijd daar wilt volgen kun je mijn Instagram volgen: @Marcellaa.jv',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/marcella-jorge-vaz.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'USA',
-    toFlag: 'us',
-  ),
-
-  // Mathilde van den Berg
-  Outbounds(
-    name: 'Mathilde van den Berg',
-    bio:
-        'Heyy \nIk ben Mathilde en ik ben 17 jaar. Ik kom uit Leiden en ik hou van shoppen met vrienden, leuke dingen doen en lekker eten! \nIk ga dit jaar naar District 2032 in Italië! Dat ligt vlak bij Genua. Ik hoop dat ik mijn bucketlist kan voltooien, zoals een Italiaanse bruiloft bijwonen, Italiaans leren koken en natuurlijk de cultuur ontdekken als een echte Italiaanse! \nIk ben vooral benieuwd wat dit jaar mij gaat brengen hoe mijn gastouders gaan zijn en of ik daadwerkelijk ga veranderen zoals mensen zeggen. \nIk hoop dat dit het jaar van mijn leven wordt! \nSaluti -groetjes-',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/mathilde-van-den-berg.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Italië',
-    toFlag: 'it',
-  ),
-
-  // Xavier Peters
-  Outbounds(
-    name: 'Xavier Peters',
-    bio:
-        'Hoi! \nIk ben Xavier Peters, ik ben 17 jaar oud en ik woon in Roosendaal. \nIk ga komend jaar met mijn exchange naar Argentinië in het district 4945. Dit is een multi district bestaande uit Uruguay en Argentinië. Hier zal ik verblijven in het prachtige Santa Fe! \nIk heb enorm veel zin in komend jaar om nieuwe mensen te leren kennen, een nieuwe taal te leren en om met name zelfvoorzienend te worden!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/xavier-peters.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Argentinië',
+    to: 'Argentina',
     toFlag: 'ar',
   ),
-
-  // Cathelijne van der Pluijm
   Outbounds(
-    name: 'Cathelijne van der Pluijm',
+    name: 'Valentijn van Dijk',
     bio:
-        'Hoi hoi, \nIk ben Cathelijne van der Pluijm, 17 jaar oud en ik kom uit Waalwijk, Brabant. \nIk ga een jaar lang naar de Verenigde Staten. Ik zit in de buurt van Syracuse in de staat New York. Ik heb hier natuurlijk heel veel zin in en kan niet wachten om vele mooie herinningen te maken! \nIn de winter van 2019 had mijn gezin Colton, een jongen uit Amerika in huis via de Rotary Youth Exchange. Dit was zo’n gave ervaring dat ook ik nu bijna 5 jaar later op Exchange naar Amerika mag gaan via Rotary. \nVeel mensen vragen of ik het niet spannend vind om een jaar weg te gaan,  maar ik kan zeggen dat ik op dit moment er vooral veel zin in heb om op dit grote avontuur te gaan!',
+        'Olá,\n Ik ben Valentijn en ik ga volgend jaar naar Brazilië 🇧🇷! Ik ben 18 jaar oud en ik kom uit Scherpenzeel. Ik heb al een aantal jaar in gedachte dat ik graag op exchange zou willen en nu is het eindelijk zover. Veel mensen vertellen me dat ze het spannend zouden vinden, maar ik kijk er enkel naar uit. Ik ga verblijven in Bauru, een stad met 400.000 inwoners in het midden van de staat São Paul. Mijn gastmoeder heeft al contact opgezocht en ik heb al leuke gesprekken met haar gehad. Ik kijk erg uit naar mijn uitwisselingsjaar en het ontmoeten van mijn gastouders en gast club ( en niet te vergeten het lekkere weer ☀️😍).\n Tchau!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/cathelijne-van-der-pluijm.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/valentijn-van-dijk.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -298,37 +71,15 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'USA',
-    toFlag: 'us',
-  ),
-
-  // Jasmijn Peterse
-  Outbounds(
-    name: 'Jasmijn Peterse',
-    bio:
-        'Hoii \nIk ben Jasmijn Peterse, ik ben 16 jaar oud en ik kom uit Den Hout in Noord Brabant. \nIk ga volgend jaar naar Brazilië. Ik verblijf dan in de stad Curitiba. Ik heb er voor gekozen om een jaar naar het buitenland te gaan omdat ik meer van de wereld wilde zien en niet op een toeristische manier. Ik wilde de cultuur van een ander land leren kennen. \nIk heb niet echt verwachtingen voor dit jaar zodat alles een verrassing wordt. Ik heb heel veel zin om allemaal nieuwe mensen en culturen te leren kennen. \nIk heb nu al een tijdje contact met mijn gastouders. Ze zijn super aardig en hebben me al een paar handige tips gegeven voor volgend jaar.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/jasmijn-peterse.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Brazilië',
+    to: 'Brazil',
     toFlag: 'br',
   ),
-
-  // Bo Heijns
   Outbounds(
-    name: 'Bo Heijns',
+    name: 'Niels Doejaaren',
     bio:
-        'Hi, \nIk ben Bo, 15 jaar en ik ga 24/25 naar Frankrijk op Exchange. Ik zit nu in Vwo 4 en woon in Delft, zodra ik terug ben maar ik mijn Vwo af. \nIk ga naar Bellerive-sur-Allier, dit ligt dichtbij Vichy en ergens in het midden van Frankrijk. Ik kijk er erg naar uit om een nieuwe taal te leren, nieuwe ervaringen op te doen, nieuwe vrienden maken en veel te leren.',
+        'Hoi!\n Mijn naam is Niels Doejaaren, ik ben 16 jaar en ik ga dit jaar naar Italië!\n\n Een paar weken geleden kreeg ik te horen dat ik mocht gaan, en ik was helemaal opgelucht dat ik naar Italië mag gaan. Ik ben geplaatst in Sassari, Sardinië een van de grootste steden in het kleine Sardinië. Ik ben benieuwd hoe het cultuur zich verschilt van Italië zelf. En ik ben ook erg gedreven om Italiaans te kunnen spreken aan het eind van het jaar. Tot nu toe is het altijd wel gezellig geweest met de rotary en laatst hadden we de farewell party met alle outbounds die dit exchange jaar in Nederland zijn verbleven.\n\nArriverderci!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/bo-heijns.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/niels-doejaaren.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -338,17 +89,33 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'Frankrijk',
-    toFlag: 'fr',
+    to: 'Italy',
+    toFlag: 'it',
   ),
-
-  // Britt Groeneboer
   Outbounds(
-    name: 'Britt Groeneboer',
+    name: 'Ellemare Galema',
     bio:
-        'Hoi! \nMijn naam is Britt, ik woon in Nunspeet en ik ben 18 jaar oud. Ik ga komend schooljaar op Exchange naar Canada in de provincie New Brunswick. \nIk kijk al een lange tijd uit naar dit Exchange avontuur en ik heb enorm veel zin om deze zomer aan het jaar van mijn leven te beginnen. Ik hoop op een enorm leuk jaar waarin ik nieuwe vrienden voor het leven maak en veel nieuwe ervaringen op zal doen. \nIn Canada mag ik naar een echte high school en het lijkt mij heel leuk om de Engelse taal straks vloeiend te kunnen spreken. Daarnaast kijk ik uit naar de reis die ik met mede Exchange student kan maken in Noord-Amerika en natuurlijk alle andere ervaringen die mij te wachten staan! \nAl met al ben erg benieuwd hoe het is om een jaar lang weg van huis te zijn, maar ik kijk vooral heel erg uit naar het jaar wat mij te wachten staat in Canada!',
+        'Hallo allemaal!\nMijn naam is  Ellemare Galema en ik word in Juli 18 jaar. Ik woon in een dorpje naast Leeuwarden. In mijn vrije tijd spreek ik graag met mijn vrienden af, werk ik in een verzorgingshuis voor bejaarden en vind ik sporten super leuk. \n\nEind augustus vertrek naar Argentinië (Paraná, dat ligt ongeveer 6 uur rijden van Buenos Aires) in het jaar 2025-2026. Ik heb super veel zin om de Argentijnse cultuur te leren kennen,  vloeiend Spaans te leren spreken en nieuwe mensen te leren kennen. Ik heb inmiddels ook contact met mijn eerste gastgezin en ik krijg nu extra veel zin om in augustus te vertrekken! Mijn ouders krijgen een meisje uit de Verenigde Staten, deze leer ik ook kennen want na haar komst verrek ik twee weken later naar Argentinië. \n\nIn het voortraject ben ik er achter gekomen dat je super veel moet regelen maar leer je ook al veel mensen kennen uit je eigen land maar ook uit andere landen, hier leer je super veel van. De dagen en het weekend wordt je al een beetje voorbereid op je Exchange. \n\nIk ben super dankbaar dat ik naar Argentinië mag, ik heb er zin in!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/britt-groeneboer.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/ellemare-galema.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Argentina',
+    toFlag: 'ar',
+  ),
+  Outbounds(
+    name: 'Fem Govers',
+    bio:
+        'Ik ben Fem Govers, ik ben momenteel 16 jaar oud. Over ongeveer twee maanden vertrek ik naar Amerika! Ik ga wonen in Carlsbad, een stad aan de kust in Californië. Ik heb al contact gehad met mijn gastgezin en ze zijn echt superlief en enthousiast. Ze lijken het heel leuk te vinden dat ik bij hen kom wonen en dat maakt mij natuurlijk ook extra blij en enthousiast! Carlsbad ziet er prachtig uit en ligt vlak bij de oceaan, dus ik kan niet wachten om daar het leven te ervaren. Ik heb voor dit programma gekozen omdat ik heel graag een nieuwe cultuur wil leren kennen en mezelf echt wil uitdagen door uit mijn comfortzone te stappen. Ik kijk er vooral naar uit om nieuwe mensen te ontmoeten, het Amerikaanse schoolleven mee te maken, leuke uitstapjes te doen, en natuurlijk ook om de Amerikaanse natuur en cultuur te ontdekken. Op dit moment ben ik nog bezig met de laatste voorbereidingen zoals mijn visum, maar hopelijk land ik over ongeveer twee maanden in het zonnige Carlsbad!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/fem-govers.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -361,14 +128,156 @@ List<Outbounds> outboundList = [
     to: 'Canada',
     toFlag: 'ca',
   ),
-
-  // Madyke de Groot
   Outbounds(
-    name: 'Madyke de Groot',
+    name: 'Fiene Hahn',
     bio:
-        'Hoi! \nMijn naam is Madyke de Groot, ik ben 17 jaar oud en woon samen met mijn ouders in Nunspeet. \nKomend jaar ga ik op uitwisseling naar de Verenigde Staten. Ik ga wonen in Arlington, een dorpje in de staat Washington. \nArlington ligt tussen Seattle en Vancouver en is omgeven door mooie natuurgebieden. \nHet wonen bij gastgezinnen is voor mij een hele nieuwe ervaring en dat zal vast even wennen zijn. \nKomend schooljaar volg ik het junior jaar op de highschool van Arlington. In de ochtend lessen volgen en ‘s middag tijd voor sport en cultuur. \nHet wordt vast een spannende tijd waarin ik hoop veel mensen te leren kennen en door alle ervaringen als persoon te groeien. \nIk heb er ontzettend veel zin in!',
+        'Hii, ik ben Fiene Hahn, ik ben 16 jaar oud en ik ga in augustus 2025 voor 11 maanden lang naar Argentinië bij het stadje San Juan. ik heb hier ontzettend veel zin in en ik kan niet wachten om te gaan. Mijn gezin heeft op dit moment al bijna 3 maanden een Exchange student uit Argentinië. Hij verteld altijd dat dit zijn beste jaar van zijn leven is en heel veel plezier heeft in Nederland. Zelf krijg ik heel veel vragen of ik het spannend vind maar ik kan nu eigenlijk alleen maar zeggen dat ik er super veel zin in heb!!!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/madyke-de-groot.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/fiene-hahn.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Argentina',
+    toFlag: 'ar',
+  ),
+  Outbounds(
+    name: 'Teuntje Harmsma',
+    bio:
+        'Hii, \n Ik ben Teuntje, ik ben 16 jaar en ik woon in Bodegraven. Ik hou van pianospelen, afspreken met vriendinnen en mooie plekken bezoeken. Ik zit nu in mijn 4e jaar van het vwo. Ik zit op school in Woerden, en daardoor heb ik daar een Rotaryclub gevonden die mij wil sponsoren. Daar ben ik ze heel dankbaar voor. Ik ben op het idee gekomen om een jaaruitwisseling te doen met Rotary via mijn opa, die heel lang bij de Rotary heeft gezeten en me altijd over deze unieke kans vertelde. \n\nIk ga in het jaar 2025/2026 naar het prachtige stadje Cranbrook in Canada, British Columbia. Dit ligt in district 5080, een tweelanden-district met een deel van Canada (British Columbia) en een deel van de VS: Washington en Idaho. Cranbrook wordt omringd door de Purcell Mountains en de Rocky Mountains, en ligt op 4 uur rijden van de stad Calgary. De dichtstbijzijnde grens met de VS is 80 km. Cranbrook staat bekend als de zonnigste plaats in British Columbia. \n\nIk heb al contact gehad met mijn eerste hostfamilie en ze zijn superaardig. Ik heb enorm veel zin in dit avontuur! Ik kijk ernaar uit om een Canadese high school te ervaren (ik ga naar Mount Baker Secondary School), om nieuwe mensen te ontmoeten, om nieuwe gerechten te proberen, om wilde dieren te spotten, de Canadese cultuur te ontdekken, Canadese landschappen te bewonderen en me in te zetten als ambassadeur voor Rotary. Kortom: ik heb er superveel zin in! \n\nTwijfel niet om contact met me op te nemen voor vragen! Mijn telefoonnummer is 06 83352902 en mijn Instagram is \'teuntjeharmsma\'.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/teuntje-harmsma.jpg',
+    email: null,
+    phoneNumber: '+31683352902',
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: 'https://www.instagram.com/teuntjeharmsma/',
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'USA',
+    toFlag: 'us',
+  ),
+  Outbounds(
+    name: 'Nila Hernandez Camacho',
+    bio:
+        'Hoi! Ik ben Nila, 16 jaar, en ik woon in Almere, maar over minder dan twee maanden vertrek ik naar Indonesië! Ik heb net 5 havo afgerond en te horen gekregen dat in ben geslaagd, dus het avontuur gaat nu echt bijna beginnen! Ik ga wonen in Surabaya, de op één na grootste stad van het land, wat ligt op het eiland Java. Het wordt een enorm avontuur, want ik ben nog nooit in Azië geweest. In Surabaya zal ik naar SMA Trimurti gaan, een middelbare school midden in de stad. Ik kijk er ontzettend naar uit om de Indonesische cultuur, mensen, taal, het eten en het dagelijks leven te ontdekken en écht te ervaren. Sampai jumpa, Indonesia!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/nila-hernandez-camacho.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'indonesia',
+    toFlag: 'id',
+  ),
+  Outbounds(
+    name: 'David Holl',
+    bio:
+        'Hoi!\n\n Ik ben David, 17 jaar oud, en ik heb zojuist mijn eindexamens voor de havo afgerond. Ik woon in Etten-Leur (Noord-Brabant) samen met mijn twee broertjes en mijn zusje. In het schooljaar 2025-2026 ga ik op uitwisseling naar Kamloops, een dorpje in British Columbia, Canada! Kamloops heeft ongeveer 100.00 inwoners en ligt in district 5060, ongeveer drie uur rijden van de grens met de Verenigde Staten. Hier in Nederland speel ik tafeltennis en ga ik regelmatig naar de sportschool. Tijdens mijn uitwisseling hoop ik nieuwe sporten te ontdekken en deel te nemen aan sportactiviteiten op mijn Canadese school, Valleyview Secondary School. Op school zal ik een hoop sociale vakken volgen zoals outdoor education en career life connections zodat ik veel nieuwe dingen leer en veel nieuwe vrienden maak. Kamloops ligt in de bergen en heeft dus een groot aanbod aan bergsporten. Naast dit alles wil ik mijn Engels verbeteren, zelfstandiger worden en vooral heel veel plezier te maken! Met de steun van mijn fijne club hier in Nederland, mijn nieuwe club in Kamloops en mijn gastgezinnen heb ik er alle vertrouwen in dat dit een onvergetelijk jaar wordt! Na mijn uitwisseling ga ik Aerospace Engineering studeren in Delft. Mijn verbeterde Engels zal daar zeker van pas komen. Ik wens alle andere prebounds ook een fantastisch uitwisselingsjaar toe, en ik kijk nu al uit naar al jullie verhalen. Ik kan niet wachten tot dit avontuur gaat beginnen!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/david-holl.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Canada',
+    toFlag: 'ca',
+  ),
+  Outbounds(
+    name: 'Ben Hoogvliet',
+    bio:
+        'Hallo,\n Mijn naam is Ben. Ik ben 16 jaar oud en ik ga op 16 augustus naar Japan. Ik ga een jaar lang wonen in het stadje Nara, dicht bij Osaka en Kioto. Het is een jaar waar ik al twee jaar naar uitkijk, en ik ben superblij dat zo’n droom uitkomt. Ik zit nu op de middelbare school, 4 havo. Ik hou van boksen, surfen, gitaar spelen en ik ben al een jaar Japans aan het leren met een Japanse docent. Daardoor kan ik het eerste Japanse alfabet (hiragana) lezen. Ik woon in Voorschoten en heb twee zussen en één broer, waarvan er twee niet meer thuis wonen. Ik zit op school in Leiden, op het Agora Bonaventuracollege. Ik vind het supercool dat ik naar Japan mag gaan, dus ik ga er met trots naartoe en ik ga er een topjaar van maken!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/ben-hoogvliet.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Japan',
+    toFlag: 'jp',
+  ),
+  Outbounds(
+    name: 'Nilla Kamps',
+    bio:
+        'Olá,\n Ik ben Nilla, 17 jaar oud en ik kom uit Spanbroek (Noord-Holland). Voor mijn exchange year 25/26 ga ik naar Brazilië! Ik heb er ontzettend veel zin in en kijk er naar uit om iedereen te ontmoeten. Ik kom in het plaatsje Ivoti, helemaal in het zuiden van Brazilië. Ik ben nu al bezig met online Portugese lessen van een Braziliaanse docent, drie keer in de week. Dat doe ik samen met andere exchange students uit Duitsland, Turkije en andere landen. Het Turkse en Duitse meisje worden ook gehost door mijn Braziliaanse Rotaryclub dus wij gaan elkaar snel echt ontmoeten. Deze week hoop ik mijn visum te krijgen want over een maand vlieg ik naar Brazilië. De tijd gaat snel nu! Het Portugees is nog wel een uitdaging maar ik ga ervan uit dat het helemaal goed komt als ik daar ben en niets anders hoor dan die taal. :-)',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/nilla-kamps.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Brazil',
+    toFlag: 'br',
+  ),
+  Outbounds(
+    name: 'Rozan Korevaar',
+    bio:
+        'Hoi!\n Ik ben Rozan en ben 16 jaar oud. Ik heb mijn 5e jaar havo af. Ik woon op dit moment in Maarssen en Haarzuilens en mag over een tijdje mijn nieuwe woonplek zien in Argentinië! Ik kijk er erg naar uit om naar mijn dorp San Antonio Oeste te gaan aan de kust in het rotary district 4921.  Ik kijk er erg naar uit om mijn lieve gastfamilies te ontmoeten en meer te leren over Argentinië. Ik hoop de taal goed onder de knie te krijgen en meer te weten te komen over de cultuur.  Dit jaar gaat een fantastisch avontuur worden en ik kijk er nu al enorm naar uit om te vertrekken. Groetjes Rozan',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/rozan-korevaar.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Argentina',
+    toFlag: 'ar',
+  ),
+  Outbounds(
+    name: 'Gabi Kovacs Astuto',
+    bio:
+        'Mijn naam is Gabi (kort voor Gabriela), ik ben 16 jaar oud en ik ben in Brazilië geboren maar ik woon al 12 jaar in Noord Brabant. Ik zit op een internationale school, speel piano en kunstschaatsen. In mijn vrije tijd lees en teken ik. En ik ga op uitwisseling bij Rotary in Italië.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/gabi-kovacs-astuto.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Italy',
+    toFlag: 'it',
+  ),
+  Outbounds(
+    name: 'Jenna Krijnsen',
+    bio:
+        'Hoiii, \n\nIk ben Jenna. Ik ben zestien jaar oud. Ik woon op dit moment nog in Leeuwarden en zit in de vijfde van het VWO.\n\nIk ga volgend schooljaar een exchange year doen in Amerika!! Ik ga naar het kleine stadje Cato in de staat New York, het ligt dichter bij Canada dan New York City. De dichtstbijzijnde stad is Syracuse, dat is ook waar vlieg ik heen vanuit Amsterdam. Ik heb al veel informatie opgezocht over Cato en de omgeving ervan. Het is er erg mooi en de natuur is te vergelijken met Zweden en Denemarken. Ik heb zo veel zin om mijn Amerikaanse droom waar te maken! Op mijn school hebben ze veel sporten waaronder cheerleaden, dus ik hoop dat ik daar aan mee kan doen!\n\nIk ben heel benieuwd hoe mijn gastgezin zal zijn en ik heb heel erg veel zin om iedereen te ontmoeten!\n\nTot volgend jaar!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/jenna-krijnsen.png',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -381,14 +290,12 @@ List<Outbounds> outboundList = [
     to: 'USA',
     toFlag: 'us',
   ),
-
-  // Tom Pellicaan
   Outbounds(
-    name: 'Tom Pellicaan',
+    name: 'Merel Mattijssen',
     bio:
-        'Grüezi Mitenand! \nMijn naam is Tom Pellicaan, ik ben 15 jaar, zit in 4 VWO en woon in Brabant. Ik heb ontzettend veel zin in mijn exchange jaar in Fribourg, Zwitserland, maar ik voel ook grote spanning. \nIn mijn vrije tijd ben ik behulpzaam bij jongerenorganisaties, hierdoor weet ik hoe krachtig het is als jongeren samenkomen, samenwerken en samen iets creëren en ondernemen. En dat doe je ook als uitwisselingsstudent! \nUitwisseling is voor mij een kans om mijzelf verder te ontwikkelen, tegelijk doe je zooo veel meer. Je bouwt internationale kenniskringen op en leert nieuwe culturen. Ik weet zeker dat dit gaat gebeuren en hoop verder Frans en Duits te leren (Fribourg is tweetalig) en een prachtjaar te hebben met prachtige mensen. \nMisschien kan ik als ik terugkom ook nog eens jodelen! \np.s. een tussenjaar op de middelbare kan gewoon! Als dit jou is: DOEN! Het gaat om de ontdekking en ervaring en dat is het zeker weten waar, maakt niet uit waar. \nÀ bientôt!',
+        'Heyy,\nIk ben Merel, 17 jaar en ik kom uit Doornenburg. Ik vertrek op 6 augustus naar Los Gatos in California! Los Gatos is een klein gezellig stadje een uur van San Francisco. Tijdens mijn Exchange hoop ik veel van de Amerikaanse cultuur te zien, vloeiend Engels te gaan spreken, veel nieuwe vrienden te maken en nieuwe plaatsen te ontdekken. De school waar ik naartoe ga is Los Gatos Highschool, ik heb online gezien dat de school heel fanatiek met sport is dus ik ben heel benieuwd hoe dit gaat zijn. Ik heb helaas nog geen contact met mijn gastgezinnen gehad, dus dat is nog wel spannend. \n\nIk heb super veel zin om deze ervaring aan te gaan en ben benieuwd of dit echt een lifetime in a year word!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/tom-pellicaan.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/merel-mattijssen.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -398,77 +305,15 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'Zwitserland',
-    toFlag: 'ch',
+    to: 'USA',
+    toFlag: 'us',
   ),
-
-  // Zora Linde de Valck
   Outbounds(
-    name: 'Zora Linde de Valck',
+    name: 'Guus Offerman',
     bio:
-        'Hai! \nMijn naam is Zora Linde de Valck, ik ben 16 jaar en ik kom uit Roosendaal. \nIk ga op uitwisseling naar Thailand! Ik ga naar de stad Nakhon Sawan, in district 3350. Dit ligt op zo’n 3 uur rijden naar het noorden vanaf Bangkok. Ik heb al een tijd contact met mijn gastgezin, ze zijn super vriendelijk en verwelkomend en ik kijk er naar uit om ze in het echt te kunnen ontmoeten. \nTijdens mijn exchange hoop ik veel nieuwe mensen te ontmoeten, veel nieuwe dingen te proberen en beleven en veel plekken te mogen bezoeken. Ik ben erg benieuwd naar het leven daar. Ik vind het spannend maar heb er ook heel erg veel zin in.',
+        'Hoi!\n\n Ik ben Guus ik ben 17 jaar oud en zit nu in m’n examenjaar havo 5. Ik ga dit jaar naar Vallenar een mooi stadje in het noorden van Chili 🇨🇱. Zuid Amerika is helemaal nieuw voor mij, dus ik ben super benieuwd hoe de cultuur verschilt met Nederland. Ook hoop ik mij echt thuis te voelen bij mijn gastgezin en op school. En natuurlijk veel nieuwe vrienden te maken, mooie plekken te zien en natuurlijk ook de Spaanse taal te leren.',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/zora-linde-de-valck.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Thailand',
-    toFlag: 'th',
-  ),
-
-  // Jens Hoppzak
-  Outbounds(
-    name: 'Jens Hoppzak',
-    bio:
-        'Hallo allemaal, \nIk ben Jens Hoppzak, ik ben 16 jaar oud en ik woon in Sevenum. \nMijn hobby\'s zijn: chillen met vrienden en sportief bezig zijn. Ik heb mijn gastouders al ontmoet en het is ook een sportief en gezellig gezin. \nIk ga op exchange naar Argentinië in het plaatsje Santa Lucia. Ik heb er veel zin in en kijk er naar uit om nieuwe mensen te leren kennen, cultuur te ontdekken en vloeiend Spaans te kunnen leren. Ik heb gekozen voor een jaar exchange omdat ik altijd al veel van de wereld wou zien en culturen ontdekken en omdat ik nog niet wist wat ik na de middelbare wou doen dit een perfecte keuze vond. \nIk kan niet wachten tot ik op het vliegtuig stap en het avontuur mag gaan beginnen.',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/jens-hoppzak.png',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Argentinië',
-    toFlag: 'ar',
-  ),
-
-  // Charlotte van Witteloostuijn
-  Outbounds(
-    name: 'Charlotte van Witteloostuijn',
-    bio:
-        'Hola! \nIk ben Charlotte van Witteloostuijn en ik ben 17 jaar oud. Ik woon in Breda en ik ga volgend schooljaar naar Mexico toe! \nIk ben geplaatst in de stad Ensenada, Baja Calafornia in district 4100. Dit ligt helemaal aan de Westkust van Mexico en onder California. Het staat bekend om de mooie surfstranden en het lekkere eten. Zoals je wel begrijpt heb ik er suuuper veel zin in dus! \nIk hoop vooral veel nieuwe ervaringen op te doen, nieuwe sporten te leren, Spaans te leren, veel van de Mexicaanse cultuur te leren en natuurlijk een fantastisch jaar te hebben! \nGroetjes Charlotte',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/charlotte-van-witteloostuijn.jpg',
-    email: null,
-    phoneNumber: null,
-    snapchatUrl: null,
-    facebookUrl: null,
-    instagramUrl: null,
-    websiteUrl: null,
-    linkedinUrl: null,
-    from: 'Nederland',
-    fromFlag: 'nl',
-    to: 'Mexico',
-    toFlag: 'mx',
-  ),
-
-  // Ella Klumpenhouwer
-  Outbounds(
-    name: 'Ella Klumpenhouwer',
-    bio:
-        'Holaa!! \nIk ben Ella Klumpenhouwer. Ik ben 17 jaar oud en ik zit op VWO 5. Ik ga voor mijn exchange naar Chile🇨🇱, en daar kom ik terecht in district 4320. \nIk heb voor Chile gekozen, omdat het me heel leuk leek om naar Zuid-Amerika te gaan en daar de cultuur te ontdekken. Ik wist al een paar jaar dat ik dit wou gaan doen, omdat me vader het op mijn 12de al aan mij vroeg of dit mij leuk leek. Eerst was ik van plan om naar Japan te gaan, omdat dat mij een heel ander en bijzonder land leek. Maar na de informatiedag, had ik veel goede verhalen over Zuid-Amerika gehoord, en wist ik gelijk al dat ik naar Chile wou. Ook ben ik nog nooit in Zuid-Amerika geweest, dus ik heb zin om heen heel nieuw land/continent te ontdekken. \nIk wil in dit jaar de Chileense cultuur ontdekken en meemaken. Ook wil ik veel mensen ontmoeten en veel nieuwe vrienden maken. Ik wil ook veel nieuwe plekken zien en heel het land gaan ontdekken en ik wil Spaans gaan leren. \nIk heb contact met mijn eerste gastgezin en hierdoor heb ik nog meer zin om op uitwisseling te gaan. Ik heb er super veel zin in en ik hoop op een heel leuk jaar!❤',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/ella-klumpenhouwer.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/guus-offerman.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -481,14 +326,12 @@ List<Outbounds> outboundList = [
     to: 'Chili',
     toFlag: 'cl',
   ),
-
-  // Robin van Gorp
   Outbounds(
-    name: 'Robin van Gorp',
+    name: 'Madelief van Oosterwijk',
     bio:
-        'Hi! \nIk ben Robin, ik ben 16 jaar oud en woon in Heeze. Ik zit in havo 5 en ben niet klaar met mijn examens. \nDit jaar ga ik naar São Bernardo do Campo in Brazilië. Het is een stad ongeveer een half uurtje van São Paulo vandaan. Ik heb super veel zin om naar Brazilië te gaan en nieuwe culturen te ontdekken en mensen te ontmoeten. Zoals mijn eerste gast gezin waar ik al contact mee heb en die ook heel blij zijn dat ik kom. Ik hoop dat ik het Portugees snel onder de knie krijg en een heel leuk jaar ga hebben. \nIk heb mijn vlucht al geboekt en heb er heel veel zin in! \nGroetjes, \nRobin',
+        'Hola!!\n Ik ben Madelief, 17 jaar en ik woon (nu nog) in Hengelo. Volgend jaar ga ik naar Mexico 🇲🇽! Ik ben geplaatst in Mexico stad en heb online al kennis gemaakt met mijn gastgezin. Ik ga over zo’n twee maanden weg en hoewel ik het erg spannend vind heb ik er super veel zin in! Ik heb al 2 vriendinnen in Mexico die dit jaar in Nederland op exchange zijn en een van hen woont ook dichtbij mijn gezin in Mexico stad. \n Voor nu weet ik nog niet zo goed wat ik kan verwachten van mijn exchange jaar, maar ik kan niet wachten tot ik dat mag gaan ontdekken!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/robin-van-gorp.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/madelief-van-oosterwijk.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -498,17 +341,15 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'Brazilië',
-    toFlag: 'br',
+    to: 'Mexico',
+    toFlag: 'mx',
   ),
-
-  // Jesper Koornstra
   Outbounds(
-    name: 'Jesper Koornstra',
+    name: 'Willem Overmars',
     bio:
-        'Ik ben Jesper en ik ben 17 jaar oud. \nIk woon in Harlingen, een havenstad in Friesland. Ik ben bijna klaar met mijn vijfde jaar op het Stedelijk Gymnasium Leeuwarden en zal na mijn exchange beginnen aan het examenjaar in de zesde. \nIk ga deze zomer naar Leavenworth in de staat Washington in de Verenigde Staten. Deze staat ligt helemaal in het Noord-Westen van de VS en is daarom omringd door bergen. Leavenworth is een klein stadje in het midden van Washington. Het heeft ongeveer 2.500 inwoners en is voornamelijk op tourisme gefocust. De hele stad is namelijk in een Bavarisch thema gebouwd. Het ligt tussen de bergen in en geeft daarom een groot aanbod in natuursporten. Ik heb zelf nog nooit iets van wintersport gedaan, maar ik hoop er hier kennis mee te maken. \nIn Nederland hockey ik, maar dat is in Leavenworth geen optie, daarom kijk ik er zeer naar uit om andere sporten te proberen. Omdat ik al contact heb met mensen van mijn toekomstige school heb ik mij al kunnen inschrijven voor het voetbalteam. En kijk ik er naar uit om met het team door Washington te reizen.',
+        'Hoi,\n\n Ik ben Willem Overmars, Ik ben 16 jaar oud en ik woon in Gemert, (Brabant). Ik ga dit jaar op exchange en ben geplaats in de stad Tulsa in Amerika. Ik hoop dit jaar echt veel nieuwe dingen te leren kennen over de cultuur te leren en ook veel dingen uit te proberen zoals nieuwe sporten en lekker eten. Ook hoop ik veel vrienden daar te maken, veel nieuwe dingen leren en het beste uit mezelf te halen. \nIk heb er echt heel veel zin in en ik kan niet wachten om op dat vliegtuig te stappen en gewoon te gaan!',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/jesper-koornstra.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/willem-overmars.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -521,14 +362,12 @@ List<Outbounds> outboundList = [
     to: 'USA',
     toFlag: 'us',
   ),
-
-  // Marit Tusveld
   Outbounds(
-    name: 'Marit Tusveld',
+    name: 'Nina Rietveld',
     bio:
-        'Hoi, \nIk ben Marit, ik ben 18 jaar en ik woon in Eemnes, Utrecht. Ik verhuis komend jaar naar district 4921 in Argentinië, naar het stadje San Antonio Oeste in de provincie Río Negro!! \nOp uitwisseling gaan is al heel lang een droom van mij. Ik ben al mijn hele leven geïnteresseerd geweest in het leren over andere talen en culturen. \nIk wil ontzettend graag Spaans leren en deze uitwisseling is echt een geweldige kans om dat te doen. Ik kan niet wachten tot mijn uitwisseling van start gaat en ik hoop mooie ervaringen op te doen en vrienden voor het leven te maken!',
+        'Hi!\n\n Mijn naam is Nina Rietveld en ik ga op uitwisseling naar Zürich in Zwitserland! Ik heb er enorm naar uitgekeken en ben super benieuwd wat dit jaar mij gaat brengen. Ik kan niet wachten om een nieuwe taal te leren, nieuwe vrienden te maken en vooral heel veel bijzondere ervaringen op te doen. Ik kom zelf uit het rustige dorpje Huizen, maar ik sta klaar voor dit nieuwe avontuur in een bruisende stad. Wil je mijn uitwisselingsjaar volgen? \nKijk dan op TikTok: unlimitedyep',
     imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/24-25/marit-tusveld.jpg',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/nina-rietveld.jpg',
     email: null,
     phoneNumber: null,
     snapchatUrl: null,
@@ -538,7 +377,169 @@ List<Outbounds> outboundList = [
     linkedinUrl: null,
     from: 'Nederland',
     fromFlag: 'nl',
-    to: 'Argentinië',
-    toFlag: 'ar',
+    to: 'Zwitzerland',
+    toFlag: 'ch',
+  ),
+  Outbounds(
+    name: 'Fenna Sanders',
+    bio:
+        'Hoi!!\n\n Ik ben Fenna Sanders, ik ben 16 jaar en ik kom uit Langedijk, een dorpje in Noord-Holland. Komend schooljaar ga ik iets doen waar ik al jarenlang van droom: ik ga op exchange naar de Verenigde Staten! Ik verblijf in het plaatsje Front Royal, in de staat Virginia. Het lijkt me een ontzettend leuke en mooie omgeving, en ik kan echt niet wachten om mijn gastgezinnen persoonlijk te ontmoeten! Het is al jaren mijn wens om op exchange te gaan en nu gaat die droom eindelijk in vervulling. Ik ben super enthousiast en hoop daar een onvergetelijk jaar te beleven, vol nieuwe ervaringen en avonturen. Mijn gastgezin is gelukkig net zo enthousiast als ik; ze hebben al allemaal leuke plannen met me gedeeld.Ik betrap mezelf er bijna dagelijks op dat ik op internet aan het zoeken ben naar wat er allemaal te doen is in Front Royal en de omgeving. Alles is nieuw voor me, dus ik wil er zoveel mogelijk van meemaken en ontdekken! De school waar ik heen ga is de Skyline High School. Ik zal daar het laatste jaar volgen, het zogenaamde senior year, wat volgens mij echt een bijzondere ervaring gaat worden.Ik kijk er enorm naar uit om nieuwe mensen te leren kennen, de Amerikaanse cultuur van dichtbij te ervaren en hopelijk vriendschappen voor het leven op te bouwen. Ik tel de dagen af tot mijn avontuur begint!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/fenna-sanders.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'USA',
+    toFlag: 'us',
+  ),
+  Outbounds(
+    name: 'Ray Sersté',
+    bio:
+        'Hoi hoi, ik ben Ray en ik ben 17 jaar jong. Ik woon in Breda en ben nu bezig met het afronden van 5 VWO. Na de middelbare school wil ik politicologie gaan studeren in Leiden. \n\n Voor mijn exchange zit ik een jaar in Frankrijk, in het stadje Laval in het westen van het land. Mijn vader is Franstalig, waardoor ik al goed Frans spreek. Ik hoop dat ik me hierdoor snel kan aanpassen en meer slang leren. \n\nIk heb ontzettend veel zin om nieuwe plekken te ontdekken en vrienden te maken. Als mensen mij vragen of ik het spannend vind om weg te gaan, is mijn antwoord: “Nee!” Ik heb er vooral enorm veel zin in!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/ray-serste.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'France',
+    toFlag: 'fr',
+  ),
+  Outbounds(
+    name: 'Sara Staubach',
+    bio:
+        'Mijn naam is Sara. Ik ben op dit moment 17 jaar oud en Ik kom uit het dorp Volendam in Noord-Holland. Over ongeveer een maand al ga ik naar Brazilië!! Ik ben de dagen aan het aftellen want ik wil al jaren lang op Exchange! Al sinds dat ik klein was, ben ik geïnteresseerd geweest in andere culturen en een Exchange is daar perfect voor. \nIk ga een jaar lang naar de prachtige stad Santos in district 4420! De stad ligt iets onder São Paulo en ik woon ongeveer 10 minuten van het strand af!! \nIk heb al contact met 2 van mijn host families en met 1 van hun gebeld. Ze zijn beide super aardig en verwelkomd. Ik kan niet wachten om ze in het echt te ontmoeten. \nIk heb erg veel zin om als nieuwe taal Portugees te leren spreken, de Braziliaanse cultuur te zien, nieuwe mensen leren, eten proeven en zelf proberen te maken, naar een nieuwe school te gaan en een geweldig jaar te beleven!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/sara-staubach.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Brazil',
+    toFlag: 'br',
+  ),
+  Outbounds(
+    name: 'Yves Straathof',
+    bio:
+        'Hoi, ik ben Yves, ik ben 16 jaar en woon in Nijmegen. Ik zit in 5 havo en in mijn vrije tijd doe ik graag dingen met vrienden, speel ik voetbal of tennis en werk ik in de horeca. \n\nIn september vertrek ik naar brivio,  een klein dorpje tussen Milaan en Bergamo, in Italië. Ik heb super veel zin om de Italiaanse cultuur te ontdekken en om nieuwe mensen te ontmoeten.  \nIk heb al contact met mijn eerste gastgezin en heb daardoor nog meer zin gekregen om te gaan. \n\nIk hoop dat alle andere uitwisselingsstudenten ook een super leuk jaar hebben!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/yves-straathof.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Italy',
+    toFlag: 'it',
+  ),
+  Outbounds(
+    name: 'Simon Talstra',
+    bio:
+        'Hallo,\n Mijn naam is Simon, ik ben 16 jaar en ik woon in Drachten, Friesland. Ik ga komend schooljaar naar Victoria, Canada, dat ligt in de provincie British Columbia. Victoria is een grootstedelijk gebied en het is de hoofdstad British Columbia. \nIk kijk al een lange tijd uit om op Rotary exchange te gaan. Ik heb er heel veel zin in om naar Canada te gaan en daar veel vrienden te maken, en dat ik veel mooie ervaringen en avonturen kan beleven. Ik kijk er naar uit om naar een echte Canadese high school te gaan en vloeiend Engels te kunnen spreken. ',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/simon-talstra.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Canada',
+    toFlag: 'ca',
+  ),
+  Outbounds(
+    name: 'Lisanne Verspui',
+    bio:
+        'Olá!\n\n Ik ben Lisanne Verspui en ik ben 16 jaar oud. Over een aantal weken begint mijn uitwisseling naar Brazilië. Ik ga naar een stad in het zuiden van Brazilië genaamd Curitiba. Een uitwisselingsjaar is al een lange tijd een droom voor mij die nu eindelijk uit mag gaan komen. Ik vind het ontzettend leuk om te reizen en nieuwe culturen leren kennen en daarom kijk ik ook ontzettend uit naar mijn vertrek. Ik kan niet wachten om vloeiend Portugees te leren spreken en nieuwe mensen te leren kennen. Ik heb al veel contact met mijn gastgezinnen en ik kijk er erg naar uit om iedereen in het echt te ontmoeten. Ik ben ontzettend dankbaar voor deze kans en kijk uit naar alle ervaringen, uitdagingen en herinneringen die daar op mijn pad gaan komen. \nAté breve!',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/lisanne-verspui.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Brazil',
+    toFlag: 'br',
+  ),
+  Outbounds(
+    name: 'Tije de Vries',
+    bio:
+        'Hoi, ik ben Tije de Vries, ik ben 16 jaar oud en woon in Nijkerk met mijn ouders, broertje en zusje. \nhet komende jaar ga ik Naar Cajamarca, een stad in het noorden van Peru. ik heb al contact gehad met mijn hostmoeder en ze was erg aardig. ik heb heel erg veer zin in aankomend jaar en hoop dat ik veel nieuwe mensen leer kennen. ook wil ik graag Spaans leren dus is dit een mooie kans.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/tije-de-vries.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Peru',
+    toFlag: 'pe',
+  ),
+  Outbounds(
+    name: 'Max Weijters',
+    bio:
+        'Hoi ik ben Max Weijters 17 jaar oud en woon in Zaandam. Ik zit nu op de koksopleiding op het mbo en ga aankomend schooljaar naar Brazilië vlakbij São Paulo. \nIk heb al contact gehad met m’n gastgezin en zijn echt heel gastvriendelijk. \nIk heb er super veel zin in om nieuwe vrienden te maken in een nieuw land met een warm cultuur.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/max-weijters.png',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Brazil',
+    toFlag: 'br',
+  ),
+  Outbounds(
+    name: 'Marlies Willems',
+    bio:
+        'Hoi hoi!\n\n Ik ben Marlies Willems en ik ben 17 jaar oud! Nu woon ik nog in het dorp Bunnik, dicht bij Utrecht, maar volgend jaar ga in op exchange naar de plaats Los Alamos. Dat is een stad in de Amerikaanse staat new Mexico. Ik heb nu net 5 havo afgerond en heb heel veel zin om een jaar op de Amerikaanse high school zitten! Ik ben heel benieuwd hoe de cultuur daar verschilt van het leven hier, ook lijkt me het leuk om de naschoolse activiteiten daar te doen, zoals cheerleading. al met al kijk ik natuurlijk heel er uit naar mijn exchange year, alhoewel ik het ook erg spannend vind.',
+    imageUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/marlies-willems.jpg',
+    email: null,
+    phoneNumber: null,
+    snapchatUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    websiteUrl: null,
+    linkedinUrl: null,
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'USA',
+    toFlag: 'us',
   ),
 ];

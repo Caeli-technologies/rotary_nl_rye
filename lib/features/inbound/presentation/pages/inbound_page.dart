@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 // 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rotary_nl_rye/features/inbound/presentation/pages/short_term/ngse/ngse_inbound_page.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // 🌎 Project imports:
@@ -88,13 +87,6 @@ class _InboundPageState extends State<InboundPage> {
                 LongTermExchangeInboundPage(),
               ),
               sectionHeader(context, 'Short Term Exchange Program'),
-              buildInboundOptionRow(
-                context,
-                'NGSE',
-                'New Generations Service Exchange',
-                FontAwesomeIcons.hashtag,
-                NGSEInboundStudentsPage(),
-              ),
               buildInboundOptionRow(
                 context,
                 'FAMILY TO FAMILY',

@@ -60,7 +60,7 @@ class _LongTermExchangeOutboundPageState
           Divider(height: 15, thickness: 2),
           buildOutboundOptionRow(
             context,
-            'Class of 2024-2025',
+            'Class of 2025-2026',
             FontAwesomeIcons.peopleGroup,
             ClassOfPage(),
           ),

@@ -17,11 +17,8 @@ class _CarouselState extends State<Carousel> {
 
   final List<CarouselModel> carousels = [
     CarouselModel(
-        image: 'assets/image/homepage/Digitale-infomarkt-24-mei-2025.png'),
-    CarouselModel(image: 'assets/image/homepage/Rebounddag_2024_Laren.png'),
-    CarouselModel(image: 'assets/image/homepage/Inboundweekend_sept24.png'),
-    CarouselModel(image: 'assets/image/homepage/Rotex24-25.png'),
-    CarouselModel(image: 'assets/image/homepage/Aankomst_inbounds_aug24.png'),
+        image:
+            'assets/image/homepage/Banner_informatiemarkt_6_september_2025.jpg'),
   ];
 
   @override

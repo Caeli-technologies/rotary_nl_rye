@@ -131,7 +131,8 @@ class OrganizationDetails extends StatelessWidget {
             ],
           ),
           SvgPicture.asset('assets/icons/custom/rotary-logo-icon.svg',
-              color: Color(0xFFf7a81b), height: 30),
+              colorFilter: ColorFilter.mode(Color(0xFFf7a81b), BlendMode.srcIn),
+              height: 30),
         ],
       ),
     );

@@ -49,7 +49,7 @@ class Translate {
     }
 
     // Check internet connection
-    if (!(await InternetConnectionChecker().hasConnection)) {
+    if (!(await InternetConnectionChecker.createInstance().hasConnection)) {
       result['message'] = 'No internet connection';
       return result;
     }

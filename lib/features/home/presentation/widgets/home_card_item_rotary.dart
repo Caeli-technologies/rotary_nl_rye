@@ -51,7 +51,8 @@ class HomeCardItemSingleRotary extends StatelessWidget {
                     child: SvgPicture.asset(
                         'assets/icons/custom/rotary-logo-icon.svg',
                         // color: Color(0xFFf7a81b),
-                        color: Palette.lightIndigo,
+                        colorFilter: ColorFilter.mode(
+                            Palette.lightIndigo, BlendMode.srcIn),
                         height: 35),
                   ),
                   Text(

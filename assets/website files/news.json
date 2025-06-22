@@ -1,6 +1,30 @@
 {
     "news": [
         {
+            "id": 15,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2025-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-voorjaar-2025-def.pdf",
+            "title": "Bezoek Stephanie Urchick 25-28 april 2025",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 14,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/verslag-bezoek-stephanie-urchick-rotary-international-president.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/verslag-bezoek-stephanie-urchick-rotary-international-president.pdf",
+            "title": "Bezoek Stephanie Urchick 25-28 april 2025",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 13,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-winter-2024-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-winter-2024-def-1.pdf",
+            "title": "Nieuwsbrief Winter 2024",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
             "id": 12,
             "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2024-def.png",
             "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/koningsdag-emmen-apr24.pdf",

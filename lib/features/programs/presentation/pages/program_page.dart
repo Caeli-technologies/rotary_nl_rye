@@ -14,7 +14,6 @@ import 'package:rotary_nl_rye/features/uniform_widgets/back_button.dart';
 import 'information/camps_tours.dart';
 import 'information/family_to_family.dart';
 import 'information/long_term_exchange.dart';
-import 'information/ngse.dart';
 import 'promo/podcast_page.dart';
 import 'promo/video_page.dart';
 
@@ -66,12 +65,6 @@ class ProgramPage extends StatelessWidget {
           SizedBox(height: 10),
           _buildSectionHeader('Short Term Exchange Program'),
           Divider(height: 15, thickness: 2),
-          _buildProgramOptionRow(
-              context,
-              'NGSE',
-              'New Generations Service Exchange',
-              FontAwesomeIcons.hashtag,
-              NGSEProgramPage()),
           _buildProgramOptionRow(
               context,
               'FAMILY TO FAMILY',

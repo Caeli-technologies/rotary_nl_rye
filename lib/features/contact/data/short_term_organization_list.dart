@@ -2,39 +2,39 @@
 import 'package:rotary_nl_rye/features/contact/presentation/models/organization.dart';
 
 List<Organization> shortTermOrganizationList = [
-  Organization(
-    name: 'Barbara Tusveld',
-    bio:
-        'Als voorzitter van de Longterm commissie ben ik enorm trots dat we met ons team elk jaar voor 40 - 50 scholieren een jaar uitwisseling kunnen realiseren.\nHet is een “lifetime in a year” en niet een “year in a lifetime”\nIk ben zelf uitwisselingsstudent geweest in 1984. Nog steeds bezoek ik mijn gastouders jaarlijks in Amerika. Onze kinderen zijn ook beiden op uitwisseling geweest en intussen hebben wij al 5 bonus kinderen uit de hele wereld en als het aan ons ligt komen er nog heel veel bij.\nNaast deze mooie vrijwillersbaan bij Rotary werk ik als trainer/coach en deels als leerkracht. Ik ben dol op reizen en lopen met onze twee honden. ',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg',
-    email: 'longtermchair@rotaryyep.nl',
-    phoneNumber: '+31655128529',
-    club: 'RC Lelystad',
-    district: '1590 NOORD-NEDERLAND',
-    functions: [
-      'Chair Shortterm Exchange',
-      'Chair Longterm Year Exchange',
-      'Coordinator Long term Asia / Oceania / Europe',
-      'Coordinator Europe Tour',
-      'Chair long term selection',
-      'ROTEX contact person',
-    ],
-  ),
-  Organization(
-    name: 'Femke van Houtum',
-    bio:
-        'Hoi, mijn naam is Femke van Houtum-Burger en ik ben de outbound coördinator Camps & Tours. Als tiener heb ik zelf aan een aantal zomerkampen deelgenomen, waardoor ik op een unieke manier heb kennisgemaakt met andere culturen en internationale vriendschappen heb opgedaan. Ik vind het heel leuk dat ik dit nu voor hedendaagse jongeren mede mogelijk kan maken!',
-    imageUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/femke-burger.jpg',
-    email: 'zomerkamp@rotaryyep.nl',
-    phoneNumber: '+31627315996',
-    club: '',
-    district: '',
-    functions: [
-      'Outbound coordinator Camps and Tours',
-    ],
-  ),
+  // Organization(
+  //   name: 'Barbara Tusveld',
+  //   bio:
+  //       'Als voorzitter van de Longterm commissie ben ik enorm trots dat we met ons team elk jaar voor 40 - 50 scholieren een jaar uitwisseling kunnen realiseren.\nHet is een “lifetime in a year” en niet een “year in a lifetime”\nIk ben zelf uitwisselingsstudent geweest in 1984. Nog steeds bezoek ik mijn gastouders jaarlijks in Amerika. Onze kinderen zijn ook beiden op uitwisseling geweest en intussen hebben wij al 5 bonus kinderen uit de hele wereld en als het aan ons ligt komen er nog heel veel bij.\nNaast deze mooie vrijwillersbaan bij Rotary werk ik als trainer/coach en deels als leerkracht. Ik ben dol op reizen en lopen met onze twee honden. ',
+  //   imageUrl:
+  //       'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg',
+  //   email: 'longtermchair@rotaryyep.nl',
+  //   phoneNumber: '+31655128529',
+  //   club: 'RC Lelystad',
+  //   district: '1590 NOORD-NEDERLAND',
+  //   functions: [
+  //     'Chair Shortterm Exchange',
+  //     'Chair Longterm Year Exchange',
+  //     'Coordinator Long term Asia / Oceania / Europe',
+  //     'Coordinator Europe Tour',
+  //     'Chair long term selection',
+  //     'ROTEX contact person',
+  //   ],
+  // ),
+  // Organization(
+  //   name: 'Femke van Houtum',
+  //   bio:
+  //       'Hoi, mijn naam is Femke van Houtum-Burger en ik ben de outbound coördinator Camps & Tours. Als tiener heb ik zelf aan een aantal zomerkampen deelgenomen, waardoor ik op een unieke manier heb kennisgemaakt met andere culturen en internationale vriendschappen heb opgedaan. Ik vind het heel leuk dat ik dit nu voor hedendaagse jongeren mede mogelijk kan maken!',
+  //   imageUrl:
+  //       'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/femke-burger.jpg',
+  //   email: 'zomerkamp@rotaryyep.nl',
+  //   phoneNumber: '+31627315996',
+  //   club: '',
+  //   district: '',
+  //   functions: [
+  //     'Outbound coordinator Camps and Tours',
+  //   ],
+  // ),
   Organization(
     name: 'Jan van Aller',
     bio:

@@ -59,14 +59,6 @@ class _OutboundPageState extends State<OutboundPage> {
               Divider(height: 15, thickness: 2),
               buildProgramOptionRow(
                 context,
-                'NGSE',
-                'New Generations Service Exchange',
-                FontAwesomeIcons.hashtag,
-                // TODO not yet ready
-                null,
-              ),
-              buildProgramOptionRow(
-                context,
                 'FAMILY TO FAMILY',
                 'Exchange between families',
                 FontAwesomeIcons.hashtag,

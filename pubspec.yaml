@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 9.0.1+99
+version: 10.0.0+100
 
 # authors:
 #   - Ruben Talstra <info@caeli-tech.com>
@@ -26,12 +26,12 @@ environment:
 dependencies:
   dio: ^5.8.0+1
   cached_network_image: ^3.4.1
-  carousel_slider: ^5.0.0
-  chewie: ^1.11.0
+  carousel_slider: ^5.1.1
+  chewie: ^1.11.3
   csv: ^6.0.0
   cupertino_icons: ^1.0.8
-  firebase_analytics: ^11.4.4
-  firebase_core: ^3.12.1
+  firebase_analytics: ^11.5.0
+  firebase_core: ^3.14.0
   flutter:
     sdk: flutter
   flutter_cached_pdfview: ^0.4.3
@@ -41,31 +41,31 @@ dependencies:
   flutter_svg: ^2.0.17
   font_awesome_flutter: ^10.8.0
   get_it: ^8.0.3
-  internet_connection_checker: ^1.0.0
+  internet_connection_checker: ^3.0.1
   map_launcher: ^3.5.0
-  geocoding: ^3.0.0
+  geocoding: ^4.0.0
   package_info_plus: ^8.3.0
   path_provider: ^2.1.5
   photo_view: ^0.15.0
   share_plus: ^10.1.4
-  shared_preferences: ^2.5.2
+  shared_preferences: ^2.5.3
   flutter_skeleton_ui: ^0.0.6
-  table_calendar: ^3.1.3
-  translator: ^1.0.3
+  table_calendar: ^3.2.0
+  translator: ^1.0.3+1
   transparent_image: ^2.0.1
   url_launcher: ^6.3.1
-  video_player: ^2.9.3
-  percent_indicator: ^4.2.4
-  audioplayers: ^6.4.0
+  video_player: ^2.10.0
+  percent_indicator: ^4.2.5
+  audioplayers: ^6.5.0
 
-  http: ^1.3.0
+  http: ^1.4.0
   flutter_cache_manager: ^3.4.1
-  flutter_native_splash: ^2.4.5
+  flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   dependency_validator: ^5.0.2
-  flutter_launcher_icons: ^0.14.3
-  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^6.0.0
   import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
