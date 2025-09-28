@@ -8,6 +8,7 @@ import {
   Alert,
   Linking
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -50,7 +51,7 @@ export default function NewsDetailScreen() {
 
   if (!newsItem) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <TouchableOpacity 
             style={styles.backButton} 
@@ -61,10 +62,12 @@ export default function NewsDetailScreen() {
           <Text style={styles.title}>News Detail</Text>
           <View style={styles.placeholder} />
         </View>
-        <View style={styles.centered}>
-          <Text style={styles.errorText}>News item not found</Text>
+        <View style={styles.container}>
+          <View style={styles.centered}>
+            <Text style={styles.errorText}>News item not found</Text>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
@@ -76,7 +79,7 @@ export default function NewsDetailScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton} 
@@ -88,7 +91,8 @@ export default function NewsDetailScreen() {
         <View style={styles.placeholder} />
       </View>
       
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Header Image */}
         <View style={styles.imageContainer}>
           <Image
@@ -154,17 +158,21 @@ export default function NewsDetailScreen() {
           ))}
         </View>
       </ScrollView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1f4e79',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
   header: {
-    paddingTop: 50,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#1f4e79',

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import PdfRendererView from 'react-native-pdf-renderer';
@@ -73,7 +74,7 @@ export default function PDFViewerScreen() {
 
   if (error) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <TouchableOpacity 
             style={styles.backButton} 
@@ -84,17 +85,19 @@ export default function PDFViewerScreen() {
           <Text style={styles.title}>PDF Viewer</Text>
           <View style={styles.placeholder} />
         </View>
-        <View style={styles.centered}>
-          <Ionicons name="alert-circle" size={64} color="#ff6b6b" />
-          <Text style={styles.errorText}>{error}</Text>
+        <View style={styles.container}>
+          <View style={styles.centered}>
+            <Ionicons name="alert-circle" size={64} color="#ff6b6b" />
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
   if (loading || !localFilePath) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <TouchableOpacity 
             style={styles.backButton} 
@@ -105,16 +108,18 @@ export default function PDFViewerScreen() {
           <Text style={styles.title}>{title || 'PDF Viewer'}</Text>
           <View style={styles.placeholder} />
         </View>
-        <View style={styles.centered}>
-          <ActivityIndicator size="large" color="#1f4e79" />
-          <Text style={styles.loadingText}>Loading PDF...</Text>
+        <View style={styles.container}>
+          <View style={styles.centered}>
+            <ActivityIndicator size="large" color="#1f4e79" />
+            <Text style={styles.loadingText}>Loading PDF...</Text>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton} 
@@ -135,25 +140,30 @@ export default function PDFViewerScreen() {
         <View style={styles.placeholder} />
       </View>
 
-      <PdfRendererView
-        source={localFilePath}
-        style={styles.pdf}
-        distanceBetweenPages={16}
-        maxZoom={3}
-        onPageChange={handlePageChange}
-        onError={handleError}
-      />
-    </View>
+      <View style={styles.container}>
+        <PdfRendererView
+          source={localFilePath}
+          style={styles.pdf}
+          distanceBetweenPages={16}
+          maxZoom={3}
+          onPageChange={handlePageChange}
+          onError={handleError}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1f4e79',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
   header: {
-    paddingTop: 50,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#1f4e79',

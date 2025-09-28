@@ -1,18 +1,21 @@
 import { Platform, ScrollView, StyleSheet, View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AboutScreen() {
   return (
-    <View style={styles.container}>
-      <ScrollView 
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        <View style={styles.header}>
-          <Text style={styles.title}>About RYE</Text>
-        </View>
-
-        <View style={styles.content}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.title}>About Us</Text>
+      </View>
+      
+      <View style={styles.container}>
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="automatic"
+        >
+          <View style={styles.content}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>
             Nederland MDJC : Multi district Jeugd Commissie
@@ -58,13 +61,18 @@ export default function AboutScreen() {
           <Text style={styles.listItem}>• Global friendship and peace</Text>
           <Text style={styles.listItem}>• Service above self</Text>
         </View>
+          </View>
+        </ScrollView>
       </View>
-    </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1f4e79',
+  },
   container: {
     flex: 1,
     backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
@@ -72,8 +80,10 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
+  scrollContent: {
+    paddingBottom: Platform.OS === 'android' ? 100 : 34,
+  },
   header: {
-    paddingTop: Platform.OS === 'android' ? 20 : 0,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#1f4e79',

@@ -1,4 +1,5 @@
 import { Platform, ScrollView, StyleSheet, Linking, Alert, View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { ContactCard } from '@/components/contact-card';
 
@@ -105,17 +106,19 @@ export default function EmergencyScreen() {
   );
 
   return (
-    <View style={styles.container}>
-      <ScrollView 
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        <View style={styles.header}>
-          <Text style={styles.title}>Emergency</Text>
-        </View>
-
-        <View style={styles.content}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Emergency</Text>
+      </View>
+      
+      <View style={styles.container}>
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="automatic"
+        >
+          <View style={styles.content}>
           <View style={styles.emergencySection}>
             <Text style={styles.emergencyTitle}>112 for ambulance, fire brigade or police:</Text>
             <Image 
@@ -159,13 +162,18 @@ export default function EmergencyScreen() {
               Also, your host parents know how to assist you in case you need to see a doctor, have to go to the hospital or visit a dentist.
             </Text>
           </View>
-        </View>
-      </ScrollView>
-    </View>
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#d32f2f',
+  },
   container: {
     flex: 1,
     backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
@@ -174,7 +182,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingTop: Platform.OS === 'android' ? 20 : 0,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#d32f2f',
@@ -187,6 +194,9 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 16,
+  },
+  scrollContent: {
+    paddingBottom: Platform.OS === 'android' ? 100 : 34,
   },
   emergencySection: {
     alignItems: 'center',

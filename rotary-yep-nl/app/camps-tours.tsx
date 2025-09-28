@@ -10,6 +10,7 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Image } from 'expo-image';
@@ -293,7 +294,7 @@ export default function CampsToursScreen() {
   }, [filters, data]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity
@@ -511,65 +512,71 @@ export default function CampsToursScreen() {
       )}
 
       {/* Content */}
-      {loading ? (
-        <View style={styles.centerContainer}>
-          <ActivityIndicator size="large" color="#007AFF" />
-          <Text style={styles.loadingText}>Loading camps and tours...</Text>
-        </View>
-      ) : error ? (
-        <View style={styles.centerContainer}>
-          <View style={styles.errorIcon}>
-            <Ionicons name="warning-outline" size={64} color="#FF3B30" />
+      <View style={styles.container}>
+        {loading ? (
+          <View style={styles.centerContainer}>
+            <ActivityIndicator size="large" color="#007AFF" />
+            <Text style={styles.loadingText}>Loading camps and tours...</Text>
           </View>
-          <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
-          <Text style={styles.errorText}>{error}</Text>
-          <TouchableOpacity style={styles.retryButton} onPress={fetchCsvData}>
-            <Text style={styles.retryButtonText}>Try Again</Text>
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-        >
-          {filteredData.map((item, index) => (
-            <TravelCard key={index} {...item} />
-          ))}
-          
-          {filteredData.length === 0 && data.length > 0 && (
-            <View style={styles.emptyContainer}>
-              <View style={styles.emptyIcon}>
-                <Ionicons name="search-outline" size={64} color="#C7C7CC" />
-              </View>
-              <Text style={styles.emptyTitle}>No Matching Camps</Text>
-              <Text style={styles.emptyText}>
-                Try adjusting your filters to see more results.
-              </Text>
+        ) : error ? (
+          <View style={styles.centerContainer}>
+            <View style={styles.errorIcon}>
+              <Ionicons name="warning-outline" size={64} color="#FF3B30" />
             </View>
-          )}
-          
-          {data.length === 0 && (
-            <View style={styles.emptyContainer}>
-              <View style={styles.emptyIcon}>
-                <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
+            <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
+            <Text style={styles.errorText}>{error}</Text>
+            <TouchableOpacity style={styles.retryButton} onPress={fetchCsvData}>
+              <Text style={styles.retryButtonText}>Try Again</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <ScrollView
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            contentInsetAdjustmentBehavior="automatic"
+          >
+            {filteredData.map((item, index) => (
+              <TravelCard key={index} {...item} />
+            ))}
+            
+            {filteredData.length === 0 && data.length > 0 && (
+              <View style={styles.emptyContainer}>
+                <View style={styles.emptyIcon}>
+                  <Ionicons name="search-outline" size={64} color="#C7C7CC" />
+                </View>
+                <Text style={styles.emptyTitle}>No Matching Camps</Text>
+                <Text style={styles.emptyText}>
+                  Try adjusting your filters to see more results.
+                </Text>
               </View>
-              <Text style={styles.emptyTitle}>No Camps Available</Text>
-              <Text style={styles.emptyText}>
-                There are currently no camps or tours available. Check back later!
-              </Text>
-            </View>
-          )}
-        </ScrollView>
-      )}
+            )}
+            
+            {data.length === 0 && (
+              <View style={styles.emptyContainer}>
+                <View style={styles.emptyIcon}>
+                  <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
+                </View>
+                <Text style={styles.emptyTitle}>No Camps Available</Text>
+                <Text style={styles.emptyText}>
+                  There are currently no camps or tours available. Check back later!
+                </Text>
+              </View>
+            )}
+          </ScrollView>
+        )}
+      </View>
 
 
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   container: {
     flex: 1,
     backgroundColor: '#F2F2F7',
@@ -579,7 +586,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'ios' ? 60 : 20,
     paddingBottom: 16,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: StyleSheet.hairlineWidth,

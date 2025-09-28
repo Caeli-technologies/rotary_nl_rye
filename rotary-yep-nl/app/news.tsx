@@ -9,6 +9,7 @@ import {
   RefreshControl,
   Alert
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
@@ -154,7 +155,7 @@ export default function NewsScreen() {
   const centeredContent = renderCenteredContent();
   if (centeredContent) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <TouchableOpacity 
             style={styles.backButton} 
@@ -165,13 +166,15 @@ export default function NewsScreen() {
           <Text style={styles.title}>News</Text>
           <View style={styles.placeholder} />
         </View>
-        {centeredContent}
-      </View>
+        <View style={styles.container}>
+          {centeredContent}
+        </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton} 
@@ -183,18 +186,19 @@ export default function NewsScreen() {
         <View style={styles.placeholder} />
       </View>
       
-      <ScrollView
-        style={styles.content}
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={handleRefresh}
-            colors={['#1f4e79']}
-            tintColor="#1f4e79"
-          />
-        }
-      >
+      <View style={styles.container}>
+        <ScrollView
+          style={styles.content}
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+              colors={['#1f4e79']}
+              tintColor="#1f4e79"
+            />
+          }
+        >
         <View style={styles.newsContainer}>
           {newsData.length > 0 ? (
             newsData.map((item) => (
@@ -212,17 +216,21 @@ export default function NewsScreen() {
           )}
         </View>
       </ScrollView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1f4e79',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
   header: {
-    paddingTop: 50,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#1f4e79',

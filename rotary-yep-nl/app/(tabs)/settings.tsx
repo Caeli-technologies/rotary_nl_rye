@@ -1,27 +1,39 @@
-import { ScrollView, StyleSheet, TouchableOpacity, Alert, Linking, Switch } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, Alert, Linking, Switch, Platform, Share } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useState } from 'react';
+import * as Sharing from 'expo-sharing';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function SettingsScreen() {
   const [autoLoadVideos, setAutoLoadVideos] = useState(true);
   const [notifications, setNotifications] = useState(true);
 
-  const handleShare = () => {
-    Alert.alert(
-      'Share App',
-      'Share the Rotary Youth Exchange Netherlands app with friends!',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Share', 
-          onPress: () => {
-            // Share functionality would be implemented here
-            Alert.alert('Share', 'Share functionality coming soon!');
-          }
-        },
-      ]
-    );
+  const handleShare = async () => {
+    try {
+      // Check if sharing is available
+      const isAvailable = await Sharing.isAvailableAsync();
+      
+      if (isAvailable) {
+        // Use React Native's built-in Share API for sharing text/links
+        await Share.share({
+          message: 'Check out the Rotary Youth Exchange Netherlands app! 📱✈️',
+          title: 'Rotary Youth Exchange Netherlands',
+          url: Platform.OS === 'ios' ? 'https://apps.apple.com/app/rotary-yep-nl' : undefined, // Add your app store URL when available
+        });
+      } else {
+        // Fallback for platforms that don't support sharing
+        Alert.alert(
+          'Share App',
+          'Share the Rotary Youth Exchange Netherlands app with friends!\n\nRotary Youth Exchange Netherlands - Connect with young global citizens worldwide! 📱✈️',
+          [{ text: 'OK' }]
+        );
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+      Alert.alert('Share Error', 'Unable to share at this time. Please try again later.');
+    }
   };
 
   const handlePrivacyPolicy = () => {
@@ -68,21 +80,31 @@ export default function SettingsScreen() {
         )}
       </ThemedView>
       {rightElement || (onPress && (
-        <ThemedText style={styles.arrow}>→</ThemedText>
+        <Ionicons 
+          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
+          size={16} 
+          color="#999" 
+        />
       ))}
     </TouchableOpacity>
   );
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.safeContainer} edges={['top']}>
       <ThemedView style={styles.header}>
         <ThemedText type="title" style={styles.title}>Settings</ThemedText>
         <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
-          <ThemedText style={styles.shareButtonText}>📤</ThemedText>
+          <Ionicons 
+            name={Platform.OS === 'ios' ? 'share-outline' : 'share-social-outline'} 
+            size={20} 
+            color="#fff" 
+          />
         </TouchableOpacity>
       </ThemedView>
-
-      <ThemedView style={styles.content}>
+      
+      <ThemedView style={styles.container}>
+        <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
+          <ThemedView style={styles.content}>
         <SettingsSection title="General">
           <SettingsItem
             title="Social Media"
@@ -122,18 +144,29 @@ export default function SettingsScreen() {
             Made with ❤️ for young global citizens
           </ThemedText>
         </ThemedView>
+          </ThemedView>
+        </ScrollView>
       </ThemedView>
-    </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#1f4e79',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: Platform.OS === 'android' ? 100 : 34,
   },
   header: {
-    paddingTop: 0,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#1f4e79',
@@ -154,10 +187,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  shareButtonText: {
-    fontSize: 18,
-    color: '#fff',
-  },
+
   content: {
     padding: 16,
   },
@@ -205,10 +235,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
-  arrow: {
-    fontSize: 16,
-    color: '#999',
-  },
+
   footer: {
     alignItems: 'center',
     marginTop: 40,

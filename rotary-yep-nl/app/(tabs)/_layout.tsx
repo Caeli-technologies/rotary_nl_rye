@@ -1,28 +1,45 @@
-import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { NativeTabs, Icon, VectorIcon, Label } from 'expo-router/unstable-native-tabs';
+import { Platform } from 'react-native';
 import React from 'react';
 
 export default function TabLayout() {
   return (
     <NativeTabs>
       <NativeTabs.Trigger name="index">
-        <Icon sf="house.fill" />
         <Label>Home</Label>
+        {Platform.select({
+          ios: <Icon sf="house.fill" />,
+          android: <Icon src={<VectorIcon family={MaterialIcons} name="home" />} />,
+        })}
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="about">
-        <Icon sf="info.circle.fill" />
         <Label>About</Label>
+        {Platform.select({
+          ios: <Icon sf="info.circle.fill" />,
+          android: <Icon src={<VectorIcon family={MaterialIcons} name="info" />} />,
+        })}
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="emergency">
-        <Icon sf="exclamationmark.triangle.fill" />
         <Label>Emergency</Label>
+        {Platform.select({
+          ios: <Icon sf="exclamationmark.triangle.fill" />,
+          android: <Icon src={<VectorIcon family={MaterialIcons} name="warning" />} />,
+        })}
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="contact">
-        <Icon sf="person.2.fill" />
         <Label>Contact</Label>
+        {Platform.select({
+          ios: <Icon sf="person.2.fill" />,
+          android: <Icon src={<VectorIcon family={MaterialIcons} name="people" />} />,
+        })}
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
-        <Icon sf="gearshape.fill" />
         <Label>Settings</Label>
+        {Platform.select({
+          ios: <Icon sf="gearshape.fill" />,
+          android: <Icon src={<VectorIcon family={MaterialIcons} name="settings" />} />,
+        })}
       </NativeTabs.Trigger>
     </NativeTabs>
   );

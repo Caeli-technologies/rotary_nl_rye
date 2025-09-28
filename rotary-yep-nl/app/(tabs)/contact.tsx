@@ -1,4 +1,5 @@
 import { Platform, ScrollView, StyleSheet, TouchableOpacity, Linking, View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ContactCard } from '@/components/contact-card';
 import { useState } from 'react';
 
@@ -100,12 +101,13 @@ export default function ContactScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.header}>
         <Text style={styles.title}>Contact List</Text>
       </View>
 
-      <View style={styles.tabContainer}>
+      <View style={styles.container}>
+        <View style={styles.tabContainer}>
         {tabs.map((tab, index) => (
           <TouchableOpacity
             key={index}
@@ -122,7 +124,7 @@ export default function ContactScreen() {
         ))}
       </View>
 
-      <ScrollView style={styles.content}>
+      <ScrollView style={styles.content} contentContainerStyle={styles.scrollContent}>
         {tabs[activeTab].contacts.map((contact, index) => (
           <ContactItem key={index} contact={contact} />
         ))}
@@ -133,17 +135,21 @@ export default function ContactScreen() {
           </View>
         )}
       </ScrollView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1f4e79',
+  },
   container: {
     flex: 1,
     backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   header: {
-    paddingTop: Platform.OS === 'android' ? 20 : 0,
     paddingHorizontal: 20,
     paddingBottom: 20,
     backgroundColor: '#1f4e79',
@@ -187,6 +193,9 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 16,
+  },
+  scrollContent: {
+    paddingBottom: Platform.OS === 'android' ? 100 : 34,
   },
   emptyState: {
     padding: 40,
