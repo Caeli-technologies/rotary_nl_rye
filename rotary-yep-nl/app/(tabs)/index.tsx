@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
+import { router } from 'expo-router';
 
 interface HomeCardProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -186,7 +187,7 @@ export default function HomeScreen() {
         <View style={styles.gridContainer}>
           <View style={styles.gridRow}>
             <HomeCard icon="list-outline" title="Programs" />
-            <HomeCard icon="newspaper-outline" title="News" />
+            <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push('/news')} />
             <HomeCard icon="calendar-outline" title="Calendar" />
           </View>
           
