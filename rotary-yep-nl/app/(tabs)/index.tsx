@@ -1,78 +1,343 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+interface HomeCardProps {
+  icon?: keyof typeof Ionicons.glyphMap;
+  fontistoIcon?: keyof typeof Fontisto.glyphMap;
+  materialIcon?: keyof typeof MaterialCommunityIcons.glyphMap;
+  title: string;
+  variant?: 'default' | 'single';
+  useSvg?: boolean;
+  svgSource?: any;
+  onPress?: () => void;
+}
 
-export default function HomeScreen() {
+function HomeCard({ icon = 'settings-outline', fontistoIcon, materialIcon, title, variant = 'default', useSvg = false, svgSource, onPress }: HomeCardProps) {
+  const isDefault = variant === 'default';
+  
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <Link href="/modal">
-          <ThemedText type="link">Open Modal</ThemedText>
-        </Link>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.cardWrapper}>
+      <TouchableOpacity 
+        style={isDefault ? styles.homeCard : styles.homeCardSingle} 
+        onPress={onPress}
+        activeOpacity={0.7}
+      >
+        <View style={styles.cardContent}>
+          <View style={isDefault ? styles.iconContainer : styles.iconContainerSingle}>
+            {useSvg && svgSource ? (
+              <Image 
+                source={svgSource}
+                style={{ width: 35, height: 35 }}
+                contentFit="contain"
+                tintColor="#9FA8DA"
+              />
+            ) : materialIcon ? (
+              <MaterialCommunityIcons name={materialIcon} size={35} color="#9FA8DA" />
+            ) : fontistoIcon ? (
+              <Fontisto name={fontistoIcon} size={35} color="#9FA8DA" />
+            ) : (
+              <Ionicons name={icon} size={35} color="#9FA8DA" />
+            )}
+          </View>
+          {isDefault ? (
+            <View style={styles.titleContainer}>
+              <Text style={styles.cardTitle}>{title}</Text>
+            </View>
+          ) : (
+            <Text style={styles.cardTitleSingle}>{title}</Text>
+          )}
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 }
 
+export default function HomeScreen() {
+  const carouselImages = [
+    require('@/assets/home/carousel/Banner_informatiemarkt_6_september_2025.jpg'),
+    require('@/assets/home/carousel/Rebounddag_2024_Laren.png'),
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const animateToIndex = (index: number, duration: number = 500) => {
+    Animated.timing(slideAnim, {
+      toValue: -index * containerWidth,
+      duration,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const resetToFirstSlide = () => {
+    slideAnim.setValue(0);
+    setCurrentImageIndex(0);
+  };
+
+  useEffect(() => {
+    if (carouselImages.length > 1 && containerWidth > 0) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          
+          // If we're at the duplicate slide (last position), reset without animation
+          if (nextIndex >= carouselImages.length) {
+            // Animate to the duplicate first image
+            animateToIndex(carouselImages.length, 500);
+            // After animation, instantly reset to the real first image
+            setTimeout(() => {
+              resetToFirstSlide();
+            }, 500);
+            return carouselImages.length; // Temporary state for the duplicate
+          }
+          
+          return nextIndex;
+        });
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [carouselImages.length, containerWidth]);
+
+  useEffect(() => {
+    if (containerWidth > 0 && currentImageIndex < carouselImages.length) {
+      animateToIndex(currentImageIndex);
+    }
+  }, [currentImageIndex, containerWidth]);
+
+  return (
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
+        {/* Logo Section */}
+        <View style={styles.logoContainer}>
+          <Image 
+            source={require('@/assets/home/rotary_rye_nl_logo_home.svg')}
+            style={styles.logo}
+            contentFit="contain"
+          />
+        </View>
+
+        <View 
+          style={styles.carouselContainer}
+          onLayout={(event) => {
+            const { width } = event.nativeEvent.layout;
+            setContainerWidth(width);
+          }}
+        >
+          {carouselImages.length === 1 ? (
+            <Image 
+              source={carouselImages[0]}
+              style={styles.carouselImage}
+              contentFit="cover"
+            />
+          ) : (
+            <>
+              <Animated.View style={[
+                styles.slideContainer,
+                {
+                  width: (carouselImages.length + 1) * containerWidth,
+                  transform: [{ translateX: slideAnim }]
+                }
+              ]}>
+                {carouselImages.map((image, index) => (
+                  <View key={index} style={[styles.slideItem, { width: containerWidth }]}>
+                    <Image 
+                      source={image}
+                      style={styles.carouselImage}
+                      contentFit="cover"
+                    />
+                  </View>
+                ))}
+                {/* Duplicate first image for seamless infinite loop */}
+                <View key="duplicate" style={[styles.slideItem, { width: containerWidth }]}>
+                  <Image 
+                    source={carouselImages[0]}
+                    style={styles.carouselImage}
+                    contentFit="cover"
+                  />
+                </View>
+              </Animated.View>
+              
+              {carouselImages.length > 1 && (
+                <View style={styles.dotIndicators}>
+                  {carouselImages.map((_, index) => (
+                    <View
+                      key={index}
+                      style={[
+                        styles.dot,
+                        (index === currentImageIndex || 
+                         (currentImageIndex === carouselImages.length && index === 0)) && styles.activeDot
+                      ]}
+                    />
+                  ))}
+                </View>
+              )}
+            </>
+          )}
+        </View>
+
+        <View style={styles.gridContainer}>
+          <View style={styles.gridRow}>
+            <HomeCard icon="list-outline" title="Programs" />
+            <HomeCard icon="newspaper-outline" title="News" />
+            <HomeCard icon="calendar-outline" title="Calendar" />
+          </View>
+          
+          <View style={styles.gridRow}>
+            <HomeCard materialIcon="airplane-takeoff" title="Op Exchange" />
+            <HomeCard materialIcon="airplane-landing" title="To NL" />
+            <HomeCard icon="refresh-outline" title="Rebound" />
+          </View>
+          
+          <View style={styles.gridRowSingle}>
+            <HomeCard fontistoIcon="tent" title="Camps & Tours List" variant="single" />
+            <HomeCard 
+              title="voor Rotary Clubs" 
+              variant="single" 
+              useSvg={true}
+              svgSource={require('@/assets/logo/rotary-logo-icon.svg')}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.08,
+  shadowRadius: 20,
+  elevation: 4,
+};
+
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    backgroundColor: 'transparent',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  logoContainer: {
     alignItems: 'center',
-    gap: 8,
+    marginBottom: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  logo: {
+    width: '100%',
+    height: 80,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  carouselContainer: {
+    height: 200,
+    marginHorizontal: 16,
+    marginBottom: 16,
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 4,
+    position: 'relative',
+  },
+  slideContainer: {
+    flexDirection: 'row',
+    height: '100%',
+  },
+  slideItem: {
+    height: '100%',
+  },
+  carouselImage: {
+    width: '100%',
+    height: '100%',
+  },
+  dotIndicators: {
     position: 'absolute',
+    bottom: 12,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    marginHorizontal: 4,
+  },
+  activeDot: {
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
+  gridContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: 30,
+  },
+  gridRow: {
+    flexDirection: 'row',
+    marginBottom: 16,
+  },
+  gridRowSingle: {
+    flexDirection: 'row',
+    marginBottom: 30,
+  },
+  cardWrapper: {
+    flex: 1,
+    paddingHorizontal: 5,
+  },
+  homeCard: {
+    height: 120,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 10,
+    ...shadowStyle,
+  },
+  homeCardSingle: {
+    height: 80,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 10,
+    ...shadowStyle,
+  },
+  cardContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  iconContainer: {
+    marginBottom: 16,
+  },
+  iconContainerSingle: {
+    marginBottom: 10,
+  },
+  titleContainer: {
+    width: 80,
+    alignItems: 'center',
+  },
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#1A237E',
+    textAlign: 'center',
+    maxWidth: 80,
+  },
+  cardTitleSingle: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#1A237E',
+    textAlign: 'center',
   },
 });
