@@ -198,7 +198,12 @@ export default function HomeScreen() {
           </View>
           
           <View style={styles.gridRowSingle}>
-            <HomeCard fontistoIcon="tent" title="Camps & Tours List" variant="single" />
+            <HomeCard 
+              fontistoIcon="tent" 
+              title="Camps & Tours List" 
+              variant="single"
+              onPress={() => router.push('/camps-tours')}
+            />
             <HomeCard 
               title="voor Rotary Clubs" 
               variant="single" 

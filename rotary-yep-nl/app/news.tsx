@@ -108,7 +108,7 @@ export default function NewsScreen() {
   const handleNewsItemPress = (item: NewsItem) => {
     if (item.isPdf === "yes" && item.pdf) {
       router.push({
-        pathname: '/news/pdf-viewer' as any,
+        pathname: '/pdf-viewer' as any,
         params: { url: item.pdf, title: item.title }
       });
     } else if (item.text?.length) {
