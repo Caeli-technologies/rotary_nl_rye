@@ -189,7 +189,7 @@ export default function HomeScreen() {
           <View style={styles.gridRow}>
             <HomeCard icon="list-outline" title="Programs" />
             <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push('/news')} />
-            <HomeCard icon="calendar-outline" title="Calendar" />
+            <HomeCard icon="calendar-outline" title="Calendar" onPress={() => router.push('/calendar')} />
           </View>
           
           <View style={styles.gridRow}>
