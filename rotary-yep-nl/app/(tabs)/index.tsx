@@ -195,7 +195,11 @@ export default function HomeScreen() {
           </View>
           
           <View style={styles.gridRow}>
-            <HomeCard materialIcon="airplane-takeoff" title="Op Exchange" />
+            <HomeCard 
+              materialIcon="airplane-takeoff" 
+              title="Op Exchange" 
+              onPress={() => router.push('/outbound')} 
+            />
             <HomeCard materialIcon="airplane-landing" title="To NL" />
             <HomeCard icon="refresh-outline" title="Rebound" onPress={() => router.push({
               pathname: '/rebound/countries' as any,

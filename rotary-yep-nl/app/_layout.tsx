@@ -270,6 +270,78 @@ export default function RootLayout() {
               headerShadowVisible: true,
             })} 
           />
+          <Stack.Screen 
+            name="outbound/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Outbound Programs',
+              headerBackTitle: 'Home',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Long Term Exchange',
+              headerBackTitle: 'Outbound',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/class-of/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Current Students',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/class-of/student-detail" 
+            options={({ route }) => ({
+              headerShown: true,
+              title: (route.params as any)?.studentName || 'Student Detail',
+              headerBackTitle: (route.params as any)?.country || 'Students',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 18,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            })}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

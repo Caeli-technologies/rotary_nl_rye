@@ -25,14 +25,9 @@ interface EmergencyContact {
 export default function EmergencyScreen() {
   const emergencyContacts: EmergencyContact[] = [
     {
-      name: 'Patty van Vierzen',
+      name: 'Sandra Cools-Wemer',
       function: 'Inbound Coordinator',
-      phone: '+31634021403',
-    },
-    {
-      name: 'Toon ter Ellen',
-      function: 'Inbound Coordinator',
-      phone: '+31613602987',
+      phone: '+31625530062',
     },
     {
       name: 'Marga Oosterveld',
@@ -48,19 +43,19 @@ export default function EmergencyScreen() {
 
   const nationalCounselors: EmergencyContact[] = [
     {
-      name: 'Barbara Tusveld',
+      name: 'Marga Oosterveld',
       function: 'Chair exchange program',
-      phone: '+31655128529',
+      phone: '+31629586813',
+    },
+    {
+      name: 'Clasine Scheepers',
+      function: 'Secretary Board',
+      phone: '+31652710977',
     },
     {
       name: 'Hilleke van der Veer',
       function: 'National counselor',
       phone: '+31638300427',
-    },
-    {
-      name: 'Carlo ter Ellen',
-      function: 'National Counselor',
-      phone: '+31653401477',
     },
   ];
 
