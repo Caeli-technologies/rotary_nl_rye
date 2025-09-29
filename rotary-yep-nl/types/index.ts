@@ -38,6 +38,9 @@ export interface RotaryContact {
   type: 'mdjc' | 'rotex' | 'long_term' | 'short_term';
 }
 
+// Re-export contact types
+export * from './contact';
+
 export interface NewsItem {
   id: string;
   title: string;

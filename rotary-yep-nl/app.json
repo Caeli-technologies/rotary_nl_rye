@@ -18,7 +18,11 @@
       "userInterfaceStyle": "automatic",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
       "supportsTablet": true,
-      "bundleIdentifier": "com.caelitechnologies.rotary-nl-rye"
+      "bundleIdentifier": "com.caelitechnologies.rotary-nl-rye",
+      "splash": {
+        "image": "./assets/images/icon.png",
+        "resizeMode": "contain"
+      }
     },
     "android": {
       "adaptiveIcon": {

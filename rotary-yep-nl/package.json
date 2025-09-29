@@ -9,6 +9,7 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@expo/ui": "~0.2.0-beta.4",
     "@expo/vector-icons": "^15.0.2",
     "@react-navigation/elements": "^2.6.3",
     "expo": "~54.0.10",
