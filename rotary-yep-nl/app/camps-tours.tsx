@@ -655,10 +655,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 17,
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
     fontWeight: '600',
     color: '#000000',
-    letterSpacing: -0.41,
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   headerSubtitle: {
     fontSize: 13,

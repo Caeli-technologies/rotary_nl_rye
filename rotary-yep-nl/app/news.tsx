@@ -4,10 +4,11 @@ import {
   View, 
   Text, 
   ScrollView, 
-  TouchableOpacity, 
+  Pressable, 
   ActivityIndicator,
   RefreshControl,
-  Alert
+  Alert,
+  Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -39,7 +40,17 @@ interface NewsData {
 
 function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
   return (
-    <TouchableOpacity style={styles.newsCard} onPress={onPress} activeOpacity={0.7}>
+    <Pressable 
+      style={({ pressed }) => [
+        styles.newsCard,
+        pressed && styles.newsCardPressed
+      ]}
+      onPress={onPress}
+      android_ripple={{
+        color: 'rgba(0, 122, 255, 0.2)',
+        borderless: false
+      }}
+    >
       <View style={styles.cardContent}>
         <View style={styles.imageContainer}>
           <Image
@@ -66,7 +77,7 @@ function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
           )}
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -131,7 +142,7 @@ export default function NewsScreen() {
     if (loading && !refreshing) {
       return (
         <View style={styles.centered}>
-          <ActivityIndicator size="large" color="#1f4e79" />
+          <ActivityIndicator size="large" color="#007AFF" />
           <Text style={styles.loadingText}>Loading news...</Text>
         </View>
       );
@@ -143,9 +154,9 @@ export default function NewsScreen() {
           <Ionicons name="alert-circle" size={64} color="#ff6b6b" />
           <Text style={styles.errorText}>Failed to load news</Text>
           <Text style={styles.errorSubtext}>{error}</Text>
-          <TouchableOpacity style={styles.retryButton} onPress={() => fetchNews()}>
+          <Pressable style={styles.retryButton} onPress={() => fetchNews()}>
             <Text style={styles.retryText}>Try Again</Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       );
     }
@@ -156,15 +167,21 @@ export default function NewsScreen() {
   const centeredContent = renderCenteredContent();
   if (centeredContent) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
         <View style={styles.header}>
-          <TouchableOpacity 
-            style={styles.backButton} 
+          <Pressable 
+            style={({ pressed }) => [
+              styles.headerButton,
+              pressed && styles.headerButtonPressed
+            ]}
             onPress={() => router.back()}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
-          <Text style={styles.title}>News</Text>
+            <Ionicons name="chevron-back" size={28} color="#007AFF" />
+          </Pressable>
+          <View style={styles.headerTitleContainer}>
+            <Text style={styles.headerTitle}>News</Text>
+          </View>
           <View style={styles.placeholder} />
         </View>
         <View style={styles.container}>
@@ -175,33 +192,38 @@ export default function NewsScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton} 
+        <Pressable 
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
+          ]}
           onPress={() => router.back()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons name="arrow-back" size={24} color="#fff" />
-        </TouchableOpacity>
-        <Text style={styles.title}>News</Text>
+          <Ionicons name="chevron-back" size={28} color="#007AFF" />
+        </Pressable>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>News</Text>
+        </View>
         <View style={styles.placeholder} />
       </View>
       
       <View style={styles.container}>
         <ScrollView
-          style={styles.content}
+          contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
-              colors={['#1f4e79']}
-              tintColor="#1f4e79"
+              colors={['#007AFF']}
+              tintColor="#007AFF"
             />
           }
         >
-        <View style={styles.newsContainer}>
           {newsData.length > 0 ? (
             newsData.map((item) => (
               <NewsCard
@@ -216,8 +238,7 @@ export default function NewsScreen() {
               <Text style={styles.emptyText}>No news available</Text>
             </View>
           )}
-        </View>
-      </ScrollView>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -226,54 +247,65 @@ export default function NewsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#FFFFFF',
   },
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F2F2F7',
   },
   header: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    backgroundColor: '#1f4e79',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
+  headerButton: {
+    width: 44,
+    height: 44,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 22,
   },
-  title: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: 'bold',
+  headerButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+  },
+  headerTitleContainer: {
     flex: 1,
-    textAlign: 'center',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   placeholder: {
-    width: 40,
+    width: 44,
   },
-  content: {
-    flex: 1,
-  },
-  newsContainer: {
+  scrollContent: {
     padding: 16,
+    paddingBottom: 34,
   },
   newsCard: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    marginBottom: 12,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
     shadowRadius: 8,
-    elevation: 3,
+    elevation: 2,
     overflow: 'hidden',
+  },
+  newsCardPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 1,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   cardContent: {
     flexDirection: 'row',
@@ -311,14 +343,15 @@ const styles = StyleSheet.create({
   },
   newsTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#1A237E',
+    fontWeight: '600',
+    color: '#000000',
     marginBottom: 8,
     lineHeight: 22,
   },
   newsDescription: {
     fontSize: 14,
-    color: '#666',
+    fontWeight: '400',
+    color: '#8E8E93',
     lineHeight: 20,
   },
   centered: {
@@ -347,7 +380,7 @@ const styles = StyleSheet.create({
   },
   retryButton: {
     marginTop: 20,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#007AFF',
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
@@ -355,7 +388,7 @@ const styles = StyleSheet.create({
   retryText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
   emptyState: {
     alignItems: 'center',

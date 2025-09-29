@@ -110,7 +110,9 @@ export default function EmergencyScreen() {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <Text style={styles.title}>Emergency</Text>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>Emergency</Text>
+        </View>
       </View>
       
       <View style={styles.container}>
@@ -178,21 +180,27 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
+    backgroundColor: '#F2F2F7',
   },
   scrollView: {
     flex: 1,
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
     backgroundColor: '#d32f2f',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  headerTitleContainer: {
     alignItems: 'center',
   },
-  title: {
-    color: '#fff',
-    fontSize: Platform.OS === 'ios' ? 34 : 28,
-    fontWeight: Platform.OS === 'ios' ? '700' : 'bold',
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   content: {
     padding: 16,

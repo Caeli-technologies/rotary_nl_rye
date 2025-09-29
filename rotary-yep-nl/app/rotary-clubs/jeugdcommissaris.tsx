@@ -117,13 +117,13 @@ export default function JeugdcommissarisScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
         <Pressable 
           style={({ pressed }) => [
-            styles.backButton,
-            pressed && styles.backButtonPressed
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
           ]}
           onPress={() => router.back()}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -131,103 +131,98 @@ export default function JeugdcommissarisScreen() {
           <Ionicons 
             name={Platform.OS === 'ios' ? 'chevron-back' : 'arrow-back'} 
             size={Platform.OS === 'ios' ? 28 : 24} 
-            color={Platform.OS === 'ios' ? '#007AFF' : '#1A237E'} 
+            color="#007AFF" 
           />
         </Pressable>
-        <Text style={styles.headerTitle}>Info Jeugdcommissaris</Text>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>Info Jeugdcommissaris</Text>
+        </View>
         <View style={styles.placeholder} />
       </View>
 
-      <FlatList
-        data={documents}
-        renderItem={renderDocumentItem}
-        keyExtractor={(item, index) => index.toString()}
-        ListHeaderComponent={ListHeaderComponent}
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={styles.listContainer}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={documents}
+          renderItem={renderDocumentItem}
+          keyExtractor={(item, index) => index.toString()}
+          ListHeaderComponent={ListHeaderComponent}
+          showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={styles.listContainer}
+        />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#F5F5F5',
+    backgroundColor: '#F2F2F7',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: Platform.OS === 'ios' ? 15 : 12,
-    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#FFFFFF',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 1,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
   },
-  backButton: {
-    width: Platform.OS === 'ios' ? 32 : 40,
-    height: Platform.OS === 'ios' ? 32 : 40,
-    borderRadius: Platform.OS === 'ios' ? 16 : 20,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#F5F5F5',
-    alignItems: 'center',
+  headerButton: {
+    width: 44,
+    height: 44,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 22,
   },
-  backButtonPressed: {
+  headerButtonPressed: {
     opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
     backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
   },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 17 : 18,
-    fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
-    color: Platform.OS === 'ios' ? '#000' : '#1A237E',
-    textAlign: 'center',
+  headerTitleContainer: {
     flex: 1,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   placeholder: {
-    width: Platform.OS === 'ios' ? 32 : 40,
+    width: 44,
   },
   listContainer: {
-    paddingBottom: Platform.OS === 'ios' ? 20 : 16,
+    padding: 16,
+    paddingBottom: 34,
   },
   content: {
-    padding: Platform.OS === 'ios' ? 16 : 20,
+    marginBottom: 16,
   },
   description: {
-    fontSize: Platform.OS === 'ios' ? 16 : 15,
-    lineHeight: Platform.OS === 'ios' ? 22 : 20,
-    color: Platform.OS === 'ios' ? '#8E8E93' : '#666',
-    marginBottom: Platform.OS === 'ios' ? 20 : 24,
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#8E8E93',
     textAlign: 'center',
-    paddingHorizontal: Platform.OS === 'ios' ? 0 : 10,
+    paddingHorizontal: 16,
   },
   documentItem: {
-    backgroundColor: '#fff',
-    borderRadius: Platform.OS === 'ios' ? 10 : 8,
-    marginBottom: Platform.OS === 'ios' ? 6 : 12,
-    marginHorizontal: Platform.OS === 'ios' ? 16 : 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    marginBottom: 12,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 2,
   },
   documentItemPressed: {
     opacity: Platform.OS === 'ios' ? 0.8 : 1,
@@ -236,31 +231,32 @@ const styles = StyleSheet.create({
   documentContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: Platform.OS === 'ios' ? 12 : 16,
-    minHeight: Platform.OS === 'ios' ? 60 : 72,
+    padding: 16,
+    minHeight: 72,
   },
   iconContainer: {
-    width: Platform.OS === 'ios' ? 32 : 40,
-    height: Platform.OS === 'ios' ? 32 : 40,
-    borderRadius: Platform.OS === 'ios' ? 8 : 20,
-    backgroundColor: Platform.OS === 'ios' ? '#E5F4FD' : '#F5F5F5',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#F2F2F7',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Platform.OS === 'ios' ? 12 : 15,
+    marginRight: 16,
   },
   textContainer: {
     flex: 1,
-    paddingRight: 8,
+    marginRight: 8,
   },
   documentTitle: {
-    fontSize: Platform.OS === 'ios' ? 17 : 16,
-    fontWeight: Platform.OS === 'ios' ? '400' : '600',
-    color: Platform.OS === 'ios' ? '#000' : '#333',
-    marginBottom: Platform.OS === 'ios' ? 2 : 4,
-    lineHeight: Platform.OS === 'ios' ? 22 : 20,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000000',
+    marginBottom: 4,
+    lineHeight: 22,
   },
   documentSubtext: {
-    fontSize: Platform.OS === 'ios' ? 13 : 14,
-    color: Platform.OS === 'ios' ? '#8E8E93' : '#666',
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#8E8E93',
   },
 });

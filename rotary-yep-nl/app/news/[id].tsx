@@ -4,9 +4,10 @@ import {
   View, 
   Text, 
   ScrollView, 
-  TouchableOpacity,
+  Pressable,
   Alert,
-  Linking
+  Linking,
+  Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -52,15 +53,21 @@ export default function NewsDetailScreen() {
 
   if (!newsItem) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
         <View style={styles.header}>
-          <TouchableOpacity 
-            style={styles.backButton} 
+          <Pressable 
+            style={({ pressed }) => [
+              styles.headerButton,
+              pressed && styles.headerButtonPressed
+            ]}
             onPress={() => router.back()}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
-          <Text style={styles.title}>News Detail</Text>
+            <Ionicons name="chevron-back" size={28} color="#007AFF" />
+          </Pressable>
+          <View style={styles.headerTitleContainer}>
+            <Text style={styles.headerTitle}>News Detail</Text>
+          </View>
           <View style={styles.placeholder} />
         </View>
         <View style={styles.container}>
@@ -80,21 +87,30 @@ export default function NewsDetailScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton} 
+        <Pressable 
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
+          ]}
           onPress={() => router.back()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons name="arrow-back" size={24} color="#fff" />
-        </TouchableOpacity>
-        <Text style={styles.title} numberOfLines={1}>News Detail</Text>
+          <Ionicons name="chevron-back" size={28} color="#007AFF" />
+        </Pressable>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle} numberOfLines={1}>News Detail</Text>
+        </View>
         <View style={styles.placeholder} />
       </View>
       
       <View style={styles.container}>
-        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <ScrollView 
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
         {/* Header Image */}
         <View style={styles.imageContainer}>
           <Image
@@ -132,15 +148,15 @@ export default function NewsDetailScreen() {
                   
                   {/* Video */}
                   {bodyItem.videoUrl && (
-                    <TouchableOpacity
+                    <Pressable
                       style={styles.videoContainer}
                       onPress={() => handleVideoPress(bodyItem.videoUrl!)}
                     >
                       <View style={styles.videoPlaceholder}>
-                        <Ionicons name="play-circle" size={64} color="#1f4e79" />
+                        <Ionicons name="play-circle" size={64} color="#007AFF" />
                         <Text style={styles.videoText}>Tap to play video</Text>
                       </View>
-                    </TouchableOpacity>
+                    </Pressable>
                   )}
                   
                   {/* Image */}
@@ -168,40 +184,49 @@ export default function NewsDetailScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#FFFFFF',
   },
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F2F2F7',
   },
   header: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    backgroundColor: '#1f4e79',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
+  headerButton: {
+    width: 44,
+    height: 44,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 22,
   },
-  title: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
+  headerButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+  },
+  headerTitleContainer: {
     flex: 1,
-    textAlign: 'center',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   placeholder: {
-    width: 40,
+    width: 44,
   },
-  content: {
-    flex: 1,
+  scrollContent: {
+    paddingBottom: 34,
   },
   imageContainer: {
     height: 200,
@@ -212,18 +237,19 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
   },
   newsTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1A237E',
+    fontWeight: '600',
+    color: '#000000',
     marginBottom: 16,
     lineHeight: 32,
   },
   newsDescription: {
     fontSize: 16,
-    color: '#666',
+    fontWeight: '400',
+    color: '#8E8E93',
     lineHeight: 24,
     marginBottom: 20,
   },
@@ -232,8 +258,8 @@ const styles = StyleSheet.create({
   },
   sectionHeading: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#1A237E',
+    fontWeight: '600',
+    color: '#000000',
     marginBottom: 12,
     lineHeight: 28,
   },
@@ -242,7 +268,8 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 16,
-    color: '#333',
+    fontWeight: '400',
+    color: '#3C3C43',
     lineHeight: 24,
     marginBottom: 12,
   },
@@ -261,7 +288,7 @@ const styles = StyleSheet.create({
   videoText: {
     marginTop: 8,
     fontSize: 16,
-    color: '#1f4e79',
+    color: '#007AFF',
     fontWeight: '600',
   },
   contentImageContainer: {

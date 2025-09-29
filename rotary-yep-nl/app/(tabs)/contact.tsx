@@ -14,7 +14,9 @@ export default function ContactScreen() {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <Text style={styles.title}>Contact List</Text>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>Contact List</Text>
+        </View>
       </View>
 
       <View style={styles.container}>
@@ -54,22 +56,28 @@ export default function ContactScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#ffffff',
   },
   container: {
     flex: 1,
-    backgroundColor: Platform.select({ ios: '#F2F2F7', default: '#FFFFFF' }),
+    backgroundColor: '#F2F2F7',
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 20,
-    backgroundColor: '#1f4e79',
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
+  },
+  headerTitleContainer: {
     alignItems: 'center',
   },
-  title: {
-    color: '#fff',
-    fontSize: Platform.select({ ios: 34, default: 28 }),
-    fontWeight: Platform.select({ ios: '700', default: 'bold' }),
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   tabContainer: {
     flexDirection: 'row',

@@ -4,7 +4,7 @@ import {
   View, 
   Text, 
   ScrollView, 
-  TouchableOpacity,
+  Pressable,
   Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -47,30 +47,36 @@ export default function AlgemeneInformatieScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton} 
+        <Pressable 
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
+          ]}
           onPress={() => router.back()}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
           <Ionicons 
             name={Platform.OS === 'ios' ? 'chevron-back' : 'arrow-back'} 
             size={Platform.OS === 'ios' ? 28 : 24} 
-            color={Platform.OS === 'ios' ? '#007AFF' : '#1A237E'} 
+            color="#007AFF" 
           />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Algemene Informatie</Text>
+        </Pressable>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>Algemene Informatie</Text>
+        </View>
         <View style={styles.placeholder} />
       </View>
 
-      <ScrollView 
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        <View style={styles.content}>
+      <View style={styles.container}>
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="automatic"
+        >
           {infoSections.map((section, index) => (
             <InfoSection
               key={index}
@@ -78,88 +84,85 @@ export default function AlgemeneInformatieScreen() {
               content={section.content}
             />
           ))}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#F5F5F5',
+    backgroundColor: '#F2F2F7',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: Platform.OS === 'ios' ? 15 : 12,
-    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#FFFFFF',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 1,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
   },
-  backButton: {
-    width: Platform.OS === 'ios' ? 32 : 40,
-    height: Platform.OS === 'ios' ? 32 : 40,
-    borderRadius: Platform.OS === 'ios' ? 16 : 20,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#F5F5F5',
-    alignItems: 'center',
+  headerButton: {
+    width: 44,
+    height: 44,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 22,
+  },
+  headerButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+  },
+  headerTitleContainer: {
+    flex: 1,
+    alignItems: 'center',
   },
   headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 17 : 18,
-    fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
-    color: Platform.OS === 'ios' ? '#000' : '#1A237E',
-    textAlign: 'center',
-    flex: 1,
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   placeholder: {
-    width: 40,
+    width: 44,
   },
   scrollView: {
     flex: 1,
   },
-  content: {
-    padding: Platform.OS === 'ios' ? 16 : 20,
+  scrollContent: {
+    padding: 16,
+    paddingBottom: 34,
   },
   infoSection: {
-    backgroundColor: '#fff',
-    borderRadius: Platform.OS === 'ios' ? 10 : 8,
-    padding: Platform.OS === 'ios' ? 16 : 20,
-    marginBottom: Platform.OS === 'ios' ? 10 : 16,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 2,
   },
   sectionTitle: {
-    fontSize: Platform.OS === 'ios' ? 20 : 18,
-    fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
-    color: Platform.OS === 'ios' ? '#000' : '#1A237E',
-    marginBottom: Platform.OS === 'ios' ? 8 : 12,
-    lineHeight: Platform.OS === 'ios' ? 26 : 24,
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#000000',
+    marginBottom: 12,
+    lineHeight: 24,
   },
   sectionContent: {
-    fontSize: Platform.OS === 'ios' ? 16 : 15,
-    lineHeight: Platform.OS === 'ios' ? 22 : 20,
-    color: Platform.OS === 'ios' ? '#3C3C43' : '#333',
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#3C3C43',
     textAlign: 'left',
   },
 });

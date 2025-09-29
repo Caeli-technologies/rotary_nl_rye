@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, TouchableOpacity, Alert, Linking, Switch, Platform, Share } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, Pressable, Alert, Linking, Switch, Platform, Share } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -109,14 +109,24 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.safeContainer} edges={['top']}>
       <StatusBar style="auto" />
       <ThemedView style={styles.header}>
-        <ThemedText type="title" style={styles.title}>Settings</ThemedText>
-        <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
+        <ThemedView style={styles.placeholder} />
+        <ThemedView style={styles.headerTitleContainer}>
+          <ThemedText style={styles.headerTitle}>Settings</ThemedText>
+        </ThemedView>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.shareButton,
+            pressed && styles.shareButtonPressed
+          ]}
+          onPress={handleShare}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
           <Ionicons 
             name={Platform.OS === 'ios' ? 'share-outline' : 'share-social-outline'} 
-            size={20} 
-            color="#fff" 
+            size={24} 
+            color="#007AFF" 
           />
-        </TouchableOpacity>
+        </Pressable>
       </ThemedView>
       
       <ThemedView style={styles.container}>
@@ -171,11 +181,11 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#ffffff',
   },
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F2F2F7',
   },
   scrollView: {
     flex: 1,
@@ -185,24 +195,38 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 20,
-    backgroundColor: '#1f4e79',
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
   },
-  title: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: 'bold',
+  headerTitleContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   shareButton: {
-    width: 40,
-    height: 40,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 20,
-    alignItems: 'center',
+    width: 44,
+    height: 44,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 22,
+  },
+  shareButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+  },
+  placeholder: {
+    width: 44,
   },
 
   content: {

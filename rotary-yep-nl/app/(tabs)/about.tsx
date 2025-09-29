@@ -7,7 +7,9 @@ export default function AboutScreen() {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <Text style={styles.title}>About Us</Text>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle}>About Us</Text>
+        </View>
       </View>
       
       <View style={styles.container}>
@@ -73,11 +75,11 @@ export default function AboutScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#ffffff',
   },
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
+    backgroundColor: '#F2F2F7',
   },
   scrollView: {
     flex: 1,
@@ -87,14 +89,20 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 20,
-    backgroundColor: '#1f4e79',
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
+  },
+  headerTitleContainer: {
     alignItems: 'center',
   },
-  title: {
-    color: '#fff',
-    fontSize: Platform.OS === 'ios' ? 34 : 28,
-    fontWeight: Platform.OS === 'ios' ? '700' : 'bold',
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
   },
   content: {
     padding: 20,

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, StyleSheet, TouchableOpacity, Modal, ScrollView, Dimensions, Platform, Linking } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Pressable, Modal, ScrollView, Dimensions, Platform, Linking } from 'react-native';
 import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
 import { NetworkImage } from './network-image';
@@ -127,8 +127,9 @@ export function ContactCard({ contact, index }: ContactCardProps) {
             <TouchableOpacity 
               style={styles.closeButton}
               onPress={() => setShowDetails(false)}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <Ionicons name="close" size={24} color="#666" />
+              <Ionicons name="close" size={28} color="#FFFFFF" />
             </TouchableOpacity>
           </ThemedView>
           
@@ -265,17 +266,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#1f4e79',
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '600',
-    color: '#fff',
+    color: '#FFFFFF',
   },
   closeButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 8,
   },
   modalContent: {
     flex: 1,

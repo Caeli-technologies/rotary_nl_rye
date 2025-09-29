@@ -6,6 +6,7 @@ import {
   Pressable,
   ActivityIndicator,
   Alert,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -99,20 +100,32 @@ export default function PDFViewerScreen() {
 
   if (error) {
     return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="light" />
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <StatusBar style="auto" />
         <View style={styles.header}>
-          <Pressable style={styles.backButton} onPress={() => router.back()}>
-            <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Pressable 
+            style={({ pressed }) => [
+              styles.headerButton,
+              pressed && styles.headerButtonPressed
+            ]}
+            onPress={() => router.back()}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Ionicons name="chevron-back" size={28} color="#007AFF" />
           </Pressable>
-          <Text style={styles.title}>PDF Error</Text>
+          <View style={styles.headerTitleContainer}>
+            <Text style={styles.headerTitle}>PDF Error</Text>
+          </View>
+          <View style={styles.placeholder} />
         </View>
-        <View style={styles.content}>
-          <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
-          <Text style={styles.errorText}>{error}</Text>
-          <Pressable style={styles.retryButton} onPress={downloadPDF}>
-            <Text style={styles.buttonText}>Try Again</Text>
-          </Pressable>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
+            <Text style={styles.errorText}>{error}</Text>
+            <Pressable style={styles.retryButton} onPress={downloadPDF}>
+              <Text style={styles.buttonText}>Try Again</Text>
+            </Pressable>
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -120,31 +133,50 @@ export default function PDFViewerScreen() {
 
   if (loading || !localFilePath) {
     return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="light" />
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <StatusBar style="auto" />
         <View style={styles.header}>
-          <Pressable style={styles.backButton} onPress={() => router.back()}>
-            <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Pressable 
+            style={({ pressed }) => [
+              styles.headerButton,
+              pressed && styles.headerButtonPressed
+            ]}
+            onPress={() => router.back()}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Ionicons name="chevron-back" size={28} color="#007AFF" />
           </Pressable>
-          <Text style={styles.title}>{title || 'PDF Viewer'}</Text>
+          <View style={styles.headerTitleContainer}>
+            <Text style={styles.headerTitle}>{title || 'PDF Viewer'}</Text>
+          </View>
+          <View style={styles.placeholder} />
         </View>
-        <View style={styles.content}>
-          <ActivityIndicator size="large" color="#1f4e79" />
-          <Text style={styles.loadingText}>Loading PDF...</Text>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <ActivityIndicator size="large" color="#007AFF" />
+            <Text style={styles.loadingText}>Loading PDF...</Text>
+          </View>
         </View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar style="auto" />
       <View style={styles.header}>
-        <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+        <Pressable 
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
+          ]}
+          onPress={() => router.back()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons name="chevron-back" size={28} color="#007AFF" />
         </Pressable>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title} numberOfLines={1}>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitle} numberOfLines={1}>
             {title || 'PDF Document'}
           </Text>
           {totalPages > 0 && (
@@ -153,91 +185,107 @@ export default function PDFViewerScreen() {
             </Text>
           )}
         </View>
-        <Pressable style={styles.shareButton} onPress={handleShare}>
-          <Ionicons name="share-outline" size={20} color="#fff" />
+        <Pressable 
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
+          ]}
+          onPress={handleShare}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons name="share-outline" size={24} color="#007AFF" />
         </Pressable>
       </View>
       
-      <PdfRendererView
-        source={localFilePath}
-        style={styles.pdf}
-        onPageChange={handlePageChange}
-        onError={handleError}
-      />
+      <View style={styles.container}>
+        <PdfRendererView
+          source={localFilePath}
+          style={styles.pdf}
+          onPageChange={handlePageChange}
+          onError={handleError}
+        />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#F2F2F7',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: '#1f4e79',
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
+    paddingBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C6C6C8',
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
+  headerButton: {
+    width: 44,
+    height: 44,
     justifyContent: 'center',
-  },
-  shareButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 22,
   },
-  titleContainer: {
+  headerButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+  },
+  headerTitleContainer: {
     flex: 1,
     alignItems: 'center',
     marginHorizontal: 16,
   },
-  title: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+  headerTitle: {
+    fontSize: Platform.OS === 'ios' ? 20 : 22,
+    fontWeight: '600',
+    color: '#000000',
+    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
     textAlign: 'center',
   },
+  placeholder: {
+    width: 44,
+  },
   pageInfo: {
-    color: '#fff',
-    fontSize: 12,
-    opacity: 0.8,
+    color: '#8E8E93',
+    fontSize: 13,
+    fontWeight: '400',
     marginTop: 4,
   },
   content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
     padding: 20,
   },
   pdf: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F2F2F7',
   },
   errorText: {
     fontSize: 16,
+    fontWeight: '400',
     color: '#ff6b6b',
     textAlign: 'center',
     marginVertical: 20,
   },
   loadingText: {
     fontSize: 16,
-    color: '#666',
+    fontWeight: '400',
+    color: '#8E8E93',
     marginTop: 16,
   },
   retryButton: {
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#007AFF',
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
@@ -246,6 +294,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
 });
