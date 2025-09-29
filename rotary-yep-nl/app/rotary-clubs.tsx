@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { 
   StyleSheet, 
   View, 
@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import * as Haptics from 'expo-haptics';
 
 interface OptionItem {
   title: string;
@@ -18,33 +19,52 @@ interface OptionItem {
   route: string;
 }
 
-const renderOptionItem = ({ item }: { item: OptionItem }) => (
-  <Pressable 
-    style={({ pressed }) => [
-      styles.optionRow,
-      pressed && styles.optionRowPressed
-    ]}
-    onPress={() => router.push(item.route as any)}
-    android_ripple={{
-      color: 'rgba(0, 122, 255, 0.2)',
-      borderless: false
-    }}
-  >
-    <View style={styles.optionContent}>
-      <View style={styles.iconContainer}>
-        <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
-      </View>
-      <Text style={styles.optionTitle}>{item.title}</Text>
-      <Ionicons 
-        name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-        size={20} 
-        color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
-      />
-    </View>
-  </Pressable>
-);
+
 
 export default function RotaryClubsScreen() {
+  const handleOptionPress = useCallback(async (route: string) => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      router.push(route as any);
+    } catch (error) {
+      console.error('Error navigating to route:', error);
+      // Still navigate even if haptics fail
+      router.push(route as any);
+    }
+  }, []);
+
+  const renderOptionItem = useCallback(({ item }: { item: OptionItem }) => (
+    <Pressable 
+      style={({ pressed }) => [
+        styles.optionRow,
+        pressed && styles.optionRowPressed
+      ]}
+      onPress={() => handleOptionPress(item.route)}
+      android_ripple={{
+        color: 'rgba(0, 122, 255, 0.2)',
+        borderless: false
+      }}
+      accessibilityRole="button"
+      accessibilityLabel={item.title}
+      accessibilityHint="Tap to view more information"
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+    >
+      <View style={styles.optionContent}>
+        <View style={styles.iconContainer}>
+          <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+        </View>
+        <Text style={styles.optionTitle}>{item.title}</Text>
+        <Ionicons 
+          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
+          size={20} 
+          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
+        />
+      </View>
+    </Pressable>
+  ), [handleOptionPress]);
+
   const options: OptionItem[] = [
     {
       title: 'Algemene Informatie',
@@ -73,13 +93,13 @@ export default function RotaryClubsScreen() {
     }
   ];
 
-  const ListHeaderComponent = () => (
+  const ListHeaderComponent = useCallback(() => (
     <View style={styles.content}>
       <Text style={styles.introText}>
         Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent te sponsoren en daarmee dus ook een jaar lang een kind binnen jullie club te ontvangen en te begeleiden. Misschien zijn jullie benaderd door een scholier van buiten jullie of mogelijk vanuit de wens van één van jullie clubleden.
       </Text>
     </View>
-  );
+  ), []);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
@@ -88,11 +108,14 @@ export default function RotaryClubsScreen() {
         <FlatList
           data={options}
           renderItem={renderOptionItem}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={useCallback((item: OptionItem) => item.route, [])}
           ListHeaderComponent={ListHeaderComponent}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={10}
+          windowSize={10}
         />
       </View>
     </SafeAreaView>

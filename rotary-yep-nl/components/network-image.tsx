@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Image, ImageProps, ActivityIndicator, View, StyleSheet, TouchableOpacity, Modal, Dimensions, Platform } from 'react-native';
-import { ThemedView } from './themed-view';
-import { ThemedText } from './themed-text';
+import { Image, ImageProps, ActivityIndicator, View, StyleSheet, Pressable, Modal, Dimensions, Platform, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getInitials } from '@/utils/communications';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 
 interface NetworkImageProps extends Omit<ImageProps, 'source'> {
   imageUrl?: string;
@@ -48,8 +48,11 @@ export function NetworkImage({
     setImageState(shouldShowImage ? 'loading' : 'placeholder');
   }, [imageUrl, shouldShowImage]);
 
-  const handleImagePress = useCallback(() => {
+  const handleImagePress = useCallback(async () => {
     if (expandable && imageState === 'loaded') {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
       setShowExpandedImage(true);
     }
   }, [expandable, imageState]);
@@ -63,25 +66,31 @@ export function NetworkImage({
     setImageState('error');
   }, [imageUrl]);
 
-  const closeModal = useCallback(() => {
+  const closeModal = useCallback(async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
     setShowExpandedImage(false);
   }, []);
 
   const renderPlaceholder = useCallback(() => {
     const placeholder = (
-      <ThemedView style={[styles.placeholder, imageSize, style]}>
+      <View style={[styles.placeholder, imageSize, style]}>
         {showInitials && (
-          <ThemedText style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}>
+          <Text style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}>
             {initials}
-          </ThemedText>
+          </Text>
         )}
-      </ThemedView>
+      </View>
     );
 
     return expandable ? (
-      <TouchableOpacity onPress={handleImagePress} activeOpacity={0.7}>
+      <Pressable 
+        style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+        onPress={handleImagePress}
+      >
         {placeholder}
-      </TouchableOpacity>
+      </Pressable>
     ) : placeholder;
   }, [imageSize, style, showInitials, size, initials, expandable, handleImagePress]);
 
@@ -109,9 +118,12 @@ export function NetworkImage({
     );
 
     return expandable ? (
-      <TouchableOpacity onPress={handleImagePress} activeOpacity={0.7}>
+      <Pressable 
+        style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+        onPress={handleImagePress}
+      >
         {imageContent}
-      </TouchableOpacity>
+      </Pressable>
     ) : imageContent;
   }, [shouldShowImage, imageState, renderPlaceholder, imageSize, style, imageUrl, handleImageLoad, handleImageError, props, expandable, handleImagePress]);
 
@@ -127,11 +139,11 @@ export function NetworkImage({
     }
     
     return (
-      <ThemedView style={styles.expandedPlaceholder}>
-        <ThemedText style={styles.expandedInitials}>
+      <View style={styles.expandedPlaceholder}>
+        <Text style={styles.expandedInitials}>
           {initials}
-        </ThemedText>
-      </ThemedView>
+        </Text>
+      </View>
     );
   }, [imageState, shouldShowImage, imageUrl, initials]);
 
@@ -146,23 +158,25 @@ export function NetworkImage({
           transparent={true}
           onRequestClose={closeModal}
         >
-          <View style={styles.modalOverlay}>
-            <TouchableOpacity 
+          <SafeAreaView style={styles.modalOverlay} edges={['top', 'left', 'right', 'bottom']}>
+            <Pressable 
               style={styles.modalBackground}
               onPress={closeModal}
-              activeOpacity={1}
             >
               <View style={styles.expandedImageContainer}>
                 {renderExpandedContent()}
               </View>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={styles.closeButton}
+            </Pressable>
+            <Pressable 
+              style={({ pressed }) => [
+                styles.closeButton,
+                pressed && styles.closeButtonPressed
+              ]}
               onPress={closeModal}
             >
-              <Ionicons name="close" size={24} color="#fff" />
-            </TouchableOpacity>
-          </View>
+              <Ionicons name="close" size={24} color="#FFFFFF" />
+            </Pressable>
+          </SafeAreaView>
         </Modal>
       )}
     </>
@@ -171,24 +185,25 @@ export function NetworkImage({
 
 const styles = StyleSheet.create({
   placeholder: {
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#1A237E',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 8, // Increased padding to prevent text clipping with larger initials
+    padding: 8,
   },
   initials: {
-    fontWeight: '600',
-    color: '#fff',
+    fontWeight: Platform.OS === 'ios' ? '600' : '700',
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
   loadingContainer: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#F5F5F5',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -208,30 +223,35 @@ const styles = StyleSheet.create({
   expandedImage: {
     width: '100%',
     height: '100%',
-    borderRadius: 12,
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
   },
   expandedPlaceholder: {
     width: screenWidth * 0.6,
     height: screenWidth * 0.6,
-    backgroundColor: '#1f4e79',
+    backgroundColor: '#1A237E',
     borderRadius: (screenWidth * 0.6) / 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
   expandedInitials: {
     fontSize: screenWidth * 0.15,
-    fontWeight: '600',
-    color: '#fff',
+    fontWeight: Platform.OS === 'ios' ? '700' : '800',
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
   closeButton: {
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 60 : 40,
+    top: Platform.OS === 'ios' ? 20 : 30,
     right: 20,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: Platform.OS === 'ios' ? 44 : 48,
+    height: Platform.OS === 'ios' ? 44 : 48,
+    borderRadius: Platform.OS === 'ios' ? 22 : 24,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  closeButtonPressed: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    opacity: 0.8,
   },
 });

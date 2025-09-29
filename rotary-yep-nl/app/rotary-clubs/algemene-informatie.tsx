@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { 
   StyleSheet, 
   View, 
@@ -13,16 +13,24 @@ interface InfoSectionProps {
   content: string;
 }
 
-function InfoSection({ title, content }: InfoSectionProps) {
+const InfoSection = React.memo(({ title, content }: InfoSectionProps) => {
   return (
     <View style={styles.infoSection}>
       <Text style={styles.sectionTitle}>{title}</Text>
       <Text style={styles.sectionContent}>{content}</Text>
     </View>
   );
-}
+});
 
 export default function AlgemeneInformatieScreen() {
+  const renderInfoSection = useCallback((section: { title: string; content: string }, index: number) => (
+    <InfoSection
+      key={index}
+      title={section.title}
+      content={section.content}
+    />
+  ), []);
+
   const infoSections = [
     {
       title: 'Sponsoring - wat houdt het in?',
@@ -52,13 +60,7 @@ export default function AlgemeneInformatieScreen() {
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
         >
-          {infoSections.map((section, index) => (
-            <InfoSection
-              key={index}
-              title={section.title}
-              content={section.content}
-            />
-          ))}
+          {infoSections.map(renderInfoSection)}
         </ScrollView>
       </View>
     </SafeAreaView>

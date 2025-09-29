@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { 
   StyleSheet, 
   View, 
@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import * as Haptics from 'expo-haptics';
 
 interface DocumentItemProps {
   title: string;
@@ -18,16 +19,30 @@ interface DocumentItemProps {
   pdfUrl: string;
 }
 
-function DocumentItem({ title, icon, pdfUrl }: DocumentItemProps) {
-  const handlePress = () => {
-    router.push({
-      pathname: '/pdf-viewer',
-      params: {
-        url: pdfUrl,
-        title: title
+const DocumentItem = React.memo(({ title, icon, pdfUrl }: DocumentItemProps) => {
+  const handlePress = useCallback(async () => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    });
-  };
+      router.push({
+        pathname: '/pdf-viewer',
+        params: {
+          url: pdfUrl,
+          title: title
+        }
+      });
+    } catch (error) {
+      console.error('Error opening PDF:', error);
+      router.push({
+        pathname: '/pdf-viewer',
+        params: {
+          url: pdfUrl,
+          title: title
+        }
+      });
+    }
+  }, [pdfUrl, title]);
 
   return (
     <Pressable 
@@ -40,6 +55,10 @@ function DocumentItem({ title, icon, pdfUrl }: DocumentItemProps) {
         color: 'rgba(0, 122, 255, 0.2)',
         borderless: false
       }}
+      accessibilityRole="button"
+      accessibilityLabel={`Open ${title} PDF document`}
+      accessibilityHint="Tap to view PDF in document viewer"
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
     >
       <View style={styles.documentContent}>
         <View style={styles.iconContainer}>
@@ -57,9 +76,18 @@ function DocumentItem({ title, icon, pdfUrl }: DocumentItemProps) {
       </View>
     </Pressable>
   );
-}
+});
 
 export default function GastgezinScreen() {
+  const renderDocument = useCallback((document: DocumentItemProps, index: number) => (
+    <DocumentItem
+      key={index}
+      title={document.title}
+      icon={document.icon}
+      pdfUrl={document.pdfUrl}
+    />
+  ), []);
+
   const documents = [
     {
       title: 'Handboek Gastgezin',
@@ -92,14 +120,7 @@ export default function GastgezinScreen() {
             Informatie en documentatie voor gastgezinnen die een exchange student ontvangen.
           </Text>
           
-          {documents.map((document, index) => (
-            <DocumentItem
-              key={index}
-              title={document.title}
-              icon={document.icon}
-              pdfUrl={document.pdfUrl}
-            />
-          ))}
+          {documents.map(renderDocument)}
         </ScrollView>
       </View>
     </SafeAreaView>

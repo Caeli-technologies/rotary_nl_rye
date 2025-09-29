@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   ScrollView,
   ActivityIndicator,
   StyleSheet,
@@ -11,6 +11,7 @@ import {
   Alert,
   Modal,
 } from 'react-native';
+import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar } from 'react-native-calendars';
 import { Ionicons } from '@expo/vector-icons';
@@ -36,6 +37,7 @@ export default function CalendarScreen() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
 
   // Helper function to create marked dates
   const createMarkedDates = (events: EventsData, selected: string) => {
@@ -59,7 +61,7 @@ export default function CalendarScreen() {
     loadEvents();
   }, []);
 
-  const loadEvents = async () => {
+  const loadEvents = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -67,49 +69,87 @@ export default function CalendarScreen() {
       const data = await fetchCalendarEvents();
       setEventsData(data);
     } catch (err) {
+      console.error('Calendar events loading error:', err);
       setError('Failed to load events. Please check your internet connection and try again.');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const onDayPress = (day: any) => {
+  const onDayPress = useCallback((day: any) => {
     setSelectedDate(day.dateString);
-  };
+  }, []);
 
-  const openEventDetails = (event: Event) => {
-    setSelectedEvent(event);
-    setModalVisible(true);
-  };
-
-  const closeEventDetails = () => {
-    setModalVisible(false);
-    setSelectedEvent(null);
-  };
-
-  const openLocation = async (location: string) => {
-    const encodedLocation = encodeURIComponent(location);
-    const url = Platform.select({
-      ios: `maps:0,0?q=${encodedLocation}`,
-      android: `geo:0,0?q=${encodedLocation}`,
-    });
-
+  const openEventDetails = useCallback(async (event: Event) => {
     try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+      setSelectedEvent(event);
+      setModalVisible(true);
+    } catch (error) {
+      console.error('Error opening event details:', error);
+    }
+  }, []);
+
+  const closeEventDetails = useCallback(async () => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      setModalVisible(false);
+      setSelectedEvent(null);
+    } catch (error) {
+      console.error('Error closing event details:', error);
+      // Still close even if haptics fail
+      setModalVisible(false);
+      setSelectedEvent(null);
+    }
+  }, []);
+
+  const openLocation = useCallback(async (location: string) => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      
+      const encodedLocation = encodeURIComponent(location);
+      const url = Platform.select({
+        ios: `maps:0,0?q=${encodedLocation}`,
+        android: `geo:0,0?q=${encodedLocation}`,
+      });
+
       if (url) {
-        await Linking.openURL(url);
+        const canOpen = await Linking.canOpenURL(url);
+        if (canOpen) {
+          await Linking.openURL(url);
+        } else {
+          Alert.alert('Error', 'Maps application is not available on this device');
+        }
       }
     } catch (error) {
+      console.error('Error opening location:', error);
       Alert.alert('Error', 'Unable to open maps application');
     }
-  };
+  }, []);
 
-  const openLink = async (url: string) => {
+  const openLink = useCallback(async (url: string) => {
     try {
-      await Linking.openURL(url);
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      
+      const canOpen = await Linking.canOpenURL(url);
+      if (canOpen) {
+        await Linking.openURL(url);
+      } else {
+        Alert.alert('Error', 'Unable to open this link type');
+      }
     } catch (error) {
+      console.error('Error opening link:', error);
       Alert.alert('Error', 'Unable to open link');
     }
-  };
+  }, []);
 
   const renderEvent = (event: Event) => {
     const isMultiDay = isMultiDayEvent(event);
@@ -119,11 +159,16 @@ export default function CalendarScreen() {
     const endDate = isMultiDay ? formatEventDate(getDisplayEndDate(event)) : '';
 
     return (
-      <TouchableOpacity
+      <Pressable
         key={event.id}
-        style={styles.eventCard}
+        style={({ pressed }) => [
+          styles.eventCard,
+          pressed && styles.eventCardPressed
+        ]}
         onPress={() => openEventDetails(event)}
-        activeOpacity={0.8}
+        accessibilityRole="button"
+        accessibilityLabel={`Event: ${event.summary}`}
+        accessibilityHint="Tap to view event details"
       >
         <View style={styles.eventHeader}>
           <View style={styles.eventIconContainer}>
@@ -164,7 +209,7 @@ export default function CalendarScreen() {
             <Ionicons name="chevron-forward" size={16} color="#C7C7CC" />
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
 
@@ -209,12 +254,18 @@ export default function CalendarScreen() {
                   </Text>
                 </View>
               </View>
-              <TouchableOpacity
-                style={styles.closeButton}
+              <Pressable
+                style={({ pressed }) => [
+                  styles.closeButton,
+                  pressed && styles.closeButtonPressed
+                ]}
                 onPress={closeEventDetails}
+                accessibilityRole="button"
+                accessibilityLabel="Close event details"
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               >
                 <Ionicons name="close" size={24} color="#000000" />
-              </TouchableOpacity>
+              </Pressable>
             </View>
 
             <ScrollView style={styles.modalBody} showsVerticalScrollIndicator={false}>
@@ -251,10 +302,12 @@ export default function CalendarScreen() {
                   <Text style={styles.modalCardTitle}>Location</Text>
                 </View>
                 {selectedEvent.location !== 'Location not specified' ? (
-                  <TouchableOpacity
-                    style={styles.modalCardContent}
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.modalCardContent,
+                      pressed && styles.modalCardContentPressed
+                    ]}
                     onPress={() => openLocation(selectedEvent.location)}
-                    activeOpacity={0.7}
                   >
                     <Text style={[styles.modalLocationText, styles.linkText]}>
                       {selectedEvent.location}
@@ -263,7 +316,7 @@ export default function CalendarScreen() {
                       <Ionicons name="map" size={16} color="#007AFF" />
                       <Text style={styles.modalActionText}>Open in Maps</Text>
                     </View>
-                  </TouchableOpacity>
+                  </Pressable>
                 ) : (
                   <View style={styles.modalCardContent}>
                     <Text style={styles.modalLocationText}>
@@ -310,18 +363,20 @@ export default function CalendarScreen() {
                   </View>
                   <View style={styles.modalCardContent}>
                     {links.map((link, index) => (
-                      <TouchableOpacity
+                      <Pressable
                         key={index}
-                        style={styles.modalLinkItem}
+                        style={({ pressed }) => [
+                          styles.modalLinkItem,
+                          pressed && styles.modalLinkItemPressed
+                        ]}
                         onPress={() => openLink(link)}
-                        activeOpacity={0.7}
                       >
                         <Ionicons name="open-outline" size={16} color="#007AFF" />
                         <Text style={[styles.modalLinkText, styles.linkText]} numberOfLines={1}>
                           {link}
                         </Text>
                         <Ionicons name="chevron-forward" size={16} color="#C7C7CC" />
-                      </TouchableOpacity>
+                      </Pressable>
                     ))}
                   </View>
                 </View>
@@ -332,20 +387,32 @@ export default function CalendarScreen() {
             {/* Action Buttons */}
             <View style={styles.modalActions}>
               {selectedEvent.location !== 'Location not specified' && (
-                <TouchableOpacity
-                  style={[styles.modalActionButton, styles.modalSecondaryButton]}
+                <Pressable
+                  style={({ pressed }) => [
+                    styles.modalActionButton, 
+                    styles.modalSecondaryButton,
+                    pressed && styles.modalSecondaryButtonPressed
+                  ]}
                   onPress={() => openLocation(selectedEvent.location)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Get directions to ${selectedEvent.location}`}
                 >
                   <Ionicons name="map-outline" size={18} color="#007AFF" />
                   <Text style={styles.modalSecondaryButtonText}>Directions</Text>
-                </TouchableOpacity>
+                </Pressable>
               )}
-              <TouchableOpacity
-                style={[styles.modalActionButton, styles.modalPrimaryButton]}
+              <Pressable
+                style={({ pressed }) => [
+                  styles.modalActionButton, 
+                  styles.modalPrimaryButton,
+                  pressed && styles.modalPrimaryButtonPressed
+                ]}
                 onPress={closeEventDetails}
+                accessibilityRole="button"
+                accessibilityLabel="Close event details"
               >
                 <Text style={styles.modalPrimaryButtonText}>Done</Text>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -369,9 +436,17 @@ export default function CalendarScreen() {
             </View>
             <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
             <Text style={styles.errorText}>{error}</Text>
-            <TouchableOpacity style={styles.retryButton} onPress={loadEvents}>
+            <Pressable 
+              style={({ pressed }) => [
+                styles.retryButton,
+                pressed && styles.retryButtonPressed
+              ]}
+              onPress={loadEvents}
+              accessibilityRole="button"
+              accessibilityLabel="Retry loading events"
+            >
               <Text style={styles.retryButtonText}>Try Again</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         ) : (
           <ScrollView
@@ -425,13 +500,19 @@ export default function CalendarScreen() {
                     day: 'numeric',
                   })}
                 </Text>
-                <TouchableOpacity
-                  style={styles.refreshButton}
+                <Pressable
+                  style={({ pressed }) => [
+                    styles.refreshButton,
+                    pressed && styles.refreshButtonPressed
+                  ]}
                   onPress={loadEvents}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Refresh events"
+                  accessibilityHint="Reload calendar events"
                 >
                   <Ionicons name="refresh" size={20} color="#007AFF" />
-                </TouchableOpacity>
+                </Pressable>
               </View>
 
               {selectedEvents.length > 0 ? (
@@ -456,6 +537,14 @@ export default function CalendarScreen() {
     </SafeAreaView>
   );
 }
+
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.08,
+  shadowRadius: 20,
+  elevation: 4,
+};
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -504,16 +593,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  refreshButtonPressed: {
+    backgroundColor: '#E8E8ED',
+    opacity: 0.8,
+  },
   eventCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
     marginBottom: 12,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
+    ...(Platform.OS === 'ios' ? shadowStyle : {
+      elevation: 2,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
     overflow: 'hidden',
+  },
+  eventCardPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
+    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
   },
   eventHeader: {
     flexDirection: 'row',
@@ -638,8 +735,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#007AFF',
     paddingHorizontal: 32,
     paddingVertical: 14,
-    borderRadius: 8,
+    borderRadius: Platform.OS === 'ios' ? 12 : 8,
     minWidth: 120,
+  },
+  retryButtonPressed: {
+    backgroundColor: '#0056CC',
+    opacity: 0.8,
   },
   retryButtonText: {
     color: '#FFFFFF',
@@ -705,6 +806,23 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     padding: 4,
+  },
+  closeButtonPressed: {
+    opacity: 0.6,
+  },
+  modalCardContentPressed: {
+    backgroundColor: '#F0F0F0',
+  },
+  modalLinkItemPressed: {
+    backgroundColor: '#E8E8ED',
+  },
+  modalPrimaryButtonPressed: {
+    backgroundColor: '#0056CC',
+    opacity: 0.8,
+  },
+  modalSecondaryButtonPressed: {
+    backgroundColor: '#F0F0F0',
+    opacity: 0.8,
   },
   modalBody: {
     padding: 20,

@@ -48,21 +48,12 @@ export default function SettingsLayout() {
           },
           headerShadowVisible: Platform.OS === 'ios',
           headerRight: () => (
-            <Pressable 
-              style={({ pressed }) => [
-                {
-                  width: 44,
-                  height: 44,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 22,
-                  marginRight: -8,
-                },
-                pressed && {
-                  opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
-                  backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
-                }
-              ]}
+            <Pressable
+              style={{
+                padding: 8,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
               onPress={handleShare}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >

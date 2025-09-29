@@ -1,8 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { ThemedText } from './themed-text';
-import { ThemedView } from './themed-view';
+import { StyleSheet, Pressable, View, Text, Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { makePhoneCall, sendEmail } from '../utils/communications';
+import * as Haptics from 'expo-haptics';
+
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.08,
+  shadowRadius: 20,
+  elevation: 4,
+};
 
 interface ContactCardProps {
   name: string;
@@ -23,75 +31,102 @@ export function ContactCard({
   onPress,
   showActions = true,
 }: ContactCardProps) {
-  const handleCall = () => {
+  const handleCall = async () => {
     if (phone) {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
       makePhoneCall(phone, name);
     }
   };
 
-  const handleEmail = () => {
+  const handleEmail = async () => {
     if (email) {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
       sendEmail(email, name);
     }
   };
 
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress} disabled={!onPress}>
-      <ThemedView style={styles.content}>
-        <ThemedView style={styles.info}>
-          <ThemedText style={styles.name}>{name}</ThemedText>
-          <ThemedText style={styles.function}>{jobFunction}</ThemedText>
+    <Pressable 
+      style={({ pressed }) => [
+        styles.card,
+        pressed && styles.cardPressed
+      ]}
+      onPress={onPress} 
+      disabled={!onPress}
+    >
+      <View style={styles.content}>
+        <View style={styles.info}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.function}>{jobFunction}</Text>
           {organization && (
-            <ThemedText style={styles.organization}>{organization}</ThemedText>
+            <Text style={styles.organization}>{organization}</Text>
           )}
-        </ThemedView>
+        </View>
         
         {showActions && (phone || email) && (
-          <ThemedView style={styles.actions}>
+          <View style={styles.actions}>
             {phone && (
-              <TouchableOpacity style={styles.actionButton} onPress={handleCall}>
-                <ThemedText style={styles.actionText}>📞</ThemedText>
-              </TouchableOpacity>
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.actionButton,
+                  pressed && styles.actionButtonPressed
+                ]}
+                onPress={handleCall}
+              >
+                <Ionicons name="call" size={18} color="#1A237E" />
+              </Pressable>
             )}
             {email && (
-              <TouchableOpacity style={styles.actionButton} onPress={handleEmail}>
-                <ThemedText style={styles.actionText}>✉️</ThemedText>
-              </TouchableOpacity>
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.actionButton,
+                  pressed && styles.actionButtonPressed
+                ]}
+                onPress={handleEmail}
+              >
+                <Ionicons name="mail" size={18} color="#1A237E" />
+              </Pressable>
             )}
-          </ThemedView>
+          </View>
         )}
-      </ThemedView>
-    </TouchableOpacity>
+      </View>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    marginBottom: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 12 : 8,
+    marginBottom: Platform.OS === 'ios' ? 12 : 8,
+    ...(Platform.OS === 'ios' ? shadowStyle : {
+      elevation: 2,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
+  },
+  cardPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
+    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
+    minHeight: Platform.OS === 'ios' ? 80 : 88,
   },
   info: {
     flex: 1,
   },
   name: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
     marginBottom: 4,
-    color: '#333',
+    color: '#1A237E',
   },
   function: {
     fontSize: 14,
@@ -100,21 +135,23 @@ const styles = StyleSheet.create({
   },
   organization: {
     fontSize: 12,
-    color: '#999',
+    color: '#9FA8DA',
+    fontWeight: '500',
   },
   actions: {
     flexDirection: 'row',
     gap: 8,
   },
   actionButton: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 20,
+    width: Platform.OS === 'ios' ? 44 : 48,
+    height: Platform.OS === 'ios' ? 44 : 48,
+    backgroundColor: '#E8EAF6',
+    borderRadius: Platform.OS === 'ios' ? 22 : 24,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  actionText: {
-    fontSize: 18,
+  actionButtonPressed: {
+    backgroundColor: '#C5CAE9',
+    opacity: 0.8,
   },
 });

@@ -1,11 +1,18 @@
-import { ScrollView, StyleSheet, TouchableOpacity, Alert, Linking, Platform } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { ScrollView, StyleSheet, Pressable, Alert, Linking, Platform, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
+import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
+
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.08,
+  shadowRadius: 20,
+  elevation: 4,
+};
 
 export default function SettingsScreen() {
   const [appVersion, setAppVersion] = useState<string>('Loading...');
@@ -23,25 +30,53 @@ export default function SettingsScreen() {
     getAppInfo();
   }, []);
 
-  const handlePrivacyPolicy = () => {
-    Linking.openURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html');
+  const handlePrivacyPolicy = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Linking.canOpenURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html').then(supported => {
+      if (supported) {
+        Linking.openURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html');
+      } else {
+        Alert.alert('Error', 'Unable to open privacy policy link');
+      }
+    });
   };
 
-  const handleTermsAndConditions = () => {
-    Linking.openURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html');
+  const handleTermsAndConditions = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Linking.canOpenURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html').then(supported => {
+      if (supported) {
+        Linking.openURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html');
+      } else {
+        Alert.alert('Error', 'Unable to open terms and conditions link');
+      }
+    });
   };
 
-  const handleContributors = () => {
+  const handleContributors = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
     Alert.alert('Contributors', 'Thanks to all who made this app possible!');
   };
 
+  const handleSocialMedia = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Alert.alert('Social Media', 'Social media integration coming soon!');
+  };
+
   const SettingsSection = ({ title, children }: { title: string, children: React.ReactNode }) => (
-    <ThemedView style={styles.section}>
-      <ThemedText style={styles.sectionTitle}>{title}</ThemedText>
-      <ThemedView style={styles.sectionContent}>
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>{title}</Text>
+      <View style={styles.sectionContent}>
         {children}
-      </ThemedView>
-    </ThemedView>
+      </View>
+    </View>
   );
 
   const SettingsItem = ({ 
@@ -55,76 +90,81 @@ export default function SettingsScreen() {
     onPress?: () => void,
     rightElement?: React.ReactNode 
   }) => (
-    <TouchableOpacity 
-      style={styles.settingsItem} 
+    <Pressable 
+      style={({ pressed }) => [
+        styles.settingsItem,
+        pressed && styles.settingsItemPressed
+      ]}
       onPress={onPress}
       disabled={!onPress}
     >
-      <ThemedView style={styles.settingsItemContent}>
-        <ThemedText style={styles.settingsItemTitle}>{title}</ThemedText>
+      <View style={styles.settingsItemContent}>
+        <Text style={styles.settingsItemTitle}>{title}</Text>
         {subtitle && (
-          <ThemedText style={styles.settingsItemSubtitle}>{subtitle}</ThemedText>
+          <Text style={styles.settingsItemSubtitle}>{subtitle}</Text>
         )}
-      </ThemedView>
+      </View>
       {rightElement || (onPress && (
         <Ionicons 
           name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
-          size={16} 
-          color="#999" 
+          size={Platform.OS === 'ios' ? 20 : 24} 
+          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
         />
       ))}
-    </TouchableOpacity>
+    </Pressable>
   );
 
   return (
-    <SafeAreaView style={styles.safeContainer} edges={[]}>
+    <SafeAreaView style={styles.safeContainer} edges={['bottom']}>
       <StatusBar style="auto" />
       
-      <ThemedView style={styles.container}>
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-          <ThemedView style={styles.content}>
-            <SettingsSection title="General">
-              <SettingsItem
-                title="Social Media"
-                subtitle="Connect your social accounts"
-                onPress={() => Alert.alert('Social', 'Social media integration coming soon!')}
-              />
-            </SettingsSection>
+      <ScrollView 
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
+        <View style={styles.content}>
+          <SettingsSection title="General">
+            <SettingsItem
+              title="Social Media"
+              subtitle="Connect your social accounts"
+              onPress={handleSocialMedia}
+            />
+          </SettingsSection>
 
-            <SettingsSection title="Development">
-              <SettingsItem
-                title="Contributors"
-                subtitle="View app contributors"
-                onPress={handleContributors}
-              />
-              <SettingsItem
-                title="App Version"
-                subtitle={buildVersion ? `${appVersion} (${buildVersion})` : appVersion}
-              />
-            </SettingsSection>
+          <SettingsSection title="Development">
+            <SettingsItem
+              title="Contributors"
+              subtitle="View app contributors"
+              onPress={handleContributors}
+            />
+            <SettingsItem
+              title="App Version"
+              subtitle={buildVersion ? `${appVersion} (${buildVersion})` : appVersion}
+            />
+          </SettingsSection>
 
-            <SettingsSection title="Legal">
-              <SettingsItem
-                title="Privacy Policy"
-                onPress={handlePrivacyPolicy}
-              />
-              <SettingsItem
-                title="Terms & Conditions"
-                onPress={handleTermsAndConditions}
-              />
-            </SettingsSection>
+          <SettingsSection title="Legal">
+            <SettingsItem
+              title="Privacy Policy"
+              onPress={handlePrivacyPolicy}
+            />
+            <SettingsItem
+              title="Terms & Conditions"
+              onPress={handleTermsAndConditions}
+            />
+          </SettingsSection>
 
-            <ThemedView style={styles.footer}>
-              <ThemedText style={styles.footerText}>
-                Rotary Youth Exchange Netherlands
-              </ThemedText>
-              <ThemedText style={styles.footerText}>
-                Made with ❤️ for young global citizens
-              </ThemedText>
-            </ThemedView>
-          </ThemedView>
-        </ScrollView>
-      </ThemedView>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>
+              Rotary Youth Exchange Netherlands
+            </Text>
+            <Text style={styles.footerText}>
+              Made with ❤️ for young global citizens
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -132,74 +172,76 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 30,
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   content: {
-    padding: 16,
+    padding: Platform.OS === 'ios' ? 16 : 12,
+    paddingBottom: 30,
   },
   section: {
     marginBottom: 24,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontSize: Platform.OS === 'ios' ? 22 : 18,
+    fontWeight: Platform.OS === 'ios' ? '700' : '600',
+    color: '#1A237E',
     marginBottom: 12,
     paddingHorizontal: 4,
+    letterSpacing: Platform.OS === 'ios' ? 0.35 : 0,
   },
   sectionContent: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    overflow: 'hidden',
+    ...(Platform.OS === 'ios' ? shadowStyle : {
+      elevation: 2,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
   },
   settingsItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 16,
+    paddingVertical: Platform.OS === 'ios' ? 16 : 14,
     paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    minHeight: Platform.OS === 'ios' ? 60 : 64,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: Platform.OS === 'ios' ? '#E5E5E5' : '#F0F0F0',
+  },
+  settingsItemPressed: {
+    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
+    opacity: 0.8,
   },
   settingsItemContent: {
     flex: 1,
   },
   settingsItemTitle: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#333',
+    fontWeight: Platform.OS === 'ios' ? '600' : '500',
+    color: '#1A237E',
     marginBottom: 2,
   },
   settingsItemSubtitle: {
     fontSize: 14,
     color: '#666',
+    lineHeight: 18,
   },
   footer: {
     alignItems: 'center',
     marginTop: 40,
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
   footerText: {
     fontSize: 14,
-    color: '#999',
+    color: '#9FA8DA',
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: 6,
+    lineHeight: 20,
   },
 });

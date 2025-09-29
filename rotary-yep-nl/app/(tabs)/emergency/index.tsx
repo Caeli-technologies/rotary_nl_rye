@@ -1,8 +1,19 @@
-import { Platform, ScrollView, StyleSheet, Linking, Alert, View, Text } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, View, Text, Platform, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
-import { ContactCard } from '@/components/contact-card';
+import { Ionicons } from '@expo/vector-icons';
+import { makePhoneCall, sendEmail } from '@/utils/communications';
 import { StatusBar } from 'expo-status-bar';
+import * as Haptics from 'expo-haptics';
+
+const shadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.08,
+  shadowRadius: 20,
+  elevation: 4,
+};
 
 interface EmergencyContact {
   name: string;
@@ -68,101 +79,131 @@ export default function EmergencyScreen() {
     },
   ];
 
-  const makeCall = (phoneNumber: string, name: string) => {
-    Alert.alert(
-      'Call Emergency Contact',
-      `Do you want to call ${name}?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Call', 
-          onPress: () => Linking.openURL(`tel:${phoneNumber}`) 
-        },
-      ]
-    );
+  const handleCall = async (phone: string, name: string) => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+    makePhoneCall(phone, name);
   };
 
-  const sendEmail = (email: string, name: string) => {
-    Alert.alert(
-      'Send Email',
-      `Do you want to send an email to ${name}?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Email', 
-          onPress: () => Linking.openURL(`mailto:${email}`) 
-        },
-      ]
-    );
+  const handleEmail = async (email: string, name: string) => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+    sendEmail(email, name);
   };
 
   const EmergencyContactCard = ({ contact }: { contact: EmergencyContact }) => (
-    <ContactCard
-      name={contact.name}
-      function={contact.function}
-      phone={contact.phone}
-      email={contact.email}
-      showActions={true}
-    />
+    <View style={styles.contactCard}>
+      <View style={styles.contactInfo}>
+        <Text style={styles.contactName}>{contact.name}</Text>
+        <Text style={styles.contactFunction}>{contact.function}</Text>
+        <Text style={styles.contactPhone}>{contact.phone}</Text>
+      </View>
+      <View style={styles.contactActions}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.actionButton,
+            pressed && styles.actionButtonPressed
+          ]}
+          onPress={() => handleCall(contact.phone, contact.name)}
+        >
+          <Ionicons name="call" size={20} color="#1A237E" />
+        </Pressable>
+        {contact.email && (
+          <Pressable
+            style={({ pressed }) => [
+              styles.actionButton,
+              pressed && styles.actionButtonPressed
+            ]}
+            onPress={() => handleEmail(contact.email!, contact.name)}
+          >
+            <Ionicons name="mail" size={20} color="#1A237E" />
+          </Pressable>
+        )}
+      </View>
+    </View>
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <StatusBar style="light" />
-      <View style={styles.container}>
-        <ScrollView 
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-        >
-          <View style={styles.content}>
-            <View style={styles.emergencySection}>
-              <Text style={styles.emergencyTitle}>112 for ambulance, fire brigade or police:</Text>
-              <Image 
-                source={require('@/assets/emergency/112_logo.png')}
-                style={styles.emergencyImage}
-                contentFit="contain"
-              />
+    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+      <StatusBar style="auto" />
+      <ScrollView 
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
+        <View style={styles.content}>
+          {/* Emergency 112 Section */}
+          <View style={styles.emergencySection}>
+            <View style={styles.emergencyHeader}>
+              <Ionicons name="warning" size={24} color="#FF3B30" />
+              <Text style={styles.emergencyTitle}>Emergency Services</Text>
             </View>
-
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>
-                Neem direct contact op met Inbound coördinator en daaronder de Outbound coördinatoren:
-              </Text>
-              {emergencyContacts.map((contact, index) => (
-                <EmergencyContactCard key={index} contact={contact} />
-              ))}
-            </View>
-
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Within Rotary Youth Exchange:</Text>
-              {nationalCounselors.map((contact, index) => (
-                <EmergencyContactCard key={index} contact={contact} />
-              ))}
-            </View>
-
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>
-                Confidants (not connected to Rotary) in case of f.e. sexual harassment:
-              </Text>
-              {confidants.map((contact, index) => (
-                <EmergencyContactCard key={index} contact={contact} />
-              ))}
-            </View>
-
-            <View style={styles.note}>
-              <Text style={styles.noteTitle}>Note:</Text>
-              <Text style={styles.noteText}>
-                Make sure you always have your present host parent's phone numbers and home address at hand!
-              </Text>
-              <Text style={styles.noteText}>
-                Also, your host parents know how to assist you in case you need to see a doctor, have to go to the hospital or visit a dentist.
-              </Text>
-            </View>
+            <Text style={styles.emergencySubtitle}>
+              112 for ambulance, fire brigade or police
+            </Text>
+            <Image 
+              source={require('@/assets/emergency/112_logo.png')}
+              style={styles.emergencyImage}
+              contentFit="contain"
+            />
           </View>
-        </ScrollView>
-      </View>
+
+          {/* Main Coordinators */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Ionicons name="people" size={20} color="#1A237E" />
+              <Text style={styles.sectionTitle}>Main Coordinators</Text>
+            </View>
+            <Text style={styles.sectionDescription}>
+              Contact Inbound coordinator first, then Outbound coordinators
+            </Text>
+            {emergencyContacts.map((contact, index) => (
+              <EmergencyContactCard key={index} contact={contact} />
+            ))}
+          </View>
+
+          {/* National Counselors */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Ionicons name="shield-checkmark" size={20} color="#1A237E" />
+              <Text style={styles.sectionTitle}>Rotary Youth Exchange</Text>
+            </View>
+            {nationalCounselors.map((contact, index) => (
+              <EmergencyContactCard key={index} contact={contact} />
+            ))}
+          </View>
+
+          {/* Confidants */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Ionicons name="heart" size={20} color="#1A237E" />
+              <Text style={styles.sectionTitle}>Independent Confidants</Text>
+            </View>
+            <Text style={styles.sectionDescription}>
+              Not connected to Rotary - In case of f.e. sexual harassment
+            </Text>
+            {confidants.map((contact, index) => (
+              <EmergencyContactCard key={index} contact={contact} />
+            ))}
+          </View>
+
+          {/* Important Note */}
+          <View style={styles.noteCard}>
+            <View style={styles.noteHeader}>
+              <Ionicons name="information-circle" size={24} color="#FF9800" />
+              <Text style={styles.noteTitle}>Important Reminder</Text>
+            </View>
+            <Text style={styles.noteText}>
+              Always keep your host family's contact information and home address accessible.
+            </Text>
+            <Text style={styles.noteText}>
+              Your host parents can assist you with medical appointments, hospital visits, or dental care.
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -170,62 +211,156 @@ export default function EmergencyScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
-  },
-  scrollView: {
-    flex: 1,
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   content: {
-    padding: 16,
-  },
-  scrollContent: {
+    padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
+  
+  // Emergency Section
   emergencySection: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 24,
+    marginBottom: 20,
     alignItems: 'center',
-    marginBottom: 24,
+    ...(Platform.OS === 'ios' ? shadowStyle : {
+      elevation: 3,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
+  },
+  emergencyHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
   },
   emergencyTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: Platform.OS === 'ios' ? 20 : 18,
+    fontWeight: Platform.OS === 'ios' ? '700' : '600',
+    color: '#1A237E',
+    marginLeft: 8,
+  },
+  emergencySubtitle: {
+    fontSize: 16,
+    color: '#666',
     textAlign: 'center',
-    marginBottom: 0,
-    color: '#1f4e79',
+    marginBottom: 16,
   },
   emergencyImage: {
     width: '100%',
-    height: 120,
+    height: 100,
+    maxWidth: 200,
   },
+  
+  // Section Styles
   section: {
     marginBottom: 24,
   },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 12,
-    color: '#1f4e79',
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
   },
-
-  note: {
-    backgroundColor: '#fff3cd',
+  sectionTitle: {
+    fontSize: Platform.OS === 'ios' ? 22 : 18,
+    fontWeight: Platform.OS === 'ios' ? '700' : '600',
+    color: '#1A237E',
+    marginLeft: 8,
+  },
+  sectionDescription: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 16,
+    lineHeight: 20,
+  },
+  
+  // Contact Card Styles
+  contactCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
-    borderRadius: 8,
+    marginBottom: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    ...(Platform.OS === 'ios' ? shadowStyle : {
+      elevation: 2,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
+  },
+  contactInfo: {
+    flex: 1,
+  },
+  contactName: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1A237E',
+    marginBottom: 4,
+  },
+  contactFunction: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 2,
+  },
+  contactPhone: {
+    fontSize: 14,
+    color: '#9FA8DA',
+    fontWeight: '500',
+  },
+  contactActions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  actionButton: {
+    width: Platform.OS === 'ios' ? 44 : 48,
+    height: Platform.OS === 'ios' ? 44 : 48,
+    borderRadius: Platform.OS === 'ios' ? 22 : 24,
+    backgroundColor: '#E8EAF6',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  actionButtonPressed: {
+    backgroundColor: '#C5CAE9',
+    opacity: 0.8,
+  },
+  
+  // Note Card Styles
+  noteCard: {
+    backgroundColor: '#FFF8E1',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
+    marginTop: 8,
     borderLeftWidth: 4,
     borderLeftColor: '#FF9800',
+    ...(Platform.OS === 'ios' ? {
+      shadowColor: '#FF9800',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+    } : {
+      elevation: 1,
+    }),
+  },
+  noteHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   noteTitle: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
-    marginBottom: 8,
-    color: '#e65100',
+    color: '#E65100',
+    marginLeft: 8,
   },
   noteText: {
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 24,
     marginBottom: 8,
     color: '#333',
   },
