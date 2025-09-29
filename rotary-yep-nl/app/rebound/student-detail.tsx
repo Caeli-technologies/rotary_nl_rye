@@ -1,20 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useLayoutEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
+  Pressable,
+  Platform,
+  Animated,
+  Modal,
   Dimensions,
-  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Haptics from 'expo-haptics';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { useLocalSearchParams } from 'expo-router';
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useEvent } from 'expo';
+import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { NetworkImage } from '../../components/network-image';
 import { StatusBar } from 'expo-status-bar';
-import { StudentsData, Student } from '../../types/student';
+import { StudentsData } from '../../types/student';
 import studentsData from '../../assets/students/list.json';
 import { getFlagAsset } from '../../utils/flags';
 
@@ -37,32 +42,65 @@ interface ActionButtonProps {
 }
 
 function ActionButton({ icon, title, subtitle, onPress, disabled = false }: ActionButtonProps) {
+  const [scaleAnim] = useState(new Animated.Value(1));
+
+  const handlePressIn = () => {
+    if (!disabled && Platform.OS === 'ios') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Animated.spring(scaleAnim, {
+      toValue: 0.98,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
-    <TouchableOpacity 
-      style={[styles.actionButton, disabled && styles.actionButtonDisabled]} 
-      onPress={onPress} 
-      activeOpacity={disabled ? 1 : 0.7}
-      disabled={disabled}
-    >
-      <View style={styles.actionButtonContent}>
-        <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
-          <Ionicons name={icon} size={24} color={disabled ? "#999" : "#9FA8DA"} />
-        </View>
-        <View style={styles.actionTextContainer}>
-          <Text style={[styles.actionTitle, disabled && styles.actionTitleDisabled]}>{title}</Text>
-          {subtitle && (
-            <Text style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]}>
-              {subtitle}
-            </Text>
+    <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
+      <Pressable 
+        style={({ pressed }) => [
+          styles.actionButton,
+          disabled && styles.actionButtonDisabled,
+          !disabled && pressed && styles.actionButtonPressed
+        ]} 
+        onPress={disabled ? undefined : onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        disabled={disabled}
+      >
+        <View style={styles.actionButtonContent}>
+          <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
+            <Ionicons name={icon} size={24} color={disabled ? "#999" : "#9FA8DA"} />
+          </View>
+          <View style={styles.actionTextContainer}>
+            <Text style={[styles.actionTitle, disabled && styles.actionTitleDisabled]} numberOfLines={1}>{title}</Text>
+            {subtitle && (
+              <Text style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]} numberOfLines={2}>
+                {subtitle}
+              </Text>
+            )}
+          </View>
+          {!disabled && (
+            <Ionicons 
+              name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
+              size={Platform.OS === 'ios' ? 20 : 24} 
+              color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
+            />
           )}
         </View>
-        {!disabled && <Ionicons name="chevron-forward" size={20} color="#9FA8DA" />}
-      </View>
-    </TouchableOpacity>
+    </Pressable>
+    </Animated.View>
   );
 }
 
 export default function StudentDetailScreen() {
+  const navigation = useNavigation();
   const params = useLocalSearchParams<{
     year: string;
     country: string;
@@ -79,20 +117,65 @@ export default function StudentDetailScreen() {
   const fromFlagAsset = student ? getFlagAsset(student.fromFlag) : null;
   const toFlagAsset = student ? getFlagAsset(student.toFlag) : null;
 
-  const handleVideoPress = () => {
+  const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
+
+  const player = useVideoPlayer(student?.videoUrl || null, player => {
+    if (player) {
+      player.loop = false;
+      player.muted = false;
+    }
+  });
+
+  const { status } = useEvent(player, 'statusChange', { status: player.status });
+
+  const handleVideoPress = async () => {
     if (student?.videoUrl) {
-      Linking.openURL(student.videoUrl);
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+      setIsVideoModalVisible(true);
+      player.play();
     }
   };
 
-  const handleEmailPress = () => {
-    // This could be extended to include actual email functionality
-    // For now, we'll show it as disabled since emails aren't in the data
+  const handleCloseVideo = () => {
+    player.pause();
+    setIsVideoModalVisible(false);
   };
+
+
+
+  // Configure navigation header with student name and share button
+  useLayoutEffect(() => {
+    if (student) {
+      navigation.setOptions({
+        title: student.name,
+        headerTitle: () => (
+          <View style={{ alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start' }}>
+            <Text style={{
+              fontSize: Platform.OS === 'ios' ? 18 : 20,
+              fontWeight: '600',
+              color: '#1A237E',
+            }} numberOfLines={1}>
+              {student.name}
+            </Text>
+            <Text style={{
+              color: '#8E8E93',
+              fontSize: 13,
+              fontWeight: '400',
+              marginTop: 2,
+            }}>
+              {params.year} Exchange
+            </Text>
+          </View>
+        ),
+      });
+    }
+  }, [navigation, student, params.year]);
 
   if (!student) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={['bottom']}>
         <StatusBar style="auto" />
         
         <View style={styles.errorContainer}>
@@ -107,7 +190,7 @@ export default function StudentDetailScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <StatusBar style="auto" />
       
       <ScrollView 
@@ -117,12 +200,15 @@ export default function StudentDetailScreen() {
       >
         {/* Hero Section */}
         <View style={styles.heroSection}>
-          <NetworkImage
-            imageUrl={student.imageUrl}
-            name={student.name}
-            size={120}
-            expandable={true}
-          />
+          <View style={styles.imageContainer}>
+            <NetworkImage
+              imageUrl={student.imageUrl}
+              name={student.name}
+              size={120}
+              expandable={true}
+              showInitials={true}
+            />
+          </View>
           
           <Text style={styles.studentName}>{student.name}</Text>
           <Text style={styles.studentDescription}>{student.description}</Text>
@@ -204,16 +290,53 @@ export default function StudentDetailScreen() {
             onPress={handleVideoPress}
             disabled={!student.videoUrl}
           />
-          
-          <ActionButton
-            icon="mail-outline"
-            title="Contact Student"
-            subtitle="Send an email"
-            onPress={handleEmailPress}
-            disabled={true} // Disabled since email info is not in the data
-          />
         </View>
       </ScrollView>
+      
+      {/* Video Modal */}
+      <Modal
+        visible={isVideoModalVisible}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={handleCloseVideo}
+      >
+        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+          <View style={styles.videoModalHeader}>
+            <Pressable
+              style={styles.closeButton}
+              onPress={handleCloseVideo}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Ionicons name="close" size={28} color="#FFFFFF" />
+            </Pressable>
+          </View>
+          
+          <View style={styles.videoContainer}>
+            {status === 'loading' && (
+              <View style={styles.loadingContainer}>
+                <Text style={styles.loadingText}>Loading video...</Text>
+              </View>
+            )}
+            <VideoView
+              style={styles.video}
+              player={player}
+              fullscreenOptions={{ enable: true }}
+              allowsPictureInPicture
+              nativeControls
+              contentFit="contain"
+            />
+          </View>
+          
+          {student && (
+            <View style={styles.videoInfo}>
+              <Text style={styles.videoTitle}>{student.name}'s Exchange Story</Text>
+              <Text style={styles.videoSubtitle}>
+                {student.from} → {student.to} • {params.year}
+              </Text>
+            </View>
+          )}
+        </SafeAreaView>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -221,24 +344,36 @@ export default function StudentDetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
   },
   heroSection: {
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingTop: 32,
+    paddingHorizontal: 24, // Extra padding to prevent clipping
+    paddingTop: Platform.OS === 'ios' ? 32 : 24,
     paddingBottom: 32,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#FFFFFF',
+    overflow: 'visible',
+  },
+  imageContainer: {
+    width: 140,
+    height: 140,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+    overflow: 'visible',
   },
 
+
   studentName: {
-    fontSize: 28,
-    fontWeight: '700',
+    fontSize: Platform.OS === 'ios' ? 28 : 24,
+    fontWeight: Platform.OS === 'ios' ? '700' : '500',
     color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
+    marginTop: 16,
   },
   studentDescription: {
     fontSize: 16,
@@ -247,11 +382,19 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   exchangeCard: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 16,
-    margin: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...shadowStyle,
+    ...(Platform.OS === 'ios' ? {
+      ...shadowStyle,
+      shadowOpacity: 0.12,
+      shadowRadius: 24,
+    } : {
+      elevation: 3,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
   },
   exchangeHeader: {
     flexDirection: 'row',
@@ -312,11 +455,15 @@ const styles = StyleSheet.create({
     color: '#1A237E',
   },
   bioCard: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 16,
-    margin: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 8,
+    margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...shadowStyle,
+    ...(Platform.OS === 'ios' ? shadowStyle : {
+      elevation: 2,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
   },
   bioHeader: {
     flexDirection: 'row',
@@ -335,38 +482,57 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   actionsSection: {
-    paddingHorizontal: 16,
+    paddingHorizontal: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 32,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: Platform.OS === 'ios' ? 20 : 18,
+    fontWeight: Platform.OS === 'ios' ? '600' : '500',
     color: '#1A237E',
     marginBottom: 16,
   },
   actionButton: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 12,
-    marginBottom: 12,
-    ...shadowStyle,
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    marginBottom: 16,
+    overflow: 'hidden',
+    ...(Platform.OS === 'ios' ? {
+      ...shadowStyle,
+      shadowOpacity: 0.08,
+      shadowRadius: 16,
+    } : {
+      elevation: 2,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#E0E0E0',
+    }),
   },
   actionButtonDisabled: {
     backgroundColor: '#F9F9F9',
     opacity: 0.6,
   },
+  actionButtonPressed: {
+    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
+  },
   actionButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
+    minHeight: Platform.OS === 'ios' ? 60 : 64,
   },
   actionIconContainer: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: '#E8EAF6',
+    width: Platform.OS === 'ios' ? 48 : 52,
+    height: Platform.OS === 'ios' ? 48 : 52,
+    borderRadius: Platform.OS === 'ios' ? 24 : 26,
+    backgroundColor: Platform.OS === 'ios' ? '#E8EAF6' : '#F3E5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
+    ...(Platform.OS === 'ios' && {
+      shadowColor: '#1A237E',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+    }),
   },
   actionIconDisabled: {
     backgroundColor: '#F0F0F0',
@@ -375,8 +541,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   actionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: Platform.OS === 'ios' ? 16 : 16,
+    fontWeight: Platform.OS === 'ios' ? '600' : '500',
     color: '#1A237E',
     marginBottom: 2,
   },
@@ -386,6 +552,7 @@ const styles = StyleSheet.create({
   actionSubtitle: {
     fontSize: 14,
     color: '#666',
+    fontWeight: '400',
   },
   actionSubtitleDisabled: {
     color: '#999',
@@ -418,5 +585,67 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
     lineHeight: 22,
+  },
+  // Video Modal Styles
+  videoModalContainer: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  videoModalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    minHeight: 60,
+  },
+  closeButton: {
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  videoContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    zIndex: 1,
+  },
+  loadingText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  video: {
+    width: '100%',
+    aspectRatio: 16/9,
+    backgroundColor: '#000000',
+    maxHeight: Dimensions.get('window').height * 0.6,
+  },
+  videoInfo: {
+    padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  videoTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  videoSubtitle: {
+    fontSize: 16,
+    color: '#CCCCCC',
+    textAlign: 'center',
   },
 });

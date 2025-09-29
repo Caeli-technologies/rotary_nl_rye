@@ -38,9 +38,9 @@ export default function RootLayout() {
           />
           <Stack.Screen 
             name="rebound/students" 
-            options={{ 
+            options={({ route }) => ({
               headerShown: true,
-              title: 'Students',
+              title: (route.params as any)?.country || 'Students',
               headerBackTitle: 'Countries',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -52,14 +52,14 @@ export default function RootLayout() {
               },
               headerTintColor: '#007AFF',
               headerShadowVisible: true,
-            }} 
+            })}
           />
           <Stack.Screen 
             name="rebound/student-detail" 
-            options={{ 
+            options={({ route }) => ({
               headerShown: true,
-              title: 'Student Detail',
-              headerBackTitle: 'Students',
+              title: (route.params as any)?.country || 'Student Detail',
+              headerBackTitle: (route.params as any)?.country || 'Students',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -70,7 +70,7 @@ export default function RootLayout() {
               },
               headerTintColor: '#007AFF',
               headerShadowVisible: true,
-            }} 
+            })}
           />
           <Stack.Screen 
             name="news" 

@@ -71,7 +71,7 @@ export function NetworkImage({
     const placeholder = (
       <ThemedView style={[styles.placeholder, imageSize, style]}>
         {showInitials && (
-          <ThemedText style={[styles.initials, { fontSize: size * 0.3 }]}>
+          <ThemedText style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}>
             {initials}
           </ThemedText>
         )}
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1f4e79',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 8, // Increased padding to prevent text clipping with larger initials
   },
   initials: {
     fontWeight: '600',

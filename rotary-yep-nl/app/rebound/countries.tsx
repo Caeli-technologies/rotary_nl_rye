@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  ScrollView,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
@@ -61,7 +60,7 @@ function CountryCard({ country, onPress }: CountryCardProps) {
             {country.totalStudents} student{country.totalStudents !== 1 ? 's' : ''}
           </Text>
         </View>
-        <Ionicons name="chevron-forward" size={16} color="#9FA8DA" />
+        <Ionicons name="chevron-forward" size={20} color="#9FA8DA" />
       </View>
     </TouchableOpacity>
   );
@@ -113,130 +112,81 @@ export default function ReboundCountriesScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={[]}>
       <StatusBar style="auto" />
       
-      <ScrollView 
-        style={styles.scrollView}
+      <FlatList
+        data={countries}
+        renderItem={renderCountry}
+        keyExtractor={(item) => item.country}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
-      >
-        {/* Header Section */}
-        <View style={styles.headerSection}>
-          <Text style={styles.headerTitle}>Exchange Destinations</Text>
-          <Text style={styles.headerSubtitle}>
-            Browse countries where Dutch students have studied abroad
-          </Text>
-        </View>
-
-        {/* Countries List */}
-        <View style={styles.section}>
-          {countries.length > 0 && (
-            <FlatList
-              data={countries}
-              renderItem={renderCountry}
-              keyExtractor={(item) => item.country}
-              scrollEnabled={false}
-              ItemSeparatorComponent={() => <View style={styles.separator} />}
-              removeClippedSubviews={false}
-              initialNumToRender={10}
-              windowSize={10}
-            />
-          )}
-        </View>
-      </ScrollView>
-    </View>
+        contentContainerStyle={styles.contentContainer}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        removeClippedSubviews={true}
+        initialNumToRender={15}
+        maxToRenderPerBatch={10}
+        windowSize={10}
+        getItemLayout={(data, index) => ({
+          length: 76, // 64 (card min-height) + 12 (separator)
+          offset: 76 * index,
+          index,
+        })}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: '#F2F2F7',
   },
-  scrollView: {
-    flex: 1,
-    minHeight: 1,
-  },
-  headerSection: {
-    paddingHorizontal: 16,
+  contentContainer: {
     paddingTop: 20,
-    paddingBottom: 10,
-  },
-  headerTitle: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#1A237E',
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 16,
-    color: '#666',
-    lineHeight: 22,
-  },
-  section: {
-    paddingHorizontal: 16,
-    marginBottom: 24,
-    minHeight: 1,
-  },
-  sectionHeader: {
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
-  },
-  sectionSubtitle: {
-    fontSize: 14,
-    color: '#666',
+    paddingBottom: 20,
   },
   countryCard: {
     backgroundColor: '#F5F5F5',
     borderRadius: 12,
-    marginBottom: 12,
+    marginHorizontal: 16,
     ...shadowStyle,
   },
   countryCardContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
+    padding: 16,
+    minHeight: 64,
   },
   flagImage: {
-    width: 24,
-    height: 16,
-    marginRight: 12,
+    width: 48,
+    height: 32,
+    marginRight: 16,
   },
   countryInfo: {
     flex: 1,
   },
   countryName: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '600',
     color: '#1A237E',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   countryStudentCount: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#666',
-    marginBottom: 2,
-  },
-  countryYears: {
-    fontSize: 11,
-    color: '#999',
   },
   separator: {
-    height: 8,
-    width: '100%',
+    height: 12,
   },
   flagPlaceholder: {
     backgroundColor: '#E0E0E0',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 4,
   },
   flagText: {
-    fontSize: 8,
+    fontSize: 10,
     color: '#666',
     fontWeight: '600',
   },

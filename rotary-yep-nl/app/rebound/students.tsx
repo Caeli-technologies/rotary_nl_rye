@@ -1,16 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useLayoutEffect } from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  ScrollView,
-  TouchableOpacity,
-  FlatList,
+  Pressable,
+  SectionList,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { NetworkImage } from '../../components/network-image';
 import { StatusBar } from 'expo-status-bar';
 import { StudentsData, Student } from '../../types/student';
@@ -37,7 +37,13 @@ function StudentCard({ student, onPress }: StudentCardProps) {
   const toFlagAsset = getFlagAsset(student.toFlag);
 
   return (
-    <TouchableOpacity style={styles.studentCard} onPress={onPress} activeOpacity={0.7}>
+    <Pressable 
+      style={({ pressed }) => [
+        styles.studentCard,
+        pressed && styles.studentCardPressed
+      ]} 
+      onPress={onPress}
+    >
       <View style={styles.studentCardContent}>
         <NetworkImage
           imageUrl={student.imageUrl}
@@ -86,9 +92,13 @@ function StudentCard({ student, onPress }: StudentCardProps) {
           </View>
         </View>
         
-        <Ionicons name="chevron-forward" size={20} color="#9FA8DA" />
+        <Ionicons 
+          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
+          size={Platform.OS === 'ios' ? 20 : 24} 
+          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
+        />
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -97,6 +107,7 @@ interface StudentWithYear extends Student {
 }
 
 export default function ReboundStudentsScreen() {
+  const navigation = useNavigation();
   const params = useLocalSearchParams<{
     country: string;
     flag: string;
@@ -148,72 +159,116 @@ export default function ReboundStudentsScreen() {
     });
   };
 
+  const headerFlagAsset = getFlagAsset(params.flag || '');
+
+  // Configure navigation header with country name and student count
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: params.country || 'Students',
+      headerTitle: () => (
+        <View style={{ alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            {headerFlagAsset ? (
+              <Image
+                source={headerFlagAsset}
+                style={{ width: 24, height: 16, marginRight: 8 }}
+                contentFit="contain"
+              />
+            ) : (
+              <View style={{
+                width: 24,
+                height: 16,
+                backgroundColor: '#E0E0E0',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginRight: 8,
+                borderRadius: 2,
+              }}>
+                <Text style={{ fontSize: 8, color: '#666', fontWeight: '600' }}>
+                  {(params.flag || '').toUpperCase()}
+                </Text>
+              </View>
+            )}
+            <Text style={{
+              fontSize: Platform.OS === 'ios' ? 18 : 20,
+              fontWeight: '600',
+              color: '#1A237E',
+            }}>
+              {params.country}
+            </Text>
+          </View>
+          {studentsWithYears.length > 0 && (
+            <Text style={{
+              color: '#8E8E93',
+              fontSize: 13,
+              fontWeight: '400',
+              marginTop: 2,
+            }}>
+              {studentsWithYears.length} student{studentsWithYears.length !== 1 ? 's' : ''} • {yearGroups.length} year{yearGroups.length !== 1 ? 's' : ''}
+            </Text>
+          )}
+        </View>
+      ),
+    });
+  }, [navigation, params.country, params.flag, headerFlagAsset, studentsWithYears.length, yearGroups.length]);
+
+  // Convert yearGroups to sections format for SectionList
+  const sections = useMemo(() => {
+    return yearGroups.map(([year, students]) => ({
+      title: year,
+      count: students.length,
+      data: students,
+    }));
+  }, [yearGroups]);
+
   const renderStudent = ({ item }: { item: StudentWithYear }) => (
     <StudentCard student={item} onPress={() => handleStudentPress(item)} />
   );
 
-  const headerFlagAsset = getFlagAsset(params.flag || '');
+  const renderSectionHeader = ({ section }: { section: { title: string; count: number } }) => (
+    <View style={styles.sectionHeader}>
+      <Text style={styles.sectionTitle}>{section.title}</Text>
+      <Text style={styles.sectionCount}>
+        {section.count} student{section.count !== 1 ? 's' : ''}
+      </Text>
+    </View>
+  );
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      
-      <ScrollView 
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        {/* Header Section */}
-        <View style={styles.headerSection}>
-          <View style={styles.headerTitleContainer}>
-            {headerFlagAsset ? (
-              <Image
-                source={headerFlagAsset}
-                style={styles.headerFlag}
-                contentFit="contain"
-              />
-            ) : (
-              <View style={[styles.headerFlag, styles.flagPlaceholder]}>
-                <Text style={styles.headerFlagText}>{(params.flag || '').toUpperCase()}</Text>
-              </View>
-            )}
-            <Text style={styles.headerTitle}>{params.country}</Text>
-          </View>
-          <Text style={styles.headerSubtitle}>
-            {studentsWithYears.length} exchange student{studentsWithYears.length !== 1 ? 's' : ''} • {yearGroups.length} year{yearGroups.length !== 1 ? 's' : ''}
+  if (sections.length === 0) {
+    return (
+      <SafeAreaView style={styles.container} edges={['bottom']}>
+        <StatusBar style="auto" />
+        <View style={styles.emptyState}>
+          <Ionicons name="school-outline" size={48} color="#9FA8DA" />
+          <Text style={styles.emptyStateTitle}>No students found</Text>
+          <Text style={styles.emptyStateMessage}>
+            There are no exchange students who went to {params.country}.
           </Text>
         </View>
+      </SafeAreaView>
+    );
+  }
 
-        {/* Students by Year */}
-        <View style={styles.studentsSection}>
-          {yearGroups.length > 0 ? (
-            yearGroups.map(([year, students]) => (
-              <View key={year} style={styles.yearGroup}>
-                <View style={styles.yearHeader}>
-                  <Text style={styles.yearTitle}>{year}</Text>
-                  <Text style={styles.yearCount}>{students.length} student{students.length !== 1 ? 's' : ''}</Text>
-                </View>
-                
-                <FlatList
-                  data={students}
-                  renderItem={renderStudent}
-                  keyExtractor={(item) => `${item.name}-${item.year}`}
-                  scrollEnabled={false}
-                  ItemSeparatorComponent={() => <View style={styles.separator} />}
-                />
-              </View>
-            ))
-          ) : (
-            <View style={styles.emptyState}>
-              <Ionicons name="school-outline" size={48} color="#9FA8DA" />
-              <Text style={styles.emptyStateTitle}>No students found</Text>
-              <Text style={styles.emptyStateMessage}>
-                There are no exchange students who went to {params.country}.
-              </Text>
-            </View>
-          )}
-        </View>
-      </ScrollView>
+  return (
+    <SafeAreaView style={styles.container} edges={['bottom']}>
+      <StatusBar style="auto" />
+      
+      <SectionList
+        sections={sections}
+        renderItem={renderStudent}
+        renderSectionHeader={renderSectionHeader}
+        keyExtractor={(item) => `${item.name}-${item.year}`}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+        stickySectionHeadersEnabled={Platform.OS === 'ios'}
+        ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+        SectionSeparatorComponent={() => <View style={styles.sectionSeparator} />}
+        contentContainerStyle={styles.contentContainer}
+        removeClippedSubviews={true}
+        initialNumToRender={15}
+        maxToRenderPerBatch={10}
+        windowSize={10}
+      />
     </SafeAreaView>
   );
 }
@@ -221,69 +276,49 @@ export default function ReboundStudentsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
-  scrollView: {
-    flex: 1,
+  contentContainer: {
+    paddingBottom: 20,
   },
-  headerSection: {
-    paddingHorizontal: 16,
-    paddingTop: 20,
-    paddingBottom: 10,
-  },
-  headerTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  headerFlag: {
-    width: 32,
-    height: 21,
-    marginRight: 12,
-  },
-  headerTitle: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#1A237E',
-  },
-  headerSubtitle: {
-    fontSize: 16,
-    color: '#666',
-    lineHeight: 22,
-    marginLeft: 44, // Align with title text
-  },
-  studentsSection: {
-    paddingHorizontal: 16,
-    marginBottom: 24,
-  },
-  yearGroup: {
-    marginBottom: 32,
-  },
-  yearHeader: {
+  sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
-    paddingHorizontal: 4,
+    paddingHorizontal: 16,
+    paddingVertical: Platform.OS === 'ios' ? 8 : 12,
+    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#F5F5F5',
+    borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
+    borderBottomColor: '#E0E0E0',
   },
-  yearTitle: {
-    fontSize: 20,
-    fontWeight: '600',
+  sectionTitle: {
+    fontSize: Platform.OS === 'ios' ? 22 : 18,
+    fontWeight: Platform.OS === 'ios' ? '700' : '500',
     color: '#1A237E',
+    letterSpacing: Platform.OS === 'ios' ? 0.35 : 0,
   },
-  yearCount: {
+  sectionCount: {
     fontSize: 14,
     color: '#666',
+    fontWeight: '400',
   },
   studentCard: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 12,
-    ...shadowStyle,
+    backgroundColor: '#FFFFFF',
+    marginHorizontal: Platform.OS === 'ios' ? 16 : 0,
+    borderRadius: Platform.OS === 'ios' ? 12 : 0,
+    borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
+    borderBottomColor: '#E0E0E0',
+    ...(Platform.OS === 'ios' ? shadowStyle : {}),
+  },
+  studentCardPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
+    backgroundColor: Platform.OS === 'ios' ? '#F0F0F0' : '#F5F5F5',
   },
   studentCardContent: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
+    minHeight: Platform.OS === 'ios' ? 80 : 88,
   },
   studentImageStyle: {
     marginRight: 16,
@@ -311,9 +346,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   flagImage: {
-    width: 20,
-    height: 13,
-    marginRight: 6,
+    width: 24,
+    height: 16,
+    marginRight: 8,
   },
   countryText: {
     fontSize: 12,
@@ -323,11 +358,16 @@ const styles = StyleSheet.create({
   arrowIcon: {
     marginHorizontal: 8,
   },
-  separator: {
-    height: 12,
+  itemSeparator: {
+    height: Platform.OS === 'ios' ? 12 : 0,
+  },
+  sectionSeparator: {
+    height: Platform.OS === 'ios' ? 20 : 16,
   },
   emptyState: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 60,
     paddingHorizontal: 32,
   },
@@ -351,11 +391,6 @@ const styles = StyleSheet.create({
   },
   flagText: {
     fontSize: 8,
-    color: '#666',
-    fontWeight: '600',
-  },
-  headerFlagText: {
-    fontSize: 12,
     color: '#666',
     fontWeight: '600',
   },
