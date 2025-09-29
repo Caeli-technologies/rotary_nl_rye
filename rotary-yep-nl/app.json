@@ -14,6 +14,7 @@
       "android"
     ],
     "ios": {
+      "buildNumber": "102",
       "appleTeamId": "A8S2486A44",
       "userInterfaceStyle": "automatic",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
@@ -25,6 +26,7 @@
       }
     },
     "android": {
+      "versionCode": 102,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

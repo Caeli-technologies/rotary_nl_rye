@@ -2,13 +2,28 @@ import { ScrollView, StyleSheet, TouchableOpacity, Alert, Linking, Switch, Platf
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as Sharing from 'expo-sharing';
 import { Ionicons } from '@expo/vector-icons';
+import * as Application from 'expo-application';
 
 export default function SettingsScreen() {
   const [autoLoadVideos, setAutoLoadVideos] = useState(true);
   const [notifications, setNotifications] = useState(true);
+  const [appVersion, setAppVersion] = useState<string>('Loading...');
+  const [buildVersion, setBuildVersion] = useState<string>('');
+
+  useEffect(() => {
+    const getAppInfo = () => {
+      const version = Application.nativeApplicationVersion || 'Unknown';
+      const build = Application.nativeBuildVersion || '';
+      
+      setAppVersion(version);
+      setBuildVersion(build);
+    };
+
+    getAppInfo();
+  }, []);
 
   const handleShare = async () => {
     try {
@@ -121,7 +136,7 @@ export default function SettingsScreen() {
           />
           <SettingsItem
             title="App Version"
-            subtitle="1.0.0 (1)"
+            subtitle={buildVersion ? `${appVersion} (${buildVersion})` : appVersion}
           />
         </SettingsSection>
 
