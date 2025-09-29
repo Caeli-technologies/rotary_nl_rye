@@ -197,7 +197,10 @@ export default function HomeScreen() {
           <View style={styles.gridRow}>
             <HomeCard materialIcon="airplane-takeoff" title="Op Exchange" />
             <HomeCard materialIcon="airplane-landing" title="To NL" />
-            <HomeCard icon="refresh-outline" title="Rebound" />
+            <HomeCard icon="refresh-outline" title="Rebound" onPress={() => router.push({
+              pathname: '/rebound/countries' as any,
+              params: { title: 'Rebound Students' }
+            })} />
           </View>
           
           <View style={styles.gridRowSingle}>
@@ -212,7 +215,7 @@ export default function HomeScreen() {
               variant="single" 
               useSvg={true}
               svgSource={require('@/assets/logo/rotary-logo-icon.svg')}
-              onPress={() => router.push('/rotary-clubs' as any)}
+              onPress={() => router.push('/rotary-clubs')}
             />
           </View>
         </View>

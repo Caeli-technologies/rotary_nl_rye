@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
 import { Image } from 'expo-image';
 import { readString } from 'react-native-csv';
 import { StatusBar } from 'expo-status-bar';
@@ -292,6 +292,37 @@ export default function CampsToursScreen() {
   };
 
   const hasActiveFilters = filters.hideFullCamps || filters.minAge || filters.maxAge || filters.country;
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.headerRightContainer}>
+          <Text style={styles.headerStatsText}>
+            {loading ? 'Loading...' : `${filteredData.length}/${data.length}`}
+          </Text>
+          <Pressable
+            style={({ pressed }) => [
+              styles.headerFilterButton,
+              hasActiveFilters && styles.headerFilterButtonActive,
+              pressed && styles.headerButtonPressed
+            ]}
+            onPress={() => setShowFilters(!showFilters)}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            {hasActiveFilters && !showFilters && (
+              <View style={styles.headerFilterBadge} />
+            )}
+            <Ionicons 
+              name={showFilters ? "close" : (hasActiveFilters ? "funnel" : "funnel-outline")} 
+              size={20} 
+              color="#007AFF" 
+            />
+          </Pressable>
+        </View>
+      ),
+    });
+  }, [navigation, showFilters, hasActiveFilters, loading, filteredData.length, data.length]);
 
   useEffect(() => {
     fetchCsvData();
@@ -302,63 +333,23 @@ export default function CampsToursScreen() {
   }, [filters, data]);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
       <StatusBar style="auto" />
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          style={({ pressed }) => [
-            styles.headerButton,
-            pressed && styles.headerButtonPressed
-          ]}
-          onPress={() => router.back()}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          <Ionicons name="chevron-back" size={28} color="#007AFF" />
-        </Pressable>
-        
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle}>Camps & Tours</Text>
-          <Text style={styles.headerSubtitle}>
-            {loading ? 'Loading...' : `${filteredData.length} of ${data.length} camps`}
-          </Text>
-        </View>
-        
-        <Pressable
-          style={({ pressed }) => [
-            styles.headerButton, 
-            hasActiveFilters && styles.headerButtonActive,
-            pressed && styles.headerButtonPressed
-          ]}
-          onPress={() => setShowFilters(!showFilters)}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          {hasActiveFilters && !showFilters && (
-            <View style={styles.filterBadge}>
-              <Text style={styles.filterBadgeText}>●</Text>
+      {/* Content */}
+      <View style={styles.container}>
+        {/* Filter Panel */}
+        {showFilters && (
+          <View style={styles.filterPanel}>
+            <View style={styles.filterHeader}>
+              <Text style={styles.filterTitle}>Filter Camps</Text>
+              {hasActiveFilters && (
+                <Pressable onPress={clearFilters}>
+                  <Text style={styles.clearFiltersText}>Clear All</Text>
+                </Pressable>
+              )}
             </View>
-          )}
-          <Ionicons 
-            name={showFilters ? "close" : (hasActiveFilters ? "funnel" : "funnel-outline")} 
-            size={24} 
-            color="#007AFF" 
-          />
-        </Pressable>
-      </View>
-
-      {/* Filter Panel */}
-      {showFilters && (
-        <View style={styles.filterPanel}>
-          <View style={styles.filterHeader}>
-            <Text style={styles.filterTitle}>Filter Camps</Text>
-            {hasActiveFilters && (
-              <Pressable onPress={clearFilters}>
-                <Text style={styles.clearFiltersText}>Clear All</Text>
-              </Pressable>
-            )}
-          </View>
-          
-          <View style={styles.filterContent}>
+            
+            <View style={styles.filterContent}>
             <Pressable
               style={({ pressed }) => [
                 styles.filterOption,
@@ -535,12 +526,11 @@ export default function CampsToursScreen() {
                 </View>
               </Pressable>
             </View>
+            </View>
           </View>
-        </View>
-      )}
+        )}
 
-      {/* Content */}
-      <View style={styles.container}>
+        {/* Main Content */}
         {loading ? (
           <View style={styles.centerContainer}>
             <ActivityIndicator size="large" color="#007AFF" />
@@ -614,8 +604,6 @@ export default function CampsToursScreen() {
           />
         )}
       </View>
-
-
     </SafeAreaView>
   );
 }
@@ -623,48 +611,43 @@ export default function CampsToursScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
-  header: {
+  // Header styles
+  headerRightContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 16 : 8,
-    paddingBottom: 16,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C6C6C8',
+    marginRight: 8,
   },
-  headerButton: {
-    width: 44,
-    height: 44,
+  headerStatsText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#8E8E93',
+    marginRight: 12,
+  },
+  headerFilterButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 22,
   },
-  headerButtonDisabled: {
-    opacity: 0.5,
+  headerFilterButtonActive: {
+    backgroundColor: '#E3F2FD',
   },
-  headerTitleContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 20 : 22,
-    fontWeight: '600',
-    color: '#000000',
-    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
-  },
-  headerSubtitle: {
-    fontSize: 13,
-    fontWeight: '400',
-    color: '#8E8E93',
-    marginTop: 2,
+  headerFilterBadge: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#FF3B30',
+    zIndex: 1,
   },
   scrollView: {
     flex: 1,
@@ -879,16 +862,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
   },
-  headerButtonActive: {
-    backgroundColor: 'transparent',
-  },
   filterPanel: {
     backgroundColor: '#FFFFFF',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C6C6C8',
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 60,
+    borderBottomColor: '#E5E5EA',
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 32,
+    minHeight: 280,
+    marginBottom: 0,
   },
   filterHeader: {
     flexDirection: 'row',
@@ -907,7 +889,7 @@ const styles = StyleSheet.create({
     color: '#007AFF',
   },
   filterContent: {
-    gap: 16,
+    gap: 24,
   },
   filterOption: {
     flexDirection: 'row',
@@ -957,39 +939,23 @@ const styles = StyleSheet.create({
   dropdownIcon: {
     marginLeft: 8,
   },
-  filterBadge: {
-    position: 'absolute',
-    top: 4,
-    right: 4,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#FF3B30',
-    zIndex: 1,
-  },
-  filterBadgeText: {
-    fontSize: 8,
-    color: '#FF3B30',
-    fontWeight: 'bold',
-  },
+
   // Native component pressed states
   cardPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 1,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+    opacity: 0.8,
   },
   headerButtonPressed: {
-    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+    opacity: 0.6,
+    backgroundColor: 'rgba(0, 122, 255, 0.1)',
   },
   filterOptionPressed: {
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.05)' : '#F5F5F5',
+    backgroundColor: 'rgba(0, 122, 255, 0.05)',
   },
   textInputPressed: {
-    backgroundColor: Platform.OS === 'ios' ? '#E8E8ED' : '#E0E0E0',
+    backgroundColor: '#E8E8ED',
   },
   retryButtonPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 0.9,
-    backgroundColor: Platform.OS === 'ios' ? '#0056CC' : '#005BB5',
+    opacity: 0.8,
   },
   // FlatList styles
   flatList: {

@@ -15,7 +15,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar } from 'react-native-calendars';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import {
@@ -355,35 +354,8 @@ export default function CalendarScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
       <StatusBar style="auto" />
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => router.back()}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          <Ionicons name="chevron-back" size={28} color="#007AFF" />
-        </TouchableOpacity>
-        
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle}>Calendar</Text>
-          <Text style={styles.headerSubtitle}>
-            {loading ? 'Loading...' : `${selectedEvents.length} events for selected day`}
-          </Text>
-        </View>
-        
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={loadEvents}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          <Ionicons name="refresh" size={24} color="#007AFF" />
-        </TouchableOpacity>
-      </View>
-
-      {/* Content */}
       <View style={styles.container}>
         {loading ? (
           <View style={styles.centerContainer}>
@@ -445,13 +417,22 @@ export default function CalendarScreen() {
 
             {/* Events Section */}
             <View style={styles.eventsSection}>
-              <Text style={styles.sectionTitle}>
-                {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </Text>
+              <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitle}>
+                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </Text>
+                <TouchableOpacity
+                  style={styles.refreshButton}
+                  onPress={loadEvents}
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                  <Ionicons name="refresh" size={20} color="#007AFF" />
+                </TouchableOpacity>
+              </View>
 
               {selectedEvents.length > 0 ? (
                 selectedEvents.map((event) => renderEvent(event))
@@ -479,44 +460,10 @@ export default function CalendarScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 16,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C6C6C8',
-  },
-  headerButton: {
-    width: 44,
-    height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 22,
-  },
-  headerTitleContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#000000',
-    letterSpacing: -0.41,
-  },
-  headerSubtitle: {
-    fontSize: 13,
-    fontWeight: '400',
-    color: '#8E8E93',
-    marginTop: 2,
   },
   scrollView: {
     flex: 1,
@@ -536,12 +483,26 @@ const styles = StyleSheet.create({
   eventsSection: {
     paddingHorizontal: 16,
   },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+    paddingHorizontal: 4,
+  },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
     color: '#000000',
-    marginBottom: 16,
-    paddingHorizontal: 4,
+    flex: 1,
+  },
+  refreshButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#F2F2F7',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   eventCard: {
     backgroundColor: '#FFFFFF',

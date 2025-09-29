@@ -82,29 +82,8 @@ export default function RotaryClubsScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
       <StatusBar style="auto" />
-      <View style={styles.header}>
-        <Pressable 
-          style={({ pressed }) => [
-            styles.headerButton,
-            pressed && styles.headerButtonPressed
-          ]}
-          onPress={() => router.back()}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          <Ionicons 
-            name={Platform.OS === 'ios' ? 'chevron-back' : 'arrow-back'} 
-            size={Platform.OS === 'ios' ? 28 : 24} 
-            color="#007AFF" 
-          />
-        </Pressable>
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle}>voor Rotary Clubs</Text>
-        </View>
-        <View style={styles.placeholder} />
-      </View>
-
       <View style={styles.container}>
         <FlatList
           data={options}
@@ -123,46 +102,10 @@ export default function RotaryClubsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 16 : 8,
-    paddingBottom: 16,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C6C6C8',
-  },
-  headerButton: {
-    width: 44,
-    height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 22,
-  },
-  headerButtonPressed: {
-    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
-  },
-  headerTitleContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 20 : 22,
-    fontWeight: '600',
-    color: '#000000',
-    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
-  },
-  placeholder: {
-    width: 44,
   },
   listContainer: {
     padding: 16,

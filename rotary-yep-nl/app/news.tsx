@@ -3,18 +3,15 @@ import {
   StyleSheet, 
   View, 
   Text, 
-  ScrollView, 
+  FlatList, 
   Pressable, 
   ActivityIndicator,
-  RefreshControl,
-  Alert,
-  Platform
+  Alert
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { fetch } from 'expo/fetch';
 import { StatusBar } from 'expo-status-bar';
 
 interface NewsItem {
@@ -138,8 +135,12 @@ export default function NewsScreen() {
     }
   };
 
-  const renderCenteredContent = () => {
-    if (loading && !refreshing) {
+  const renderNewsItem = ({ item }: { item: NewsItem }) => (
+    <NewsCard item={item} onPress={() => handleNewsItemPress(item)} />
+  );
+
+  const renderEmptyComponent = () => {
+    if (loading) {
       return (
         <View style={styles.centered}>
           <ActivityIndicator size="large" color="#007AFF" />
@@ -148,7 +149,7 @@ export default function NewsScreen() {
       );
     }
     
-    if (error && newsData.length === 0) {
+    if (error) {
       return (
         <View style={styles.centered}>
           <Ionicons name="alert-circle" size={64} color="#ff6b6b" />
@@ -160,86 +161,28 @@ export default function NewsScreen() {
         </View>
       );
     }
-    
-    return null;
+
+    return (
+      <View style={styles.centered}>
+        <Ionicons name="newspaper-outline" size={64} color="#ccc" />
+        <Text style={styles.emptyText}>No news available</Text>
+      </View>
+    );
   };
 
-  const centeredContent = renderCenteredContent();
-  if (centeredContent) {
-    return (
-      <SafeAreaView style={styles.safeArea} edges={['top']}>
-        <View style={styles.header}>
-          <Pressable 
-            style={({ pressed }) => [
-              styles.headerButton,
-              pressed && styles.headerButtonPressed
-            ]}
-            onPress={() => router.back()}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <Ionicons name="chevron-back" size={28} color="#007AFF" />
-          </Pressable>
-          <View style={styles.headerTitleContainer}>
-            <Text style={styles.headerTitle}>News</Text>
-          </View>
-          <View style={styles.placeholder} />
-        </View>
-        <View style={styles.container}>
-          {centeredContent}
-        </View>
-      </SafeAreaView>
-    );
-  }
-
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={[]}>
       <StatusBar style="auto" />
-      <View style={styles.header}>
-        <Pressable 
-          style={({ pressed }) => [
-            styles.headerButton,
-            pressed && styles.headerButtonPressed
-          ]}
-          onPress={() => router.back()}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          <Ionicons name="chevron-back" size={28} color="#007AFF" />
-        </Pressable>
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle}>News</Text>
-        </View>
-        <View style={styles.placeholder} />
-      </View>
-      
-      <View style={styles.container}>
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={handleRefresh}
-              colors={['#007AFF']}
-              tintColor="#007AFF"
-            />
-          }
-        >
-          {newsData.length > 0 ? (
-            newsData.map((item) => (
-              <NewsCard
-                key={item.id}
-                item={item}
-                onPress={() => handleNewsItemPress(item)}
-              />
-            ))
-          ) : (
-            <View style={styles.emptyState}>
-              <Ionicons name="newspaper-outline" size={64} color="#ccc" />
-              <Text style={styles.emptyText}>No news available</Text>
-            </View>
-          )}
-        </ScrollView>
-      </View>
+      <FlatList
+        data={newsData}
+        renderItem={renderNewsItem}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={newsData.length > 0 ? styles.listContent : styles.emptyContainer}
+        showsVerticalScrollIndicator={false}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
+        ListEmptyComponent={renderEmptyComponent}
+      />
     </SafeAreaView>
   );
 }
@@ -247,50 +190,17 @@ export default function NewsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  container: {
-    flex: 1,
     backgroundColor: '#F2F2F7',
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 16 : 8,
-    paddingBottom: 16,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C6C6C8',
-  },
-  headerButton: {
-    width: 44,
-    height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 22,
-  },
-  headerButtonPressed: {
-    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
-  },
-  headerTitleContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 20 : 22,
-    fontWeight: '600',
-    color: '#000000',
-    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
-  },
-  placeholder: {
-    width: 44,
-  },
-  scrollContent: {
-    padding: 16,
+  listContent: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
     paddingBottom: 34,
+    flexGrow: 1,
+  },
+  emptyContainer: {
+    flex: 1,
+    padding: 16,
   },
   newsCard: {
     backgroundColor: '#FFFFFF',
@@ -304,8 +214,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   newsCardPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 1,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+    opacity: 0.8,
   },
   cardContent: {
     flexDirection: 'row',
@@ -390,13 +299,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  emptyState: {
-    alignItems: 'center',
-    padding: 40,
-  },
   emptyText: {
     marginTop: 16,
     fontSize: 16,
     color: '#666',
+    textAlign: 'center',
   },
 });
