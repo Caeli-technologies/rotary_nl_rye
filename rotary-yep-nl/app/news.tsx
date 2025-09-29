@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { fetch } from 'expo/fetch';
+import { StatusBar } from 'expo-status-bar';
 
 interface NewsItem {
   id: number;
@@ -175,6 +176,7 @@ export default function NewsScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+      <StatusBar style="auto" />
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton} 

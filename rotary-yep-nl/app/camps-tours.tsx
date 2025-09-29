@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  ScrollView,
-  TouchableOpacity,
+  FlatList,
+  Pressable,
   ActivityIndicator,
   Platform,
-  Dimensions,
   Alert,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Image } from 'expo-image';
 import { readString } from 'react-native-csv';
+import { StatusBar } from 'expo-status-bar';
 
 interface CampTourData {
   startDate: string;
@@ -62,10 +63,17 @@ function TravelCard({
   };
 
   return (
-    <TouchableOpacity
-      style={[styles.card, isFull && styles.cardFull]}
+    <Pressable
+      style={({ pressed }) => [
+        styles.card, 
+        isFull && styles.cardFull,
+        pressed && styles.cardPressed
+      ]}
       onPress={handlePress}
-      activeOpacity={0.8}
+      android_ripple={{
+        color: 'rgba(0, 122, 255, 0.2)',
+        borderless: false
+      }}
     >
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
@@ -144,7 +152,7 @@ function TravelCard({
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -163,7 +171,7 @@ export default function CampsToursScreen() {
   const [availableCountries, setAvailableCountries] = useState<string[]>([]);
   const [availableAges, setAvailableAges] = useState<{ min: number[]; max: number[] }>({ min: [], max: [] });
 
-  const fetchCsvData = async () => {
+  const fetchCsvData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -241,7 +249,7 @@ export default function CampsToursScreen() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const applyFilters = () => {
     let filtered = [...data];
@@ -294,16 +302,20 @@ export default function CampsToursScreen() {
   }, [filters, data]);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar style="auto" />
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.headerButton}
+        <Pressable
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed
+          ]}
           onPress={() => router.back()}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
           <Ionicons name="chevron-back" size={28} color="#007AFF" />
-        </TouchableOpacity>
+        </Pressable>
         
         <View style={styles.headerTitleContainer}>
           <Text style={styles.headerTitle}>Camps & Tours</Text>
@@ -312,8 +324,12 @@ export default function CampsToursScreen() {
           </Text>
         </View>
         
-        <TouchableOpacity
-          style={[styles.headerButton, hasActiveFilters && styles.headerButtonActive]}
+        <Pressable
+          style={({ pressed }) => [
+            styles.headerButton, 
+            hasActiveFilters && styles.headerButtonActive,
+            pressed && styles.headerButtonPressed
+          ]}
           onPress={() => setShowFilters(!showFilters)}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
@@ -327,7 +343,7 @@ export default function CampsToursScreen() {
             size={24} 
             color="#007AFF" 
           />
-        </TouchableOpacity>
+        </Pressable>
       </View>
 
       {/* Filter Panel */}
@@ -336,15 +352,18 @@ export default function CampsToursScreen() {
           <View style={styles.filterHeader}>
             <Text style={styles.filterTitle}>Filter Camps</Text>
             {hasActiveFilters && (
-              <TouchableOpacity onPress={clearFilters}>
+              <Pressable onPress={clearFilters}>
                 <Text style={styles.clearFiltersText}>Clear All</Text>
-              </TouchableOpacity>
+              </Pressable>
             )}
           </View>
           
           <View style={styles.filterContent}>
-            <TouchableOpacity
-              style={styles.filterOption}
+            <Pressable
+              style={({ pressed }) => [
+                styles.filterOption,
+                pressed && styles.filterOptionPressed
+              ]}
               onPress={() => setFilters(prev => ({ ...prev, hideFullCamps: !prev.hideFullCamps }))}
             >
               <View style={styles.filterOptionLeft}>
@@ -355,13 +374,16 @@ export default function CampsToursScreen() {
                 />
                 <Text style={styles.filterOptionText}>Hide full camps</Text>
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
             <View style={styles.filterRow}>
               <View style={styles.filterInputContainer}>
                 <Text style={styles.filterLabel}>Min Age</Text>
-                <TouchableOpacity 
-                  style={styles.textInput}
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.textInput,
+                    pressed && styles.textInputPressed
+                  ]}
                   onPress={() => {
                     if (Platform.OS === 'ios') {
                       Alert.prompt(
@@ -409,13 +431,16 @@ export default function CampsToursScreen() {
                   <Text style={styles.textInputText}>
                     {filters.minAge || 'Any'}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               </View>
               
               <View style={styles.filterInputContainer}>
                 <Text style={styles.filterLabel}>Max Age</Text>
-                <TouchableOpacity 
-                  style={styles.textInput}
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.textInput,
+                    pressed && styles.textInputPressed
+                  ]}
                   onPress={() => {
                     if (Platform.OS === 'ios') {
                       Alert.prompt(
@@ -463,14 +488,17 @@ export default function CampsToursScreen() {
                   <Text style={styles.textInputText}>
                     {filters.maxAge || 'Any'}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               </View>
             </View>
 
             <View style={styles.filterInputContainer}>
               <Text style={styles.filterLabel}>Country</Text>
-              <TouchableOpacity 
-                style={styles.textInput}
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.textInput,
+                  pressed && styles.textInputPressed
+                ]}
                 onPress={() => {
                   // Show all available countries
                   Alert.alert(
@@ -505,7 +533,7 @@ export default function CampsToursScreen() {
                 <View style={styles.dropdownIcon}>
                   <Ionicons name="chevron-down" size={16} color="#8E8E93" />
                 </View>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -525,45 +553,65 @@ export default function CampsToursScreen() {
             </View>
             <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
             <Text style={styles.errorText}>{error}</Text>
-            <TouchableOpacity style={styles.retryButton} onPress={fetchCsvData}>
+            <Pressable 
+              style={({ pressed }) => [
+                styles.retryButton,
+                pressed && styles.retryButtonPressed
+              ]} 
+              onPress={fetchCsvData}
+            >
               <Text style={styles.retryButtonText}>Try Again</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         ) : (
-          <ScrollView
-            style={styles.scrollView}
-            contentContainerStyle={styles.scrollContent}
+          <FlatList
+            data={filteredData}
+            renderItem={({ item }) => <TravelCard {...item} />}
+            keyExtractor={(item, index) => `${item.title}-${index}`}
+            style={styles.flatList}
+            contentContainerStyle={[
+              styles.listContent,
+              filteredData.length === 0 && styles.emptyContent
+            ]}
             showsVerticalScrollIndicator={false}
             contentInsetAdjustmentBehavior="automatic"
-          >
-            {filteredData.map((item, index) => (
-              <TravelCard key={index} {...item} />
-            ))}
-            
-            {filteredData.length === 0 && data.length > 0 && (
-              <View style={styles.emptyContainer}>
-                <View style={styles.emptyIcon}>
-                  <Ionicons name="search-outline" size={64} color="#C7C7CC" />
-                </View>
-                <Text style={styles.emptyTitle}>No Matching Camps</Text>
-                <Text style={styles.emptyText}>
-                  Try adjusting your filters to see more results.
-                </Text>
-              </View>
-            )}
-            
-            {data.length === 0 && (
-              <View style={styles.emptyContainer}>
-                <View style={styles.emptyIcon}>
-                  <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
-                </View>
-                <Text style={styles.emptyTitle}>No Camps Available</Text>
-                <Text style={styles.emptyText}>
-                  There are currently no camps or tours available. Check back later!
-                </Text>
-              </View>
-            )}
-          </ScrollView>
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={fetchCsvData}
+                colors={['#007AFF']}
+                tintColor="#007AFF"
+              />
+            }
+            ListEmptyComponent={() => {
+              if (data.length > 0) {
+                return (
+                  <View style={styles.emptyContainer}>
+                    <View style={styles.emptyIcon}>
+                      <Ionicons name="search-outline" size={64} color="#C7C7CC" />
+                    </View>
+                    <Text style={styles.emptyTitle}>No Matching Camps</Text>
+                    <Text style={styles.emptyText}>
+                      Try adjusting your filters to see more results.
+                    </Text>
+                  </View>
+                );
+              } else {
+                return (
+                  <View style={styles.emptyContainer}>
+                    <View style={styles.emptyIcon}>
+                      <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
+                    </View>
+                    <Text style={styles.emptyTitle}>No Camps Available</Text>
+                    <Text style={styles.emptyText}>
+                      There are currently no camps or tours available. Check back later!
+                    </Text>
+                  </View>
+                );
+              }
+            }}
+            ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+          />
         )}
       </View>
 
@@ -586,6 +634,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'android' ? 16 : 8,
     paddingBottom: 16,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -922,5 +971,39 @@ const styles = StyleSheet.create({
     fontSize: 8,
     color: '#FF3B30',
     fontWeight: 'bold',
+  },
+  // Native component pressed states
+  cardPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 1,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+  },
+  headerButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.6 : 0.8,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.1)' : '#E0E0E0',
+  },
+  filterOptionPressed: {
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(0, 122, 255, 0.05)' : '#F5F5F5',
+  },
+  textInputPressed: {
+    backgroundColor: Platform.OS === 'ios' ? '#E8E8ED' : '#E0E0E0',
+  },
+  retryButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.9,
+    backgroundColor: Platform.OS === 'ios' ? '#0056CC' : '#005BB5',
+  },
+  // FlatList styles
+  flatList: {
+    flex: 1,
+  },
+  listContent: {
+    padding: 16,
+    paddingBottom: 34,
+  },
+  emptyContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  itemSeparator: {
+    height: 0, // No separator needed since cards have margin
   },
 });

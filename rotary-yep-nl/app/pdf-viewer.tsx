@@ -3,15 +3,17 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import PdfRendererView from 'react-native-pdf-renderer';
 import { File, Directory, Paths } from 'expo-file-system';
-import { fetch } from 'expo/fetch';
+import { StatusBar } from 'expo-status-bar';
+import * as Sharing from 'expo-sharing';
 
 export default function PDFViewerScreen() {
   const { url, title } = useLocalSearchParams<{
@@ -33,13 +35,22 @@ export default function PDFViewerScreen() {
     }
 
     try {
+      setLoading(true);
+      setError(null);
+      
       const filename = url.split('/').pop() || 'document.pdf';
       const documentsDir = new Directory(Paths.document);
       const localFile = new File(documentsDir, filename);
       
+      if (localFile.exists) {
+        setLocalFilePath(localFile.uri);
+        setLoading(false);
+        return;
+      }
+      
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error(`Failed to download PDF: ${response.status}`);
+        throw new Error(`Failed to download PDF`);
       }
       
       const arrayBuffer = await response.arrayBuffer();
@@ -47,49 +58,61 @@ export default function PDFViewerScreen() {
       
       setLocalFilePath(localFile.uri);
     } catch (err) {
-      console.error('Error downloading PDF:', err);
-      setError('Failed to download PDF');
+      setError('Failed to load PDF');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleShare = async () => {
+    if (!localFilePath) return;
+    
+    try {
+      const isAvailable = await Sharing.isAvailableAsync();
+      if (isAvailable) {
+        await Sharing.shareAsync(localFilePath, {
+          mimeType: 'application/pdf',
+          dialogTitle: `Share ${title || 'PDF Document'}`,
+        });
+      }
+    } catch (error) {
+      Alert.alert('Share Error', 'Failed to share the PDF file.');
+    }
+  };
+
+  const handlePageChange = (current: number, total: number) => {
+    setCurrentPage(current);
+    setTotalPages(total);
+    if (loading && total > 0) {
+      setLoading(false);
+    }
+  };
+
+  const handleError = (error?: string) => {
+    setError(error || 'Failed to load PDF document');
+    setLoading(false);
   };
 
   useEffect(() => {
     downloadPDF();
   }, [url]);
 
-  const handlePageChange = (current: number, total: number) => {
-    setCurrentPage(current);
-    setTotalPages(total);
-    // Ensure loading is false once PDF is rendered and pages are available
-    if (loading && total > 0) {
-      setLoading(false);
-    }
-  };
-
-  const handleError = () => {
-    setError('Failed to load PDF');
-    setLoading(false);
-  };
-
   if (error) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="light" />
         <View style={styles.header}>
-          <TouchableOpacity 
-            style={styles.backButton} 
-            onPress={() => router.back()}
-          >
+          <Pressable style={styles.backButton} onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
-          <Text style={styles.title}>PDF Viewer</Text>
-          <View style={styles.placeholder} />
+          </Pressable>
+          <Text style={styles.title}>PDF Error</Text>
         </View>
-        <View style={styles.container}>
-          <View style={styles.centered}>
-            <Ionicons name="alert-circle" size={64} color="#ff6b6b" />
-            <Text style={styles.errorText}>{error}</Text>
-          </View>
+        <View style={styles.content}>
+          <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
+          <Text style={styles.errorText}>{error}</Text>
+          <Pressable style={styles.retryButton} onPress={downloadPDF}>
+            <Text style={styles.buttonText}>Try Again</Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     );
@@ -97,81 +120,76 @@ export default function PDFViewerScreen() {
 
   if (loading || !localFilePath) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="light" />
         <View style={styles.header}>
-          <TouchableOpacity 
-            style={styles.backButton} 
-            onPress={() => router.back()}
-          >
+          <Pressable style={styles.backButton} onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
+          </Pressable>
           <Text style={styles.title}>{title || 'PDF Viewer'}</Text>
-          <View style={styles.placeholder} />
         </View>
-        <View style={styles.container}>
-          <View style={styles.centered}>
-            <ActivityIndicator size="large" color="#1f4e79" />
-            <Text style={styles.loadingText}>Loading PDF...</Text>
-          </View>
+        <View style={styles.content}>
+          <ActivityIndicator size="large" color="#1f4e79" />
+          <Text style={styles.loadingText}>Loading PDF...</Text>
         </View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="light" />
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.backButton} 
-          onPress={() => router.back()}
-        >
+        <Pressable style={styles.backButton} onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
-        </TouchableOpacity>
+        </Pressable>
         <View style={styles.titleContainer}>
           <Text style={styles.title} numberOfLines={1}>
-            {title || 'PDF Viewer'}
+            {title || 'PDF Document'}
           </Text>
           {totalPages > 0 && (
             <Text style={styles.pageInfo}>
-              {currentPage + 1} of {totalPages}
+              Page {currentPage + 1} of {totalPages}
             </Text>
           )}
         </View>
-        <View style={styles.placeholder} />
+        <Pressable style={styles.shareButton} onPress={handleShare}>
+          <Ionicons name="share-outline" size={20} color="#fff" />
+        </Pressable>
       </View>
-
-      <View style={styles.container}>
-        <PdfRendererView
-          source={localFilePath}
-          style={styles.pdf}
-          distanceBetweenPages={16}
-          maxZoom={3}
-          onPageChange={handlePageChange}
-          onError={handleError}
-        />
-      </View>
+      
+      <PdfRendererView
+        source={localFilePath}
+        style={styles.pdf}
+        onPageChange={handlePageChange}
+        onError={handleError}
+      />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#1f4e79',
-  },
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#1f4e79',
   },
   header: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    backgroundColor: '#1f4e79',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    backgroundColor: '#1f4e79',
   },
   backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  shareButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -182,7 +200,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flex: 1,
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 16,
   },
   title: {
     color: '#fff',
@@ -194,36 +212,40 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12,
     opacity: 0.8,
-    marginTop: 2,
+    marginTop: 4,
   },
-  placeholder: {
-    width: 40,
-  },
-  pdf: {
-    flex: 1,
-  },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: '#666',
-  },
-  centered: {
+  content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 40,
+    backgroundColor: '#f5f5f5',
+    padding: 20,
+  },
+  pdf: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
   },
   errorText: {
-    marginTop: 16,
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
     color: '#ff6b6b',
     textAlign: 'center',
+    marginVertical: 20,
   },
-  errorSubtext: {
-    marginTop: 8,
-    fontSize: 14,
+  loadingText: {
+    fontSize: 16,
     color: '#666',
-    textAlign: 'center',
+    marginTop: 16,
+  },
+  retryButton: {
+    backgroundColor: '#1f4e79',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

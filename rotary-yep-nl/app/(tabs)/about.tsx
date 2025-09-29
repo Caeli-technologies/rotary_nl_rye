@@ -1,9 +1,11 @@
 import { Platform, ScrollView, StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 export default function AboutScreen() {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar style="auto" />
       <View style={styles.header}>
         <Text style={styles.title}>About Us</Text>
       </View>

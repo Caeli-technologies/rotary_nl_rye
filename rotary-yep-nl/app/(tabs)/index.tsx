@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 interface HomeCardProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -112,6 +113,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      <StatusBar style="auto" />
       <ScrollView 
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -206,10 +208,11 @@ export default function HomeScreen() {
               onPress={() => router.push('/camps-tours')}
             />
             <HomeCard 
-              title="voor Rotary Clubs" 
+              title="voor Rotary Clubs"
               variant="single" 
               useSvg={true}
               svgSource={require('@/assets/logo/rotary-logo-icon.svg')}
+              onPress={() => router.push('/rotary-clubs' as any)}
             />
           </View>
         </View>

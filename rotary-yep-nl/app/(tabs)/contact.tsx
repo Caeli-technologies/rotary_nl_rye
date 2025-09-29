@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ContactCard } from '@/components/enhanced-contact-card';
 import { useState, useMemo } from 'react';
 import { contactSections } from '@/data/contacts';
+import { StatusBar } from 'expo-status-bar';
 
 export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
@@ -11,6 +12,7 @@ export default function ContactScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar style="auto" />
       <View style={styles.header}>
         <Text style={styles.title}>Contact List</Text>
       </View>

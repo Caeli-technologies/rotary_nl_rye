@@ -2,6 +2,7 @@ import { Platform, ScrollView, StyleSheet, Linking, Alert, View, Text } from 're
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { ContactCard } from '@/components/contact-card';
+import { StatusBar } from 'expo-status-bar';
 
 interface EmergencyContact {
   name: string;
@@ -107,6 +108,7 @@ export default function EmergencyScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar style="auto" />
       <View style={styles.header}>
         <Text style={styles.title}>Emergency</Text>
       </View>

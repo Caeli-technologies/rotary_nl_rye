@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import * as Sharing from 'expo-sharing';
 import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
+import { StatusBar } from 'expo-status-bar';
 
 export default function SettingsScreen() {
   const [autoLoadVideos, setAutoLoadVideos] = useState(true);
@@ -106,6 +107,7 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.safeContainer} edges={['top']}>
+      <StatusBar style="auto" />
       <ThemedView style={styles.header}>
         <ThemedText type="title" style={styles.title}>Settings</ThemedText>
         <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
