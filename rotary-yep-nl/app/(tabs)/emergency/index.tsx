@@ -108,13 +108,7 @@ export default function EmergencyScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <StatusBar style="auto" />
-      <View style={styles.header}>
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle}>Emergency</Text>
-        </View>
-      </View>
-      
+      <StatusBar style="light" />
       <View style={styles.container}>
         <ScrollView 
           style={styles.scrollView}
@@ -123,49 +117,49 @@ export default function EmergencyScreen() {
           contentInsetAdjustmentBehavior="automatic"
         >
           <View style={styles.content}>
-          <View style={styles.emergencySection}>
-            <Text style={styles.emergencyTitle}>112 for ambulance, fire brigade or police:</Text>
-            <Image 
-              source={require('@/assets/emergency/112_logo.png')}
-              style={styles.emergencyImage}
-              contentFit="contain"
-            />
-          </View>
+            <View style={styles.emergencySection}>
+              <Text style={styles.emergencyTitle}>112 for ambulance, fire brigade or police:</Text>
+              <Image 
+                source={require('@/assets/emergency/112_logo.png')}
+                style={styles.emergencyImage}
+                contentFit="contain"
+              />
+            </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Neem direct contact op met Inbound coördinator en daaronder de Outbound coördinatoren:
-            </Text>
-            {emergencyContacts.map((contact, index) => (
-              <EmergencyContactCard key={index} contact={contact} />
-            ))}
-          </View>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>
+                Neem direct contact op met Inbound coördinator en daaronder de Outbound coördinatoren:
+              </Text>
+              {emergencyContacts.map((contact, index) => (
+                <EmergencyContactCard key={index} contact={contact} />
+              ))}
+            </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Within Rotary Youth Exchange:</Text>
-            {nationalCounselors.map((contact, index) => (
-              <EmergencyContactCard key={index} contact={contact} />
-            ))}
-          </View>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Within Rotary Youth Exchange:</Text>
+              {nationalCounselors.map((contact, index) => (
+                <EmergencyContactCard key={index} contact={contact} />
+              ))}
+            </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Confidants (not connected to Rotary) in case of f.e. sexual harassment:
-            </Text>
-            {confidants.map((contact, index) => (
-              <EmergencyContactCard key={index} contact={contact} />
-            ))}
-          </View>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>
+                Confidants (not connected to Rotary) in case of f.e. sexual harassment:
+              </Text>
+              {confidants.map((contact, index) => (
+                <EmergencyContactCard key={index} contact={contact} />
+              ))}
+            </View>
 
-          <View style={styles.note}>
-            <Text style={styles.noteTitle}>Note:</Text>
-            <Text style={styles.noteText}>
-              Make sure you always have your present host parent's phone numbers and home address at hand!
-            </Text>
-            <Text style={styles.noteText}>
-              Also, your host parents know how to assist you in case you need to see a doctor, have to go to the hospital or visit a dentist.
-            </Text>
-          </View>
+            <View style={styles.note}>
+              <Text style={styles.noteTitle}>Note:</Text>
+              <Text style={styles.noteText}>
+                Make sure you always have your present host parent's phone numbers and home address at hand!
+              </Text>
+              <Text style={styles.noteText}>
+                Also, your host parents know how to assist you in case you need to see a doctor, have to go to the hospital or visit a dentist.
+              </Text>
+            </View>
           </View>
         </ScrollView>
       </View>
@@ -176,7 +170,7 @@ export default function EmergencyScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#d32f2f',
+    backgroundColor: '#ffffff',
   },
   container: {
     flex: 1,
@@ -185,28 +179,11 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
-  header: {
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 16 : 8,
-    paddingBottom: 16,
-    backgroundColor: '#d32f2f',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(255, 255, 255, 0.2)',
-  },
-  headerTitleContainer: {
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 20 : 22,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
-  },
   content: {
     padding: 16,
   },
   scrollContent: {
-    paddingBottom: Platform.OS === 'android' ? 100 : 34,
+    paddingBottom: 30,
   },
   emergencySection: {
     alignItems: 'center',

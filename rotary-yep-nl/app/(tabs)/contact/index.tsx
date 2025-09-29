@@ -11,14 +11,8 @@ export default function ContactScreen() {
   const currentSection = useMemo(() => contactSections[activeTab], [activeTab]);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={[]}>
       <StatusBar style="auto" />
-      <View style={styles.header}>
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle}>Contact List</Text>
-        </View>
-      </View>
-
       <View style={styles.container}>
         <View style={styles.tabContainer}>
           {contactSections.map((section, index) => {
@@ -62,23 +56,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F2F2F7',
   },
-  header: {
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 16 : 8,
-    paddingBottom: 16,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C6C6C8',
-  },
-  headerTitleContainer: {
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 20 : 22,
-    fontWeight: '600',
-    color: '#000000',
-    letterSpacing: Platform.OS === 'ios' ? -0.41 : 0,
-  },
   tabContainer: {
     flexDirection: 'row',
     backgroundColor: Platform.select({ ios: '#FFFFFF', default: '#f5f5f5' }),
@@ -117,7 +94,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   scrollContent: {
-    paddingBottom: Platform.select({ android: 100, default: 34 }),
+    paddingBottom: 30,
   },
   emptyState: {
     padding: 40,

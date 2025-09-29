@@ -1,11 +1,21 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { NativeTabs, Icon, VectorIcon, Label } from 'expo-router/unstable-native-tabs';
-import { Platform } from 'react-native';
+import { Platform, DynamicColorIOS } from 'react-native';
 import React from 'react';
 
 export default function TabLayout() {
   return (
-    <NativeTabs>
+      <NativeTabs
+        tintColor="#1A237E"
+        backgroundColor="#FFFFFF"
+        disableTransparentOnScrollEdge
+        labelStyle={{
+          color: Platform.OS === 'ios' ? DynamicColorIOS({
+            dark: 'white',
+            light: '#1A237E',
+          }) : '#1A237E',
+        }}
+      >
       <NativeTabs.Trigger name="index">
         <Label>Home</Label>
         {Platform.select({
