@@ -5,6 +5,8 @@ import {
   Text,
   ScrollView,
   Platform,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -18,18 +20,7 @@ const shadowStyle = {
   elevation: 4,
 };
 
-const popularDestinations = [
-  { name: 'Germany', flag: '🇩🇪', description: 'Cultural camps, language immersion, and historical tours' },
-  { name: 'France', flag: '🇫🇷', description: 'Art and culture camps, language programs, wine region tours' },
-  { name: 'Italy', flag: '🇮🇹', description: 'Art history tours, cooking camps, Mediterranean experiences' },
-  { name: 'Spain', flag: '🇪🇸', description: 'Cultural immersion, flamenco workshops, historical tours' },
-  { name: 'United States', flag: '🇺🇸', description: 'Summer camps, leadership programs, adventure tours' },
-  { name: 'Canada', flag: '🇨🇦', description: 'Outdoor adventure camps, nature programs, cultural exchanges' },
-  { name: 'Australia', flag: '🇦🇺', description: 'Outback adventures, wildlife programs, surf camps' },
-  { name: 'Japan', flag: '🇯🇵', description: 'Cultural immersion, technology camps, traditional arts' },
-  { name: 'South Korea', flag: '🇰🇷', description: 'K-culture experiences, technology programs, temple stays' },
-  { name: 'Brazil', flag: '🇧🇷', description: 'Environmental camps, cultural festivals, adventure tours' },
-];
+
 
 export default function WhichCountriesScreen() {
   return (
@@ -47,165 +38,140 @@ export default function WhichCountriesScreen() {
             <View style={styles.headerIcon}>
               <Ionicons name="globe-outline" size={32} color="#FF6B35" />
             </View>
-            <Text style={styles.headerTitle}>Which Countries</Text>
+            <Text style={styles.headerTitle}>Met welke landen?</Text>
             <Text style={styles.headerSubtitle}>
-              Explore the destinations available for Rotary Camps & Tours
+              Ontdek de bestemmingen beschikbaar voor Camps & Tours
             </Text>
           </View>
 
-          {/* Overview */}
+          {/* Main Content */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="information-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Program Destinations</Text>
+              <Ionicons name="globe-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Internationale Bestemmingen</Text>
             </View>
             
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Rotary Camps & Tours are available in many countries around the world. 
-                Each program offers unique cultural experiences, activities, and learning 
-                opportunities specific to the destination. Programs vary by season and 
-                availability.
-              </Text>
-            </View>
-          </View>
-
-          {/* Popular Destinations */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="star-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Popular Destinations</Text>
-            </View>
-            
-            {popularDestinations.map((country, index) => (
-              <View key={index} style={styles.countryCard}>
-                <View style={styles.countryFlag}>
-                  <Text style={styles.flagEmoji}>{country.flag}</Text>
-                </View>
-                <View style={styles.countryContent}>
-                  <Text style={styles.countryName}>{country.name}</Text>
-                  <Text style={styles.countryDescription}>{country.description}</Text>
-                </View>
+            <View style={styles.regionCard}>
+              <View style={styles.regionIcon}>
+                <Text style={styles.regionEmoji}>🇪🇺</Text>
               </View>
-            ))}
+              <View style={styles.regionContent}>
+                <Text style={styles.regionTitle}>Europa</Text>
+                <Text style={styles.regionDescription}>
+                  Verschillende Europese landen met rijke cultuur en geschiedenis
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.regionCard}>
+              <View style={styles.regionIcon}>
+                <Text style={styles.regionEmoji}>🇨🇦</Text>
+              </View>
+              <View style={styles.regionContent}>
+                <Text style={styles.regionTitle}>Canada</Text>
+                <Text style={styles.regionDescription}>
+                  Prachtige natuur en vriendelijke cultuur in Noord-Amerika
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.regionCard}>
+              <View style={styles.regionIcon}>
+                <Text style={styles.regionEmoji}>🇺🇸</Text>
+              </View>
+              <View style={styles.regionContent}>
+                <Text style={styles.regionTitle}>Verenigde Staten</Text>
+                <Text style={styles.regionDescription}>
+                  Diverse staten met verschillende ervaringen en culturen
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.regionCard}>
+              <View style={styles.regionIcon}>
+                <Text style={styles.regionEmoji}>🇹🇼</Text>
+              </View>
+              <View style={styles.regionContent}>
+                <Text style={styles.regionTitle}>Taiwan</Text>
+                <Text style={styles.regionDescription}>
+                  Fascinierende Aziatische cultuur en moderne technologie
+                </Text>
+              </View>
+            </View>
           </View>
 
           {/* Program Types */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="list-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Types of Programs</Text>
+              <Ionicons name="star-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Soorten Programma's</Text>
             </View>
             
-            <View style={styles.typeCard}>
-              <View style={styles.typeIcon}>
+            <View style={styles.programCard}>
+              <View style={styles.programIcon}>
                 <Ionicons name="school-outline" size={20} color="#4CAF50" />
               </View>
-              <View style={styles.typeContent}>
-                <Text style={styles.typeTitle}>Educational Tours</Text>
-                <Text style={styles.typeDescription}>
-                  Focus on learning about history, culture, language, and academics
+              <View style={styles.programContent}>
+                <Text style={styles.programTitle}>Educatieve Tours</Text>
+                <Text style={styles.programDescription}>
+                  Leren over geschiedenis, cultuur en taal
                 </Text>
               </View>
             </View>
 
-            <View style={styles.typeCard}>
-              <View style={styles.typeIcon}>
+            <View style={styles.programCard}>
+              <View style={styles.programIcon}>
                 <Ionicons name="trail-sign-outline" size={20} color="#FF9800" />
               </View>
-              <View style={styles.typeContent}>
-                <Text style={styles.typeTitle}>Adventure Camps</Text>
-                <Text style={styles.typeDescription}>
-                  Outdoor activities, sports, nature exploration, and adventure challenges
+              <View style={styles.programContent}>
+                <Text style={styles.programTitle}>Avontuur Kampen</Text>
+                <Text style={styles.programDescription}>
+                  Buitenactiviteiten en natuurverkenning
                 </Text>
               </View>
             </View>
 
-            <View style={styles.typeCard}>
-              <View style={styles.typeIcon}>
+            <View style={styles.programCard}>
+              <View style={styles.programIcon}>
                 <Ionicons name="people-outline" size={20} color="#2196F3" />
               </View>
-              <View style={styles.typeContent}>
-                <Text style={styles.typeTitle}>Cultural Immersion</Text>
-                <Text style={styles.typeDescription}>
-                  Deep dive into local customs, traditions, and ways of life
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.typeCard}>
-              <View style={styles.typeIcon}>
-                <Ionicons name="construct-outline" size={20} color="#9C27B0" />
-              </View>
-              <View style={styles.typeContent}>
-                <Text style={styles.typeTitle}>Service Projects</Text>
-                <Text style={styles.typeDescription}>
-                  Community service and humanitarian projects combined with cultural experience
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.typeCard}>
-              <View style={styles.typeIcon}>
-                <Ionicons name="bulb-outline" size={20} color="#FF5722" />
-              </View>
-              <View style={styles.typeContent}>
-                <Text style={styles.typeTitle}>Skill Development</Text>
-                <Text style={styles.typeDescription}>
-                  Programs focused on specific skills like arts, crafts, cooking, or technology
+              <View style={styles.programContent}>
+                <Text style={styles.programTitle}>Culturele Uitwisseling</Text>
+                <Text style={styles.programDescription}>
+                  Onderdompeling in lokale gewoonten en tradities
                 </Text>
               </View>
             </View>
           </View>
 
-          {/* Important Notes */}
+          {/* Contact Information */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="alert-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Important Notes</Text>
+              <Ionicons name="mail-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
             
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>🗓️ Seasonal Availability</Text>
-              <Text style={styles.noteDescription}>
-                Most programs run during school holidays (summer, winter, spring breaks)
+            <View style={styles.emailCard}>
+              <Text style={styles.emailDescription}>
+                Aanmelden via het emailadres <Text style={styles.emailLink}>interesse@rotaryyep.nl</Text>
               </Text>
             </View>
 
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>📋 Prerequisites</Text>
-              <Text style={styles.noteDescription}>
-                Some programs may have language, age, or skill requirements
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>🎯 Limited Spaces</Text>
-              <Text style={styles.noteDescription}>
-                Popular programs fill up quickly - early application is recommended
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>💰 Varying Costs</Text>
-              <Text style={styles.noteDescription}>
-                Program costs vary significantly by destination and duration
-              </Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity 
+                style={styles.emailButton}
+                onPress={() => {
+                  const emailUrl = 'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
+                  Linking.openURL(emailUrl);
+                }}
+              >
+                <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
+                <Text style={styles.emailButtonText}>Contact Opnemen</Text>
+              </TouchableOpacity>
             </View>
           </View>
 
-          {/* Contact Card */}
-          <View style={styles.contactCard}>
-            <View style={styles.contactHeader}>
-              <Ionicons name="call" size={24} color="#2196F3" />
-              <Text style={styles.contactTitle}>Get More Information</Text>
-            </View>
-            <Text style={styles.contactText}>
-              For specific program availability, dates, and costs, contact your local 
-              Rotary Club or visit the official Rotary Youth Programs website. New 
-              programs are added regularly throughout the year.
-            </Text>
-          </View>
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -271,66 +237,76 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   
-  // Info Card
-  infoCard: {
+  // Destination Header
+  destinationHeader: {
+    alignItems: 'center',
+    marginBottom: 24,
+    paddingHorizontal: 16,
+  },
+  destinationTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1A237E',
+    marginBottom: 8,
+  },
+  destinationSubtitle: {
+    fontSize: 14,
+    color: '#666',
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  regionCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    padding: 20,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: '#FF6B35',
     ...(Platform.OS === 'ios' ? shadowStyle : {
       elevation: 2,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: '#E0E0E0',
     }),
   },
-  infoText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
-  },
-  
-  // Country Card Styles
-  countryCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  countryFlag: {
+  regionIcon: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
+    ...(Platform.OS === 'ios' ? {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.1,
+      shadowRadius: 2,
+    } : {
+      elevation: 2,
+    }),
   },
-  flagEmoji: {
+  regionEmoji: {
     fontSize: 24,
   },
-  countryContent: {
+  regionContent: {
     flex: 1,
   },
-  countryName: {
+  regionTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: '#1A237E',
     marginBottom: 4,
   },
-  countryDescription: {
+  regionDescription: {
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
   },
   
-  // Type Card Styles
-  typeCard: {
+  // Program Card Styles
+  programCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
@@ -343,7 +319,7 @@ const styles = StyleSheet.create({
       borderColor: '#E0E0E0',
     }),
   },
-  typeIcon: {
+  programIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -352,77 +328,70 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 16,
   },
-  typeContent: {
+  programContent: {
     flex: 1,
   },
-  typeTitle: {
+  programTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: '#1A237E',
     marginBottom: 4,
   },
-  typeDescription: {
+  programDescription: {
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
   },
   
-  // Note Card Styles
-  noteCard: {
+  // Email Card Styles
+  emailCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 4,
-    borderLeftColor: '#FF9800',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
+    marginBottom: 24,
     ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
+      elevation: 2,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: '#E0E0E0',
     }),
   },
-  noteTitle: {
+  emailDescription: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#F57C00',
-    marginBottom: 4,
+    color: '#333',
+    lineHeight: 24,
+    textAlign: 'center',
   },
-  noteDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
+  emailLink: {
+    color: '#2196F3',
+    fontWeight: '600',
   },
   
-  // Contact Card Styles
-  contactCard: {
-    backgroundColor: '#E3F2FD',
-    borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    padding: 20,
-    borderLeftWidth: 4,
-    borderLeftColor: '#2196F3',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#2196F3',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
+  // Button Styles
+  buttonContainer: {
+    alignItems: 'center',
+    marginTop: 8,
   },
-  contactHeader: {
+  emailButton: {
+    backgroundColor: '#FF6B35',
+    borderRadius: Platform.OS === 'ios' ? 12 : 8,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    justifyContent: 'center',
+    minWidth: 200,
+    ...(Platform.OS === 'ios' ? {
+      shadowColor: '#FF6B35',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.3,
+      shadowRadius: 4,
+    } : {
+      elevation: 3,
+    }),
   },
-  contactTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1976D2',
-    marginLeft: 8,
-  },
-  contactText: {
+  emailButtonText: {
+    color: '#FFFFFF',
     fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
+    fontWeight: '600',
   },
 });

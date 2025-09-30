@@ -310,7 +310,7 @@ export default function RootLayout() {
             name="outbound/long-term/class-of/index" 
             options={{ 
               headerShown: true,
-              title: 'Current Students',
+              title: 'Huidige Studenten',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -346,25 +346,7 @@ export default function RootLayout() {
             name="outbound/long-term/information/how-to-sign-up" 
             options={{ 
               headerShown: true,
-              title: 'How to Sign Up',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }} 
-          />
-          <Stack.Screen 
-            name="outbound/long-term/information/how-do-i-prepare" 
-            options={{ 
-              headerShown: true,
-              title: 'How Do I Prepare?',
+              title: 'Hoe meld ik me aan?',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -382,7 +364,7 @@ export default function RootLayout() {
             name="outbound/long-term/information/selection-day" 
             options={{ 
               headerShown: true,
-              title: 'Selection Day',
+              title: 'Selectie dag',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -400,7 +382,7 @@ export default function RootLayout() {
             name="outbound/long-term/information/selection-weekend" 
             options={{ 
               headerShown: true,
-              title: 'Selection Weekend',
+              title: 'Selectie weekend',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -418,7 +400,7 @@ export default function RootLayout() {
             name="outbound/long-term/information/top-3-countries" 
             options={{ 
               headerShown: true,
-              title: 'Top 3 Countries',
+              title: 'Goede top 3 van landen',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -436,7 +418,7 @@ export default function RootLayout() {
             name="outbound/long-term/information/comply-with" 
             options={{ 
               headerShown: true,
-              title: 'Comply With',
+              title: 'Waar moet ik aan voldoen?',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -490,7 +472,7 @@ export default function RootLayout() {
             name="outbound/short-term/camps-and-tours/information/how-to-sign-up" 
             options={{ 
               headerShown: true,
-              title: 'How to Sign Up',
+              title: 'Hoe schrijf ik mezelf in?',
               headerBackTitle: 'Camps & Tours',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -508,7 +490,7 @@ export default function RootLayout() {
             name="outbound/short-term/camps-and-tours/information/which-countries" 
             options={{ 
               headerShown: true,
-              title: 'Which Countries',
+              title: 'Met welke landen?',
               headerBackTitle: 'Camps & Tours',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -526,7 +508,7 @@ export default function RootLayout() {
             name="outbound/short-term/camps-and-tours/information/comply-with" 
             options={{ 
               headerShown: true,
-              title: 'Comply With',
+              title: 'Voor wie?',
               headerBackTitle: 'Camps & Tours',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -562,7 +544,7 @@ export default function RootLayout() {
             name="outbound/short-term/family-to-family/information/how-to-sign-up" 
             options={{ 
               headerShown: true,
-              title: 'How to Sign Up',
+              title: 'Hoe meld ik me aan?',
               headerBackTitle: 'Family to Family',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -580,7 +562,7 @@ export default function RootLayout() {
             name="outbound/short-term/family-to-family/information/countries-preference" 
             options={{ 
               headerShown: true,
-              title: 'Countries & Preference',
+              title: 'Landen & Voorkeur',
               headerBackTitle: 'Family to Family',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -598,7 +580,7 @@ export default function RootLayout() {
             name="outbound/short-term/family-to-family/information/comply-with" 
             options={{ 
               headerShown: true,
-              title: 'Comply With',
+              title: 'Voor wie?',
               headerBackTitle: 'Family to Family',
               headerStyle: {
                 backgroundColor: '#FFFFFF',

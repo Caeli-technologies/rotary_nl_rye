@@ -18,25 +18,6 @@ const shadowStyle = {
   elevation: 4,
 };
 
-const availableCountries = [
-  { name: 'United States', flag: '🇺🇸', description: 'Experience American family life and culture' },
-  { name: 'Canada', flag: '🇨🇦', description: 'Discover Canadian hospitality and traditions' },
-  { name: 'Australia', flag: '🇦🇺', description: 'Live with an Aussie family down under' },
-  { name: 'New Zealand', flag: '🇳🇿', description: 'Experience Kiwi lifestyle and nature' },
-  { name: 'Germany', flag: '🇩🇪', description: 'Immerse in German culture and traditions' },
-  { name: 'France', flag: '🇫🇷', description: 'Live the French way of life' },
-  { name: 'Italy', flag: '🇮🇹', description: 'Experience Italian family warmth' },
-  { name: 'Spain', flag: '🇪🇸', description: 'Discover Spanish culture and lifestyle' },
-  { name: 'United Kingdom', flag: '🇬🇧', description: 'Experience British family traditions' },
-  { name: 'Ireland', flag: '🇮🇪', description: 'Enjoy Irish hospitality and culture' },
-  { name: 'Japan', flag: '🇯🇵', description: 'Experience traditional and modern Japan' },
-  { name: 'South Korea', flag: '🇰🇷', description: 'Discover Korean family life and culture' },
-  { name: 'Thailand', flag: '🇹🇭', description: 'Experience Thai hospitality and traditions' },
-  { name: 'Brazil', flag: '🇧🇷', description: 'Live with a Brazilian family' },
-  { name: 'Argentina', flag: '🇦🇷', description: 'Experience Argentinian culture and warmth' },
-  { name: 'Mexico', flag: '🇲🇽', description: 'Discover Mexican family traditions' },
-];
-
 export default function CountriesPreferenceScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
@@ -53,222 +34,84 @@ export default function CountriesPreferenceScreen() {
             <View style={styles.headerIcon}>
               <Ionicons name="globe-outline" size={32} color="#FF6B35" />
             </View>
-            <Text style={styles.headerTitle}>Countries & Preference</Text>
+            <Text style={styles.headerTitle}>Landenvoorkeur</Text>
             <Text style={styles.headerSubtitle}>
-              Choose your preferred destination for the Family-to-Family experience
+              Kies je voorkeursbestemming voor de Family-to-Family ervaring
             </Text>
           </View>
 
-          {/* How to Choose */}
+          {/* Landenkeuze uitleg */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>How to Choose Your Preference</Text>
+              <Text style={styles.sectionTitle}>Hoe kies je je voorkeur?</Text>
             </View>
             
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                When applying for a Family-to-Family program, you'll be asked to list your 
-                top 3 preferred countries. Consider factors like language, culture, climate, 
-                and your personal interests when making your selection. Remember that 
-                availability varies by season and demand.
+                Als je mee wilt doen aan het Family to Family programma geef je op of je voor het noordelijk of zuidelijk halfrond gaat. Bij de landenkeuze dien je drie landen op 2 continenten op te geven. Hierbij gelden de Verenigde Staten en Canada als één bestemming. De reden hiervoor is dat we niet alle kandidaten in de VS en Canada kunnen plaatsen. Daarbij komt dat als jij de juiste instelling hebt voor een Family to Family uitwisseling het uiteindelijk niet uitmaakt naar welk land je gaat.
               </Text>
             </View>
           </View>
 
-          {/* Available Countries */}
+          {/* Europa aanbeveling */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="list-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Available Countries</Text>
+              <Ionicons name="star-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Kies voor Europa!</Text>
             </View>
             
-            {availableCountries.map((country, index) => (
-              <View key={index} style={styles.countryCard}>
-                <View style={styles.countryFlag}>
-                  <Text style={styles.flagEmoji}>{country.flag}</Text>
-                </View>
-                <View style={styles.countryContent}>
-                  <Text style={styles.countryName}>{country.name}</Text>
-                  <Text style={styles.countryDescription}>{country.description}</Text>
-                </View>
-              </View>
-            ))}
+            <View style={styles.europeCard}>
+              <Text style={styles.europeText}>
+                Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste uitwisselingen plaats en ontstaan de mooiste vriendschappen met het voordeel dat je deze vrienden makkelijker kunt herbezoeken. De reiskosten zijn veel lager.
+              </Text>
+            </View>
           </View>
 
-          {/* Selection Tips */}
+          {/* Tips voor landenkeuze */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="bulb-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Selection Tips</Text>
+              <Text style={styles.sectionTitle}>Tips voor je keuze</Text>
             </View>
             
             <View style={styles.tipCard}>
               <View style={styles.tipIcon}>
-                <Ionicons name="language-outline" size={20} color="#4CAF50" />
+                <Ionicons name="language-outline" size={20} color="#2196F3" />
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Language Skills</Text>
+                <Text style={styles.tipTitle}>Taal</Text>
                 <Text style={styles.tipDescription}>
-                  Consider your language abilities. Some basic knowledge of the host 
-                  country's language can enhance your experience.
+                  Overweeg welke talen je spreekt of wilt leren. Basiskennis helpt bij de communicatie.
                 </Text>
               </View>
             </View>
 
             <View style={styles.tipCard}>
               <View style={styles.tipIcon}>
-                <Ionicons name="heart-outline" size={20} color="#E91E63" />
+                <Ionicons name="globe-outline" size={20} color="#4CAF50" />
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Cultural Interest</Text>
+                <Text style={styles.tipTitle}>Cultuur</Text>
                 <Text style={styles.tipDescription}>
-                  Choose countries whose culture, history, and traditions genuinely 
-                  interest you for a more meaningful experience.
+                  Kies landen waarvan de cultuur en geschiedenis je echt interesseren.
                 </Text>
               </View>
             </View>
 
             <View style={styles.tipCard}>
               <View style={styles.tipIcon}>
-                <Ionicons name="sunny-outline" size={20} color="#FF9800" />
+                <Ionicons name="airplane-outline" size={20} color="#FF9800" />
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Climate Preference</Text>
+                <Text style={styles.tipTitle}>Reiskosten</Text>
                 <Text style={styles.tipDescription}>
-                  Consider the climate and weather conditions during your intended 
-                  travel period.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="time-outline" size={20} color="#2196F3" />
-              </View>
-              <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Time Zone</Text>
-                <Text style={styles.tipDescription}>
-                  Think about time zone differences and how they might affect 
-                  communication with family back home.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="airplane-outline" size={20} color="#9C27B0" />
-              </View>
-              <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Travel Distance</Text>
-                <Text style={styles.tipDescription}>
-                  Consider travel costs and distance, especially for shorter programs 
-                  where travel time might be proportionally significant.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="school-outline" size={20} color="#607D8B" />
-              </View>
-              <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Educational Opportunities</Text>
-                <Text style={styles.tipDescription}>
-                  Think about what you want to learn and experience during your stay.
+                  Houd rekening met reiskosten en afstand, vooral bij kortere programma's.
                 </Text>
               </View>
             </View>
           </View>
 
-          {/* Application Process */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="document-text-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Application Process</Text>
-            </View>
-            
-            <View style={styles.processCard}>
-              <Text style={styles.processTitle}>📝 Step 1: Research</Text>
-              <Text style={styles.processDescription}>
-                Research each country thoroughly, including culture, customs, and current events
-              </Text>
-            </View>
-
-            <View style={styles.processCard}>
-              <Text style={styles.processTitle}>📋 Step 2: List Preferences</Text>
-              <Text style={styles.processDescription}>
-                List your top 3 country preferences in order of preference on your application
-              </Text>
-            </View>
-
-            <View style={styles.processCard}>
-              <Text style={styles.processTitle}>🏠 Step 3: Host Family Matching</Text>
-              <Text style={styles.processDescription}>
-                Rotary will work to match you with a suitable host family in one of your preferred countries
-              </Text>
-            </View>
-
-            <View style={styles.processCard}>
-              <Text style={styles.processTitle}>✈️ Step 4: Final Arrangements</Text>
-              <Text style={styles.processDescription}>
-                Once matched, you'll work with both Rotary clubs to finalize travel and program details
-              </Text>
-            </View>
-          </View>
-
-          {/* Important Notes */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="alert-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Important Notes</Text>
-            </View>
-            
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>⚠️ Availability Varies</Text>
-              <Text style={styles.noteDescription}>
-                Not all countries are available at all times. Program availability depends 
-                on host family availability and local Rotary Club capacity.
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>🔄 Flexibility is Key</Text>
-              <Text style={styles.noteDescription}>
-                Being flexible with your preferences increases your chances of placement. 
-                Consider multiple countries that interest you.
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>📅 Seasonal Considerations</Text>
-              <Text style={styles.noteDescription}>
-                Some programs are seasonal. Summer programs are most popular, 
-                so apply early for the best selection.
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>💰 Cost Variations</Text>
-              <Text style={styles.noteDescription}>
-                Program costs vary by destination. Factor in travel expenses 
-                and living costs when making your selection.
-              </Text>
-            </View>
-          </View>
-
-          {/* Contact Card */}
-          <View style={styles.contactCard}>
-            <View style={styles.contactHeader}>
-              <Ionicons name="call" size={24} color="#2196F3" />
-              <Text style={styles.contactTitle}>Need Help Choosing?</Text>
-            </View>
-            <Text style={styles.contactText}>
-              Contact your local Rotary Club's Youth Exchange officers for guidance 
-              on country selection. They have experience with different programs and 
-              can help you make the best choice for your interests and goals.
-            </Text>
-          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -350,46 +193,39 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
+
   
-  // Country Card Styles
-  countryCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
+  // Europe Card Styles
+  europeCard: {
+    backgroundColor: '#E8F5E8',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
+    borderLeftWidth: 4,
+    borderLeftColor: '#4CAF50',
+    ...(Platform.OS === 'ios' ? {
+      shadowColor: '#4CAF50',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+    } : {
       elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
     }),
   },
-  countryFlag: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: '#F5F5F5',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  flagEmoji: {
-    fontSize: 24,
-  },
-  countryContent: {
-    flex: 1,
-  },
-  countryName: {
+  europeText: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
+    lineHeight: 24,
+    color: '#333',
   },
-  countryDescription: {
+  
+  // Logo Section
+  logoSection: {
+    alignItems: 'center',
+    paddingVertical: 30,
+    marginTop: 20,
+  },
+  logoText: {
     fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
+    color: '#777777',
   },
   
   // Tip Card Styles
@@ -428,90 +264,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
-  },
-  
-  // Process Card Styles
-  processCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  processTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#2E7D32',
-    marginBottom: 4,
-  },
-  processDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Note Card Styles
-  noteCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 4,
-    borderLeftColor: '#FF9800',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  noteTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#F57C00',
-    marginBottom: 4,
-  },
-  noteDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Contact Card Styles
-  contactCard: {
-    backgroundColor: '#E3F2FD',
-    borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    padding: 20,
-    borderLeftWidth: 4,
-    borderLeftColor: '#2196F3',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#2196F3',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
-  },
-  contactHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  contactTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1976D2',
-    marginLeft: 8,
-  },
-  contactText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
   },
 });

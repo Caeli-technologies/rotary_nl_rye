@@ -43,7 +43,7 @@ export default function FamilyToFamilyScreen() {
       onPress={() => handleItemPress(item.route)}
       accessibilityRole="button"
       accessibilityLabel={item.title}
-      accessibilityHint="Tap to view details"
+      accessibilityHint="Tik om details te bekijken"
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
     >
       <View style={styles.menuContent}>
@@ -67,22 +67,22 @@ export default function FamilyToFamilyScreen() {
 
   const informationItems: MenuItem[] = [
     {
-      title: 'How to Sign Up',
-      subtitle: 'Step-by-step application process',
+      title: 'Hoe aanmelden',
+      subtitle: 'Stap-voor-stap aanmeldingsproces',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/family-to-family/information/how-to-sign-up',
       type: 'info'
     },
     {
-      title: 'Countries & Preference',
-      subtitle: 'Available destinations and how to choose',
+      title: 'Landen & Voorkeur',
+      subtitle: 'Beschikbare bestemmingen en hoe te kiezen',
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/family-to-family/information/countries-preference',
       type: 'info'
     },
     {
-      title: 'Comply With',
-      subtitle: 'Rules and guidelines to follow',
+      title: 'Vereisten',
+      subtitle: 'Regels en richtlijnen om te volgen',
       icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/family-to-family/information/comply-with',
       type: 'info'
@@ -93,12 +93,12 @@ export default function FamilyToFamilyScreen() {
     <View style={styles.introContainer}>
       
       <View style={styles.programCard}>
-        <Text style={styles.programTitle}>What is Family-to-Family?</Text>
+        <Text style={styles.programTitle}>Wat is Family-to-Family?</Text>
         <Text style={styles.programDescription}>
-          The Family-to-Family program offers young people the opportunity to experience 
-          life in another culture by staying with a host family for 2-6 weeks. This 
-          authentic cultural exchange allows participants to truly immerse themselves 
-          in daily life, local customs, and family traditions.
+          Het Family-to-Family programma biedt jongeren de mogelijkheid om het leven 
+          in een andere cultuur te ervaren door 2-6 weken bij een gastgezin te verblijven. 
+          Deze authentieke culturele uitwisseling stelt deelnemers in staat zich volledig 
+          onder te dompelen in het dagelijkse leven, lokale gewoonten en familietradities.
         </Text>
       </View>
 
@@ -108,8 +108,8 @@ export default function FamilyToFamilyScreen() {
             <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
           </View>
           <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Duration</Text>
-            <Text style={styles.highlightText}>2-6 weeks</Text>
+            <Text style={styles.highlightTitle}>Duur</Text>
+            <Text style={styles.highlightText}>2-6 weken</Text>
           </View>
         </View>
 
@@ -118,8 +118,8 @@ export default function FamilyToFamilyScreen() {
             <Ionicons name="people-outline" size={20} color="#2196F3" />
           </View>
           <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Age Range</Text>
-            <Text style={styles.highlightText}>15-25 years</Text>
+            <Text style={styles.highlightTitle}>Leeftijd</Text>
+            <Text style={styles.highlightText}>15-25 jaar</Text>
           </View>
         </View>
 
@@ -128,8 +128,8 @@ export default function FamilyToFamilyScreen() {
             <Ionicons name="home-outline" size={20} color="#FF9800" />
           </View>
           <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Accommodation</Text>
-            <Text style={styles.highlightText}>Host families</Text>
+            <Text style={styles.highlightTitle}>Onderdak</Text>
+            <Text style={styles.highlightText}>Gastgezinnen</Text>
           </View>
         </View>
       </View>
@@ -146,7 +146,7 @@ export default function FamilyToFamilyScreen() {
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
-      { type: 'sectionHeader', title: 'Information & Guidelines' },
+      { type: 'sectionHeader', title: 'Informatie & Richtlijnen' },
       ...informationItems.map(item => ({ type: 'menuItem', item }))
     ];
 

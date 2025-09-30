@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
   Platform,
+  Pressable,
+  Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import { Image } from 'expo-image';
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useEvent } from 'expo';
+import * as VideoThumbnails from 'expo-video-thumbnails';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -18,25 +24,47 @@ const shadowStyle = {
   elevation: 4,
 };
 
-const countries = [
-  { name: 'United States', flag: '🇺🇸', description: 'Experience American high school life and diverse cultures across different states' },
-  { name: 'Canada', flag: '🇨🇦', description: 'Bilingual environment with excellent education system and multicultural society' },
-  { name: 'Australia', flag: '🇦🇺', description: 'Unique wildlife, outdoor lifestyle, and friendly communities down under' },
-  { name: 'New Zealand', flag: '🇳🇿', description: 'Stunning landscapes, adventure sports, and warm Kiwi hospitality' },
-  { name: 'Japan', flag: '🇯🇵', description: 'Rich traditional culture combined with modern technology and innovation' },
-  { name: 'South Korea', flag: '🇰🇷', description: 'Dynamic culture, advanced technology, and strong educational values' },
-  { name: 'Taiwan', flag: '🇹🇼', description: 'Blend of Chinese culture with modern development and friendly people' },
-  { name: 'Thailand', flag: '🇹🇭', description: 'Buddhist culture, tropical climate, and renowned Thai hospitality' },
-  { name: 'Brazil', flag: '🇧🇷', description: 'Vibrant culture, carnival spirit, and diverse natural landscapes' },
-  { name: 'Argentina', flag: '🇦🇷', description: 'Passionate culture, tango, excellent food, and beautiful countryside' },
-  { name: 'Chile', flag: '🇨🇱', description: 'Diverse geography from desert to glaciers with strong family values' },
-  { name: 'Mexico', flag: '🇲🇽', description: 'Rich history, colorful traditions, and warm family-oriented culture' },
-  { name: 'South Africa', flag: '🇿🇦', description: 'Rainbow nation with diverse cultures and stunning natural beauty' },
-  { name: 'Turkey', flag: '🇹🇷', description: 'Bridge between Europe and Asia with rich history and hospitality' },
-  { name: 'India', flag: '🇮🇳', description: 'Ancient civilization, spiritual traditions, and incredible diversity' },
-];
+const videoUrl = 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4';
 
 export default function Top3CountriesScreen() {
+  const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
+  const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
+  const [thumbnailLoading, setThumbnailLoading] = useState(true);
+
+  const player = useVideoPlayer(videoUrl, player => {
+    player.loop = false;
+  });
+
+  const { status } = useEvent(player, 'statusChange', { status: player.status });
+
+  // Generate video thumbnail
+  useEffect(() => {
+    const generateThumbnail = async () => {
+      try {
+        setThumbnailLoading(true);
+        const { uri } = await VideoThumbnails.getThumbnailAsync(
+          videoUrl,
+          {
+            time: 15000, // 15 seconds into the video
+            quality: 0.8, // High quality thumbnail
+          }
+        );
+        setThumbnailUri(uri);
+      } catch (error) {
+        console.warn('Error generating video thumbnail:', error);
+        // If thumbnail generation fails, we'll show the fallback
+      } finally {
+        setThumbnailLoading(false);
+      }
+    };
+
+    generateThumbnail();
+  }, []);
+
+  const handleCloseVideo = () => {
+    player.pause();
+    setIsVideoModalVisible(false);
+  };
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <StatusBar style="auto" />
@@ -50,158 +78,143 @@ export default function Top3CountriesScreen() {
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons name="earth-outline" size={32} color="#1A237E" />
+              <Ionicons name="earth-outline" size={32} color="#FF6B35" />
             </View>
-            <Text style={styles.headerTitle}>Top 3 Countries</Text>
+            <Text style={styles.headerTitle}>Goede top 3 van landen</Text>
             <Text style={styles.headerSubtitle}>
-              Choose your preferred destinations for your Rotary Youth Exchange
+              Tips voor het kiezen van jouw voorkeursbestemmingen
             </Text>
           </View>
 
-          {/* Information */}
+          {/* Tips */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="information-circle-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>How It Works</Text>
-            </View>
-            
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                During your application, you'll be asked to choose your top 3 preferred countries 
-                for your exchange. While we cannot guarantee placement in your first choice, 
-                we'll do our best to match you with one of your preferred destinations based on 
-                availability and suitability.
-              </Text>
-            </View>
-          </View>
-
-          {/* Selection Tips */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="bulb-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Selection Tips</Text>
+              <Ionicons name="bulb-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Tips voor een goede keuze</Text>
             </View>
             
             <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="heart-outline" size={20} color="#E91E63" />
+              <View style={styles.tipNumber}>
+                <Text style={styles.tipNumberText}>1</Text>
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Consider Your Interests</Text>
-                <Text style={styles.tipDescription}>
-                  Think about what cultures, languages, and experiences excite you most
+                <Text style={styles.tipText}>
+                  Lees in deze app de verhalen van exchange studenten
                 </Text>
               </View>
             </View>
 
             <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="school-outline" size={20} color="#2196F3" />
+              <View style={styles.tipNumber}>
+                <Text style={styles.tipNumberText}>2</Text>
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Academic Considerations</Text>
-                <Text style={styles.tipDescription}>
-                  Research education systems and how they might affect your studies
+                <Text style={styles.tipText}>
+                  Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te weten.
                 </Text>
               </View>
             </View>
 
             <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="chatbubbles-outline" size={20} color="#4CAF50" />
+              <View style={styles.tipNumber}>
+                <Text style={styles.tipNumberText}>3</Text>
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Language Learning</Text>
-                <Text style={styles.tipDescription}>
-                  Consider which languages you'd like to learn or improve
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="sunny-outline" size={20} color="#FF9800" />
-              </View>
-              <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Climate & Lifestyle</Text>
-                <Text style={styles.tipDescription}>
-                  Think about climate preferences and lifestyle differences
+                <Text style={styles.tipText}>
+                  Praat met voormalige uitwisselingsstudenten over hun ervaringen in verschillende landen.
                 </Text>
               </View>
             </View>
           </View>
 
-          {/* Available Countries */}
+          {/* Inspirational Video */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="flag-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Available Destinations</Text>
+              <Ionicons name="play-circle-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Inspiratie Video</Text>
             </View>
             
-            {countries.map((country, index) => (
-              <View key={index} style={styles.countryCard}>
-                <View style={styles.countryFlag}>
-                  <Text style={styles.flagEmoji}>{country.flag}</Text>
-                </View>
-                <View style={styles.countryContent}>
-                  <Text style={styles.countryName}>{country.name}</Text>
-                  <Text style={styles.countryDescription}>{country.description}</Text>
+            <Pressable 
+              style={styles.videoCard}
+              onPress={() => setIsVideoModalVisible(true)}
+            >
+              <View style={styles.videoPreview}>
+                {thumbnailLoading ? (
+                  <View style={styles.thumbnailLoading}>
+                    <Ionicons name="image-outline" size={48} color="#999" />
+                    <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
+                  </View>
+                ) : thumbnailUri ? (
+                  <Image 
+                    source={{ uri: thumbnailUri }}
+                    style={styles.thumbnail}
+                    contentFit="cover"
+                    transition={300}
+                  />
+                ) : (
+                  <View style={styles.thumbnailFallback}>
+                    <Ionicons name="flag-outline" size={48} color="#FFFFFF" />
+                    <Text style={styles.fallbackText}>Proud to be European</Text>
+                  </View>
+                )}
+                <View style={styles.playButtonOverlay}>
+                  <View style={styles.playButton}>
+                    <Ionicons name="play" size={32} color="#FFFFFF" />
+                  </View>
                 </View>
               </View>
-            ))}
-          </View>
-
-          {/* Important Notes */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="alert-circle-outline" size={24} color="#FF9800" />
-              <Text style={styles.sectionTitle}>Important Notes</Text>
-            </View>
-            
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>🎯 No Guarantees</Text>
-              <Text style={styles.noteDescription}>
-                Country placement depends on availability and mutual suitability
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>🔄 Changes Possible</Text>
-              <Text style={styles.noteDescription}>
-                Available countries may change based on partnerships and global situations
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>📋 Requirements Vary</Text>
-              <Text style={styles.noteDescription}>
-                Each country may have specific requirements (language, grades, etc.)
-              </Text>
-            </View>
-
-            <View style={styles.noteCard}>
-              <Text style={styles.noteTitle}>🕒 Timing Matters</Text>
-              <Text style={styles.noteDescription}>
-                Some countries have different academic calendars and departure dates
-              </Text>
-            </View>
-          </View>
-
-          {/* Advice Card */}
-          <View style={styles.adviceCard}>
-            <View style={styles.adviceHeader}>
-              <Ionicons name="star" size={24} color="#4CAF50" />
-              <Text style={styles.adviceTitle}>Our Advice</Text>
-            </View>
-            <Text style={styles.adviceText}>
-              Be open-minded in your choices! Sometimes the most unexpected destinations 
-              provide the most amazing experiences. Focus on what you want to learn and 
-              experience rather than just geographical preferences. Every country offers 
-              unique opportunities for growth and discovery.
-            </Text>
+              <View style={styles.videoInfo}>
+                <Text style={styles.videoTitle}>Proud to be European</Text>
+                <Text style={styles.videoDescription}>
+                  Ontdek wat het betekent om een Europese uitwisselingsstudent te zijn en laat je inspireren door de verhalen van anderen.
+                </Text>
+              </View>
+            </Pressable>
           </View>
         </View>
       </ScrollView>
+
+      {/* Video Modal */}
+      <Modal
+        visible={isVideoModalVisible}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={handleCloseVideo}
+      >
+        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+          <View style={styles.videoModalHeader}>
+            <Pressable
+              style={styles.closeButton}
+              onPress={handleCloseVideo}
+            >
+              <Ionicons name="close" size={28} color="#FFFFFF" />
+            </Pressable>
+          </View>
+          
+          <View style={styles.videoContainer}>
+            {status === 'loading' && (
+              <View style={styles.loadingContainer}>
+                <Text style={styles.loadingText}>Video laden...</Text>
+              </View>
+            )}
+            <VideoView
+              style={styles.video}
+              player={player}
+              fullscreenOptions={{ enable: true }}
+              allowsPictureInPicture
+              nativeControls
+              contentFit="contain"
+            />
+          </View>
+          
+          <View style={styles.videoInfoModal}>
+            <Text style={styles.videoTitleModal}>Proud to be European</Text>
+            <Text style={styles.videoSubtitleModal}>
+              Rotary Youth Exchange Inspiratie Video
+            </Text>
+          </View>
+        </SafeAreaView>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -223,13 +236,13 @@ const styles = StyleSheet.create({
   headerSection: {
     alignItems: 'center',
     paddingVertical: 24,
-    marginBottom: 24,
+    marginBottom: 32,
   },
   headerIcon: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#E8EAF6',
+    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -287,7 +300,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
-    marginBottom: 12,
+    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'flex-start',
     ...(Platform.OS === 'ios' ? shadowStyle : {
@@ -296,127 +309,163 @@ const styles = StyleSheet.create({
       borderColor: '#E0E0E0',
     }),
   },
-  tipIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#F5F5F5',
+  tipNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#FF6B35',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
+  },
+  tipNumberText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   tipContent: {
     flex: 1,
   },
-  tipTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
-  },
-  tipDescription: {
+  tipText: {
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
   },
   
-  // Country Card Styles
-  countryCard: {
+  // Video Card Styles
+  videoCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    overflow: 'hidden',
     ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
+      elevation: 2,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: '#E0E0E0',
     }),
   },
-  countryFlag: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  videoPreview: {
+    height: 200,
     backgroundColor: '#F5F5F5',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  thumbnail: {
+    width: '100%',
+    height: '100%',
+  },
+  thumbnailLoading: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    backgroundColor: '#F5F5F5',
   },
-  flagEmoji: {
-    fontSize: 24,
+  loadingThumbnailText: {
+    marginTop: 8,
+    fontSize: 14,
+    color: '#999',
   },
-  countryContent: {
+  thumbnailFallback: {
     flex: 1,
-  },
-  countryName: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
-  },
-  countryDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Note Card Styles
-  noteCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 4,
-    borderLeftColor: '#FF9800',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  noteTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#F57C00',
-    marginBottom: 4,
-  },
-  noteDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Advice Card Styles
-  adviceCard: {
-    backgroundColor: '#E8F5E8',
-    borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    padding: 20,
-    borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#4CAF50',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
-  },
-  adviceHeader: {
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
+    backgroundColor: '#1A237E',
   },
-  adviceTitle: {
+  fallbackText: {
+    marginTop: 8,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
+  },
+  playButtonOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  playButton: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: 'rgba(255, 107, 53, 0.95)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  videoInfo: {
+    padding: 20,
+  },
+  videoTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2E7D32',
-    marginLeft: 8,
+    color: '#1A237E',
+    marginBottom: 8,
   },
-  adviceText: {
+  videoDescription: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
+  },
+  
+  // Video Modal Styles
+  videoModalContainer: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  videoModalHeader: {
+    position: 'absolute',
+    top: 60,
+    right: 20,
+    zIndex: 10,
+  },
+  closeButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  videoContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  video: {
+    width: '100%',
+    height: '70%',
+  },
+  loadingContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+  },
+  loadingText: {
+    color: '#FFFFFF',
     fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
+  },
+  videoInfoModal: {
+    padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  videoTitleModal: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 4,
+  },
+  videoSubtitleModal: {
+    fontSize: 14,
+    color: '#CCCCCC',
   },
 });

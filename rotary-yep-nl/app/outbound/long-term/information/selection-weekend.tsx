@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet,
+     StyleSheet,
   View,
   Text,
   ScrollView,
@@ -32,216 +32,79 @@ export default function SelectionWeekendScreen() {
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons name="calendar-outline" size={32} color="#1A237E" />
+              <Ionicons name="calendar-outline" size={32} color="#FF6B35" />
             </View>
-            <Text style={styles.headerTitle}>Selection Weekend</Text>
+            <Text style={styles.headerTitle}>Selectie weekend</Text>
             <Text style={styles.headerSubtitle}>
-              The final step in the Rotary Youth Exchange selection process
+              Het selectieweekend als onderdeel van het uitwisselingsproces
             </Text>
           </View>
 
-          {/* Overview */}
+          {/* Weekend Goals */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="information-circle-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>What is Selection Weekend?</Text>
+              <Ionicons name="flag-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Het weekend dient een aantal doelen:</Text>
             </View>
             
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                The Selection Weekend is the final and most important step in the Rotary Youth Exchange selection process. 
-                It brings together the best candidates from across the Netherlands for intensive evaluation through activities, 
-                interviews, and group dynamics. This weekend determines who will represent the Netherlands as exchange students.
-              </Text>
-            </View>
-          </View>
-
-          {/* Schedule Overview */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="time-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Weekend Schedule</Text>
-            </View>
-            
-            <View style={styles.dayCard}>
-              <View style={styles.dayHeader}>
-                <Ionicons name="sunny-outline" size={20} color="#1A237E" />
-                <Text style={styles.dayTitle}>Friday Evening</Text>
+            <View style={styles.goalCard}>
+              <View style={styles.goalNumber}>
+                <Text style={styles.goalNumberText}>1</Text>
               </View>
-              <Text style={styles.dayDescription}>
-                Arrival and welcome dinner • Initial introductions and ice-breaking activities • 
-                Program overview and expectations briefing
-              </Text>
-            </View>
-
-            <View style={styles.dayCard}>
-              <View style={styles.dayHeader}>
-                <Ionicons name="partly-sunny-outline" size={20} color="#1A237E" />
-                <Text style={styles.dayTitle}>Saturday</Text>
-              </View>
-              <Text style={styles.dayDescription}>
-                Intensive interviews • Group problem-solving challenges • Cultural scenario exercises • 
-                Leadership and teamwork activities • Evening social activities
-              </Text>
-            </View>
-
-            <View style={styles.dayCard}>
-              <View style={styles.dayHeader}>
-                <Ionicons name="moon-outline" size={20} color="#1A237E" />
-                <Text style={styles.dayTitle}>Sunday</Text>
-              </View>
-              <Text style={styles.dayDescription}>
-                Final interviews • Group presentations • Reflection sessions • 
-                Results announcement and next steps briefing
-              </Text>
-            </View>
-          </View>
-
-          {/* Key Activities */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="list-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Key Activities</Text>
-            </View>
-            
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="chatbubbles-outline" size={20} color="#1A237E" />
-              </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Panel Interviews</Text>
-                <Text style={styles.activityDescription}>
-                  In-depth interviews with experienced Rotarians, former exchange students, and youth coordinators
+              <View style={styles.goalContent}>
+                <Text style={styles.goalText}>
+                  <Text style={styles.underlineText}>Elkaar beter leren kennen.</Text>
+                  {' '}De groep leert elkaar beter kennen en wij leren jullie beter{' '}
+                  <Text style={styles.underlineText}>kennen.</Text>
+                  {' '}Wij kunnen zó beter inschatten waar jullie als toekomstige Outbounds naar toe zouden kunnen gaan.
                 </Text>
               </View>
             </View>
 
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="people-outline" size={20} color="#1A237E" />
+            <View style={styles.goalCard}>
+              <View style={styles.goalNumber}>
+                <Text style={styles.goalNumberText}>2</Text>
               </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Group Challenges</Text>
-                <Text style={styles.activityDescription}>
-                  Team-based problem-solving scenarios to assess leadership and collaboration skills
+              <View style={styles.goalContent}>
+                <Text style={styles.goalText}>
+                  <Text style={styles.underlineText}>Jezelf presenteren.</Text>
                 </Text>
               </View>
             </View>
 
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="globe-outline" size={20} color="#1A237E" />
+            <View style={styles.goalCard}>
+              <View style={styles.goalNumber}>
+                <Text style={styles.goalNumberText}>3</Text>
               </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Cultural Simulations</Text>
-                <Text style={styles.activityDescription}>
-                  Role-playing exercises simulating real exchange situations and cultural challenges
+              <View style={styles.goalContent}>
+                <Text style={styles.goalText}>
+                  <Text style={styles.underlineText}>Je oriënteren op een top-drie van landen</Text>
+                  {' '}waarnaar je het liefst wilt worden uitgezonden. Zowel Internationaal als Europees.
                 </Text>
               </View>
             </View>
 
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="school-outline" size={20} color="#1A237E" />
+            <View style={styles.goalCard}>
+              <View style={styles.goalNumber}>
+                <Text style={styles.goalNumberText}>4</Text>
               </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Educational Sessions</Text>
-                <Text style={styles.activityDescription}>
-                  Information sessions about different countries, cultures, and exchange expectations
+              <View style={styles.goalContent}>
+                <Text style={styles.goalText}>
+                  <Text style={styles.underlineText}>Selectie:</Text>
+                  {' '}Je kunt laten zien dat je uit het goede "uitwisselingshout" bent gesneden. Aanwezigheid is verplicht. Het weekend is dan ook onderdeel van de uiteindelijke selectie.
                 </Text>
               </View>
             </View>
           </View>
 
-          {/* What to Expect */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="eye-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>What to Expect</Text>
+          {/* Important Info */}
+          <View style={styles.infoCard}>
+            <View style={styles.infoHeader}>
+              <Ionicons name="information-circle" size={24} color="#2196F3" />
+              <Text style={styles.infoTitle}>Belangrijk om te weten</Text>
             </View>
-            
-            <View style={styles.expectationCard}>
-              <Text style={styles.expectationTitle}>Intense but Fun</Text>
-              <Text style={styles.expectationDescription}>
-                The weekend is challenging but designed to be enjoyable and educational
-              </Text>
-            </View>
-
-            <View style={styles.expectationCard}>
-              <Text style={styles.expectationTitle}>Continuous Evaluation</Text>
-              <Text style={styles.expectationDescription}>
-                You'll be assessed throughout all activities, not just during formal interviews
-              </Text>
-            </View>
-
-            <View style={styles.expectationCard}>
-              <Text style={styles.expectationTitle}>Meet Like-minded Peers</Text>
-              <Text style={styles.expectationDescription}>
-                Connect with other motivated young people who share your passion for cultural exchange
-              </Text>
-            </View>
-
-            <View style={styles.expectationCard}>
-              <Text style={styles.expectationTitle}>Learn About Countries</Text>
-              <Text style={styles.expectationDescription}>
-                Discover detailed information about potential exchange destinations
-              </Text>
-            </View>
-          </View>
-
-          {/* Preparation Tips */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="bulb-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>How to Prepare</Text>
-            </View>
-            
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Stay Informed</Text>
-              <Text style={styles.tipDescription}>
-                Read up on current events and different cultures around the world
-              </Text>
-            </View>
-
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Practice Speaking</Text>
-              <Text style={styles.tipDescription}>
-                Be ready to articulate your thoughts clearly in both Dutch and English
-              </Text>
-            </View>
-
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Be Yourself</Text>
-              <Text style={styles.tipDescription}>
-                Authenticity is valued more than trying to be who you think they want
-              </Text>
-            </View>
-
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Stay Positive</Text>
-              <Text style={styles.tipDescription}>
-                Maintain a positive attitude even if activities become challenging
-              </Text>
-            </View>
-
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Ask Questions</Text>
-              <Text style={styles.tipDescription}>
-                Show genuine curiosity about the program and different countries
-              </Text>
-            </View>
-          </View>
-
-          {/* Important Note */}
-          <View style={styles.noteCard}>
-            <View style={styles.noteHeader}>
-              <Ionicons name="heart" size={24} color="#E91E63" />
-              <Text style={styles.noteTitle}>Remember</Text>
-            </View>
-            <Text style={styles.noteText}>
-              The Selection Weekend is as much about finding the right fit as it is about evaluation. 
-              Even if you're not selected this time, the experience itself is valuable and you can always 
-              try again next year. Focus on learning, growing, and making connections!
+            <Text style={styles.infoText}>
+              Je krijgt een mail van ons voor het weekend waarin staat wat je moet meenemen, en wat je moet voorbereiden. Het is altijd een topweekend.
             </Text>
           </View>
         </View>
@@ -267,13 +130,13 @@ const styles = StyleSheet.create({
   headerSection: {
     alignItems: 'center',
     paddingVertical: 24,
-    marginBottom: 24,
+    marginBottom: 32,
   },
   headerIcon: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#E8EAF6',
+    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -309,58 +172,12 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   
-  // Info Card
-  infoCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    padding: 20,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  infoText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
-  },
-  
-  // Day Card Styles
-  dayCard: {
+  // Goal Card Styles
+  goalCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
-    marginBottom: 12,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  dayHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  dayTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginLeft: 8,
-  },
-  dayDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Activity Card Styles
-  activityCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
+    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'flex-start',
     ...(Platform.OS === 'ios' ? shadowStyle : {
@@ -369,91 +186,41 @@ const styles = StyleSheet.create({
       borderColor: '#E0E0E0',
     }),
   },
-  activityIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#E8EAF6',
+  goalNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#FF6B35',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
   },
-  activityContent: {
+  goalNumberText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  goalContent: {
     flex: 1,
   },
-  activityTitle: {
+  goalText: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
+    lineHeight: 22,
+    color: '#333',
   },
-  activityDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
+  underlineText: {
+    textDecorationLine: 'underline',
   },
   
-  // Expectation Card Styles
-  expectationCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 4,
-    borderLeftColor: '#2196F3',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  expectationTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1976D2',
-    marginBottom: 4,
-  },
-  expectationDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Tip Card Styles
-  tipCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  tipTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#2E7D32',
-    marginBottom: 4,
-  },
-  tipDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
-  
-  // Note Card Styles
-  noteCard: {
-    backgroundColor: '#FCE4EC',
+  // Info Card Styles
+  infoCard: {
+    backgroundColor: '#E3F2FD',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     borderLeftWidth: 4,
-    borderLeftColor: '#E91E63',
+    borderLeftColor: '#2196F3',
     ...(Platform.OS === 'ios' ? {
-      shadowColor: '#E91E63',
+      shadowColor: '#2196F3',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,
       shadowRadius: 4,
@@ -461,18 +228,18 @@ const styles = StyleSheet.create({
       elevation: 1,
     }),
   },
-  noteHeader: {
+  infoHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 12,
   },
-  noteTitle: {
+  infoTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#C2185B',
+    color: '#1976D2',
     marginLeft: 8,
   },
-  noteText: {
+  infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',

@@ -67,8 +67,8 @@ export default function LongTermExchangeScreen() {
 
   const classOfItems: MenuItem[] = [
     {
-      title: 'Current Students',
-      subtitle: 'Our students abroad this year',
+      title: 'Huidige Studenten',
+      subtitle: 'Onze studenten in het buitenland dit jaar',
       icon: 'users' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/class-of',
       type: 'class'
@@ -77,43 +77,36 @@ export default function LongTermExchangeScreen() {
 
   const informationItems: MenuItem[] = [
     {
-      title: 'How to sign up',
-      subtitle: 'Complete application process and requirements',
+      title: 'Hoe meld ik me aan?',
+      subtitle: 'Volledige aanmeldprocedure en vereisten',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/how-to-sign-up',
       type: 'info'
     },
     {
-      title: 'How do I prepare',
-      subtitle: 'Essential preparation steps before departure',
-      icon: 'list-ul' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/how-do-i-prepare',
-      type: 'info'
-    },
-    {
-      title: 'Selection Day',
-      subtitle: 'What to expect during the selection process',
+      title: 'Selectie dag',
+      subtitle: 'Wat je kunt verwachten tijdens het selectieproces',
       icon: 'calendar-day' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/selection-day',
       type: 'info'
     },
     {
-      title: 'Selection Weekend',
-      subtitle: 'Final selection weekend activities and expectations',
+      title: 'Selectie weekend',
+      subtitle: 'Finale selectieweekend activiteiten en verwachtingen',
       icon: 'calendar-week' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/selection-weekend',
       type: 'info'
     },
     {
-      title: 'Top 3 Countries',
-      subtitle: 'How to choose your preferred destinations',
+      title: 'Goede top 3 van landen',
+      subtitle: 'Hoe kies je jouw voorkeursbestemmingen',
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/top-3-countries',
       type: 'info'
     },
     {
-      title: 'Comply with',
-      subtitle: 'Rules and guidelines for exchange students',
+      title: 'Waar moet ik aan voldoen?',
+      subtitle: 'Regels en richtlijnen voor uitwisselingsstudenten',
       icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/comply-with',
       type: 'info'
@@ -138,10 +131,10 @@ export default function LongTermExchangeScreen() {
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
-      { type: 'sectionHeader', title: 'Class Of 25-26' },
+      { type: 'sectionHeader', title: 'Klas van 25-26' },
       ...classOfItems.map(item => ({ type: 'menuItem', item })),
       { type: 'spacer' },
-      { type: 'sectionHeader', title: 'Information' },
+      { type: 'sectionHeader', title: 'Informatie' },
       ...informationItems.map(item => ({ type: 'menuItem', item }))
     ];
 

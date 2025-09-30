@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Animated, Platform } from 'react-native';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { StyleSheet, View, Text, ScrollView, Pressable, Animated, Platform, Dimensions, LayoutChangeEvent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import * as Haptics from 'expo-haptics';
 
 interface HomeCardProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -17,15 +18,29 @@ interface HomeCardProps {
   onPress?: () => void;
 }
 
-function HomeCard({ icon = 'settings-outline', fontistoIcon, materialIcon, title, variant = 'default', useSvg = false, svgSource, onPress }: HomeCardProps) {
+const HomeCard = React.memo<HomeCardProps>(({ icon = 'settings-outline', fontistoIcon, materialIcon, title, variant = 'default', useSvg = false, svgSource, onPress }) => {
   const isDefault = variant === 'default';
+  
+  const handlePress = useCallback(() => {
+    if (Platform.OS === 'ios') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    onPress?.();
+  }, [onPress]);
+
+  const cardStyle = useMemo(() => [
+    isDefault ? styles.homeCard : styles.homeCardSingle
+  ], [isDefault]);
   
   return (
     <View style={styles.cardWrapper}>
-      <TouchableOpacity 
-        style={isDefault ? styles.homeCard : styles.homeCardSingle} 
-        onPress={onPress}
-        activeOpacity={0.7}
+      <Pressable 
+        style={({ pressed }) => [
+          cardStyle,
+          pressed && styles.pressedCard
+        ]} 
+        onPress={handlePress}
+        android_ripple={{ color: 'rgba(159, 168, 218, 0.2)', borderless: false }}
       >
         <View style={styles.cardContent}>
           <View style={isDefault ? styles.iconContainer : styles.iconContainerSingle}>
@@ -52,37 +67,47 @@ function HomeCard({ icon = 'settings-outline', fontistoIcon, materialIcon, title
             <Text style={styles.cardTitleSingle}>{title}</Text>
           )}
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
-}
+});
+
+const { width: screenWidth } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const carouselImages = [
+  const carouselImages = useMemo(() => [
     require('@/assets/home/carousel/Banner_informatiemarkt_6_september_2025.jpg'),
     require('@/assets/home/carousel/Rebounddag_2024_Laren.png'),
-  ];
+  ], []);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(screenWidth - 32); // Default to screen width minus padding
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const animateToIndex = (index: number, duration: number = 500) => {
+  const animateToIndex = useCallback((index: number, duration: number = 500) => {
     Animated.timing(slideAnim, {
       toValue: -index * containerWidth,
       duration,
       useNativeDriver: true,
     }).start();
-  };
+  }, [containerWidth, slideAnim]);
 
-  const resetToFirstSlide = () => {
+  const resetToFirstSlide = useCallback(() => {
     slideAnim.setValue(0);
     setCurrentImageIndex(0);
-  };
+  }, [slideAnim]);
+
+  const handleLayoutChange = useCallback((event: LayoutChangeEvent) => {
+    const { width } = event.nativeEvent.layout;
+    if (width !== containerWidth) {
+      setContainerWidth(width);
+    }
+  }, [containerWidth]);
 
   useEffect(() => {
     if (carouselImages.length > 1 && containerWidth > 0) {
-      const interval = setInterval(() => {
+      intervalRef.current = setInterval(() => {
         setCurrentImageIndex((prevIndex) => {
           const nextIndex = prevIndex + 1;
           
@@ -100,10 +125,15 @@ export default function HomeScreen() {
           return nextIndex;
         });
       }, 3000);
-
-      return () => clearInterval(interval);
     }
-  }, [carouselImages.length, containerWidth]);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [carouselImages.length, containerWidth, animateToIndex, resetToFirstSlide]);
 
   useEffect(() => {
     if (containerWidth > 0 && currentImageIndex < carouselImages.length) {
@@ -130,10 +160,7 @@ export default function HomeScreen() {
 
         <View 
           style={styles.carouselContainer}
-          onLayout={(event) => {
-            const { width } = event.nativeEvent.layout;
-            setContainerWidth(width);
-          }}
+          onLayout={handleLayoutChange}
         >
           {carouselImages.length === 1 ? (
             <Image 
@@ -228,13 +255,18 @@ export default function HomeScreen() {
   );
 }
 
-const shadowStyle = {
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.08,
-  shadowRadius: 20,
-  elevation: 4,
-};
+const shadowStyle = Platform.select({
+  ios: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+  },
+  android: {
+    elevation: 4,
+  },
+  default: {},
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -260,12 +292,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 12,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 20,
-    elevation: 4,
     position: 'relative',
+    ...shadowStyle,
+  },
+  pressedCard: {
+    transform: [{ scale: 0.98 }],
+    opacity: 0.8,
   },
   slideContainer: {
     flexDirection: 'row',

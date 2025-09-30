@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet,
+    StyleSheet,
   View,
   Text,
   ScrollView,
@@ -32,180 +32,84 @@ export default function SelectionDayScreen() {
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons name="people-outline" size={32} color="#1A237E" />
+              <Ionicons name="people-outline" size={32} color="#FF6B35" />
             </View>
-            <Text style={styles.headerTitle}>Selection Day</Text>
+            <Text style={styles.headerTitle}>Selectie dag</Text>
             <Text style={styles.headerSubtitle}>
-              What to expect during the selection day for Rotary Youth Exchange
+              Wat je kunt verwachten tijdens de selectiedag voor Rotary Youth Exchange
             </Text>
           </View>
 
-          {/* Overview */}
+          {/* What to do */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="information-circle-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>What is Selection Day?</Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Wat moet ik doen voor de selectie dag:</Text>
             </View>
             
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                The Selection Day is a crucial part of the Rotary Youth Exchange application process. 
-                It's an opportunity for the selection committee to meet candidates in person and 
-                assess their suitability for the exchange program through various activities and interviews.
+                Ik zou gewoon je best en doen en jezelf zijn.
               </Text>
             </View>
           </View>
 
-          {/* Activities */}
+          {/* What to expect */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="list-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>What Happens During Selection Day?</Text>
+              <Ionicons name="eye-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Dit is wat je deze dag kan verwachten:</Text>
             </View>
             
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="chatbubbles-outline" size={20} color="#1A237E" />
-              </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Individual Interviews</Text>
-                <Text style={styles.activityDescription}>
-                  One-on-one interviews with Rotarians and former exchange students to discuss 
-                  your motivation, expectations, and readiness for the exchange.
-                </Text>
-              </View>
+            <View style={styles.infoCard}>
+              <Text style={styles.infoText}>
+                Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis van Nederland.
+              </Text>
             </View>
 
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="people-outline" size={20} color="#1A237E" />
-              </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Group Activities</Text>
-                <Text style={styles.activityDescription}>
-                  Team-building exercises and group discussions to observe your social skills, 
-                  leadership qualities, and ability to work with others.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="document-text-outline" size={20} color="#1A237E" />
-              </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Presentations</Text>
-                <Text style={styles.activityDescription}>
-                  You may be asked to give a short presentation about yourself, your interests, 
-                  or why you want to participate in the exchange program.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.activityCard}>
-              <View style={styles.activityIcon}>
-                <Ionicons name="globe-outline" size={20} color="#1A237E" />
-              </View>
-              <View style={styles.activityContent}>
-                <Text style={styles.activityTitle}>Cultural Scenarios</Text>
-                <Text style={styles.activityDescription}>
-                  Role-playing exercises to test how you might handle challenging situations 
-                  during your exchange in a foreign country.
-                </Text>
-              </View>
+            <View style={styles.infoCard}>
+              <Text style={styles.infoText}>
+                Dit zijn een paar voorbeeld vragen uit het interview tijdens de selectie dag. We gaan je niet alles vertellen, maar zo krijg je een beetje een idee.
+              </Text>
             </View>
           </View>
 
-          {/* Preparation Tips */}
+          {/* Example Questions */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="bulb-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>How to Prepare</Text>
+              <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Voorbeeld vragen:</Text>
             </View>
             
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Research Rotary</Text>
-              <Text style={styles.tipDescription}>
-                Learn about Rotary's mission, values, and the Youth Exchange program's objectives
+            <View style={styles.questionCard}>
+              <Text style={styles.questionText}>
+                Wat betekent volgens jou het zijn van Ambassadeur voor Rotary
               </Text>
             </View>
 
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Know Your Motivation</Text>
-              <Text style={styles.tipDescription}>
-                Be clear about why you want to participate and what you hope to gain from the experience
+            <View style={styles.questionCard}>
+              <Text style={styles.questionText}>
+                Wie is je rolmodel, voor wie heb je bewondering
               </Text>
             </View>
 
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Practice Communication</Text>
-              <Text style={styles.tipDescription}>
-                Work on expressing yourself clearly and confidently in both Dutch and English
+            <View style={styles.questionCard}>
+              <Text style={styles.questionText}>
+                Wat was de gelukkigste/mooiste dag in je leven
               </Text>
             </View>
 
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Show Adaptability</Text>
-              <Text style={styles.tipDescription}>
-                Demonstrate your flexibility and openness to new cultures and experiences
+            <View style={styles.questionCard}>
+              <Text style={styles.questionText}>
+                Op welke eigenschap ben je het meest trots
               </Text>
             </View>
 
-            <View style={styles.tipCard}>
-              <Text style={styles.tipTitle}>Be Genuine</Text>
-              <Text style={styles.tipDescription}>
-                Be yourself and show your authentic personality and interests
+            <View style={styles.questionCard}>
+              <Text style={styles.questionText}>
+                Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent
               </Text>
             </View>
-          </View>
-
-          {/* What They Look For */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="search-outline" size={24} color="#1A237E" />
-              <Text style={styles.sectionTitle}>What Selectors Look For</Text>
-            </View>
-            
-            <View style={styles.criteriaCard}>
-              <Text style={styles.criteriaTitle}>Maturity & Independence</Text>
-              <Text style={styles.criteriaDescription}>
-                Ability to handle challenging situations and make responsible decisions
-              </Text>
-            </View>
-
-            <View style={styles.criteriaCard}>
-              <Text style={styles.criteriaTitle}>Cultural Sensitivity</Text>
-              <Text style={styles.criteriaDescription}>
-                Respect for different cultures and willingness to adapt to new environments
-              </Text>
-            </View>
-
-            <View style={styles.criteriaCard}>
-              <Text style={styles.criteriaTitle}>Communication Skills</Text>
-              <Text style={styles.criteriaDescription}>
-                Clear expression of thoughts and good listening skills
-              </Text>
-            </View>
-
-            <View style={styles.criteriaCard}>
-              <Text style={styles.criteriaTitle}>Ambassador Qualities</Text>
-              <Text style={styles.criteriaDescription}>
-                Ability to represent the Netherlands positively abroad
-              </Text>
-            </View>
-          </View>
-
-          {/* Final Tips */}
-          <View style={styles.noteCard}>
-            <View style={styles.noteHeader}>
-              <Ionicons name="star" size={24} color="#4CAF50" />
-              <Text style={styles.noteTitle}>Final Advice</Text>
-            </View>
-            <Text style={styles.noteText}>
-              Remember that Selection Day is not just about being evaluated - it's also your chance 
-              to learn more about the program and ask questions. Be curious, be confident, and most 
-              importantly, be yourself!
-            </Text>
           </View>
         </View>
       </ScrollView>
@@ -230,13 +134,13 @@ const styles = StyleSheet.create({
   headerSection: {
     alignItems: 'center',
     paddingVertical: 24,
-    marginBottom: 24,
+    marginBottom: 32,
   },
   headerIcon: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#E8EAF6',
+    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -277,6 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
+    marginBottom: 16,
     ...(Platform.OS === 'ios' ? shadowStyle : {
       elevation: 2,
       borderWidth: StyleSheet.hairlineWidth,
@@ -327,12 +232,12 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   
-  // Tip Card Styles
-  tipCard: {
+  // Question Card Styles
+  questionCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
-    marginBottom: 12,
+    marginBottom: 16,
     borderLeftWidth: 4,
     borderLeftColor: '#4CAF50',
     ...(Platform.OS === 'ios' ? shadowStyle : {
@@ -341,72 +246,25 @@ const styles = StyleSheet.create({
       borderColor: '#E0E0E0',
     }),
   },
-  tipTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#2E7D32',
-    marginBottom: 4,
-  },
-  tipDescription: {
+    questionText: {
     fontSize: 14,
     color: '#666',
+    fontStyle: 'italic',
     lineHeight: 20,
   },
   
-  // Criteria Card Styles
-  criteriaCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 12,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
-  },
-  criteriaTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
-  },
-  criteriaDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
   
-  // Note Card Styles
-  noteCard: {
-    backgroundColor: '#E8F5E8',
-    borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    padding: 20,
-    borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#4CAF50',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
-  },
-  noteHeader: {
-    flexDirection: 'row',
+  // Footer Section
+  footerSection: {
     alignItems: 'center',
-    marginBottom: 12,
+    paddingVertical: 24,
+    marginTop: 20,
   },
-  noteTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#2E7D32',
-    marginLeft: 8,
+  rotaryLogo: {
+    marginBottom: 8,
   },
-  noteText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
+  updateText: {
+    fontSize: 14,
+    color: '#777777',
   },
 });

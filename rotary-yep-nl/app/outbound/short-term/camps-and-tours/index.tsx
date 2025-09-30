@@ -67,22 +67,22 @@ export default function CampsAndToursScreen() {
 
   const informationItems: MenuItem[] = [
     {
-      title: 'How to Sign Up',
-      subtitle: 'Application process for camps and tours',
+      title: 'Hoe schrijf ik mezelf in?',
+      subtitle: 'Aanmeldproces voor camps en tours',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/how-to-sign-up',
       type: 'info'
     },
     {
-      title: 'Which Countries',
-      subtitle: 'Available destinations and programs',
+      title: 'Met welke landen?',
+      subtitle: 'Beschikbare bestemmingen en programma\'s',
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/which-countries',
       type: 'info'
     },
     {
-      title: 'Comply With',
-      subtitle: 'Rules and guidelines for participants',
+      title: 'Voor wie?',
+      subtitle: 'Leeftijd en deelname informatie',
       icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/comply-with',
       type: 'info'
@@ -93,13 +93,13 @@ export default function CampsAndToursScreen() {
     <View style={styles.introContainer}>
       
       <View style={styles.programCard}>
-        <Text style={styles.programTitle}>What are Camps & Tours?</Text>
+        <Text style={styles.programTitle}>Wat zijn Camps & Tours?</Text>
         <Text style={styles.programDescription}>
-          Rotary Camps and Tours are short-term exchange programs typically lasting 
-          2-6 weeks during school holidays. These programs offer young people the 
-          opportunity to experience different cultures, make international friendships, 
-          and participate in exciting activities while staying with host families or 
-          in organized accommodations.
+          Rotary Camps en Tours zijn kortdurende uitwisselingsprogramma's die meestal 
+          2-6 weken duren tijdens schoolvakanties. Deze programma's bieden jongeren de 
+          mogelijkheid om verschillende culturen te ervaren, internationale vriendschappen 
+          te sluiten en deel te nemen aan spannende activiteiten terwijl ze verblijven 
+          bij gastgezinnen of in georganiseerde accommodaties.
         </Text>
       </View>
 
@@ -109,8 +109,8 @@ export default function CampsAndToursScreen() {
             <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
           </View>
           <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Duration</Text>
-            <Text style={styles.highlightText}>2-6 weeks</Text>
+            <Text style={styles.highlightTitle}>Duur</Text>
+            <Text style={styles.highlightText}>2-6 weken</Text>
           </View>
         </View>
 
@@ -119,8 +119,8 @@ export default function CampsAndToursScreen() {
             <Ionicons name="school-outline" size={20} color="#2196F3" />
           </View>
           <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Age Range</Text>
-            <Text style={styles.highlightText}>15-21 years</Text>
+            <Text style={styles.highlightTitle}>Leeftijd</Text>
+            <Text style={styles.highlightText}>15-21 jaar</Text>
           </View>
         </View>
 
@@ -130,7 +130,7 @@ export default function CampsAndToursScreen() {
           </View>
           <View style={styles.highlightContent}>
             <Text style={styles.highlightTitle}>Timing</Text>
-            <Text style={styles.highlightText}>School holidays</Text>
+            <Text style={styles.highlightText}>Schoolvakanties</Text>
           </View>
         </View>
       </View>
@@ -147,7 +147,7 @@ export default function CampsAndToursScreen() {
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
-      { type: 'sectionHeader', title: 'Information & Guidelines' },
+      { type: 'sectionHeader', title: 'Informatie & Richtlijnen' },
       ...informationItems.map(item => ({ type: 'menuItem', item }))
     ];
 
