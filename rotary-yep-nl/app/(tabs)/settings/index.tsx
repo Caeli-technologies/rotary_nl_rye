@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
 import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
+import { router } from 'expo-router';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -60,14 +61,20 @@ export default function SettingsScreen() {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     }
-    Alert.alert('Contributors', 'Thanks to all who made this app possible!');
+    router.push('/settings/contributors');
   };
 
   const handleSocialMedia = async () => {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Alert.alert('Social Media', 'Social media integration coming soon!');
+    Linking.canOpenURL('https://www.instagram.com/rotexnederland/').then(supported => {
+      if (supported) {
+        Linking.openURL('https://www.instagram.com/rotexnederland/');
+      } else {
+        Alert.alert('Error', 'Unable to open Instagram link');
+      }
+    });
   };
 
   const SettingsSection = ({ title, children }: { title: string, children: React.ReactNode }) => (
@@ -126,8 +133,8 @@ export default function SettingsScreen() {
         <View style={styles.content}>
           <SettingsSection title="General">
             <SettingsItem
-              title="Social Media"
-              subtitle="Connect your social accounts"
+              title="Follow us on Instagram"
+              subtitle="@rotexnederland"
               onPress={handleSocialMedia}
             />
           </SettingsSection>
