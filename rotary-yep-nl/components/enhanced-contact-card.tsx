@@ -15,8 +15,6 @@ interface ContactCardProps {
   index: number;
 }
 
-const { width: screenWidth } = Dimensions.get('window');
-
 // Helper functions for safe data access
 const getOrgClub = (contact: Contact | Organization | Rotex): string | undefined => {
   const orgContact = contact as Organization;

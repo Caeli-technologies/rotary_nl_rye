@@ -33,9 +33,6 @@ interface StudentCardProps {
 }
 
 function StudentCard({ student, onPress }: StudentCardProps) {
-  const fromFlagAsset = getFlagAsset(student.fromFlag);
-  const toFlagAsset = getFlagAsset(student.toFlag);
-
   return (
     <Pressable 
       style={({ pressed }) => [
@@ -56,40 +53,6 @@ function StudentCard({ student, onPress }: StudentCardProps) {
         <View style={styles.studentInfo}>
           <Text style={styles.studentName}>{student.name}</Text>
           <Text style={styles.studentDescription}>{student.description}</Text>
-          
-          <View style={styles.exchangeInfo}>
-            <View style={styles.countryContainer}>
-              {fromFlagAsset ? (
-                <Image
-                  source={fromFlagAsset}
-                  style={styles.flagImage}
-                  contentFit="contain"
-                />
-              ) : (
-                <View style={[styles.flagImage, styles.flagPlaceholder]}>
-                  <Text style={styles.flagText}>{student.fromFlag.toUpperCase()}</Text>
-                </View>
-              )}
-              <Text style={styles.countryText}>{student.from}</Text>
-            </View>
-            
-            <Ionicons name="arrow-forward" size={16} color="#9FA8DA" style={styles.arrowIcon} />
-            
-            <View style={styles.countryContainer}>
-              {toFlagAsset ? (
-                <Image
-                  source={toFlagAsset}
-                  style={styles.flagImage}
-                  contentFit="contain"
-                />
-              ) : (
-                <View style={[styles.flagImage, styles.flagPlaceholder]}>
-                  <Text style={styles.flagText}>{student.toFlag.toUpperCase()}</Text>
-                </View>
-              )}
-              <Text style={styles.countryText}>{student.to}</Text>
-            </View>
-          </View>
         </View>
         
         <Ionicons 

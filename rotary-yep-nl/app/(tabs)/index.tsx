@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     paddingHorizontal: 16,
-    paddingBottom: 30,
+    paddingBottom: Platform.OS === 'android' ? 80 : 30,
   },
   gridRow: {
     flexDirection: 'row',

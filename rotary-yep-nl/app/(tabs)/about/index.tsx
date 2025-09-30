@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: Platform.OS === 'ios' ? 16 : 12,
-    paddingBottom: 30,
+    paddingBottom: Platform.OS === 'android' ? 80 : 30,
   },
   section: {
     backgroundColor: '#FFFFFF',
