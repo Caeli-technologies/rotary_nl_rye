@@ -594,6 +594,186 @@ export default function RootLayout() {
               headerShadowVisible: true,
             }} 
           />
+          <Stack.Screen 
+            name="inbound/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Inbound Programs',
+              headerBackTitle: 'Home',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Long Term Inbound',
+              headerBackTitle: 'Inbound',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/class-of/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Current Students',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/class-of/student-detail" 
+            options={({ route }) => ({
+              headerShown: true,
+              title: (route.params as any)?.studentName || 'Student Detail',
+              headerBackTitle: 'Students',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 18,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            })}
+          />
+          <Stack.Screen 
+            name="inbound/long-term/information/welcome-in-the-netherlands" 
+            options={{ 
+              headerShown: true,
+              title: 'Welcome to the Netherlands!',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/information/flight-and-arrival" 
+            options={{ 
+              headerShown: true,
+              title: 'Flight and Arrival',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/information/language" 
+            options={{ 
+              headerShown: true,
+              title: 'Language',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/information/insurance" 
+            options={{ 
+              headerShown: true,
+              title: 'Insurance',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/long-term/information/travel" 
+            options={{ 
+              headerShown: true,
+              title: 'Travel',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="inbound/short-term/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Short Term Inbound',
+              headerBackTitle: 'Inbound',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

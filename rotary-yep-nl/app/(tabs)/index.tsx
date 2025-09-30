@@ -227,7 +227,7 @@ export default function HomeScreen() {
               title="Op Exchange" 
               onPress={() => router.push('/outbound')} 
             />
-            <HomeCard materialIcon="airplane-landing" title="To NL" />
+            <HomeCard materialIcon="airplane-landing" title="To NL" onPress={() => router.push('/inbound')} />
             <HomeCard icon="refresh-outline" title="Rebound" onPress={() => router.push({
               pathname: '/rebound/countries' as any,
               params: { title: 'Rebound Students' }

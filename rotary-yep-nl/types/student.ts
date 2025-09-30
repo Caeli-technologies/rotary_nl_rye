@@ -1,9 +1,16 @@
 export interface Student {
   name: string;
-  description: string;
+  description?: string;
   bio: string;
-  imageUrl: string;
-  videoUrl: string | null;
+  imageUrl?: string;
+  videoUrl?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  snapchatUrl?: string | null;
+  facebookUrl?: string | null;
+  instagramUrl?: string | null;
+  websiteUrl?: string | null;
+  linkedinUrl?: string | null;
   from: string;
   fromFlag: string;
   to: string;
@@ -22,3 +29,11 @@ export interface CountryInfo {
   count: number;
   year: string;
 }
+
+export interface CountryGroup {
+  country: string;
+  flag: string;
+  students: Student[];
+}
+
+export type StudentType = 'outbound' | 'inbound';
