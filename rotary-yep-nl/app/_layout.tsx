@@ -756,24 +756,6 @@ export default function RootLayout() {
               headerShadowVisible: true,
             }} 
           />
-          <Stack.Screen 
-            name="inbound/short-term/index" 
-            options={{ 
-              headerShown: true,
-              title: 'Short Term Inbound',
-              headerBackTitle: 'Inbound',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }} 
-          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
