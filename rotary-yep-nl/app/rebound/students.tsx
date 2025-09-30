@@ -167,13 +167,13 @@ export default function ReboundStudentsScreen() {
               fontWeight: '400',
               marginTop: 2,
             }}>
-              {studentsWithYears.length} student{studentsWithYears.length !== 1 ? 's' : ''} • {yearGroups.length} year{yearGroups.length !== 1 ? 's' : ''}
+              {studentsWithYears.length} student{studentsWithYears.length !== 1 ? 's' : ''}
             </Text>
           )}
         </View>
       ),
     });
-  }, [navigation, params.country, params.flag, headerFlagAsset, studentsWithYears.length, yearGroups.length]);
+  }, [navigation, params.country, params.flag, headerFlagAsset, studentsWithYears.length]);
 
   // Convert yearGroups to sections format for SectionList
   const sections = useMemo(() => {

@@ -756,6 +756,91 @@ export default function RootLayout() {
               headerShadowVisible: true,
             }} 
           />
+          {/* Programs */}
+          <Stack.Screen
+            name="programs/index"
+            options={{
+              headerShown: true,
+              title: 'Programs',
+              headerBackTitle: 'Home',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="programs/promo/index"
+            options={{
+              headerShown: true,
+              title: 'Promo Materiaal',
+              headerBackTitle: 'Programs',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="programs/promo/podcast"
+            options={{
+              headerShown: true,
+              title: 'Promo Podcast',
+              headerBackTitle: 'Promo',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="programs/promo/video"
+            options={{
+              headerShown: true,
+              title: 'Promo Video',
+              headerBackTitle: 'Promo',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="programs/information/long-term-exchange"
+            options={{
+              headerShown: true,
+              title: 'Long Term Exchange',
+              headerBackTitle: 'Programs',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="programs/information/family-to-family"
+            options={{
+              headerShown: true,
+              title: 'Family To Family',
+              headerBackTitle: 'Programs',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="programs/information/camps-tours"
+            options={{
+              headerShown: true,
+              title: 'Camps & Tours',
+              headerBackTitle: 'Programs',
+              headerStyle: { backgroundColor: '#FFFFFF' },
+              headerTitleStyle: { color: '#1A237E', fontWeight: '600', fontSize: 20 },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
