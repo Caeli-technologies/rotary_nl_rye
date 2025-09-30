@@ -18,10 +18,10 @@ interface MenuItem {
   subtitle?: string;
   icon: keyof typeof FontAwesome5.glyphMap;
   route: string;
-  type: 'class' | 'info';
+  type: 'info';
 }
 
-export default function LongTermExchangeScreen() {
+export default function CampsAndToursScreen() {
   const handleItemPress = useCallback(async (route: string) => {
     try {
       if (Platform.OS === 'ios') {
@@ -47,8 +47,8 @@ export default function LongTermExchangeScreen() {
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
     >
       <View style={styles.menuContent}>
-        <View style={[styles.iconContainer, item.type === 'class' ? styles.classIconContainer : styles.infoIconContainer]}>
-          <FontAwesome5 name={item.icon} size={22} color={item.type === 'class' ? "#9FA8DA" : "#007AFF"} />
+        <View style={styles.iconContainer}>
+          <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.menuTitle}>{item.title}</Text>
@@ -65,66 +65,75 @@ export default function LongTermExchangeScreen() {
     </Pressable>
   ), [handleItemPress]);
 
-  const classOfItems: MenuItem[] = [
-    {
-      title: 'Current Students',
-      subtitle: 'Our students abroad this year',
-      icon: 'users' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/class-of',
-      type: 'class'
-    }
-  ];
-
   const informationItems: MenuItem[] = [
     {
-      title: 'How to sign up',
-      subtitle: 'Complete application process and requirements',
+      title: 'How to Sign Up',
+      subtitle: 'Application process for camps and tours',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/how-to-sign-up',
+      route: '/outbound/short-term/camps-and-tours/information/how-to-sign-up',
       type: 'info'
     },
     {
-      title: 'How do I prepare',
-      subtitle: 'Essential preparation steps before departure',
-      icon: 'list-ul' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/how-do-i-prepare',
-      type: 'info'
-    },
-    {
-      title: 'Selection Day',
-      subtitle: 'What to expect during the selection process',
-      icon: 'calendar-day' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/selection-day',
-      type: 'info'
-    },
-    {
-      title: 'Selection Weekend',
-      subtitle: 'Final selection weekend activities and expectations',
-      icon: 'calendar-week' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/selection-weekend',
-      type: 'info'
-    },
-    {
-      title: 'Top 3 Countries',
-      subtitle: 'How to choose your preferred destinations',
+      title: 'Which Countries',
+      subtitle: 'Available destinations and programs',
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/top-3-countries',
+      route: '/outbound/short-term/camps-and-tours/information/which-countries',
       type: 'info'
     },
     {
-      title: 'Comply with',
-      subtitle: 'Rules and guidelines for exchange students',
+      title: 'Comply With',
+      subtitle: 'Rules and guidelines for participants',
       icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/comply-with',
+      route: '/outbound/short-term/camps-and-tours/information/comply-with',
       type: 'info'
     }
   ];
 
   const IntroSection = useCallback(() => (
     <View style={styles.introContainer}>
-      <Text style={styles.introText}>
-        Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het buitenland een jaar High School volgt. Omgekeerd komen buitenlandse scholieren hier om gedurende een jaar samen met leeftijdgenoten naar school te gaan.
-      </Text>
+      
+      <View style={styles.programCard}>
+        <Text style={styles.programTitle}>What are Camps & Tours?</Text>
+        <Text style={styles.programDescription}>
+          Rotary Camps and Tours are short-term exchange programs typically lasting 
+          2-6 weeks during school holidays. These programs offer young people the 
+          opportunity to experience different cultures, make international friendships, 
+          and participate in exciting activities while staying with host families or 
+          in organized accommodations.
+        </Text>
+      </View>
+
+      <View style={styles.highlightsContainer}>
+        <View style={styles.highlight}>
+          <View style={styles.highlightIcon}>
+            <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
+          </View>
+          <View style={styles.highlightContent}>
+            <Text style={styles.highlightTitle}>Duration</Text>
+            <Text style={styles.highlightText}>2-6 weeks</Text>
+          </View>
+        </View>
+
+        <View style={styles.highlight}>
+          <View style={styles.highlightIcon}>
+            <Ionicons name="school-outline" size={20} color="#2196F3" />
+          </View>
+          <View style={styles.highlightContent}>
+            <Text style={styles.highlightTitle}>Age Range</Text>
+            <Text style={styles.highlightText}>15-21 years</Text>
+          </View>
+        </View>
+
+        <View style={styles.highlight}>
+          <View style={styles.highlightIcon}>
+            <Ionicons name="sunny-outline" size={20} color="#FF9800" />
+          </View>
+          <View style={styles.highlightContent}>
+            <Text style={styles.highlightTitle}>Timing</Text>
+            <Text style={styles.highlightText}>School holidays</Text>
+          </View>
+        </View>
+      </View>
     </View>
   ), []);
 
@@ -138,10 +147,7 @@ export default function LongTermExchangeScreen() {
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
-      { type: 'sectionHeader', title: 'Class Of 25-26' },
-      ...classOfItems.map(item => ({ type: 'menuItem', item })),
-      { type: 'spacer' },
-      { type: 'sectionHeader', title: 'Information' },
+      { type: 'sectionHeader', title: 'Information & Guidelines' },
       ...informationItems.map(item => ({ type: 'menuItem', item }))
     ];
 
@@ -156,8 +162,6 @@ export default function LongTermExchangeScreen() {
         return <SectionHeader title={item.title} />;
       case 'menuItem':
         return renderMenuItem({ item: item.item });
-      case 'spacer':
-        return <View style={styles.spacer} />;
       default:
         return null;
     }
@@ -198,11 +202,90 @@ const styles = StyleSheet.create({
   introContainer: {
     marginBottom: 32,
   },
-  introText: {
+  headerSection: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  headerIcon: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#FFF3F0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#1A237E',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  headerSubtitle: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    paddingHorizontal: 20,
+  },
+  programCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 4,
+  },
+  programTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1A237E',
+    marginBottom: 12,
+  },
+  programDescription: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
-    textAlign: 'left',
+    color: '#333',
+  },
+  highlightsContainer: {
+    gap: 16,
+  },
+  highlight: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 1,
+  },
+  highlightIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#F5F5F5',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  highlightContent: {
+    flex: 1,
+  },
+  highlightTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1A237E',
+    marginBottom: 2,
+  },
+  highlightText: {
+    fontSize: 13,
+    color: '#666',
   },
   sectionHeaderContainer: {
     marginBottom: 16,
@@ -247,11 +330,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
-  },
-  classIconContainer: {
-    backgroundColor: '#F2F2F7',
-  },
-  infoIconContainer: {
     backgroundColor: '#F2F2F7',
   },
   textContainer: {
@@ -269,8 +347,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '400',
     color: '#8E8E93',
-  },
-  spacer: {
-    height: 10,
   },
 });

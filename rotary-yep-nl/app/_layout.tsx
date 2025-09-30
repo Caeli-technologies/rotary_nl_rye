@@ -342,6 +342,276 @@ export default function RootLayout() {
               headerShadowVisible: true,
             })}
           />
+          <Stack.Screen 
+            name="outbound/long-term/information/how-to-sign-up" 
+            options={{ 
+              headerShown: true,
+              title: 'How to Sign Up',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/information/how-do-i-prepare" 
+            options={{ 
+              headerShown: true,
+              title: 'How Do I Prepare?',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/information/selection-day" 
+            options={{ 
+              headerShown: true,
+              title: 'Selection Day',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/information/selection-weekend" 
+            options={{ 
+              headerShown: true,
+              title: 'Selection Weekend',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/information/top-3-countries" 
+            options={{ 
+              headerShown: true,
+              title: 'Top 3 Countries',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/long-term/information/comply-with" 
+            options={{ 
+              headerShown: true,
+              title: 'Comply With',
+              headerBackTitle: 'Long Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Short Term Programs',
+              headerBackTitle: 'Outbound',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/camps-and-tours/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Camps & Tours',
+              headerBackTitle: 'Short Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/camps-and-tours/information/how-to-sign-up" 
+            options={{ 
+              headerShown: true,
+              title: 'How to Sign Up',
+              headerBackTitle: 'Camps & Tours',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/camps-and-tours/information/which-countries" 
+            options={{ 
+              headerShown: true,
+              title: 'Which Countries',
+              headerBackTitle: 'Camps & Tours',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/camps-and-tours/information/comply-with" 
+            options={{ 
+              headerShown: true,
+              title: 'Comply With',
+              headerBackTitle: 'Camps & Tours',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/family-to-family/index" 
+            options={{ 
+              headerShown: true,
+              title: 'Family to Family',
+              headerBackTitle: 'Short Term',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/family-to-family/information/how-to-sign-up" 
+            options={{ 
+              headerShown: true,
+              title: 'How to Sign Up',
+              headerBackTitle: 'Family to Family',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/family-to-family/information/countries-preference" 
+            options={{ 
+              headerShown: true,
+              title: 'Countries & Preference',
+              headerBackTitle: 'Family to Family',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
+          <Stack.Screen 
+            name="outbound/short-term/family-to-family/information/comply-with" 
+            options={{ 
+              headerShown: true,
+              title: 'Comply With',
+              headerBackTitle: 'Family to Family',
+              headerStyle: {
+                backgroundColor: '#FFFFFF',
+              },
+              headerTitleStyle: {
+                color: '#1A237E',
+                fontWeight: '600',
+                fontSize: 20,
+              },
+              headerTintColor: '#007AFF',
+              headerShadowVisible: true,
+            }} 
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
