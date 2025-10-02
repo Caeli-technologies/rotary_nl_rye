@@ -86,7 +86,7 @@ export default function RotaryClubsScreen() {
     () => (
       <View style={styles.content}>
         <Text style={styles.introText}>
-          Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent te sponsoren en
+          Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent te supporten en
           daarmee dus ook een jaar lang een kind binnen jullie club te ontvangen en te begeleiden.
           Misschien zijn jullie benaderd door een scholier van buiten jullie of mogelijk vanuit de
           wens van één van jullie clubleden.

@@ -152,7 +152,7 @@ export default function VideoPromo() {
         animationType="slide"
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}>
-        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'bottom', 'left', 'right']}>
           <View style={styles.videoModalHeader}>
             <TouchableOpacity style={styles.closeButton} onPress={handleCloseVideo}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     padding: 16,
-    paddingTop: Platform.OS === 'android' ? 50 : 16,
+    paddingTop: 24,
   },
   closeButton: {
     width: 44,

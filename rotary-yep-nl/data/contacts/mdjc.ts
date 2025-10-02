@@ -68,7 +68,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Ernst Ziengs',
     bio: 'Mijn naam is Ernst Ziengs. 53 jaar oud en woon in Weert samen met mijn vrouw Ellen en onze zonen Tijn (16) en Vigo. Ben ongeveer 10 jaar lid van Rotary Weert-Land van Horne. Daar ook voorzitter geweest en via Rotary en rechtstreeks doe ik veel vrijwilligerswerk. Zes jaar geleden heb ik wat tegenslag gehad met mijn gezondheid. Gevolg is dat ik opnieuw moest leren spreken, lopen en veel dingen opnieuw moest leren doen. In dit "terug komen" ben ik enorm geholpen door mijn gezin, vrienden en familie. Bij al die hulpvaardige mensen horen ook zeker mensen van de Rotary.\n\nIn mijn wil terug te komen in het leven speelt jeugd een voorname rol. Ik werk 2 dagen per week bij Fontys in Eindhoven. Jonge mensen iets proberen over te dragen kennis en vaardigheden houdt mijzelf ook jong en actief in deze tijd. Precies mijn ambitie als DJC van district 1550.\n\nNaast de Exchanges is de vijfde Avenue Jeugd één van de leukste en meest uitgebreide Avenues. Als DJC mag ik deze ook, samen met alle clubs en regio\'s tot een succes proberen te maken!',
-    imageUrl: undefined,
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ernst-ziengs.jpeg',
     email: 'youth@rotary-d1550.org',
     phoneNumber: undefined,
     club: 'RC Weert-Land van Horne',

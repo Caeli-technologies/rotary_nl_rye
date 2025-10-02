@@ -130,7 +130,7 @@ export default function RootLayout() {
             name="rotary-clubs"
             options={{
               headerShown: true,
-              title: 'For Rotary Clubs',
+              title: 'Voor Rotary Clubs',
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
