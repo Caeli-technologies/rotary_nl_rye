@@ -273,7 +273,7 @@ export default function HomeScreen() {
           <View style={styles.gridRowSingle}>
             <HomeCard
               fontistoIcon="tent"
-              title="Camps & Tours List"
+              title="Zomerkampen Lijst"
               variant="single"
               onPress={() => router.push('/camps-tours')}
             />

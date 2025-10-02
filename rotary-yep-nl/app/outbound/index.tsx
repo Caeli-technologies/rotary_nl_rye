@@ -78,8 +78,8 @@ export default function OutboundScreen() {
 
   const shortTermPrograms: ProgramItem[] = [
     {
-      title: 'Camps & Tours',
-      subtitle: 'Summer Camps & Cultural Tours',
+      title: 'Zomerkampen',
+      subtitle: 'Zomerkampen & Culturele Programmas',
       icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours',
       enabled: true,

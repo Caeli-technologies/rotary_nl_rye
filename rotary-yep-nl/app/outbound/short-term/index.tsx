@@ -56,7 +56,7 @@ export default function ShortTermScreen() {
 
   const menuItems: MenuItem[] = [
     {
-      title: 'Camps & Tours',
+      title: 'Zomerkampen',
       subtitle: 'Short-term cultural exchange programs',
       icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours',

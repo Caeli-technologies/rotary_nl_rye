@@ -34,7 +34,7 @@ export default function WhichCountriesScreen() {
             </View>
             <Text style={styles.headerTitle}>Met welke landen?</Text>
             <Text style={styles.headerSubtitle}>
-              Ontdek de bestemmingen beschikbaar voor Camps & Tours
+              Ontdek de bestemmingen beschikbaar voor Zomerkampen
             </Text>
           </View>
 
@@ -157,7 +157,7 @@ export default function WhichCountriesScreen() {
                 style={styles.emailButton}
                 onPress={() => {
                   const emailUrl =
-                    'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
+                    'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Zomerkampen';
                   Linking.openURL(emailUrl);
                 }}>
                 <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />

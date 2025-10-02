@@ -73,8 +73,8 @@ export default function ProgramsScreen() {
       route: '/programs/information/family-to-family',
     },
     {
-      title: 'Camps & Tours',
-      subtitle: 'Summer camps and tours',
+      title: 'Zomerkampen',
+      subtitle: 'Zomerkampen informatie',
       icon: 'campground' as any,
       route: '/programs/information/camps-tours',
     },

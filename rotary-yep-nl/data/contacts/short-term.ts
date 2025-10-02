@@ -20,6 +20,6 @@ export const shortTermContacts: Organization[] = [
     phoneNumber: undefined,
     club: undefined,
     district: undefined,
-    functions: ['Inbound coördinator Camps and Tours'],
+    functions: ['Inbound coördinator Zomerkampen'],
   },
 ];

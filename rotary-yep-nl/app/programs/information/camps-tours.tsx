@@ -32,16 +32,16 @@ export default function CampsToursScreen() {
             <View style={styles.headerIcon}>
               <Ionicons name="sunny-outline" size={32} color="#FF6B35" />
             </View>
-            <Text style={styles.headerTitle}>Camps & Tours</Text>
+            <Text style={styles.headerTitle}>Zomerkampen</Text>
             <Text style={styles.headerSubtitle}>
-              Zomer Tours en speciale kampen in Europa, Canada, VS en Taiwan
+              Zomerkampen en speciale kampen in Europa, Canada, VS en Taiwan
             </Text>
           </View>
 
           {/* Intro */}
           <View style={styles.infoCard}>
             <Text style={styles.infoText}>
-              Heel veel Europese landen organiseren in de periode van juni t/m september Zomer Tours
+              Heel veel Europese landen organiseren in de periode van juni t/m september Zomerkampen
               en speciale kampen, zoals zeil-, ski- en sportkampen. De laatste jaren worden er ook
               Zomerkampen in Canada, V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20
               deelnemers gevormd met een zo groot mogelijke spreiding van nationaliteiten.

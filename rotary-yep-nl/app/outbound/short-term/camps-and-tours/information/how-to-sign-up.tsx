@@ -34,7 +34,7 @@ export default function CampsToursSignUpScreen() {
             </View>
             <Text style={styles.headerTitle}>Hoe schrijf ik mezelf in?</Text>
             <Text style={styles.headerSubtitle}>
-              Eenvoudige stappen om je aan te melden voor Camps & Tours
+              Eenvoudige stappen om je aan te melden voor Zomerkampen
             </Text>
           </View>
 
@@ -62,7 +62,7 @@ export default function CampsToursSignUpScreen() {
                 onPress={() => {
                   // Open email client with pre-filled subject
                   const emailUrl =
-                    'mailto:zomerkamp@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
+                    'mailto:zomerkamp@rotaryyep.nl?subject=Interesse%20in%20Zomerkampen';
                   Linking.openURL(emailUrl);
                 }}>
                 <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />

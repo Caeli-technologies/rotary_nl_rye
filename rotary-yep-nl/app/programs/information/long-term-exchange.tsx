@@ -54,17 +54,19 @@ export default function LongTermExchangeScreen() {
             </View>
           </View>
 
-          {/* Age Card */}
-          <View style={styles.ageCard}>
-            <View style={styles.ageIconContainer}>
-              <Ionicons name="calendar" size={28} color="#673AB7" />
-            </View>
-            <View style={styles.ageContent}>
-              <Text style={styles.ageTitle}>15,5 - 18,5 jaar</Text>
-              <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
-              <Text style={styles.ageNote}>
-                Selectiedag in oktober + selectieweekend in november
-              </Text>
+          {/* Age Section */}
+          <View style={styles.section}>
+            <View style={styles.ageCard}>
+              <View style={styles.ageIconContainer}>
+                <Ionicons name="calendar" size={28} color="#673AB7" />
+              </View>
+              <View style={styles.ageContent}>
+                <Text style={styles.ageTitle}>15,5 - 18,5 jaar</Text>
+                <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
+                <Text style={styles.ageNote}>
+                  Selectiedag in oktober + selectieweekend in november
+                </Text>
+              </View>
             </View>
           </View>
 
@@ -78,23 +80,19 @@ export default function LongTermExchangeScreen() {
             <View style={styles.countryCard}>
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
-                  <Ionicons name="sunny" size={20} color="#FF9800" />
                   <Text style={styles.hemisphereTitle}>Noordelijk halfrond</Text>
                 </View>
                 <Text style={styles.countryText}>
-                  USA, Canada, India, Indonesië, Japan, Thailand, Taiwan en diverse Europese landen
+                  USA, Canada, Mexico, India, Indonesië, Japan, Thailand, Taiwan en diverse Europese
+                  landen
                 </Text>
               </View>
 
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
-                  <Ionicons name="partly-sunny" size={20} color="#00BCD4" />
                   <Text style={styles.hemisphereTitle}>Zuidelijk halfrond</Text>
                 </View>
-                <Text style={styles.countryText}>
-                  Brazilië, Chili, Argentinië, Mexico, Ecuador, Peru, Australië, Nieuw-Zeeland,
-                  Zuid-Afrika
-                </Text>
+                <Text style={styles.countryText}>Brazilië, Chili, Argentinië, Ecuador, Peru</Text>
               </View>
             </View>
           </View>
@@ -109,7 +107,7 @@ export default function LongTermExchangeScreen() {
             <View style={styles.costCard}>
               <Text style={styles.costTitle}>Vanaf €2.400</Text>
               <Text style={styles.costSubtitle}>
-                Exclusief BTW, zakgeld, ticket en andere onkosten
+                Exclusief BTW, verzekering, ticket kosten etc.
               </Text>
             </View>
           </View>
@@ -121,43 +119,163 @@ export default function LongTermExchangeScreen() {
               <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Inlichtingen bij de coördinator van het programma Barbara Tusveld:
-              </Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.emailButton}
+                onPress={() => Linking.openURL('mailto:interesse@rotaryyep.nl')}>
+                <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
+                <Text style={styles.emailButtonText}>interesse@rotaryyep.nl</Text>
+              </TouchableOpacity>
             </View>
-
-            <TouchableOpacity
-              style={styles.emailButton}
-              onPress={() => Linking.openURL('mailto:longtermchair@rotaryyep.nl')}>
-              <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
-              <Text style={styles.emailButtonText}>longtermchair@rotaryyep.nl</Text>
-            </TouchableOpacity>
           </View>
 
           {/* Why Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="heart-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Waarom doen we dit?</Text>
+              <Text style={styles.sectionTitle}>Waarom Rotary Youth Exchange?</Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <View style={styles.bulletContainer}>
+            {/* Internationale ervaring */}
+            <View style={styles.whyCard}>
+              <View style={styles.whyHeader}>
+                <View style={styles.whyNumber}>
+                  <Text style={styles.whyNumberText}>1</Text>
+                </View>
+                <Text style={styles.whyTitle}>Internationale ervaring</Text>
+              </View>
+              <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
                   <Text style={styles.bulletText}>
-                    Het opbouwen van goede relaties met andere landen
+                    Jongeren leren een nieuwe cultuur, taal en manier van leven kennen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Het houdt de club jong</Text>
+                  <Text style={styles.bulletText}>
+                    Het vergroot hun wereldbeeld en respect voor diversiteit
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Persoonlijke ontwikkeling */}
+            <View style={styles.whyCard}>
+              <View style={styles.whyHeader}>
+                <View style={styles.whyNumber}>
+                  <Text style={styles.whyNumberText}>2</Text>
+                </View>
+                <Text style={styles.whyTitle}>Persoonlijke ontwikkeling</Text>
+              </View>
+              <View style={styles.whyBullets}>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Zelfstandigheid, zelfvertrouwen en verantwoordelijkheid nemen
+                  </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
                   <Text style={styles.bulletText}>
-                    De jongere ontwikkelt zichzelf en zijn/haar omgeving
+                    Aanpassen aan nieuwe situaties en omgaan met uitdagingen
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Taalontwikkeling */}
+            <View style={styles.whyCard}>
+              <View style={styles.whyHeader}>
+                <View style={styles.whyNumber}>
+                  <Text style={styles.whyNumberText}>3</Text>
+                </View>
+                <Text style={styles.whyTitle}>Taalontwikkeling</Text>
+              </View>
+              <View style={styles.whyBullets}>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Door dagelijks contact met de taal van het gastland, leren jongeren snel en
+                    effectief communiceren
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Onderwijs en culturele verrijking */}
+            <View style={styles.whyCard}>
+              <View style={styles.whyHeader}>
+                <View style={styles.whyNumber}>
+                  <Text style={styles.whyNumberText}>4</Text>
+                </View>
+                <Text style={styles.whyTitle}>Onderwijs en culturele verrijking</Text>
+              </View>
+              <View style={styles.whyBullets}>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Scholing in het gastland én vaak ook het geven van presentaties over de eigen
+                    cultuur
+                  </Text>
+                </View>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Wederzijdse uitwisseling van kennis en gebruiken
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Rotary netwerk */}
+            <View style={styles.whyCard}>
+              <View style={styles.whyHeader}>
+                <View style={styles.whyNumber}>
+                  <Text style={styles.whyNumberText}>5</Text>
+                </View>
+                <Text style={styles.whyTitle}>Rotary netwerk</Text>
+              </View>
+              <View style={styles.whyBullets}>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Betrouwbare begeleiding: jongeren verblijven bij gastgezinnen die door Rotary
+                    zorgvuldig zijn geselecteerd
+                  </Text>
+                </View>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Ondersteuning van lokale Rotaryclubs en toegang tot een wereldwijd netwerk van
+                    contacten
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Vriendschappen voor het leven */}
+            <View style={[styles.whyCard, { marginBottom: 0 }]}>
+              <View style={styles.whyHeader}>
+                <View style={styles.whyNumber}>
+                  <Text style={styles.whyNumberText}>6</Text>
+                </View>
+                <Text style={styles.whyTitle}>Vriendschappen voor het leven</Text>
+              </View>
+              <View style={styles.whyBullets}>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Contacten met mensen uit het gastland én met andere uitwisselingsstudenten van
+                    over de hele wereld
+                  </Text>
+                </View>
+                <View style={styles.bulletItem}>
+                  <View style={styles.bulletDot} />
+                  <Text style={styles.bulletText}>
+                    Kortom: Rotary Youth Exchange draait om vrede, begrip en vriendschap tussen
+                    culturen, en geeft jongeren een kans om zich persoonlijk én internationaal te
+                    ontwikkelen
                   </Text>
                 </View>
               </View>
@@ -217,12 +335,13 @@ const styles = StyleSheet.create({
 
   // Section Styles
   section: {
-    marginBottom: 32,
+    marginBottom: 24,
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
+    paddingHorizontal: 4,
   },
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 20 : 18,
@@ -236,7 +355,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    marginBottom: 16,
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
@@ -256,7 +374,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
     borderLeftWidth: 4,
@@ -316,15 +433,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   hemisphereHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 8,
   },
   hemisphereTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: '#1A237E',
-    marginLeft: 8,
   },
   countryText: {
     fontSize: 14,
@@ -335,12 +449,18 @@ const styles = StyleSheet.create({
   // Cost Card
   costCard: {
     backgroundColor: '#E8F5E8',
-    borderRadius: Platform.OS === 'ios' ? 12 : 8,
-    padding: 16,
-    marginBottom: 16,
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
     alignItems: 'center',
     borderLeftWidth: 4,
     borderLeftColor: '#4CAF50',
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   costTitle: {
     fontSize: 24,
@@ -354,16 +474,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  // Button Container
+  buttonContainer: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
+  },
+
   // Email Button
   emailButton: {
     backgroundColor: '#FF6B35',
-    borderRadius: Platform.OS === 'ios' ? 25 : 8,
-    paddingVertical: Platform.OS === 'ios' ? 16 : 14,
-    paddingHorizontal: 32,
+    borderRadius: Platform.OS === 'ios' ? 12 : 8,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 8,
     ...(Platform.OS === 'ios'
       ? {
           shadowColor: '#FF6B35',
@@ -380,6 +513,52 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginLeft: 8,
+  },
+
+  // Why Section Styles
+  whyCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
+    marginBottom: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: '#FF6B35',
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
+  },
+  whyHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  whyNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#FF6B35',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  whyNumberText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  whyTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1A237E',
+    flex: 1,
+  },
+  whyBullets: {
+    marginLeft: 0,
+    paddingLeft: 44,
   },
 
   // Bullet Styles

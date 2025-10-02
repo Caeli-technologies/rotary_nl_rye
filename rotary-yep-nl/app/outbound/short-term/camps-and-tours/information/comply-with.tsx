@@ -26,7 +26,7 @@ export default function CampsToursComplyWithScreen() {
             </View>
             <Text style={styles.headerTitle}>Voor wie?</Text>
             <Text style={styles.headerSubtitle}>
-              Leeftijd en deelname informatie voor Camps & Tours
+              Leeftijd en deelname informatie voor Zomerkampen
             </Text>
           </View>
 

@@ -22,7 +22,7 @@ export default function RootLayout() {
             name="rebound/countries"
             options={{
               headerShown: true,
-              title: 'Rebound Students',
+              title: 'Rebound Studenten',
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -40,7 +40,7 @@ export default function RootLayout() {
             name="rebound/students"
             options={({ route }) => ({
               headerShown: true,
-              title: (route.params as any)?.country || 'Students',
+              title: (route.params as any)?.country || 'Studenten',
               headerBackTitle: 'Countries',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -59,7 +59,7 @@ export default function RootLayout() {
             options={({ route }) => ({
               headerShown: true,
               title: (route.params as any)?.country || 'Student Detail',
-              headerBackTitle: (route.params as any)?.country || 'Students',
+              headerBackTitle: (route.params as any)?.country || 'Studenten',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -76,7 +76,7 @@ export default function RootLayout() {
             name="news"
             options={{
               headerShown: true,
-              title: 'News',
+              title: 'Nieuws',
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -94,7 +94,7 @@ export default function RootLayout() {
             name="calendar"
             options={{
               headerShown: true,
-              title: 'Calendar',
+              title: 'Kalender',
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -112,7 +112,7 @@ export default function RootLayout() {
             name="camps-tours"
             options={{
               headerShown: true,
-              title: 'Camps & Tours',
+              title: 'Zomerkampen',
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -239,7 +239,7 @@ export default function RootLayout() {
             options={({ route }) => ({
               headerShown: true,
               title: (route.params as any)?.title || 'PDF Document',
-              headerBackTitle: 'Back',
+              headerBackTitle: 'Terug',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -256,8 +256,8 @@ export default function RootLayout() {
             name="news/[id]"
             options={({ route }) => ({
               headerShown: true,
-              title: (route.params as any)?.title || 'News Detail',
-              headerBackTitle: 'News',
+              title: (route.params as any)?.title || 'Nieuws Detail',
+              headerBackTitle: 'Nieuws',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -274,7 +274,7 @@ export default function RootLayout() {
             name="outbound/index"
             options={{
               headerShown: true,
-              title: 'Outbound Programs',
+              title: "Outbound Programma's",
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -329,7 +329,7 @@ export default function RootLayout() {
             options={({ route }) => ({
               headerShown: true,
               title: (route.params as any)?.studentName || 'Student Detail',
-              headerBackTitle: (route.params as any)?.country || 'Students',
+              headerBackTitle: (route.params as any)?.country || 'Studenten',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -436,7 +436,7 @@ export default function RootLayout() {
             name="outbound/short-term/index"
             options={{
               headerShown: true,
-              title: 'Short Term Programs',
+              title: "Short Term Programma's",
               headerBackTitle: 'Outbound',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -454,7 +454,7 @@ export default function RootLayout() {
             name="outbound/short-term/camps-and-tours/index"
             options={{
               headerShown: true,
-              title: 'Camps & Tours',
+              title: 'Zomerkampen',
               headerBackTitle: 'Short Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -473,7 +473,7 @@ export default function RootLayout() {
             options={{
               headerShown: true,
               title: 'Hoe schrijf ik mezelf in?',
-              headerBackTitle: 'Camps & Tours',
+              headerBackTitle: 'Zomerkampen',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -491,7 +491,7 @@ export default function RootLayout() {
             options={{
               headerShown: true,
               title: 'Met welke landen?',
-              headerBackTitle: 'Camps & Tours',
+              headerBackTitle: 'Zomerkampen',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -509,7 +509,7 @@ export default function RootLayout() {
             options={{
               headerShown: true,
               title: 'Voor wie?',
-              headerBackTitle: 'Camps & Tours',
+              headerBackTitle: 'Zomerkampen',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -598,7 +598,7 @@ export default function RootLayout() {
             name="inbound/index"
             options={{
               headerShown: true,
-              title: 'Inbound Programs',
+              title: "Inbound Programma's",
               headerBackTitle: 'Home',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -634,7 +634,7 @@ export default function RootLayout() {
             name="inbound/long-term/class-of/index"
             options={{
               headerShown: true,
-              title: 'Current Students',
+              title: 'Huidige Studenten',
               headerBackTitle: 'Long Term',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
@@ -653,7 +653,7 @@ export default function RootLayout() {
             options={({ route }) => ({
               headerShown: true,
               title: (route.params as any)?.studentName || 'Student Detail',
-              headerBackTitle: 'Students',
+              headerBackTitle: 'Studenten',
               headerStyle: {
                 backgroundColor: '#FFFFFF',
               },
@@ -761,7 +761,7 @@ export default function RootLayout() {
             name="programs/index"
             options={{
               headerShown: true,
-              title: 'Programs',
+              title: "Programma's",
               headerBackTitle: 'Home',
               headerStyle: { backgroundColor: '#FFFFFF' },
               headerTitleStyle: {
@@ -778,7 +778,7 @@ export default function RootLayout() {
             options={{
               headerShown: true,
               title: 'Promo Materiaal',
-              headerBackTitle: 'Programs',
+              headerBackTitle: "Programma's",
               headerStyle: { backgroundColor: '#FFFFFF' },
               headerTitleStyle: {
                 color: '#1A237E',
@@ -826,7 +826,7 @@ export default function RootLayout() {
             options={{
               headerShown: true,
               title: 'Long Term Exchange',
-              headerBackTitle: 'Programs',
+              headerBackTitle: "Programma's",
               headerStyle: { backgroundColor: '#FFFFFF' },
               headerTitleStyle: {
                 color: '#1A237E',
@@ -842,7 +842,7 @@ export default function RootLayout() {
             options={{
               headerShown: true,
               title: 'Family To Family',
-              headerBackTitle: 'Programs',
+              headerBackTitle: "Programma's",
               headerStyle: { backgroundColor: '#FFFFFF' },
               headerTitleStyle: {
                 color: '#1A237E',
@@ -857,8 +857,8 @@ export default function RootLayout() {
             name="programs/information/camps-tours"
             options={{
               headerShown: true,
-              title: 'Camps & Tours',
-              headerBackTitle: 'Programs',
+              title: 'Zomerkampen',
+              headerBackTitle: "Programma's",
               headerStyle: { backgroundColor: '#FFFFFF' },
               headerTitleStyle: {
                 color: '#1A237E',

@@ -11,7 +11,7 @@ export default function CampsAndToursInboundScreen() {
         <Ionicons name="construct-outline" size={48} color="#9FA8DA" />
         <Text style={styles.emptyStateTitle}>Coming Soon</Text>
         <Text style={styles.emptyStateMessage}>
-          Information for inbound camps and tours participants will be available here soon.
+          Information for inbound zomerkampen participants will be available here soon.
         </Text>
       </View>
     </SafeAreaView>

@@ -57,7 +57,7 @@ export default function CampsAndToursScreen() {
   const informationItems: MenuItem[] = [
     {
       title: 'Hoe schrijf ik mezelf in?',
-      subtitle: 'Aanmeldproces voor camps en tours',
+      subtitle: 'Aanmeldproces voor zomerkampen',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/how-to-sign-up',
       type: 'info',
@@ -82,10 +82,10 @@ export default function CampsAndToursScreen() {
     () => (
       <View style={styles.introContainer}>
         <View style={styles.programCard}>
-          <Text style={styles.programTitle}>Wat zijn Camps & Tours?</Text>
+          <Text style={styles.programTitle}>Wat zijn Zomerkampen?</Text>
           <Text style={styles.programDescription}>
-            Rotary Camps en Tours zijn kortdurende uitwisselingsprogramma's die meestal 2-6 weken
-            duren tijdens schoolvakanties. Deze programma's bieden jongeren de mogelijkheid om
+            Rotary Zomerkampen zijn kortdurende uitwisselingsprogramma's die meestal 2-6 weken duren
+            tijdens schoolvakanties. Deze programma's bieden jongeren de mogelijkheid om
             verschillende culturen te ervaren, internationale vriendschappen te sluiten en deel te
             nemen aan spannende activiteiten terwijl ze verblijven bij gastgezinnen of in
             georganiseerde accommodaties.

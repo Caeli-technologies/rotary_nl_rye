@@ -251,7 +251,7 @@ export default function CampsToursScreen() {
       });
     } catch (err) {
       console.error('Error fetching CSV data:', err);
-      setError('Failed to load camps and tours data. Please try again.');
+      setError('Failed to load zomerkampen data. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -543,7 +543,7 @@ export default function CampsToursScreen() {
         {loading ? (
           <View style={styles.centerContainer}>
             <ActivityIndicator size="large" color="#007AFF" />
-            <Text style={styles.loadingText}>Loading camps and tours...</Text>
+            <Text style={styles.loadingText}>Loading zomerkampen...</Text>
           </View>
         ) : error ? (
           <View style={styles.centerContainer}>
@@ -599,7 +599,7 @@ export default function CampsToursScreen() {
                     </View>
                     <Text style={styles.emptyTitle}>No Camps Available</Text>
                     <Text style={styles.emptyText}>
-                      There are currently no camps or tours available. Check back later!
+                      There are currently no zomerkampen available. Check back later!
                     </Text>
                   </View>
                 );

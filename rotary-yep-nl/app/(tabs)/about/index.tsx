@@ -54,7 +54,7 @@ export default function AboutScreen() {
             <Text style={styles.text}>We offer various exchange programs including:</Text>
             <Text style={styles.listItem}>• Long-term exchanges (6-12 months)</Text>
             <Text style={styles.listItem}>• Short-term family-to-family programs</Text>
-            <Text style={styles.listItem}>• Summer camps and tours</Text>
+            <Text style={styles.listItem}>• Zomerkampen</Text>
             <Text style={styles.listItem}>• New Generations Service Exchange</Text>
           </View>
 
