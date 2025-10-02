@@ -6,15 +6,16 @@ import {
   FlatList,
   Pressable,
   ActivityIndicator,
-  Platform,
   Alert,
   RefreshControl,
+  Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useNavigation } from 'expo-router';
 import { Image } from 'expo-image';
 import { readString } from 'react-native-csv';
+import { getFlagAsset } from '../utils/flags';
 
 interface CampTourData {
   startDate: string;
@@ -49,7 +50,28 @@ function TravelCard({
   const hostCountryCodes = hostCountryCode.split('/');
   const isFull = full && full.trim() !== '';
 
+  // Check if camp is in the past
+  const isPast = () => {
+    const endDateParts = endDate.split('/');
+    if (endDateParts.length === 3) {
+      const campEndDate = new Date(
+        parseInt(endDateParts[2]),
+        parseInt(endDateParts[1]) - 1, // Month is 0-indexed
+        parseInt(endDateParts[0]),
+      );
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset time to start of day
+      return campEndDate < today;
+    }
+    return false;
+  };
+
+  const campIsPast = isPast();
+
   const handlePress = () => {
+    // Don't allow interaction with past camps
+    if (campIsPast) return;
+
     if (invitation && invitation.trim() !== '') {
       router.push({
         pathname: '/pdf-viewer' as any,
@@ -66,6 +88,7 @@ function TravelCard({
       style={({ pressed }) => [
         styles.card,
         isFull && styles.cardFull,
+        campIsPast && styles.cardPast,
         pressed && styles.cardPressed,
       ]}
       onPress={handlePress}
@@ -78,14 +101,22 @@ function TravelCard({
           <Text style={styles.title} numberOfLines={2}>
             {title}
           </Text>
-          {isFull && (
-            <View style={styles.fullBadge}>
-              <Ionicons name="warning" size={14} color="#fff" />
-              <Text style={styles.fullBadgeText}>FULL</Text>
-            </View>
-          )}
+          <View style={styles.badgeContainer}>
+            {campIsPast && (
+              <View style={styles.pastBadge}>
+                <Ionicons name="time" size={12} color="#fff" />
+                <Text style={styles.pastBadgeText}>AFGELOPEN</Text>
+              </View>
+            )}
+            {isFull && (
+              <View style={[styles.fullBadge, campIsPast && styles.badgeSpacing]}>
+                <Ionicons name="warning" size={14} color="#fff" />
+                <Text style={styles.fullBadgeText}>VOL</Text>
+              </View>
+            )}
+          </View>
         </View>
-        {invitation && invitation.trim() !== '' && (
+        {invitation && invitation.trim() !== '' && !campIsPast && (
           <View style={styles.actionIndicator}>
             <Ionicons name="document-text-outline" size={18} color="#666" />
           </View>
@@ -93,9 +124,9 @@ function TravelCard({
       </View>
 
       <View style={styles.cardBody}>
-        <View style={styles.dateContainer}>
-          <Ionicons name="calendar-outline" size={16} color="#007AFF" />
-          <Text style={styles.dateText}>
+        <View style={[styles.dateContainer, campIsPast && styles.dateContainerPast]}>
+          <Ionicons name="calendar-outline" size={16} color={campIsPast ? '#8E8E93' : '#007AFF'} />
+          <Text style={[styles.dateText, campIsPast && styles.dateTextPast]}>
             {startDate} - {endDate}
           </Text>
         </View>
@@ -104,22 +135,27 @@ function TravelCard({
           <View style={styles.detailItem}>
             <View style={styles.detailHeader}>
               <Ionicons name="location-outline" size={14} color="#666" />
-              <Text style={styles.detailLabel}>Country</Text>
+              <Text style={styles.detailLabel}>Land</Text>
             </View>
             <View style={styles.countryContainer}>
-              {hostCountries.map((country, index) => (
-                <View key={index} style={styles.countryItem}>
-                  {hostCountryCodes[index] && (
-                    <Image
-                      source={{
-                        uri: `https://flagcdn.com/w20/${hostCountryCodes[index].toLowerCase()}.png`,
-                      }}
-                      style={styles.flag}
-                    />
-                  )}
-                  <Text style={styles.countryText}>{country.trim()}</Text>
-                </View>
-              ))}
+              {hostCountries.map((country, index) => {
+                const countryCode = hostCountryCodes[index];
+                const flagAsset = countryCode ? getFlagAsset(countryCode.toLowerCase()) : null;
+
+                return (
+                  <View key={index} style={styles.countryItem}>
+                    {flagAsset && (
+                      <Image source={flagAsset} style={styles.flag} contentFit="cover" />
+                    )}
+                    {!flagAsset && countryCode && (
+                      <View style={[styles.flag, styles.flagPlaceholder]}>
+                        <Ionicons name="flag-outline" size={10} color="#8E8E93" />
+                      </View>
+                    )}
+                    <Text style={styles.countryText}>{country.trim()}</Text>
+                  </View>
+                );
+              })}
             </View>
           </View>
 
@@ -135,17 +171,17 @@ function TravelCard({
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
                 <Ionicons name="people-outline" size={14} color="#666" />
-                <Text style={styles.detailLabel}>Age</Text>
+                <Text style={styles.detailLabel}>Leeftijd</Text>
               </View>
               <Text style={styles.detailValue}>
-                {ageMin}-{ageMax} yrs
+                {ageMin}-{ageMax} jr
               </Text>
             </View>
 
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
                 <Ionicons name="card-outline" size={14} color="#666" />
-                <Text style={styles.detailLabel}>Cost</Text>
+                <Text style={styles.detailLabel}>Kosten</Text>
               </View>
               <Text style={styles.detailValue}>{contribution}</Text>
             </View>
@@ -161,21 +197,16 @@ export default function CampsToursScreen() {
   const [filteredData, setFilteredData] = useState<CampTourData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
-    hideFullCamps: false,
-    maxAge: '',
-    minAge: '',
+    availability: 'alle', // 'alle', 'niet-vol', 'vol'
+    timing: 'alle', // 'alle', 'toekomstig', 'afgelopen'
     country: '',
   });
   const [availableCountries, setAvailableCountries] = useState<string[]>([]);
-  const [availableAges, setAvailableAges] = useState<{
-    min: number[];
-    max: number[];
-  }>({
-    min: [],
-    max: [],
-  });
+  const [availableCountriesWithCodes, setAvailableCountriesWithCodes] = useState<
+    { country: string; code: string }[]
+  >([]);
+  const [showCountryModal, setShowCountryModal] = useState(false);
 
   const fetchCsvData = useCallback(async () => {
     try {
@@ -187,7 +218,7 @@ export default function CampsToursScreen() {
       );
 
       if (!response.ok) {
-        throw new Error('Failed to load CSV data');
+        throw new Error('Kan CSV-gegevens niet laden');
       }
 
       const csvText = await response.text();
@@ -216,42 +247,47 @@ export default function CampsToursScreen() {
         };
       });
 
-      setData(formattedData);
-      setFilteredData(formattedData);
+      // Sort data chronologically by start date
+      const sortedData = formattedData.sort((a, b) => {
+        const dateA = new Date(a.startDate.split('/').reverse().join('-'));
+        const dateB = new Date(b.startDate.split('/').reverse().join('-'));
+        return dateA.getTime() - dateB.getTime();
+      });
 
-      // Extract unique countries for filter
+      setData(sortedData);
+      setFilteredData(sortedData);
+
+      // Extract unique countries for filter with their codes
       const countries = new Set<string>();
-      const minAges = new Set<number>();
-      const maxAges = new Set<number>();
+      const countriesWithCodes = new Map<string, string>();
 
       formattedData.forEach((item) => {
-        // Extract countries
+        // Extract countries and their codes
         const countryList = item.hostCountry.split('/');
-        countryList.forEach((country) => {
-          if (country.trim()) {
-            countries.add(country.trim());
+        const countryCodeList = item.hostCountryCode.split('/');
+
+        countryList.forEach((country, index) => {
+          const trimmedCountry = country.trim();
+          const countryCode = countryCodeList[index]?.trim();
+
+          if (trimmedCountry && countryCode) {
+            countries.add(trimmedCountry);
+            countriesWithCodes.set(trimmedCountry, countryCode);
           }
         });
-
-        // Extract age ranges
-        const minAge = parseInt(item.ageMin);
-        const maxAge = parseInt(item.ageMax);
-        if (!isNaN(minAge)) {
-          minAges.add(minAge);
-        }
-        if (!isNaN(maxAge)) {
-          maxAges.add(maxAge);
-        }
       });
 
-      setAvailableCountries(Array.from(countries).sort());
-      setAvailableAges({
-        min: Array.from(minAges).sort((a, b) => a - b),
-        max: Array.from(maxAges).sort((a, b) => a - b),
-      });
+      const sortedCountries = Array.from(countries).sort();
+      const countriesWithCodesArray = sortedCountries.map((country) => ({
+        country,
+        code: countriesWithCodes.get(country) || '',
+      }));
+
+      setAvailableCountries(sortedCountries);
+      setAvailableCountriesWithCodes(countriesWithCodesArray);
     } catch (err) {
       console.error('Error fetching CSV data:', err);
-      setError('Failed to load zomerkampen data. Please try again.');
+      setError('Kan zomerkampen-gegevens niet laden. Probeer opnieuw.');
     } finally {
       setLoading(false);
     }
@@ -260,20 +296,43 @@ export default function CampsToursScreen() {
   const applyFilters = () => {
     let filtered = [...data];
 
-    // Hide full camps
-    if (filters.hideFullCamps) {
+    // Apply availability filter
+    if (filters.availability === 'niet-vol') {
       filtered = filtered.filter((item) => !item.full || item.full.trim() === '');
+    } else if (filters.availability === 'vol') {
+      filtered = filtered.filter((item) => item.full && item.full.trim() !== '');
     }
 
-    // Age filter
-    if (filters.minAge || filters.maxAge) {
+    // Apply timing filter
+    if (filters.timing === 'toekomstig') {
       filtered = filtered.filter((item) => {
-        const minAge = parseInt(filters.minAge) || 0;
-        const maxAge = parseInt(filters.maxAge) || 999;
-        const itemMinAge = parseInt(item.ageMin) || 0;
-        const itemMaxAge = parseInt(item.ageMax) || 999;
-
-        return itemMinAge >= minAge && itemMaxAge <= maxAge;
+        const endDateParts = item.endDate.split('/');
+        if (endDateParts.length === 3) {
+          const campEndDate = new Date(
+            parseInt(endDateParts[2]),
+            parseInt(endDateParts[1]) - 1,
+            parseInt(endDateParts[0]),
+          );
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return campEndDate >= today;
+        }
+        return true;
+      });
+    } else if (filters.timing === 'afgelopen') {
+      filtered = filtered.filter((item) => {
+        const endDateParts = item.endDate.split('/');
+        if (endDateParts.length === 3) {
+          const campEndDate = new Date(
+            parseInt(endDateParts[2]),
+            parseInt(endDateParts[1]) - 1,
+            parseInt(endDateParts[0]),
+          );
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return campEndDate < today;
+        }
+        return false;
       });
     }
 
@@ -284,49 +343,298 @@ export default function CampsToursScreen() {
       );
     }
 
-    setFilteredData(filtered);
+    // Sort filtered results chronologically as well
+    const sortedFiltered = filtered.sort((a, b) => {
+      const dateA = new Date(a.startDate.split('/').reverse().join('-'));
+      const dateB = new Date(b.startDate.split('/').reverse().join('-'));
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    setFilteredData(sortedFiltered);
   };
 
   const clearFilters = () => {
     setFilters({
-      hideFullCamps: false,
-      maxAge: '',
-      minAge: '',
+      availability: 'alle',
+      timing: 'alle',
       country: '',
     });
     setFilteredData(data);
   };
 
   const hasActiveFilters =
-    filters.hideFullCamps || filters.minAge || filters.maxAge || filters.country;
+    filters.availability !== 'alle' || filters.timing !== 'alle' || filters.country !== '';
+
+  // Native filter components
+  const AvailabilityContextMenu = () => {
+    const showAvailabilityOptions = () => {
+      Alert.alert(
+        'Beschikbaarheid',
+        'Selecteer welke kampen je wilt zien:',
+        [
+          {
+            text: 'Alle kampen',
+            onPress: () => setFilters((prev) => ({ ...prev, availability: 'alle' })),
+          },
+          {
+            text: 'Alleen niet-volle kampen',
+            onPress: () => setFilters((prev) => ({ ...prev, availability: 'niet-vol' })),
+          },
+          {
+            text: 'Alleen volle kampen',
+            onPress: () => setFilters((prev) => ({ ...prev, availability: 'vol' })),
+          },
+          {
+            text: 'Annuleren',
+            style: 'cancel',
+          },
+        ],
+        { cancelable: true },
+      );
+    };
+
+    return (
+      <View style={{ marginRight: 8 }}>
+        <Pressable
+          style={[styles.filterChip, filters.availability !== 'alle' && styles.filterChipActive]}
+          onPress={showAvailabilityOptions}>
+          <Ionicons
+            name="checkmark-circle-outline"
+            size={16}
+            color={filters.availability !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+          />
+          <Text
+            style={[
+              styles.filterChipText,
+              filters.availability !== 'alle' && styles.filterChipTextActive,
+            ]}>
+            {filters.availability === 'alle'
+              ? 'Beschikbaarheid'
+              : filters.availability === 'niet-vol'
+                ? 'Niet vol'
+                : 'Vol'}
+          </Text>
+          <Ionicons
+            name="chevron-down"
+            size={14}
+            color={filters.availability !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+            style={styles.filterChipChevron}
+          />
+        </Pressable>
+      </View>
+    );
+  };
+
+  const TimingContextMenu = () => {
+    const showTimingOptions = () => {
+      Alert.alert(
+        'Tijdperiode',
+        'Selecteer welke kampen je wilt zien:',
+        [
+          {
+            text: 'Alle kampen',
+            onPress: () => setFilters((prev) => ({ ...prev, timing: 'alle' })),
+          },
+          {
+            text: 'Alleen toekomstige kampen',
+            onPress: () => setFilters((prev) => ({ ...prev, timing: 'toekomstig' })),
+          },
+          {
+            text: 'Alleen afgelopen kampen',
+            onPress: () => setFilters((prev) => ({ ...prev, timing: 'afgelopen' })),
+          },
+          {
+            text: 'Annuleren',
+            style: 'cancel',
+          },
+        ],
+        { cancelable: true },
+      );
+    };
+
+    return (
+      <View style={{ marginRight: 8 }}>
+        <Pressable
+          style={[styles.filterChip, filters.timing !== 'alle' && styles.filterChipActive]}
+          onPress={showTimingOptions}>
+          <Ionicons
+            name="time-outline"
+            size={16}
+            color={filters.timing !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+          />
+          <Text
+            style={[
+              styles.filterChipText,
+              filters.timing !== 'alle' && styles.filterChipTextActive,
+            ]}>
+            {filters.timing === 'alle'
+              ? 'Tijdperiode'
+              : filters.timing === 'toekomstig'
+                ? 'Toekomstig'
+                : 'Afgelopen'}
+          </Text>
+          <Ionicons
+            name="chevron-down"
+            size={14}
+            color={filters.timing !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+            style={styles.filterChipChevron}
+          />
+        </Pressable>
+      </View>
+    );
+  };
+
+  const CountryContextMenu = () => {
+    return (
+      <View style={{ marginRight: 8 }}>
+        <Pressable
+          style={[styles.filterChip, filters.country !== '' && styles.filterChipActive]}
+          onPress={() => setShowCountryModal(true)}>
+          <Ionicons
+            name="location-outline"
+            size={16}
+            color={filters.country !== '' ? '#FFFFFF' : '#8E8E93'}
+          />
+          <Text
+            style={[styles.filterChipText, filters.country !== '' && styles.filterChipTextActive]}>
+            {filters.country || 'Land'}
+          </Text>
+          <Ionicons
+            name="chevron-down"
+            size={14}
+            color={filters.country !== '' ? '#FFFFFF' : '#8E8E93'}
+            style={styles.filterChipChevron}
+          />
+        </Pressable>
+      </View>
+    );
+  };
+
+  const CountryModal = () => {
+    const renderCountryItem = ({ item }: { item: { country: string; code: string } }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.countryModalItem,
+          filters.country === item.country && styles.countryModalItemSelected,
+          pressed && styles.countryModalItemPressed,
+        ]}
+        onPress={() => {
+          setFilters((prev) => ({ ...prev, country: item.country }));
+          setShowCountryModal(false);
+        }}>
+        <View style={styles.countryModalItemContent}>
+          {item.code &&
+            (() => {
+              const flagAsset = getFlagAsset(item.code.toLowerCase());
+              return flagAsset ? (
+                <Image source={flagAsset} style={styles.countryModalFlag} contentFit="cover" />
+              ) : (
+                <View style={[styles.countryModalFlag, styles.countryModalFlagPlaceholder]}>
+                  <Ionicons name="flag-outline" size={16} color="#8E8E93" />
+                </View>
+              );
+            })()}
+          <Text
+            style={[
+              styles.countryModalItemText,
+              filters.country === item.country && styles.countryModalItemTextSelected,
+            ]}>
+            {item.country}
+          </Text>
+        </View>
+        {filters.country === item.country && (
+          <Ionicons name="checkmark" size={20} color="#007AFF" />
+        )}
+      </Pressable>
+    );
+
+    return (
+      <Modal
+        visible={showCountryModal}
+        animationType="slide"
+        presentationStyle="pageSheet"
+        onRequestClose={() => setShowCountryModal(false)}>
+        <SafeAreaView style={styles.countryModalContainer}>
+          <View style={styles.countryModalHeader}>
+            <Text style={styles.countryModalTitle}>Selecteer Land</Text>
+            <Pressable
+              style={styles.countryModalCloseButton}
+              onPress={() => setShowCountryModal(false)}>
+              <Ionicons name="close" size={24} color="#8E8E93" />
+            </Pressable>
+          </View>
+
+          <FlatList
+            data={[{ country: 'Alle landen', code: '' }, ...availableCountriesWithCodes]}
+            renderItem={({ item }) => {
+              if (item.country === 'Alle landen') {
+                return (
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.countryModalItem,
+                      filters.country === '' && styles.countryModalItemSelected,
+                      pressed && styles.countryModalItemPressed,
+                    ]}
+                    onPress={() => {
+                      setFilters((prev) => ({ ...prev, country: '' }));
+                      setShowCountryModal(false);
+                    }}>
+                    <View style={styles.countryModalItemContent}>
+                      <View style={[styles.countryModalFlag, styles.allCountriesIcon]}>
+                        <Ionicons name="globe-outline" size={14} color="#8E8E93" />
+                      </View>
+                      <Text
+                        style={[
+                          styles.countryModalItemText,
+                          filters.country === '' && styles.countryModalItemTextSelected,
+                        ]}>
+                        Alle landen
+                      </Text>
+                    </View>
+                    {filters.country === '' && (
+                      <Ionicons name="checkmark" size={20} color="#007AFF" />
+                    )}
+                  </Pressable>
+                );
+              }
+              return renderCountryItem({ item });
+            }}
+            keyExtractor={(item) => item.country}
+            showsVerticalScrollIndicator={true}
+            contentContainerStyle={styles.countryModalList}
+          />
+        </SafeAreaView>
+      </Modal>
+    );
+  };
+
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <View style={styles.headerRightContainer}>
-          <Text style={styles.headerStatsText}>
-            {loading ? 'Loading...' : `${filteredData.length}/${data.length}`}
+          {/* <View style={styles.headerStatsContainer}> */}
+          {hasActiveFilters && <View style={styles.headerActiveIndicator} />}
+          <Text style={[styles.headerStatsText, hasActiveFilters && styles.headerStatsTextActive]}>
+            {loading ? 'Laden...' : `${filteredData.length}/${data.length}`}
           </Text>
-          <Pressable
-            style={({ pressed }) => [
-              styles.headerFilterButton,
-              hasActiveFilters && styles.headerFilterButtonActive,
-              pressed && styles.headerButtonPressed,
-            ]}
-            onPress={() => setShowFilters(!showFilters)}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            {hasActiveFilters && !showFilters && <View style={styles.headerFilterBadge} />}
-            <Ionicons
-              name={showFilters ? 'close' : hasActiveFilters ? 'funnel' : 'funnel-outline'}
-              size={20}
-              color="#007AFF"
-            />
-          </Pressable>
+          {/* </View> */}
+          {hasActiveFilters && (
+            <Pressable
+              style={({ pressed }) => [
+                styles.headerClearButton,
+                pressed && styles.headerClearButtonPressed,
+              ]}
+              onPress={clearFilters}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+              <Ionicons name="close-circle" size={20} color="#FF3B30" />
+            </Pressable>
+          )}
         </View>
       ),
     });
-  }, [navigation, showFilters, hasActiveFilters, loading, filteredData.length, data.length]);
+  }, [navigation, loading, filteredData.length, data.length, hasActiveFilters, clearFilters]);
 
   useEffect(() => {
     fetchCsvData();
@@ -338,224 +646,44 @@ export default function CampsToursScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+      {/* Filter Chips */}
+      <View style={styles.filterChipsContainer}>
+        <FlatList
+          data={[
+            { id: 'availability', component: <AvailabilityContextMenu /> },
+            { id: 'timing', component: <TimingContextMenu /> },
+            { id: 'country', component: <CountryContextMenu /> },
+          ]}
+          renderItem={({ item }) => item.component}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.filterChipsContent}
+          style={styles.filterChipsScrollView}
+        />
+      </View>
+
+      <CountryModal />
+
       {/* Content */}
       <View style={styles.container}>
-        {/* Filter Panel */}
-        {showFilters && (
-          <View style={styles.filterPanel}>
-            <View style={styles.filterHeader}>
-              <Text style={styles.filterTitle}>Filter Camps</Text>
-              {hasActiveFilters && (
-                <Pressable onPress={clearFilters}>
-                  <Text style={styles.clearFiltersText}>Clear All</Text>
-                </Pressable>
-              )}
-            </View>
-
-            <View style={styles.filterContent}>
-              <Pressable
-                style={({ pressed }) => [
-                  styles.filterOption,
-                  pressed && styles.filterOptionPressed,
-                ]}
-                onPress={() =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    hideFullCamps: !prev.hideFullCamps,
-                  }))
-                }>
-                <View style={styles.filterOptionLeft}>
-                  <Ionicons
-                    name={filters.hideFullCamps ? 'checkbox' : 'square-outline'}
-                    size={20}
-                    color={filters.hideFullCamps ? '#007AFF' : '#C7C7CC'}
-                  />
-                  <Text style={styles.filterOptionText}>Hide full camps</Text>
-                </View>
-              </Pressable>
-
-              <View style={styles.filterRow}>
-                <View style={styles.filterInputContainer}>
-                  <Text style={styles.filterLabel}>Min Age</Text>
-                  <Pressable
-                    style={({ pressed }) => [styles.textInput, pressed && styles.textInputPressed]}
-                    onPress={() => {
-                      if (Platform.OS === 'ios') {
-                        Alert.prompt(
-                          'Minimum Age',
-                          'Enter minimum age (numbers only):',
-                          [
-                            {
-                              text: 'Cancel',
-                              style: 'cancel',
-                            },
-                            {
-                              text: 'OK',
-                              onPress: (text?: string) => {
-                                if (text && /^\d+$/.test(text)) {
-                                  setFilters((prev) => ({
-                                    ...prev,
-                                    minAge: text,
-                                  }));
-                                } else if (text && !/^\d+$/.test(text)) {
-                                  Alert.alert('Invalid Input', 'Please enter numbers only.');
-                                }
-                              },
-                            },
-                          ],
-                          'plain-text',
-                          filters.minAge,
-                          'number-pad',
-                        );
-                      } else {
-                        // Android fallback - show selection of ages from CSV data
-                        const ageOptions = availableAges.min.map((age) => age.toString());
-                        Alert.alert(
-                          'Select Minimum Age',
-                          'Choose minimum age:',
-                          [
-                            {
-                              text: 'Clear',
-                              onPress: () => setFilters((prev) => ({ ...prev, minAge: '' })),
-                            },
-                            ...ageOptions.map((age) => ({
-                              text: age,
-                              onPress: () =>
-                                setFilters((prev) => ({
-                                  ...prev,
-                                  minAge: age,
-                                })),
-                            })),
-                            { text: 'Cancel', style: 'cancel' },
-                          ],
-                          { cancelable: true },
-                        );
-                      }
-                    }}>
-                    <Text style={styles.textInputText}>{filters.minAge || 'Any'}</Text>
-                  </Pressable>
-                </View>
-
-                <View style={styles.filterInputContainer}>
-                  <Text style={styles.filterLabel}>Max Age</Text>
-                  <Pressable
-                    style={({ pressed }) => [styles.textInput, pressed && styles.textInputPressed]}
-                    onPress={() => {
-                      if (Platform.OS === 'ios') {
-                        Alert.prompt(
-                          'Maximum Age',
-                          'Enter maximum age (numbers only):',
-                          [
-                            {
-                              text: 'Cancel',
-                              style: 'cancel',
-                            },
-                            {
-                              text: 'OK',
-                              onPress: (text?: string) => {
-                                if (text && /^\d+$/.test(text)) {
-                                  setFilters((prev) => ({
-                                    ...prev,
-                                    maxAge: text,
-                                  }));
-                                } else if (text && !/^\d+$/.test(text)) {
-                                  Alert.alert('Invalid Input', 'Please enter numbers only.');
-                                }
-                              },
-                            },
-                          ],
-                          'plain-text',
-                          filters.maxAge,
-                          'number-pad',
-                        );
-                      } else {
-                        // Android fallback - show selection of ages from CSV data
-                        const ageOptions = availableAges.max.map((age) => age.toString());
-                        Alert.alert(
-                          'Select Maximum Age',
-                          'Choose maximum age:',
-                          [
-                            {
-                              text: 'Clear',
-                              onPress: () => setFilters((prev) => ({ ...prev, maxAge: '' })),
-                            },
-                            ...ageOptions.map((age) => ({
-                              text: age,
-                              onPress: () =>
-                                setFilters((prev) => ({
-                                  ...prev,
-                                  maxAge: age,
-                                })),
-                            })),
-                            { text: 'Cancel', style: 'cancel' },
-                          ],
-                          { cancelable: true },
-                        );
-                      }
-                    }}>
-                    <Text style={styles.textInputText}>{filters.maxAge || 'Any'}</Text>
-                  </Pressable>
-                </View>
-              </View>
-
-              <View style={styles.filterInputContainer}>
-                <Text style={styles.filterLabel}>Country</Text>
-                <Pressable
-                  style={({ pressed }) => [styles.textInput, pressed && styles.textInputPressed]}
-                  onPress={() => {
-                    // Show all available countries
-                    Alert.alert(
-                      'Select Country',
-                      'Choose a country to filter by:',
-                      [
-                        {
-                          text: 'All countries',
-                          onPress: () => setFilters((prev) => ({ ...prev, country: '' })),
-                          style: 'default',
-                        },
-                        ...availableCountries.map((country) => ({
-                          text: country,
-                          onPress: () => setFilters((prev) => ({ ...prev, country })),
-                          style: 'default' as const,
-                        })),
-                        {
-                          text: 'Cancel',
-                          style: 'cancel',
-                        },
-                      ],
-                      {
-                        cancelable: true,
-                        onDismiss: () => {},
-                      },
-                    );
-                  }}>
-                  <Text style={styles.textInputText}>{filters.country || 'All countries'}</Text>
-                  <View style={styles.dropdownIcon}>
-                    <Ionicons name="chevron-down" size={16} color="#8E8E93" />
-                  </View>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        )}
-
         {/* Main Content */}
         {loading ? (
           <View style={styles.centerContainer}>
             <ActivityIndicator size="large" color="#007AFF" />
-            <Text style={styles.loadingText}>Loading zomerkampen...</Text>
+            <Text style={styles.loadingText}>Zomerkampen laden...</Text>
           </View>
         ) : error ? (
           <View style={styles.centerContainer}>
             <View style={styles.errorIcon}>
               <Ionicons name="warning-outline" size={64} color="#FF3B30" />
             </View>
-            <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
+            <Text style={styles.errorTitle}>Oops! Er is iets misgegaan</Text>
             <Text style={styles.errorText}>{error}</Text>
             <Pressable
               style={({ pressed }) => [styles.retryButton, pressed && styles.retryButtonPressed]}
               onPress={fetchCsvData}>
-              <Text style={styles.retryButtonText}>Try Again</Text>
+              <Text style={styles.retryButtonText}>Opnieuw Proberen</Text>
             </Pressable>
           </View>
         ) : (
@@ -585,9 +713,9 @@ export default function CampsToursScreen() {
                     <View style={styles.emptyIcon}>
                       <Ionicons name="search-outline" size={64} color="#C7C7CC" />
                     </View>
-                    <Text style={styles.emptyTitle}>No Matching Camps</Text>
+                    <Text style={styles.emptyTitle}>Geen Overeenkomende Kampen</Text>
                     <Text style={styles.emptyText}>
-                      Try adjusting your filters to see more results.
+                      Pas je filters aan om meer resultaten te zien.
                     </Text>
                   </View>
                 );
@@ -597,9 +725,9 @@ export default function CampsToursScreen() {
                     <View style={styles.emptyIcon}>
                       <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
                     </View>
-                    <Text style={styles.emptyTitle}>No Camps Available</Text>
+                    <Text style={styles.emptyTitle}>Geen Kampen Beschikbaar</Text>
                     <Text style={styles.emptyText}>
-                      There are currently no zomerkampen available. Check back later!
+                      Er zijn momenteel geen zomerkampen beschikbaar. Kijk later nog eens!
                     </Text>
                   </View>
                 );
@@ -626,34 +754,43 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginRight: 8,
+    marginLeft: 8,
+  },
+  headerStatsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 4,
+  },
+  headerActiveIndicator: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#007AFF',
+    marginRight: 6,
   },
   headerStatsText: {
     fontSize: 13,
     fontWeight: '500',
     color: '#8E8E93',
-    marginRight: 12,
   },
-  headerFilterButton: {
+  headerStatsTextActive: {
+    color: '#007AFF',
+    fontWeight: '600',
+  },
+  headerClearButton: {
     width: 32,
     height: 32,
     borderRadius: 16,
     backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 8,
   },
-  headerFilterButtonActive: {
-    backgroundColor: '#E3F2FD',
+  headerClearButtonPressed: {
+    backgroundColor: '#E5E5EA',
+    transform: [{ scale: 0.95 }],
   },
-  headerFilterBadge: {
-    position: 'absolute',
-    top: 4,
-    right: 4,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#FF3B30',
-    zIndex: 1,
-  },
+
   scrollView: {
     flex: 1,
   },
@@ -788,6 +925,16 @@ const styles = StyleSheet.create({
     marginRight: 6,
     borderRadius: 2,
   },
+  flagPlaceholder: {
+    backgroundColor: '#F2F2F7',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  countryModalFlagPlaceholder: {
+    backgroundColor: '#F2F2F7',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   centerContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -867,97 +1014,64 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
   },
-  filterPanel: {
+  // Filter Chips styles
+  filterChipsContainer: {
     backgroundColor: '#FFFFFF',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#E5E5EA',
     paddingHorizontal: 16,
-    paddingTop: 20,
-    paddingBottom: 32,
-    minHeight: 280,
-    marginBottom: 0,
-  },
-  filterHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  filterTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#000000',
-  },
-  clearFiltersText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#007AFF',
-  },
-  filterContent: {
-    gap: 24,
-  },
-  filterOption: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 8,
-  },
-  filterOptionLeft: {
+    paddingVertical: 12,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  filterOptionText: {
-    fontSize: 15,
-    fontWeight: '400',
-    color: '#000000',
-    marginLeft: 12,
+  filterChipsContent: {
+    paddingLeft: 0,
+    paddingRight: 16,
+    alignItems: 'center',
   },
-  filterRow: {
+  filterChipsRow: {
     flexDirection: 'row',
-    gap: 16,
-  },
-  filterInputContainer: {
+    alignItems: 'center',
     flex: 1,
   },
-  filterLabel: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: '#8E8E93',
-    marginBottom: 6,
+  filterChipsScrollView: {
+    flex: 1,
   },
-  textInput: {
+  filterChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#F2F2F7',
     borderRadius: 8,
     paddingHorizontal: 12,
-    paddingVertical: 10,
-    minHeight: 40,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
+    paddingVertical: 8,
+    marginRight: 8,
+    borderWidth: 1,
+    borderColor: '#E5E5EA',
+    minHeight: 36,
   },
-  textInputText: {
+  filterChipActive: {
+    backgroundColor: '#007AFF',
+    borderColor: '#007AFF',
+  },
+  filterChipPressed: {
+    opacity: 0.7,
+  },
+  filterChipText: {
     fontSize: 15,
-    fontWeight: '400',
+    fontWeight: '500',
     color: '#000000',
-    flex: 1,
+    marginLeft: 6,
   },
-  dropdownIcon: {
-    marginLeft: 8,
+  filterChipTextActive: {
+    color: '#FFFFFF',
+  },
+  filterChipChevron: {
+    marginLeft: 4,
   },
 
   // Native component pressed states
   cardPressed: {
     opacity: 0.8,
-  },
-  headerButtonPressed: {
-    opacity: 0.6,
-    backgroundColor: 'rgba(0, 122, 255, 0.1)',
-  },
-  filterOptionPressed: {
-    backgroundColor: 'rgba(0, 122, 255, 0.05)',
-  },
-  textInputPressed: {
-    backgroundColor: '#E8E8ED',
   },
   retryButtonPressed: {
     opacity: 0.8,
@@ -976,5 +1090,105 @@ const styles = StyleSheet.create({
   },
   itemSeparator: {
     height: 0, // No separator needed since cards have margin
+  },
+  // Past camp styles
+  cardPast: {
+    opacity: 0.7,
+    borderLeftWidth: 4,
+    borderLeftColor: '#8E8E93',
+  },
+  badgeContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 4,
+  },
+  pastBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#8E8E93',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    alignSelf: 'flex-start',
+  },
+  pastBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '600',
+    marginLeft: 3,
+    letterSpacing: 0.5,
+  },
+  badgeSpacing: {
+    marginTop: 0,
+  },
+  dateContainerPast: {
+    backgroundColor: '#F8F8F8',
+  },
+  dateTextPast: {
+    color: '#8E8E93',
+  },
+  // Country Modal styles
+  countryModalContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  countryModalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#E5E5EA',
+  },
+  countryModalTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#000000',
+  },
+  countryModalCloseButton: {
+    padding: 4,
+  },
+  countryModalList: {
+    paddingVertical: 8,
+  },
+  countryModalItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: '#FFFFFF',
+  },
+  countryModalItemSelected: {
+    backgroundColor: '#F0F8FF',
+  },
+  countryModalItemPressed: {
+    backgroundColor: '#E5E5EA',
+  },
+  countryModalItemContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  countryModalFlag: {
+    width: 24,
+    height: 18,
+    marginRight: 12,
+    borderRadius: 2,
+  },
+  allCountriesIcon: {
+    backgroundColor: '#F2F2F7',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  countryModalItemText: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#000000',
+  },
+  countryModalItemTextSelected: {
+    color: '#007AFF',
+    fontWeight: '500',
   },
 });

@@ -34,17 +34,6 @@ export const mdjcContacts: Organization[] = [
     functions: ['Penningmeester'],
   },
   {
-    name: 'Fred Dijkers',
-    bio: "In het Rotaryjaar 2018-19 mocht ik functioneren als jeugdgouverneur voor de zeven Nederlandse districten. In die tijd leerde ik het werk van de MDJC kennen en waarderen. Na dat jaar ben ik onverwacht bij het bestuur gekomen wegens een ontstane vacature van de voorzitter. Hoewel mijn functioneren bedoeld was als 'interim' bleef ik betrokken omdat zich in korte tijd veel lastige problemen voordeden. Gelukkig konden we daar als bestuur samen goed uitkomen. Maar al die inspanningen bleken wel zeer te binden. Het MDJC-vaarwater is nu gelukkig veel rustiger.\n\nVan beroep ben ik 33 jaar huisarts geweest in een dorp, samen met mijn echtgenote. Met haar kreeg ik vier kinderen en die brachten mij weer tien kleinkinderen. Daar ben ik erg blij mee. Helaas is mijn echtgenote na een langdurig ziekbed in 2011 overleden.\n\nNaast mijn werk in de praktijk werkte ik parttime bij de huisartsopleiding in het LUMC. Ook was ik bestuurder in vele organisaties, vooral in de medische sector.",
-    imageUrl:
-      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/fred-dijkers.jpg',
-    email: 'chair@rotaryyep.nl',
-    phoneNumber: undefined,
-    club: 'Hoeksche Waard',
-    district: '1610 Zuidwest-Nederland',
-    functions: ['Youth Protection Officer'],
-  },
-  {
     name: 'Leoni Oude Nijhuis',
     bio: undefined,
     imageUrl: undefined,

@@ -22,4 +22,15 @@ export const shortTermContacts: Organization[] = [
     district: undefined,
     functions: ['Inbound coördinator Zomerkampen'],
   },
+  {
+    name: 'Betty Rijkmans-Siemens',
+    bio: 'Jarenlang was ik docent voortgezet onderwijs en werkte altijd met veel plezier met middelbare scholieren. Dat doe ik nu als coördinator van de Dutch Orientation Course. Long term exchangestudenten in Nederland hebben in hun uitwisselingsjaar gezamenlijke activiteiten. Een van de eerste activiteiten is de Dutch Orientation Course. Een super gezellige week ergens in Nederland waarin de studenten intensief aan de gang gaan met het leren van de Nederlandse taal en tegelijk ook kennis maken met de Nederlandse cultuur. De week is altijd een groot succes. De studenten leren elkaar beter kennen en naast serieus leren is er voldoende tijd om leuke dingen te doen. Allemaal even gezellig. Het team van docenten, samen met ondersteuning van Rotexers verheugen zich altijd weer op deze kennismaking.\n\nLater in het uitwisselings jaar zien we elkaar nog vaker en monitoren we hoe het gaat met iedereen. Als het jaar voorbij is hebben veel exchangers Nederland in hun hart gesloten en andersom net zo!',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/betty-rijkmans-siemen.jpeg',
+    email: 'doc@rotaryyep.nl',
+    phoneNumber: '+31629523379',
+    club: 'Rotaryclub Meppel',
+    district: '1590 NOORD-NEDERLAND',
+    functions: ['Coördinator Zomerkampen buitenland'],
+  },
 ];
