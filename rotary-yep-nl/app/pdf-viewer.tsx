@@ -1,10 +1,19 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
-import { StyleSheet, View, Text, Pressable, Alert, Platform, Dimensions, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  Alert,
+  Platform,
+  Dimensions,
+  ActivityIndicator,
+  Share,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import Pdf from 'react-native-pdf';
-import * as Sharing from 'expo-sharing';
 
 export default function PDFViewerScreen() {
   const navigation = useNavigation();
@@ -24,31 +33,24 @@ export default function PDFViewerScreen() {
     if (!url) return;
 
     try {
-      const isAvailable = await Sharing.isAvailableAsync();
-      if (isAvailable) {
-        await Sharing.shareAsync(url, {
-          dialogTitle: `Share ${title || 'PDF Document'}`,
-        });
+      const result = await Share.share({
+        message: `Check out this PDF: ${title || 'PDF Document'}`,
+        url: url,
+        title: title || 'PDF Document',
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // Shared with activity type
+        } else {
+          // Shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // Dismissed
       }
     } catch (shareError) {
       console.error('Share error:', shareError);
       Alert.alert('Share Error', 'Failed to share the PDF file.');
-    }
-  };
-
-  const zoomIn = () => {
-    const newScale = Math.min(scale * 1.2, 3);
-    setScale(newScale);
-  };
-
-  const zoomOut = () => {
-    const newScale = Math.max(scale / 1.2, 0.5);
-    setScale(newScale);
-  };
-
-  const goToPage = (pageNumber: number) => {
-    if (pdfRef.current && pageNumber >= 1 && pageNumber <= totalPages) {
-      pdfRef.current.setPage(pageNumber);
     }
   };
 
@@ -70,21 +72,7 @@ export default function PDFViewerScreen() {
       ),
       headerRight: () => (
         <View style={styles.headerControls}>
-          <Pressable
-            onPress={zoomOut}
-            style={[styles.controlButton, scale <= 0.5 && styles.disabledButton]}
-            disabled={scale <= 0.5}>
-            <Ionicons name="remove" size={20} color={scale <= 0.5 ? "#ccc" : "#007AFF"} />
-          </Pressable>
-          <Pressable
-            onPress={zoomIn}
-            style={[styles.controlButton, scale >= 3 && styles.disabledButton]}
-            disabled={scale >= 3}>
-            <Ionicons name="add" size={20} color={scale >= 3 ? "#ccc" : "#007AFF"} />
-          </Pressable>
-          <Pressable
-            onPress={handleShare}
-            style={styles.controlButton}>
+          <Pressable onPress={handleShare} style={styles.controlButton}>
             <Ionicons name="share-outline" size={20} color="#007AFF" />
           </Pressable>
         </View>
@@ -109,10 +97,12 @@ export default function PDFViewerScreen() {
         <View style={styles.centerContent}>
           <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
           <Text style={styles.errorText}>{error}</Text>
-          <Pressable style={styles.retryButton} onPress={() => {
-            setError(null);
-            setLoading(true);
-          }}>
+          <Pressable
+            style={styles.retryButton}
+            onPress={() => {
+              setError(null);
+              setLoading(true);
+            }}>
             <Text style={styles.buttonText}>Try Again</Text>
           </Pressable>
         </View>
@@ -123,81 +113,45 @@ export default function PDFViewerScreen() {
   const source = { uri: url, cache: true };
 
   return (
-    <SafeAreaView style={styles.container}>
-      {loading && (
-        <View style={styles.loadingOverlay}>
-          <ActivityIndicator size="large" color="#007AFF" />
-          <Text style={styles.loadingText}>Loading PDF...</Text>
-        </View>
-      )}
-      
-      <View style={styles.pdfContainer}>
-        <Pdf
-          ref={pdfRef}
-          source={source}
-          scale={scale}
-          minScale={0.5}
-          maxScale={3}
-          onLoadProgress={(percent) => {
-            console.log(`Loading progress: ${percent}`);
-          }}
-          onLoadComplete={(numberOfPages, filePath, { width, height }, tableContents) => {
-            console.log(`Number of pages: ${numberOfPages}`);
-            console.log(`PDF dimensions: ${width}x${height}`);
-            if (tableContents) {
-              console.log('Table of contents:', tableContents);
-            }
-            setTotalPages(numberOfPages);
-            setCurrentPage(1);
-            setLoading(false);
-          }}
-          onPageChanged={(page, numberOfPages) => {
-            console.log(`Current page: ${page}`);
-            setCurrentPage(page);
-            setTotalPages(numberOfPages);
-          }}
-          onError={(error) => {
-            console.log('PDF Error:', error);
-            setError('Failed to load PDF document. Please check the URL and try again.');
-            setLoading(false);
-          }}
-          onPressLink={(uri) => {
-            console.log(`Link pressed: ${uri}`);
-          }}
-          style={styles.pdf}
-          enablePaging
-          horizontal={false}
-          enableRTL={false}
-          enableAnnotationRendering={true}
-          enableAntialiasing={true}
-          fitPolicy={0}
-          spacing={10}
-        />
-      </View>
-
-      {/* Navigation Controls */}
-      {totalPages > 1 && (
-        <View style={styles.navigationContainer}>
-          <Pressable
-            onPress={() => goToPage(currentPage - 1)}
-            style={[styles.navButton, currentPage === 1 && styles.disabledNavButton]}
-            disabled={currentPage === 1}>
-            <Ionicons name="chevron-back" size={24} color={currentPage === 1 ? "#ccc" : "#007AFF"} />
-          </Pressable>
-          
-          <Text style={styles.pageIndicator}>
-            {currentPage} / {totalPages}
-          </Text>
-          
-          <Pressable
-            onPress={() => goToPage(currentPage + 1)}
-            style={[styles.navButton, currentPage === totalPages && styles.disabledNavButton]}
-            disabled={currentPage === totalPages}>
-            <Ionicons name="chevron-forward" size={24} color={currentPage === totalPages ? "#ccc" : "#007AFF"} />
-          </Pressable>
-        </View>
-      )}
-    </SafeAreaView>
+    // <SafeAreaView style={styles.container}>
+    <View style={styles.pdfContainer}>
+      <Pdf
+        ref={pdfRef}
+        source={source}
+        scale={scale}
+        minScale={0.5}
+        maxScale={3}
+        onLoadProgress={(percent) => {
+          // Loading progress tracking
+        }}
+        onLoadComplete={(numberOfPages, filePath, { width, height }, tableContents) => {
+          setTotalPages(numberOfPages);
+          setCurrentPage(1);
+          setLoading(false);
+        }}
+        onPageChanged={(page, numberOfPages) => {
+          setCurrentPage(page);
+          setTotalPages(numberOfPages);
+        }}
+        onError={(error) => {
+          setError('Failed to load PDF document. Please check the URL and try again.');
+          setLoading(false);
+        }}
+        onPressLink={(uri) => {
+          // Link pressed in PDF
+        }}
+        style={styles.pdf}
+        enablePaging
+        horizontal={false}
+        enableRTL={false}
+        enableAnnotationRendering={true}
+        enableAntialiasing={true}
+        enableDoubleTapZoom={true}
+        fitPolicy={0}
+        spacing={10}
+      />
+    </View>
+    // </SafeAreaView>
   );
 }
 
@@ -206,11 +160,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 25,
   },
   pdfContainer: {
     flex: 1,
     width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   pdf: {
     flex: 1,
@@ -247,8 +201,6 @@ const styles = StyleSheet.create({
   },
   controlButton: {
     padding: 8,
-    borderRadius: 6,
-    backgroundColor: 'rgba(0, 122, 255, 0.1)',
   },
   disabledButton: {
     opacity: 0.3,
