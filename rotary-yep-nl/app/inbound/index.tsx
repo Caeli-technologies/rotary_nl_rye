@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-
+import { longTermContacts } from '@/data/contacts/long-term';
+import { ContactModal } from '@/components/contact-modal';
 import * as Haptics from 'expo-haptics';
 
 interface ProgramItem {
@@ -15,6 +16,25 @@ interface ProgramItem {
 }
 
 export default function InboundScreen() {
+  const [showSandraContact, setShowSandraContact] = useState(false);
+
+  const sandraCools = longTermContacts.find((contact) => contact.name === 'Sandra Cools-Wemer');
+
+  const handleSandraContactPress = useCallback(async () => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      setShowSandraContact(true);
+    } catch (error) {
+      console.error('Error showing contact:', error);
+      // Fallback to email if contact card fails
+      if (sandraCools?.email) {
+        await Linking.openURL(`mailto:${sandraCools.email}`);
+      }
+    }
+  }, [sandraCools]);
+
   const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
     if (!enabled) return;
 
@@ -113,16 +133,8 @@ export default function InboundScreen() {
           For this to happen we will need some extra information so please watch your email inbox on
           a regular basis. Also you can find some further information in this app. If you have any
           questions that are not answered, please contact our inbound coordinator{' '}
-          <Text
-            style={styles.linkText}
-            onPress={() => handleEmailPress('longtermin@rotaryyep.nl', 'Clasine Scheepers')}>
-            Clasine Scheepers
-          </Text>{' '}
-          and/or{' '}
-          <Text
-            style={styles.linkText}
-            onPress={() => handleEmailPress('longtermadmin@rotaryyep.nl', 'Ben Mureau')}>
-            Ben Mureau
+          <Text style={styles.linkText} onPress={handleSandraContactPress}>
+            Sandra Cools
           </Text>
           .
         </Text>
@@ -187,6 +199,15 @@ export default function InboundScreen() {
           windowSize={10}
         />
       </View>
+
+      {/* Sandra Cools Contact Modal */}
+      {sandraCools && (
+        <ContactModal
+          contact={sandraCools}
+          visible={showSandraContact}
+          onClose={() => setShowSandraContact(false)}
+        />
+      )}
     </SafeAreaView>
   );
 }
