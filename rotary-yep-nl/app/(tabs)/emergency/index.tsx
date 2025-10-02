@@ -23,38 +23,25 @@ interface EmergencyContact {
 }
 
 export default function EmergencyScreen() {
-  const emergencyContacts: EmergencyContact[] = [
+  const rotaryYouthExchange: EmergencyContact[] = [
     {
-      name: 'Sandra Cools-Wemer',
-      function: 'Inbound Coordinator',
-      phone: '+31625530062',
+      name: 'Barbara Tusveld',
+      function: 'Voorzitter Rotary Youth Exchange',
+      phone: '+31655128529',
     },
     {
       name: 'Marga Oosterveld',
-      function: 'Outbound Coordinator',
-      phone: '+31629586813',
-    },
-    {
-      name: 'Judith Siebring',
-      function: 'Outbound Coordinator',
-      phone: '+31652682275',
-    },
-  ];
-
-  const nationalCounselors: EmergencyContact[] = [
-    {
-      name: 'Marga Oosterveld',
-      function: 'Chair exchange program',
+      function: 'Voorzitter Longterm',
       phone: '+31629586813',
     },
     {
       name: 'Clasine Scheepers',
-      function: 'Secretary Board',
+      function: 'Secretaris',
       phone: '+31652710977',
     },
     {
       name: 'Hilleke van der Veer',
-      function: 'National counselor',
+      function: 'Landelijke Counselor',
       phone: '+31638300427',
     },
   ];
@@ -133,27 +120,13 @@ export default function EmergencyScreen() {
             />
           </View>
 
-          {/* Main Coordinators */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="people" size={20} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Main Coordinators</Text>
-            </View>
-            <Text style={styles.sectionDescription}>
-              Contact Inbound coordinator first, then Outbound coordinators
-            </Text>
-            {emergencyContacts.map((contact, index) => (
-              <EmergencyContactCard key={index} contact={contact} />
-            ))}
-          </View>
-
-          {/* National Counselors */}
+          {/* Rotary Youth Exchange */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="shield-checkmark" size={20} color="#1A237E" />
               <Text style={styles.sectionTitle}>Rotary Youth Exchange</Text>
             </View>
-            {nationalCounselors.map((contact, index) => (
+            {rotaryYouthExchange.map((contact, index) => (
               <EmergencyContactCard key={index} contact={contact} />
             ))}
           </View>

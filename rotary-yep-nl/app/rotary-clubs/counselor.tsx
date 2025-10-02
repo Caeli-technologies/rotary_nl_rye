@@ -96,7 +96,7 @@ export default function CounselorScreen() {
       title: 'Travel rules within and outside the Netherlands',
       icon: 'suitcase-rolling' as keyof typeof FontAwesome5.glyphMap,
       pdfUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/travel-rules-within-and-outside-the-netherlands-2024-2025.pdf',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/travel-rules-within-and-outside-the-netherlands-2024-2025.pdf',
     },
   ];
 

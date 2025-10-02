@@ -3,10 +3,10 @@ import { Organization } from '@/types/contact';
 export const mdjcContacts: Organization[] = [
   {
     name: 'Barbara Tusveld',
-    bio: 'Als voorzitter van de Longterm commissie ben ik enorm trots dat we met ons team elk jaar voor 40 - 50 scholieren een jaar uitwisseling kunnen realiseren.\nHet is een "lifetime in a year" en niet een "year in a lifetime"\nIk ben zelf uitwisselingsstudent geweest in 1984. Nog steeds bezoek ik mijn gastouders jaarlijks in Amerika. Onze kinderen zijn ook beiden op uitwisseling geweest en intussen hebben wij al 5 bonus kinderen uit de hele wereld en als het aan ons ligt komen er nog heel veel bij.\nNaast deze mooie vrijwillersbaan bij Rotary werk ik als trainer/coach en deels als leerkracht. Ik ben dol op reizen en lopen met onze twee honden.',
+    bio: 'Als voorzitter van de Rotary Youth Exchange Nederlands ben ik enorm trots dat we met ons team elk jaar 30-40 longterm studenten, 10-15 Shorterm exchangers en veel scholieren die onze buitenlandse kampen bezoeken en onze Summercamps die georganiseerd worden door Nederlandse Rotary clubs voor buitenlandse scholieren.\n\nHet is een "lifetime in a year" en een geweldige mooie ervaring. Zelf ben ik op exchange geweest in Amerika, al weer een "tijdje" geleden. Nog steeds ga ik jaarlijks naar mijn stadje terug. Het is een tweede thuis.\n\nOnze kinderen zijn beiden op uitwisseling geweest en ook zijn we bonusouder van veel buitenlandse scholieren geweest waar we een hele fijne band mee hebben opgebouwd.\n\nAl ruim 10 jaar ben ik betrokken bij dit mooie programma en geniet van ons team en wat we voor een grote groep scholieren kunnen betekenen.',
     imageUrl:
       'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg',
-    email: 'longtermchair@rotaryyep.nl',
+    email: 'chair@rotaryyep.nl',
     phoneNumber: '+31655128529',
     club: 'RC Lelystad',
     district: '1590 NOORD-NEDERLAND',
@@ -32,16 +32,6 @@ export const mdjcContacts: Organization[] = [
     club: 'RC Lelystad',
     district: '1590 Noord Nederland',
     functions: ['Penningmeester'],
-  },
-  {
-    name: 'Leoni Oude Nijhuis',
-    bio: undefined,
-    imageUrl: undefined,
-    email: 'leoni@helviro.com',
-    phoneNumber: undefined,
-    club: undefined,
-    district: undefined,
-    functions: ['Youth Protection Officer'],
   },
   {
     name: 'Marga Oosterveld',
@@ -109,13 +99,14 @@ export const mdjcContacts: Organization[] = [
     functions: ['DJC 1590'],
   },
   {
-    name: 'Pieter Postma',
-    bio: "Sinds 2009 ben ik met veel plezier lid van Rotary. Als snel raakte ik betrokken bij de jeugduitwisseling. Ik kan me erg goed vinden in de gedachten achter de programma's, namelijk de persoonlijke ontwikkeling van de jongeren, kennis maken met andere culturen en op die manier bijdragen aan wat meer internationaal begrip.\nMijn kinderen zijn alle drie via Rotary een jaar weggeweest en zelf hebben we ook lange tijd jongeren in huis gehad die via het Rotary-programma in Nederland waren. Dat opvangen van die jongeren was voor ons gezin ook een mooie ervaring. Nadat ik eerst een tijd lang binnen de jeugdcommissie van onze club actief ben geweest, werd ik in 2016 District Jeugdcommissaris van district 1580. Daarmee belandde ik ook in de landelijke jeugdcommissie (MDJC) en daar ben ik nu nog steeds actief.\nIn het dagelijks leven ben ik als fiscalist werkzaam bij een belastingadvieskantoor.",
-    imageUrl: undefined,
-    email: 'compliance@rotaryyep.nl',
+    name: 'Elzeline Fischer',
+    bio: 'Sinds November 2022 ben ik de District Jeugd Commissaris van D1600 (DJC). Ik ben in 1974 in Leeuwarden geboren. Mijn vader is Rotarian bij RC Leeuwarden-Zuid. In 1992-1993 ben ik via Rotary uitgezonden naar Boyne City, Michigan in District 6290. Dit is een land-overschrijdend district! Michigan USA en Ontario Canada liggen hier o.a. in. Ik ben getrouwd met Pierre en samen hebben we twee kinderen. Sinds 2021 ben ik lid van Rotary. Dat lidmaatschap ben ik vooral aangegaan omdat ik het Jeugdprogramma van Rotary onovertroffen vind. We bieden veel aan voor een grote groep jonge mensen. En deze groep nieuwe kansen bieden en zich helpen ontwikkelen in hun zelfbeeld en wereldbeeld is volgens mij het begin van een mooiere wereld voor iedereen.\n\nNaast mijn inzet voor Rotary, werk ik als Freelancer in de culturele sector, vooral op het gebied van projectondersteuning.',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/elzeline-fischer.png',
+    email: 'djc@rotary-d1600.nl',
     phoneNumber: undefined,
-    club: 'RC Heiloo',
-    district: '1580',
-    functions: ['Compliance Officer'],
+    club: 'RC Leeuwarden-Zuid',
+    district: '1600',
+    functions: ['DJC 1600'],
   },
 ];

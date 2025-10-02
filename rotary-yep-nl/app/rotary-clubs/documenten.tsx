@@ -90,7 +90,7 @@ export default function DocumentenScreen() {
       title: "MDJC gedragscode - VJV - 'Vrijwilliger Jeugd Verklaring'",
       icon: 'users' as keyof typeof FontAwesome5.glyphMap,
       pdfUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/gedragscode-vrijwilligers-mdjc-2.pdf',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/def.-gedragscode-vrijwilligers-mdjc-26-27.pdf',
     },
     {
       title: 'First Night Questions',
