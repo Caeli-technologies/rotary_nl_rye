@@ -1,83 +1,88 @@
-import React, { useState, useMemo } from 'react';
-import { Platform, StyleSheet, Pressable, View, Text, SectionList } from 'react-native';
+import React, { useState } from 'react';
+import { Platform, StyleSheet, View, Text, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SegmentedControl from '@react-native-segmented-control/segmented-control';
 import { ContactCard } from '@/components/enhanced-contact-card';
 import { contactSections } from '@/data/contacts';
 
-import { Contact, Organization, Rotex } from '@/types/contact';
+// Constants
+const COLORS = {
+  primary: '#1f4e79',
+  text: '#666',
+  background: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
+  cardBackground: Platform.OS === 'ios' ? '#FFFFFF' : '#F5F5F5',
+  white: '#FFFFFF',
+};
+
+const SEGMENTED_CONTROL_CONFIG = {
+  tintColor: COLORS.primary,
+  backgroundColor: COLORS.cardBackground,
+  fontStyle: {
+    color: COLORS.text,
+    fontSize: Platform.OS === 'ios' ? 16 : 14,
+    fontWeight: Platform.OS === 'ios' ? ('500' as const) : ('600' as const),
+  },
+  activeFontStyle: {
+    color: COLORS.white,
+    fontWeight: Platform.OS === 'ios' ? ('600' as const) : ('700' as const),
+  },
+};
 
 export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const currentSection = useMemo(() => contactSections[activeTab], [activeTab]);
+  const currentSection = contactSections[activeTab];
+  const tabValues = contactSections.map((section) => section.title);
+  const contacts = currentSection?.contacts || [];
 
-  // Convert contacts to sections format for SectionList
-  const sections = useMemo(() => {
-    if (currentSection.contacts.length === 0) return [];
+  const handleSegmentChange = (event: any) => {
+    setActiveTab(event.nativeEvent.selectedSegmentIndex);
+  };
 
-    return [
-      {
-        title: currentSection.title,
-        count: currentSection.contacts.length,
-        data: currentSection.contacts,
-      },
-    ];
-  }, [currentSection]);
-
-  const renderContact = ({
-    item,
-    index,
-  }: {
-    item: Contact | Organization | Rotex;
-    index: number;
-  }) => <ContactCard contact={item} index={index} />;
-
-  const renderEmptyComponent = () => (
-    <View style={styles.emptyState}>
-      <Text style={styles.emptyStateTitle}>No contacts available</Text>
-      <Text style={styles.emptyStateMessage}>
-        There are no contacts in this section at the moment.
-      </Text>
-    </View>
-  );
+  if (contacts.length === 0) {
+    return (
+      <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+        <View style={styles.container}>
+          <View style={styles.segmentedControlContainer}>
+            <SegmentedControl
+              values={tabValues}
+              selectedIndex={activeTab}
+              onChange={handleSegmentChange}
+              style={styles.segmentedControl}
+              {...SEGMENTED_CONTROL_CONFIG}
+            />
+          </View>
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateTitle}>No contacts available</Text>
+            <Text style={styles.emptyStateMessage}>
+              There are no contacts in this section at the moment.
+            </Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
       <View style={styles.container}>
-        <View style={styles.tabContainer}>
-          {contactSections.map((section, index) => {
-            const isActive = activeTab === index;
-            return (
-              <Pressable
-                key={section.id}
-                style={({ pressed }) => [
-                  styles.tab,
-                  isActive && styles.activeTab,
-                  pressed && styles.tabPressed,
-                ]}
-                onPress={() => setActiveTab(index)}>
-                <Text style={[styles.tabText, isActive && styles.activeTabText]}>
-                  {section.title}
-                </Text>
-              </Pressable>
-            );
-          })}
+        <View style={styles.segmentedControlContainer}>
+          <SegmentedControl
+            values={tabValues}
+            selectedIndex={activeTab}
+            onChange={handleSegmentChange}
+            style={styles.segmentedControl}
+            {...SEGMENTED_CONTROL_CONFIG}
+          />
         </View>
 
         <SectionList
-          sections={sections}
-          renderItem={renderContact}
-          ListEmptyComponent={renderEmptyComponent}
+          sections={[{ data: contacts }]}
+          renderItem={({ item, index }) => <ContactCard contact={item} index={index} />}
           keyExtractor={(item, index) => `${currentSection.id}-${index}`}
           showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-          stickySectionHeadersEnabled={Platform.OS === 'ios'}
           ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
           contentContainerStyle={styles.contentContainer}
-          removeClippedSubviews={true}
-          initialNumToRender={10}
-          maxToRenderPerBatch={5}
-          windowSize={10}
           style={styles.sectionList}
         />
       </View>
@@ -88,23 +93,22 @@ export default function ContactScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
+    backgroundColor: COLORS.background,
   },
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
+    backgroundColor: COLORS.background,
   },
-  tabContainer: {
-    flexDirection: 'row',
-    backgroundColor: Platform.OS === 'ios' ? '#FFFFFF' : '#F5F5F5',
-    paddingHorizontal: 0,
+  segmentedControlContainer: {
+    backgroundColor: COLORS.cardBackground,
+    paddingHorizontal: 16,
+    paddingVertical: Platform.OS === 'ios' ? 12 : 10,
     ...(Platform.OS === 'ios'
       ? {
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
-          elevation: 0,
         }
       : {
           elevation: 2,
@@ -112,27 +116,8 @@ const styles = StyleSheet.create({
           borderBottomColor: '#E0E0E0',
         }),
   },
-  tab: {
-    flex: 1,
-    paddingVertical: Platform.OS === 'ios' ? 16 : 14,
-    alignItems: 'center',
-    borderBottomWidth: Platform.OS === 'ios' ? 3 : 2,
-    borderBottomColor: 'transparent',
-  },
-  activeTab: {
-    borderBottomColor: '#1f4e79',
-  },
-  tabPressed: {
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(26, 35, 126, 0.1)' : '#F0F0F0',
-  },
-  tabText: {
-    fontSize: Platform.OS === 'ios' ? 16 : 14,
-    fontWeight: Platform.OS === 'ios' ? '500' : '600',
-    color: '#666',
-  },
-  activeTabText: {
-    color: '#1f4e79',
-    fontWeight: Platform.OS === 'ios' ? '600' : '700',
+  segmentedControl: {
+    height: Platform.OS === 'ios' ? 28 : 40,
   },
   sectionList: {
     flex: 1,
@@ -141,26 +126,6 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: Platform.OS === 'android' ? 80 : 30,
     paddingHorizontal: Platform.OS === 'ios' ? 16 : 0,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: Platform.OS === 'ios' ? 0 : 16,
-    paddingVertical: Platform.OS === 'ios' ? 8 : 12,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#F5F5F5',
-    marginBottom: Platform.OS === 'ios' ? 8 : 0,
-  },
-  sectionTitle: {
-    fontSize: Platform.OS === 'ios' ? 22 : 18,
-    fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1f4e79',
-    letterSpacing: Platform.OS === 'ios' ? 0.35 : 0,
-  },
-  sectionCount: {
-    fontSize: 14,
-    color: '#666',
-    fontWeight: '400',
   },
   itemSeparator: {
     height: Platform.OS === 'ios' ? 12 : 0,
@@ -175,12 +140,12 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1f4e79',
+    color: COLORS.primary,
     marginBottom: 8,
   },
   emptyStateMessage: {
     fontSize: 16,
-    color: '#666',
+    color: COLORS.text,
     textAlign: 'center',
     lineHeight: 22,
   },

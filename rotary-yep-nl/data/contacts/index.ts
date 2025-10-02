@@ -16,11 +16,6 @@ export const contactSections: ContactSection[] = [
     contacts: mdjcContacts,
   },
   {
-    id: 'rotex',
-    title: 'ROTEX',
-    contacts: rotexContacts,
-  },
-  {
     id: 'longterm',
     title: 'Long Term',
     contacts: longTermContacts,
@@ -29,5 +24,10 @@ export const contactSections: ContactSection[] = [
     id: 'shortterm',
     title: 'Short Term',
     contacts: shortTermContacts,
+  },
+  {
+    id: 'rotex',
+    title: 'ROTEX',
+    contacts: rotexContacts,
   },
 ];

@@ -1,4 +1,3 @@
-import { Student } from '@/types/student';
 import { InboundStudent, InboundCountryGroup } from '@/types/inbound';
 
 // Current inbound students (Class of 2024-2025)

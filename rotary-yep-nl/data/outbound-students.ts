@@ -1,4 +1,3 @@
-import { Student } from '@/types/student';
 import { OutboundStudent, OutboundCountryGroup } from '@/types/outbound';
 
 // Current outbound students
