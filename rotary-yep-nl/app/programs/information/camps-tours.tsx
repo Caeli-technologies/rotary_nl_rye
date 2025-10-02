@@ -41,10 +41,11 @@ export default function CampsToursScreen() {
           {/* Intro */}
           <View style={styles.infoCard}>
             <Text style={styles.infoText}>
-              Heel veel Europese landen organiseren in de periode van juni t/m september Zomerkampen
-              en speciale kampen, zoals zeil-, ski- en sportkampen. De laatste jaren worden er ook
-              Zomerkampen in Canada, V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20
-              deelnemers gevormd met een zo groot mogelijke spreiding van nationaliteiten.
+              In veel landen organiseren Rotary clubs in de periode van juni tot en met september
+              zomerkampen. Dit zijn kampen met een thema: cultureel, sportief, water, bergen,
+              fietsen etc. De kosten worden vaak laag gehouden om het voor een ieder mogelijk te
+              maken. Dit geldt niet voor alle kampen. Deze kampen zijn internationaal, voertaal is
+              Engels en vaak is er alleen plaats voor 1 meisje en of 1 jongen uit een land.
             </Text>
           </View>
 
@@ -58,6 +59,28 @@ export default function CampsToursScreen() {
               <Text style={styles.ageSubtitle}>Voor wie?</Text>
               <Text style={styles.ageNote}>
                 Deelname mogelijk voor jongeren van Rotarians en niet-Rotarians
+              </Text>
+            </View>
+          </View>
+
+          {/* Mission Section */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Ionicons name="flag-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Waarom doen we dit?</Text>
+            </View>
+
+            <View style={styles.missionCard}>
+              <View style={styles.missionHeader}>
+                <Ionicons name="star" size={20} color="#FFD700" />
+                <Text style={styles.missionTitle}>Onze Missie</Text>
+              </View>
+              <Text style={styles.missionText}>
+                "Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen"
+              </Text>
+              <Text style={styles.missionSubtext}>
+                Wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk
+                anderen in staat te stellen zichzelf te ontwikkelen.
               </Text>
             </View>
           </View>
@@ -83,9 +106,8 @@ export default function CampsToursScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Door de buitenlandse organisator worden uitnodigingen aan de MDJC gestuurd. Deze
-                uitnodigingen worden direct na ontvangst op de site geplaatst ter info (half januari
-                t/m begin mei).
+                Rond december-januari zullen de camps in de app worden gezet. Als je interesse hebt
+                stuur dan een mail naar onderstaand emailadres.
               </Text>
             </View>
 
@@ -123,35 +145,6 @@ export default function CampsToursScreen() {
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
                   <Text style={styles.bulletText}>Eventueel klein deelnamebedrag</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          {/* Why Section */}
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="heart-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Waarom doen we dit?</Text>
-            </View>
-
-            <View style={styles.infoCard}>
-              <View style={styles.bulletContainer}>
-                <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    Het opbouwen van goede relaties met andere landen
-                  </Text>
-                </View>
-                <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Het houdt de club jong</Text>
-                </View>
-                <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    De jongere ontwikkelt zichzelf en zijn/haar omgeving
-                  </Text>
                 </View>
               </View>
             </View>
@@ -310,6 +303,48 @@ const styles = StyleSheet.create({
   },
   costSubtitle: {
     fontSize: 14,
+    color: '#666',
+  },
+
+  // Mission Card
+  missionCard: {
+    backgroundColor: '#FFF9C4',
+    borderRadius: Platform.OS === 'ios' ? 16 : 12,
+    padding: 20,
+    borderLeftWidth: 4,
+    borderLeftColor: '#FFD700',
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FFD700',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 1,
+        }),
+  },
+  missionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  missionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F57C00',
+    marginLeft: 8,
+  },
+  missionText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A237E',
+    marginBottom: 8,
+    fontStyle: 'italic',
+  },
+  missionSubtext: {
+    fontSize: 14,
+    lineHeight: 20,
     color: '#666',
   },
 

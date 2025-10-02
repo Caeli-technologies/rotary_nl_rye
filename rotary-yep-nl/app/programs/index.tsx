@@ -53,13 +53,7 @@ export default function ProgramsScreen() {
     [handleProgramPress],
   );
 
-  const programs: ProgramItem[] = [
-    {
-      title: 'Promo',
-      subtitle: 'Podcast & Video',
-      icon: 'podcast' as any,
-      route: '/programs/promo',
-    },
+  const exchangePrograms: ProgramItem[] = [
     {
       title: 'Long Term Exchange',
       subtitle: 'Year exchange & info',
@@ -80,12 +74,22 @@ export default function ProgramsScreen() {
     },
   ];
 
+  const infoPromoPrograms: ProgramItem[] = [
+    {
+      title: 'Promo',
+      subtitle: 'Podcast & Video',
+      icon: 'podcast' as any,
+      route: '/programs/promo',
+    },
+  ];
+
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={styles.introTitle}>Programs</Text>
+        <Text style={styles.introTitle}>Programma's</Text>
         <Text style={styles.introText}>
-          Bekijk onze programma's: van jaaruitwisselingen tot korte zomerkampen en promo materiaal.
+          Ontdek alle uitwisselingsprogramma's die Rotary YEP Nederland aanbiedt. Van lange termijn
+          jaaruitwisselingen tot korte zomerprogramma's en promotioneel materiaal.
         </Text>
       </View>
     ),
@@ -103,12 +107,14 @@ export default function ProgramsScreen() {
   );
 
   const renderContent = useCallback(() => {
-    const all: any[] = [
+    return [
       { type: 'intro' },
-      { type: 'sectionHeader', title: 'Programs' },
-      ...programs.map((p) => ({ type: 'program', item: p })),
+      { type: 'sectionHeader', title: 'Informatie & Promo' },
+      ...infoPromoPrograms.map((item) => ({ type: 'program', item })),
+      { type: 'spacer' },
+      { type: 'sectionHeader', title: "Uitwisselingsprogramma's" },
+      ...exchangePrograms.map((item) => ({ type: 'program', item })),
     ];
-    return all;
   }, []);
 
   const renderItem = useCallback(
@@ -120,6 +126,8 @@ export default function ProgramsScreen() {
           return <SectionHeader title={item.title} />;
         case 'program':
           return renderProgramItem({ item: item.item });
+        case 'spacer':
+          return <View style={styles.spacer} />;
         default:
           return null;
       }
@@ -147,15 +155,15 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#F2F2F7' },
   container: { flex: 1 },
   listContainer: { padding: 16, paddingBottom: 34 },
-  introContainer: { marginBottom: 24 },
+  introContainer: { marginBottom: 32 },
   introTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: '#1A237E',
-    marginBottom: 8,
+    marginBottom: 16,
   },
-  introText: { fontSize: 15, lineHeight: 22, color: '#3C3C43' },
-  sectionHeaderContainer: { marginBottom: 12, marginTop: 8 },
+  introText: { fontSize: 15, lineHeight: 22, color: '#3C3C43', textAlign: 'left' },
+  sectionHeaderContainer: { marginBottom: 16, marginTop: 8 },
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '600',
@@ -206,4 +214,5 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   programSubtitle: { fontSize: 13, fontWeight: '400', color: '#8E8E93' },
+  spacer: { height: 10 },
 });

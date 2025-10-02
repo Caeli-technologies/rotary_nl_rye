@@ -49,9 +49,9 @@ export default function FamilyToFamilyScreen() {
               <Text style={styles.infoText}>
                 De naam zegt het al, Short Term Exchange Program (STEP). Het is een uitwisseling met
                 een leeftijdgenoot in het buitenland voor de korte duur van ongeveer 2x3 weken of
-                2x4 weken. Maar het is ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in
-                het buitenland woont, samen met jouw maatje, en dat jouw maatje samen met jou in
-                Nederland komt wonen.
+                2x4 weken tijdens de zomervakantie. Maar het is ook FAMILY TO FAMILY, wat betekent
+                dat je bij een gezin in het buitenland woont, samen met jouw maatje, en dat jouw
+                maatje samen met jou in Nederland komt wonen.
               </Text>
             </View>
           </View>
@@ -213,12 +213,13 @@ const styles = StyleSheet.create({
 
   // Section Styles
   section: {
-    marginBottom: 32,
+    marginBottom: 24,
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
+    paddingHorizontal: 4,
   },
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 20 : 18,
