@@ -1,253 +1,229 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   Pressable,
+  ActivityIndicator,
   Alert,
   Platform,
-  Dimensions,
-  ActivityIndicator,
   Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
-import Pdf from 'react-native-pdf';
+import PdfRendererView from 'react-native-pdf-renderer';
+import { File, Paths } from 'expo-file-system';
 
 export default function PDFViewerScreen() {
   const navigation = useNavigation();
-  const pdfRef = useRef<Pdf>(null);
   const { url, title } = useLocalSearchParams<{
     url: string;
     title: string;
   }>();
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [scale, setScale] = useState(1);
+  const [error, setError] = useState<string | null>(null);
+  const [localFilePath, setLocalFilePath] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
-  const handleShare = async () => {
-    if (!url) return;
+  const downloadPDF = useCallback(async () => {
+    if (!url) {
+      setError('No PDF URL provided');
+      setLoading(false);
+      return;
+    }
 
     try {
-      const result = await Share.share({
-        message: `Check out this PDF: ${title || 'PDF Document'}`,
-        url: url,
-        title: title || 'PDF Document',
-      });
+      setLoading(true);
+      setError(null);
 
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // Shared with activity type
-        } else {
-          // Shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // Dismissed
+      // Generate filename from URL or use default
+      const filename = url.split('/').pop()?.split('?')[0] || 'document.pdf';
+      // Use Documents directory instead of cache for sharing compatibility
+      const file = new File(Paths.document, 'pdfs', filename);
+
+      // Check if file already exists
+      if (file.exists) {
+        setLocalFilePath(file.uri);
+        setLoading(false);
+        return;
       }
-    } catch (shareError) {
-      console.error('Share error:', shareError);
+
+      // Safely create directory if it doesn't exist
+      try {
+        if (!file.parentDirectory.exists) {
+          file.parentDirectory.create();
+        }
+      } catch (dirError) {
+        // Directory might already exist or be created by another process
+        console.log('Directory creation handled:', dirError);
+      }
+
+      // Download the PDF using the new File.downloadFileAsync method
+      const downloadedFile = await File.downloadFileAsync(url, file.parentDirectory);
+
+      setLocalFilePath(downloadedFile.uri);
+    } catch (error) {
+      console.error('PDF download error:', error);
+      setError('Failed to load PDF');
+    } finally {
+      setLoading(false);
+    }
+  }, [url]);
+
+  const handleShare = useCallback(async () => {
+    if (!localFilePath) return;
+
+    try {
+      await Share.share(
+        {
+          url: localFilePath,
+          title: title || 'PDF Document',
+        },
+        {
+          dialogTitle: `Share ${title || 'PDF Document'}`,
+        },
+      );
+    } catch (error) {
       Alert.alert('Share Error', 'Failed to share the PDF file.');
     }
-  };
+  }, [localFilePath, title]);
 
-  // Configure navigation header with controls
+  const handlePageChange = useCallback(
+    (current: number, total: number) => {
+      setCurrentPage(current);
+      setTotalPages(total);
+      if (loading && total > 0) {
+        setLoading(false);
+      }
+    },
+    [loading],
+  );
+
+  const handleError = useCallback((error?: string) => {
+    console.error('PDF rendering error:', error);
+    setError(error || 'Failed to load PDF document');
+    setLoading(false);
+  }, []);
+
+  // Configure navigation header with share button and page info
   useLayoutEffect(() => {
     navigation.setOptions({
       title: title || 'PDF Document',
       headerTitle: () => (
-        <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitle} numberOfLines={1}>
+        <View style={{ alignItems: 'center' }}>
+          <Text
+            style={{
+              fontSize: Platform.OS === 'ios' ? 18 : 20,
+              fontWeight: '600',
+              color: '#1A237E',
+              textAlign: 'center',
+            }}
+            numberOfLines={1}>
             {title || 'PDF Document'}
           </Text>
           {totalPages > 0 && (
-            <Text style={styles.pageInfo}>
-              Page {currentPage} of {totalPages}
+            <Text
+              style={{
+                color: '#8E8E93',
+                fontSize: 13,
+                fontWeight: '400',
+                marginTop: 2,
+              }}>
+              Page {currentPage + 1} of {totalPages}
             </Text>
           )}
         </View>
       ),
-      headerRight: () => (
-        <View style={styles.headerControls}>
-          <Pressable onPress={handleShare} style={styles.controlButton}>
-            <Ionicons name="share-outline" size={20} color="#007AFF" />
+      headerRight: () =>
+        localFilePath && !loading ? (
+          <Pressable
+            onPress={handleShare}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.6 : 1,
+              padding: 8,
+            })}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+            <Ionicons name="share-outline" size={24} color="#007AFF" />
           </Pressable>
-        </View>
-      ),
+        ) : null,
     });
-  }, [navigation, title, currentPage, totalPages, scale]);
+  }, [navigation, title, localFilePath, loading, currentPage, totalPages, handleShare]);
 
-  if (!url) {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.centerContent}>
-          <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
-          <Text style={styles.errorText}>No PDF URL provided</Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
+  useEffect(() => {
+    downloadPDF();
+
+    // Cleanup function - optional: remove cached file on unmount if needed
+    return () => {
+      // Could implement cache cleanup logic here if needed
+    };
+  }, [downloadPDF, url]);
 
   if (error) {
     return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.centerContent}>
-          <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
-          <Text style={styles.errorText}>{error}</Text>
-          <Pressable
-            style={styles.retryButton}
-            onPress={() => {
-              setError(null);
-              setLoading(true);
-            }}>
-            <Text style={styles.buttonText}>Try Again</Text>
-          </Pressable>
+      <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
+            <Text style={styles.errorText}>{error}</Text>
+            <Pressable style={styles.retryButton} onPress={downloadPDF}>
+              <Text style={styles.buttonText}>Try Again</Text>
+            </Pressable>
+          </View>
         </View>
       </SafeAreaView>
     );
   }
 
-  const source = { uri: url, cache: true };
+  if (loading || !localFilePath) {
+    return (
+      <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <ActivityIndicator size="large" color="#007AFF" />
+            <Text style={styles.loadingText}>Loading PDF...</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
-    // <SafeAreaView style={styles.container}>
-    <View style={styles.pdfContainer}>
-      <Pdf
-        ref={pdfRef}
-        source={source}
-        scale={scale}
-        minScale={0.5}
-        maxScale={3}
-        onLoadProgress={(percent) => {
-          // Loading progress tracking
-        }}
-        onLoadComplete={(numberOfPages, filePath, { width, height }, tableContents) => {
-          setTotalPages(numberOfPages);
-          setCurrentPage(1);
-          setLoading(false);
-        }}
-        onPageChanged={(page, numberOfPages) => {
-          setCurrentPage(page);
-          setTotalPages(numberOfPages);
-        }}
-        onError={(error) => {
-          setError('Failed to load PDF document. Please check the URL and try again.');
-          setLoading(false);
-        }}
-        onPressLink={(uri) => {
-          // Link pressed in PDF
-        }}
-        style={styles.pdf}
-        enablePaging
-        horizontal={false}
-        enableRTL={false}
-        enableAnnotationRendering={true}
-        enableAntialiasing={true}
-        enableDoubleTapZoom={true}
-        fitPolicy={0}
-        spacing={10}
-      />
-    </View>
-    // </SafeAreaView>
+    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+      <View style={styles.container}>
+        <PdfRendererView
+          source={localFilePath}
+          style={styles.pdf}
+          distanceBetweenPages={16}
+          maxZoom={20}
+          maxPageResolution={2048}
+          onPageChange={handlePageChange}
+          onError={handleError}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  pdfContainer: {
-    flex: 1,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-  pdf: {
-    flex: 1,
-  },
   safeArea: {
     flex: 1,
     backgroundColor: '#F2F2F7',
   },
-  centerContent: {
+  container: {
+    flex: 1,
+  },
+  content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
-  headerTitleContainer: {
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: Platform.OS === 'ios' ? 18 : 20,
-    fontWeight: '600',
-    color: '#1A237E',
-    textAlign: 'center',
-  },
-  pageInfo: {
-    color: '#8E8E93',
-    fontSize: 13,
-    fontWeight: '400',
-    marginTop: 2,
-  },
-  headerControls: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  controlButton: {
-    padding: 8,
-  },
-  disabledButton: {
-    opacity: 0.3,
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-  },
-  loadingOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    zIndex: 1000,
-  },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: '#007AFF',
-    fontWeight: '500',
-  },
-  navigationContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
-  },
-  navButton: {
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor: 'rgba(0, 122, 255, 0.1)',
-  },
-  disabledNavButton: {
-    opacity: 0.3,
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-  },
-  pageIndicator: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#1A237E',
-    minWidth: 80,
-    textAlign: 'center',
+  pdf: {
+    flex: 1,
+    backgroundColor: '#F2F2F7',
   },
   errorText: {
     fontSize: 16,
@@ -255,6 +231,12 @@ const styles = StyleSheet.create({
     color: '#ff6b6b',
     textAlign: 'center',
     marginVertical: 20,
+  },
+  loadingText: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#8E8E93',
+    marginTop: 16,
   },
   retryButton: {
     backgroundColor: '#007AFF',
@@ -267,5 +249,23 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  pageIndicatorContainer: {
+    position: 'absolute',
+    bottom: 32,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    pointerEvents: 'none',
+  },
+  pageIndicator: {
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    color: 'white',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
   },
 });

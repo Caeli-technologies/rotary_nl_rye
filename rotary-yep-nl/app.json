@@ -65,9 +65,7 @@
           "supportsPictureInPicture": true
         }
       ],
-      "expo-audio",
-      "@config-plugins/react-native-blob-util",
-      "@config-plugins/react-native-pdf"
+      "expo-audio"
     ],
     "experiments": {
       "typedRoutes": true,

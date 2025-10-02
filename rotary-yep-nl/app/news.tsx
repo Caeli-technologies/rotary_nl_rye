@@ -84,9 +84,18 @@ export default function NewsScreen() {
       if (!isRefresh) setLoading(true);
       setError(null);
 
-      const response = await fetch(
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/news.json',
-      );
+      // Add timestamp to prevent caching
+      const timestamp = new Date().getTime();
+      const url = `https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/news.json?t=${timestamp}`;
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          Pragma: 'no-cache',
+          Expires: '0',
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`Failed to load news: ${response.status}`);

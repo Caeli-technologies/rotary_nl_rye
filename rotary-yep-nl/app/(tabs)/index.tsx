@@ -236,7 +236,7 @@ export default function HomeScreen() {
           <View style={styles.gridRow}>
             <HomeCard
               icon="list-outline"
-              title="Programs"
+              title="Programma"
               onPress={() => router.push('/programs')}
             />
             <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push('/news')} />
