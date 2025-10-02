@@ -20,14 +20,12 @@ const shadowStyle = {
   elevation: 4,
 };
 
-
-
 export default function WhichCountriesScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -48,9 +46,11 @@ export default function WhichCountriesScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="globe-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Internationale Bestemmingen</Text>
+              <Text style={styles.sectionTitle}>
+                Internationale Bestemmingen
+              </Text>
             </View>
-            
+
             <View style={styles.regionCard}>
               <View style={styles.regionIcon}>
                 <Text style={styles.regionEmoji}>🇪🇺</Text>
@@ -58,7 +58,8 @@ export default function WhichCountriesScreen() {
               <View style={styles.regionContent}>
                 <Text style={styles.regionTitle}>Europa</Text>
                 <Text style={styles.regionDescription}>
-                  Verschillende Europese landen met rijke cultuur en geschiedenis
+                  Verschillende Europese landen met rijke cultuur en
+                  geschiedenis
                 </Text>
               </View>
             </View>
@@ -106,7 +107,7 @@ export default function WhichCountriesScreen() {
               <Ionicons name="star-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Soorten Programma's</Text>
             </View>
-            
+
             <View style={styles.programCard}>
               <View style={styles.programIcon}>
                 <Ionicons name="school-outline" size={20} color="#4CAF50" />
@@ -150,28 +151,33 @@ export default function WhichCountriesScreen() {
               <Ionicons name="mail-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
-            
+
             <View style={styles.emailCard}>
               <Text style={styles.emailDescription}>
-                Aanmelden via het emailadres <Text style={styles.emailLink}>interesse@rotaryyep.nl</Text>
+                Aanmelden via het emailadres{' '}
+                <Text style={styles.emailLink}>interesse@rotaryyep.nl</Text>
               </Text>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.emailButton}
                 onPress={() => {
-                  const emailUrl = 'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
+                  const emailUrl =
+                    'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
                   Linking.openURL(emailUrl);
                 }}
               >
-                <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
+                <Ionicons
+                  name="mail"
+                  size={20}
+                  color="#FFFFFF"
+                  style={{ marginRight: 8 }}
+                />
                 <Text style={styles.emailButtonText}>Contact Opnemen</Text>
               </TouchableOpacity>
             </View>
           </View>
-
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -190,7 +196,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -220,7 +226,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -236,7 +242,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Destination Header
   destinationHeader: {
     alignItems: 'center',
@@ -264,11 +270,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderLeftWidth: 4,
     borderLeftColor: '#FF6B35',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   regionIcon: {
     width: 48,
@@ -278,14 +286,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
-    } : {
-      elevation: 2,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.1,
+          shadowRadius: 2,
+        }
+      : {
+          elevation: 2,
+        }),
   },
   regionEmoji: {
     fontSize: 24,
@@ -304,7 +314,7 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // Program Card Styles
   programCard: {
     backgroundColor: '#FFFFFF',
@@ -313,11 +323,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 1,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   programIcon: {
     width: 40,
@@ -342,18 +354,20 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // Email Card Styles
   emailCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 24,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   emailDescription: {
     fontSize: 16,
@@ -365,7 +379,7 @@ const styles = StyleSheet.create({
     color: '#2196F3',
     fontWeight: '600',
   },
-  
+
   // Button Styles
   buttonContainer: {
     alignItems: 'center',
@@ -380,14 +394,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 200,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.3,
-      shadowRadius: 4,
-    } : {
-      elevation: 3,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.3,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 3,
+        }),
   },
   emailButtonText: {
     color: '#FFFFFF',

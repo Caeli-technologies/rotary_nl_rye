@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Platform, TouchableOpacity, Linking } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Platform,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -15,9 +23,9 @@ const shadowStyle = {
 export default function LongTermExchangeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -40,10 +48,13 @@ export default function LongTermExchangeScreen() {
               <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Wat houdt dat in?</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het buitenland een jaar High School volgt.
+                Dit programma van Rotary International is bestemd voor alle
+                hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs.
+                Het is de bedoeling dat je in het buitenland een jaar High
+                School volgt.
               </Text>
             </View>
           </View>
@@ -55,8 +66,12 @@ export default function LongTermExchangeScreen() {
             </View>
             <View style={styles.ageContent}>
               <Text style={styles.ageTitle}>15,5 - 18,5 jaar</Text>
-              <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
-              <Text style={styles.ageNote}>Selectiedag in oktober + selectieweekend in november</Text>
+              <Text style={styles.ageSubtitle}>
+                Indicatieve leeftijdsgrenzen
+              </Text>
+              <Text style={styles.ageNote}>
+                Selectiedag in oktober + selectieweekend in november
+              </Text>
             </View>
           </View>
 
@@ -66,25 +81,29 @@ export default function LongTermExchangeScreen() {
               <Ionicons name="earth-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Met welke landen?</Text>
             </View>
-            
+
             <View style={styles.countryCard}>
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
                   <Ionicons name="sunny" size={20} color="#FF9800" />
-                  <Text style={styles.hemisphereTitle}>Noordelijk halfrond</Text>
+                  <Text style={styles.hemisphereTitle}>
+                    Noordelijk halfrond
+                  </Text>
                 </View>
                 <Text style={styles.countryText}>
-                  USA, Canada, India, Indonesië, Japan, Thailand, Taiwan en diverse Europese landen
+                  USA, Canada, India, Indonesië, Japan, Thailand, Taiwan en
+                  diverse Europese landen
                 </Text>
               </View>
-              
+
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
                   <Ionicons name="partly-sunny" size={20} color="#00BCD4" />
                   <Text style={styles.hemisphereTitle}>Zuidelijk halfrond</Text>
                 </View>
                 <Text style={styles.countryText}>
-                  Brazilië, Chili, Argentinië, Mexico, Ecuador, Peru, Australië, Nieuw-Zeeland, Zuid-Afrika
+                  Brazilië, Chili, Argentinië, Mexico, Ecuador, Peru, Australië,
+                  Nieuw-Zeeland, Zuid-Afrika
                 </Text>
               </View>
             </View>
@@ -96,10 +115,12 @@ export default function LongTermExchangeScreen() {
               <Ionicons name="card-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Kosten</Text>
             </View>
-            
+
             <View style={styles.costCard}>
               <Text style={styles.costTitle}>Vanaf €2.400</Text>
-              <Text style={styles.costSubtitle}>Exclusief BTW, zakgeld, ticket en andere onkosten</Text>
+              <Text style={styles.costSubtitle}>
+                Exclusief BTW, zakgeld, ticket en andere onkosten
+              </Text>
             </View>
           </View>
 
@@ -109,19 +130,24 @@ export default function LongTermExchangeScreen() {
               <Ionicons name="person-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Inlichtingen bij de coördinator van het programma Barbara Tusveld:
+                Inlichtingen bij de coördinator van het programma Barbara
+                Tusveld:
               </Text>
             </View>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.emailButton}
-              onPress={() => Linking.openURL('mailto:longtermchair@rotaryyep.nl')}
+              onPress={() =>
+                Linking.openURL('mailto:longtermchair@rotaryyep.nl')
+              }
             >
               <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
-              <Text style={styles.emailButtonText}>longtermchair@rotaryyep.nl</Text>
+              <Text style={styles.emailButtonText}>
+                longtermchair@rotaryyep.nl
+              </Text>
             </TouchableOpacity>
           </View>
 
@@ -131,12 +157,14 @@ export default function LongTermExchangeScreen() {
               <Ionicons name="heart-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Waarom doen we dit?</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <View style={styles.bulletContainer}>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Het opbouwen van goede relaties met andere landen</Text>
+                  <Text style={styles.bulletText}>
+                    Het opbouwen van goede relaties met andere landen
+                  </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
@@ -144,7 +172,9 @@ export default function LongTermExchangeScreen() {
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>De jongere ontwikkelt zichzelf en zijn/haar omgeving</Text>
+                  <Text style={styles.bulletText}>
+                    De jongere ontwikkelt zichzelf en zijn/haar omgeving
+                  </Text>
                 </View>
               </View>
             </View>
@@ -167,7 +197,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     backgroundColor: '#FFFFFF',
@@ -200,7 +230,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -216,25 +246,27 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Age Card Styles
   ageCard: {
     backgroundColor: '#FFFFFF',
@@ -245,11 +277,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderLeftWidth: 4,
     borderLeftColor: '#673AB7',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   ageIconContainer: {
     width: 60,
@@ -280,17 +314,19 @@ const styles = StyleSheet.create({
     color: '#666',
     fontStyle: 'italic',
   },
-  
+
   // Country Card
   countryCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   hemisphereSection: {
     marginBottom: 16,
@@ -311,7 +347,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: '#666',
   },
-  
+
   // Cost Card
   costCard: {
     backgroundColor: '#E8F5E8',
@@ -333,7 +369,7 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-  
+
   // Email Button
   emailButton: {
     backgroundColor: '#FF6B35',
@@ -344,14 +380,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-    } : {
-      elevation: 3,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 3,
+        }),
   },
   emailButtonText: {
     color: '#FFFFFF',
@@ -359,7 +397,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 8,
   },
-  
+
   // Bullet Styles
   bulletContainer: {
     marginTop: 12,

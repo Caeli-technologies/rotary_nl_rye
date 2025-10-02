@@ -1,5 +1,12 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Platform } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -7,28 +14,31 @@ import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 
 const items = [
-  { 
-    key: 'podcast', 
-    title: 'Podcast', 
-    subtitle: 'Interviews met gastouders', 
-    description: 'Luister naar de ervaringen van gastouders die exchange studenten hebben opgevangen',
-    icon: 'headset-outline', 
-    route: '/programs/promo/podcast' 
+  {
+    key: 'podcast',
+    title: 'Podcast',
+    subtitle: 'Interviews met gastouders',
+    description:
+      'Luister naar de ervaringen van gastouders die exchange studenten hebben opgevangen',
+    icon: 'headset-outline',
+    route: '/programs/promo/podcast',
   },
-  { 
-    key: 'video', 
-    title: 'Video\'s', 
-    subtitle: "Promotievideo's", 
-    description: 'Bekijk inspirerende video\'s over het Youth Exchange programma',
-    icon: 'videocam-outline', 
-    route: '/programs/promo/video' 
+  {
+    key: 'video',
+    title: "Video's",
+    subtitle: "Promotievideo's",
+    description:
+      "Bekijk inspirerende video's over het Youth Exchange programma",
+    icon: 'videocam-outline',
+    route: '/programs/promo/video',
   },
 ];
 
 export default function PromoIndex() {
   const onPress = useCallback(async (route: string) => {
     try {
-      if (Platform.OS === 'ios') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (Platform.OS === 'ios')
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch (e) {
       router.push(route as any);
@@ -37,7 +47,7 @@ export default function PromoIndex() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <ScrollView contentContainerStyle={styles.container}>
         {/* Header Section */}
         <View style={styles.headerSection}>
@@ -46,15 +56,16 @@ export default function PromoIndex() {
           </View>
           <Text style={styles.headerTitle}>Promo Materiaal</Text>
           <Text style={styles.headerSubtitle}>
-            Ontdek inspirerende verhalen en materialen over het Youth Exchange programma
+            Ontdek inspirerende verhalen en materialen over het Youth Exchange
+            programma
           </Text>
         </View>
 
         {/* Items Grid */}
         {items.map((item) => (
-          <TouchableOpacity 
+          <TouchableOpacity
             key={item.key}
-            style={styles.card} 
+            style={styles.card}
             onPress={() => onPress(item.route)}
           >
             <View style={styles.cardContent}>
@@ -67,10 +78,12 @@ export default function PromoIndex() {
                 <Text style={styles.cardDescription}>{item.description}</Text>
               </View>
               <View style={styles.chevronContainer}>
-                <Ionicons 
-                  name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-                  size={20} 
-                  color="#C7C7CC" 
+                <Ionicons
+                  name={
+                    Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'
+                  }
+                  size={20}
+                  color="#C7C7CC"
                 />
               </View>
             </View>
@@ -100,7 +113,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 40,
   },
-  
+
   // Header Styles
   headerSection: {
     backgroundColor: '#FFFFFF',

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -25,7 +19,7 @@ export default function FlightAndArrivalScreen() {
         <Ionicons name={icon as any} size={24} color="#FF6B35" />
         <Text style={styles.sectionTitle}>{title}</Text>
       </View>
-      
+
       <View style={styles.infoCard}>
         {items.map((item, index) => (
           <View style={styles.bulletPoint} key={index}>
@@ -39,9 +33,9 @@ export default function FlightAndArrivalScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -54,14 +48,15 @@ export default function FlightAndArrivalScreen() {
             </View>
             <Text style={styles.headerTitle}>Flight & Arrival</Text>
             <Text style={styles.headerSubtitle}>
-              Important information about your flight and arrival in the Netherlands
+              Important information about your flight and arrival in the
+              Netherlands
             </Text>
           </View>
 
           {/* Flight Information */}
           {renderFlightInfo('airplane-outline', 'Flight', [
             'You should obtain a changeable open return airline ticket',
-            'Your arrival airport is Amsterdam (Schiphol) Airport'
+            'Your arrival airport is Amsterdam (Schiphol) Airport',
           ])}
 
           {/* Arrival Information */}
@@ -70,10 +65,11 @@ export default function FlightAndArrivalScreen() {
               <Ionicons name="location-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Arrival</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                More arrival information will be provided closer to your departure date.
+                More arrival information will be provided closer to your
+                departure date.
               </Text>
             </View>
           </View>
@@ -95,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -125,7 +121,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -141,7 +137,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',

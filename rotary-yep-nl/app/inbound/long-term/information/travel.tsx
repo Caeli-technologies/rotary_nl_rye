@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -19,12 +13,11 @@ const shadowStyle = {
 };
 
 export default function TravelScreen() {
-
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -44,10 +37,14 @@ export default function TravelScreen() {
           {/* Travel Guidelines */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="document-text-outline" size={24} color="#FF6B35" />
+              <Ionicons
+                name="document-text-outline"
+                size={24}
+                color="#FF6B35"
+              />
               <Text style={styles.sectionTitle}>Travel Guidelines</Text>
             </View>
-            
+
             <View style={styles.guidelinesCard}>
               <View style={styles.allowedSection}>
                 <View style={styles.allowedHeader}>
@@ -60,16 +57,24 @@ export default function TravelScreen() {
                 </View>
                 <View style={styles.allowedItem}>
                   <Ionicons name="business-outline" size={16} color="#4CAF50" />
-                  <Text style={styles.allowedText}>With Rotary club members</Text>
+                  <Text style={styles.allowedText}>
+                    With Rotary club members
+                  </Text>
                 </View>
                 <View style={styles.allowedItem}>
                   <Ionicons name="school-outline" size={16} color="#4CAF50" />
-                  <Text style={styles.allowedText}>On authorized school trips</Text>
+                  <Text style={styles.allowedText}>
+                    On authorized school trips
+                  </Text>
                 </View>
               </View>
-              
+
               <View style={styles.restrictionNote}>
-                <Ionicons name="information-circle-outline" size={16} color="#2196F3" />
+                <Ionicons
+                  name="information-circle-outline"
+                  size={16}
+                  color="#2196F3"
+                />
                 <Text style={styles.restrictionText}>
                   Travel rules apply both inside the Netherlands and abroad
                 </Text>
@@ -81,7 +86,11 @@ export default function TravelScreen() {
           <View style={styles.section}>
             <View style={styles.warningCard}>
               <View style={styles.warningHeader}>
-                <Ionicons name="close-circle-outline" size={24} color="#F44336" />
+                <Ionicons
+                  name="close-circle-outline"
+                  size={24}
+                  color="#F44336"
+                />
                 <Text style={styles.warningTitle}>Strictly Prohibited</Text>
               </View>
               <Text style={styles.warningText}>
@@ -96,14 +105,18 @@ export default function TravelScreen() {
               <Ionicons name="airplane-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Host Family Holidays</Text>
             </View>
-            
+
             <View style={styles.holidayCard}>
               <View style={styles.holidayHeader}>
                 <Ionicons name="document-outline" size={20} color="#FF9800" />
-                <Text style={styles.holidayTitle}>Parental Approval Required</Text>
+                <Text style={styles.holidayTitle}>
+                  Parental Approval Required
+                </Text>
               </View>
               <Text style={styles.holidayText}>
-                One of your host families might suggest to participate in a holiday somewhere abroad. This is usually OK when you will have a written approval from your parents.
+                One of your host families might suggest to participate in a
+                holiday somewhere abroad. This is usually OK when you will have
+                a written approval from your parents.
               </Text>
             </View>
           </View>
@@ -125,7 +138,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -155,7 +168,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -171,7 +184,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Main Card
   mainCard: {
     backgroundColor: '#FFFFFF',
@@ -187,7 +200,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Rules Card
   rulesCard: {
     backgroundColor: '#FFFFFF',
@@ -209,7 +222,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 8,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
@@ -218,7 +231,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     ...shadowStyle,
   },
-  
+
   // Warning Card
   warningCard: {
     backgroundColor: '#FFEBEE',
@@ -229,7 +242,7 @@ const styles = StyleSheet.create({
     borderLeftColor: '#F44336',
     ...shadowStyle,
   },
-  
+
   // Guidelines Card
   guidelinesCard: {
     backgroundColor: '#FFFFFF',
@@ -276,7 +289,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontStyle: 'italic',
   },
-  
+
   // Holiday Card
   holidayCard: {
     backgroundColor: '#FFFFFF',
@@ -320,7 +333,7 @@ const styles = StyleSheet.create({
     color: '#333',
     fontWeight: '600',
   },
-  
+
   bulletPoint: {
     flexDirection: 'row',
     marginBottom: 12,

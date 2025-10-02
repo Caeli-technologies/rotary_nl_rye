@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -19,12 +13,11 @@ const shadowStyle = {
 };
 
 export default function InsuranceScreen() {
-
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -33,7 +26,11 @@ export default function InsuranceScreen() {
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons name="shield-checkmark-outline" size={32} color="#FF6B35" />
+              <Ionicons
+                name="shield-checkmark-outline"
+                size={32}
+                color="#FF6B35"
+              />
             </View>
             <Text style={styles.headerTitle}>Insurance</Text>
             <Text style={styles.headerSubtitle}>
@@ -45,11 +42,18 @@ export default function InsuranceScreen() {
           <View style={styles.section}>
             <View style={styles.compulsoryCard}>
               <View style={styles.compulsoryHeader}>
-                <Ionicons name="alert-circle-outline" size={24} color="#FF6B35" />
+                <Ionicons
+                  name="alert-circle-outline"
+                  size={24}
+                  color="#FF6B35"
+                />
                 <Text style={styles.compulsoryTitle}>Compulsory Coverage</Text>
               </View>
               <Text style={styles.compulsoryText}>
-                The insurance policy from the Netherlands is compulsory. We will pre-insure you, so you will be fully insured as soon as you will land at Amsterdam Schiphol airport up until you are leaving at the airport again.
+                The insurance policy from the Netherlands is compulsory. We will
+                pre-insure you, so you will be fully insured as soon as you will
+                land at Amsterdam Schiphol airport up until you are leaving at
+                the airport again.
               </Text>
             </View>
           </View>
@@ -60,7 +64,7 @@ export default function InsuranceScreen() {
               <Ionicons name="time-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Coverage Timeline</Text>
             </View>
-            
+
             <View style={styles.timelineCard}>
               <View style={styles.timelineItem}>
                 <View style={styles.timelineIcon}>
@@ -68,31 +72,37 @@ export default function InsuranceScreen() {
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineTitle}>Arrival at Schiphol</Text>
-                  <Text style={styles.timelineText}>Coverage begins immediately upon landing</Text>
+                  <Text style={styles.timelineText}>
+                    Coverage begins immediately upon landing
+                  </Text>
                 </View>
               </View>
-              
+
               <View style={styles.timelineLine} />
-              
+
               <View style={styles.timelineItem}>
                 <View style={styles.timelineIcon}>
                   <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineTitle}>During Exchange</Text>
-                  <Text style={styles.timelineText}>Full coverage throughout your stay</Text>
+                  <Text style={styles.timelineText}>
+                    Full coverage throughout your stay
+                  </Text>
                 </View>
               </View>
-              
+
               <View style={styles.timelineLine} />
-              
+
               <View style={styles.timelineItem}>
                 <View style={styles.timelineIcon}>
                   <Ionicons name="home-outline" size={20} color="#FF9800" />
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineTitle}>Departure</Text>
-                  <Text style={styles.timelineText}>Coverage ends when you leave the airport</Text>
+                  <Text style={styles.timelineText}>
+                    Coverage ends when you leave the airport
+                  </Text>
                 </View>
               </View>
             </View>
@@ -101,17 +111,22 @@ export default function InsuranceScreen() {
           {/* Policy Documents */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="document-text-outline" size={24} color="#FF6B35" />
+              <Ionicons
+                name="document-text-outline"
+                size={24}
+                color="#FF6B35"
+              />
               <Text style={styles.sectionTitle}>Policy Documents</Text>
             </View>
-            
+
             <View style={styles.documentCard}>
               <View style={styles.documentHeader}>
                 <Ionicons name="mail-outline" size={20} color="#4CAF50" />
                 <Text style={styles.documentTitle}>Document Delivery</Text>
               </View>
               <Text style={styles.documentText}>
-                A copy of the Insurance Policy will be sent to you a few days before you leave your home country.
+                A copy of the Insurance Policy will be sent to you a few days
+                before you leave your home country.
               </Text>
             </View>
           </View>
@@ -133,7 +148,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -163,7 +178,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -179,7 +194,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
@@ -188,7 +203,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     ...shadowStyle,
   },
-  
+
   // Compulsory Card
   compulsoryCard: {
     backgroundColor: '#FFFFFF',
@@ -215,7 +230,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Timeline Card
   timelineCard: {
     backgroundColor: '#FFFFFF',
@@ -259,7 +274,7 @@ const styles = StyleSheet.create({
     marginLeft: 19,
     marginVertical: 4,
   },
-  
+
   // Document Card
   documentCard: {
     backgroundColor: '#FFFFFF',
@@ -286,7 +301,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Requirement Card
   requirementCard: {
     backgroundColor: '#FFFFFF',
@@ -313,7 +328,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   bulletPoint: {
     flexDirection: 'row',
     marginBottom: 12,

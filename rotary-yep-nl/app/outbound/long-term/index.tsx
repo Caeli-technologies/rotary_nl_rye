@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
   Pressable,
-  Platform
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -34,36 +34,50 @@ export default function LongTermExchangeScreen() {
     }
   }, []);
 
-  const renderMenuItem = useCallback(({ item }: { item: MenuItem }) => (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.menuItem,
-        pressed && styles.menuItemPressed
-      ]}
-      onPress={() => handleItemPress(item.route)}
-      accessibilityRole="button"
-      accessibilityLabel={item.title}
-      accessibilityHint="Tap to view details"
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-    >
-      <View style={styles.menuContent}>
-        <View style={[styles.iconContainer, item.type === 'class' ? styles.classIconContainer : styles.infoIconContainer]}>
-          <FontAwesome5 name={item.icon} size={22} color={item.type === 'class' ? "#9FA8DA" : "#007AFF"} />
+  const renderMenuItem = useCallback(
+    ({ item }: { item: MenuItem }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.menuItem,
+          pressed && styles.menuItemPressed,
+        ]}
+        onPress={() => handleItemPress(item.route)}
+        accessibilityRole="button"
+        accessibilityLabel={item.title}
+        accessibilityHint="Tap to view details"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <View style={styles.menuContent}>
+          <View
+            style={[
+              styles.iconContainer,
+              item.type === 'class'
+                ? styles.classIconContainer
+                : styles.infoIconContainer,
+            ]}
+          >
+            <FontAwesome5
+              name={item.icon}
+              size={22}
+              color={item.type === 'class' ? '#9FA8DA' : '#007AFF'}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.menuTitle}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
+            )}
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.menuTitle}>{item.title}</Text>
-          {item.subtitle && (
-            <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
-          )}
-        </View>
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-          size={20} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
-        />
-      </View>
-    </Pressable>
-  ), [handleItemPress]);
+      </Pressable>
+    ),
+    [handleItemPress],
+  );
 
   const classOfItems: MenuItem[] = [
     {
@@ -71,8 +85,8 @@ export default function LongTermExchangeScreen() {
       subtitle: 'Onze studenten in het buitenland dit jaar',
       icon: 'users' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/class-of',
-      type: 'class'
-    }
+      type: 'class',
+    },
   ];
 
   const informationItems: MenuItem[] = [
@@ -81,89 +95,105 @@ export default function LongTermExchangeScreen() {
       subtitle: 'Volledige aanmeldprocedure en vereisten',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/how-to-sign-up',
-      type: 'info'
+      type: 'info',
     },
     {
       title: 'Selectie dag',
       subtitle: 'Wat je kunt verwachten tijdens het selectieproces',
       icon: 'calendar-day' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/selection-day',
-      type: 'info'
+      type: 'info',
     },
     {
       title: 'Selectie weekend',
       subtitle: 'Finale selectieweekend activiteiten en verwachtingen',
       icon: 'calendar-week' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/selection-weekend',
-      type: 'info'
+      type: 'info',
     },
     {
       title: 'Goede top 3 van landen',
       subtitle: 'Hoe kies je jouw voorkeursbestemmingen',
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/top-3-countries',
-      type: 'info'
+      type: 'info',
     },
     {
       title: 'Waar moet ik aan voldoen?',
       subtitle: 'Regels en richtlijnen voor uitwisselingsstudenten',
       icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term/information/comply-with',
-      type: 'info'
-    }
+      type: 'info',
+    },
   ];
 
-  const IntroSection = useCallback(() => (
-    <View style={styles.introContainer}>
-      <Text style={styles.introText}>
-        Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het buitenland een jaar High School volgt. Omgekeerd komen buitenlandse scholieren hier om gedurende een jaar samen met leeftijdgenoten naar school te gaan.
-      </Text>
-    </View>
-  ), []);
+  const IntroSection = useCallback(
+    () => (
+      <View style={styles.introContainer}>
+        <Text style={styles.introText}>
+          Dit programma van Rotary International is bestemd voor alle hierin
+          geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de
+          bedoeling dat je in het buitenland een jaar High School volgt.
+          Omgekeerd komen buitenlandse scholieren hier om gedurende een jaar
+          samen met leeftijdgenoten naar school te gaan.
+        </Text>
+      </View>
+    ),
+    [],
+  );
 
-  const SectionHeader = useCallback(({ title }: { title: string }) => (
-    <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderTitle}>{title}</Text>
-      <View style={styles.sectionHeaderDivider} />
-    </View>
-  ), []);
+  const SectionHeader = useCallback(
+    ({ title }: { title: string }) => (
+      <View style={styles.sectionHeaderContainer}>
+        <Text style={styles.sectionHeaderTitle}>{title}</Text>
+        <View style={styles.sectionHeaderDivider} />
+      </View>
+    ),
+    [],
+  );
 
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
       { type: 'sectionHeader', title: 'Klas van 25-26' },
-      ...classOfItems.map(item => ({ type: 'menuItem', item })),
+      ...classOfItems.map((item) => ({ type: 'menuItem', item })),
       { type: 'spacer' },
       { type: 'sectionHeader', title: 'Informatie' },
-      ...informationItems.map(item => ({ type: 'menuItem', item }))
+      ...informationItems.map((item) => ({ type: 'menuItem', item })),
     ];
 
     return allItems;
   }, []);
 
-  const renderItem = useCallback(({ item }: { item: any }) => {
-    switch (item.type) {
-      case 'intro':
-        return <IntroSection />;
-      case 'sectionHeader':
-        return <SectionHeader title={item.title} />;
-      case 'menuItem':
-        return renderMenuItem({ item: item.item });
-      case 'spacer':
-        return <View style={styles.spacer} />;
-      default:
-        return null;
-    }
-  }, [IntroSection, SectionHeader, renderMenuItem]);
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => {
+      switch (item.type) {
+        case 'intro':
+          return <IntroSection />;
+        case 'sectionHeader':
+          return <SectionHeader title={item.title} />;
+        case 'menuItem':
+          return renderMenuItem({ item: item.item });
+        case 'spacer':
+          return <View style={styles.spacer} />;
+        default:
+          return null;
+      }
+    },
+    [IntroSection, SectionHeader, renderMenuItem],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
+          keyExtractor={useCallback(
+            (item: any, index: number) => `${item.type}-${index}`,
+            [],
+          )}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

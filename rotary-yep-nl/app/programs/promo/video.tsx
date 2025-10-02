@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Modal, Image, Platform } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Modal,
+  Image,
+  Platform,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,13 +36,10 @@ function VideoRow({
     const generateThumbnail = async () => {
       try {
         setThumbnailLoading(true);
-        const { uri } = await VideoThumbnails.getThumbnailAsync(
-          video.url,
-          {
-            time: 2000, // 2 seconds into the video
-            quality: 0.7,
-          }
-        );
+        const { uri } = await VideoThumbnails.getThumbnailAsync(video.url, {
+          time: 2000, // 2 seconds into the video
+          quality: 0.7,
+        });
         setThumbnailUri(uri);
       } catch (error) {
         console.warn('Error generating video thumbnail:', error);
@@ -47,7 +53,8 @@ function VideoRow({
 
   const onPress = async () => {
     try {
-      if (Platform.OS === 'ios') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (Platform.OS === 'ios')
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       onPlayRequest(video);
     } catch (e) {
       onPlayRequest(video);
@@ -63,7 +70,7 @@ function VideoRow({
             <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
           </View>
         ) : thumbnailUri ? (
-          <Image 
+          <Image
             source={{ uri: thumbnailUri }}
             style={styles.thumbnail}
             resizeMode="cover"
@@ -88,10 +95,17 @@ function VideoRow({
 }
 
 const videos: Video[] = [
-  { 
-    title: '5th Avenue Jeugd', 
-    description: 'Een inspirerende video over het Rotary Youth Exchange programma en de ervaringen van jongeren.',
-    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4' 
+  {
+    title: 'Waarom op exchange',
+    description:
+      'Van Rotex - ontdek waarom een exchange ervaring zo waardevol is.',
+    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4',
+  },
+  {
+    title: '5th Avenue Jeugd',
+    description:
+      'Een inspirerende video over het Rotary Youth Exchange programma en de ervaringen van jongeren.',
+    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th-avenue-jeugd.mp4',
   },
 ];
 
@@ -99,11 +113,13 @@ export default function VideoPromo() {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
 
-  const player = useVideoPlayer(selectedVideo?.url || '', player => {
+  const player = useVideoPlayer(selectedVideo?.url || '', (player) => {
     player.loop = false;
   });
 
-  const { status } = useEvent(player, 'statusChange', { status: player.status });
+  const { status } = useEvent(player, 'statusChange', {
+    status: player.status,
+  });
 
   const onPlayRequest = useCallback((video: Video) => {
     setSelectedVideo(video);
@@ -117,7 +133,6 @@ export default function VideoPromo() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
       <ScrollView contentContainerStyle={styles.container}>
         {/* Header Section */}
         <View style={styles.headerSection}>
@@ -126,7 +141,8 @@ export default function VideoPromo() {
           </View>
           <Text style={styles.headerTitle}>Promo Video's</Text>
           <Text style={styles.headerSubtitle}>
-            Ontdek inspirerende verhalen en ervaringen van Youth Exchange studenten
+            Ontdek inspirerende verhalen en ervaringen van Youth Exchange
+            studenten
           </Text>
         </View>
 
@@ -150,7 +166,10 @@ export default function VideoPromo() {
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}
       >
-        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+        <SafeAreaView
+          style={styles.videoModalContainer}
+          edges={['top', 'left', 'right']}
+        >
           <View style={styles.videoModalHeader}>
             <TouchableOpacity
               style={styles.closeButton}
@@ -159,7 +178,7 @@ export default function VideoPromo() {
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
-          
+
           <View style={styles.videoContainer}>
             {status === 'loading' && (
               <View style={styles.loadingContainer}>
@@ -175,7 +194,7 @@ export default function VideoPromo() {
               contentFit="contain"
             />
           </View>
-          
+
           <View style={styles.videoInfoModal}>
             <Text style={styles.videoTitleModal}>{selectedVideo?.title}</Text>
             <Text style={styles.videoSubtitleModal}>
@@ -205,7 +224,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 40,
   },
-  
+
   // Header Styles
   headerSection: {
     backgroundColor: '#FFFFFF',

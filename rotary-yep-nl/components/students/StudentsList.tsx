@@ -33,11 +33,11 @@ interface StudentCardProps {
 
 function StudentCard({ student, onPress, studentType }: StudentCardProps) {
   return (
-    <Pressable 
+    <Pressable
       style={({ pressed }) => [
         styles.studentCard,
-        pressed && styles.studentCardPressed
-      ]} 
+        pressed && styles.studentCardPressed,
+      ]}
       onPress={onPress}
     >
       <View style={styles.studentCardContent}>
@@ -48,18 +48,23 @@ function StudentCard({ student, onPress, studentType }: StudentCardProps) {
           expandable={false}
           showInitials={true}
         />
-        
+
         <View style={styles.studentInfo}>
           <Text style={styles.studentName}>{student.name}</Text>
           <Text style={styles.studentSubtitle}>
-            Current {studentType === 'outbound' ? 'Outbound' : 'Inbound'} Student
+            Current {studentType === 'outbound' ? 'Outbound' : 'Inbound'}{' '}
+            Student
           </Text>
         </View>
-        
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
-          size={Platform.OS === 'ios' ? 20 : 24} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
+
+        <Ionicons
+          name={
+            Platform.OS === 'ios'
+              ? 'chevron-forward'
+              : 'chevron-forward-outline'
+          }
+          size={Platform.OS === 'ios' ? 20 : 24}
+          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
         />
       </View>
     </Pressable>
@@ -75,13 +80,13 @@ interface StudentsListProps {
   groupByCountryKey?: 'from' | 'to';
 }
 
-export default function StudentsList({ 
-  students, 
-  countryGroups, 
-  studentType, 
+export default function StudentsList({
+  students,
+  countryGroups,
+  studentType,
   basePath,
   title,
-  groupByCountryKey = 'to'
+  groupByCountryKey = 'to',
 }: StudentsListProps) {
   const navigation = useNavigation();
 
@@ -92,21 +97,21 @@ export default function StudentsList({
       }
       router.push({
         pathname: `${basePath}/student-detail` as any,
-        params: { 
+        params: {
           student: JSON.stringify(student),
           country: country,
-          studentName: student.name
-        }
+          studentName: student.name,
+        },
       });
     } catch (error) {
       console.error('Error navigating to student detail:', error);
       router.push({
         pathname: `${basePath}/student-detail` as any,
-        params: { 
+        params: {
           student: JSON.stringify(student),
           country: country,
-          studentName: student.name
-        }
+          studentName: student.name,
+        },
       });
     }
   };
@@ -116,22 +121,32 @@ export default function StudentsList({
     navigation.setOptions({
       title: title,
       headerTitle: () => (
-        <View style={{ alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start' }}>
-          <Text style={{
-            fontSize: Platform.OS === 'ios' ? 18 : 20,
-            fontWeight: '600',
-            color: '#1A237E',
-          }}>
+        <View
+          style={{
+            alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+          }}
+        >
+          <Text
+            style={{
+              fontSize: Platform.OS === 'ios' ? 18 : 20,
+              fontWeight: '600',
+              color: '#1A237E',
+            }}
+          >
             {title}
           </Text>
           {students.length > 0 && (
-            <Text style={{
-              color: '#8E8E93',
-              fontSize: 13,
-              fontWeight: '400',
-              marginTop: 2,
-            }}>
-              {students.length} student{students.length !== 1 ? 's' : ''} • {countryGroups.length} countr{countryGroups.length !== 1 ? 'ies' : 'y'}
+            <Text
+              style={{
+                color: '#8E8E93',
+                fontSize: 13,
+                fontWeight: '400',
+                marginTop: 2,
+              }}
+            >
+              {students.length} student{students.length !== 1 ? 's' : ''} •{' '}
+              {countryGroups.length} countr
+              {countryGroups.length !== 1 ? 'ies' : 'y'}
             </Text>
           )}
         </View>
@@ -149,32 +164,39 @@ export default function StudentsList({
     }));
   }, [countryGroups]);
 
-  const renderStudent = ({ item, section }: { item: Student; section: any }) => (
-    <StudentCard 
-      student={item} 
+  const renderStudent = ({
+    item,
+    section,
+  }: {
+    item: Student;
+    section: any;
+  }) => (
+    <StudentCard
+      student={item}
       onPress={() => handleStudentPress(item, section.title)}
       studentType={studentType}
     />
   );
 
-  const renderSectionHeader = ({ section }: { section: { title: string; flag: string; count: number } }) => {
+  const renderSectionHeader = ({
+    section,
+  }: {
+    section: { title: string; flag: string; count: number };
+  }) => {
     const flagAsset = getFlagAsset(section.flag);
-    
+
     return (
       <View style={styles.sectionHeader}>
         <View style={styles.sectionHeaderContent}>
           {flagAsset ? (
-            <Image 
-              source={flagAsset}
-              style={styles.sectionFlag}
-            />
+            <Image source={flagAsset} style={styles.sectionFlag} />
           ) : (
             <View style={[styles.sectionFlag, styles.flagPlaceholder]}>
               <Text style={styles.flagText}>{section.flag.toUpperCase()}</Text>
             </View>
           )}
           <Text style={styles.sectionTitle}>{section.title}</Text>
-      </View>
+        </View>
         <Text style={styles.sectionCount}>
           {section.count} student{section.count !== 1 ? 's' : ''}
         </Text>
@@ -185,7 +207,7 @@ export default function StudentsList({
   if (sections.length === 0) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        <StatusBar style="auto" />
+        
         <View style={styles.emptyState}>
           <Ionicons name="school-outline" size={48} color="#9FA8DA" />
           <Text style={styles.emptyStateTitle}>No students found</Text>
@@ -199,8 +221,8 @@ export default function StudentsList({
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
+
       <SectionList
         sections={sections}
         renderItem={renderStudent}
@@ -210,7 +232,9 @@ export default function StudentsList({
         contentInsetAdjustmentBehavior="automatic"
         stickySectionHeadersEnabled={Platform.OS === 'ios'}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-        SectionSeparatorComponent={() => <View style={styles.sectionSeparator} />}
+        SectionSeparatorComponent={() => (
+          <View style={styles.sectionSeparator} />
+        )}
         contentContainerStyle={styles.contentContainer}
         removeClippedSubviews={true}
         initialNumToRender={15}

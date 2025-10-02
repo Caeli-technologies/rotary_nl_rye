@@ -4,8 +4,8 @@ import { Platform } from 'react-native';
 export default function ContactLayout() {
   return (
     <Stack>
-      <Stack.Screen 
-        name="index" 
+      <Stack.Screen
+        name="index"
         options={{
           title: 'Contact List',
           headerShown: true,

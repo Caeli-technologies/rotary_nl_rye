@@ -50,12 +50,9 @@ export function ContactCard({
   };
 
   return (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.card,
-        pressed && styles.cardPressed
-      ]}
-      onPress={onPress} 
+    <Pressable
+      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+      onPress={onPress}
       disabled={!onPress}
     >
       <View style={styles.content}>
@@ -66,14 +63,14 @@ export function ContactCard({
             <Text style={styles.organization}>{organization}</Text>
           )}
         </View>
-        
+
         {showActions && (phone || email) && (
           <View style={styles.actions}>
             {phone && (
-              <Pressable 
+              <Pressable
                 style={({ pressed }) => [
                   styles.actionButton,
-                  pressed && styles.actionButtonPressed
+                  pressed && styles.actionButtonPressed,
                 ]}
                 onPress={handleCall}
               >
@@ -81,10 +78,10 @@ export function ContactCard({
               </Pressable>
             )}
             {email && (
-              <Pressable 
+              <Pressable
                 style={({ pressed }) => [
                   styles.actionButton,
-                  pressed && styles.actionButtonPressed
+                  pressed && styles.actionButtonPressed,
                 ]}
                 onPress={handleEmail}
               >
@@ -103,11 +100,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     marginBottom: Platform.OS === 'ios' ? 12 : 8,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   cardPressed: {
     opacity: Platform.OS === 'ios' ? 0.8 : 0.6,

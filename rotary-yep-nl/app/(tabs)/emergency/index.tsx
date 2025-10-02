@@ -1,5 +1,12 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Platform, Pressable } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  Platform,
+  Pressable,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -68,7 +75,7 @@ export default function EmergencyScreen() {
     },
     {
       name: 'Reinout Vriesendorp',
-      function: 'Doctor\'s office',
+      function: "Doctor's office",
       phone: '+31182612676',
       email: 'info@medischcentrumwest.org',
     },
@@ -99,7 +106,7 @@ export default function EmergencyScreen() {
         <Pressable
           style={({ pressed }) => [
             styles.actionButton,
-            pressed && styles.actionButtonPressed
+            pressed && styles.actionButtonPressed,
           ]}
           onPress={() => handleCall(contact.phone, contact.name)}
         >
@@ -109,7 +116,7 @@ export default function EmergencyScreen() {
           <Pressable
             style={({ pressed }) => [
               styles.actionButton,
-              pressed && styles.actionButtonPressed
+              pressed && styles.actionButtonPressed,
             ]}
             onPress={() => handleEmail(contact.email!, contact.name)}
           >
@@ -122,8 +129,8 @@ export default function EmergencyScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
-      <ScrollView 
+      
+      <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -138,7 +145,7 @@ export default function EmergencyScreen() {
             <Text style={styles.emergencySubtitle}>
               112 for ambulance, fire brigade or police
             </Text>
-            <Image 
+            <Image
               source={require('@/assets/emergency/112_logo.png')}
               style={styles.emergencyImage}
               contentFit="contain"
@@ -191,10 +198,12 @@ export default function EmergencyScreen() {
               <Text style={styles.noteTitle}>Important Reminder</Text>
             </View>
             <Text style={styles.noteText}>
-              Always keep your host family's contact information and home address accessible.
+              Always keep your host family's contact information and home
+              address accessible.
             </Text>
             <Text style={styles.noteText}>
-              Your host parents can assist you with medical appointments, hospital visits, or dental care.
+              Your host parents can assist you with medical appointments,
+              hospital visits, or dental care.
             </Text>
           </View>
         </View>
@@ -216,7 +225,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: Platform.OS === 'android' ? 80 : 30,
   },
-  
+
   // Emergency Section
   emergencySection: {
     backgroundColor: '#FFFFFF',
@@ -224,11 +233,13 @@ const styles = StyleSheet.create({
     padding: 24,
     marginBottom: 20,
     alignItems: 'center',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 3,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 3,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   emergencyHeader: {
     flexDirection: 'row',
@@ -252,7 +263,7 @@ const styles = StyleSheet.create({
     height: 100,
     maxWidth: 200,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -274,7 +285,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     lineHeight: 20,
   },
-  
+
   // Contact Card Styles
   contactCard: {
     backgroundColor: '#FFFFFF',
@@ -283,11 +294,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   contactInfo: {
     flex: 1,
@@ -324,7 +337,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C5CAE9',
     opacity: 0.8,
   },
-  
+
   // Note Card Styles
   noteCard: {
     backgroundColor: '#FFF8E1',
@@ -333,14 +346,16 @@ const styles = StyleSheet.create({
     marginTop: 8,
     borderLeftWidth: 4,
     borderLeftColor: '#FF9800',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF9800',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF9800',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 1,
+        }),
   },
   noteHeader: {
     flexDirection: 'row',

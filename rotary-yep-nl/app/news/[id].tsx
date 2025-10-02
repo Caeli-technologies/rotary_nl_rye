@@ -1,13 +1,13 @@
 import React from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  ScrollView, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
   Pressable,
   Alert,
   Linking,
-  Platform
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,11 +17,11 @@ import { StatusBar } from 'expo-status-bar';
 
 interface NewsText {
   heading?: string;
-  body?: Array<{
+  body?: {
     paragraph?: string[];
     videoUrl?: string;
     imageUrl?: string;
-  }>;
+  }[];
 }
 
 interface NewsItem {
@@ -40,9 +40,9 @@ export default function NewsDetailScreen() {
     title: string;
     content: string;
   }>();
-  
+
   let newsItem: NewsItem | null = null;
-  
+
   try {
     if (content) {
       newsItem = JSON.parse(content);
@@ -54,7 +54,7 @@ export default function NewsDetailScreen() {
   if (!newsItem) {
     return (
       <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-        <StatusBar style="auto" />
+        
         <View style={styles.container}>
           <View style={styles.centered}>
             <Text style={styles.errorText}>News item not found</Text>
@@ -65,7 +65,7 @@ export default function NewsDetailScreen() {
   }
 
   const handleVideoPress = (videoUrl: string) => {
-    Linking.openURL(videoUrl).catch(err => {
+    Linking.openURL(videoUrl).catch((err) => {
       console.error('Error opening video:', err);
       Alert.alert('Error', 'Could not open video');
     });
@@ -73,77 +73,91 @@ export default function NewsDetailScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-        {/* Header Image */}
-        <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: newsItem.images }}
-            style={styles.headerImage}
-            contentFit="cover"
-            placeholder="https://via.placeholder.com/400x200/E0E0E0/999999?text=Loading"
-          />
-        </View>
+          {/* Header Image */}
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: newsItem.images }}
+              style={styles.headerImage}
+              contentFit="cover"
+              placeholder="https://via.placeholder.com/400x200/E0E0E0/999999?text=Loading"
+            />
+          </View>
 
-        <View style={styles.contentContainer}>
-          {/* Title */}
-          <Text style={styles.newsTitle}>{newsItem.title}</Text>
-          
-          {/* Description */}
-          {newsItem.description && (
-            <Text style={styles.newsDescription}>{newsItem.description}</Text>
-          )}
+          <View style={styles.contentContainer}>
+            {/* Title */}
+            <Text style={styles.newsTitle}>{newsItem.title}</Text>
 
-          {/* Content Sections */}
-          {newsItem.text && newsItem.text.map((section, sectionIndex) => (
-            <View key={sectionIndex} style={styles.section}>
-              {section.heading && (
-                <Text style={styles.sectionHeading}>{section.heading}</Text>
-              )}
-              
-              {section.body && section.body.map((bodyItem, bodyIndex) => (
-                <View key={bodyIndex} style={styles.bodyItem}>
-                  {/* Paragraphs */}
-                  {bodyItem.paragraph && bodyItem.paragraph.map((paragraph, paragraphIndex) => (
-                    <Text key={paragraphIndex} style={styles.paragraph}>
-                      {paragraph}
-                    </Text>
-                  ))}
-                  
-                  {/* Video */}
-                  {bodyItem.videoUrl && (
-                    <Pressable
-                      style={styles.videoContainer}
-                      onPress={() => handleVideoPress(bodyItem.videoUrl!)}
-                    >
-                      <View style={styles.videoPlaceholder}>
-                        <Ionicons name="play-circle" size={64} color="#007AFF" />
-                        <Text style={styles.videoText}>Tap to play video</Text>
+            {/* Description */}
+            {newsItem.description && (
+              <Text style={styles.newsDescription}>{newsItem.description}</Text>
+            )}
+
+            {/* Content Sections */}
+            {newsItem.text &&
+              newsItem.text.map((section, sectionIndex) => (
+                <View key={sectionIndex} style={styles.section}>
+                  {section.heading && (
+                    <Text style={styles.sectionHeading}>{section.heading}</Text>
+                  )}
+
+                  {section.body &&
+                    section.body.map((bodyItem, bodyIndex) => (
+                      <View key={bodyIndex} style={styles.bodyItem}>
+                        {/* Paragraphs */}
+                        {bodyItem.paragraph &&
+                          bodyItem.paragraph.map(
+                            (paragraph, paragraphIndex) => (
+                              <Text
+                                key={paragraphIndex}
+                                style={styles.paragraph}
+                              >
+                                {paragraph}
+                              </Text>
+                            ),
+                          )}
+
+                        {/* Video */}
+                        {bodyItem.videoUrl && (
+                          <Pressable
+                            style={styles.videoContainer}
+                            onPress={() => handleVideoPress(bodyItem.videoUrl!)}
+                          >
+                            <View style={styles.videoPlaceholder}>
+                              <Ionicons
+                                name="play-circle"
+                                size={64}
+                                color="#007AFF"
+                              />
+                              <Text style={styles.videoText}>
+                                Tap to play video
+                              </Text>
+                            </View>
+                          </Pressable>
+                        )}
+
+                        {/* Image */}
+                        {bodyItem.imageUrl && (
+                          <View style={styles.contentImageContainer}>
+                            <Image
+                              source={{ uri: bodyItem.imageUrl }}
+                              style={styles.contentImage}
+                              contentFit="cover"
+                              placeholder="https://via.placeholder.com/300x200/E0E0E0/999999?text=Loading"
+                            />
+                          </View>
+                        )}
                       </View>
-                    </Pressable>
-                  )}
-                  
-                  {/* Image */}
-                  {bodyItem.imageUrl && (
-                    <View style={styles.contentImageContainer}>
-                      <Image
-                        source={{ uri: bodyItem.imageUrl }}
-                        style={styles.contentImage}
-                        contentFit="cover"
-                        placeholder="https://via.placeholder.com/300x200/E0E0E0/999999?text=Loading"
-                      />
-                    </View>
-                  )}
+                    ))}
                 </View>
               ))}
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

@@ -1,5 +1,16 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Image, ImageProps, ActivityIndicator, View, StyleSheet, Pressable, Modal, Dimensions, Platform, Text } from 'react-native';
+import {
+  Image,
+  ImageProps,
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  Pressable,
+  Modal,
+  Dimensions,
+  Platform,
+  Text,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getInitials } from '@/utils/communications';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,25 +31,28 @@ const isValidImageUrl = (url?: string): boolean => {
   return !!(url && !url.includes('Profile_avatar_placeholder_large.png'));
 };
 
-export function NetworkImage({ 
-  imageUrl, 
-  name, 
-  size = 60, 
+export function NetworkImage({
+  imageUrl,
+  name,
+  size = 60,
   showInitials = true,
   expandable = true,
-  style, 
-  ...props 
+  style,
+  ...props
 }: NetworkImageProps) {
-  const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error' | 'placeholder'>(
-    isValidImageUrl(imageUrl) ? 'loading' : 'placeholder'
-  );
+  const [imageState, setImageState] = useState<
+    'loading' | 'loaded' | 'error' | 'placeholder'
+  >(isValidImageUrl(imageUrl) ? 'loading' : 'placeholder');
   const [showExpandedImage, setShowExpandedImage] = useState(false);
 
-  const imageSize = useMemo(() => ({ 
-    width: size, 
-    height: size, 
-    borderRadius: size / 2 
-  }), [size]);
+  const imageSize = useMemo(
+    () => ({
+      width: size,
+      height: size,
+      borderRadius: size / 2,
+    }),
+    [size],
+  );
 
   const initials = useMemo(() => getInitials(name), [name]);
 
@@ -61,10 +75,13 @@ export function NetworkImage({
     setImageState('loaded');
   }, []);
 
-  const handleImageError = useCallback((e: any) => {
-    console.warn('Image failed to load:', imageUrl, e.nativeEvent?.error);
-    setImageState('error');
-  }, [imageUrl]);
+  const handleImageError = useCallback(
+    (e: any) => {
+      console.warn('Image failed to load:', imageUrl, e.nativeEvent?.error);
+      setImageState('error');
+    },
+    [imageUrl],
+  );
 
   const closeModal = useCallback(async () => {
     if (Platform.OS === 'ios') {
@@ -77,7 +94,9 @@ export function NetworkImage({
     const placeholder = (
       <View style={[styles.placeholder, imageSize, style]}>
         {showInitials && (
-          <Text style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}>
+          <Text
+            style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}
+          >
             {initials}
           </Text>
         )}
@@ -85,17 +104,31 @@ export function NetworkImage({
     );
 
     return expandable ? (
-      <Pressable 
+      <Pressable
         style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
         onPress={handleImagePress}
       >
         {placeholder}
       </Pressable>
-    ) : placeholder;
-  }, [imageSize, style, showInitials, size, initials, expandable, handleImagePress]);
+    ) : (
+      placeholder
+    );
+  }, [
+    imageSize,
+    style,
+    showInitials,
+    size,
+    initials,
+    expandable,
+    handleImagePress,
+  ]);
 
   const renderImage = useCallback(() => {
-    if (!shouldShowImage || imageState === 'error' || imageState === 'placeholder') {
+    if (
+      !shouldShowImage ||
+      imageState === 'error' ||
+      imageState === 'placeholder'
+    ) {
       return renderPlaceholder();
     }
 
@@ -118,14 +151,28 @@ export function NetworkImage({
     );
 
     return expandable ? (
-      <Pressable 
+      <Pressable
         style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
         onPress={handleImagePress}
       >
         {imageContent}
       </Pressable>
-    ) : imageContent;
-  }, [shouldShowImage, imageState, renderPlaceholder, imageSize, style, imageUrl, handleImageLoad, handleImageError, props, expandable, handleImagePress]);
+    ) : (
+      imageContent
+    );
+  }, [
+    shouldShowImage,
+    imageState,
+    renderPlaceholder,
+    imageSize,
+    style,
+    imageUrl,
+    handleImageLoad,
+    handleImageError,
+    props,
+    expandable,
+    handleImagePress,
+  ]);
 
   const renderExpandedContent = useCallback(() => {
     if (imageState === 'loaded' && shouldShowImage) {
@@ -137,12 +184,10 @@ export function NetworkImage({
         />
       );
     }
-    
+
     return (
       <View style={styles.expandedPlaceholder}>
-        <Text style={styles.expandedInitials}>
-          {initials}
-        </Text>
+        <Text style={styles.expandedInitials}>{initials}</Text>
       </View>
     );
   }, [imageState, shouldShowImage, imageUrl, initials]);
@@ -150,7 +195,7 @@ export function NetworkImage({
   return (
     <>
       {renderImage()}
-      
+
       {showExpandedImage && (
         <Modal
           visible={showExpandedImage}
@@ -158,19 +203,19 @@ export function NetworkImage({
           transparent={true}
           onRequestClose={closeModal}
         >
-          <SafeAreaView style={styles.modalOverlay} edges={['top', 'left', 'right', 'bottom']}>
-            <Pressable 
-              style={styles.modalBackground}
-              onPress={closeModal}
-            >
+          <SafeAreaView
+            style={styles.modalOverlay}
+            edges={['top', 'left', 'right', 'bottom']}
+          >
+            <Pressable style={styles.modalBackground} onPress={closeModal}>
               <View style={styles.expandedImageContainer}>
                 {renderExpandedContent()}
               </View>
             </Pressable>
-            <Pressable 
+            <Pressable
               style={({ pressed }) => [
                 styles.closeButton,
-                pressed && styles.closeButtonPressed
+                pressed && styles.closeButtonPressed,
               ]}
               onPress={closeModal}
             >

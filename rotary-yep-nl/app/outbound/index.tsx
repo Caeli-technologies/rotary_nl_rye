@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
+import {
+  FlatList,
+  Platform,
   Pressable,
-  Platform
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
@@ -22,50 +22,82 @@ interface ProgramItem {
 }
 
 export default function OutboundScreen() {
-  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
-    if (!enabled) return;
-    
-    try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
-      router.push(route as any);
-    } catch (error) {
-      console.error('Error navigating to route:', error);
-      router.push(route as any);
-    }
-  }, []);
+  const handleProgramPress = useCallback(
+    async (route: string, enabled: boolean = true) => {
+      if (!enabled) return;
 
-  const renderProgramItem = useCallback(({ item }: { item: ProgramItem }) => (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.programItem,
-        pressed && styles.programItemPressed,
-        !item.enabled && styles.programItemDisabled
-      ]}
-      onPress={() => handleProgramPress(item.route, item.enabled)}
-      accessibilityRole="button"
-      accessibilityLabel={item.title}
-      accessibilityHint={item.enabled ? "Tap to view program details" : "This program is not yet available"}
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      disabled={!item.enabled}
-    >
-      <View style={styles.programContent}>
-        <View style={[styles.iconContainer, !item.enabled && styles.iconContainerDisabled]}>
-          <FontAwesome5 name={item.icon} size={22} color={item.enabled ? "#007AFF" : "#8E8E93"} />
+      try {
+        if (Platform.OS === 'ios') {
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        router.push(route as any);
+      } catch (error) {
+        console.error('Error navigating to route:', error);
+        router.push(route as any);
+      }
+    },
+    [],
+  );
+
+  const renderProgramItem = useCallback(
+    ({ item }: { item: ProgramItem }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.programItem,
+          pressed && styles.programItemPressed,
+          !item.enabled && styles.programItemDisabled,
+        ]}
+        onPress={() => handleProgramPress(item.route, item.enabled)}
+        accessibilityRole="button"
+        accessibilityLabel={item.title}
+        accessibilityHint={
+          item.enabled
+            ? 'Tap to view program details'
+            : 'This program is not yet available'
+        }
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        disabled={!item.enabled}
+      >
+        <View style={styles.programContent}>
+          <View
+            style={[
+              styles.iconContainer,
+              !item.enabled && styles.iconContainerDisabled,
+            ]}
+          >
+            <FontAwesome5
+              name={item.icon}
+              size={22}
+              color={item.enabled ? '#007AFF' : '#8E8E93'}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text
+              style={[
+                styles.programTitle,
+                !item.enabled && styles.programTitleDisabled,
+              ]}
+            >
+              {item.title}
+            </Text>
+            <Text style={styles.programSubtitle}>{item.subtitle}</Text>
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={
+              item.enabled
+                ? Platform.OS === 'ios'
+                  ? '#C7C7CC'
+                  : '#666'
+                : '#C7C7CC'
+            }
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={[styles.programTitle, !item.enabled && styles.programTitleDisabled]}>{item.title}</Text>
-          <Text style={styles.programSubtitle}>{item.subtitle}</Text>
-        </View>
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-          size={20} 
-          color={item.enabled ? (Platform.OS === 'ios' ? '#C7C7CC' : '#666') : '#C7C7CC'} 
-        />
-      </View>
-    </Pressable>
-  ), [handleProgramPress]);
+      </Pressable>
+    ),
+    [handleProgramPress],
+  );
 
   const longTermPrograms: ProgramItem[] = [
     {
@@ -73,8 +105,8 @@ export default function OutboundScreen() {
       subtitle: 'Year Exchange',
       icon: 'calendar-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/long-term',
-      enabled: true
-    }
+      enabled: true,
+    },
   ];
 
   const shortTermPrograms: ProgramItem[] = [
@@ -83,69 +115,81 @@ export default function OutboundScreen() {
       subtitle: 'Summer Camps & Cultural Tours',
       icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours',
-      enabled: true
+      enabled: true,
     },
     {
       title: 'Family to Family',
       subtitle: 'Exchange between families',
       icon: 'home' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/family-to-family',
-      enabled: true
-    }
+      enabled: true,
+    },
   ];
 
-  const IntroSection = useCallback(() => (
-    <View style={styles.introContainer}>
-      <Text style={styles.introTitle}>Kandidaten</Text>
-      <Text style={styles.introText}>
-        Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling. Wereldwijd gaan er jaarlijks zo'n 8.000 studenten via Rotary op jaaruitwisseling, een hele organisatie.
-      </Text>
-    </View>
-  ), []);
+  const IntroSection = useCallback(
+    () => (
+      <View style={styles.introContainer}>
+        <Text style={styles.introTitle}>Kandidaten</Text>
+        <Text style={styles.introText}>
+          Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor
+          uitwisseling. Wereldwijd gaan er jaarlijks zo'n 8.000 studenten via
+          Rotary op jaaruitwisseling, een hele organisatie.
+        </Text>
+      </View>
+    ),
+    [],
+  );
 
-  const SectionHeader = useCallback(({ title }: { title: string }) => (
-    <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderTitle}>{title}</Text>
-      <View style={styles.sectionHeaderDivider} />
-    </View>
-  ), []);
+  const SectionHeader = useCallback(
+    ({ title }: { title: string }) => (
+      <View style={styles.sectionHeaderContainer}>
+        <Text style={styles.sectionHeaderTitle}>{title}</Text>
+        <View style={styles.sectionHeaderDivider} />
+      </View>
+    ),
+    [],
+  );
 
   const renderContent = useCallback(() => {
-    const allItems = [
+    return [
       { type: 'intro' },
       { type: 'sectionHeader', title: 'Long Term Exchange Program' },
-      ...longTermPrograms.map(item => ({ type: 'program', item })),
+      ...longTermPrograms.map((item) => ({ type: 'program', item })),
       { type: 'spacer' },
       { type: 'sectionHeader', title: 'Short Term Exchange Program' },
-      ...shortTermPrograms.map(item => ({ type: 'program', item }))
+      ...shortTermPrograms.map((item) => ({ type: 'program', item })),
     ];
-
-    return allItems;
   }, []);
 
-  const renderItem = useCallback(({ item }: { item: any }) => {
-    switch (item.type) {
-      case 'intro':
-        return <IntroSection />;
-      case 'sectionHeader':
-        return <SectionHeader title={item.title} />;
-      case 'program':
-        return renderProgramItem({ item: item.item });
-      case 'spacer':
-        return <View style={styles.spacer} />;
-      default:
-        return null;
-    }
-  }, [IntroSection, SectionHeader, renderProgramItem]);
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => {
+      switch (item.type) {
+        case 'intro':
+          return <IntroSection />;
+        case 'sectionHeader':
+          return <SectionHeader title={item.title} />;
+        case 'program':
+          return renderProgramItem({ item: item.item });
+        case 'spacer':
+          return <View style={styles.spacer} />;
+        default:
+          return null;
+      }
+    },
+    [IntroSection, SectionHeader, renderProgramItem],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
+          keyExtractor={useCallback(
+            (item: any, index: number) => `${item.type}-${index}`,
+            [],
+          )}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

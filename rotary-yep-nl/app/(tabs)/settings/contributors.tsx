@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -59,7 +53,6 @@ const contributors: Contributor[] = [
 ];
 
 export default function ContributorsScreen() {
-
   const ContributorCard = ({ contributor }: { contributor: Contributor }) => (
     <View style={styles.contributorCard}>
       <NetworkImage
@@ -81,9 +74,9 @@ export default function ContributorsScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
 
-      <ScrollView 
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -105,7 +98,10 @@ export default function ContributorsScreen() {
             <Text style={styles.sectionTitle}>Development Team</Text>
             <View style={styles.contributorsContainer}>
               {contributors.map((contributor) => (
-                <ContributorCard key={contributor.id} contributor={contributor} />
+                <ContributorCard
+                  key={contributor.id}
+                  contributor={contributor}
+                />
               ))}
             </View>
           </View>
@@ -127,7 +123,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -157,7 +153,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section
   section: {
     marginBottom: 24,
@@ -168,7 +164,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginBottom: 16,
   },
-  
+
   // Contributors
   contributorsContainer: {
     backgroundColor: '#FFFFFF',
@@ -207,6 +203,4 @@ const styles = StyleSheet.create({
     color: '#666',
     marginLeft: 4,
   },
-  
-  
 });

@@ -4,7 +4,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Barbara Tusveld',
     bio: 'Als voorzitter van de Longterm commissie ben ik enorm trots dat we met ons team elk jaar voor 40 - 50 scholieren een jaar uitwisseling kunnen realiseren.\nHet is een "lifetime in a year" en niet een "year in a lifetime"\nIk ben zelf uitwisselingsstudent geweest in 1984. Nog steeds bezoek ik mijn gastouders jaarlijks in Amerika. Onze kinderen zijn ook beiden op uitwisseling geweest en intussen hebben wij al 5 bonus kinderen uit de hele wereld en als het aan ons ligt komen er nog heel veel bij.\nNaast deze mooie vrijwillersbaan bij Rotary werk ik als trainer/coach en deels als leerkracht. Ik ben dol op reizen en lopen met onze twee honden.',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/barbara-tusveld.jpg',
     email: 'longtermchair@rotaryyep.nl',
     phoneNumber: '+31655128529',
     club: 'RC Lelystad',
@@ -14,7 +15,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Clasine Scheepers',
     bio: 'Sinds 2017 ben ik lid van team Longterm. Ongelofelijk leuk om Nederlandse jongeren te begeleiden in hun avontuur voor jaaruitwisseling en om buitenlandse jongeren vervolgens hier in Nederland te ontvangen die een jaar lang worden ondergedompeld in hagelslag, stroopwafels en (het aller moeilijkst) de Nederlandse taal. Zo gaaf om dit elke keer met ons team te organiseren en te regelen. Begin 2021 ben ik secretaris MDJC – weer een nieuwe avontuur.\n\nIn mijn familie zijn er velen inmiddels op exchange geweest waaronder mijn man en dochter. Een van de gastgezinnen uit Amerika bezoeken we nog jaarlijks. Je krijgt er echt een nieuwe familie bij. Zelf hebben we nu drie keer een exchange student in huis gehad. Dan merk je van dichtbij waar ze tegenaan lopen in een nieuwe omgeving, andere cultuur en met een vreemde taal. Fijn om hen te helpen hun weg te vinden, een verrijking van je eigen leven.',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/clasine-schepers.png',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/clasine-schepers.png',
     email: 'longtermin@rotaryyep.nl',
     phoneNumber: '+31652710977',
     club: 'RC Huizen',
@@ -33,8 +35,9 @@ export const mdjcContacts: Organization[] = [
   },
   {
     name: 'Fred Dijkers',
-    bio: 'In het Rotaryjaar 2018-19 mocht ik functioneren als jeugdgouverneur voor de zeven Nederlandse districten. In die tijd leerde ik het werk van de MDJC kennen en waarderen. Na dat jaar ben ik onverwacht bij het bestuur gekomen wegens een ontstane vacature van de voorzitter. Hoewel mijn functioneren bedoeld was als \'interim\' bleef ik betrokken omdat zich in korte tijd veel lastige problemen voordeden. Gelukkig konden we daar als bestuur samen goed uitkomen. Maar al die inspanningen bleken wel zeer te binden. Het MDJC-vaarwater is nu gelukkig veel rustiger.\n\nVan beroep ben ik 33 jaar huisarts geweest in een dorp, samen met mijn echtgenote. Met haar kreeg ik vier kinderen en die brachten mij weer tien kleinkinderen. Daar ben ik erg blij mee. Helaas is mijn echtgenote na een langdurig ziekbed in 2011 overleden.\n\nNaast mijn werk in de praktijk werkte ik parttime bij de huisartsopleiding in het LUMC. Ook was ik bestuurder in vele organisaties, vooral in de medische sector.',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/fred-dijkers.jpg',
+    bio: "In het Rotaryjaar 2018-19 mocht ik functioneren als jeugdgouverneur voor de zeven Nederlandse districten. In die tijd leerde ik het werk van de MDJC kennen en waarderen. Na dat jaar ben ik onverwacht bij het bestuur gekomen wegens een ontstane vacature van de voorzitter. Hoewel mijn functioneren bedoeld was als 'interim' bleef ik betrokken omdat zich in korte tijd veel lastige problemen voordeden. Gelukkig konden we daar als bestuur samen goed uitkomen. Maar al die inspanningen bleken wel zeer te binden. Het MDJC-vaarwater is nu gelukkig veel rustiger.\n\nVan beroep ben ik 33 jaar huisarts geweest in een dorp, samen met mijn echtgenote. Met haar kreeg ik vier kinderen en die brachten mij weer tien kleinkinderen. Daar ben ik erg blij mee. Helaas is mijn echtgenote na een langdurig ziekbed in 2011 overleden.\n\nNaast mijn werk in de praktijk werkte ik parttime bij de huisartsopleiding in het LUMC. Ook was ik bestuurder in vele organisaties, vooral in de medische sector.",
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/fred-dijkers.jpg',
     email: 'chair@rotaryyep.nl',
     phoneNumber: undefined,
     club: 'Hoeksche Waard',
@@ -54,7 +57,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Marga Oosterveld',
     bio: 'Hallo, ik ben een oud uitwisselingsstudent of exchangee zoals dat heet. In het jaar 1988 - 1989 ben ik met Rotary een jaar naar het buitenland geweest. "Class of 89" noemen ze dat in Amerika. Eigenlijk wilde ik graag naar het noordoosten, maar ik kwam terecht in het zuidwesten van de USA. Totaal anders dan Nederland met indianen en cowboys, midden in de woestijn en in de bergen. Het is niet altijd makkelijk en soms best wel even slikken, maar als je dat lukt, heb je de tijd van je leven. Nu ben ik contactpersoon tussen de districten in de USA, Canada en Zuid Afrika om Rotary Clubs te vinden die willen uitwisselen met Nederland voor a lifetime in a year !!',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg',
     email: 'marga_bart@yahoo.com',
     phoneNumber: '+31629586813',
     club: 'Rotary Club Oosterwolde',
@@ -74,7 +78,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Steven Stolp',
     bio: 'Als scholier had ik geen flauw benul van het bestaan van uitwisselingen. In mijn studententijd heb ik dat ingehaald door mijn eigen exchanges te organiseren, (korter) werken en later studeren in (zuid) Frankrijk en vervolgens langer naar Ouagadougou in Burkina Faso, West-Afrika. Buiten de Nederlandse context ontwikkel je je net wat anders. Dat gun ik iedereen, en de wereld.\n\nIn het dagelijks leven werk ik in de gezondheidszorg als bedrijfskundige in verschillende rollen. De "net iets andere blik" komt daar van pas. Daarnaast sport ik graag en volgens sommigen veel, het liefst met gezinsleden of vrienden.\n\nIn mijn vrije tijd wil ik vooral met plezier aan leuke dingen bijdragen. Daarom ben ik van "de activiteiten". Met het team van de long term exchange, Rotex (oud exchangestudenten) en de uitwisselingsstudenten ondernemen we samen van alles. Daarbij hebben we lol en leren we elke dag weer van alles van elkaar.',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/steven-stolp.png',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/steven-stolp.png',
     email: 'DJC1560@rotaryyep.nl',
     phoneNumber: undefined,
     club: 'RC Bennekom',
@@ -84,7 +89,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Erna van Dijk',
     bio: 'Ik ben Erna van Dijk. Sinds 2013 ben ik lid van de Rotary en sinds 1 juli 2023 District Jeugd Commissaris van D1570. In 1987-88 heb ik zelf meegedaan aan een uitwisselingsprogramma en heb ik een jaar in El Paso, Texas gewoond. Ik heb dit als een hele waardevolle periode ervaren en wil graag mijn steentje bijdragen om jongeren ook een fantastische buitenland ervaring te laten hebben.\n\nIn het dagelijks leven ben ik werkzaam als bedrijfsarts. Ik woon samen met mijn vriend, mijn zoon en zijn zoon en 2 dochters. Een samengesteld gezin dus.\n\nRotary is mijn grootste hobby, maar daarnaast ben ik ook lid van toastmasters. Verder vul ik mijn vrije tijd met tuinieren, wandelen, dansen en mijn kippen, katten en hond.',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg',
     email: 'erna@vandijkmedischadvies.nl',
     phoneNumber: '+31612300695',
     club: 'Scherpenzeel- Woudenberg',
@@ -93,7 +99,7 @@ export const mdjcContacts: Organization[] = [
   },
   {
     name: 'Mario Meeuwse',
-    bio: 'Mijn naam is Mario Meeuwse en ik ben District Jeugd Commissaris van District 1580.\nGedurende mijn Rotaract lidmaatschap en later Rotary heb ik veel uitwisselingen meegemaakt.\nDaarnaast was ik actief in voor de Rotary Youth Leadership Award commissie in District 1610.\nOok heb ik veel internationale activiteiten bijgewoond zoals (wereld)congressen en (district)conferenties.\nZelf heb ik een Group Study Exchange gedaan naar Japan, waar ik met veel dankbaarheid en plezier op terugkijk.\nEen geweldige ervaring naar een land met een heel andere cultuur met enthousiaste mensen binnen de Rotary familie.\nDaarom wil ik ook een steentje bijdragen aan uitwisselingen en de jeugd een onvergetelijke ervaring bezorgen.\n\nIk woon in Aalsmeer met Jikkemine en onze twee zonen.\nWij hebben elkaar leren kennen toen wij Rotaracters waren op weg naar Santiago de Compostella tijdens het 100 jarige bestaan van Rotary.\n\nIn het dagelijks leven ben ik accountmanager Grootzakelijk bij de Rabobank, gespecialiseerd in ICT & Zorg.\nMijn hobby\'s zijn: reizen, talen, skiën, zeilen & zwemmen.',
+    bio: "Mijn naam is Mario Meeuwse en ik ben District Jeugd Commissaris van District 1580.\nGedurende mijn Rotaract lidmaatschap en later Rotary heb ik veel uitwisselingen meegemaakt.\nDaarnaast was ik actief in voor de Rotary Youth Leadership Award commissie in District 1610.\nOok heb ik veel internationale activiteiten bijgewoond zoals (wereld)congressen en (district)conferenties.\nZelf heb ik een Group Study Exchange gedaan naar Japan, waar ik met veel dankbaarheid en plezier op terugkijk.\nEen geweldige ervaring naar een land met een heel andere cultuur met enthousiaste mensen binnen de Rotary familie.\nDaarom wil ik ook een steentje bijdragen aan uitwisselingen en de jeugd een onvergetelijke ervaring bezorgen.\n\nIk woon in Aalsmeer met Jikkemine en onze twee zonen.\nWij hebben elkaar leren kennen toen wij Rotaracters waren op weg naar Santiago de Compostella tijdens het 100 jarige bestaan van Rotary.\n\nIn het dagelijks leven ben ik accountmanager Grootzakelijk bij de Rabobank, gespecialiseerd in ICT & Zorg.\nMijn hobby's zijn: reizen, talen, skiën, zeilen & zwemmen.",
     imageUrl: undefined,
     email: undefined,
     phoneNumber: undefined,
@@ -103,17 +109,18 @@ export const mdjcContacts: Organization[] = [
   },
   {
     name: 'Judith Siebring',
-    bio: 'Mijn naam is Judith Siebring, outbound Coördinator longterm RYE voor de regio\'s Midden- en Zuid-Amerika.\n\nOp mijn 16e (lang geleden… ;-)) ben ik een jaar naar London, Ontario, Canada geweest op uitwisseling via de Rotary. Ik heb een fantastisch jaar gehad waar ik nog ontzettend vaak aan terugdenk. Het heeft ook veel impact gehad op latere keuzes en ervaringen in mijn leven. Reizen, andere mensen, talen en culturen leren kennen; het zit in mijn bloed. Zo heb ik tijdens mijn studie ook nog een jaar in Uruguay in Zuid-Amerika gestudeerd, en heb ik later nog in Canada en Nieuw-Zeeland gewoond en gewerkt. Inmiddels woon ik alweer een aantal jaar in Emmen en ben daar lid geworden van Rotaryclub Emmen-\'t Loo. Ik ben blij dat ik nu mijn steentje kan bijdragen aan het RYE-programma als jeugdcommissaris in mijn club, gastouder én als outbound Coördinator voor de regio\'s Midden- en Zuid-Amerika. Ik kijk er naar uit om jongeren een stapje op weg te helpen naar en tijdens het jaar van hun leven, met al z\'n ups en downs. Daarnaast ben ik blij dat ik de kans krijg om mijn Spaans een beetje te oefenen en contacten te onderhouden met mijn \'Rotary collega\'s\' in het prachtige Zuid-Amerika.',
-    imageUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg',
+    bio: "Mijn naam is Judith Siebring, outbound Coördinator longterm RYE voor de regio's Midden- en Zuid-Amerika.\n\nOp mijn 16e (lang geleden… ;-)) ben ik een jaar naar London, Ontario, Canada geweest op uitwisseling via de Rotary. Ik heb een fantastisch jaar gehad waar ik nog ontzettend vaak aan terugdenk. Het heeft ook veel impact gehad op latere keuzes en ervaringen in mijn leven. Reizen, andere mensen, talen en culturen leren kennen; het zit in mijn bloed. Zo heb ik tijdens mijn studie ook nog een jaar in Uruguay in Zuid-Amerika gestudeerd, en heb ik later nog in Canada en Nieuw-Zeeland gewoond en gewerkt. Inmiddels woon ik alweer een aantal jaar in Emmen en ben daar lid geworden van Rotaryclub Emmen-'t Loo. Ik ben blij dat ik nu mijn steentje kan bijdragen aan het RYE-programma als jeugdcommissaris in mijn club, gastouder én als outbound Coördinator voor de regio's Midden- en Zuid-Amerika. Ik kijk er naar uit om jongeren een stapje op weg te helpen naar en tijdens het jaar van hun leven, met al z'n ups en downs. Daarnaast ben ik blij dat ik de kans krijg om mijn Spaans een beetje te oefenen en contacten te onderhouden met mijn 'Rotary collega's' in het prachtige Zuid-Amerika.",
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg',
     email: undefined,
     phoneNumber: '+31652682275',
-    club: 'RC Emmen-\'t Loo',
+    club: "RC Emmen-'t Loo",
     district: '1590 NOORD-NEDERLAND',
     functions: ['DJC 1590'],
   },
   {
     name: 'Pieter Postma',
-    bio: 'Sinds 2009 ben ik met veel plezier lid van Rotary. Als snel raakte ik betrokken bij de jeugduitwisseling. Ik kan me erg goed vinden in de gedachten achter de programma\'s, namelijk de persoonlijke ontwikkeling van de jongeren, kennis maken met andere culturen en op die manier bijdragen aan wat meer internationaal begrip.\nMijn kinderen zijn alle drie via Rotary een jaar weggeweest en zelf hebben we ook lange tijd jongeren in huis gehad die via het Rotary-programma in Nederland waren. Dat opvangen van die jongeren was voor ons gezin ook een mooie ervaring. Nadat ik eerst een tijd lang binnen de jeugdcommissie van onze club actief ben geweest, werd ik in 2016 District Jeugdcommissaris van district 1580. Daarmee belandde ik ook in de landelijke jeugdcommissie (MDJC) en daar ben ik nu nog steeds actief.\nIn het dagelijks leven ben ik als fiscalist werkzaam bij een belastingadvieskantoor.',
+    bio: "Sinds 2009 ben ik met veel plezier lid van Rotary. Als snel raakte ik betrokken bij de jeugduitwisseling. Ik kan me erg goed vinden in de gedachten achter de programma's, namelijk de persoonlijke ontwikkeling van de jongeren, kennis maken met andere culturen en op die manier bijdragen aan wat meer internationaal begrip.\nMijn kinderen zijn alle drie via Rotary een jaar weggeweest en zelf hebben we ook lange tijd jongeren in huis gehad die via het Rotary-programma in Nederland waren. Dat opvangen van die jongeren was voor ons gezin ook een mooie ervaring. Nadat ik eerst een tijd lang binnen de jeugdcommissie van onze club actief ben geweest, werd ik in 2016 District Jeugdcommissaris van district 1580. Daarmee belandde ik ook in de landelijke jeugdcommissie (MDJC) en daar ben ik nu nog steeds actief.\nIn het dagelijks leven ben ik als fiscalist werkzaam bij een belastingadvieskantoor.",
     imageUrl: undefined,
     email: 'compliance@rotaryyep.nl',
     phoneNumber: undefined,

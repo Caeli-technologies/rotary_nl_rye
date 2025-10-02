@@ -14,8 +14,8 @@ export default function AboutLayout() {
         },
       }}
     >
-      <Stack.Screen 
-        name="index" 
+      <Stack.Screen
+        name="index"
         options={{
           title: 'About Us',
           headerShown: true,

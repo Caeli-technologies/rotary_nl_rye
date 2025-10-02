@@ -10,18 +10,15 @@ export default function InboundStudentDetailScreen() {
 
   const student = useMemo(() => {
     if (!params.studentName) return null;
-    
-    return currentInboundStudents.find(s => s.name === params.studentName) || null;
+
+    return (
+      currentInboundStudents.find((s) => s.name === params.studentName) || null
+    );
   }, [params.studentName]);
 
   if (!student) {
     return null; // StudentDetail component handles this case
   }
 
-  return (
-    <StudentDetail
-      student={student}
-      studentType="inbound"
-    />
-  );
+  return <StudentDetail student={student} studentType="inbound" />;
 }

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -21,9 +15,9 @@ const shadowStyle = {
 export default function CountriesPreferenceScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -46,10 +40,17 @@ export default function CountriesPreferenceScreen() {
               <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Hoe kies je je voorkeur?</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Als je mee wilt doen aan het Family to Family programma geef je op of je voor het noordelijk of zuidelijk halfrond gaat. Bij de landenkeuze dien je drie landen op 2 continenten op te geven. Hierbij gelden de Verenigde Staten en Canada als één bestemming. De reden hiervoor is dat we niet alle kandidaten in de VS en Canada kunnen plaatsen. Daarbij komt dat als jij de juiste instelling hebt voor een Family to Family uitwisseling het uiteindelijk niet uitmaakt naar welk land je gaat.
+                Als je mee wilt doen aan het Family to Family programma geef je
+                op of je voor het noordelijk of zuidelijk halfrond gaat. Bij de
+                landenkeuze dien je drie landen op 2 continenten op te geven.
+                Hierbij gelden de Verenigde Staten en Canada als één bestemming.
+                De reden hiervoor is dat we niet alle kandidaten in de VS en
+                Canada kunnen plaatsen. Daarbij komt dat als jij de juiste
+                instelling hebt voor een Family to Family uitwisseling het
+                uiteindelijk niet uitmaakt naar welk land je gaat.
               </Text>
             </View>
           </View>
@@ -60,10 +61,13 @@ export default function CountriesPreferenceScreen() {
               <Ionicons name="star-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Kies voor Europa!</Text>
             </View>
-            
+
             <View style={styles.europeCard}>
               <Text style={styles.europeText}>
-                Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste uitwisselingen plaats en ontstaan de mooiste vriendschappen met het voordeel dat je deze vrienden makkelijker kunt herbezoeken. De reiskosten zijn veel lager.
+                Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste
+                uitwisselingen plaats en ontstaan de mooiste vriendschappen met
+                het voordeel dat je deze vrienden makkelijker kunt herbezoeken.
+                De reiskosten zijn veel lager.
               </Text>
             </View>
           </View>
@@ -74,7 +78,7 @@ export default function CountriesPreferenceScreen() {
               <Ionicons name="bulb-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Tips voor je keuze</Text>
             </View>
-            
+
             <View style={styles.tipCard}>
               <View style={styles.tipIcon}>
                 <Ionicons name="language-outline" size={20} color="#2196F3" />
@@ -82,7 +86,8 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Taal</Text>
                 <Text style={styles.tipDescription}>
-                  Overweeg welke talen je spreekt of wilt leren. Basiskennis helpt bij de communicatie.
+                  Overweeg welke talen je spreekt of wilt leren. Basiskennis
+                  helpt bij de communicatie.
                 </Text>
               </View>
             </View>
@@ -94,7 +99,8 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Cultuur</Text>
                 <Text style={styles.tipDescription}>
-                  Kies landen waarvan de cultuur en geschiedenis je echt interesseren.
+                  Kies landen waarvan de cultuur en geschiedenis je echt
+                  interesseren.
                 </Text>
               </View>
             </View>
@@ -106,12 +112,12 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Reiskosten</Text>
                 <Text style={styles.tipDescription}>
-                  Houd rekening met reiskosten en afstand, vooral bij kortere programma's.
+                  Houd rekening met reiskosten en afstand, vooral bij kortere
+                  programma's.
                 </Text>
               </View>
             </View>
           </View>
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -130,7 +136,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -160,7 +166,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -176,17 +182,19 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   infoText: {
     fontSize: 16,
@@ -194,7 +202,6 @@ const styles = StyleSheet.create({
     color: '#333',
   },
 
-  
   // Europe Card Styles
   europeCard: {
     backgroundColor: '#E8F5E8',
@@ -202,21 +209,23 @@ const styles = StyleSheet.create({
     padding: 20,
     borderLeftWidth: 4,
     borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#4CAF50',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#4CAF50',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 1,
+        }),
   },
   europeText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Logo Section
   logoSection: {
     alignItems: 'center',
@@ -227,7 +236,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#777777',
   },
-  
+
   // Tip Card Styles
   tipCard: {
     backgroundColor: '#FFFFFF',
@@ -236,11 +245,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 1,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   tipIcon: {
     width: 40,

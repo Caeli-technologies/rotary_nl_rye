@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
   Pressable,
-  Platform
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -33,96 +33,109 @@ export default function ShortTermScreen() {
     }
   }, []);
 
-  const renderMenuItem = useCallback(({ item }: { item: MenuItem }) => (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.menuItem,
-        pressed && styles.menuItemPressed
-      ]}
-      onPress={() => handleItemPress(item.route)}
-      accessibilityRole="button"
-      accessibilityLabel={item.title}
-      accessibilityHint="Tap to view details"
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-    >
-      <View style={styles.menuContent}>
-        <View style={styles.iconContainer}>
-          <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+  const renderMenuItem = useCallback(
+    ({ item }: { item: MenuItem }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.menuItem,
+          pressed && styles.menuItemPressed,
+        ]}
+        onPress={() => handleItemPress(item.route)}
+        accessibilityRole="button"
+        accessibilityLabel={item.title}
+        accessibilityHint="Tap to view details"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <View style={styles.menuContent}>
+          <View style={styles.iconContainer}>
+            <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.menuTitle}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
+            )}
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.menuTitle}>{item.title}</Text>
-          {item.subtitle && (
-            <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
-          )}
-        </View>
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-          size={20} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
-        />
-      </View>
-    </Pressable>
-  ), [handleItemPress]);
+      </Pressable>
+    ),
+    [handleItemPress],
+  );
 
   const menuItems: MenuItem[] = [
     {
       title: 'Camps & Tours',
       subtitle: 'Short-term cultural exchange programs',
       icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/camps-and-tours'
+      route: '/outbound/short-term/camps-and-tours',
     },
     {
       title: 'Family to Family',
       subtitle: 'Host family exchange experiences',
       icon: 'home' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/family-to-family'
-    }
+      route: '/outbound/short-term/family-to-family',
+    },
   ];
 
-  const IntroSection = useCallback(() => (
-    <View style={styles.introContainer}>
-      <View style={styles.headerSection}>
-        <Text style={styles.headerTitle}>Short Term Programs</Text>
-        <Text style={styles.headerSubtitle}>
-          Experience different cultures through shorter exchange programs
+  const IntroSection = useCallback(
+    () => (
+      <View style={styles.introContainer}>
+        <View style={styles.headerSection}>
+          <Text style={styles.headerTitle}>Short Term Programs</Text>
+          <Text style={styles.headerSubtitle}>
+            Experience different cultures through shorter exchange programs
+          </Text>
+        </View>
+        <Text style={styles.introText}>
+          Rotary short-term programs offer young people the opportunity to
+          experience different cultures through shorter exchange periods. These
+          programs are perfect for students who want to gain international
+          experience but cannot commit to a full year abroad.
         </Text>
       </View>
-      <Text style={styles.introText}>
-        Rotary short-term programs offer young people the opportunity to experience different 
-        cultures through shorter exchange periods. These programs are perfect for students who 
-        want to gain international experience but cannot commit to a full year abroad.
-      </Text>
-    </View>
-  ), []);
+    ),
+    [],
+  );
 
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
-      ...menuItems.map(item => ({ type: 'menuItem', item }))
+      ...menuItems.map((item) => ({ type: 'menuItem', item })),
     ];
 
     return allItems;
   }, []);
 
-  const renderItem = useCallback(({ item }: { item: any }) => {
-    switch (item.type) {
-      case 'intro':
-        return <IntroSection />;
-      case 'menuItem':
-        return renderMenuItem({ item: item.item });
-      default:
-        return null;
-    }
-  }, [IntroSection, renderMenuItem]);
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => {
+      switch (item.type) {
+        case 'intro':
+          return <IntroSection />;
+        case 'menuItem':
+          return renderMenuItem({ item: item.item });
+        default:
+          return null;
+      }
+    },
+    [IntroSection, renderMenuItem],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
+          keyExtractor={useCallback(
+            (item: any, index: number) => `${item.type}-${index}`,
+            [],
+          )}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

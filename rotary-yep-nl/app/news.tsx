@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
-  Pressable, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Pressable,
   ActivityIndicator,
-  Alert
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,14 +21,14 @@ interface NewsItem {
   title: string;
   description: string;
   isPdf: string;
-  text?: Array<{
+  text?: {
     heading?: string;
-    body?: Array<{
+    body?: {
       paragraph?: string[];
       videoUrl?: string;
       imageUrl?: string;
-    }>;
-  }>;
+    }[];
+  }[];
 }
 
 interface NewsData {
@@ -37,15 +37,15 @@ interface NewsData {
 
 function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
   return (
-    <Pressable 
+    <Pressable
       style={({ pressed }) => [
         styles.newsCard,
-        pressed && styles.newsCardPressed
+        pressed && styles.newsCardPressed,
       ]}
       onPress={onPress}
       android_ripple={{
         color: 'rgba(0, 122, 255, 0.2)',
-        borderless: false
+        borderless: false,
       }}
     >
       <View style={styles.cardContent}>
@@ -56,7 +56,7 @@ function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
             contentFit="cover"
             placeholder="https://via.placeholder.com/300x200/E0E0E0/999999?text=Loading"
           />
-          {item.isPdf === "yes" && (
+          {item.isPdf === 'yes' && (
             <View style={styles.pdfBadge}>
               <Ionicons name="document-text" size={16} color="#fff" />
               <Text style={styles.pdfText}>PDF</Text>
@@ -88,13 +88,15 @@ export default function NewsScreen() {
     try {
       if (!isRefresh) setLoading(true);
       setError(null);
-      
-      const response = await fetch('https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/news.json');
-      
+
+      const response = await fetch(
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/news.json',
+      );
+
       if (!response.ok) {
         throw new Error(`Failed to load news: ${response.status}`);
       }
-      
+
       const data: NewsData = await response.json();
       setNewsData(data.news || []);
     } catch (err) {
@@ -116,22 +118,25 @@ export default function NewsScreen() {
   };
 
   const handleNewsItemPress = (item: NewsItem) => {
-    if (item.isPdf === "yes" && item.pdf) {
+    if (item.isPdf === 'yes' && item.pdf) {
       router.push({
         pathname: '/pdf-viewer' as any,
-        params: { url: item.pdf, title: item.title }
+        params: { url: item.pdf, title: item.title },
       });
     } else if (item.text?.length) {
       router.push({
         pathname: '/news/[id]' as any,
-        params: { 
+        params: {
           id: item.id.toString(),
           title: item.title,
-          content: JSON.stringify(item)
-        }
+          content: JSON.stringify(item),
+        },
       });
     } else {
-      Alert.alert('Notice', 'This news item has no additional content available.');
+      Alert.alert(
+        'Notice',
+        'This news item has no additional content available.',
+      );
     }
   };
 
@@ -148,7 +153,7 @@ export default function NewsScreen() {
         </View>
       );
     }
-    
+
     if (error) {
       return (
         <View style={styles.centered}>
@@ -172,12 +177,13 @@ export default function NewsScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={[]}>
-      <StatusBar style="auto" />
       <FlatList
         data={newsData}
         renderItem={renderNewsItem}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={newsData.length > 0 ? styles.listContent : styles.emptyContainer}
+        contentContainerStyle={
+          newsData.length > 0 ? styles.listContent : styles.emptyContainer
+        }
         showsVerticalScrollIndicator={false}
         refreshing={refreshing}
         onRefresh={handleRefresh}

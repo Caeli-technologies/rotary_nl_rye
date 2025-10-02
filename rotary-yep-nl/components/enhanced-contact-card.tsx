@@ -1,5 +1,16 @@
 import React, { useState, useCallback } from 'react';
-import { View, StyleSheet, Pressable, Modal, ScrollView, Dimensions, Platform, Linking, Text, Alert } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  Modal,
+  ScrollView,
+  Dimensions,
+  Platform,
+  Linking,
+  Text,
+  Alert,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NetworkImage } from './network-image';
 import { makePhoneCall, sendEmail } from '../utils/communications';
@@ -16,14 +27,22 @@ interface ContactCardProps {
 }
 
 // Helper functions for safe data access
-const getOrgClub = (contact: Contact | Organization | Rotex): string | undefined => {
+const getOrgClub = (
+  contact: Contact | Organization | Rotex,
+): string | undefined => {
   const orgContact = contact as Organization;
-  return orgContact.club && orgContact.club.trim() !== '' ? orgContact.club : undefined;
+  return orgContact.club && orgContact.club.trim() !== ''
+    ? orgContact.club
+    : undefined;
 };
 
-const getOrgDistrict = (contact: Contact | Organization | Rotex): string | undefined => {
+const getOrgDistrict = (
+  contact: Contact | Organization | Rotex,
+): string | undefined => {
   const orgContact = contact as Organization;
-  return orgContact.district && orgContact.district.trim() !== '' ? orgContact.district : undefined;
+  return orgContact.district && orgContact.district.trim() !== ''
+    ? orgContact.district
+    : undefined;
 };
 
 const shadowStyle = {
@@ -67,29 +86,51 @@ export function ContactCard({ contact, index }: ContactCardProps) {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL(url).then(supported => {
-      if (supported) {
-        Linking.openURL(url);
-      } else {
-        Alert.alert('Cannot open URL', 'Unable to open the requested social media link');
-      }
-    }).catch(err => console.error('Error opening URL:', err));
+    Linking.canOpenURL(url)
+      .then((supported) => {
+        if (supported) {
+          Linking.openURL(url);
+        } else {
+          Alert.alert(
+            'Cannot open URL',
+            'Unable to open the requested social media link',
+          );
+        }
+      })
+      .catch((err) => console.error('Error opening URL:', err));
   }, []);
 
   const renderSocialLinks = useCallback(() => {
     if (!contactInfo.hasSocial) return null;
-    
+
     const rotexContact = contact as Rotex;
     const socialMedia = rotexContact.socialMedia!;
-    
+
     const socialPlatforms = [
-      { key: 'instagram', icon: 'logo-instagram', color: '#E4405F', url: socialMedia.instagram },
-      { key: 'facebook', icon: 'logo-facebook', color: '#1877F2', url: socialMedia.facebook },
-      { key: 'linkedin', icon: 'logo-linkedin', color: '#0A66C2', url: socialMedia.linkedin },
+      {
+        key: 'instagram',
+        icon: 'logo-instagram',
+        color: '#E4405F',
+        url: socialMedia.instagram,
+      },
+      {
+        key: 'facebook',
+        icon: 'logo-facebook',
+        color: '#1877F2',
+        url: socialMedia.facebook,
+      },
+      {
+        key: 'linkedin',
+        icon: 'logo-linkedin',
+        color: '#0A66C2',
+        url: socialMedia.linkedin,
+      },
     ] as const;
 
-    const validPlatforms = socialPlatforms.filter(platform => platform.url && platform.url.trim() !== '');
-    
+    const validPlatforms = socialPlatforms.filter(
+      (platform) => platform.url && platform.url.trim() !== '',
+    );
+
     // Don't render section if no valid social media links
     if (validPlatforms.length === 0) return null;
 
@@ -97,12 +138,12 @@ export function ContactCard({ contact, index }: ContactCardProps) {
       <View style={styles.detailSection}>
         <Text style={styles.sectionTitle}>Social Media</Text>
         <View style={styles.socialLinksContainer}>
-          {validPlatforms.map(platform => (
-            <Pressable 
+          {validPlatforms.map((platform) => (
+            <Pressable
               key={platform.key}
               style={({ pressed }) => [
                 styles.socialLink,
-                pressed && styles.socialLinkPressed
+                pressed && styles.socialLinkPressed,
               ]}
               onPress={() => handleSocialMedia(platform.url!)}
             >
@@ -119,22 +160,19 @@ export function ContactCard({ contact, index }: ContactCardProps) {
 
   return (
     <>
-      <Pressable 
-        style={({ pressed }) => [
-          styles.card,
-          pressed && styles.cardPressed
-        ]}
+      <Pressable
+        style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
         onPress={handleCardPress}
       >
         <View style={styles.content}>
-          <NetworkImage 
-            imageUrl={contact.imageUrl} 
-            name={contact.name} 
-            size={60} 
+          <NetworkImage
+            imageUrl={contact.imageUrl}
+            name={contact.name}
+            size={60}
             expandable={false}
             style={styles.contactImage}
           />
-          
+
           <View style={styles.middleSection}>
             <Text style={styles.name} numberOfLines={1}>
               {contact.name}
@@ -150,11 +188,15 @@ export function ContactCard({ contact, index }: ContactCardProps) {
               </Text>
             )}
           </View>
-          
-          <Ionicons 
-            name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
-            size={Platform.OS === 'ios' ? 20 : 24} 
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
+
+          <Ionicons
+            name={
+              Platform.OS === 'ios'
+                ? 'chevron-forward'
+                : 'chevron-forward-outline'
+            }
+            size={Platform.OS === 'ios' ? 20 : 24}
+            color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
           />
         </View>
       </Pressable>
@@ -165,14 +207,16 @@ export function ContactCard({ contact, index }: ContactCardProps) {
         presentationStyle={Platform.OS === 'ios' ? 'pageSheet' : 'fullScreen'}
         onRequestClose={() => setShowDetails(false)}
       >
-        <SafeAreaView style={styles.modalContainer} edges={['top', 'left', 'right', 'bottom']}>
-          <StatusBar style="light" />
+        <SafeAreaView
+          style={styles.modalContainer}
+          edges={['top', 'left', 'right', 'bottom']}
+        >
           <View style={styles.modalHeader}>
             <Text style={styles.modalTitle}>Contact Details</Text>
-            <Pressable 
+            <Pressable
               style={({ pressed }) => [
                 styles.closeButton,
-                pressed && styles.closeButtonPressed
+                pressed && styles.closeButtonPressed,
               ]}
               onPress={() => setShowDetails(false)}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -180,24 +224,24 @@ export function ContactCard({ contact, index }: ContactCardProps) {
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </Pressable>
           </View>
-          
-          <ScrollView 
-            style={styles.modalContent} 
+
+          <ScrollView
+            style={styles.modalContent}
             showsVerticalScrollIndicator={false}
             contentInsetAdjustmentBehavior="automatic"
           >
             <View style={styles.profileSection}>
               <View style={styles.profileImageContainer}>
-                <NetworkImage 
-                  imageUrl={contact.imageUrl} 
-                  name={contact.name} 
-                  size={100} 
+                <NetworkImage
+                  imageUrl={contact.imageUrl}
+                  name={contact.name}
+                  size={100}
                   expandable={true}
                   showInitials={true}
                 />
                 {contactInfo.isRotex && (
                   <View style={styles.logoContainer}>
-                    <Image 
+                    <Image
                       source={require('@/assets/logo/rotex_logo_light.svg')}
                       style={styles.organizationLogo}
                       contentFit="contain"
@@ -206,7 +250,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                 )}
                 {contactInfo.isOrg && (
                   <View style={styles.logoContainer}>
-                    <Image 
+                    <Image
                       source={require('@/assets/logo/rotary-logo-icon.svg')}
                       style={styles.organizationLogo}
                       contentFit="contain"
@@ -216,14 +260,16 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                 )}
               </View>
               <Text style={styles.detailName}>{contact.name}</Text>
-              
+
               {contact.functions && contact.functions.length > 0 && (
                 <View style={styles.functionsContainer}>
-                  {contact.functions.filter(func => func && func.trim() !== '').map((func, idx) => (
-                    <View key={idx} style={styles.functionChip}>
-                      <Text style={styles.functionText}>{func}</Text>
-                    </View>
-                  ))}
+                  {contact.functions
+                    .filter((func) => func && func.trim() !== '')
+                    .map((func, idx) => (
+                      <View key={idx} style={styles.functionChip}>
+                        <Text style={styles.functionText}>{func}</Text>
+                      </View>
+                    ))}
                 </View>
               )}
             </View>
@@ -232,10 +278,14 @@ export function ContactCard({ contact, index }: ContactCardProps) {
               <View style={styles.detailSection}>
                 <Text style={styles.sectionTitle}>Organization</Text>
                 {getOrgClub(contact) && (
-                  <Text style={styles.detailText}>Club: {getOrgClub(contact)}</Text>
+                  <Text style={styles.detailText}>
+                    Club: {getOrgClub(contact)}
+                  </Text>
                 )}
                 {getOrgDistrict(contact) && (
-                  <Text style={styles.detailText}>District: {getOrgDistrict(contact)}</Text>
+                  <Text style={styles.detailText}>
+                    District: {getOrgDistrict(contact)}
+                  </Text>
                 )}
               </View>
             )}
@@ -244,11 +294,11 @@ export function ContactCard({ contact, index }: ContactCardProps) {
               <View style={styles.detailSection}>
                 <Text style={styles.sectionTitle}>Contact Information</Text>
                 {contact.email && contact.email.trim() !== '' && (
-                  <Pressable 
+                  <Pressable
                     style={({ pressed }) => [
                       styles.contactRow,
-                      pressed && styles.contactRowPressed
-                    ]} 
+                      pressed && styles.contactRowPressed,
+                    ]}
                     onPress={handleEmail}
                   >
                     <Ionicons name="mail" size={20} color="#1A237E" />
@@ -256,15 +306,17 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                   </Pressable>
                 )}
                 {contact.phoneNumber && contact.phoneNumber.trim() !== '' && (
-                  <Pressable 
+                  <Pressable
                     style={({ pressed }) => [
                       styles.contactRow,
-                      pressed && styles.contactRowPressed
+                      pressed && styles.contactRowPressed,
                     ]}
                     onPress={handleCall}
                   >
                     <Ionicons name="call" size={20} color="#1A237E" />
-                    <Text style={styles.contactText}>{contact.phoneNumber}</Text>
+                    <Text style={styles.contactText}>
+                      {contact.phoneNumber}
+                    </Text>
                   </Pressable>
                 )}
               </View>
@@ -293,9 +345,11 @@ const styles = StyleSheet.create({
     marginBottom: Platform.OS === 'ios' ? 0 : 12,
     borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
     borderBottomColor: '#E0E0E0',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+        }),
   },
   cardPressed: {
     opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
@@ -364,14 +418,16 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
-    ...(Platform.OS === 'ios' ? {
-      ...shadowStyle,
-      shadowOpacity: 0.12,
-    } : {
-      elevation: 3,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          ...shadowStyle,
+          shadowOpacity: 0.12,
+        }
+      : {
+          elevation: 3,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   profileImageContainer: {
     position: 'relative',
@@ -386,14 +442,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 6,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.15,
-      shadowRadius: 4,
-    } : {
-      elevation: 4,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.15,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 4,
+        }),
   },
   organizationLogo: {
     width: 24,
@@ -429,11 +487,13 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     marginBottom: 16,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   sectionTitle: {
     fontSize: 18,

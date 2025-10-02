@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
+import {
+  FlatList,
+  Platform,
   Pressable,
-  Platform
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
@@ -34,36 +34,39 @@ export default function CampsAndToursScreen() {
     }
   }, []);
 
-  const renderMenuItem = useCallback(({ item }: { item: MenuItem }) => (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.menuItem,
-        pressed && styles.menuItemPressed
-      ]}
-      onPress={() => handleItemPress(item.route)}
-      accessibilityRole="button"
-      accessibilityLabel={item.title}
-      accessibilityHint="Tap to view details"
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-    >
-      <View style={styles.menuContent}>
-        <View style={styles.iconContainer}>
-          <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+  const renderMenuItem = useCallback(
+    ({ item }: { item: MenuItem }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.menuItem,
+          pressed && styles.menuItemPressed,
+        ]}
+        onPress={() => handleItemPress(item.route)}
+        accessibilityRole="button"
+        accessibilityLabel={item.title}
+        accessibilityHint="Tap to view details"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <View style={styles.menuContent}>
+          <View style={styles.iconContainer}>
+            <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.menuTitle}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
+            )}
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.menuTitle}>{item.title}</Text>
-          {item.subtitle && (
-            <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
-          )}
-        </View>
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-          size={20} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
-        />
-      </View>
-    </Pressable>
-  ), [handleItemPress]);
+      </Pressable>
+    ),
+    [handleItemPress],
+  );
 
   const informationItems: MenuItem[] = [
     {
@@ -71,110 +74,120 @@ export default function CampsAndToursScreen() {
       subtitle: 'Aanmeldproces voor camps en tours',
       icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/how-to-sign-up',
-      type: 'info'
+      type: 'info',
     },
     {
       title: 'Met welke landen?',
-      subtitle: 'Beschikbare bestemmingen en programma\'s',
+      subtitle: "Beschikbare bestemmingen en programma's",
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/which-countries',
-      type: 'info'
+      type: 'info',
     },
     {
       title: 'Voor wie?',
       subtitle: 'Leeftijd en deelname informatie',
       icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/outbound/short-term/camps-and-tours/information/comply-with',
-      type: 'info'
-    }
+      type: 'info',
+    },
   ];
 
-  const IntroSection = useCallback(() => (
-    <View style={styles.introContainer}>
-      
-      <View style={styles.programCard}>
-        <Text style={styles.programTitle}>Wat zijn Camps & Tours?</Text>
-        <Text style={styles.programDescription}>
-          Rotary Camps en Tours zijn kortdurende uitwisselingsprogramma's die meestal 
-          2-6 weken duren tijdens schoolvakanties. Deze programma's bieden jongeren de 
-          mogelijkheid om verschillende culturen te ervaren, internationale vriendschappen 
-          te sluiten en deel te nemen aan spannende activiteiten terwijl ze verblijven 
-          bij gastgezinnen of in georganiseerde accommodaties.
-        </Text>
+  const IntroSection = useCallback(
+    () => (
+      <View style={styles.introContainer}>
+        <View style={styles.programCard}>
+          <Text style={styles.programTitle}>Wat zijn Camps & Tours?</Text>
+          <Text style={styles.programDescription}>
+            Rotary Camps en Tours zijn kortdurende uitwisselingsprogramma's die
+            meestal 2-6 weken duren tijdens schoolvakanties. Deze programma's
+            bieden jongeren de mogelijkheid om verschillende culturen te
+            ervaren, internationale vriendschappen te sluiten en deel te nemen
+            aan spannende activiteiten terwijl ze verblijven bij gastgezinnen of
+            in georganiseerde accommodaties.
+          </Text>
+        </View>
+
+        <View style={styles.highlightsContainer}>
+          <View style={styles.highlight}>
+            <View style={styles.highlightIcon}>
+              <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
+            </View>
+            <View style={styles.highlightContent}>
+              <Text style={styles.highlightTitle}>Duur</Text>
+              <Text style={styles.highlightText}>2-6 weken</Text>
+            </View>
+          </View>
+
+          <View style={styles.highlight}>
+            <View style={styles.highlightIcon}>
+              <Ionicons name="school-outline" size={20} color="#2196F3" />
+            </View>
+            <View style={styles.highlightContent}>
+              <Text style={styles.highlightTitle}>Leeftijd</Text>
+              <Text style={styles.highlightText}>15-21 jaar</Text>
+            </View>
+          </View>
+
+          <View style={styles.highlight}>
+            <View style={styles.highlightIcon}>
+              <Ionicons name="sunny-outline" size={20} color="#FF9800" />
+            </View>
+            <View style={styles.highlightContent}>
+              <Text style={styles.highlightTitle}>Timing</Text>
+              <Text style={styles.highlightText}>Schoolvakanties</Text>
+            </View>
+          </View>
+        </View>
       </View>
+    ),
+    [],
+  );
 
-      <View style={styles.highlightsContainer}>
-        <View style={styles.highlight}>
-          <View style={styles.highlightIcon}>
-            <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
-          </View>
-          <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Duur</Text>
-            <Text style={styles.highlightText}>2-6 weken</Text>
-          </View>
-        </View>
-
-        <View style={styles.highlight}>
-          <View style={styles.highlightIcon}>
-            <Ionicons name="school-outline" size={20} color="#2196F3" />
-          </View>
-          <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Leeftijd</Text>
-            <Text style={styles.highlightText}>15-21 jaar</Text>
-          </View>
-        </View>
-
-        <View style={styles.highlight}>
-          <View style={styles.highlightIcon}>
-            <Ionicons name="sunny-outline" size={20} color="#FF9800" />
-          </View>
-          <View style={styles.highlightContent}>
-            <Text style={styles.highlightTitle}>Timing</Text>
-            <Text style={styles.highlightText}>Schoolvakanties</Text>
-          </View>
-        </View>
+  const SectionHeader = useCallback(
+    ({ title }: { title: string }) => (
+      <View style={styles.sectionHeaderContainer}>
+        <Text style={styles.sectionHeaderTitle}>{title}</Text>
+        <View style={styles.sectionHeaderDivider} />
       </View>
-    </View>
-  ), []);
-
-  const SectionHeader = useCallback(({ title }: { title: string }) => (
-    <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderTitle}>{title}</Text>
-      <View style={styles.sectionHeaderDivider} />
-    </View>
-  ), []);
+    ),
+    [],
+  );
 
   const renderContent = useCallback(() => {
-    const allItems = [
+    return [
       { type: 'intro' },
       { type: 'sectionHeader', title: 'Informatie & Richtlijnen' },
-      ...informationItems.map(item => ({ type: 'menuItem', item }))
+      ...informationItems.map((item) => ({ type: 'menuItem', item })),
     ];
-
-    return allItems;
   }, []);
 
-  const renderItem = useCallback(({ item }: { item: any }) => {
-    switch (item.type) {
-      case 'intro':
-        return <IntroSection />;
-      case 'sectionHeader':
-        return <SectionHeader title={item.title} />;
-      case 'menuItem':
-        return renderMenuItem({ item: item.item });
-      default:
-        return null;
-    }
-  }, [IntroSection, SectionHeader, renderMenuItem]);
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => {
+      switch (item.type) {
+        case 'intro':
+          return <IntroSection />;
+        case 'sectionHeader':
+          return <SectionHeader title={item.title} />;
+        case 'menuItem':
+          return renderMenuItem({ item: item.item });
+        default:
+          return null;
+      }
+    },
+    [IntroSection, SectionHeader, renderMenuItem],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
+          keyExtractor={useCallback(
+            (item: any, index: number) => `${item.type}-${index}`,
+            [],
+          )}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

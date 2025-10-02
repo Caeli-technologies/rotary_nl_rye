@@ -23,9 +23,9 @@ const shadowStyle = {
 export default function CampsToursSignUpScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -48,33 +48,39 @@ export default function CampsToursSignUpScreen() {
               <Ionicons name="mail-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
-            
+
             <View style={styles.emailCard}>
               <Text style={styles.emailTitle}>📧 Stuur een email</Text>
               <Text style={styles.emailDescription}>
-                Je stuurt een gezellig email bericht naar: <Text style={styles.emailLink}>zomerkamp@rotaryyep.nl</Text>
+                Je stuurt een gezellig email bericht naar:{' '}
+                <Text style={styles.emailLink}>zomerkamp@rotaryyep.nl</Text>
               </Text>
               <Text style={styles.emailNote}>
-                Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.
+                Dan krijg je van ons een bevestiging dat we je mail hebben
+                ontvangen.
               </Text>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.emailButton}
                 onPress={() => {
                   // Open email client with pre-filled subject
-                  const emailUrl = 'mailto:zomerkamp@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
+                  const emailUrl =
+                    'mailto:zomerkamp@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
                   Linking.openURL(emailUrl);
                 }}
               >
-                <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
+                <Ionicons
+                  name="mail"
+                  size={20}
+                  color="#FFFFFF"
+                  style={{ marginRight: 8 }}
+                />
                 <Text style={styles.emailButtonText}>Verstuur een Email</Text>
               </TouchableOpacity>
             </View>
           </View>
-
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -139,18 +145,20 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Email Card Styles
   emailCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 24,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   emailTitle: {
     fontSize: 20,
@@ -177,7 +185,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'italic',
   },
-  
+
   // Button Styles
   buttonContainer: {
     alignItems: 'center',
@@ -192,14 +200,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 200,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.3,
-      shadowRadius: 4,
-    } : {
-      elevation: 3,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.3,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 3,
+        }),
   },
   emailButtonText: {
     color: '#FFFFFF',

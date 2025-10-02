@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -21,18 +15,18 @@ const shadowStyle = {
 export default function WelcomeInTheNetherlandsScreen() {
   const mottoValues = [
     'Be grateful',
-    'Be on purpose', 
+    'Be on purpose',
     'Be of service',
     'Be here now',
     'Be first',
-    'Be curious'
+    'Be curious',
   ];
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -55,19 +49,26 @@ export default function WelcomeInTheNetherlandsScreen() {
               <Ionicons name="people-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Our Community</Text>
             </View>
-            
+
             <View style={styles.welcomeCard}>
               <View style={styles.highlightBox}>
                 <Ionicons name="globe-outline" size={20} color="#2196F3" />
-                <Text style={styles.highlightText}>35-50 exchange students annually</Text>
+                <Text style={styles.highlightText}>
+                  35-50 exchange students annually
+                </Text>
               </View>
               <Text style={styles.welcomeText}>
-                We are very excited about your upcoming stay with us and looking forward to meeting you. We hope and believe that you will enjoy your stay with us. We have an exciting and active Rotary International Youth Exchange Program with students from around the world.
+                We are very excited about your upcoming stay with us and looking
+                forward to meeting you. We hope and believe that you will enjoy
+                your stay with us. We have an exciting and active Rotary
+                International Youth Exchange Program with students from around
+                the world.
               </Text>
               <View style={styles.friendsBox}>
                 <Ionicons name="heart-outline" size={16} color="#4CAF50" />
                 <Text style={styles.friendsText}>
-                  You will make friends from all over the world, in addition to making many Dutch friends in your school and Rotary.
+                  You will make friends from all over the world, in addition to
+                  making many Dutch friends in your school and Rotary.
                 </Text>
               </View>
             </View>
@@ -79,14 +80,19 @@ export default function WelcomeInTheNetherlandsScreen() {
               <Ionicons name="star-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Your Exchange Experience</Text>
             </View>
-            
+
             <View style={styles.experienceCard}>
               <View style={styles.experienceHeader}>
                 <Ionicons name="sparkles-outline" size={20} color="#9C27B0" />
-                <Text style={styles.experienceSubtitle}>One of the best years of your life</Text>
+                <Text style={styles.experienceSubtitle}>
+                  One of the best years of your life
+                </Text>
               </View>
               <Text style={styles.experienceText}>
-                A wonderful experience in a new culture, with a new language but also with some rules to make sure that your stay will be both enjoyable for you and us alike. These rules are consistent with the International Rotary rules.
+                A wonderful experience in a new culture, with a new language but
+                also with some rules to make sure that your stay will be both
+                enjoyable for you and us alike. These rules are consistent with
+                the International Rotary rules.
               </Text>
             </View>
           </View>
@@ -99,7 +105,11 @@ export default function WelcomeInTheNetherlandsScreen() {
                 <Text style={styles.ambassadorTitle}>Ambassador Role</Text>
               </View>
               <Text style={styles.ambassadorText}>
-                Please remember that under all circumstances you are an ambassador of Rotary and will have to behave accordingly. Also you will be an ambassador of your country. Both functions will be with you at all times and you will be regarded and judged as such at all times during your exchange!
+                Please remember that under all circumstances you are an
+                ambassador of Rotary and will have to behave accordingly. Also
+                you will be an ambassador of your country. Both functions will
+                be with you at all times and you will be regarded and judged as
+                such at all times during your exchange!
               </Text>
             </View>
           </View>
@@ -110,13 +120,19 @@ export default function WelcomeInTheNetherlandsScreen() {
               <Ionicons name="trophy-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Our Motto</Text>
             </View>
-            
+
             <View style={styles.mottoCard}>
-              <Text style={styles.mottoIntro}>Live by these values during your exchange:</Text>
+              <Text style={styles.mottoIntro}>
+                Live by these values during your exchange:
+              </Text>
               <View style={styles.mottoGrid}>
                 {mottoValues.map((value, index) => (
                   <View style={styles.mottoItem} key={index}>
-                    <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                    <Ionicons
+                      name="checkmark-circle"
+                      size={16}
+                      color="#4CAF50"
+                    />
                     <Text style={styles.mottoText}>{value}</Text>
                   </View>
                 ))}
@@ -141,7 +157,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -173,7 +189,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -189,7 +205,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
@@ -198,7 +214,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     ...shadowStyle,
   },
-  
+
   // Welcome Card
   welcomeCard: {
     backgroundColor: '#FFFFFF',
@@ -243,7 +259,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontStyle: 'italic',
   },
-  
+
   // Experience Card
   experienceCard: {
     backgroundColor: '#FFFFFF',
@@ -270,7 +286,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Ambassador Card
   ambassadorCard: {
     backgroundColor: '#FFFFFF',
@@ -297,7 +313,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Motto Card
   mottoCard: {
     backgroundColor: '#FFFFFF',
@@ -339,13 +355,13 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontWeight: '600',
   },
-  
+
   infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   bulletPoint: {
     flexDirection: 'row',
     marginBottom: 8,

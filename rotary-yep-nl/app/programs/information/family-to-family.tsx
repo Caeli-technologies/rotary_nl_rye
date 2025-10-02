@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Platform, TouchableOpacity, Linking } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Platform,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -15,9 +23,9 @@ const shadowStyle = {
 export default function FamilyToFamilyScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -40,10 +48,15 @@ export default function FamilyToFamilyScreen() {
               <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Wat is het?</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                De naam zegt het al, Short Term Exchange Program (STEP). Het is een uitwisseling met een leeftijdgenoot in het buitenland voor de korte duur van ongeveer 2x3 weken of 2x4 weken. Maar het is ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in het buitenland woont, samen met jouw maatje, en dat jouw maatje samen met jou in Nederland komt wonen.
+                De naam zegt het al, Short Term Exchange Program (STEP). Het is
+                een uitwisseling met een leeftijdgenoot in het buitenland voor
+                de korte duur van ongeveer 2x3 weken of 2x4 weken. Maar het is
+                ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in het
+                buitenland woont, samen met jouw maatje, en dat jouw maatje
+                samen met jou in Nederland komt wonen.
               </Text>
             </View>
           </View>
@@ -56,7 +69,9 @@ export default function FamilyToFamilyScreen() {
             <View style={styles.ageContent}>
               <Text style={styles.ageTitle}>15 - 19 jaar</Text>
               <Text style={styles.ageSubtitle}>Voor wie?</Text>
-              <Text style={styles.ageNote}>Open minded jongeren die willen leren van anderen</Text>
+              <Text style={styles.ageNote}>
+                Open minded jongeren die willen leren van anderen
+              </Text>
             </View>
           </View>
 
@@ -66,17 +81,20 @@ export default function FamilyToFamilyScreen() {
               <Ionicons name="flag-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Waarom doen we dit?</Text>
             </View>
-            
+
             <View style={styles.missionCard}>
               <View style={styles.missionHeader}>
                 <Ionicons name="star" size={20} color="#FFD700" />
                 <Text style={styles.missionTitle}>Onze Missie</Text>
               </View>
               <Text style={styles.missionText}>
-                "Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen"
+                "Jeugd in staat stellen om persoonlijk leiderschap te
+                ontwikkelen"
               </Text>
               <Text style={styles.missionSubtext}>
-                Wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk anderen in staat te stellen zichzelf te ontwikkelen.
+                Wij geloven dat leiderschap begint met leiding geven aan jezelf
+                om uiteindelijk anderen in staat te stellen zichzelf te
+                ontwikkelen.
               </Text>
             </View>
           </View>
@@ -84,10 +102,16 @@ export default function FamilyToFamilyScreen() {
           {/* Requirements Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Geschikt voor dit programma?</Text>
+              <Ionicons
+                name="checkmark-circle-outline"
+                size={24}
+                color="#FF6B35"
+              />
+              <Text style={styles.sectionTitle}>
+                Geschikt voor dit programma?
+              </Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>Je bent geschikt als je:</Text>
               <View style={styles.bulletContainer}>
@@ -101,15 +125,21 @@ export default function FamilyToFamilyScreen() {
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Ervaringen wilt uitwisselen</Text>
+                  <Text style={styles.bulletText}>
+                    Ervaringen wilt uitwisselen
+                  </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Uit je vertrouwde omgeving wilt stappen</Text>
+                  <Text style={styles.bulletText}>
+                    Uit je vertrouwde omgeving wilt stappen
+                  </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Anderen zonder vooroordelen wilt ontmoeten</Text>
+                  <Text style={styles.bulletText}>
+                    Anderen zonder vooroordelen wilt ontmoeten
+                  </Text>
                 </View>
               </View>
             </View>
@@ -121,10 +151,12 @@ export default function FamilyToFamilyScreen() {
               <Ionicons name="card-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Kosten</Text>
             </View>
-            
+
             <View style={styles.costCard}>
               <Text style={styles.costTitle}>€181,50 incl. BTW</Text>
-              <Text style={styles.costSubtitle}>Exclusief verzekering, ticket, zakgeld en ziektekosten</Text>
+              <Text style={styles.costSubtitle}>
+                Exclusief verzekering, ticket, zakgeld en ziektekosten
+              </Text>
             </View>
           </View>
 
@@ -134,14 +166,14 @@ export default function FamilyToFamilyScreen() {
               <Ionicons name="mail-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
                 De aanmelding voor Short Term Exchange loopt via email.
               </Text>
             </View>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.emailButton}
               onPress={() => Linking.openURL('mailto:interesse@rotaryyep.nl')}
             >
@@ -167,7 +199,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     backgroundColor: '#FFFFFF',
@@ -200,7 +232,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -216,25 +248,27 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Age Card Styles
   ageCard: {
     backgroundColor: '#FFFFFF',
@@ -245,11 +279,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderLeftWidth: 4,
     borderLeftColor: '#9C27B0',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   ageIconContainer: {
     width: 60,
@@ -280,7 +316,7 @@ const styles = StyleSheet.create({
     color: '#666',
     fontStyle: 'italic',
   },
-  
+
   // Mission Card
   missionCard: {
     backgroundColor: '#FFF9C4',
@@ -288,14 +324,16 @@ const styles = StyleSheet.create({
     padding: 20,
     borderLeftWidth: 4,
     borderLeftColor: '#FFD700',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FFD700',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 1,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FFD700',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 1,
+        }),
   },
   missionHeader: {
     flexDirection: 'row',
@@ -320,7 +358,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: '#666',
   },
-  
+
   // Cost Card
   costCard: {
     backgroundColor: '#E3F2FD',
@@ -342,7 +380,7 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-  
+
   // Email Button
   emailButton: {
     backgroundColor: '#FF6B35',
@@ -353,14 +391,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-    } : {
-      elevation: 3,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 3,
+        }),
   },
   emailButtonText: {
     color: '#FFFFFF',
@@ -368,7 +408,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 8,
   },
-  
+
   // Bullet Styles
   bulletContainer: {
     marginTop: 12,

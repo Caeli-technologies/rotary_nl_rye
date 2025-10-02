@@ -22,9 +22,9 @@ const shadowStyle = {
 export default function HowToSignUpScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -33,11 +33,16 @@ export default function HowToSignUpScreen() {
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons name="document-text-outline" size={32} color="#FF6B35" />
+              <Ionicons
+                name="document-text-outline"
+                size={32}
+                color="#FF6B35"
+              />
             </View>
             <Text style={styles.headerTitle}>Hoe schrijf ik mezelf in</Text>
             <Text style={styles.headerSubtitle}>
-              Stappen om jezelf in te schrijven voor de lange termijn uitwisseling
+              Stappen om jezelf in te schrijven voor de lange termijn
+              uitwisseling
             </Text>
           </View>
 
@@ -46,15 +51,16 @@ export default function HowToSignUpScreen() {
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
                 Je stuurt een gezellig email bericht naar:{' '}
-                <Text style={styles.emailText}>interesse@rotaryyep.nl.</Text>
-                {' '}Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.
+                <Text style={styles.emailText}>interesse@rotaryyep.nl.</Text>{' '}
+                Dan krijg je van ons een bevestiging dat we je mail hebben
+                ontvangen.
               </Text>
             </View>
           </View>
 
           {/* Email Button */}
           <View style={styles.buttonSection}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.emailButton}
               onPress={() => {
                 // This would open the email client
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -113,7 +119,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
@@ -147,7 +153,7 @@ const styles = StyleSheet.create({
     color: '#2196F3',
     textDecorationLine: 'underline',
   },
-  
+
   // Button Section
   buttonSection: {
     alignItems: 'center',
@@ -162,14 +168,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     minWidth: 200,
     justifyContent: 'center',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-    } : {
-      elevation: 3,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 3,
+        }),
   },
   emailButtonText: {
     color: '#FFFFFF',

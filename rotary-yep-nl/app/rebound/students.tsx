@@ -34,11 +34,11 @@ interface StudentCardProps {
 
 function StudentCard({ student, onPress }: StudentCardProps) {
   return (
-    <Pressable 
+    <Pressable
       style={({ pressed }) => [
         styles.studentCard,
-        pressed && styles.studentCardPressed
-      ]} 
+        pressed && styles.studentCardPressed,
+      ]}
       onPress={onPress}
     >
       <View style={styles.studentCardContent}>
@@ -49,16 +49,20 @@ function StudentCard({ student, onPress }: StudentCardProps) {
           expandable={false}
           style={styles.studentImageStyle}
         />
-        
+
         <View style={styles.studentInfo}>
           <Text style={styles.studentName}>{student.name}</Text>
           <Text style={styles.studentDescription}>{student.description}</Text>
         </View>
-        
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
-          size={Platform.OS === 'ios' ? 20 : 24} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
+
+        <Ionicons
+          name={
+            Platform.OS === 'ios'
+              ? 'chevron-forward'
+              : 'chevron-forward-outline'
+          }
+          size={Platform.OS === 'ios' ? 20 : 24}
+          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
         />
       </View>
     </Pressable>
@@ -78,17 +82,17 @@ export default function ReboundStudentsScreen() {
 
   const studentsWithYears = useMemo(() => {
     if (!params.country) return [];
-    
+
     const result: StudentWithYear[] = [];
-    
+
     Object.entries(data.list).forEach(([year, students]) => {
       students
-        .filter(student => student.to === params.country)
-        .forEach(student => {
+        .filter((student) => student.to === params.country)
+        .forEach((student) => {
           result.push({ ...student, year });
         });
     });
-    
+
     // Sort by year (newest first), then by name
     return result.sort((a, b) => {
       if (a.year !== b.year) {
@@ -100,15 +104,14 @@ export default function ReboundStudentsScreen() {
 
   const yearGroups = useMemo(() => {
     const groups = new Map<string, StudentWithYear[]>();
-    
-    studentsWithYears.forEach(student => {
+
+    studentsWithYears.forEach((student) => {
       const existing = groups.get(student.year) || [];
       existing.push(student);
       groups.set(student.year, existing);
     });
-    
-    return Array.from(groups.entries())
-      .sort(([a], [b]) => b.localeCompare(a)); // Sort years descending
+
+    return Array.from(groups.entries()).sort(([a], [b]) => b.localeCompare(a)); // Sort years descending
   }, [studentsWithYears]);
 
   const handleStudentPress = (student: StudentWithYear) => {
@@ -129,7 +132,11 @@ export default function ReboundStudentsScreen() {
     navigation.setOptions({
       title: params.country || 'Students',
       headerTitle: () => (
-        <View style={{ alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start' }}>
+        <View
+          style={{
+            alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+          }}
+        >
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {headerFlagAsset ? (
               <Image
@@ -138,42 +145,55 @@ export default function ReboundStudentsScreen() {
                 contentFit="contain"
               />
             ) : (
-              <View style={{
-                width: 24,
-                height: 16,
-                backgroundColor: '#E0E0E0',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginRight: 8,
-                borderRadius: 2,
-              }}>
+              <View
+                style={{
+                  width: 24,
+                  height: 16,
+                  backgroundColor: '#E0E0E0',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginRight: 8,
+                  borderRadius: 2,
+                }}
+              >
                 <Text style={{ fontSize: 8, color: '#666', fontWeight: '600' }}>
                   {(params.flag || '').toUpperCase()}
                 </Text>
               </View>
             )}
-            <Text style={{
-              fontSize: Platform.OS === 'ios' ? 18 : 20,
-              fontWeight: '600',
-              color: '#1A237E',
-            }}>
+            <Text
+              style={{
+                fontSize: Platform.OS === 'ios' ? 18 : 20,
+                fontWeight: '600',
+                color: '#1A237E',
+              }}
+            >
               {params.country}
             </Text>
           </View>
           {studentsWithYears.length > 0 && (
-            <Text style={{
-              color: '#8E8E93',
-              fontSize: 13,
-              fontWeight: '400',
-              marginTop: 2,
-            }}>
-              {studentsWithYears.length} student{studentsWithYears.length !== 1 ? 's' : ''}
+            <Text
+              style={{
+                color: '#8E8E93',
+                fontSize: 13,
+                fontWeight: '400',
+                marginTop: 2,
+              }}
+            >
+              {studentsWithYears.length} student
+              {studentsWithYears.length !== 1 ? 's' : ''}
             </Text>
           )}
         </View>
       ),
     });
-  }, [navigation, params.country, params.flag, headerFlagAsset, studentsWithYears.length]);
+  }, [
+    navigation,
+    params.country,
+    params.flag,
+    headerFlagAsset,
+    studentsWithYears.length,
+  ]);
 
   // Convert yearGroups to sections format for SectionList
   const sections = useMemo(() => {
@@ -188,7 +208,11 @@ export default function ReboundStudentsScreen() {
     <StudentCard student={item} onPress={() => handleStudentPress(item)} />
   );
 
-  const renderSectionHeader = ({ section }: { section: { title: string; count: number } }) => (
+  const renderSectionHeader = ({
+    section,
+  }: {
+    section: { title: string; count: number };
+  }) => (
     <View style={styles.sectionHeader}>
       <Text style={styles.sectionTitle}>{section.title}</Text>
       <Text style={styles.sectionCount}>
@@ -200,7 +224,7 @@ export default function ReboundStudentsScreen() {
   if (sections.length === 0) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        <StatusBar style="auto" />
+        
         <View style={styles.emptyState}>
           <Ionicons name="school-outline" size={48} color="#9FA8DA" />
           <Text style={styles.emptyStateTitle}>No students found</Text>
@@ -214,8 +238,8 @@ export default function ReboundStudentsScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
+
       <SectionList
         sections={sections}
         renderItem={renderStudent}
@@ -225,7 +249,9 @@ export default function ReboundStudentsScreen() {
         contentInsetAdjustmentBehavior="automatic"
         stickySectionHeadersEnabled={Platform.OS === 'ios'}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-        SectionSeparatorComponent={() => <View style={styles.sectionSeparator} />}
+        SectionSeparatorComponent={() => (
+          <View style={styles.sectionSeparator} />
+        )}
         contentContainerStyle={styles.contentContainer}
         removeClippedSubviews={true}
         initialNumToRender={15}

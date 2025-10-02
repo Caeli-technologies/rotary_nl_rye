@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, StyleSheet, Pressable, Alert, Linking, Platform, View, Text } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Pressable,
+  Alert,
+  Linking,
+  Platform,
+  View,
+  Text,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
@@ -23,7 +32,7 @@ export default function SettingsScreen() {
     const getAppInfo = () => {
       const version = Application.nativeApplicationVersion || 'Unknown';
       const build = Application.nativeBuildVersion || '';
-      
+
       setAppVersion(version);
       setBuildVersion(build);
     };
@@ -35,9 +44,13 @@ export default function SettingsScreen() {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html').then(supported => {
+    Linking.canOpenURL(
+      'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
+    ).then((supported) => {
       if (supported) {
-        Linking.openURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html');
+        Linking.openURL(
+          'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
+        );
       } else {
         Alert.alert('Error', 'Unable to open privacy policy link');
       }
@@ -48,9 +61,13 @@ export default function SettingsScreen() {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html').then(supported => {
+    Linking.canOpenURL(
+      'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
+    ).then((supported) => {
       if (supported) {
-        Linking.openURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html');
+        Linking.openURL(
+          'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
+        );
       } else {
         Alert.alert('Error', 'Unable to open terms and conditions link');
       }
@@ -68,39 +85,45 @@ export default function SettingsScreen() {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL('https://www.instagram.com/rotexnederland/').then(supported => {
-      if (supported) {
-        Linking.openURL('https://www.instagram.com/rotexnederland/');
-      } else {
-        Alert.alert('Error', 'Unable to open Instagram link');
-      }
-    });
+    Linking.canOpenURL('https://www.instagram.com/rotexnederland/').then(
+      (supported) => {
+        if (supported) {
+          Linking.openURL('https://www.instagram.com/rotexnederland/');
+        } else {
+          Alert.alert('Error', 'Unable to open Instagram link');
+        }
+      },
+    );
   };
 
-  const SettingsSection = ({ title, children }: { title: string, children: React.ReactNode }) => (
+  const SettingsSection = ({
+    title,
+    children,
+  }: {
+    title: string;
+    children: React.ReactNode;
+  }) => (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>{title}</Text>
-      <View style={styles.sectionContent}>
-        {children}
-      </View>
+      <View style={styles.sectionContent}>{children}</View>
     </View>
   );
 
-  const SettingsItem = ({ 
-    title, 
-    subtitle, 
-    onPress, 
-    rightElement 
-  }: { 
-    title: string, 
-    subtitle?: string, 
-    onPress?: () => void,
-    rightElement?: React.ReactNode 
+  const SettingsItem = ({
+    title,
+    subtitle,
+    onPress,
+    rightElement,
+  }: {
+    title: string;
+    subtitle?: string;
+    onPress?: () => void;
+    rightElement?: React.ReactNode;
   }) => (
-    <Pressable 
+    <Pressable
       style={({ pressed }) => [
         styles.settingsItem,
-        pressed && styles.settingsItemPressed
+        pressed && styles.settingsItemPressed,
       ]}
       onPress={onPress}
       disabled={!onPress}
@@ -111,21 +134,26 @@ export default function SettingsScreen() {
           <Text style={styles.settingsItemSubtitle}>{subtitle}</Text>
         )}
       </View>
-      {rightElement || (onPress && (
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
-          size={Platform.OS === 'ios' ? 20 : 24} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
-        />
-      ))}
+      {rightElement ||
+        (onPress && (
+          <Ionicons
+            name={
+              Platform.OS === 'ios'
+                ? 'chevron-forward'
+                : 'chevron-forward-outline'
+            }
+            size={Platform.OS === 'ios' ? 20 : 24}
+            color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
+          />
+        ))}
     </Pressable>
   );
 
   return (
     <SafeAreaView style={styles.safeContainer} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -147,7 +175,9 @@ export default function SettingsScreen() {
             />
             <SettingsItem
               title="App Version"
-              subtitle={buildVersion ? `${appVersion} (${buildVersion})` : appVersion}
+              subtitle={
+                buildVersion ? `${appVersion} (${buildVersion})` : appVersion
+              }
             />
           </SettingsSection>
 
@@ -204,11 +234,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     overflow: 'hidden',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   settingsItem: {
     flexDirection: 'row',

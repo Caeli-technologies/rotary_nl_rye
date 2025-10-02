@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -21,9 +15,9 @@ const shadowStyle = {
 export default function SelectionDayScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -36,17 +30,24 @@ export default function SelectionDayScreen() {
             </View>
             <Text style={styles.headerTitle}>Selectie dag</Text>
             <Text style={styles.headerSubtitle}>
-              Wat je kunt verwachten tijdens de selectiedag voor Rotary Youth Exchange
+              Wat je kunt verwachten tijdens de selectiedag voor Rotary Youth
+              Exchange
             </Text>
           </View>
 
           {/* What to do */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Wat moet ik doen voor de selectie dag:</Text>
+              <Ionicons
+                name="checkmark-circle-outline"
+                size={24}
+                color="#FF6B35"
+              />
+              <Text style={styles.sectionTitle}>
+                Wat moet ik doen voor de selectie dag:
+              </Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
                 Ik zou gewoon je best en doen en jezelf zijn.
@@ -58,18 +59,23 @@ export default function SelectionDayScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="eye-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Dit is wat je deze dag kan verwachten:</Text>
-            </View>
-            
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis van Nederland.
+              <Text style={styles.sectionTitle}>
+                Dit is wat je deze dag kan verwachten:
               </Text>
             </View>
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Dit zijn een paar voorbeeld vragen uit het interview tijdens de selectie dag. We gaan je niet alles vertellen, maar zo krijg je een beetje een idee.
+                Je krijgt een interview, een groepsgesprek, een discussie en een
+                test over je kennis van Nederland.
+              </Text>
+            </View>
+
+            <View style={styles.infoCard}>
+              <Text style={styles.infoText}>
+                Dit zijn een paar voorbeeld vragen uit het interview tijdens de
+                selectie dag. We gaan je niet alles vertellen, maar zo krijg je
+                een beetje een idee.
               </Text>
             </View>
           </View>
@@ -80,7 +86,7 @@ export default function SelectionDayScreen() {
               <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Voorbeeld vragen:</Text>
             </View>
-            
+
             <View style={styles.questionCard}>
               <Text style={styles.questionText}>
                 Wat betekent volgens jou het zijn van Ambassadeur voor Rotary
@@ -107,7 +113,8 @@ export default function SelectionDayScreen() {
 
             <View style={styles.questionCard}>
               <Text style={styles.questionText}>
-                Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent
+                Wat denk je dat het moeilijkste is als je een jaar in het
+                buitenland bent
               </Text>
             </View>
           </View>
@@ -129,7 +136,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -159,7 +166,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -175,25 +182,27 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Activity Card Styles
   activityCard: {
     backgroundColor: '#FFFFFF',
@@ -202,11 +211,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 1,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   activityIcon: {
     width: 40,
@@ -231,7 +242,7 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // Question Card Styles
   questionCard: {
     backgroundColor: '#FFFFFF',
@@ -240,20 +251,21 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderLeftWidth: 4,
     borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 1,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
-    questionText: {
+  questionText: {
     fontSize: 14,
     color: '#666',
     fontStyle: 'italic',
     lineHeight: 20,
   },
-  
-  
+
   // Footer Section
   footerSection: {
     alignItems: 'center',

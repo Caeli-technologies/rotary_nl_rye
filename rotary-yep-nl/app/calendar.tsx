@@ -27,17 +27,18 @@ import {
   isMultiDayEvent,
   extractLinksFromDescription,
   getDisplayEndDate,
-} from '../utils/eventUtils';
-import { Event, EventsData } from '../types/events';
+} from '@/utils/eventUtils';
+import { Event, EventsData } from '@/types/events';
 
 export default function CalendarScreen() {
   const [eventsData, setEventsData] = useState<EventsData>({});
-  const [selectedDate, setSelectedDate] = useState<string>(formatDateKey(new Date()));
+  const [selectedDate, setSelectedDate] = useState<string>(
+    formatDateKey(new Date()),
+  );
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
 
   // Helper function to create marked dates
   const createMarkedDates = (events: EventsData, selected: string) => {
@@ -54,7 +55,10 @@ export default function CalendarScreen() {
   };
 
   // Computed values - no need for separate state
-  const selectedEvents = getEventsForDay(eventsData, new Date(selectedDate + 'T00:00:00'));
+  const selectedEvents = getEventsForDay(
+    eventsData,
+    new Date(selectedDate + 'T00:00:00'),
+  );
   const markedDates = createMarkedDates(eventsData, selectedDate);
 
   useEffect(() => {
@@ -65,12 +69,14 @@ export default function CalendarScreen() {
     try {
       setLoading(true);
       setError(null);
-      
+
       const data = await fetchCalendarEvents();
       setEventsData(data);
     } catch (err) {
       console.error('Calendar events loading error:', err);
-      setError('Failed to load events. Please check your internet connection and try again.');
+      setError(
+        'Failed to load events. Please check your internet connection and try again.',
+      );
     } finally {
       setLoading(false);
     }
@@ -112,7 +118,7 @@ export default function CalendarScreen() {
       if (Platform.OS === 'ios') {
         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-      
+
       const encodedLocation = encodeURIComponent(location);
       const url = Platform.select({
         ios: `maps:0,0?q=${encodedLocation}`,
@@ -124,7 +130,10 @@ export default function CalendarScreen() {
         if (canOpen) {
           await Linking.openURL(url);
         } else {
-          Alert.alert('Error', 'Maps application is not available on this device');
+          Alert.alert(
+            'Error',
+            'Maps application is not available on this device',
+          );
         }
       }
     } catch (error) {
@@ -138,7 +147,7 @@ export default function CalendarScreen() {
       if (Platform.OS === 'ios') {
         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-      
+
       const canOpen = await Linking.canOpenURL(url);
       if (canOpen) {
         await Linking.openURL(url);
@@ -163,7 +172,7 @@ export default function CalendarScreen() {
         key={event.id}
         style={({ pressed }) => [
           styles.eventCard,
-          pressed && styles.eventCardPressed
+          pressed && styles.eventCardPressed,
         ]}
         onPress={() => openEventDetails(event)}
         accessibilityRole="button"
@@ -216,7 +225,9 @@ export default function CalendarScreen() {
   const renderEventModal = () => {
     if (!selectedEvent) return null;
 
-    const links = selectedEvent.description ? extractLinksFromDescription(selectedEvent.description) : [];
+    const links = selectedEvent.description
+      ? extractLinksFromDescription(selectedEvent.description)
+      : [];
     const startDate = formatEventDate(selectedEvent.start.dateTime);
     const startTime = formatEventTime(selectedEvent.start.dateTime);
     const endTime = formatEventTime(selectedEvent.end.dateTime);
@@ -250,14 +261,16 @@ export default function CalendarScreen() {
                     {selectedEvent.summary.trim() || 'Event Details'}
                   </Text>
                   <Text style={styles.modalSubtitle}>
-                    {selectedEvent.status === 'confirmed' ? 'Confirmed Event' : selectedEvent.status}
+                    {selectedEvent.status === 'confirmed'
+                      ? 'Confirmed Event'
+                      : selectedEvent.status}
                   </Text>
                 </View>
               </View>
               <Pressable
                 style={({ pressed }) => [
                   styles.closeButton,
-                  pressed && styles.closeButtonPressed
+                  pressed && styles.closeButtonPressed,
                 ]}
                 onPress={closeEventDetails}
                 accessibilityRole="button"
@@ -268,7 +281,10 @@ export default function CalendarScreen() {
               </Pressable>
             </View>
 
-            <ScrollView style={styles.modalBody} showsVerticalScrollIndicator={false}>
+            <ScrollView
+              style={styles.modalBody}
+              showsVerticalScrollIndicator={false}
+            >
               {/* Date & Time Section */}
               <View style={styles.modalCard}>
                 <View style={styles.modalCardHeader}>
@@ -305,7 +321,7 @@ export default function CalendarScreen() {
                   <Pressable
                     style={({ pressed }) => [
                       styles.modalCardContent,
-                      pressed && styles.modalCardContentPressed
+                      pressed && styles.modalCardContentPressed,
                     ]}
                     onPress={() => openLocation(selectedEvent.location)}
                   >
@@ -329,12 +345,17 @@ export default function CalendarScreen() {
               {/* Description Section */}
               <View style={styles.modalCard}>
                 <View style={styles.modalCardHeader}>
-                  <Ionicons name="document-text-outline" size={20} color="#007AFF" />
+                  <Ionicons
+                    name="document-text-outline"
+                    size={20}
+                    color="#007AFF"
+                  />
                   <Text style={styles.modalCardTitle}>Description</Text>
                 </View>
                 <View style={styles.modalCardContent}>
                   <Text style={styles.modalDescriptionText}>
-                    {selectedEvent.description.trim() || 'No description available for this event.'}
+                    {selectedEvent.description.trim() ||
+                      'No description available for this event.'}
                   </Text>
                 </View>
               </View>
@@ -367,21 +388,31 @@ export default function CalendarScreen() {
                         key={index}
                         style={({ pressed }) => [
                           styles.modalLinkItem,
-                          pressed && styles.modalLinkItemPressed
+                          pressed && styles.modalLinkItemPressed,
                         ]}
                         onPress={() => openLink(link)}
                       >
-                        <Ionicons name="open-outline" size={16} color="#007AFF" />
-                        <Text style={[styles.modalLinkText, styles.linkText]} numberOfLines={1}>
+                        <Ionicons
+                          name="open-outline"
+                          size={16}
+                          color="#007AFF"
+                        />
+                        <Text
+                          style={[styles.modalLinkText, styles.linkText]}
+                          numberOfLines={1}
+                        >
                           {link}
                         </Text>
-                        <Ionicons name="chevron-forward" size={16} color="#C7C7CC" />
+                        <Ionicons
+                          name="chevron-forward"
+                          size={16}
+                          color="#C7C7CC"
+                        />
                       </Pressable>
                     ))}
                   </View>
                 </View>
               )}
-
             </ScrollView>
 
             {/* Action Buttons */}
@@ -389,23 +420,25 @@ export default function CalendarScreen() {
               {selectedEvent.location !== 'Location not specified' && (
                 <Pressable
                   style={({ pressed }) => [
-                    styles.modalActionButton, 
+                    styles.modalActionButton,
                     styles.modalSecondaryButton,
-                    pressed && styles.modalSecondaryButtonPressed
+                    pressed && styles.modalSecondaryButtonPressed,
                   ]}
                   onPress={() => openLocation(selectedEvent.location)}
                   accessibilityRole="button"
                   accessibilityLabel={`Get directions to ${selectedEvent.location}`}
                 >
                   <Ionicons name="map-outline" size={18} color="#007AFF" />
-                  <Text style={styles.modalSecondaryButtonText}>Directions</Text>
+                  <Text style={styles.modalSecondaryButtonText}>
+                    Directions
+                  </Text>
                 </Pressable>
               )}
               <Pressable
                 style={({ pressed }) => [
-                  styles.modalActionButton, 
+                  styles.modalActionButton,
                   styles.modalPrimaryButton,
-                  pressed && styles.modalPrimaryButtonPressed
+                  pressed && styles.modalPrimaryButtonPressed,
                 ]}
                 onPress={closeEventDetails}
                 accessibilityRole="button"
@@ -422,7 +455,7 @@ export default function CalendarScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         {loading ? (
           <View style={styles.centerContainer}>
@@ -436,10 +469,10 @@ export default function CalendarScreen() {
             </View>
             <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
             <Text style={styles.errorText}>{error}</Text>
-            <Pressable 
+            <Pressable
               style={({ pressed }) => [
                 styles.retryButton,
-                pressed && styles.retryButtonPressed
+                pressed && styles.retryButtonPressed,
               ]}
               onPress={loadEvents}
               accessibilityRole="button"
@@ -494,16 +527,19 @@ export default function CalendarScreen() {
             <View style={styles.eventsSection}>
               <View style={styles.sectionHeader}>
                 <Text style={styles.sectionTitle}>
-                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString(
+                    'en-US',
+                    {
+                      weekday: 'long',
+                      month: 'long',
+                      day: 'numeric',
+                    },
+                  )}
                 </Text>
                 <Pressable
                   style={({ pressed }) => [
                     styles.refreshButton,
-                    pressed && styles.refreshButtonPressed
+                    pressed && styles.refreshButtonPressed,
                   ]}
                   onPress={loadEvents}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -520,7 +556,11 @@ export default function CalendarScreen() {
               ) : (
                 <View style={styles.emptyContainer}>
                   <View style={styles.emptyIcon}>
-                    <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
+                    <Ionicons
+                      name="calendar-outline"
+                      size={64}
+                      color="#C7C7CC"
+                    />
                   </View>
                   <Text style={styles.emptyTitle}>No Events</Text>
                   <Text style={styles.emptyText}>
@@ -601,11 +641,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     marginBottom: 12,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
     overflow: 'hidden',
   },
   eventCardPressed: {

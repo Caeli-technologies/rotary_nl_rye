@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -19,12 +13,11 @@ const shadowStyle = {
 };
 
 export default function LanguageScreen() {
-
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -45,11 +38,18 @@ export default function LanguageScreen() {
           <View style={styles.section}>
             <View style={styles.challengeCard}>
               <View style={styles.challengeHeader}>
-                <Ionicons name="trending-up-outline" size={24} color="#FF9800" />
+                <Ionicons
+                  name="trending-up-outline"
+                  size={24}
+                  color="#FF9800"
+                />
                 <Text style={styles.challengeTitle}>The Challenge</Text>
               </View>
               <Text style={styles.challengeText}>
-                There's no hiding it: Dutch is a very difficult language to learn. However, we do expect you to master the language and that within months after your arrival you will be fluent in our language.
+                There's no hiding it: Dutch is a very difficult language to
+                learn. However, we do expect you to master the language and that
+                within months after your arrival you will be fluent in our
+                language.
               </Text>
             </View>
           </View>
@@ -58,14 +58,18 @@ export default function LanguageScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="school-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Dutch Orientation Course (DOC)</Text>
+              <Text style={styles.sectionTitle}>
+                Dutch Orientation Course (DOC)
+              </Text>
             </View>
-            
+
             <View style={styles.docCard}>
               <View style={styles.docDetails}>
                 <View style={styles.docItem}>
                   <Ionicons name="calendar-outline" size={16} color="#2196F3" />
-                  <Text style={styles.docText}>September (August group) & February (new arrivals)</Text>
+                  <Text style={styles.docText}>
+                    September (August group) & February (new arrivals)
+                  </Text>
                 </View>
                 <View style={styles.docItem}>
                   <Ionicons name="time-outline" size={16} color="#2196F3" />
@@ -73,14 +77,20 @@ export default function LanguageScreen() {
                 </View>
                 <View style={styles.docItem}>
                   <Ionicons name="people-outline" size={16} color="#2196F3" />
-                  <Text style={styles.docText}>Small groups with fellow exchange students</Text>
+                  <Text style={styles.docText}>
+                    Small groups with fellow exchange students
+                  </Text>
                 </View>
                 <View style={styles.docItem}>
                   <Ionicons name="globe-outline" size={16} color="#2196F3" />
-                  <Text style={styles.docText}>Language learning + cultural insights</Text>
+                  <Text style={styles.docText}>
+                    Language learning + cultural insights
+                  </Text>
                 </View>
               </View>
-              <Text style={styles.docNote}>Lots of fun included with students from around the world!</Text>
+              <Text style={styles.docNote}>
+                Lots of fun included with students from around the world!
+              </Text>
             </View>
           </View>
 
@@ -90,14 +100,16 @@ export default function LanguageScreen() {
               <Ionicons name="home-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Host Family Support</Text>
             </View>
-            
+
             <View style={styles.supportCard}>
               <View style={styles.supportHeader}>
                 <Ionicons name="heart-outline" size={20} color="#4CAF50" />
                 <Text style={styles.supportTitle}>Your Learning Partners</Text>
               </View>
               <Text style={styles.supportText}>
-                Your first host family will also help you to learn Dutch and you will receive books to start learning the language as soon as you are in the Netherlands.
+                Your first host family will also help you to learn Dutch and you
+                will receive books to start learning the language as soon as you
+                are in the Netherlands.
               </Text>
             </View>
           </View>
@@ -119,7 +131,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -149,7 +161,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 24,
@@ -165,7 +177,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Main Card
   mainCard: {
     backgroundColor: '#FFFFFF',
@@ -181,7 +193,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
@@ -190,7 +202,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     ...shadowStyle,
   },
-  
+
   // Challenge Card
   challengeCard: {
     backgroundColor: '#FFFFFF',
@@ -217,7 +229,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // DOC Card
   docCard: {
     backgroundColor: '#FFFFFF',
@@ -250,7 +262,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#E0E0E0',
     fontWeight: '500',
   },
-  
+
   // Support Card
   supportCard: {
     backgroundColor: '#FFFFFF',
@@ -277,7 +289,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Encouragement Card
   encouragementCard: {
     backgroundColor: '#FFFFFF',
@@ -304,7 +316,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
   },
-  
+
   bulletPoint: {
     flexDirection: 'row',
     marginBottom: 12,

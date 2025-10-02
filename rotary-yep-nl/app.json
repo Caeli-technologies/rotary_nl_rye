@@ -9,10 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "githubUrl": "https://github.com/Caeli-technologies/rotary_nl_rye",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "ios": {
       "buildNumber": "102",
       "appleTeamId": "A8S2486A44",
@@ -23,6 +20,9 @@
       "splash": {
         "image": "./assets/images/icon.png",
         "resizeMode": "contain"
+      },
+      "infoPlist": {
+        "UIBackgroundModes": ["audio", "fetch"]
       }
     },
     "android": {
@@ -33,8 +33,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "userInterfaceStyle": "automatic",
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
       "package": "com.caelitechnologies.rotary_nl_rye"
     },
     "plugins": [

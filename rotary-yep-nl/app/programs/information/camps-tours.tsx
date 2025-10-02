@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Platform, TouchableOpacity, Linking } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Platform,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -15,9 +23,9 @@ const shadowStyle = {
 export default function CampsToursScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -37,7 +45,12 @@ export default function CampsToursScreen() {
           {/* Intro */}
           <View style={styles.infoCard}>
             <Text style={styles.infoText}>
-              Heel veel Europese landen organiseren in de periode van juni t/m september Zomer Tours en speciale kampen, zoals zeil-, ski- en sportkampen. De laatste jaren worden er ook Zomerkampen in Canada, V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20 deelnemers gevormd met een zo groot mogelijke spreiding van nationaliteiten.
+              Heel veel Europese landen organiseren in de periode van juni t/m
+              september Zomer Tours en speciale kampen, zoals zeil-, ski- en
+              sportkampen. De laatste jaren worden er ook Zomerkampen in Canada,
+              V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20
+              deelnemers gevormd met een zo groot mogelijke spreiding van
+              nationaliteiten.
             </Text>
           </View>
 
@@ -49,7 +62,9 @@ export default function CampsToursScreen() {
             <View style={styles.ageContent}>
               <Text style={styles.ageTitle}>15 - 21 jaar</Text>
               <Text style={styles.ageSubtitle}>Voor wie?</Text>
-              <Text style={styles.ageNote}>Deelname mogelijk voor jongeren van Rotarians en niet-Rotarians</Text>
+              <Text style={styles.ageNote}>
+                Deelname mogelijk voor jongeren van Rotarians en niet-Rotarians
+              </Text>
             </View>
           </View>
 
@@ -59,7 +74,7 @@ export default function CampsToursScreen() {
               <Ionicons name="earth-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Met welke landen?</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
                 Europese landen, maar ook Canada, VS en Taiwan.
@@ -73,14 +88,16 @@ export default function CampsToursScreen() {
               <Ionicons name="mail-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Aanmelden</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Door de buitenlandse organisator worden uitnodigingen aan de MDJC gestuurd. Deze uitnodigingen worden direct na ontvangst op de site geplaatst ter info (half januari t/m begin mei).
+                Door de buitenlandse organisator worden uitnodigingen aan de
+                MDJC gestuurd. Deze uitnodigingen worden direct na ontvangst op
+                de site geplaatst ter info (half januari t/m begin mei).
               </Text>
             </View>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.emailButton}
               onPress={() => Linking.openURL('mailto:zomerkamp@rotaryyep.nl')}
             >
@@ -95,18 +112,22 @@ export default function CampsToursScreen() {
               <Ionicons name="card-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Kosten</Text>
             </View>
-            
+
             <View style={styles.costCard}>
               <Text style={styles.costTitle}>€121 incl. BTW</Text>
               <Text style={styles.costSubtitle}>Aanmeldingskosten</Text>
             </View>
 
             <View style={styles.infoCard}>
-              <Text style={styles.infoText}>Daarnaast moet je rekening houden met:</Text>
+              <Text style={styles.infoText}>
+                Daarnaast moet je rekening houden met:
+              </Text>
               <View style={styles.bulletContainer}>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Reiskosten naar de kamplocatie</Text>
+                  <Text style={styles.bulletText}>
+                    Reiskosten naar de kamplocatie
+                  </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
@@ -114,7 +135,9 @@ export default function CampsToursScreen() {
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Eventueel klein deelnamebedrag</Text>
+                  <Text style={styles.bulletText}>
+                    Eventueel klein deelnamebedrag
+                  </Text>
                 </View>
               </View>
             </View>
@@ -126,12 +149,14 @@ export default function CampsToursScreen() {
               <Ionicons name="heart-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Waarom doen we dit?</Text>
             </View>
-            
+
             <View style={styles.infoCard}>
               <View style={styles.bulletContainer}>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>Het opbouwen van goede relaties met andere landen</Text>
+                  <Text style={styles.bulletText}>
+                    Het opbouwen van goede relaties met andere landen
+                  </Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
@@ -139,7 +164,9 @@ export default function CampsToursScreen() {
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>De jongere ontwikkelt zichzelf en zijn/haar omgeving</Text>
+                  <Text style={styles.bulletText}>
+                    De jongere ontwikkelt zichzelf en zijn/haar omgeving
+                  </Text>
                 </View>
               </View>
             </View>
@@ -162,7 +189,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     backgroundColor: '#FFFFFF',
@@ -195,7 +222,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -211,25 +238,27 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Age Card Styles
   ageCard: {
     backgroundColor: '#FFFFFF',
@@ -240,11 +269,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderLeftWidth: 4,
     borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   ageIconContainer: {
     width: 60,
@@ -275,7 +306,7 @@ const styles = StyleSheet.create({
     color: '#666',
     fontStyle: 'italic',
   },
-  
+
   // Cost Card
   costCard: {
     backgroundColor: '#E3F2FD',
@@ -296,7 +327,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
-  
+
   // Email Button
   emailButton: {
     backgroundColor: '#FF6B35',
@@ -307,14 +338,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-    } : {
-      elevation: 3,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 3,
+        }),
   },
   emailButtonText: {
     color: '#FFFFFF',
@@ -322,7 +355,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 8,
   },
-  
+
   // Bullet Styles
   bulletContainer: {
     marginTop: 12,

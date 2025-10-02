@@ -24,31 +24,31 @@ const shadowStyle = {
   elevation: 4,
 };
 
-const videoUrl = 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4';
+const videoUrl =
+  'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4';
 
 export default function Top3CountriesScreen() {
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [thumbnailLoading, setThumbnailLoading] = useState(true);
 
-  const player = useVideoPlayer(videoUrl, player => {
+  const player = useVideoPlayer(videoUrl, (player) => {
     player.loop = false;
   });
 
-  const { status } = useEvent(player, 'statusChange', { status: player.status });
+  const { status } = useEvent(player, 'statusChange', {
+    status: player.status,
+  });
 
   // Generate video thumbnail
   useEffect(() => {
     const generateThumbnail = async () => {
       try {
         setThumbnailLoading(true);
-        const { uri } = await VideoThumbnails.getThumbnailAsync(
-          videoUrl,
-          {
-            time: 15000, // 15 seconds into the video
-            quality: 0.8, // High quality thumbnail
-          }
-        );
+        const { uri } = await VideoThumbnails.getThumbnailAsync(videoUrl, {
+          time: 15000, // 15 seconds into the video
+          quality: 0.8, // High quality thumbnail
+        });
         setThumbnailUri(uri);
       } catch (error) {
         console.warn('Error generating video thumbnail:', error);
@@ -67,9 +67,9 @@ export default function Top3CountriesScreen() {
   };
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -92,7 +92,7 @@ export default function Top3CountriesScreen() {
               <Ionicons name="bulb-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Tips voor een goede keuze</Text>
             </View>
-            
+
             <View style={styles.tipCard}>
               <View style={styles.tipNumber}>
                 <Text style={styles.tipNumberText}>1</Text>
@@ -110,7 +110,8 @@ export default function Top3CountriesScreen() {
               </View>
               <View style={styles.tipContent}>
                 <Text style={styles.tipText}>
-                  Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te weten.
+                  Kijk op YouTube en google "Rotary Youth Exchange" dan kom je
+                  ook heel veel te weten.
                 </Text>
               </View>
             </View>
@@ -121,7 +122,8 @@ export default function Top3CountriesScreen() {
               </View>
               <View style={styles.tipContent}>
                 <Text style={styles.tipText}>
-                  Praat met voormalige uitwisselingsstudenten over hun ervaringen in verschillende landen.
+                  Praat met voormalige uitwisselingsstudenten over hun
+                  ervaringen in verschillende landen.
                 </Text>
               </View>
             </View>
@@ -133,8 +135,8 @@ export default function Top3CountriesScreen() {
               <Ionicons name="play-circle-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Inspiratie Video</Text>
             </View>
-            
-            <Pressable 
+
+            <Pressable
               style={styles.videoCard}
               onPress={() => setIsVideoModalVisible(true)}
             >
@@ -142,10 +144,12 @@ export default function Top3CountriesScreen() {
                 {thumbnailLoading ? (
                   <View style={styles.thumbnailLoading}>
                     <Ionicons name="image-outline" size={48} color="#999" />
-                    <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
+                    <Text style={styles.loadingThumbnailText}>
+                      Thumbnail laden...
+                    </Text>
                   </View>
                 ) : thumbnailUri ? (
-                  <Image 
+                  <Image
                     source={{ uri: thumbnailUri }}
                     style={styles.thumbnail}
                     contentFit="cover"
@@ -154,7 +158,9 @@ export default function Top3CountriesScreen() {
                 ) : (
                   <View style={styles.thumbnailFallback}>
                     <Ionicons name="flag-outline" size={48} color="#FFFFFF" />
-                    <Text style={styles.fallbackText}>Proud to be European</Text>
+                    <Text style={styles.fallbackText}>
+                      Proud to be European
+                    </Text>
                   </View>
                 )}
                 <View style={styles.playButtonOverlay}>
@@ -166,7 +172,8 @@ export default function Top3CountriesScreen() {
               <View style={styles.videoInfo}>
                 <Text style={styles.videoTitle}>Proud to be European</Text>
                 <Text style={styles.videoDescription}>
-                  Ontdek wat het betekent om een Europese uitwisselingsstudent te zijn en laat je inspireren door de verhalen van anderen.
+                  Ontdek wat het betekent om een Europese uitwisselingsstudent
+                  te zijn en laat je inspireren door de verhalen van anderen.
                 </Text>
               </View>
             </Pressable>
@@ -181,16 +188,16 @@ export default function Top3CountriesScreen() {
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}
       >
-        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+        <SafeAreaView
+          style={styles.videoModalContainer}
+          edges={['top', 'left', 'right']}
+        >
           <View style={styles.videoModalHeader}>
-            <Pressable
-              style={styles.closeButton}
-              onPress={handleCloseVideo}
-            >
+            <Pressable style={styles.closeButton} onPress={handleCloseVideo}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </Pressable>
           </View>
-          
+
           <View style={styles.videoContainer}>
             {status === 'loading' && (
               <View style={styles.loadingContainer}>
@@ -206,7 +213,7 @@ export default function Top3CountriesScreen() {
               contentFit="contain"
             />
           </View>
-          
+
           <View style={styles.videoInfoModal}>
             <Text style={styles.videoTitleModal}>Proud to be European</Text>
             <Text style={styles.videoSubtitleModal}>
@@ -231,7 +238,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -261,7 +268,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -277,24 +284,26 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Info Card
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
     color: '#333',
   },
-  
+
   // Tip Card Styles
   tipCard: {
     backgroundColor: '#FFFFFF',
@@ -303,11 +312,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 1,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   tipNumber: {
     width: 32,
@@ -331,17 +342,19 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // Video Card Styles
   videoCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     overflow: 'hidden',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   videoPreview: {
     height: 200,
@@ -414,7 +427,7 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // Video Modal Styles
   videoModalContainer: {
     flex: 1,

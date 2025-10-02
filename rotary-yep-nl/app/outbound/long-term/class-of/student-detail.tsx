@@ -6,19 +6,18 @@ import { StatusBar } from 'expo-status-bar';
 import StudentDetail from '@/components/students/StudentDetail';
 import { currentOutboundStudents } from '@/data/outbound-students';
 
-
 export default function StudentDetailScreen() {
   const params = useLocalSearchParams();
-  
+
   const student = useMemo(() => {
     if (!params.studentName) return null;
-    return currentOutboundStudents.find(s => s.name === params.studentName);
+    return currentOutboundStudents.find((s) => s.name === params.studentName);
   }, [params.studentName]);
 
   if (!student) {
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar style="auto" />
+        
         <View style={styles.centered}>
           <Text style={styles.errorText}>Student niet gevonden</Text>
         </View>

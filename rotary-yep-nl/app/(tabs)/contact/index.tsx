@@ -1,5 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Platform, StyleSheet, Pressable, View, Text, SectionList } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Pressable,
+  View,
+  Text,
+  SectionList,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ContactCard } from '@/components/enhanced-contact-card';
 import { contactSections } from '@/data/contacts';
@@ -14,18 +21,23 @@ export default function ContactScreen() {
   // Convert contacts to sections format for SectionList
   const sections = useMemo(() => {
     if (currentSection.contacts.length === 0) return [];
-    
-    return [{
-      title: currentSection.title,
-      count: currentSection.contacts.length,
-      data: currentSection.contacts,
-    }];
+
+    return [
+      {
+        title: currentSection.title,
+        count: currentSection.contacts.length,
+        data: currentSection.contacts,
+      },
+    ];
   }, [currentSection]);
 
-  const renderContact = ({ item, index }: { item: Contact | Organization | Rotex; index: number }) => (
-    <ContactCard contact={item} index={index} />
-  );
-
+  const renderContact = ({
+    item,
+    index,
+  }: {
+    item: Contact | Organization | Rotex;
+    index: number;
+  }) => <ContactCard contact={item} index={index} />;
 
   const renderEmptyComponent = () => (
     <View style={styles.emptyState}>
@@ -38,7 +50,7 @@ export default function ContactScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <View style={styles.tabContainer}>
           {contactSections.map((section, index) => {
@@ -47,13 +59,15 @@ export default function ContactScreen() {
               <Pressable
                 key={section.id}
                 style={({ pressed }) => [
-                  styles.tab, 
+                  styles.tab,
                   isActive && styles.activeTab,
-                  pressed && styles.tabPressed
+                  pressed && styles.tabPressed,
                 ]}
                 onPress={() => setActiveTab(index)}
               >
-                <Text style={[styles.tabText, isActive && styles.activeTabText]}>
+                <Text
+                  style={[styles.tabText, isActive && styles.activeTabText]}
+                >
                   {section.title}
                 </Text>
               </Pressable>
@@ -95,17 +109,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: Platform.OS === 'ios' ? '#FFFFFF' : '#F5F5F5',
     paddingHorizontal: 0,
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-      elevation: 0,
-    } : {
-      elevation: 2,
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      borderBottomColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          elevation: 0,
+        }
+      : {
+          elevation: 2,
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: '#E0E0E0',
+        }),
   },
   tab: {
     flex: 1,
@@ -118,7 +134,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#1f4e79',
   },
   tabPressed: {
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(26, 35, 126, 0.1)' : '#F0F0F0',
+    backgroundColor:
+      Platform.OS === 'ios' ? 'rgba(26, 35, 126, 0.1)' : '#F0F0F0',
   },
   tabText: {
     fontSize: Platform.OS === 'ios' ? 16 : 14,

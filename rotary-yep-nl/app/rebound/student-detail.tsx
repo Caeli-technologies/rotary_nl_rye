@@ -41,7 +41,13 @@ interface ActionButtonProps {
   disabled?: boolean;
 }
 
-function ActionButton({ icon, title, subtitle, onPress, disabled = false }: ActionButtonProps) {
+function ActionButton({
+  icon,
+  title,
+  subtitle,
+  onPress,
+  disabled = false,
+}: ActionButtonProps) {
   const [scaleAnim] = useState(new Animated.Value(1));
 
   const handlePressIn = () => {
@@ -63,38 +69,65 @@ function ActionButton({ icon, title, subtitle, onPress, disabled = false }: Acti
 
   return (
     <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-      <Pressable 
+      <Pressable
         style={({ pressed }) => [
           styles.actionButton,
           disabled && styles.actionButtonDisabled,
-          !disabled && pressed && styles.actionButtonPressed
-        ]} 
+          !disabled && pressed && styles.actionButtonPressed,
+        ]}
         onPress={disabled ? undefined : onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         disabled={disabled}
       >
         <View style={styles.actionButtonContent}>
-          <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
-            <Ionicons name={icon} size={24} color={disabled ? "#999" : "#9FA8DA"} />
+          <View
+            style={[
+              styles.actionIconContainer,
+              disabled && styles.actionIconDisabled,
+            ]}
+          >
+            <Ionicons
+              name={icon}
+              size={24}
+              color={disabled ? '#999' : '#9FA8DA'}
+            />
           </View>
           <View style={styles.actionTextContainer}>
-            <Text style={[styles.actionTitle, disabled && styles.actionTitleDisabled]} numberOfLines={1}>{title}</Text>
+            <Text
+              style={[
+                styles.actionTitle,
+                disabled && styles.actionTitleDisabled,
+              ]}
+              numberOfLines={1}
+            >
+              {title}
+            </Text>
             {subtitle && (
-              <Text style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]} numberOfLines={2}>
+              <Text
+                style={[
+                  styles.actionSubtitle,
+                  disabled && styles.actionSubtitleDisabled,
+                ]}
+                numberOfLines={2}
+              >
                 {subtitle}
               </Text>
             )}
           </View>
           {!disabled && (
-            <Ionicons 
-              name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'} 
-              size={Platform.OS === 'ios' ? 20 : 24} 
-              color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'} 
+            <Ionicons
+              name={
+                Platform.OS === 'ios'
+                  ? 'chevron-forward'
+                  : 'chevron-forward-outline'
+              }
+              size={Platform.OS === 'ios' ? 20 : 24}
+              color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
             />
           )}
         </View>
-    </Pressable>
+      </Pressable>
     </Animated.View>
   );
 }
@@ -109,9 +142,9 @@ export default function StudentDetailScreen() {
 
   const student = useMemo(() => {
     if (!params.year || !params.studentName) return null;
-    
+
     const studentsForYear = data.list[params.year] || [];
-    return studentsForYear.find(s => s.name === params.studentName) || null;
+    return studentsForYear.find((s) => s.name === params.studentName) || null;
   }, [params.year, params.studentName]);
 
   const fromFlagAsset = student ? getFlagAsset(student.fromFlag) : null;
@@ -119,14 +152,16 @@ export default function StudentDetailScreen() {
 
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
 
-  const player = useVideoPlayer(student?.videoUrl || null, player => {
+  const player = useVideoPlayer(student?.videoUrl || null, (player) => {
     if (player) {
       player.loop = false;
       player.muted = false;
     }
   });
 
-  const { status } = useEvent(player, 'statusChange', { status: player.status });
+  const { status } = useEvent(player, 'statusChange', {
+    status: player.status,
+  });
 
   const handleVideoPress = async () => {
     if (student?.videoUrl) {
@@ -143,28 +178,35 @@ export default function StudentDetailScreen() {
     setIsVideoModalVisible(false);
   };
 
-
-
   // Configure navigation header with student name and share button
   useLayoutEffect(() => {
     if (student) {
       navigation.setOptions({
         title: student.name,
         headerTitle: () => (
-          <View style={{ alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start' }}>
-            <Text style={{
-              fontSize: Platform.OS === 'ios' ? 18 : 20,
-              fontWeight: '600',
-              color: '#1A237E',
-            }} numberOfLines={1}>
+          <View
+            style={{
+              alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+            }}
+          >
+            <Text
+              style={{
+                fontSize: Platform.OS === 'ios' ? 18 : 20,
+                fontWeight: '600',
+                color: '#1A237E',
+              }}
+              numberOfLines={1}
+            >
               {student.name}
             </Text>
-            <Text style={{
-              color: '#8E8E93',
-              fontSize: 13,
-              fontWeight: '400',
-              marginTop: 2,
-            }}>
+            <Text
+              style={{
+                color: '#8E8E93',
+                fontSize: 13,
+                fontWeight: '400',
+                marginTop: 2,
+              }}
+            >
               {params.year} Exchange
             </Text>
           </View>
@@ -176,8 +218,8 @@ export default function StudentDetailScreen() {
   if (!student) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        <StatusBar style="auto" />
         
+
         <View style={styles.errorContainer}>
           <Ionicons name="person-outline" size={64} color="#9FA8DA" />
           <Text style={styles.errorTitle}>Student Not Found</Text>
@@ -191,9 +233,9 @@ export default function StudentDetailScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -209,7 +251,7 @@ export default function StudentDetailScreen() {
               showInitials={true}
             />
           </View>
-          
+
           <Text style={styles.studentName}>{student.name}</Text>
           <Text style={styles.studentDescription}>{student.description}</Text>
         </View>
@@ -220,7 +262,7 @@ export default function StudentDetailScreen() {
             <Ionicons name="airplane-outline" size={24} color="#9FA8DA" />
             <Text style={styles.exchangeTitle}>Exchange Details</Text>
           </View>
-          
+
           <View style={styles.exchangeRoute}>
             <View style={styles.exchangeCountry}>
               <View style={styles.exchangeCountryHeader}>
@@ -232,7 +274,9 @@ export default function StudentDetailScreen() {
                   />
                 ) : (
                   <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>{student.fromFlag.toUpperCase()}</Text>
+                    <Text style={styles.flagText}>
+                      {student.fromFlag.toUpperCase()}
+                    </Text>
                   </View>
                 )}
                 <Text style={styles.exchangeLabel}>From</Text>
@@ -254,7 +298,9 @@ export default function StudentDetailScreen() {
                   />
                 ) : (
                   <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>{student.toFlag.toUpperCase()}</Text>
+                    <Text style={styles.flagText}>
+                      {student.toFlag.toUpperCase()}
+                    </Text>
                   </View>
                 )}
                 <Text style={styles.exchangeLabel}>To</Text>
@@ -272,7 +318,11 @@ export default function StudentDetailScreen() {
         {student.bio && student.bio.trim() !== '' && (
           <View style={styles.bioCard}>
             <View style={styles.bioHeader}>
-              <Ionicons name="document-text-outline" size={24} color="#9FA8DA" />
+              <Ionicons
+                name="document-text-outline"
+                size={24}
+                color="#9FA8DA"
+              />
               <Text style={styles.bioTitle}>Biography</Text>
             </View>
             <Text style={styles.bioText}>{student.bio}</Text>
@@ -282,17 +332,21 @@ export default function StudentDetailScreen() {
         {/* Actions */}
         <View style={styles.actionsSection}>
           <Text style={styles.sectionTitle}>Actions</Text>
-          
+
           <ActionButton
             icon="play-circle-outline"
             title="Watch Video"
-            subtitle={student.videoUrl ? "View exchange experience" : "Video not available"}
+            subtitle={
+              student.videoUrl
+                ? 'View exchange experience'
+                : 'Video not available'
+            }
             onPress={handleVideoPress}
             disabled={!student.videoUrl}
           />
         </View>
       </ScrollView>
-      
+
       {/* Video Modal */}
       <Modal
         visible={isVideoModalVisible}
@@ -300,7 +354,10 @@ export default function StudentDetailScreen() {
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}
       >
-        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+        <SafeAreaView
+          style={styles.videoModalContainer}
+          edges={['top', 'left', 'right']}
+        >
           <View style={styles.videoModalHeader}>
             <Pressable
               style={styles.closeButton}
@@ -310,7 +367,7 @@ export default function StudentDetailScreen() {
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </Pressable>
           </View>
-          
+
           <View style={styles.videoContainer}>
             {status === 'loading' && (
               <View style={styles.loadingContainer}>
@@ -326,10 +383,12 @@ export default function StudentDetailScreen() {
               contentFit="contain"
             />
           </View>
-          
+
           {student && (
             <View style={styles.videoInfo}>
-              <Text style={styles.videoTitle}>{student.name}'s Exchange Story</Text>
+              <Text style={styles.videoTitle}>
+                {student.name}'s Exchange Story
+              </Text>
               <Text style={styles.videoSubtitle}>
                 {student.from} → {student.to} • {params.year}
               </Text>
@@ -366,7 +425,6 @@ const styles = StyleSheet.create({
     overflow: 'visible',
   },
 
-
   studentName: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '500',
@@ -386,15 +444,17 @@ const styles = StyleSheet.create({
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...(Platform.OS === 'ios' ? {
-      ...shadowStyle,
-      shadowOpacity: 0.12,
-      shadowRadius: 24,
-    } : {
-      elevation: 3,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          ...shadowStyle,
+          shadowOpacity: 0.12,
+          shadowRadius: 24,
+        }
+      : {
+          elevation: 3,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   exchangeHeader: {
     flexDirection: 'row',
@@ -459,11 +519,13 @@ const styles = StyleSheet.create({
     borderRadius: Platform.OS === 'ios' ? 16 : 8,
     margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   bioHeader: {
     flexDirection: 'row',
@@ -496,15 +558,17 @@ const styles = StyleSheet.create({
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     marginBottom: 16,
     overflow: 'hidden',
-    ...(Platform.OS === 'ios' ? {
-      ...shadowStyle,
-      shadowOpacity: 0.08,
-      shadowRadius: 16,
-    } : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          ...shadowStyle,
+          shadowOpacity: 0.08,
+          shadowRadius: 16,
+        }
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   actionButtonDisabled: {
     backgroundColor: '#F9F9F9',
@@ -628,7 +692,7 @@ const styles = StyleSheet.create({
   },
   video: {
     width: '100%',
-    aspectRatio: 16/9,
+    aspectRatio: 16 / 9,
     backgroundColor: '#000000',
     maxHeight: Dimensions.get('window').height * 0.6,
   },

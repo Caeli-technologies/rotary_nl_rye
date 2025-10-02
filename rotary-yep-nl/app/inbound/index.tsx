@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
   Pressable,
   Platform,
-  Linking
+  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -23,19 +23,22 @@ interface ProgramItem {
 }
 
 export default function InboundScreen() {
-  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
-    if (!enabled) return;
-    
-    try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  const handleProgramPress = useCallback(
+    async (route: string, enabled: boolean = true) => {
+      if (!enabled) return;
+
+      try {
+        if (Platform.OS === 'ios') {
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        router.push(route as any);
+      } catch (error) {
+        console.error('Error navigating to route:', error);
+        router.push(route as any);
       }
-      router.push(route as any);
-    } catch (error) {
-      console.error('Error navigating to route:', error);
-      router.push(route as any);
-    }
-  }, []);
+    },
+    [],
+  );
 
   const handleEmailPress = useCallback(async (email: string, name: string) => {
     try {
@@ -48,36 +51,65 @@ export default function InboundScreen() {
     }
   }, []);
 
-  const renderProgramItem = useCallback(({ item }: { item: ProgramItem }) => (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.programItem,
-        pressed && styles.programItemPressed,
-        !item.enabled && styles.programItemDisabled
-      ]}
-      onPress={() => handleProgramPress(item.route, item.enabled)}
-      accessibilityRole="button"
-      accessibilityLabel={item.title}
-      accessibilityHint={item.enabled ? "Tap to view program details" : "This program is not yet available"}
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      disabled={!item.enabled}
-    >
-      <View style={styles.programContent}>
-        <View style={[styles.iconContainer, !item.enabled && styles.iconContainerDisabled]}>
-          <FontAwesome5 name={item.icon} size={22} color={item.enabled ? "#007AFF" : "#8E8E93"} />
+  const renderProgramItem = useCallback(
+    ({ item }: { item: ProgramItem }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.programItem,
+          pressed && styles.programItemPressed,
+          !item.enabled && styles.programItemDisabled,
+        ]}
+        onPress={() => handleProgramPress(item.route, item.enabled)}
+        accessibilityRole="button"
+        accessibilityLabel={item.title}
+        accessibilityHint={
+          item.enabled
+            ? 'Tap to view program details'
+            : 'This program is not yet available'
+        }
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        disabled={!item.enabled}
+      >
+        <View style={styles.programContent}>
+          <View
+            style={[
+              styles.iconContainer,
+              !item.enabled && styles.iconContainerDisabled,
+            ]}
+          >
+            <FontAwesome5
+              name={item.icon}
+              size={22}
+              color={item.enabled ? '#007AFF' : '#8E8E93'}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text
+              style={[
+                styles.programTitle,
+                !item.enabled && styles.programTitleDisabled,
+              ]}
+            >
+              {item.title}
+            </Text>
+            <Text style={styles.programSubtitle}>{item.subtitle}</Text>
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={
+              item.enabled
+                ? Platform.OS === 'ios'
+                  ? '#C7C7CC'
+                  : '#666'
+                : '#C7C7CC'
+            }
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={[styles.programTitle, !item.enabled && styles.programTitleDisabled]}>{item.title}</Text>
-          <Text style={styles.programSubtitle}>{item.subtitle}</Text>
-        </View>
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-          size={20} 
-          color={item.enabled ? (Platform.OS === 'ios' ? '#C7C7CC' : '#666') : '#C7C7CC'} 
-        />
-      </View>
-    </Pressable>
-  ), [handleProgramPress]);
+      </Pressable>
+    ),
+    [handleProgramPress],
+  );
 
   const longTermPrograms: ProgramItem[] = [
     {
@@ -85,8 +117,8 @@ export default function InboundScreen() {
       subtitle: 'Year Exchange',
       icon: 'calendar-alt' as keyof typeof FontAwesome5.glyphMap,
       route: '/inbound/long-term',
-      enabled: true
-    }
+      enabled: true,
+    },
   ];
 
   const shortTermPrograms: ProgramItem[] = [
@@ -95,83 +127,104 @@ export default function InboundScreen() {
       subtitle: 'Summer Camps & Cultural Tours',
       icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
       route: '/inbound/short-term/camps-and-tours',
-      enabled: false
+      enabled: false,
     },
     {
       title: 'Family to Family',
       subtitle: 'Exchange between families',
       icon: 'home' as keyof typeof FontAwesome5.glyphMap,
       route: '/inbound/short-term/family-to-family',
-      enabled: false
-    }
+      enabled: false,
+    },
   ];
 
-  const IntroSection = useCallback(() => (
-    <View style={styles.introContainer}>
-      <Text style={styles.introTitle}>Inbounds</Text>
-      <Text style={styles.introText}>
-        Wow, we're so excited that you will be our inbound exchange student for the coming year. For this to happen we will need some extra information so please watch your email inbox on a regular basis. Also you can find some further information in this app. If you have any questions that are not answered, please contact our inbound coordinator{' '}
-        <Text 
-          style={styles.linkText}
-          onPress={() => handleEmailPress('longtermin@rotaryyep.nl', 'Clasine Scheepers')}
-        >
-          Clasine Scheepers
+  const IntroSection = useCallback(
+    () => (
+      <View style={styles.introContainer}>
+        <Text style={styles.introTitle}>Inbounds</Text>
+        <Text style={styles.introText}>
+          Wow, we're so excited that you will be our inbound exchange student
+          for the coming year. For this to happen we will need some extra
+          information so please watch your email inbox on a regular basis. Also
+          you can find some further information in this app. If you have any
+          questions that are not answered, please contact our inbound
+          coordinator{' '}
+          <Text
+            style={styles.linkText}
+            onPress={() =>
+              handleEmailPress('longtermin@rotaryyep.nl', 'Clasine Scheepers')
+            }
+          >
+            Clasine Scheepers
+          </Text>{' '}
+          and/or{' '}
+          <Text
+            style={styles.linkText}
+            onPress={() =>
+              handleEmailPress('longtermadmin@rotaryyep.nl', 'Ben Mureau')
+            }
+          >
+            Ben Mureau
+          </Text>
+          .
         </Text>
-        {' '}and/or{' '}
-        <Text 
-          style={styles.linkText}
-          onPress={() => handleEmailPress('longtermadmin@rotaryyep.nl', 'Ben Mureau')}
-        >
-          Ben Mureau
-        </Text>
-        .
-      </Text>
-    </View>
-  ), [handleEmailPress]);
+      </View>
+    ),
+    [handleEmailPress],
+  );
 
-  const SectionHeader = useCallback(({ title }: { title: string }) => (
-    <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderTitle}>{title}</Text>
-      <View style={styles.sectionHeaderDivider} />
-    </View>
-  ), []);
+  const SectionHeader = useCallback(
+    ({ title }: { title: string }) => (
+      <View style={styles.sectionHeaderContainer}>
+        <Text style={styles.sectionHeaderTitle}>{title}</Text>
+        <View style={styles.sectionHeaderDivider} />
+      </View>
+    ),
+    [],
+  );
 
   const renderContent = useCallback(() => {
     const allItems = [
       { type: 'intro' },
       { type: 'sectionHeader', title: 'Long Term Exchange Program' },
-      ...longTermPrograms.map(item => ({ type: 'program', item })),
+      ...longTermPrograms.map((item) => ({ type: 'program', item })),
       { type: 'spacer' },
       { type: 'sectionHeader', title: 'Short Term Exchange Program' },
-      ...shortTermPrograms.map(item => ({ type: 'program', item }))
+      ...shortTermPrograms.map((item) => ({ type: 'program', item })),
     ];
 
     return allItems;
   }, []);
 
-  const renderItem = useCallback(({ item }: { item: any }) => {
-    switch (item.type) {
-      case 'intro':
-        return <IntroSection />;
-      case 'sectionHeader':
-        return <SectionHeader title={item.title} />;
-      case 'program':
-        return renderProgramItem({ item: item.item });
-      case 'spacer':
-        return <View style={styles.spacer} />;
-      default:
-        return null;
-    }
-  }, [IntroSection, SectionHeader, renderProgramItem]);
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => {
+      switch (item.type) {
+        case 'intro':
+          return <IntroSection />;
+        case 'sectionHeader':
+          return <SectionHeader title={item.title} />;
+        case 'program':
+          return renderProgramItem({ item: item.item });
+        case 'spacer':
+          return <View style={styles.spacer} />;
+        default:
+          return null;
+      }
+    },
+    [IntroSection, SectionHeader, renderProgramItem],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
+          keyExtractor={useCallback(
+            (item: any, index: number) => `${item.type}-${index}`,
+            [],
+          )}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  ScrollView, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
   Pressable,
-  Platform
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -19,107 +19,116 @@ interface DocumentItemProps {
   pdfUrl: string;
 }
 
-const DocumentItem = React.memo(({ title, icon, pdfUrl }: DocumentItemProps) => {
-  const handlePress = useCallback(async () => {
-    try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+const DocumentItem = React.memo(
+  ({ title, icon, pdfUrl }: DocumentItemProps) => {
+    const handlePress = useCallback(async () => {
+      try {
+        if (Platform.OS === 'ios') {
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        router.push({
+          pathname: '/pdf-viewer',
+          params: {
+            url: pdfUrl,
+            title: title,
+          },
+        });
+      } catch (error) {
+        console.error('Error opening PDF:', error);
+        router.push({
+          pathname: '/pdf-viewer',
+          params: {
+            url: pdfUrl,
+            title: title,
+          },
+        });
       }
-      router.push({
-        pathname: '/pdf-viewer',
-        params: {
-          url: pdfUrl,
-          title: title
-        }
-      });
-    } catch (error) {
-      console.error('Error opening PDF:', error);
-      router.push({
-        pathname: '/pdf-viewer',
-        params: {
-          url: pdfUrl,
-          title: title
-        }
-      });
-    }
-  }, [pdfUrl, title]);
+    }, [pdfUrl, title]);
 
-  return (
-    <Pressable 
-      style={({ pressed }) => [
-        styles.documentItem,
-        pressed && styles.documentItemPressed
-      ]}
-      onPress={handlePress}
-      android_ripple={{
-        color: 'rgba(0, 122, 255, 0.2)',
-        borderless: false
-      }}
-      accessibilityRole="button"
-      accessibilityLabel={`Open ${title} PDF document`}
-      accessibilityHint="Tap to view PDF in document viewer"
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-    >
-      <View style={styles.documentContent}>
-        <View style={styles.iconContainer}>
-          <FontAwesome5 name={icon} size={22} color="#007AFF" />
+    return (
+      <Pressable
+        style={({ pressed }) => [
+          styles.documentItem,
+          pressed && styles.documentItemPressed,
+        ]}
+        onPress={handlePress}
+        android_ripple={{
+          color: 'rgba(0, 122, 255, 0.2)',
+          borderless: false,
+        }}
+        accessibilityRole="button"
+        accessibilityLabel={`Open ${title} PDF document`}
+        accessibilityHint="Tap to view PDF in document viewer"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <View style={styles.documentContent}>
+          <View style={styles.iconContainer}>
+            <FontAwesome5 name={icon} size={22} color="#007AFF" />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.documentTitle}>{title}</Text>
+            <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.documentTitle}>{title}</Text>
-          <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
-        </View>
-        <Ionicons 
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-          size={20} 
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
-        />
-      </View>
-    </Pressable>
-  );
-});
+      </Pressable>
+    );
+  },
+);
 
 export default function DocumentenScreen() {
-  const renderDocument = useCallback((document: DocumentItemProps, index: number) => (
-    <DocumentItem
-      key={index}
-      title={document.title}
-      icon={document.icon}
-      pdfUrl={document.pdfUrl}
-    />
-  ), []);
+  const renderDocument = useCallback(
+    (document: DocumentItemProps, index: number) => (
+      <DocumentItem
+        key={index}
+        title={document.title}
+        icon={document.icon}
+        pdfUrl={document.pdfUrl}
+      />
+    ),
+    [],
+  );
 
   const documents = [
     {
       title: "Code of Policies 'Regels en Interventies'",
       icon: 'home' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/jaaruitwisseling-regels-en-interventies-v7-1-2020.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/jaaruitwisseling-regels-en-interventies-v7-1-2020.pdf',
     },
     {
       title: "MDJC gedragscode - VJV - 'Vrijwilliger Jeugd Verklaring'",
       icon: 'users' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/gedragscode-vrijwilligers-mdjc-2.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2023/gedragscode-vrijwilligers-mdjc-2.pdf',
     },
     {
       title: 'First Night Questions',
       icon: 'question-circle' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/questions-first-night-host-family.pdf'
-    }
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/questions-first-night-host-family.pdf',
+    },
   ];
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
-        <ScrollView 
+        <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
         >
           <Text style={styles.description}>
-            Essentiële documenten en regelgeving voor alle Rotary clubs die deelnemen aan het uitwisselingsprogramma.
+            Essentiële documenten en regelgeving voor alle Rotary clubs die
+            deelnemen aan het uitwisselingsprogramma.
           </Text>
-          
+
           {documents.map(renderDocument)}
         </ScrollView>
       </View>

@@ -41,7 +41,11 @@ function CountryCard({ country, onPress }: CountryCardProps) {
   const flagAsset = getFlagAsset(country.flag);
 
   return (
-    <TouchableOpacity style={styles.countryCard} onPress={onPress} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={styles.countryCard}
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
       <View style={styles.countryCardContent}>
         {flagAsset ? (
           <Image
@@ -57,7 +61,8 @@ function CountryCard({ country, onPress }: CountryCardProps) {
         <View style={styles.countryInfo}>
           <Text style={styles.countryName}>{country.country}</Text>
           <Text style={styles.countryStudentCount}>
-            {country.totalStudents} student{country.totalStudents !== 1 ? 's' : ''}
+            {country.totalStudents} student
+            {country.totalStudents !== 1 ? 's' : ''}
           </Text>
         </View>
         <Ionicons name="chevron-forward" size={20} color="#9FA8DA" />
@@ -69,10 +74,13 @@ function CountryCard({ country, onPress }: CountryCardProps) {
 export default function ReboundCountriesScreen() {
   // Get all unique countries across all years with their statistics
   const countries = useMemo(() => {
-    const countryMap = new Map<string, { flag: string; students: number; years: Set<string> }>();
-    
+    const countryMap = new Map<
+      string,
+      { flag: string; students: number; years: Set<string> }
+    >();
+
     Object.entries(data.list).forEach(([year, students]) => {
-      students.forEach(student => {
+      students.forEach((student) => {
         const existing = countryMap.get(student.to);
         if (existing) {
           existing.students++;
@@ -86,7 +94,7 @@ export default function ReboundCountriesScreen() {
         }
       });
     });
-    
+
     return Array.from(countryMap.entries())
       .map(([country, stats]) => ({
         country,
@@ -113,8 +121,8 @@ export default function ReboundCountriesScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={[]}>
-      <StatusBar style="auto" />
       
+
       <FlatList
         data={countries}
         renderItem={renderCountry}

@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  FlatList, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
   Pressable,
-  Platform
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -19,127 +19,144 @@ interface DocumentItem {
   pdfUrl: string;
 }
 
-
-
 export default function JeugdcommissarisScreen() {
-  const handleDocumentPress = useCallback(async (pdfUrl: string, title: string) => {
-    try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  const handleDocumentPress = useCallback(
+    async (pdfUrl: string, title: string) => {
+      try {
+        if (Platform.OS === 'ios') {
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        router.push({
+          pathname: '/pdf-viewer',
+          params: {
+            url: pdfUrl,
+            title: title,
+          },
+        });
+      } catch (error) {
+        console.error('Error opening PDF:', error);
+        router.push({
+          pathname: '/pdf-viewer',
+          params: {
+            url: pdfUrl,
+            title: title,
+          },
+        });
       }
-      router.push({
-        pathname: '/pdf-viewer',
-        params: {
-          url: pdfUrl,
-          title: title
-        }
-      });
-    } catch (error) {
-      console.error('Error opening PDF:', error);
-      router.push({
-        pathname: '/pdf-viewer',
-        params: {
-          url: pdfUrl,
-          title: title
-        }
-      });
-    }
-  }, []);
+    },
+    [],
+  );
 
-  const renderDocumentItem = useCallback(({ item }: { item: DocumentItem }) => {
-    return (
-      <Pressable 
-        style={({ pressed }) => [
-          styles.documentItem,
-          pressed && styles.documentItemPressed
-        ]}
-        onPress={() => handleDocumentPress(item.pdfUrl, item.title)}
-        android_ripple={{
-          color: 'rgba(0, 122, 255, 0.2)',
-          borderless: false
-        }}
-        accessibilityRole="button"
-        accessibilityLabel={`Open ${item.title} PDF document`}
-        accessibilityHint="Tap to view PDF in document viewer"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
-        <View style={styles.documentContent}>
-          <View style={styles.iconContainer}>
-            <FontAwesome5 name={item.icon} size={20} color="#007AFF" />
+  const renderDocumentItem = useCallback(
+    ({ item }: { item: DocumentItem }) => {
+      return (
+        <Pressable
+          style={({ pressed }) => [
+            styles.documentItem,
+            pressed && styles.documentItemPressed,
+          ]}
+          onPress={() => handleDocumentPress(item.pdfUrl, item.title)}
+          android_ripple={{
+            color: 'rgba(0, 122, 255, 0.2)',
+            borderless: false,
+          }}
+          accessibilityRole="button"
+          accessibilityLabel={`Open ${item.title} PDF document`}
+          accessibilityHint="Tap to view PDF in document viewer"
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <View style={styles.documentContent}>
+            <View style={styles.iconContainer}>
+              <FontAwesome5 name={item.icon} size={20} color="#007AFF" />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={styles.documentTitle}>{item.title}</Text>
+              <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
+            </View>
+            <Ionicons
+              name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+              size={18}
+              color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+            />
           </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.documentTitle}>{item.title}</Text>
-            <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
-          </View>
-          <Ionicons 
-            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'} 
-            size={18} 
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'} 
-          />
-        </View>
-      </Pressable>
-    );
-  }, [handleDocumentPress]);
+        </Pressable>
+      );
+    },
+    [handleDocumentPress],
+  );
 
   const documents: DocumentItem[] = [
     {
       title: 'Handboek Jeugdcommissaris',
       icon: 'book' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/handboek-jeugdcommissaris-versie-2025-2026-def.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/handboek-jeugdcommissaris-versie-2025-2026-def.pdf',
     },
     {
       title: 'Document huisbezoek',
       icon: 'suitcase-rolling' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/huisbezoek-gastgezinnen-24-25-def.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/huisbezoek-gastgezinnen-24-25-def.pdf',
     },
     {
       title: 'Verzamelformulier VOG gegevens',
       icon: 'passport' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/formulier-aanlevering-vog-aanvragen-2022-2023.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/formulier-aanlevering-vog-aanvragen-2022-2023.pdf',
     },
     {
       title: 'Verklaring Jeugd Vrijwilliger (VJV)',
       icon: 'hands-helping' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/24-25/verklaring-jeugd-vrijwilliger-gedragscode-mdjc-jan23-definitieve-versie.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/24-25/verklaring-jeugd-vrijwilliger-gedragscode-mdjc-jan23-definitieve-versie.pdf',
     },
     {
       title: 'Presentielijst DJC training',
       icon: 'euro-sign' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/presentielijst-training-clubs-gastouders-24-25.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/presentielijst-training-clubs-gastouders-24-25.pdf',
     },
     {
       title: 'Schooldocument',
       icon: 'school' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/rotary-exchange-voor-middelbare-scholen-2022-2023.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/rotary-exchange-voor-middelbare-scholen-2022-2023.pdf',
     },
     {
       title: 'Actielijst voorbereiding komst Jaarkind',
       icon: 'clipboard-list' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/24-25/actielijst-rotary-clubs-2025-2026-voorbereiding-ontvangst-inbound-student-def.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/24-25/actielijst-rotary-clubs-2025-2026-voorbereiding-ontvangst-inbound-student-def.pdf',
     },
     {
       title: 'Rules and Information Inbounds',
       icon: 'balance-scale-left' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/24-25rules-and-information-for-inbound-exchange-students-to-the-netherlands.pdf'
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/24-25rules-and-information-for-inbound-exchange-students-to-the-netherlands.pdf',
     },
     {
       title: 'Reis Regels',
       icon: 'suitcase-rolling' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/travel-rules-within-and-outside-the-netherlands-2024-2025.pdf'
-    }
+      pdfUrl:
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/travel-rules-within-and-outside-the-netherlands-2024-2025.pdf',
+    },
   ];
 
-  const ListHeaderComponent = useCallback(() => (
-    <View style={styles.content}>
-      <Text style={styles.description}>
-        Hier vindt u alle belangrijke documenten en informatie voor jeugdcommissarissen.
-      </Text>
-    </View>
-  ), []);
+  const ListHeaderComponent = useCallback(
+    () => (
+      <View style={styles.content}>
+        <Text style={styles.description}>
+          Hier vindt u alle belangrijke documenten en informatie voor
+          jeugdcommissarissen.
+        </Text>
+      </View>
+    ),
+    [],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
+      
       <View style={styles.container}>
         <FlatList
           data={documents}

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -21,9 +15,9 @@ const shadowStyle = {
 export default function CampsToursComplyWithScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
-      <ScrollView 
+
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
@@ -46,7 +40,7 @@ export default function CampsToursComplyWithScreen() {
               <Ionicons name="calendar-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Leeftijdsvereisten</Text>
             </View>
-            
+
             <View style={styles.ageCard}>
               <View style={styles.ageIconContainer}>
                 <Ionicons name="person-outline" size={32} color="#4CAF50" />
@@ -54,7 +48,8 @@ export default function CampsToursComplyWithScreen() {
               <View style={styles.ageContent}>
                 <Text style={styles.ageTitle}>15 - 21 jaar</Text>
                 <Text style={styles.ageDescription}>
-                  Perfecte leeftijd voor internationale ervaringen en persoonlijke groei
+                  Perfecte leeftijd voor internationale ervaringen en
+                  persoonlijke groei
                 </Text>
               </View>
             </View>
@@ -63,10 +58,14 @@ export default function CampsToursComplyWithScreen() {
           {/* Eligibility */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
+              <Ionicons
+                name="checkmark-circle-outline"
+                size={24}
+                color="#FF6B35"
+              />
               <Text style={styles.sectionTitle}>Wie kan deelnemen?</Text>
             </View>
-            
+
             <View style={styles.eligibilityCard}>
               <View style={styles.eligibilityItem}>
                 <View style={styles.eligibilityIcon}>
@@ -87,7 +86,9 @@ export default function CampsToursComplyWithScreen() {
                   <Ionicons name="heart-outline" size={20} color="#E91E63" />
                 </View>
                 <View style={styles.eligibilityContent}>
-                  <Text style={styles.eligibilityTitle}>Non-Rotarian Youth</Text>
+                  <Text style={styles.eligibilityTitle}>
+                    Non-Rotarian Youth
+                  </Text>
                   <Text style={styles.eligibilityDescription}>
                     Alle gemotiveerde jongeren uit de gemeenschap
                   </Text>
@@ -102,13 +103,15 @@ export default function CampsToursComplyWithScreen() {
               <Ionicons name="star-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Wat kun je verwachten?</Text>
             </View>
-            
+
             <View style={styles.expectationCard}>
               <View style={styles.expectationIcon}>
                 <Ionicons name="globe-outline" size={20} color="#FF6B35" />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>Internationale Ervaring</Text>
+                <Text style={styles.expectationTitle}>
+                  Internationale Ervaring
+                </Text>
                 <Text style={styles.expectationDescription}>
                   Ontdek nieuwe culturen en maak vrienden over de hele wereld
                 </Text>
@@ -120,7 +123,9 @@ export default function CampsToursComplyWithScreen() {
                 <Ionicons name="school-outline" size={20} color="#4CAF50" />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>Persoonlijke Ontwikkeling</Text>
+                <Text style={styles.expectationTitle}>
+                  Persoonlijke Ontwikkeling
+                </Text>
                 <Text style={styles.expectationDescription}>
                   Ontwikkel zelfvertrouwen en leiderschapsvaardigheden
                 </Text>
@@ -132,7 +137,9 @@ export default function CampsToursComplyWithScreen() {
                 <Ionicons name="camera-outline" size={20} color="#9C27B0" />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>Onvergetelijke Herinneringen</Text>
+                <Text style={styles.expectationTitle}>
+                  Onvergetelijke Herinneringen
+                </Text>
                 <Text style={styles.expectationDescription}>
                   Creëer levenslange herinneringen en verhalen om te delen
                 </Text>
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-  
+
   // Header Section
   headerSection: {
     alignItems: 'center',
@@ -187,7 +194,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   section: {
     marginBottom: 32,
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     marginLeft: 12,
   },
-  
+
   // Age Card Styles
   ageCard: {
     backgroundColor: '#FFFFFF',
@@ -214,11 +221,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderLeftWidth: 4,
     borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   ageIconContainer: {
     width: 60,
@@ -243,18 +252,20 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // Eligibility Card Styles
   eligibilityCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 2,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 2,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   eligibilityItem: {
     flexDirection: 'row',
@@ -290,7 +301,7 @@ const styles = StyleSheet.create({
     marginVertical: 16,
     marginLeft: 56,
   },
-  
+
   // Expectation Card Styles
   expectationCard: {
     backgroundColor: '#FFFFFF',
@@ -299,11 +310,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' ? shadowStyle : {
-      elevation: 1,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: '#E0E0E0',
-    }),
+    ...(Platform.OS === 'ios'
+      ? shadowStyle
+      : {
+          elevation: 1,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: '#E0E0E0',
+        }),
   },
   expectationIcon: {
     width: 40,
@@ -328,7 +341,7 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 20,
   },
-  
+
   // CTA Card Styles
   ctaCard: {
     backgroundColor: '#FFF3F0',
@@ -336,14 +349,16 @@ const styles = StyleSheet.create({
     padding: 20,
     borderWidth: 2,
     borderColor: '#FF6B35',
-    ...(Platform.OS === 'ios' ? {
-      shadowColor: '#FF6B35',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    } : {
-      elevation: 2,
-    }),
+    ...(Platform.OS === 'ios'
+      ? {
+          shadowColor: '#FF6B35',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+        }
+      : {
+          elevation: 2,
+        }),
   },
   ctaHeader: {
     flexDirection: 'row',

@@ -4,8 +4,8 @@ import { Platform } from 'react-native';
 export default function EmergencyLayout() {
   return (
     <Stack>
-      <Stack.Screen 
-        name="index" 
+      <Stack.Screen
+        name="index"
         options={{
           title: 'Emergency',
           headerShown: true,

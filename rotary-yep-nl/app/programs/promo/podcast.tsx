@@ -1,7 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Platform } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import type { AudioStatus } from 'expo-audio';
@@ -25,13 +30,13 @@ interface PodcastRowProps {
   status: AudioStatus;
 }
 
-function PodcastRow({ 
-  index, 
-  podcast, 
-  isActive, 
+function PodcastRow({
+  index,
+  podcast,
+  isActive,
   onPress,
   player,
-  status
+  status,
 }: PodcastRowProps) {
   const [duration, setDuration] = useState<string>('');
   const [position, setPosition] = useState<string>('0:00');
@@ -66,33 +71,39 @@ function PodcastRow({
   const isPlaying = isActive && status.playing;
   const isBuffering = isActive && status.isBuffering;
   const isLoaded = isActive && status.isLoaded;
-  const progress = isActive && status.duration && status.currentTime 
-    ? (status.currentTime / status.duration) * 100 
-    : 0;
+  const progress =
+    isActive && status.duration && status.currentTime
+      ? (status.currentTime / status.duration) * 100
+      : 0;
 
   // Determine button state and icon
   const getPlayButtonIcon = () => {
-    if (isBuffering) return "reload-outline";
-    if (isPlaying) return "pause";
-    return "play";
+    if (isBuffering) return 'reload-outline';
+    if (isPlaying) return 'pause';
+    return 'play';
   };
 
   return (
-    <TouchableOpacity 
-      style={[styles.podcastCard, !isLoaded && isActive && styles.podcastCardLoading]}
+    <TouchableOpacity
+      style={[
+        styles.podcastCard,
+        !isLoaded && isActive && styles.podcastCardLoading,
+      ]}
       onPress={handleTogglePlayback}
       activeOpacity={0.7}
       disabled={isActive && !isLoaded}
     >
       <View style={styles.podcastContent}>
-        <View style={[styles.playButton, isBuffering && styles.playButtonBuffering]}>
-          <Ionicons 
-            name={getPlayButtonIcon()} 
-            size={24} 
-            color={isActive && !isLoaded ? "#999" : "#FF6B35"} 
+        <View
+          style={[styles.playButton, isBuffering && styles.playButtonBuffering]}
+        >
+          <Ionicons
+            name={getPlayButtonIcon()}
+            size={24}
+            color={isActive && !isLoaded ? '#999' : '#FF6B35'}
           />
         </View>
-        
+
         <View style={styles.podcastInfo}>
           <Text style={styles.podcastTitle} numberOfLines={2}>
             {podcast.title}
@@ -100,7 +111,7 @@ function PodcastRow({
           <Text style={styles.podcastDescription} numberOfLines={3}>
             {podcast.description}
           </Text>
-          
+
           {isActive && (
             <>
               {/* Loading/Buffering Status */}
@@ -109,25 +120,24 @@ function PodcastRow({
                   {!isLoaded ? 'Loading...' : 'Buffering...'}
                 </Text>
               )}
-              
+
               {/* Progress Bar - only show when loaded */}
               {isLoaded && (
                 <View style={styles.progressBar}>
-                  <View 
-                    style={[
-                      styles.progressFill, 
-                      { width: `${progress}%` }
-                    ]} 
+                  <View
+                    style={[styles.progressFill, { width: `${progress}%` }]}
                   />
                 </View>
               )}
-              
+
               {/* Time Info - show when loaded, with dynamic duration */}
               {isLoaded && (
                 <View style={styles.timeInfo}>
                   <Text style={styles.timeText}>{position}</Text>
                   <Text style={styles.timeText}>
-                    {status.duration && status.duration > 0 ? duration : '--:--'}
+                    {status.duration && status.duration > 0
+                      ? duration
+                      : '--:--'}
                   </Text>
                 </View>
               )}
@@ -140,68 +150,83 @@ function PodcastRow({
 }
 
 const podcasts: Podcast[] = [
-  { 
-    title: 'Episode 1: Sharon en Michel Teunissen', 
-    description: 'Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Sharon en Michel vertellen over hun ervaringen als gastouders.',
-    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-sharon-en-michel-teunissen.mp3' 
+  {
+    title: 'Episode 1: Sharon en Michel Teunissen',
+    description:
+      'Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Sharon en Michel vertellen over hun ervaringen als gastouders.',
+    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-sharon-en-michel-teunissen.mp3',
   },
-  { 
-    title: 'Episode 2: Ellen en Steven Stolp', 
-    description: 'Ellen en Steven delen hun verhaal als gastouders en geven tips voor andere families die overwegen om een exchange student op te nemen.',
-    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-ellen-en-steven-stolp.mp3' 
+  {
+    title: 'Episode 2: Ellen en Steven Stolp',
+    description:
+      'Ellen en Steven delen hun verhaal als gastouders en geven tips voor andere families die overwegen om een exchange student op te nemen.',
+    url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/podcast/rotary-ellen-en-steven-stolp.mp3',
   },
 ];
 
 export default function PodcastPromo() {
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
-  
+
   // Create a single audio player with no initial source (null)
   const player = useAudioPlayer(null);
   const status = useAudioPlayerStatus(player);
 
-  const handlePodcastPress = useCallback(async (index: number) => {
-    try {
-      const podcast = podcasts[index];
-      
-      // Don't allow interaction if currently loading/buffering a different podcast
-      if (playingIndex !== null && playingIndex !== index && (status.isBuffering || !status.isLoaded)) {
-        console.warn('Please wait for current podcast to load');
-        return;
-      }
-      
-      if (playingIndex === index) {
-        // Same podcast - toggle play/pause
-        if (status.playing) {
-          player.pause();
-        } else {
-          // If finished, restart from beginning
-          if (status.didJustFinish) {
-            await player.seekTo(0);
-          }
-          // Only play if loaded
-          if (status.isLoaded) {
-            player.play();
-          }
+  const handlePodcastPress = useCallback(
+    async (index: number) => {
+      try {
+        const podcast = podcasts[index];
+
+        // Don't allow interaction if currently loading/buffering a different podcast
+        if (
+          playingIndex !== null &&
+          playingIndex !== index &&
+          (status.isBuffering || !status.isLoaded)
+        ) {
+          console.warn('Please wait for current podcast to load');
+          return;
         }
-      } else {
-        // Different podcast - load new source and play
-        setPlayingIndex(index);
-        await player.replace(podcast.url);
-        // The player will automatically play once loaded
-        player.play();
+
+        if (playingIndex === index) {
+          // Same podcast - toggle play/pause
+          if (status.playing) {
+            player.pause();
+          } else {
+            // If finished, restart from beginning
+            if (status.didJustFinish) {
+              await player.seekTo(0);
+            }
+            // Only play if loaded
+            if (status.isLoaded) {
+              player.play();
+            }
+          }
+        } else {
+          // Different podcast - load new source and play
+          setPlayingIndex(index);
+          await player.replace(podcast.url);
+          // The player will automatically play once loaded
+          player.play();
+        }
+      } catch (error) {
+        console.warn('Podcast playback error:', error);
+        // Reset playing index on error
+        if (playingIndex === index) {
+          setPlayingIndex(null);
+        }
       }
-    } catch (error) {
-      console.warn('Podcast playback error:', error);
-      // Reset playing index on error
-      if (playingIndex === index) {
-        setPlayingIndex(null);
-      }
-    }
-  }, [playingIndex, status.playing, status.didJustFinish, status.isBuffering, status.isLoaded, player]);
+    },
+    [
+      playingIndex,
+      status.playing,
+      status.didJustFinish,
+      status.isBuffering,
+      status.isLoaded,
+      player,
+    ],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="auto" />
       <ScrollView contentContainerStyle={styles.container}>
         {/* Header Section */}
         <View style={styles.headerSection}>
@@ -210,7 +235,8 @@ export default function PodcastPromo() {
           </View>
           <Text style={styles.headerTitle}>Promo Podcast</Text>
           <Text style={styles.headerSubtitle}>
-            Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Luister naar de ervaringen van gastouders.
+            Hoe is het nou om een paar maanden ouders te zijn van een exchange
+            student? Luister naar de ervaringen van gastouders.
           </Text>
         </View>
 
@@ -250,7 +276,7 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 40,
   },
-  
+
   // Header Styles
   headerSection: {
     backgroundColor: '#FFFFFF',

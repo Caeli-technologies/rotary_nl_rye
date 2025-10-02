@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,13 +7,14 @@ import { Ionicons } from '@expo/vector-icons';
 export default function CampsAndToursInboundScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <StatusBar style="auto" />
       
+
       <View style={styles.emptyState}>
         <Ionicons name="construct-outline" size={48} color="#9FA8DA" />
         <Text style={styles.emptyStateTitle}>Coming Soon</Text>
         <Text style={styles.emptyStateMessage}>
-          Information for inbound camps and tours participants will be available here soon.
+          Information for inbound camps and tours participants will be available
+          here soon.
         </Text>
       </View>
     </SafeAreaView>
