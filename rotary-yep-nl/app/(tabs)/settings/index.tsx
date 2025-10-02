@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
 import * as Haptics from 'expo-haptics';
-import { StatusBar } from 'expo-status-bar';
+
 import { router } from 'expo-router';
 
 const shadowStyle = {
@@ -44,34 +44,30 @@ export default function SettingsScreen() {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL(
-      'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
-    ).then((supported) => {
-      if (supported) {
-        Linking.openURL(
-          'https://www.rotary.nl/yep/yep-app/privacy-policy.html',
-        );
-      } else {
-        Alert.alert('Error', 'Unable to open privacy policy link');
-      }
-    });
+    Linking.canOpenURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html').then(
+      (supported) => {
+        if (supported) {
+          Linking.openURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html');
+        } else {
+          Alert.alert('Error', 'Unable to open privacy policy link');
+        }
+      },
+    );
   };
 
   const handleTermsAndConditions = async () => {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL(
-      'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
-    ).then((supported) => {
-      if (supported) {
-        Linking.openURL(
-          'https://www.rotary.nl/yep/yep-app/terms-and-conditions.html',
-        );
-      } else {
-        Alert.alert('Error', 'Unable to open terms and conditions link');
-      }
-    });
+    Linking.canOpenURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html').then(
+      (supported) => {
+        if (supported) {
+          Linking.openURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html');
+        } else {
+          Alert.alert('Error', 'Unable to open terms and conditions link');
+        }
+      },
+    );
   };
 
   const handleContributors = async () => {
@@ -85,24 +81,16 @@ export default function SettingsScreen() {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    Linking.canOpenURL('https://www.instagram.com/rotexnederland/').then(
-      (supported) => {
-        if (supported) {
-          Linking.openURL('https://www.instagram.com/rotexnederland/');
-        } else {
-          Alert.alert('Error', 'Unable to open Instagram link');
-        }
-      },
-    );
+    Linking.canOpenURL('https://www.instagram.com/rotexnederland/').then((supported) => {
+      if (supported) {
+        Linking.openURL('https://www.instagram.com/rotexnederland/');
+      } else {
+        Alert.alert('Error', 'Unable to open Instagram link');
+      }
+    });
   };
 
-  const SettingsSection = ({
-    title,
-    children,
-  }: {
-    title: string;
-    children: React.ReactNode;
-  }) => (
+  const SettingsSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>{title}</Text>
       <View style={styles.sectionContent}>{children}</View>
@@ -121,27 +109,17 @@ export default function SettingsScreen() {
     rightElement?: React.ReactNode;
   }) => (
     <Pressable
-      style={({ pressed }) => [
-        styles.settingsItem,
-        pressed && styles.settingsItemPressed,
-      ]}
+      style={({ pressed }) => [styles.settingsItem, pressed && styles.settingsItemPressed]}
       onPress={onPress}
-      disabled={!onPress}
-    >
+      disabled={!onPress}>
       <View style={styles.settingsItemContent}>
         <Text style={styles.settingsItemTitle}>{title}</Text>
-        {subtitle && (
-          <Text style={styles.settingsItemSubtitle}>{subtitle}</Text>
-        )}
+        {subtitle && <Text style={styles.settingsItemSubtitle}>{subtitle}</Text>}
       </View>
       {rightElement ||
         (onPress && (
           <Ionicons
-            name={
-              Platform.OS === 'ios'
-                ? 'chevron-forward'
-                : 'chevron-forward-outline'
-            }
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
             size={Platform.OS === 'ios' ? 20 : 24}
             color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
           />
@@ -151,13 +129,10 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.safeContainer} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           <SettingsSection title="General">
             <SettingsItem
@@ -175,30 +150,18 @@ export default function SettingsScreen() {
             />
             <SettingsItem
               title="App Version"
-              subtitle={
-                buildVersion ? `${appVersion} (${buildVersion})` : appVersion
-              }
+              subtitle={buildVersion ? `${appVersion} (${buildVersion})` : appVersion}
             />
           </SettingsSection>
 
           <SettingsSection title="Legal">
-            <SettingsItem
-              title="Privacy Policy"
-              onPress={handlePrivacyPolicy}
-            />
-            <SettingsItem
-              title="Terms & Conditions"
-              onPress={handleTermsAndConditions}
-            />
+            <SettingsItem title="Privacy Policy" onPress={handlePrivacyPolicy} />
+            <SettingsItem title="Terms & Conditions" onPress={handleTermsAndConditions} />
           </SettingsSection>
 
           <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              Rotary Youth Exchange Netherlands
-            </Text>
-            <Text style={styles.footerText}>
-              Made with ❤️ for young global citizens
-            </Text>
+            <Text style={styles.footerText}>Rotary Youth Exchange Netherlands</Text>
+            <Text style={styles.footerText}>Made with ❤️ for young global citizens</Text>
           </View>
         </View>
       </ScrollView>

@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -23,13 +22,10 @@ const shadowStyle = {
 export default function CampsToursSignUpScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -56,8 +52,7 @@ export default function CampsToursSignUpScreen() {
                 <Text style={styles.emailLink}>zomerkamp@rotaryyep.nl</Text>
               </Text>
               <Text style={styles.emailNote}>
-                Dan krijg je van ons een bevestiging dat we je mail hebben
-                ontvangen.
+                Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.
               </Text>
             </View>
 
@@ -69,14 +64,8 @@ export default function CampsToursSignUpScreen() {
                   const emailUrl =
                     'mailto:zomerkamp@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
                   Linking.openURL(emailUrl);
-                }}
-              >
-                <Ionicons
-                  name="mail"
-                  size={20}
-                  color="#FFFFFF"
-                  style={{ marginRight: 8 }}
-                />
+                }}>
+                <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
                 <Text style={styles.emailButtonText}>Verstuur een Email</Text>
               </TouchableOpacity>
             </View>

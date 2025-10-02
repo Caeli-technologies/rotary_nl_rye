@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
+
 import { NetworkImage } from '@/components/network-image';
 
 const shadowStyle = {
@@ -74,13 +74,10 @@ export default function ContributorsScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -88,9 +85,7 @@ export default function ContributorsScreen() {
               <Ionicons name="people-outline" size={32} color="#FF6B35" />
             </View>
             <Text style={styles.pageTitle}>Contributors</Text>
-            <Text style={styles.pageSubtitle}>
-              Thanks to everyone who made this app possible!
-            </Text>
+            <Text style={styles.pageSubtitle}>Thanks to everyone who made this app possible!</Text>
           </View>
 
           {/* Contributors List */}
@@ -98,10 +93,7 @@ export default function ContributorsScreen() {
             <Text style={styles.sectionTitle}>Development Team</Text>
             <View style={styles.contributorsContainer}>
               {contributors.map((contributor) => (
-                <ContributorCard
-                  key={contributor.id}
-                  contributor={contributor}
-                />
+                <ContributorCard key={contributor.id} contributor={contributor} />
               ))}
             </View>
           </View>

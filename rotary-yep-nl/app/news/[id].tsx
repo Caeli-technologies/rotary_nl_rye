@@ -1,19 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  Alert,
-  Linking,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Pressable, Alert, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { router, useLocalSearchParams } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { useLocalSearchParams } from 'expo-router';
 
 interface NewsText {
   heading?: string;
@@ -54,7 +44,6 @@ export default function NewsDetailScreen() {
   if (!newsItem) {
     return (
       <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-        
         <View style={styles.container}>
           <View style={styles.centered}>
             <Text style={styles.errorText}>News item not found</Text>
@@ -73,12 +62,10 @@ export default function NewsDetailScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+          showsVerticalScrollIndicator={false}>
           {/* Header Image */}
           <View style={styles.imageContainer}>
             <Image
@@ -102,41 +89,27 @@ export default function NewsDetailScreen() {
             {newsItem.text &&
               newsItem.text.map((section, sectionIndex) => (
                 <View key={sectionIndex} style={styles.section}>
-                  {section.heading && (
-                    <Text style={styles.sectionHeading}>{section.heading}</Text>
-                  )}
+                  {section.heading && <Text style={styles.sectionHeading}>{section.heading}</Text>}
 
                   {section.body &&
                     section.body.map((bodyItem, bodyIndex) => (
                       <View key={bodyIndex} style={styles.bodyItem}>
                         {/* Paragraphs */}
                         {bodyItem.paragraph &&
-                          bodyItem.paragraph.map(
-                            (paragraph, paragraphIndex) => (
-                              <Text
-                                key={paragraphIndex}
-                                style={styles.paragraph}
-                              >
-                                {paragraph}
-                              </Text>
-                            ),
-                          )}
+                          bodyItem.paragraph.map((paragraph, paragraphIndex) => (
+                            <Text key={paragraphIndex} style={styles.paragraph}>
+                              {paragraph}
+                            </Text>
+                          ))}
 
                         {/* Video */}
                         {bodyItem.videoUrl && (
                           <Pressable
                             style={styles.videoContainer}
-                            onPress={() => handleVideoPress(bodyItem.videoUrl!)}
-                          >
+                            onPress={() => handleVideoPress(bodyItem.videoUrl!)}>
                             <View style={styles.videoPlaceholder}>
-                              <Ionicons
-                                name="play-circle"
-                                size={64}
-                                color="#007AFF"
-                              />
-                              <Text style={styles.videoText}>
-                                Tap to play video
-                              </Text>
+                              <Ionicons name="play-circle" size={64} color="#007AFF" />
+                              <Text style={styles.videoText}>Tap to play video</Text>
                             </View>
                           </Pressable>
                         )}

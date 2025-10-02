@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,22 +14,15 @@ const shadowStyle = {
 export default function FamilyToFamilyComplyWithScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons
-                name="shield-checkmark-outline"
-                size={32}
-                color="#FF6B35"
-              />
+              <Ionicons name="shield-checkmark-outline" size={32} color="#FF6B35" />
             </View>
             <Text style={styles.headerTitle}>Waar moet ik aan voldoen?</Text>
             <Text style={styles.headerSubtitle}>
@@ -41,24 +33,16 @@ export default function FamilyToFamilyComplyWithScreen() {
           {/* Main Content */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="information-circle-outline"
-                size={24}
-                color="#FF6B35"
-              />
-              <Text style={styles.sectionTitle}>
-                Geschiktheid voor deelname
-              </Text>
+              <Ionicons name="information-circle-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Geschiktheid voor deelname</Text>
             </View>
 
             <View style={styles.mainCard}>
               <Text style={styles.mainText}>
-                Alle jongens en meisjes in de leeftijd van 15 t/m 19* jaar, die
-                open staan voor anderen, van hen willen leren, met hen
-                ervaringen willen uitwisselen, die uit hun eigen vertrouwde
-                omgeving willen stappen en die anderen zonder vooroordelen
-                willen ontmoeten zijn geschikt om aan dit programma deel te
-                nemen.
+                Alle jongens en meisjes in de leeftijd van 15 t/m 19* jaar, die open staan voor
+                anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun
+                eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen
+                ontmoeten zijn geschikt om aan dit programma deel te nemen.
               </Text>
             </View>
           </View>
@@ -70,8 +54,8 @@ export default function FamilyToFamilyComplyWithScreen() {
               <Text style={styles.noteTitle}>Leeftijdsvereisten</Text>
             </View>
             <Text style={styles.noteDescription}>
-              *Deelnemers moeten tussen 15 en 19 jaar oud zijn om deel te kunnen
-              nemen aan het Family-to-Family programma.
+              *Deelnemers moeten tussen 15 en 19 jaar oud zijn om deel te kunnen nemen aan het
+              Family-to-Family programma.
             </Text>
           </View>
         </View>

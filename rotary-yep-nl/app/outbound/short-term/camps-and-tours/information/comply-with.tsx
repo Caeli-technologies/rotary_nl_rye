@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,13 +14,10 @@ const shadowStyle = {
 export default function CampsToursComplyWithScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -48,8 +44,7 @@ export default function CampsToursComplyWithScreen() {
               <View style={styles.ageContent}>
                 <Text style={styles.ageTitle}>15 - 21 jaar</Text>
                 <Text style={styles.ageDescription}>
-                  Perfecte leeftijd voor internationale ervaringen en
-                  persoonlijke groei
+                  Perfecte leeftijd voor internationale ervaringen en persoonlijke groei
                 </Text>
               </View>
             </View>
@@ -58,11 +53,7 @@ export default function CampsToursComplyWithScreen() {
           {/* Eligibility */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="checkmark-circle-outline"
-                size={24}
-                color="#FF6B35"
-              />
+              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Wie kan deelnemen?</Text>
             </View>
 
@@ -86,9 +77,7 @@ export default function CampsToursComplyWithScreen() {
                   <Ionicons name="heart-outline" size={20} color="#E91E63" />
                 </View>
                 <View style={styles.eligibilityContent}>
-                  <Text style={styles.eligibilityTitle}>
-                    Non-Rotarian Youth
-                  </Text>
+                  <Text style={styles.eligibilityTitle}>Non-Rotarian Youth</Text>
                   <Text style={styles.eligibilityDescription}>
                     Alle gemotiveerde jongeren uit de gemeenschap
                   </Text>
@@ -109,9 +98,7 @@ export default function CampsToursComplyWithScreen() {
                 <Ionicons name="globe-outline" size={20} color="#FF6B35" />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>
-                  Internationale Ervaring
-                </Text>
+                <Text style={styles.expectationTitle}>Internationale Ervaring</Text>
                 <Text style={styles.expectationDescription}>
                   Ontdek nieuwe culturen en maak vrienden over de hele wereld
                 </Text>
@@ -123,9 +110,7 @@ export default function CampsToursComplyWithScreen() {
                 <Ionicons name="school-outline" size={20} color="#4CAF50" />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>
-                  Persoonlijke Ontwikkeling
-                </Text>
+                <Text style={styles.expectationTitle}>Persoonlijke Ontwikkeling</Text>
                 <Text style={styles.expectationDescription}>
                   Ontwikkel zelfvertrouwen en leiderschapsvaardigheden
                 </Text>
@@ -137,9 +122,7 @@ export default function CampsToursComplyWithScreen() {
                 <Ionicons name="camera-outline" size={20} color="#9C27B0" />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>
-                  Onvergetelijke Herinneringen
-                </Text>
+                <Text style={styles.expectationTitle}>Onvergetelijke Herinneringen</Text>
                 <Text style={styles.expectationDescription}>
                   Creëer levenslange herinneringen en verhalen om te delen
                 </Text>

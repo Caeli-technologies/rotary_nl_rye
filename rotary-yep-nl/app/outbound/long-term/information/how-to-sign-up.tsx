@@ -1,15 +1,7 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -22,27 +14,19 @@ const shadowStyle = {
 export default function HowToSignUpScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons
-                name="document-text-outline"
-                size={32}
-                color="#FF6B35"
-              />
+              <Ionicons name="document-text-outline" size={32} color="#FF6B35" />
             </View>
             <Text style={styles.headerTitle}>Hoe schrijf ik mezelf in</Text>
             <Text style={styles.headerSubtitle}>
-              Stappen om jezelf in te schrijven voor de lange termijn
-              uitwisseling
+              Stappen om jezelf in te schrijven voor de lange termijn uitwisseling
             </Text>
           </View>
 
@@ -51,9 +35,8 @@ export default function HowToSignUpScreen() {
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
                 Je stuurt een gezellig email bericht naar:{' '}
-                <Text style={styles.emailText}>interesse@rotaryyep.nl.</Text>{' '}
-                Dan krijg je van ons een bevestiging dat we je mail hebben
-                ontvangen.
+                <Text style={styles.emailText}>interesse@rotaryyep.nl.</Text> Dan krijg je van ons
+                een bevestiging dat we je mail hebben ontvangen.
               </Text>
             </View>
           </View>
@@ -65,8 +48,7 @@ export default function HowToSignUpScreen() {
               onPress={() => {
                 // This would open the email client
                 console.log('Opening email client');
-              }}
-            >
+              }}>
               <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
               <Text style={styles.emailButtonText}>Verstuur een Email</Text>
             </TouchableOpacity>

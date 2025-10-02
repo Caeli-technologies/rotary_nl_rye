@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -23,13 +22,10 @@ const shadowStyle = {
 export default function CampsToursScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -45,12 +41,10 @@ export default function CampsToursScreen() {
           {/* Intro */}
           <View style={styles.infoCard}>
             <Text style={styles.infoText}>
-              Heel veel Europese landen organiseren in de periode van juni t/m
-              september Zomer Tours en speciale kampen, zoals zeil-, ski- en
-              sportkampen. De laatste jaren worden er ook Zomerkampen in Canada,
-              V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20
-              deelnemers gevormd met een zo groot mogelijke spreiding van
-              nationaliteiten.
+              Heel veel Europese landen organiseren in de periode van juni t/m september Zomer Tours
+              en speciale kampen, zoals zeil-, ski- en sportkampen. De laatste jaren worden er ook
+              Zomerkampen in Canada, V.S. en Taiwan georganiseerd. Er worden groepen van 10 à 20
+              deelnemers gevormd met een zo groot mogelijke spreiding van nationaliteiten.
             </Text>
           </View>
 
@@ -76,9 +70,7 @@ export default function CampsToursScreen() {
             </View>
 
             <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Europese landen, maar ook Canada, VS en Taiwan.
-              </Text>
+              <Text style={styles.infoText}>Europese landen, maar ook Canada, VS en Taiwan.</Text>
             </View>
           </View>
 
@@ -91,16 +83,15 @@ export default function CampsToursScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Door de buitenlandse organisator worden uitnodigingen aan de
-                MDJC gestuurd. Deze uitnodigingen worden direct na ontvangst op
-                de site geplaatst ter info (half januari t/m begin mei).
+                Door de buitenlandse organisator worden uitnodigingen aan de MDJC gestuurd. Deze
+                uitnodigingen worden direct na ontvangst op de site geplaatst ter info (half januari
+                t/m begin mei).
               </Text>
             </View>
 
             <TouchableOpacity
               style={styles.emailButton}
-              onPress={() => Linking.openURL('mailto:zomerkamp@rotaryyep.nl')}
-            >
+              onPress={() => Linking.openURL('mailto:zomerkamp@rotaryyep.nl')}>
               <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
               <Text style={styles.emailButtonText}>zomerkamp@rotaryyep.nl</Text>
             </TouchableOpacity>
@@ -119,15 +110,11 @@ export default function CampsToursScreen() {
             </View>
 
             <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Daarnaast moet je rekening houden met:
-              </Text>
+              <Text style={styles.infoText}>Daarnaast moet je rekening houden met:</Text>
               <View style={styles.bulletContainer}>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    Reiskosten naar de kamplocatie
-                  </Text>
+                  <Text style={styles.bulletText}>Reiskosten naar de kamplocatie</Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
@@ -135,9 +122,7 @@ export default function CampsToursScreen() {
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    Eventueel klein deelnamebedrag
-                  </Text>
+                  <Text style={styles.bulletText}>Eventueel klein deelnamebedrag</Text>
                 </View>
               </View>
             </View>

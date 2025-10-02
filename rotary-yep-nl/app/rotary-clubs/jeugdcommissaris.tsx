@@ -1,16 +1,8 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
 interface DocumentItem {
@@ -20,41 +12,35 @@ interface DocumentItem {
 }
 
 export default function JeugdcommissarisScreen() {
-  const handleDocumentPress = useCallback(
-    async (pdfUrl: string, title: string) => {
-      try {
-        if (Platform.OS === 'ios') {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push({
-          pathname: '/pdf-viewer',
-          params: {
-            url: pdfUrl,
-            title: title,
-          },
-        });
-      } catch (error) {
-        console.error('Error opening PDF:', error);
-        router.push({
-          pathname: '/pdf-viewer',
-          params: {
-            url: pdfUrl,
-            title: title,
-          },
-        });
+  const handleDocumentPress = useCallback(async (pdfUrl: string, title: string) => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    },
-    [],
-  );
+      router.push({
+        pathname: '/pdf-viewer',
+        params: {
+          url: pdfUrl,
+          title: title,
+        },
+      });
+    } catch (error) {
+      console.error('Error opening PDF:', error);
+      router.push({
+        pathname: '/pdf-viewer',
+        params: {
+          url: pdfUrl,
+          title: title,
+        },
+      });
+    }
+  }, []);
 
   const renderDocumentItem = useCallback(
     ({ item }: { item: DocumentItem }) => {
       return (
         <Pressable
-          style={({ pressed }) => [
-            styles.documentItem,
-            pressed && styles.documentItemPressed,
-          ]}
+          style={({ pressed }) => [styles.documentItem, pressed && styles.documentItemPressed]}
           onPress={() => handleDocumentPress(item.pdfUrl, item.title)}
           android_ripple={{
             color: 'rgba(0, 122, 255, 0.2)',
@@ -63,8 +49,7 @@ export default function JeugdcommissarisScreen() {
           accessibilityRole="button"
           accessibilityLabel={`Open ${item.title} PDF document`}
           accessibilityHint="Tap to view PDF in document viewer"
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        >
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
           <View style={styles.documentContent}>
             <View style={styles.iconContainer}>
               <FontAwesome5 name={item.icon} size={20} color="#007AFF" />
@@ -146,8 +131,7 @@ export default function JeugdcommissarisScreen() {
     () => (
       <View style={styles.content}>
         <Text style={styles.description}>
-          Hier vindt u alle belangrijke documenten en informatie voor
-          jeugdcommissarissen.
+          Hier vindt u alle belangrijke documenten en informatie voor jeugdcommissarissen.
         </Text>
       </View>
     ),
@@ -156,7 +140,6 @@ export default function JeugdcommissarisScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={documents}

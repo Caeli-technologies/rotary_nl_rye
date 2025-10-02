@@ -12,7 +12,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 
 interface NewsItem {
   id: number;
@@ -38,16 +37,12 @@ interface NewsData {
 function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.newsCard,
-        pressed && styles.newsCardPressed,
-      ]}
+      style={({ pressed }) => [styles.newsCard, pressed && styles.newsCardPressed]}
       onPress={onPress}
       android_ripple={{
         color: 'rgba(0, 122, 255, 0.2)',
         borderless: false,
-      }}
-    >
+      }}>
       <View style={styles.cardContent}>
         <View style={styles.imageContainer}>
           <Image
@@ -133,10 +128,7 @@ export default function NewsScreen() {
         },
       });
     } else {
-      Alert.alert(
-        'Notice',
-        'This news item has no additional content available.',
-      );
+      Alert.alert('Notice', 'This news item has no additional content available.');
     }
   };
 
@@ -181,9 +173,7 @@ export default function NewsScreen() {
         data={newsData}
         renderItem={renderNewsItem}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={
-          newsData.length > 0 ? styles.listContent : styles.emptyContainer
-        }
+        contentContainerStyle={newsData.length > 0 ? styles.listContent : styles.emptyContainer}
         showsVerticalScrollIndicator={false}
         refreshing={refreshing}
         onRefresh={handleRefresh}

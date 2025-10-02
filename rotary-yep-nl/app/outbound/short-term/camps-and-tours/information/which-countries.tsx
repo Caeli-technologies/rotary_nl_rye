@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -23,13 +22,10 @@ const shadowStyle = {
 export default function WhichCountriesScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -46,9 +42,7 @@ export default function WhichCountriesScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="globe-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>
-                Internationale Bestemmingen
-              </Text>
+              <Text style={styles.sectionTitle}>Internationale Bestemmingen</Text>
             </View>
 
             <View style={styles.regionCard}>
@@ -58,8 +52,7 @@ export default function WhichCountriesScreen() {
               <View style={styles.regionContent}>
                 <Text style={styles.regionTitle}>Europa</Text>
                 <Text style={styles.regionDescription}>
-                  Verschillende Europese landen met rijke cultuur en
-                  geschiedenis
+                  Verschillende Europese landen met rijke cultuur en geschiedenis
                 </Text>
               </View>
             </View>
@@ -166,14 +159,8 @@ export default function WhichCountriesScreen() {
                   const emailUrl =
                     'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Camps%20and%20Tours';
                   Linking.openURL(emailUrl);
-                }}
-              >
-                <Ionicons
-                  name="mail"
-                  size={20}
-                  color="#FFFFFF"
-                  style={{ marginRight: 8 }}
-                />
+                }}>
+                <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
                 <Text style={styles.emailButtonText}>Contact Opnemen</Text>
               </TouchableOpacity>
             </View>

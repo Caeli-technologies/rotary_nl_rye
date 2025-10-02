@@ -1,11 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useState, useCallback, useMemo } from 'react';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
@@ -13,141 +7,6 @@ import type { AudioStatus } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
 
 type Podcast = { title: string; description: string; url: string };
-
-// Helper function to format time in seconds to MM:SS
-const formatTime = (timeInSeconds: number): string => {
-  const minutes = Math.floor(timeInSeconds / 60);
-  const seconds = Math.floor(timeInSeconds % 60);
-  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-};
-
-interface PodcastRowProps {
-  index: number;
-  podcast: Podcast;
-  isActive: boolean;
-  onPress: (index: number) => Promise<void>;
-  player: any;
-  status: AudioStatus;
-}
-
-function PodcastRow({
-  index,
-  podcast,
-  isActive,
-  onPress,
-  player,
-  status,
-}: PodcastRowProps) {
-  const [duration, setDuration] = useState<string>('');
-  const [position, setPosition] = useState<string>('0:00');
-
-  // Update duration when it becomes available and this is the active podcast
-  useEffect(() => {
-    if (isActive && status.duration && status.duration > 0) {
-      setDuration(formatTime(status.duration));
-    } else if (isActive && (!status.duration || status.duration === 0)) {
-      setDuration(''); // Clear duration if not available yet
-    }
-  }, [isActive, status.duration]);
-
-  // Update position when this is the active podcast
-  useEffect(() => {
-    if (isActive && status.currentTime) {
-      setPosition(formatTime(status.currentTime));
-    } else if (!isActive) {
-      setPosition('0:00'); // Reset position when not active
-    }
-  }, [isActive, status.currentTime]);
-
-  const handleTogglePlayback = async () => {
-    try {
-      await Haptics.selectionAsync();
-      await onPress(index);
-    } catch (error) {
-      console.warn('Playback toggle error:', error);
-    }
-  };
-
-  const isPlaying = isActive && status.playing;
-  const isBuffering = isActive && status.isBuffering;
-  const isLoaded = isActive && status.isLoaded;
-  const progress =
-    isActive && status.duration && status.currentTime
-      ? (status.currentTime / status.duration) * 100
-      : 0;
-
-  // Determine button state and icon
-  const getPlayButtonIcon = () => {
-    if (isBuffering) return 'reload-outline';
-    if (isPlaying) return 'pause';
-    return 'play';
-  };
-
-  return (
-    <TouchableOpacity
-      style={[
-        styles.podcastCard,
-        !isLoaded && isActive && styles.podcastCardLoading,
-      ]}
-      onPress={handleTogglePlayback}
-      activeOpacity={0.7}
-      disabled={isActive && !isLoaded}
-    >
-      <View style={styles.podcastContent}>
-        <View
-          style={[styles.playButton, isBuffering && styles.playButtonBuffering]}
-        >
-          <Ionicons
-            name={getPlayButtonIcon()}
-            size={24}
-            color={isActive && !isLoaded ? '#999' : '#FF6B35'}
-          />
-        </View>
-
-        <View style={styles.podcastInfo}>
-          <Text style={styles.podcastTitle} numberOfLines={2}>
-            {podcast.title}
-          </Text>
-          <Text style={styles.podcastDescription} numberOfLines={3}>
-            {podcast.description}
-          </Text>
-
-          {isActive && (
-            <>
-              {/* Loading/Buffering Status */}
-              {(!isLoaded || isBuffering) && (
-                <Text style={styles.statusText}>
-                  {!isLoaded ? 'Loading...' : 'Buffering...'}
-                </Text>
-              )}
-
-              {/* Progress Bar - only show when loaded */}
-              {isLoaded && (
-                <View style={styles.progressBar}>
-                  <View
-                    style={[styles.progressFill, { width: `${progress}%` }]}
-                  />
-                </View>
-              )}
-
-              {/* Time Info - show when loaded, with dynamic duration */}
-              {isLoaded && (
-                <View style={styles.timeInfo}>
-                  <Text style={styles.timeText}>{position}</Text>
-                  <Text style={styles.timeText}>
-                    {status.duration && status.duration > 0
-                      ? duration
-                      : '--:--'}
-                  </Text>
-                </View>
-              )}
-            </>
-          )}
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-}
 
 const podcasts: Podcast[] = [
   {
@@ -164,79 +23,163 @@ const podcasts: Podcast[] = [
   },
 ];
 
+// Helper function to format time in seconds to MM:SS
+const formatTime = (timeInSeconds: number): string => {
+  if (!timeInSeconds || timeInSeconds === 0) return '0:00';
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = Math.floor(timeInSeconds % 60);
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+};
+
+interface PodcastRowProps {
+  index: number;
+  podcast: Podcast;
+  isActive: boolean;
+  onPress: (index: number) => Promise<void>;
+  status: AudioStatus;
+}
+
+function PodcastRow({ index, podcast, isActive, onPress, status }: PodcastRowProps) {
+  const handlePress = useCallback(async () => {
+    try {
+      await Haptics.selectionAsync();
+      await onPress(index);
+    } catch (error) {
+      console.warn('Playback toggle error:', error);
+    }
+  }, [index, onPress]);
+
+  // Compute derived state using useMemo for better performance
+  const playbackState = useMemo(() => {
+    if (!isActive) {
+      return {
+        isPlaying: false,
+        isBuffering: false,
+        isLoaded: false,
+        currentTime: 0,
+        duration: 0,
+        progress: 0,
+        buttonIcon: 'play' as const,
+        showProgress: false,
+      };
+    }
+
+    const { playing, isBuffering, isLoaded, currentTime, duration } = status;
+    const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+
+    let buttonIcon: 'play' | 'pause' | 'reload-outline' = 'play';
+    if (isBuffering) buttonIcon = 'reload-outline';
+    else if (playing) buttonIcon = 'pause';
+
+    return {
+      isPlaying: playing,
+      isBuffering,
+      isLoaded,
+      currentTime: currentTime || 0,
+      duration: duration || 0,
+      progress,
+      buttonIcon,
+      showProgress: isLoaded && duration > 0,
+    };
+  }, [isActive, status]);
+
+  return (
+    <TouchableOpacity
+      style={[styles.podcastCard, isActive && !playbackState.isLoaded && styles.podcastCardLoading]}
+      onPress={handlePress}
+      activeOpacity={0.7}
+      disabled={isActive && !playbackState.isLoaded}>
+      <View style={styles.podcastContent}>
+        <View style={[styles.playButton, playbackState.isBuffering && styles.playButtonBuffering]}>
+          <Ionicons
+            name={playbackState.buttonIcon}
+            size={24}
+            color={isActive && !playbackState.isLoaded ? '#999' : '#FF6B35'}
+          />
+        </View>
+
+        <View style={styles.podcastInfo}>
+          <Text style={styles.podcastTitle} numberOfLines={2}>
+            {podcast.title}
+          </Text>
+          <Text style={styles.podcastDescription} numberOfLines={3}>
+            {podcast.description}
+          </Text>
+
+          {isActive && (
+            <>
+              {/* Status indicator */}
+              {(!playbackState.isLoaded || playbackState.isBuffering) && (
+                <Text style={styles.statusText}>
+                  {!playbackState.isLoaded ? 'Loading...' : 'Buffering...'}
+                </Text>
+              )}
+
+              {/* Progress bar */}
+              {playbackState.showProgress && (
+                <>
+                  <View style={styles.progressBar}>
+                    <View style={[styles.progressFill, { width: `${playbackState.progress}%` }]} />
+                  </View>
+                  <View style={styles.timeInfo}>
+                    <Text style={styles.timeText}>{formatTime(playbackState.currentTime)}</Text>
+                    <Text style={styles.timeText}>{formatTime(playbackState.duration)}</Text>
+                  </View>
+                </>
+              )}
+            </>
+          )}
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
 export default function PodcastPromo() {
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
-
-  // Create a single audio player with no initial source (null)
   const player = useAudioPlayer(null);
   const status = useAudioPlayerStatus(player);
 
   const handlePodcastPress = useCallback(
     async (index: number) => {
       try {
-        const podcast = podcasts[index];
-
-        // Don't allow interaction if currently loading/buffering a different podcast
-        if (
-          playingIndex !== null &&
-          playingIndex !== index &&
-          (status.isBuffering || !status.isLoaded)
-        ) {
-          console.warn('Please wait for current podcast to load');
-          return;
-        }
-
         if (playingIndex === index) {
-          // Same podcast - toggle play/pause
+          // Toggle play/pause for current podcast
           if (status.playing) {
             player.pause();
           } else {
-            // If finished, restart from beginning
             if (status.didJustFinish) {
               await player.seekTo(0);
             }
-            // Only play if loaded
-            if (status.isLoaded) {
-              player.play();
-            }
+            player.play();
           }
         } else {
-          // Different podcast - load new source and play
+          // Switch to new podcast
+          const podcast = podcasts[index];
           setPlayingIndex(index);
           await player.replace(podcast.url);
-          // The player will automatically play once loaded
           player.play();
         }
       } catch (error) {
         console.warn('Podcast playback error:', error);
-        // Reset playing index on error
-        if (playingIndex === index) {
-          setPlayingIndex(null);
-        }
+        setPlayingIndex(null);
       }
     },
-    [
-      playingIndex,
-      status.playing,
-      status.didJustFinish,
-      status.isBuffering,
-      status.isLoaded,
-      player,
-    ],
+    [playingIndex, status.playing, status.didJustFinish, player],
   );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.container}>
-        {/* Header Section */}
+        {/* Header */}
         <View style={styles.headerSection}>
           <View style={styles.headerIcon}>
             <Ionicons name="headset-outline" size={32} color="#FF6B35" />
           </View>
           <Text style={styles.headerTitle}>Promo Podcast</Text>
           <Text style={styles.headerSubtitle}>
-            Hoe is het nou om een paar maanden ouders te zijn van een exchange
-            student? Luister naar de ervaringen van gastouders.
+            Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Luister naar
+            de ervaringen van gastouders.
           </Text>
         </View>
 
@@ -248,7 +191,6 @@ export default function PodcastPromo() {
             podcast={podcast}
             isActive={playingIndex === index}
             onPress={handlePodcastPress}
-            player={player}
             status={status}
           />
         ))}
@@ -317,39 +259,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     ...shadowStyle,
   },
-  podcastCardDisabled: {
-    opacity: 0.6,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-  },
-  iconWrap: {
-    marginRight: 16,
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A237E',
-    marginBottom: 4,
-  },
-  itemDescription: {
-    fontSize: 14,
-    lineHeight: 18,
-    color: '#666',
-    marginBottom: 6,
-  },
-  itemSubtitle: {
-    fontSize: 12,
-    color: '#FF6B35',
-    fontWeight: '500',
-  },
-  playingIndicator: {
-    marginLeft: 8,
-  },
-
-  // New PodcastRow Styles
   podcastContent: {
     flexDirection: 'row',
     alignItems: 'center',

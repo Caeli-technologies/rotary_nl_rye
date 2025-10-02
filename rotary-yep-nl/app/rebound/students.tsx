@@ -1,18 +1,11 @@
 import React, { useMemo, useLayoutEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Pressable,
-  SectionList,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, Pressable, SectionList, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { NetworkImage } from '../../components/network-image';
-import { StatusBar } from 'expo-status-bar';
+
 import { StudentsData, Student } from '../../types/student';
 import studentsData from '../../assets/students/list.json';
 import { getFlagAsset } from '../../utils/flags';
@@ -35,12 +28,8 @@ interface StudentCardProps {
 function StudentCard({ student, onPress }: StudentCardProps) {
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.studentCard,
-        pressed && styles.studentCardPressed,
-      ]}
-      onPress={onPress}
-    >
+      style={({ pressed }) => [styles.studentCard, pressed && styles.studentCardPressed]}
+      onPress={onPress}>
       <View style={styles.studentCardContent}>
         <NetworkImage
           imageUrl={student.imageUrl}
@@ -56,11 +45,7 @@ function StudentCard({ student, onPress }: StudentCardProps) {
         </View>
 
         <Ionicons
-          name={
-            Platform.OS === 'ios'
-              ? 'chevron-forward'
-              : 'chevron-forward-outline'
-          }
+          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
           size={Platform.OS === 'ios' ? 20 : 24}
           color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
         />
@@ -135,8 +120,7 @@ export default function ReboundStudentsScreen() {
         <View
           style={{
             alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
-          }}
-        >
+          }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {headerFlagAsset ? (
               <Image
@@ -154,8 +138,7 @@ export default function ReboundStudentsScreen() {
                   alignItems: 'center',
                   marginRight: 8,
                   borderRadius: 2,
-                }}
-              >
+                }}>
                 <Text style={{ fontSize: 8, color: '#666', fontWeight: '600' }}>
                   {(params.flag || '').toUpperCase()}
                 </Text>
@@ -166,8 +149,7 @@ export default function ReboundStudentsScreen() {
                 fontSize: Platform.OS === 'ios' ? 18 : 20,
                 fontWeight: '600',
                 color: '#1A237E',
-              }}
-            >
+              }}>
               {params.country}
             </Text>
           </View>
@@ -178,8 +160,7 @@ export default function ReboundStudentsScreen() {
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
-              }}
-            >
+              }}>
               {studentsWithYears.length} student
               {studentsWithYears.length !== 1 ? 's' : ''}
             </Text>
@@ -187,13 +168,7 @@ export default function ReboundStudentsScreen() {
         </View>
       ),
     });
-  }, [
-    navigation,
-    params.country,
-    params.flag,
-    headerFlagAsset,
-    studentsWithYears.length,
-  ]);
+  }, [navigation, params.country, params.flag, headerFlagAsset, studentsWithYears.length]);
 
   // Convert yearGroups to sections format for SectionList
   const sections = useMemo(() => {
@@ -208,11 +183,7 @@ export default function ReboundStudentsScreen() {
     <StudentCard student={item} onPress={() => handleStudentPress(item)} />
   );
 
-  const renderSectionHeader = ({
-    section,
-  }: {
-    section: { title: string; count: number };
-  }) => (
+  const renderSectionHeader = ({ section }: { section: { title: string; count: number } }) => (
     <View style={styles.sectionHeader}>
       <Text style={styles.sectionTitle}>{section.title}</Text>
       <Text style={styles.sectionCount}>
@@ -224,7 +195,6 @@ export default function ReboundStudentsScreen() {
   if (sections.length === 0) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        
         <View style={styles.emptyState}>
           <Ionicons name="school-outline" size={48} color="#9FA8DA" />
           <Text style={styles.emptyStateTitle}>No students found</Text>
@@ -238,8 +208,6 @@ export default function ReboundStudentsScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <SectionList
         sections={sections}
         renderItem={renderStudent}
@@ -249,9 +217,7 @@ export default function ReboundStudentsScreen() {
         contentInsetAdjustmentBehavior="automatic"
         stickySectionHeadersEnabled={Platform.OS === 'ios'}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-        SectionSeparatorComponent={() => (
-          <View style={styles.sectionSeparator} />
-        )}
+        SectionSeparatorComponent={() => <View style={styles.sectionSeparator} />}
         contentContainerStyle={styles.contentContainer}
         removeClippedSubviews={true}
         initialNumToRender={15}

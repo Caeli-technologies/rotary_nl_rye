@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,13 +14,10 @@ const shadowStyle = {
 export default function CountriesPreferenceScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -43,14 +39,12 @@ export default function CountriesPreferenceScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Als je mee wilt doen aan het Family to Family programma geef je
-                op of je voor het noordelijk of zuidelijk halfrond gaat. Bij de
-                landenkeuze dien je drie landen op 2 continenten op te geven.
-                Hierbij gelden de Verenigde Staten en Canada als één bestemming.
-                De reden hiervoor is dat we niet alle kandidaten in de VS en
-                Canada kunnen plaatsen. Daarbij komt dat als jij de juiste
-                instelling hebt voor een Family to Family uitwisseling het
-                uiteindelijk niet uitmaakt naar welk land je gaat.
+                Als je mee wilt doen aan het Family to Family programma geef je op of je voor het
+                noordelijk of zuidelijk halfrond gaat. Bij de landenkeuze dien je drie landen op 2
+                continenten op te geven. Hierbij gelden de Verenigde Staten en Canada als één
+                bestemming. De reden hiervoor is dat we niet alle kandidaten in de VS en Canada
+                kunnen plaatsen. Daarbij komt dat als jij de juiste instelling hebt voor een Family
+                to Family uitwisseling het uiteindelijk niet uitmaakt naar welk land je gaat.
               </Text>
             </View>
           </View>
@@ -64,10 +58,9 @@ export default function CountriesPreferenceScreen() {
 
             <View style={styles.europeCard}>
               <Text style={styles.europeText}>
-                Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste
-                uitwisselingen plaats en ontstaan de mooiste vriendschappen met
-                het voordeel dat je deze vrienden makkelijker kunt herbezoeken.
-                De reiskosten zijn veel lager.
+                Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste uitwisselingen
+                plaats en ontstaan de mooiste vriendschappen met het voordeel dat je deze vrienden
+                makkelijker kunt herbezoeken. De reiskosten zijn veel lager.
               </Text>
             </View>
           </View>
@@ -86,8 +79,8 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Taal</Text>
                 <Text style={styles.tipDescription}>
-                  Overweeg welke talen je spreekt of wilt leren. Basiskennis
-                  helpt bij de communicatie.
+                  Overweeg welke talen je spreekt of wilt leren. Basiskennis helpt bij de
+                  communicatie.
                 </Text>
               </View>
             </View>
@@ -99,8 +92,7 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Cultuur</Text>
                 <Text style={styles.tipDescription}>
-                  Kies landen waarvan de cultuur en geschiedenis je echt
-                  interesseren.
+                  Kies landen waarvan de cultuur en geschiedenis je echt interesseren.
                 </Text>
               </View>
             </View>
@@ -112,8 +104,7 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Reiskosten</Text>
                 <Text style={styles.tipDescription}>
-                  Houd rekening met reiskosten en afstand, vooral bij kortere
-                  programma's.
+                  Houd rekening met reiskosten en afstand, vooral bij kortere programma's.
                 </Text>
               </View>
             </View>

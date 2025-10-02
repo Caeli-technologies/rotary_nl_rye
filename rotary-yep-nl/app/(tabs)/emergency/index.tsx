@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-  Pressable,
-} from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Platform, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { makePhoneCall, sendEmail } from '@/utils/communications';
-import { StatusBar } from 'expo-status-bar';
+
 import * as Haptics from 'expo-haptics';
 
 const shadowStyle = {
@@ -104,22 +97,14 @@ export default function EmergencyScreen() {
       </View>
       <View style={styles.contactActions}>
         <Pressable
-          style={({ pressed }) => [
-            styles.actionButton,
-            pressed && styles.actionButtonPressed,
-          ]}
-          onPress={() => handleCall(contact.phone, contact.name)}
-        >
+          style={({ pressed }) => [styles.actionButton, pressed && styles.actionButtonPressed]}
+          onPress={() => handleCall(contact.phone, contact.name)}>
           <Ionicons name="call" size={20} color="#1A237E" />
         </Pressable>
         {contact.email && (
           <Pressable
-            style={({ pressed }) => [
-              styles.actionButton,
-              pressed && styles.actionButtonPressed,
-            ]}
-            onPress={() => handleEmail(contact.email!, contact.name)}
-          >
+            style={({ pressed }) => [styles.actionButton, pressed && styles.actionButtonPressed]}
+            onPress={() => handleEmail(contact.email!, contact.name)}>
             <Ionicons name="mail" size={20} color="#1A237E" />
           </Pressable>
         )}
@@ -129,12 +114,10 @@ export default function EmergencyScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Emergency 112 Section */}
           <View style={styles.emergencySection}>
@@ -142,9 +125,7 @@ export default function EmergencyScreen() {
               <Ionicons name="warning" size={24} color="#FF3B30" />
               <Text style={styles.emergencyTitle}>Emergency Services</Text>
             </View>
-            <Text style={styles.emergencySubtitle}>
-              112 for ambulance, fire brigade or police
-            </Text>
+            <Text style={styles.emergencySubtitle}>112 for ambulance, fire brigade or police</Text>
             <Image
               source={require('@/assets/emergency/112_logo.png')}
               style={styles.emergencyImage}
@@ -198,12 +179,11 @@ export default function EmergencyScreen() {
               <Text style={styles.noteTitle}>Important Reminder</Text>
             </View>
             <Text style={styles.noteText}>
-              Always keep your host family's contact information and home
-              address accessible.
+              Always keep your host family's contact information and home address accessible.
             </Text>
             <Text style={styles.noteText}>
-              Your host parents can assist you with medical appointments,
-              hospital visits, or dental care.
+              Your host parents can assist you with medical appointments, hospital visits, or dental
+              care.
             </Text>
           </View>
         </View>

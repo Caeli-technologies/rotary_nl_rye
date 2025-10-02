@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   StyleSheet,
   View,
@@ -20,7 +14,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
 interface HomeCardProps {
@@ -67,14 +60,9 @@ const HomeCard = React.memo<HomeCardProps>(
           android_ripple={{
             color: 'rgba(159, 168, 218, 0.2)',
             borderless: false,
-          }}
-        >
+          }}>
           <View style={styles.cardContent}>
-            <View
-              style={
-                isDefault ? styles.iconContainer : styles.iconContainerSingle
-              }
-            >
+            <View style={isDefault ? styles.iconContainer : styles.iconContainerSingle}>
               {useSvg && svgSource ? (
                 <Image
                   source={svgSource}
@@ -83,11 +71,7 @@ const HomeCard = React.memo<HomeCardProps>(
                   tintColor="#9FA8DA"
                 />
               ) : materialIcon ? (
-                <MaterialCommunityIcons
-                  name={materialIcon}
-                  size={35}
-                  color="#9FA8DA"
-                />
+                <MaterialCommunityIcons name={materialIcon} size={35} color="#9FA8DA" />
               ) : fontistoIcon ? (
                 <Fontisto name={fontistoIcon} size={35} color="#9FA8DA" />
               ) : (
@@ -178,12 +162,7 @@ export default function HomeScreen() {
         intervalRef.current = null;
       }
     };
-  }, [
-    carouselImages.length,
-    containerWidth,
-    animateToIndex,
-    resetToFirstSlide,
-  ]);
+  }, [carouselImages.length, containerWidth, animateToIndex, resetToFirstSlide]);
 
   useEffect(() => {
     if (containerWidth > 0 && currentImageIndex < carouselImages.length) {
@@ -193,12 +172,10 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         {/* Logo Section */}
         <View style={styles.logoContainer}>
           <Image
@@ -210,11 +187,7 @@ export default function HomeScreen() {
 
         <View style={styles.carouselContainer} onLayout={handleLayoutChange}>
           {carouselImages.length === 1 ? (
-            <Image
-              source={carouselImages[0]}
-              style={styles.carouselImage}
-              contentFit="cover"
-            />
+            <Image source={carouselImages[0]} style={styles.carouselImage} contentFit="cover" />
           ) : (
             <>
               <Animated.View
@@ -224,25 +197,14 @@ export default function HomeScreen() {
                     width: (carouselImages.length + 1) * containerWidth,
                     transform: [{ translateX: slideAnim }],
                   },
-                ]}
-              >
+                ]}>
                 {carouselImages.map((image, index) => (
-                  <View
-                    key={index}
-                    style={[styles.slideItem, { width: containerWidth }]}
-                  >
-                    <Image
-                      source={image}
-                      style={styles.carouselImage}
-                      contentFit="cover"
-                    />
+                  <View key={index} style={[styles.slideItem, { width: containerWidth }]}>
+                    <Image source={image} style={styles.carouselImage} contentFit="cover" />
                   </View>
                 ))}
                 {/* Duplicate first image for seamless infinite loop */}
-                <View
-                  key="duplicate"
-                  style={[styles.slideItem, { width: containerWidth }]}
-                >
+                <View key="duplicate" style={[styles.slideItem, { width: containerWidth }]}>
                   <Image
                     source={carouselImages[0]}
                     style={styles.carouselImage}
@@ -259,8 +221,7 @@ export default function HomeScreen() {
                       style={[
                         styles.dot,
                         (index === currentImageIndex ||
-                          (currentImageIndex === carouselImages.length &&
-                            index === 0)) &&
+                          (currentImageIndex === carouselImages.length && index === 0)) &&
                           styles.activeDot,
                       ]}
                     />
@@ -278,11 +239,7 @@ export default function HomeScreen() {
               title="Programs"
               onPress={() => router.push('/programs')}
             />
-            <HomeCard
-              icon="newspaper-outline"
-              title="News"
-              onPress={() => router.push('/news')}
-            />
+            <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push('/news')} />
             <HomeCard
               icon="calendar-outline"
               title="Calendar"

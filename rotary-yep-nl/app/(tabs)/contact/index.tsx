@@ -1,16 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Pressable,
-  View,
-  Text,
-  SectionList,
-} from 'react-native';
+import { Platform, StyleSheet, Pressable, View, Text, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ContactCard } from '@/components/enhanced-contact-card';
 import { contactSections } from '@/data/contacts';
-import { StatusBar } from 'expo-status-bar';
+
 import { Contact, Organization, Rotex } from '@/types/contact';
 
 export default function ContactScreen() {
@@ -50,7 +43,6 @@ export default function ContactScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <View style={styles.tabContainer}>
           {contactSections.map((section, index) => {
@@ -63,11 +55,8 @@ export default function ContactScreen() {
                   isActive && styles.activeTab,
                   pressed && styles.tabPressed,
                 ]}
-                onPress={() => setActiveTab(index)}
-              >
-                <Text
-                  style={[styles.tabText, isActive && styles.activeTabText]}
-                >
+                onPress={() => setActiveTab(index)}>
+                <Text style={[styles.tabText, isActive && styles.activeTabText]}>
                   {section.title}
                 </Text>
               </Pressable>
@@ -134,8 +123,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#1f4e79',
   },
   tabPressed: {
-    backgroundColor:
-      Platform.OS === 'ios' ? 'rgba(26, 35, 126, 0.1)' : '#F0F0F0',
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(26, 35, 126, 0.1)' : '#F0F0F0',
   },
   tabText: {
     fontSize: Platform.OS === 'ios' ? 16 : 14,

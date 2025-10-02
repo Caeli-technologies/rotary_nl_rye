@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -23,13 +22,10 @@ const shadowStyle = {
 export default function LongTermExchangeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -51,10 +47,9 @@ export default function LongTermExchangeScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Dit programma van Rotary International is bestemd voor alle
-                hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs.
-                Het is de bedoeling dat je in het buitenland een jaar High
-                School volgt.
+                Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde
+                scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het
+                buitenland een jaar High School volgt.
               </Text>
             </View>
           </View>
@@ -66,9 +61,7 @@ export default function LongTermExchangeScreen() {
             </View>
             <View style={styles.ageContent}>
               <Text style={styles.ageTitle}>15,5 - 18,5 jaar</Text>
-              <Text style={styles.ageSubtitle}>
-                Indicatieve leeftijdsgrenzen
-              </Text>
+              <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
               <Text style={styles.ageNote}>
                 Selectiedag in oktober + selectieweekend in november
               </Text>
@@ -86,13 +79,10 @@ export default function LongTermExchangeScreen() {
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
                   <Ionicons name="sunny" size={20} color="#FF9800" />
-                  <Text style={styles.hemisphereTitle}>
-                    Noordelijk halfrond
-                  </Text>
+                  <Text style={styles.hemisphereTitle}>Noordelijk halfrond</Text>
                 </View>
                 <Text style={styles.countryText}>
-                  USA, Canada, India, Indonesië, Japan, Thailand, Taiwan en
-                  diverse Europese landen
+                  USA, Canada, India, Indonesië, Japan, Thailand, Taiwan en diverse Europese landen
                 </Text>
               </View>
 
@@ -102,8 +92,8 @@ export default function LongTermExchangeScreen() {
                   <Text style={styles.hemisphereTitle}>Zuidelijk halfrond</Text>
                 </View>
                 <Text style={styles.countryText}>
-                  Brazilië, Chili, Argentinië, Mexico, Ecuador, Peru, Australië,
-                  Nieuw-Zeeland, Zuid-Afrika
+                  Brazilië, Chili, Argentinië, Mexico, Ecuador, Peru, Australië, Nieuw-Zeeland,
+                  Zuid-Afrika
                 </Text>
               </View>
             </View>
@@ -133,21 +123,15 @@ export default function LongTermExchangeScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Inlichtingen bij de coördinator van het programma Barbara
-                Tusveld:
+                Inlichtingen bij de coördinator van het programma Barbara Tusveld:
               </Text>
             </View>
 
             <TouchableOpacity
               style={styles.emailButton}
-              onPress={() =>
-                Linking.openURL('mailto:longtermchair@rotaryyep.nl')
-              }
-            >
+              onPress={() => Linking.openURL('mailto:longtermchair@rotaryyep.nl')}>
               <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
-              <Text style={styles.emailButtonText}>
-                longtermchair@rotaryyep.nl
-              </Text>
+              <Text style={styles.emailButtonText}>longtermchair@rotaryyep.nl</Text>
             </TouchableOpacity>
           </View>
 

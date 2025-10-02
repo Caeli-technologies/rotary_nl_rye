@@ -40,9 +40,9 @@ export function NetworkImage({
   style,
   ...props
 }: NetworkImageProps) {
-  const [imageState, setImageState] = useState<
-    'loading' | 'loaded' | 'error' | 'placeholder'
-  >(isValidImageUrl(imageUrl) ? 'loading' : 'placeholder');
+  const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error' | 'placeholder'>(
+    isValidImageUrl(imageUrl) ? 'loading' : 'placeholder',
+  );
   const [showExpandedImage, setShowExpandedImage] = useState(false);
 
   const imageSize = useMemo(
@@ -94,11 +94,7 @@ export function NetworkImage({
     const placeholder = (
       <View style={[styles.placeholder, imageSize, style]}>
         {showInitials && (
-          <Text
-            style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}
-          >
-            {initials}
-          </Text>
+          <Text style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}>{initials}</Text>
         )}
       </View>
     );
@@ -106,29 +102,16 @@ export function NetworkImage({
     return expandable ? (
       <Pressable
         style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
-        onPress={handleImagePress}
-      >
+        onPress={handleImagePress}>
         {placeholder}
       </Pressable>
     ) : (
       placeholder
     );
-  }, [
-    imageSize,
-    style,
-    showInitials,
-    size,
-    initials,
-    expandable,
-    handleImagePress,
-  ]);
+  }, [imageSize, style, showInitials, size, initials, expandable, handleImagePress]);
 
   const renderImage = useCallback(() => {
-    if (
-      !shouldShowImage ||
-      imageState === 'error' ||
-      imageState === 'placeholder'
-    ) {
+    if (!shouldShowImage || imageState === 'error' || imageState === 'placeholder') {
       return renderPlaceholder();
     }
 
@@ -153,8 +136,7 @@ export function NetworkImage({
     return expandable ? (
       <Pressable
         style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
-        onPress={handleImagePress}
-      >
+        onPress={handleImagePress}>
         {imageContent}
       </Pressable>
     ) : (
@@ -176,13 +158,7 @@ export function NetworkImage({
 
   const renderExpandedContent = useCallback(() => {
     if (imageState === 'loaded' && shouldShowImage) {
-      return (
-        <Image
-          source={{ uri: imageUrl }}
-          style={styles.expandedImage}
-          resizeMode="contain"
-        />
-      );
+      return <Image source={{ uri: imageUrl }} style={styles.expandedImage} resizeMode="contain" />;
     }
 
     return (
@@ -201,24 +177,14 @@ export function NetworkImage({
           visible={showExpandedImage}
           animationType="fade"
           transparent={true}
-          onRequestClose={closeModal}
-        >
-          <SafeAreaView
-            style={styles.modalOverlay}
-            edges={['top', 'left', 'right', 'bottom']}
-          >
+          onRequestClose={closeModal}>
+          <SafeAreaView style={styles.modalOverlay} edges={['top', 'left', 'right', 'bottom']}>
             <Pressable style={styles.modalBackground} onPress={closeModal}>
-              <View style={styles.expandedImageContainer}>
-                {renderExpandedContent()}
-              </View>
+              <View style={styles.expandedImageContainer}>{renderExpandedContent()}</View>
             </Pressable>
             <Pressable
-              style={({ pressed }) => [
-                styles.closeButton,
-                pressed && styles.closeButtonPressed,
-              ]}
-              onPress={closeModal}
-            >
+              style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}
+              onPress={closeModal}>
               <Ionicons name="close" size={24} color="#FFFFFF" />
             </Pressable>
           </SafeAreaView>

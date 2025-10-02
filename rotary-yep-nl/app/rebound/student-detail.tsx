@@ -18,7 +18,7 @@ import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEvent } from 'expo';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { NetworkImage } from '../../components/network-image';
-import { StatusBar } from 'expo-status-bar';
+
 import { StudentsData } from '../../types/student';
 import studentsData from '../../assets/students/list.json';
 import { getFlagAsset } from '../../utils/flags';
@@ -41,13 +41,7 @@ interface ActionButtonProps {
   disabled?: boolean;
 }
 
-function ActionButton({
-  icon,
-  title,
-  subtitle,
-  onPress,
-  disabled = false,
-}: ActionButtonProps) {
+function ActionButton({ icon, title, subtitle, onPress, disabled = false }: ActionButtonProps) {
   const [scaleAnim] = useState(new Animated.Value(1));
 
   const handlePressIn = () => {
@@ -78,50 +72,28 @@ function ActionButton({
         onPress={disabled ? undefined : onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        disabled={disabled}
-      >
+        disabled={disabled}>
         <View style={styles.actionButtonContent}>
-          <View
-            style={[
-              styles.actionIconContainer,
-              disabled && styles.actionIconDisabled,
-            ]}
-          >
-            <Ionicons
-              name={icon}
-              size={24}
-              color={disabled ? '#999' : '#9FA8DA'}
-            />
+          <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
+            <Ionicons name={icon} size={24} color={disabled ? '#999' : '#9FA8DA'} />
           </View>
           <View style={styles.actionTextContainer}>
             <Text
-              style={[
-                styles.actionTitle,
-                disabled && styles.actionTitleDisabled,
-              ]}
-              numberOfLines={1}
-            >
+              style={[styles.actionTitle, disabled && styles.actionTitleDisabled]}
+              numberOfLines={1}>
               {title}
             </Text>
             {subtitle && (
               <Text
-                style={[
-                  styles.actionSubtitle,
-                  disabled && styles.actionSubtitleDisabled,
-                ]}
-                numberOfLines={2}
-              >
+                style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]}
+                numberOfLines={2}>
                 {subtitle}
               </Text>
             )}
           </View>
           {!disabled && (
             <Ionicons
-              name={
-                Platform.OS === 'ios'
-                  ? 'chevron-forward'
-                  : 'chevron-forward-outline'
-              }
+              name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
               size={Platform.OS === 'ios' ? 20 : 24}
               color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
             />
@@ -187,16 +159,14 @@ export default function StudentDetailScreen() {
           <View
             style={{
               alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontSize: Platform.OS === 'ios' ? 18 : 20,
                 fontWeight: '600',
                 color: '#1A237E',
               }}
-              numberOfLines={1}
-            >
+              numberOfLines={1}>
               {student.name}
             </Text>
             <Text
@@ -205,8 +175,7 @@ export default function StudentDetailScreen() {
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
-              }}
-            >
+              }}>
               {params.year} Exchange
             </Text>
           </View>
@@ -218,8 +187,6 @@ export default function StudentDetailScreen() {
   if (!student) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        
-
         <View style={styles.errorContainer}>
           <Ionicons name="person-outline" size={64} color="#9FA8DA" />
           <Text style={styles.errorTitle}>Student Not Found</Text>
@@ -233,13 +200,10 @@ export default function StudentDetailScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         {/* Hero Section */}
         <View style={styles.heroSection}>
           <View style={styles.imageContainer}>
@@ -267,16 +231,10 @@ export default function StudentDetailScreen() {
             <View style={styles.exchangeCountry}>
               <View style={styles.exchangeCountryHeader}>
                 {fromFlagAsset ? (
-                  <Image
-                    source={fromFlagAsset}
-                    style={styles.exchangeFlag}
-                    contentFit="contain"
-                  />
+                  <Image source={fromFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
                   <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>
-                      {student.fromFlag.toUpperCase()}
-                    </Text>
+                    <Text style={styles.flagText}>{student.fromFlag.toUpperCase()}</Text>
                   </View>
                 )}
                 <Text style={styles.exchangeLabel}>From</Text>
@@ -291,16 +249,10 @@ export default function StudentDetailScreen() {
             <View style={styles.exchangeCountry}>
               <View style={styles.exchangeCountryHeader}>
                 {toFlagAsset ? (
-                  <Image
-                    source={toFlagAsset}
-                    style={styles.exchangeFlag}
-                    contentFit="contain"
-                  />
+                  <Image source={toFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
                   <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>
-                      {student.toFlag.toUpperCase()}
-                    </Text>
+                    <Text style={styles.flagText}>{student.toFlag.toUpperCase()}</Text>
                   </View>
                 )}
                 <Text style={styles.exchangeLabel}>To</Text>
@@ -318,11 +270,7 @@ export default function StudentDetailScreen() {
         {student.bio && student.bio.trim() !== '' && (
           <View style={styles.bioCard}>
             <View style={styles.bioHeader}>
-              <Ionicons
-                name="document-text-outline"
-                size={24}
-                color="#9FA8DA"
-              />
+              <Ionicons name="document-text-outline" size={24} color="#9FA8DA" />
               <Text style={styles.bioTitle}>Biography</Text>
             </View>
             <Text style={styles.bioText}>{student.bio}</Text>
@@ -336,11 +284,7 @@ export default function StudentDetailScreen() {
           <ActionButton
             icon="play-circle-outline"
             title="Watch Video"
-            subtitle={
-              student.videoUrl
-                ? 'View exchange experience'
-                : 'Video not available'
-            }
+            subtitle={student.videoUrl ? 'View exchange experience' : 'Video not available'}
             onPress={handleVideoPress}
             disabled={!student.videoUrl}
           />
@@ -352,18 +296,13 @@ export default function StudentDetailScreen() {
         visible={isVideoModalVisible}
         animationType="slide"
         presentationStyle="fullScreen"
-        onRequestClose={handleCloseVideo}
-      >
-        <SafeAreaView
-          style={styles.videoModalContainer}
-          edges={['top', 'left', 'right']}
-        >
+        onRequestClose={handleCloseVideo}>
+        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
           <View style={styles.videoModalHeader}>
             <Pressable
               style={styles.closeButton}
               onPress={handleCloseVideo}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </Pressable>
           </View>
@@ -386,9 +325,7 @@ export default function StudentDetailScreen() {
 
           {student && (
             <View style={styles.videoInfo}>
-              <Text style={styles.videoTitle}>
-                {student.name}'s Exchange Story
-              </Text>
+              <Text style={styles.videoTitle}>{student.name}'s Exchange Story</Text>
               <Text style={styles.videoSubtitle}>
                 {student.from} → {student.to} • {params.year}
               </Text>

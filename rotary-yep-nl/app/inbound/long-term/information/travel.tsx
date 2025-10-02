@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,13 +14,10 @@ const shadowStyle = {
 export default function TravelScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -37,11 +33,7 @@ export default function TravelScreen() {
           {/* Travel Guidelines */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="document-text-outline"
-                size={24}
-                color="#FF6B35"
-              />
+              <Ionicons name="document-text-outline" size={24} color="#FF6B35" />
               <Text style={styles.sectionTitle}>Travel Guidelines</Text>
             </View>
 
@@ -57,24 +49,16 @@ export default function TravelScreen() {
                 </View>
                 <View style={styles.allowedItem}>
                   <Ionicons name="business-outline" size={16} color="#4CAF50" />
-                  <Text style={styles.allowedText}>
-                    With Rotary club members
-                  </Text>
+                  <Text style={styles.allowedText}>With Rotary club members</Text>
                 </View>
                 <View style={styles.allowedItem}>
                   <Ionicons name="school-outline" size={16} color="#4CAF50" />
-                  <Text style={styles.allowedText}>
-                    On authorized school trips
-                  </Text>
+                  <Text style={styles.allowedText}>On authorized school trips</Text>
                 </View>
               </View>
 
               <View style={styles.restrictionNote}>
-                <Ionicons
-                  name="information-circle-outline"
-                  size={16}
-                  color="#2196F3"
-                />
+                <Ionicons name="information-circle-outline" size={16} color="#2196F3" />
                 <Text style={styles.restrictionText}>
                   Travel rules apply both inside the Netherlands and abroad
                 </Text>
@@ -86,11 +70,7 @@ export default function TravelScreen() {
           <View style={styles.section}>
             <View style={styles.warningCard}>
               <View style={styles.warningHeader}>
-                <Ionicons
-                  name="close-circle-outline"
-                  size={24}
-                  color="#F44336"
-                />
+                <Ionicons name="close-circle-outline" size={24} color="#F44336" />
                 <Text style={styles.warningTitle}>Strictly Prohibited</Text>
               </View>
               <Text style={styles.warningText}>
@@ -109,14 +89,11 @@ export default function TravelScreen() {
             <View style={styles.holidayCard}>
               <View style={styles.holidayHeader}>
                 <Ionicons name="document-outline" size={20} color="#FF9800" />
-                <Text style={styles.holidayTitle}>
-                  Parental Approval Required
-                </Text>
+                <Text style={styles.holidayTitle}>Parental Approval Required</Text>
               </View>
               <Text style={styles.holidayText}>
-                One of your host families might suggest to participate in a
-                holiday somewhere abroad. This is usually OK when you will have
-                a written approval from your parents.
+                One of your host families might suggest to participate in a holiday somewhere
+                abroad. This is usually OK when you will have a written approval from your parents.
               </Text>
             </View>
           </View>

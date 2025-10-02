@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -24,13 +23,10 @@ export default function WelcomeInTheNetherlandsScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -53,22 +49,19 @@ export default function WelcomeInTheNetherlandsScreen() {
             <View style={styles.welcomeCard}>
               <View style={styles.highlightBox}>
                 <Ionicons name="globe-outline" size={20} color="#2196F3" />
-                <Text style={styles.highlightText}>
-                  35-50 exchange students annually
-                </Text>
+                <Text style={styles.highlightText}>35-50 exchange students annually</Text>
               </View>
               <Text style={styles.welcomeText}>
-                We are very excited about your upcoming stay with us and looking
-                forward to meeting you. We hope and believe that you will enjoy
-                your stay with us. We have an exciting and active Rotary
-                International Youth Exchange Program with students from around
-                the world.
+                We are very excited about your upcoming stay with us and looking forward to meeting
+                you. We hope and believe that you will enjoy your stay with us. We have an exciting
+                and active Rotary International Youth Exchange Program with students from around the
+                world.
               </Text>
               <View style={styles.friendsBox}>
                 <Ionicons name="heart-outline" size={16} color="#4CAF50" />
                 <Text style={styles.friendsText}>
-                  You will make friends from all over the world, in addition to
-                  making many Dutch friends in your school and Rotary.
+                  You will make friends from all over the world, in addition to making many Dutch
+                  friends in your school and Rotary.
                 </Text>
               </View>
             </View>
@@ -84,15 +77,12 @@ export default function WelcomeInTheNetherlandsScreen() {
             <View style={styles.experienceCard}>
               <View style={styles.experienceHeader}>
                 <Ionicons name="sparkles-outline" size={20} color="#9C27B0" />
-                <Text style={styles.experienceSubtitle}>
-                  One of the best years of your life
-                </Text>
+                <Text style={styles.experienceSubtitle}>One of the best years of your life</Text>
               </View>
               <Text style={styles.experienceText}>
-                A wonderful experience in a new culture, with a new language but
-                also with some rules to make sure that your stay will be both
-                enjoyable for you and us alike. These rules are consistent with
-                the International Rotary rules.
+                A wonderful experience in a new culture, with a new language but also with some
+                rules to make sure that your stay will be both enjoyable for you and us alike. These
+                rules are consistent with the International Rotary rules.
               </Text>
             </View>
           </View>
@@ -105,10 +95,9 @@ export default function WelcomeInTheNetherlandsScreen() {
                 <Text style={styles.ambassadorTitle}>Ambassador Role</Text>
               </View>
               <Text style={styles.ambassadorText}>
-                Please remember that under all circumstances you are an
-                ambassador of Rotary and will have to behave accordingly. Also
-                you will be an ambassador of your country. Both functions will
-                be with you at all times and you will be regarded and judged as
+                Please remember that under all circumstances you are an ambassador of Rotary and
+                will have to behave accordingly. Also you will be an ambassador of your country.
+                Both functions will be with you at all times and you will be regarded and judged as
                 such at all times during your exchange!
               </Text>
             </View>
@@ -122,17 +111,11 @@ export default function WelcomeInTheNetherlandsScreen() {
             </View>
 
             <View style={styles.mottoCard}>
-              <Text style={styles.mottoIntro}>
-                Live by these values during your exchange:
-              </Text>
+              <Text style={styles.mottoIntro}>Live by these values during your exchange:</Text>
               <View style={styles.mottoGrid}>
                 {mottoValues.map((value, index) => (
                   <View style={styles.mottoItem} key={index}>
-                    <Ionicons
-                      name="checkmark-circle"
-                      size={16}
-                      color="#4CAF50"
-                    />
+                    <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
                     <Text style={styles.mottoText}>{value}</Text>
                   </View>
                 ))}

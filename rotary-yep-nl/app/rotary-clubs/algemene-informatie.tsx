@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 
 interface InfoSectionProps {
   title: string;
@@ -20,11 +19,7 @@ const InfoSection = React.memo(({ title, content }: InfoSectionProps) => {
 export default function AlgemeneInformatieScreen() {
   const renderInfoSection = useCallback(
     (section: { title: string; content: string }, index: number) => (
-      <InfoSection
-        key={index}
-        title={section.title}
-        content={section.content}
-      />
+      <InfoSection key={index} title={section.title} content={section.content} />
     ),
     [],
   );
@@ -54,14 +49,12 @@ export default function AlgemeneInformatieScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-        >
+          contentInsetAdjustmentBehavior="automatic">
           {infoSections.map(renderInfoSection)}
         </ScrollView>
       </View>

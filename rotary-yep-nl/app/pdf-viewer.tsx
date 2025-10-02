@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useCallback,
-} from 'react';
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import {
   StyleSheet,
   View,
@@ -18,7 +13,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import PdfRendererView from 'react-native-pdf-renderer';
 import { File, Directory, Paths } from 'expo-file-system';
-import { StatusBar } from 'expo-status-bar';
 import * as Sharing from 'expo-sharing';
 
 export default function PDFViewerScreen() {
@@ -62,9 +56,7 @@ export default function PDFViewerScreen() {
       }
 
       const arrayBuffer = await response.arrayBuffer();
-      const base64String = btoa(
-        String.fromCharCode(...new Uint8Array(arrayBuffer)),
-      );
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
       localFile.write(base64String, { encoding: 'base64' });
 
       setLocalFilePath(localFile.uri);
@@ -117,8 +109,7 @@ export default function PDFViewerScreen() {
               color: '#1A237E',
               textAlign: 'center',
             }}
-            numberOfLines={1}
-          >
+            numberOfLines={1}>
             {title || 'PDF Document'}
           </Text>
           {totalPages > 0 && (
@@ -128,8 +119,7 @@ export default function PDFViewerScreen() {
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
-              }}
-            >
+              }}>
               Page {currentPage + 1} of {totalPages}
             </Text>
           )}
@@ -143,21 +133,12 @@ export default function PDFViewerScreen() {
               opacity: pressed ? 0.6 : 1,
               padding: 8,
             })}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
             <Ionicons name="share-outline" size={24} color="#007AFF" />
           </Pressable>
         ) : null,
     });
-  }, [
-    navigation,
-    title,
-    localFilePath,
-    loading,
-    currentPage,
-    totalPages,
-    handleShare,
-  ]);
+  }, [navigation, title, localFilePath, loading, currentPage, totalPages, handleShare]);
 
   useEffect(() => {
     downloadPDF();
@@ -166,7 +147,6 @@ export default function PDFViewerScreen() {
   if (error) {
     return (
       <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-        
         <View style={styles.container}>
           <View style={styles.content}>
             <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
@@ -183,7 +163,6 @@ export default function PDFViewerScreen() {
   if (loading || !localFilePath) {
     return (
       <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-        
         <View style={styles.container}>
           <View style={styles.content}>
             <ActivityIndicator size="large" color="#007AFF" />
@@ -196,7 +175,6 @@ export default function PDFViewerScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <PdfRendererView
           source={localFilePath}

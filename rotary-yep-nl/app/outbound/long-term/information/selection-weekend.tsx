@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,13 +14,10 @@ const shadowStyle = {
 export default function SelectionWeekendScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -38,9 +34,7 @@ export default function SelectionWeekendScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="flag-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>
-                Het weekend dient een aantal doelen:
-              </Text>
+              <Text style={styles.sectionTitle}>Het weekend dient een aantal doelen:</Text>
             </View>
 
             <View style={styles.goalCard}>
@@ -49,13 +43,10 @@ export default function SelectionWeekendScreen() {
               </View>
               <View style={styles.goalContent}>
                 <Text style={styles.goalText}>
-                  <Text style={styles.underlineText}>
-                    Elkaar beter leren kennen.
-                  </Text>{' '}
-                  De groep leert elkaar beter kennen en wij leren jullie beter{' '}
-                  <Text style={styles.underlineText}>kennen.</Text> Wij kunnen
-                  zó beter inschatten waar jullie als toekomstige Outbounds naar
-                  toe zouden kunnen gaan.
+                  <Text style={styles.underlineText}>Elkaar beter leren kennen.</Text> De groep
+                  leert elkaar beter kennen en wij leren jullie beter{' '}
+                  <Text style={styles.underlineText}>kennen.</Text> Wij kunnen zó beter inschatten
+                  waar jullie als toekomstige Outbounds naar toe zouden kunnen gaan.
                 </Text>
               </View>
             </View>
@@ -77,11 +68,8 @@ export default function SelectionWeekendScreen() {
               </View>
               <View style={styles.goalContent}>
                 <Text style={styles.goalText}>
-                  <Text style={styles.underlineText}>
-                    Je oriënteren op een top-drie van landen
-                  </Text>{' '}
-                  waarnaar je het liefst wilt worden uitgezonden. Zowel
-                  Internationaal als Europees.
+                  <Text style={styles.underlineText}>Je oriënteren op een top-drie van landen</Text>{' '}
+                  waarnaar je het liefst wilt worden uitgezonden. Zowel Internationaal als Europees.
                 </Text>
               </View>
             </View>
@@ -92,10 +80,9 @@ export default function SelectionWeekendScreen() {
               </View>
               <View style={styles.goalContent}>
                 <Text style={styles.goalText}>
-                  <Text style={styles.underlineText}>Selectie:</Text> Je kunt
-                  laten zien dat je uit het goede "uitwisselingshout" bent
-                  gesneden. Aanwezigheid is verplicht. Het weekend is dan ook
-                  onderdeel van de uiteindelijke selectie.
+                  <Text style={styles.underlineText}>Selectie:</Text> Je kunt laten zien dat je uit
+                  het goede "uitwisselingshout" bent gesneden. Aanwezigheid is verplicht. Het
+                  weekend is dan ook onderdeel van de uiteindelijke selectie.
                 </Text>
               </View>
             </View>
@@ -108,9 +95,8 @@ export default function SelectionWeekendScreen() {
               <Text style={styles.infoTitle}>Belangrijk om te weten</Text>
             </View>
             <Text style={styles.infoText}>
-              Je krijgt een mail van ons voor het weekend waarin staat wat je
-              moet meenemen, en wat je moet voorbereiden. Het is altijd een
-              topweekend.
+              Je krijgt een mail van ons voor het weekend waarin staat wat je moet meenemen, en wat
+              je moet voorbereiden. Het is altijd een topweekend.
             </Text>
           </View>
         </View>

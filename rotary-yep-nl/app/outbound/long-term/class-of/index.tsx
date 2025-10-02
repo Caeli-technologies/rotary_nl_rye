@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  currentOutboundStudents,
-  groupStudentsByCountry,
-} from '@/data/outbound-students';
+import { currentOutboundStudents, groupStudentsByCountry } from '@/data/outbound-students';
 import StudentsList from '@/components/students/StudentsList';
 
 export default function CurrentStudentsScreen() {

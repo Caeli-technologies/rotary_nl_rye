@@ -1,16 +1,9 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+
 import * as Haptics from 'expo-haptics';
 
 interface MenuItem {
@@ -37,25 +30,19 @@ export default function FamilyToFamilyScreen() {
   const renderMenuItem = useCallback(
     ({ item }: { item: MenuItem }) => (
       <Pressable
-        style={({ pressed }) => [
-          styles.menuItem,
-          pressed && styles.menuItemPressed,
-        ]}
+        style={({ pressed }) => [styles.menuItem, pressed && styles.menuItemPressed]}
         onPress={() => handleItemPress(item.route)}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tik om details te bekijken"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
         <View style={styles.menuContent}>
           <View style={styles.iconContainer}>
             <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.menuTitle}>{item.title}</Text>
-            {item.subtitle && (
-              <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
-            )}
+            {item.subtitle && <Text style={styles.menuSubtitle}>{item.subtitle}</Text>}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
@@ -80,8 +67,7 @@ export default function FamilyToFamilyScreen() {
       title: 'Landen & Voorkeur',
       subtitle: 'Beschikbare bestemmingen en hoe te kiezen',
       icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
-      route:
-        '/outbound/short-term/family-to-family/information/countries-preference',
+      route: '/outbound/short-term/family-to-family/information/countries-preference',
       type: 'info',
     },
     {
@@ -99,10 +85,9 @@ export default function FamilyToFamilyScreen() {
         <View style={styles.programCard}>
           <Text style={styles.programTitle}>Wat is Family-to-Family?</Text>
           <Text style={styles.programDescription}>
-            Het Family-to-Family programma biedt jongeren de mogelijkheid om het
-            leven in een andere cultuur te ervaren door 2-6 weken bij een
-            gastgezin te verblijven. Deze authentieke culturele uitwisseling
-            stelt deelnemers in staat zich volledig onder te dompelen in het
+            Het Family-to-Family programma biedt jongeren de mogelijkheid om het leven in een andere
+            cultuur te ervaren door 2-6 weken bij een gastgezin te verblijven. Deze authentieke
+            culturele uitwisseling stelt deelnemers in staat zich volledig onder te dompelen in het
             dagelijkse leven, lokale gewoonten en familietradities.
           </Text>
         </View>
@@ -181,15 +166,11 @@ export default function FamilyToFamilyScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback(
-            (item: any, index: number) => `${item.type}-${index}`,
-            [],
-          )}
+          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

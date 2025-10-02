@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  Pressable,
-  Modal,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
+
 import { Image } from 'expo-image';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEvent } from 'expo';
@@ -67,13 +59,10 @@ export default function Top3CountriesScreen() {
   };
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -110,8 +99,8 @@ export default function Top3CountriesScreen() {
               </View>
               <View style={styles.tipContent}>
                 <Text style={styles.tipText}>
-                  Kijk op YouTube en google "Rotary Youth Exchange" dan kom je
-                  ook heel veel te weten.
+                  Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te
+                  weten.
                 </Text>
               </View>
             </View>
@@ -122,8 +111,8 @@ export default function Top3CountriesScreen() {
               </View>
               <View style={styles.tipContent}>
                 <Text style={styles.tipText}>
-                  Praat met voormalige uitwisselingsstudenten over hun
-                  ervaringen in verschillende landen.
+                  Praat met voormalige uitwisselingsstudenten over hun ervaringen in verschillende
+                  landen.
                 </Text>
               </View>
             </View>
@@ -136,17 +125,12 @@ export default function Top3CountriesScreen() {
               <Text style={styles.sectionTitle}>Inspiratie Video</Text>
             </View>
 
-            <Pressable
-              style={styles.videoCard}
-              onPress={() => setIsVideoModalVisible(true)}
-            >
+            <Pressable style={styles.videoCard} onPress={() => setIsVideoModalVisible(true)}>
               <View style={styles.videoPreview}>
                 {thumbnailLoading ? (
                   <View style={styles.thumbnailLoading}>
                     <Ionicons name="image-outline" size={48} color="#999" />
-                    <Text style={styles.loadingThumbnailText}>
-                      Thumbnail laden...
-                    </Text>
+                    <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
                   </View>
                 ) : thumbnailUri ? (
                   <Image
@@ -158,9 +142,7 @@ export default function Top3CountriesScreen() {
                 ) : (
                   <View style={styles.thumbnailFallback}>
                     <Ionicons name="flag-outline" size={48} color="#FFFFFF" />
-                    <Text style={styles.fallbackText}>
-                      Proud to be European
-                    </Text>
+                    <Text style={styles.fallbackText}>Proud to be European</Text>
                   </View>
                 )}
                 <View style={styles.playButtonOverlay}>
@@ -172,8 +154,8 @@ export default function Top3CountriesScreen() {
               <View style={styles.videoInfo}>
                 <Text style={styles.videoTitle}>Proud to be European</Text>
                 <Text style={styles.videoDescription}>
-                  Ontdek wat het betekent om een Europese uitwisselingsstudent
-                  te zijn en laat je inspireren door de verhalen van anderen.
+                  Ontdek wat het betekent om een Europese uitwisselingsstudent te zijn en laat je
+                  inspireren door de verhalen van anderen.
                 </Text>
               </View>
             </Pressable>
@@ -186,12 +168,8 @@ export default function Top3CountriesScreen() {
         visible={isVideoModalVisible}
         animationType="slide"
         presentationStyle="fullScreen"
-        onRequestClose={handleCloseVideo}
-      >
-        <SafeAreaView
-          style={styles.videoModalContainer}
-          edges={['top', 'left', 'right']}
-        >
+        onRequestClose={handleCloseVideo}>
+        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
           <View style={styles.videoModalHeader}>
             <Pressable style={styles.closeButton} onPress={handleCloseVideo}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
@@ -216,9 +194,7 @@ export default function Top3CountriesScreen() {
 
           <View style={styles.videoInfoModal}>
             <Text style={styles.videoTitleModal}>Proud to be European</Text>
-            <Text style={styles.videoSubtitleModal}>
-              Rotary Youth Exchange Inspiratie Video
-            </Text>
+            <Text style={styles.videoSubtitleModal}>Rotary Youth Exchange Inspiratie Video</Text>
           </View>
         </SafeAreaView>
       </Modal>

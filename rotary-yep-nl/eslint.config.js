@@ -4,10 +4,13 @@ const expoConfig = require('eslint-config-expo/flat');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 
 module.exports = defineConfig([
-  expoConfig,
+  {
+    ignores: ['node_modules/**', 'android/**', 'ios/**', 'build/**', 'dist/**'],
+  },
+  ...expoConfig,
   eslintPluginPrettierRecommended,
   {
-    ignores: ['dist/*', 'ios/*', 'android/*'],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
       'prettier/prettier': [
         'error',

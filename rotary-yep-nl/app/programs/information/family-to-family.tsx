@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -23,13 +22,10 @@ const shadowStyle = {
 export default function FamilyToFamilyScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -51,12 +47,11 @@ export default function FamilyToFamilyScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                De naam zegt het al, Short Term Exchange Program (STEP). Het is
-                een uitwisseling met een leeftijdgenoot in het buitenland voor
-                de korte duur van ongeveer 2x3 weken of 2x4 weken. Maar het is
-                ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in het
-                buitenland woont, samen met jouw maatje, en dat jouw maatje
-                samen met jou in Nederland komt wonen.
+                De naam zegt het al, Short Term Exchange Program (STEP). Het is een uitwisseling met
+                een leeftijdgenoot in het buitenland voor de korte duur van ongeveer 2x3 weken of
+                2x4 weken. Maar het is ook FAMILY TO FAMILY, wat betekent dat je bij een gezin in
+                het buitenland woont, samen met jouw maatje, en dat jouw maatje samen met jou in
+                Nederland komt wonen.
               </Text>
             </View>
           </View>
@@ -69,9 +64,7 @@ export default function FamilyToFamilyScreen() {
             <View style={styles.ageContent}>
               <Text style={styles.ageTitle}>15 - 19 jaar</Text>
               <Text style={styles.ageSubtitle}>Voor wie?</Text>
-              <Text style={styles.ageNote}>
-                Open minded jongeren die willen leren van anderen
-              </Text>
+              <Text style={styles.ageNote}>Open minded jongeren die willen leren van anderen</Text>
             </View>
           </View>
 
@@ -88,13 +81,11 @@ export default function FamilyToFamilyScreen() {
                 <Text style={styles.missionTitle}>Onze Missie</Text>
               </View>
               <Text style={styles.missionText}>
-                "Jeugd in staat stellen om persoonlijk leiderschap te
-                ontwikkelen"
+                "Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen"
               </Text>
               <Text style={styles.missionSubtext}>
-                Wij geloven dat leiderschap begint met leiding geven aan jezelf
-                om uiteindelijk anderen in staat te stellen zichzelf te
-                ontwikkelen.
+                Wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk
+                anderen in staat te stellen zichzelf te ontwikkelen.
               </Text>
             </View>
           </View>
@@ -102,14 +93,8 @@ export default function FamilyToFamilyScreen() {
           {/* Requirements Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="checkmark-circle-outline"
-                size={24}
-                color="#FF6B35"
-              />
-              <Text style={styles.sectionTitle}>
-                Geschikt voor dit programma?
-              </Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Geschikt voor dit programma?</Text>
             </View>
 
             <View style={styles.infoCard}>
@@ -125,21 +110,15 @@ export default function FamilyToFamilyScreen() {
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    Ervaringen wilt uitwisselen
-                  </Text>
+                  <Text style={styles.bulletText}>Ervaringen wilt uitwisselen</Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    Uit je vertrouwde omgeving wilt stappen
-                  </Text>
+                  <Text style={styles.bulletText}>Uit je vertrouwde omgeving wilt stappen</Text>
                 </View>
                 <View style={styles.bulletItem}>
                   <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
-                    Anderen zonder vooroordelen wilt ontmoeten
-                  </Text>
+                  <Text style={styles.bulletText}>Anderen zonder vooroordelen wilt ontmoeten</Text>
                 </View>
               </View>
             </View>
@@ -175,8 +154,7 @@ export default function FamilyToFamilyScreen() {
 
             <TouchableOpacity
               style={styles.emailButton}
-              onPress={() => Linking.openURL('mailto:interesse@rotaryyep.nl')}
-            >
+              onPress={() => Linking.openURL('mailto:interesse@rotaryyep.nl')}>
               <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
               <Text style={styles.emailButtonText}>interesse@rotaryyep.nl</Text>
             </TouchableOpacity>

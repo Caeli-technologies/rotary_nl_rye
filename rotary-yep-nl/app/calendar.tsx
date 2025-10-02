@@ -16,7 +16,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar } from 'react-native-calendars';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { StatusBar } from 'expo-status-bar';
 
 import {
   fetchCalendarEvents,
@@ -32,9 +31,7 @@ import { Event, EventsData } from '@/types/events';
 
 export default function CalendarScreen() {
   const [eventsData, setEventsData] = useState<EventsData>({});
-  const [selectedDate, setSelectedDate] = useState<string>(
-    formatDateKey(new Date()),
-  );
+  const [selectedDate, setSelectedDate] = useState<string>(formatDateKey(new Date()));
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -55,10 +52,7 @@ export default function CalendarScreen() {
   };
 
   // Computed values - no need for separate state
-  const selectedEvents = getEventsForDay(
-    eventsData,
-    new Date(selectedDate + 'T00:00:00'),
-  );
+  const selectedEvents = getEventsForDay(eventsData, new Date(selectedDate + 'T00:00:00'));
   const markedDates = createMarkedDates(eventsData, selectedDate);
 
   useEffect(() => {
@@ -74,9 +68,7 @@ export default function CalendarScreen() {
       setEventsData(data);
     } catch (err) {
       console.error('Calendar events loading error:', err);
-      setError(
-        'Failed to load events. Please check your internet connection and try again.',
-      );
+      setError('Failed to load events. Please check your internet connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -130,10 +122,7 @@ export default function CalendarScreen() {
         if (canOpen) {
           await Linking.openURL(url);
         } else {
-          Alert.alert(
-            'Error',
-            'Maps application is not available on this device',
-          );
+          Alert.alert('Error', 'Maps application is not available on this device');
         }
       }
     } catch (error) {
@@ -170,15 +159,11 @@ export default function CalendarScreen() {
     return (
       <Pressable
         key={event.id}
-        style={({ pressed }) => [
-          styles.eventCard,
-          pressed && styles.eventCardPressed,
-        ]}
+        style={({ pressed }) => [styles.eventCard, pressed && styles.eventCardPressed]}
         onPress={() => openEventDetails(event)}
         accessibilityRole="button"
         accessibilityLabel={`Event: ${event.summary}`}
-        accessibilityHint="Tap to view event details"
-      >
+        accessibilityHint="Tap to view event details">
         <View style={styles.eventHeader}>
           <View style={styles.eventIconContainer}>
             <Image
@@ -240,8 +225,7 @@ export default function CalendarScreen() {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={closeEventDetails}
-      >
+        onRequestClose={closeEventDetails}>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             {/* Header with Event Icon */}
@@ -268,23 +252,16 @@ export default function CalendarScreen() {
                 </View>
               </View>
               <Pressable
-                style={({ pressed }) => [
-                  styles.closeButton,
-                  pressed && styles.closeButtonPressed,
-                ]}
+                style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}
                 onPress={closeEventDetails}
                 accessibilityRole="button"
                 accessibilityLabel="Close event details"
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-              >
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
                 <Ionicons name="close" size={24} color="#000000" />
               </Pressable>
             </View>
 
-            <ScrollView
-              style={styles.modalBody}
-              showsVerticalScrollIndicator={false}
-            >
+            <ScrollView style={styles.modalBody} showsVerticalScrollIndicator={false}>
               {/* Date & Time Section */}
               <View style={styles.modalCard}>
                 <View style={styles.modalCardHeader}>
@@ -323,8 +300,7 @@ export default function CalendarScreen() {
                       styles.modalCardContent,
                       pressed && styles.modalCardContentPressed,
                     ]}
-                    onPress={() => openLocation(selectedEvent.location)}
-                  >
+                    onPress={() => openLocation(selectedEvent.location)}>
                     <Text style={[styles.modalLocationText, styles.linkText]}>
                       {selectedEvent.location}
                     </Text>
@@ -335,9 +311,7 @@ export default function CalendarScreen() {
                   </Pressable>
                 ) : (
                   <View style={styles.modalCardContent}>
-                    <Text style={styles.modalLocationText}>
-                      {selectedEvent.location}
-                    </Text>
+                    <Text style={styles.modalLocationText}>{selectedEvent.location}</Text>
                   </View>
                 )}
               </View>
@@ -345,17 +319,12 @@ export default function CalendarScreen() {
               {/* Description Section */}
               <View style={styles.modalCard}>
                 <View style={styles.modalCardHeader}>
-                  <Ionicons
-                    name="document-text-outline"
-                    size={20}
-                    color="#007AFF"
-                  />
+                  <Ionicons name="document-text-outline" size={20} color="#007AFF" />
                   <Text style={styles.modalCardTitle}>Description</Text>
                 </View>
                 <View style={styles.modalCardContent}>
                   <Text style={styles.modalDescriptionText}>
-                    {selectedEvent.description.trim() ||
-                      'No description available for this event.'}
+                    {selectedEvent.description.trim() || 'No description available for this event.'}
                   </Text>
                 </View>
               </View>
@@ -368,9 +337,7 @@ export default function CalendarScreen() {
                     <Text style={styles.modalCardTitle}>Organizer</Text>
                   </View>
                   <View style={styles.modalCardContent}>
-                    <Text style={styles.modalOrganizerText}>
-                      {selectedEvent.organizer.email}
-                    </Text>
+                    <Text style={styles.modalOrganizerText}>{selectedEvent.organizer.email}</Text>
                   </View>
                 </View>
               )}
@@ -390,24 +357,12 @@ export default function CalendarScreen() {
                           styles.modalLinkItem,
                           pressed && styles.modalLinkItemPressed,
                         ]}
-                        onPress={() => openLink(link)}
-                      >
-                        <Ionicons
-                          name="open-outline"
-                          size={16}
-                          color="#007AFF"
-                        />
-                        <Text
-                          style={[styles.modalLinkText, styles.linkText]}
-                          numberOfLines={1}
-                        >
+                        onPress={() => openLink(link)}>
+                        <Ionicons name="open-outline" size={16} color="#007AFF" />
+                        <Text style={[styles.modalLinkText, styles.linkText]} numberOfLines={1}>
                           {link}
                         </Text>
-                        <Ionicons
-                          name="chevron-forward"
-                          size={16}
-                          color="#C7C7CC"
-                        />
+                        <Ionicons name="chevron-forward" size={16} color="#C7C7CC" />
                       </Pressable>
                     ))}
                   </View>
@@ -426,12 +381,9 @@ export default function CalendarScreen() {
                   ]}
                   onPress={() => openLocation(selectedEvent.location)}
                   accessibilityRole="button"
-                  accessibilityLabel={`Get directions to ${selectedEvent.location}`}
-                >
+                  accessibilityLabel={`Get directions to ${selectedEvent.location}`}>
                   <Ionicons name="map-outline" size={18} color="#007AFF" />
-                  <Text style={styles.modalSecondaryButtonText}>
-                    Directions
-                  </Text>
+                  <Text style={styles.modalSecondaryButtonText}>Directions</Text>
                 </Pressable>
               )}
               <Pressable
@@ -442,8 +394,7 @@ export default function CalendarScreen() {
                 ]}
                 onPress={closeEventDetails}
                 accessibilityRole="button"
-                accessibilityLabel="Close event details"
-              >
+                accessibilityLabel="Close event details">
                 <Text style={styles.modalPrimaryButtonText}>Done</Text>
               </Pressable>
             </View>
@@ -455,7 +406,6 @@ export default function CalendarScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         {loading ? (
           <View style={styles.centerContainer}>
@@ -470,14 +420,10 @@ export default function CalendarScreen() {
             <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
             <Text style={styles.errorText}>{error}</Text>
             <Pressable
-              style={({ pressed }) => [
-                styles.retryButton,
-                pressed && styles.retryButtonPressed,
-              ]}
+              style={({ pressed }) => [styles.retryButton, pressed && styles.retryButtonPressed]}
               onPress={loadEvents}
               accessibilityRole="button"
-              accessibilityLabel="Retry loading events"
-            >
+              accessibilityLabel="Retry loading events">
               <Text style={styles.retryButtonText}>Try Again</Text>
             </Pressable>
           </View>
@@ -486,8 +432,7 @@ export default function CalendarScreen() {
             style={styles.scrollView}
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
-            contentInsetAdjustmentBehavior="automatic"
-          >
+            contentInsetAdjustmentBehavior="automatic">
             {/* Calendar */}
             <View style={styles.calendarContainer}>
               <Calendar
@@ -527,14 +472,11 @@ export default function CalendarScreen() {
             <View style={styles.eventsSection}>
               <View style={styles.sectionHeader}>
                 <Text style={styles.sectionTitle}>
-                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString(
-                    'en-US',
-                    {
-                      weekday: 'long',
-                      month: 'long',
-                      day: 'numeric',
-                    },
-                  )}
+                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
                 </Text>
                 <Pressable
                   style={({ pressed }) => [
@@ -545,8 +487,7 @@ export default function CalendarScreen() {
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                   accessibilityRole="button"
                   accessibilityLabel="Refresh events"
-                  accessibilityHint="Reload calendar events"
-                >
+                  accessibilityHint="Reload calendar events">
                   <Ionicons name="refresh" size={20} color="#007AFF" />
                 </Pressable>
               </View>
@@ -556,16 +497,10 @@ export default function CalendarScreen() {
               ) : (
                 <View style={styles.emptyContainer}>
                   <View style={styles.emptyIcon}>
-                    <Ionicons
-                      name="calendar-outline"
-                      size={64}
-                      color="#C7C7CC"
-                    />
+                    <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
                   </View>
                   <Text style={styles.emptyTitle}>No Events</Text>
-                  <Text style={styles.emptyText}>
-                    There are no events scheduled for this day.
-                  </Text>
+                  <Text style={styles.emptyText}>There are no events scheduled for this day.</Text>
                 </View>
               )}
             </View>

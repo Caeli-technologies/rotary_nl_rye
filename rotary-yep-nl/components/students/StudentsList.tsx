@@ -1,17 +1,9 @@
 import React, { useMemo, useLayoutEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Pressable,
-  SectionList,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, Pressable, SectionList, Platform } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useNavigation } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 import { NetworkImage } from '@/components/network-image';
 import { Student, CountryGroup, StudentType } from '@/types/student';
@@ -34,12 +26,8 @@ interface StudentCardProps {
 function StudentCard({ student, onPress, studentType }: StudentCardProps) {
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.studentCard,
-        pressed && styles.studentCardPressed,
-      ]}
-      onPress={onPress}
-    >
+      style={({ pressed }) => [styles.studentCard, pressed && styles.studentCardPressed]}
+      onPress={onPress}>
       <View style={styles.studentCardContent}>
         <NetworkImage
           imageUrl={student.imageUrl || undefined}
@@ -52,17 +40,12 @@ function StudentCard({ student, onPress, studentType }: StudentCardProps) {
         <View style={styles.studentInfo}>
           <Text style={styles.studentName}>{student.name}</Text>
           <Text style={styles.studentSubtitle}>
-            Current {studentType === 'outbound' ? 'Outbound' : 'Inbound'}{' '}
-            Student
+            Current {studentType === 'outbound' ? 'Outbound' : 'Inbound'} Student
           </Text>
         </View>
 
         <Ionicons
-          name={
-            Platform.OS === 'ios'
-              ? 'chevron-forward'
-              : 'chevron-forward-outline'
-          }
+          name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
           size={Platform.OS === 'ios' ? 20 : 24}
           color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
         />
@@ -124,15 +107,13 @@ export default function StudentsList({
         <View
           style={{
             alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
-          }}
-        >
+          }}>
           <Text
             style={{
               fontSize: Platform.OS === 'ios' ? 18 : 20,
               fontWeight: '600',
               color: '#1A237E',
-            }}
-          >
+            }}>
             {title}
           </Text>
           {students.length > 0 && (
@@ -142,10 +123,9 @@ export default function StudentsList({
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
-              }}
-            >
-              {students.length} student{students.length !== 1 ? 's' : ''} •{' '}
-              {countryGroups.length} countr
+              }}>
+              {students.length} student{students.length !== 1 ? 's' : ''} • {countryGroups.length}{' '}
+              countr
               {countryGroups.length !== 1 ? 'ies' : 'y'}
             </Text>
           )}
@@ -164,13 +144,7 @@ export default function StudentsList({
     }));
   }, [countryGroups]);
 
-  const renderStudent = ({
-    item,
-    section,
-  }: {
-    item: Student;
-    section: any;
-  }) => (
+  const renderStudent = ({ item, section }: { item: Student; section: any }) => (
     <StudentCard
       student={item}
       onPress={() => handleStudentPress(item, section.title)}
@@ -207,7 +181,6 @@ export default function StudentsList({
   if (sections.length === 0) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        
         <View style={styles.emptyState}>
           <Ionicons name="school-outline" size={48} color="#9FA8DA" />
           <Text style={styles.emptyStateTitle}>No students found</Text>
@@ -221,8 +194,6 @@ export default function StudentsList({
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <SectionList
         sections={sections}
         renderItem={renderStudent}
@@ -232,9 +203,7 @@ export default function StudentsList({
         contentInsetAdjustmentBehavior="automatic"
         stickySectionHeadersEnabled={Platform.OS === 'ios'}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-        SectionSeparatorComponent={() => (
-          <View style={styles.sectionSeparator} />
-        )}
+        SectionSeparatorComponent={() => <View style={styles.sectionSeparator} />}
         contentContainerStyle={styles.contentContainer}
         removeClippedSubviews={true}
         initialNumToRender={15}

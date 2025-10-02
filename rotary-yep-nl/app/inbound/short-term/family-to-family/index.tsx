@@ -1,20 +1,17 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
+
 import { Ionicons } from '@expo/vector-icons';
 
 export default function FamilyToFamilyInboundScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <View style={styles.emptyState}>
         <Ionicons name="construct-outline" size={48} color="#9FA8DA" />
         <Text style={styles.emptyStateTitle}>Coming Soon</Text>
         <Text style={styles.emptyStateMessage}>
-          Information for inbound family to family participants will be
-          available here soon.
+          Information for inbound family to family participants will be available here soon.
         </Text>
       </View>
     </SafeAreaView>

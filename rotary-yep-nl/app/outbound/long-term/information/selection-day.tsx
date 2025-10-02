@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,13 +14,10 @@ const shadowStyle = {
 export default function SelectionDayScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -30,28 +26,19 @@ export default function SelectionDayScreen() {
             </View>
             <Text style={styles.headerTitle}>Selectie dag</Text>
             <Text style={styles.headerSubtitle}>
-              Wat je kunt verwachten tijdens de selectiedag voor Rotary Youth
-              Exchange
+              Wat je kunt verwachten tijdens de selectiedag voor Rotary Youth Exchange
             </Text>
           </View>
 
           {/* What to do */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="checkmark-circle-outline"
-                size={24}
-                color="#FF6B35"
-              />
-              <Text style={styles.sectionTitle}>
-                Wat moet ik doen voor de selectie dag:
-              </Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
+              <Text style={styles.sectionTitle}>Wat moet ik doen voor de selectie dag:</Text>
             </View>
 
             <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Ik zou gewoon je best en doen en jezelf zijn.
-              </Text>
+              <Text style={styles.infoText}>Ik zou gewoon je best en doen en jezelf zijn.</Text>
             </View>
           </View>
 
@@ -59,23 +46,20 @@ export default function SelectionDayScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="eye-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>
-                Dit is wat je deze dag kan verwachten:
+              <Text style={styles.sectionTitle}>Dit is wat je deze dag kan verwachten:</Text>
+            </View>
+
+            <View style={styles.infoCard}>
+              <Text style={styles.infoText}>
+                Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis
+                van Nederland.
               </Text>
             </View>
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                Je krijgt een interview, een groepsgesprek, een discussie en een
-                test over je kennis van Nederland.
-              </Text>
-            </View>
-
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
-                Dit zijn een paar voorbeeld vragen uit het interview tijdens de
-                selectie dag. We gaan je niet alles vertellen, maar zo krijg je
-                een beetje een idee.
+                Dit zijn een paar voorbeeld vragen uit het interview tijdens de selectie dag. We
+                gaan je niet alles vertellen, maar zo krijg je een beetje een idee.
               </Text>
             </View>
           </View>
@@ -106,15 +90,12 @@ export default function SelectionDayScreen() {
             </View>
 
             <View style={styles.questionCard}>
-              <Text style={styles.questionText}>
-                Op welke eigenschap ben je het meest trots
-              </Text>
+              <Text style={styles.questionText}>Op welke eigenschap ben je het meest trots</Text>
             </View>
 
             <View style={styles.questionCard}>
               <Text style={styles.questionText}>
-                Wat denk je dat het moeilijkste is als je een jaar in het
-                buitenland bent
+                Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent
               </Text>
             </View>
           </View>

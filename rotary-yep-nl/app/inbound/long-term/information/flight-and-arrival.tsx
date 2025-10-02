@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -33,13 +32,10 @@ export default function FlightAndArrivalScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -48,8 +44,7 @@ export default function FlightAndArrivalScreen() {
             </View>
             <Text style={styles.headerTitle}>Flight & Arrival</Text>
             <Text style={styles.headerSubtitle}>
-              Important information about your flight and arrival in the
-              Netherlands
+              Important information about your flight and arrival in the Netherlands
             </Text>
           </View>
 
@@ -68,8 +63,7 @@ export default function FlightAndArrivalScreen() {
 
             <View style={styles.infoCard}>
               <Text style={styles.infoText}>
-                More arrival information will be provided closer to your
-                departure date.
+                More arrival information will be provided closer to your departure date.
               </Text>
             </View>
           </View>

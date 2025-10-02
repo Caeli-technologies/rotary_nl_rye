@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -15,13 +14,10 @@ const shadowStyle = {
 export default function LanguageScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
@@ -38,18 +34,13 @@ export default function LanguageScreen() {
           <View style={styles.section}>
             <View style={styles.challengeCard}>
               <View style={styles.challengeHeader}>
-                <Ionicons
-                  name="trending-up-outline"
-                  size={24}
-                  color="#FF9800"
-                />
+                <Ionicons name="trending-up-outline" size={24} color="#FF9800" />
                 <Text style={styles.challengeTitle}>The Challenge</Text>
               </View>
               <Text style={styles.challengeText}>
-                There's no hiding it: Dutch is a very difficult language to
-                learn. However, we do expect you to master the language and that
-                within months after your arrival you will be fluent in our
-                language.
+                There's no hiding it: Dutch is a very difficult language to learn. However, we do
+                expect you to master the language and that within months after your arrival you will
+                be fluent in our language.
               </Text>
             </View>
           </View>
@@ -58,9 +49,7 @@ export default function LanguageScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="school-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>
-                Dutch Orientation Course (DOC)
-              </Text>
+              <Text style={styles.sectionTitle}>Dutch Orientation Course (DOC)</Text>
             </View>
 
             <View style={styles.docCard}>
@@ -77,15 +66,11 @@ export default function LanguageScreen() {
                 </View>
                 <View style={styles.docItem}>
                   <Ionicons name="people-outline" size={16} color="#2196F3" />
-                  <Text style={styles.docText}>
-                    Small groups with fellow exchange students
-                  </Text>
+                  <Text style={styles.docText}>Small groups with fellow exchange students</Text>
                 </View>
                 <View style={styles.docItem}>
                   <Ionicons name="globe-outline" size={16} color="#2196F3" />
-                  <Text style={styles.docText}>
-                    Language learning + cultural insights
-                  </Text>
+                  <Text style={styles.docText}>Language learning + cultural insights</Text>
                 </View>
               </View>
               <Text style={styles.docNote}>
@@ -107,9 +92,8 @@ export default function LanguageScreen() {
                 <Text style={styles.supportTitle}>Your Learning Partners</Text>
               </View>
               <Text style={styles.supportText}>
-                Your first host family will also help you to learn Dutch and you
-                will receive books to start learning the language as soon as you
-                are in the Netherlands.
+                Your first host family will also help you to learn Dutch and you will receive books
+                to start learning the language as soon as you are in the Netherlands.
               </Text>
             </View>
           </View>

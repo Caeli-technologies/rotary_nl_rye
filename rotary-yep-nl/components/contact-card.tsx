@@ -53,15 +53,12 @@ export function ContactCard({
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
       onPress={onPress}
-      disabled={!onPress}
-    >
+      disabled={!onPress}>
       <View style={styles.content}>
         <View style={styles.info}>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.function}>{jobFunction}</Text>
-          {organization && (
-            <Text style={styles.organization}>{organization}</Text>
-          )}
+          {organization && <Text style={styles.organization}>{organization}</Text>}
         </View>
 
         {showActions && (phone || email) && (
@@ -72,8 +69,7 @@ export function ContactCard({
                   styles.actionButton,
                   pressed && styles.actionButtonPressed,
                 ]}
-                onPress={handleCall}
-              >
+                onPress={handleCall}>
                 <Ionicons name="call" size={18} color="#1A237E" />
               </Pressable>
             )}
@@ -83,8 +79,7 @@ export function ContactCard({
                   styles.actionButton,
                   pressed && styles.actionButtonPressed,
                 ]}
-                onPress={handleEmail}
-              >
+                onPress={handleEmail}>
                 <Ionicons name="mail" size={18} color="#1A237E" />
               </Pressable>
             )}

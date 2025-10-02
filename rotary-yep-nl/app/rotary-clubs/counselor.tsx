@@ -1,16 +1,8 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
 interface DocumentItemProps {
@@ -19,66 +11,60 @@ interface DocumentItemProps {
   pdfUrl: string;
 }
 
-const DocumentItem = React.memo(
-  ({ title, icon, pdfUrl }: DocumentItemProps) => {
-    const handlePress = useCallback(async () => {
-      try {
-        if (Platform.OS === 'ios') {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push({
-          pathname: '/pdf-viewer',
-          params: {
-            url: pdfUrl,
-            title: title,
-          },
-        });
-      } catch (error) {
-        console.error('Error opening PDF:', error);
-        router.push({
-          pathname: '/pdf-viewer',
-          params: {
-            url: pdfUrl,
-            title: title,
-          },
-        });
+const DocumentItem = React.memo(({ title, icon, pdfUrl }: DocumentItemProps) => {
+  const handlePress = useCallback(async () => {
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    }, [pdfUrl, title]);
+      router.push({
+        pathname: '/pdf-viewer',
+        params: {
+          url: pdfUrl,
+          title: title,
+        },
+      });
+    } catch (error) {
+      console.error('Error opening PDF:', error);
+      router.push({
+        pathname: '/pdf-viewer',
+        params: {
+          url: pdfUrl,
+          title: title,
+        },
+      });
+    }
+  }, [pdfUrl, title]);
 
-    return (
-      <Pressable
-        style={({ pressed }) => [
-          styles.documentItem,
-          pressed && styles.documentItemPressed,
-        ]}
-        onPress={handlePress}
-        android_ripple={{
-          color: 'rgba(0, 122, 255, 0.2)',
-          borderless: false,
-        }}
-        accessibilityRole="button"
-        accessibilityLabel={`Open ${title} PDF document`}
-        accessibilityHint="Tap to view PDF in document viewer"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
-        <View style={styles.documentContent}>
-          <View style={styles.iconContainer}>
-            <FontAwesome5 name={icon} size={22} color="#007AFF" />
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.documentTitle}>{title}</Text>
-            <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
-          </View>
-          <Ionicons
-            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
-            size={20}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
-          />
+  return (
+    <Pressable
+      style={({ pressed }) => [styles.documentItem, pressed && styles.documentItemPressed]}
+      onPress={handlePress}
+      android_ripple={{
+        color: 'rgba(0, 122, 255, 0.2)',
+        borderless: false,
+      }}
+      accessibilityRole="button"
+      accessibilityLabel={`Open ${title} PDF document`}
+      accessibilityHint="Tap to view PDF in document viewer"
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+      <View style={styles.documentContent}>
+        <View style={styles.iconContainer}>
+          <FontAwesome5 name={icon} size={22} color="#007AFF" />
         </View>
-      </Pressable>
-    );
-  },
-);
+        <View style={styles.textContainer}>
+          <Text style={styles.documentTitle}>{title}</Text>
+          <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
+        </View>
+        <Ionicons
+          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+          size={20}
+          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+        />
+      </View>
+    </Pressable>
+  );
+});
 
 export default function CounselorScreen() {
   const renderDocument = useCallback(
@@ -116,17 +102,14 @@ export default function CounselorScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-        >
+          contentInsetAdjustmentBehavior="automatic">
           <Text style={styles.description}>
-            Informatie en handleidingen voor counselors die exchange students
-            begeleiden.
+            Informatie en handleidingen voor counselors die exchange students begeleiden.
           </Text>
 
           {documents.map(renderDocument)}

@@ -2,33 +2,26 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 export default function ComplyWithScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           <View style={styles.textContainer}>
             <Text style={styles.text}>
-              Zit je op het VMBO, HAVO of VWO dan kun je na selectie voor deze
-              uitwisseling in aanmerking komen. Je hebt wel een Rotaryclub nodig
-              die jou wil voordragen: een Sponsorclub. Dat betekent niet dat de
-              club jouw kosten betaalt, maar de club is verantwoordelijk voor de
-              terug ontvangst van een jaarkind uit het buitenland. Als jij
-              weggaat komt er ook een buitenlandse scholier terug. Een diploma
-              is geen vereiste om je op te geven; je kunt nl ook je
-              schoolprogramma onderbreken. Soms is dat zelfs een voordeel. In
-              het buitenland worden namelijk vaak strenge leeftijdsgrenzen
-              gesteld om tot een school te worden toegelaten. En om deel te
-              kunnen nemen aan de schoolsporten is het soms beter om nog geen
-              diploma te hebben.
+              Zit je op het VMBO, HAVO of VWO dan kun je na selectie voor deze uitwisseling in
+              aanmerking komen. Je hebt wel een Rotaryclub nodig die jou wil voordragen: een
+              Sponsorclub. Dat betekent niet dat de club jouw kosten betaalt, maar de club is
+              verantwoordelijk voor de terug ontvangst van een jaarkind uit het buitenland. Als jij
+              weggaat komt er ook een buitenlandse scholier terug. Een diploma is geen vereiste om
+              je op te geven; je kunt nl ook je schoolprogramma onderbreken. Soms is dat zelfs een
+              voordeel. In het buitenland worden namelijk vaak strenge leeftijdsgrenzen gesteld om
+              tot een school te worden toegelaten. En om deel te kunnen nemen aan de schoolsporten
+              is het soms beter om nog geen diploma te hebben.
             </Text>
           </View>
 
@@ -38,9 +31,7 @@ export default function ComplyWithScreen() {
             </View>
             <View style={styles.ageContent}>
               <Text style={styles.ageTitle}>15 - 18 jaar</Text>
-              <Text style={styles.ageSubtitle}>
-                Indicatieve leeftijdsgrenzen
-              </Text>
+              <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
               <Text style={styles.ageNote}>
                 Voor overheidsscholen, soms enige flexibiliteit mogelijk
               </Text>

@@ -1,17 +1,9 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-  Linking,
-} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Pressable, Platform, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+
 import * as Haptics from 'expo-haptics';
 
 interface ProgramItem {
@@ -23,22 +15,19 @@ interface ProgramItem {
 }
 
 export default function InboundScreen() {
-  const handleProgramPress = useCallback(
-    async (route: string, enabled: boolean = true) => {
-      if (!enabled) return;
+  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
+    if (!enabled) return;
 
-      try {
-        if (Platform.OS === 'ios') {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push(route as any);
-      } catch (error) {
-        console.error('Error navigating to route:', error);
-        router.push(route as any);
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    },
-    [],
-  );
+      router.push(route as any);
+    } catch (error) {
+      console.error('Error navigating to route:', error);
+      router.push(route as any);
+    }
+  }, []);
 
   const handleEmailPress = useCallback(async (email: string, name: string) => {
     try {
@@ -63,33 +52,16 @@ export default function InboundScreen() {
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint={
-          item.enabled
-            ? 'Tap to view program details'
-            : 'This program is not yet available'
+          item.enabled ? 'Tap to view program details' : 'This program is not yet available'
         }
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        disabled={!item.enabled}
-      >
+        disabled={!item.enabled}>
         <View style={styles.programContent}>
-          <View
-            style={[
-              styles.iconContainer,
-              !item.enabled && styles.iconContainerDisabled,
-            ]}
-          >
-            <FontAwesome5
-              name={item.icon}
-              size={22}
-              color={item.enabled ? '#007AFF' : '#8E8E93'}
-            />
+          <View style={[styles.iconContainer, !item.enabled && styles.iconContainerDisabled]}>
+            <FontAwesome5 name={item.icon} size={22} color={item.enabled ? '#007AFF' : '#8E8E93'} />
           </View>
           <View style={styles.textContainer}>
-            <Text
-              style={[
-                styles.programTitle,
-                !item.enabled && styles.programTitleDisabled,
-              ]}
-            >
+            <Text style={[styles.programTitle, !item.enabled && styles.programTitleDisabled]}>
               {item.title}
             </Text>
             <Text style={styles.programSubtitle}>{item.subtitle}</Text>
@@ -97,13 +69,7 @@ export default function InboundScreen() {
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={
-              item.enabled
-                ? Platform.OS === 'ios'
-                  ? '#C7C7CC'
-                  : '#666'
-                : '#C7C7CC'
-            }
+            color={item.enabled ? (Platform.OS === 'ios' ? '#C7C7CC' : '#666') : '#C7C7CC'}
           />
         </View>
       </Pressable>
@@ -143,27 +109,19 @@ export default function InboundScreen() {
       <View style={styles.introContainer}>
         <Text style={styles.introTitle}>Inbounds</Text>
         <Text style={styles.introText}>
-          Wow, we're so excited that you will be our inbound exchange student
-          for the coming year. For this to happen we will need some extra
-          information so please watch your email inbox on a regular basis. Also
-          you can find some further information in this app. If you have any
-          questions that are not answered, please contact our inbound
-          coordinator{' '}
+          Wow, we're so excited that you will be our inbound exchange student for the coming year.
+          For this to happen we will need some extra information so please watch your email inbox on
+          a regular basis. Also you can find some further information in this app. If you have any
+          questions that are not answered, please contact our inbound coordinator{' '}
           <Text
             style={styles.linkText}
-            onPress={() =>
-              handleEmailPress('longtermin@rotaryyep.nl', 'Clasine Scheepers')
-            }
-          >
+            onPress={() => handleEmailPress('longtermin@rotaryyep.nl', 'Clasine Scheepers')}>
             Clasine Scheepers
           </Text>{' '}
           and/or{' '}
           <Text
             style={styles.linkText}
-            onPress={() =>
-              handleEmailPress('longtermadmin@rotaryyep.nl', 'Ben Mureau')
-            }
-          >
+            onPress={() => handleEmailPress('longtermadmin@rotaryyep.nl', 'Ben Mureau')}>
             Ben Mureau
           </Text>
           .
@@ -216,15 +174,11 @@ export default function InboundScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback(
-            (item: any, index: number) => `${item.type}-${index}`,
-            [],
-          )}
+          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

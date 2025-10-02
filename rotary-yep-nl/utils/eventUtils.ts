@@ -17,7 +17,7 @@ export const fetchCalendarEvents = async (): Promise<EventsData> => {
     const now = new Date();
     const timeMin = new Date(now.getFullYear(), now.getMonth() - MONTHS_BEFORE, 1);
     const timeMax = new Date(now.getFullYear() + 1, now.getMonth(), 0);
-    
+
     const params = new URLSearchParams({
       key: API_KEY,
       timeMin: timeMin.toISOString(),
@@ -28,7 +28,7 @@ export const fetchCalendarEvents = async (): Promise<EventsData> => {
     });
 
     const url = `${BASE_URL}?${params}`;
-    
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
@@ -36,7 +36,7 @@ export const fetchCalendarEvents = async (): Promise<EventsData> => {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         signal: controller.signal,
@@ -79,7 +79,7 @@ const parseEvents = (data: any): Event[] => {
     .map((item: any) => {
       const startDateTime = parseDateTime(item.start) || new Date();
       const endDateTime = parseDateTime(item.end) || new Date(startDateTime.getTime() + 3600000);
-      
+
       return {
         id: item.id || '',
         status: item.status || 'confirmed',
@@ -105,15 +105,15 @@ const parseEvents = (data: any): Event[] => {
  */
 const parseDateTime = (dateObj: any): Date | null => {
   if (!dateObj) return null;
-  
+
   if (dateObj.dateTime) {
     return new Date(dateObj.dateTime);
   }
-  
+
   if (dateObj.date) {
     return new Date(dateObj.date + 'T00:00:00');
   }
-  
+
   return null;
 };
 
@@ -214,14 +214,11 @@ export const isAllDayEvent = (event: Event): boolean => {
  */
 export const getDisplayEndDate = (event: Event): Date => {
   const eventWithOriginal = event as Event & { _originalStart?: any; _originalEnd?: any };
-  
+
   if (eventWithOriginal._originalEnd?.date && !eventWithOriginal._originalEnd?.dateTime) {
     // For date-only events, subtract 1 day from end date for display
     return new Date(event.end.dateTime.getTime() - 24 * 60 * 60 * 1000);
   }
-  
+
   return event.end.dateTime;
 };
-
-
-

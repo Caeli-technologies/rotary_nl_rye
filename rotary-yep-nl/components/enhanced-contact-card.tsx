@@ -5,7 +5,6 @@ import {
   Pressable,
   Modal,
   ScrollView,
-  Dimensions,
   Platform,
   Linking,
   Text,
@@ -18,7 +17,7 @@ import { Contact, Organization, Rotex } from '@/types/contact';
 import { useContactInfo } from '@/hooks/use-contact-info';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { StatusBar } from 'expo-status-bar';
+
 import * as Haptics from 'expo-haptics';
 
 interface ContactCardProps {
@@ -27,22 +26,14 @@ interface ContactCardProps {
 }
 
 // Helper functions for safe data access
-const getOrgClub = (
-  contact: Contact | Organization | Rotex,
-): string | undefined => {
+const getOrgClub = (contact: Contact | Organization | Rotex): string | undefined => {
   const orgContact = contact as Organization;
-  return orgContact.club && orgContact.club.trim() !== ''
-    ? orgContact.club
-    : undefined;
+  return orgContact.club && orgContact.club.trim() !== '' ? orgContact.club : undefined;
 };
 
-const getOrgDistrict = (
-  contact: Contact | Organization | Rotex,
-): string | undefined => {
+const getOrgDistrict = (contact: Contact | Organization | Rotex): string | undefined => {
   const orgContact = contact as Organization;
-  return orgContact.district && orgContact.district.trim() !== ''
-    ? orgContact.district
-    : undefined;
+  return orgContact.district && orgContact.district.trim() !== '' ? orgContact.district : undefined;
 };
 
 const shadowStyle = {
@@ -91,10 +82,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
         if (supported) {
           Linking.openURL(url);
         } else {
-          Alert.alert(
-            'Cannot open URL',
-            'Unable to open the requested social media link',
-          );
+          Alert.alert('Cannot open URL', 'Unable to open the requested social media link');
         }
       })
       .catch((err) => console.error('Error opening URL:', err));
@@ -141,12 +129,8 @@ export function ContactCard({ contact, index }: ContactCardProps) {
           {validPlatforms.map((platform) => (
             <Pressable
               key={platform.key}
-              style={({ pressed }) => [
-                styles.socialLink,
-                pressed && styles.socialLinkPressed,
-              ]}
-              onPress={() => handleSocialMedia(platform.url!)}
-            >
+              style={({ pressed }) => [styles.socialLink, pressed && styles.socialLinkPressed]}
+              onPress={() => handleSocialMedia(platform.url!)}>
               <Ionicons name={platform.icon} size={24} color={platform.color} />
               <Text style={styles.socialLinkText}>
                 {platform.key.charAt(0).toUpperCase() + platform.key.slice(1)}
@@ -162,8 +146,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
     <>
       <Pressable
         style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
-        onPress={handleCardPress}
-      >
+        onPress={handleCardPress}>
         <View style={styles.content}>
           <NetworkImage
             imageUrl={contact.imageUrl}
@@ -190,11 +173,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
           </View>
 
           <Ionicons
-            name={
-              Platform.OS === 'ios'
-                ? 'chevron-forward'
-                : 'chevron-forward-outline'
-            }
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
             size={Platform.OS === 'ios' ? 20 : 24}
             color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
           />
@@ -205,22 +184,14 @@ export function ContactCard({ contact, index }: ContactCardProps) {
         visible={showDetails}
         animationType="slide"
         presentationStyle={Platform.OS === 'ios' ? 'pageSheet' : 'fullScreen'}
-        onRequestClose={() => setShowDetails(false)}
-      >
-        <SafeAreaView
-          style={styles.modalContainer}
-          edges={['top', 'left', 'right', 'bottom']}
-        >
+        onRequestClose={() => setShowDetails(false)}>
+        <SafeAreaView style={styles.modalContainer} edges={['top', 'left', 'right', 'bottom']}>
           <View style={styles.modalHeader}>
             <Text style={styles.modalTitle}>Contact Details</Text>
             <Pressable
-              style={({ pressed }) => [
-                styles.closeButton,
-                pressed && styles.closeButtonPressed,
-              ]}
+              style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}
               onPress={() => setShowDetails(false)}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </Pressable>
           </View>
@@ -228,8 +199,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
           <ScrollView
             style={styles.modalContent}
             showsVerticalScrollIndicator={false}
-            contentInsetAdjustmentBehavior="automatic"
-          >
+            contentInsetAdjustmentBehavior="automatic">
             <View style={styles.profileSection}>
               <View style={styles.profileImageContainer}>
                 <NetworkImage
@@ -278,14 +248,10 @@ export function ContactCard({ contact, index }: ContactCardProps) {
               <View style={styles.detailSection}>
                 <Text style={styles.sectionTitle}>Organization</Text>
                 {getOrgClub(contact) && (
-                  <Text style={styles.detailText}>
-                    Club: {getOrgClub(contact)}
-                  </Text>
+                  <Text style={styles.detailText}>Club: {getOrgClub(contact)}</Text>
                 )}
                 {getOrgDistrict(contact) && (
-                  <Text style={styles.detailText}>
-                    District: {getOrgDistrict(contact)}
-                  </Text>
+                  <Text style={styles.detailText}>District: {getOrgDistrict(contact)}</Text>
                 )}
               </View>
             )}
@@ -299,8 +265,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                       styles.contactRow,
                       pressed && styles.contactRowPressed,
                     ]}
-                    onPress={handleEmail}
-                  >
+                    onPress={handleEmail}>
                     <Ionicons name="mail" size={20} color="#1A237E" />
                     <Text style={styles.contactText}>{contact.email}</Text>
                   </Pressable>
@@ -311,12 +276,9 @@ export function ContactCard({ contact, index }: ContactCardProps) {
                       styles.contactRow,
                       pressed && styles.contactRowPressed,
                     ]}
-                    onPress={handleCall}
-                  >
+                    onPress={handleCall}>
                     <Ionicons name="call" size={20} color="#1A237E" />
-                    <Text style={styles.contactText}>
-                      {contact.phoneNumber}
-                    </Text>
+                    <Text style={styles.contactText}>{contact.phoneNumber}</Text>
                   </Pressable>
                 )}
               </View>

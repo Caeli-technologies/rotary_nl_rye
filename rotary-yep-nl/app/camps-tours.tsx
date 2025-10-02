@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useLayoutEffect,
-} from 'react';
+import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -20,7 +15,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { router, useNavigation } from 'expo-router';
 import { Image } from 'expo-image';
 import { readString } from 'react-native-csv';
-import { StatusBar } from 'expo-status-bar';
 
 interface CampTourData {
   startDate: string;
@@ -78,8 +72,7 @@ function TravelCard({
       android_ripple={{
         color: 'rgba(0, 122, 255, 0.2)',
         borderless: false,
-      }}
-    >
+      }}>
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
           <Text style={styles.title} numberOfLines={2}>
@@ -206,24 +199,22 @@ export default function CampsToursScreen() {
       });
 
       // Skip header row and convert to objects
-      const formattedData: CampTourData[] = parsedData.data
-        .slice(1)
-        .map((row: unknown) => {
-          const rowArray = row as any[];
-          return {
-            startDate: rowArray[0]?.toString() || '',
-            endDate: rowArray[1]?.toString() || '',
-            title: rowArray[2]?.toString() || '',
-            hostCountryCode: rowArray[3]?.toString() || '',
-            hostCountry: rowArray[4]?.toString() || '',
-            hostDistrict: rowArray[5]?.toString() || '',
-            ageMin: rowArray[6]?.toString() || '',
-            ageMax: rowArray[7]?.toString() || '',
-            contribution: rowArray[8]?.toString() || '',
-            invitation: rowArray[9]?.toString() || '',
-            full: rowArray[10]?.toString() || '',
-          };
-        });
+      const formattedData: CampTourData[] = parsedData.data.slice(1).map((row: unknown) => {
+        const rowArray = row as any[];
+        return {
+          startDate: rowArray[0]?.toString() || '',
+          endDate: rowArray[1]?.toString() || '',
+          title: rowArray[2]?.toString() || '',
+          hostCountryCode: rowArray[3]?.toString() || '',
+          hostCountry: rowArray[4]?.toString() || '',
+          hostDistrict: rowArray[5]?.toString() || '',
+          ageMin: rowArray[6]?.toString() || '',
+          ageMax: rowArray[7]?.toString() || '',
+          contribution: rowArray[8]?.toString() || '',
+          invitation: rowArray[9]?.toString() || '',
+          full: rowArray[10]?.toString() || '',
+        };
+      });
 
       setData(formattedData);
       setFilteredData(formattedData);
@@ -271,9 +262,7 @@ export default function CampsToursScreen() {
 
     // Hide full camps
     if (filters.hideFullCamps) {
-      filtered = filtered.filter(
-        (item) => !item.full || item.full.trim() === '',
-      );
+      filtered = filtered.filter((item) => !item.full || item.full.trim() === '');
     }
 
     // Age filter
@@ -309,10 +298,7 @@ export default function CampsToursScreen() {
   };
 
   const hasActiveFilters =
-    filters.hideFullCamps ||
-    filters.minAge ||
-    filters.maxAge ||
-    filters.country;
+    filters.hideFullCamps || filters.minAge || filters.maxAge || filters.country;
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -329,19 +315,10 @@ export default function CampsToursScreen() {
               pressed && styles.headerButtonPressed,
             ]}
             onPress={() => setShowFilters(!showFilters)}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            {hasActiveFilters && !showFilters && (
-              <View style={styles.headerFilterBadge} />
-            )}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+            {hasActiveFilters && !showFilters && <View style={styles.headerFilterBadge} />}
             <Ionicons
-              name={
-                showFilters
-                  ? 'close'
-                  : hasActiveFilters
-                    ? 'funnel'
-                    : 'funnel-outline'
-              }
+              name={showFilters ? 'close' : hasActiveFilters ? 'funnel' : 'funnel-outline'}
               size={20}
               color="#007AFF"
             />
@@ -349,14 +326,7 @@ export default function CampsToursScreen() {
         </View>
       ),
     });
-  }, [
-    navigation,
-    showFilters,
-    hasActiveFilters,
-    loading,
-    filteredData.length,
-    data.length,
-  ]);
+  }, [navigation, showFilters, hasActiveFilters, loading, filteredData.length, data.length]);
 
   useEffect(() => {
     fetchCsvData();
@@ -368,7 +338,6 @@ export default function CampsToursScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       {/* Content */}
       <View style={styles.container}>
         {/* Filter Panel */}
@@ -394,8 +363,7 @@ export default function CampsToursScreen() {
                     ...prev,
                     hideFullCamps: !prev.hideFullCamps,
                   }))
-                }
-              >
+                }>
                 <View style={styles.filterOptionLeft}>
                   <Ionicons
                     name={filters.hideFullCamps ? 'checkbox' : 'square-outline'}
@@ -410,10 +378,7 @@ export default function CampsToursScreen() {
                 <View style={styles.filterInputContainer}>
                   <Text style={styles.filterLabel}>Min Age</Text>
                   <Pressable
-                    style={({ pressed }) => [
-                      styles.textInput,
-                      pressed && styles.textInputPressed,
-                    ]}
+                    style={({ pressed }) => [styles.textInput, pressed && styles.textInputPressed]}
                     onPress={() => {
                       if (Platform.OS === 'ios') {
                         Alert.prompt(
@@ -433,10 +398,7 @@ export default function CampsToursScreen() {
                                     minAge: text,
                                   }));
                                 } else if (text && !/^\d+$/.test(text)) {
-                                  Alert.alert(
-                                    'Invalid Input',
-                                    'Please enter numbers only.',
-                                  );
+                                  Alert.alert('Invalid Input', 'Please enter numbers only.');
                                 }
                               },
                             },
@@ -447,17 +409,14 @@ export default function CampsToursScreen() {
                         );
                       } else {
                         // Android fallback - show selection of ages from CSV data
-                        const ageOptions = availableAges.min.map((age) =>
-                          age.toString(),
-                        );
+                        const ageOptions = availableAges.min.map((age) => age.toString());
                         Alert.alert(
                           'Select Minimum Age',
                           'Choose minimum age:',
                           [
                             {
                               text: 'Clear',
-                              onPress: () =>
-                                setFilters((prev) => ({ ...prev, minAge: '' })),
+                              onPress: () => setFilters((prev) => ({ ...prev, minAge: '' })),
                             },
                             ...ageOptions.map((age) => ({
                               text: age,
@@ -472,21 +431,15 @@ export default function CampsToursScreen() {
                           { cancelable: true },
                         );
                       }
-                    }}
-                  >
-                    <Text style={styles.textInputText}>
-                      {filters.minAge || 'Any'}
-                    </Text>
+                    }}>
+                    <Text style={styles.textInputText}>{filters.minAge || 'Any'}</Text>
                   </Pressable>
                 </View>
 
                 <View style={styles.filterInputContainer}>
                   <Text style={styles.filterLabel}>Max Age</Text>
                   <Pressable
-                    style={({ pressed }) => [
-                      styles.textInput,
-                      pressed && styles.textInputPressed,
-                    ]}
+                    style={({ pressed }) => [styles.textInput, pressed && styles.textInputPressed]}
                     onPress={() => {
                       if (Platform.OS === 'ios') {
                         Alert.prompt(
@@ -506,10 +459,7 @@ export default function CampsToursScreen() {
                                     maxAge: text,
                                   }));
                                 } else if (text && !/^\d+$/.test(text)) {
-                                  Alert.alert(
-                                    'Invalid Input',
-                                    'Please enter numbers only.',
-                                  );
+                                  Alert.alert('Invalid Input', 'Please enter numbers only.');
                                 }
                               },
                             },
@@ -520,17 +470,14 @@ export default function CampsToursScreen() {
                         );
                       } else {
                         // Android fallback - show selection of ages from CSV data
-                        const ageOptions = availableAges.max.map((age) =>
-                          age.toString(),
-                        );
+                        const ageOptions = availableAges.max.map((age) => age.toString());
                         Alert.alert(
                           'Select Maximum Age',
                           'Choose maximum age:',
                           [
                             {
                               text: 'Clear',
-                              onPress: () =>
-                                setFilters((prev) => ({ ...prev, maxAge: '' })),
+                              onPress: () => setFilters((prev) => ({ ...prev, maxAge: '' })),
                             },
                             ...ageOptions.map((age) => ({
                               text: age,
@@ -545,11 +492,8 @@ export default function CampsToursScreen() {
                           { cancelable: true },
                         );
                       }
-                    }}
-                  >
-                    <Text style={styles.textInputText}>
-                      {filters.maxAge || 'Any'}
-                    </Text>
+                    }}>
+                    <Text style={styles.textInputText}>{filters.maxAge || 'Any'}</Text>
                   </Pressable>
                 </View>
               </View>
@@ -557,10 +501,7 @@ export default function CampsToursScreen() {
               <View style={styles.filterInputContainer}>
                 <Text style={styles.filterLabel}>Country</Text>
                 <Pressable
-                  style={({ pressed }) => [
-                    styles.textInput,
-                    pressed && styles.textInputPressed,
-                  ]}
+                  style={({ pressed }) => [styles.textInput, pressed && styles.textInputPressed]}
                   onPress={() => {
                     // Show all available countries
                     Alert.alert(
@@ -569,14 +510,12 @@ export default function CampsToursScreen() {
                       [
                         {
                           text: 'All countries',
-                          onPress: () =>
-                            setFilters((prev) => ({ ...prev, country: '' })),
+                          onPress: () => setFilters((prev) => ({ ...prev, country: '' })),
                           style: 'default',
                         },
                         ...availableCountries.map((country) => ({
                           text: country,
-                          onPress: () =>
-                            setFilters((prev) => ({ ...prev, country })),
+                          onPress: () => setFilters((prev) => ({ ...prev, country })),
                           style: 'default' as const,
                         })),
                         {
@@ -589,11 +528,8 @@ export default function CampsToursScreen() {
                         onDismiss: () => {},
                       },
                     );
-                  }}
-                >
-                  <Text style={styles.textInputText}>
-                    {filters.country || 'All countries'}
-                  </Text>
+                  }}>
+                  <Text style={styles.textInputText}>{filters.country || 'All countries'}</Text>
                   <View style={styles.dropdownIcon}>
                     <Ionicons name="chevron-down" size={16} color="#8E8E93" />
                   </View>
@@ -617,12 +553,8 @@ export default function CampsToursScreen() {
             <Text style={styles.errorTitle}>Oops! Something went wrong</Text>
             <Text style={styles.errorText}>{error}</Text>
             <Pressable
-              style={({ pressed }) => [
-                styles.retryButton,
-                pressed && styles.retryButtonPressed,
-              ]}
-              onPress={fetchCsvData}
-            >
+              style={({ pressed }) => [styles.retryButton, pressed && styles.retryButtonPressed]}
+              onPress={fetchCsvData}>
               <Text style={styles.retryButtonText}>Try Again</Text>
             </Pressable>
           </View>
@@ -651,11 +583,7 @@ export default function CampsToursScreen() {
                 return (
                   <View style={styles.emptyContainer}>
                     <View style={styles.emptyIcon}>
-                      <Ionicons
-                        name="search-outline"
-                        size={64}
-                        color="#C7C7CC"
-                      />
+                      <Ionicons name="search-outline" size={64} color="#C7C7CC" />
                     </View>
                     <Text style={styles.emptyTitle}>No Matching Camps</Text>
                     <Text style={styles.emptyText}>
@@ -667,16 +595,11 @@ export default function CampsToursScreen() {
                 return (
                   <View style={styles.emptyContainer}>
                     <View style={styles.emptyIcon}>
-                      <Ionicons
-                        name="calendar-outline"
-                        size={64}
-                        color="#C7C7CC"
-                      />
+                      <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
                     </View>
                     <Text style={styles.emptyTitle}>No Camps Available</Text>
                     <Text style={styles.emptyText}>
-                      There are currently no camps or tours available. Check
-                      back later!
+                      There are currently no camps or tours available. Check back later!
                     </Text>
                   </View>
                 );

@@ -1,16 +1,8 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
 interface ProgramItem {
@@ -36,25 +28,19 @@ export default function ProgramsScreen() {
   const renderProgramItem = useCallback(
     ({ item }: { item: ProgramItem }) => (
       <Pressable
-        style={({ pressed }) => [
-          styles.programItem,
-          pressed && styles.programItemPressed,
-        ]}
+        style={({ pressed }) => [styles.programItem, pressed && styles.programItemPressed]}
         onPress={() => handleProgramPress(item.route)}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tap to view details"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
         <View style={styles.programContent}>
           <View style={styles.iconContainer}>
             <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.programTitle}>{item.title}</Text>
-            {item.subtitle && (
-              <Text style={styles.programSubtitle}>{item.subtitle}</Text>
-            )}
+            {item.subtitle && <Text style={styles.programSubtitle}>{item.subtitle}</Text>}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
@@ -99,8 +85,7 @@ export default function ProgramsScreen() {
       <View style={styles.introContainer}>
         <Text style={styles.introTitle}>Programs</Text>
         <Text style={styles.introText}>
-          Bekijk onze programma's: van jaaruitwisselingen tot korte zomerkampen
-          en promo materiaal.
+          Bekijk onze programma's: van jaaruitwisselingen tot korte zomerkampen en promo materiaal.
         </Text>
       </View>
     ),
@@ -144,15 +129,11 @@ export default function ProgramsScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback(
-            (item: any, index: number) => `${item.type}-${index}`,
-            [],
-          )}
+          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

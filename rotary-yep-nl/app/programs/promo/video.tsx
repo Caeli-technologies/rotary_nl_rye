@@ -10,7 +10,6 @@ import {
   Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEvent } from 'expo';
@@ -53,8 +52,7 @@ function VideoRow({
 
   const onPress = async () => {
     try {
-      if (Platform.OS === 'ios')
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (Platform.OS === 'ios') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       onPlayRequest(video);
     } catch (e) {
       onPlayRequest(video);
@@ -70,11 +68,7 @@ function VideoRow({
             <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
           </View>
         ) : thumbnailUri ? (
-          <Image
-            source={{ uri: thumbnailUri }}
-            style={styles.thumbnail}
-            resizeMode="cover"
-          />
+          <Image source={{ uri: thumbnailUri }} style={styles.thumbnail} resizeMode="cover" />
         ) : (
           <View style={styles.thumbnailFallback}>
             <Ionicons name="videocam-outline" size={48} color="#FFFFFF" />
@@ -97,8 +91,7 @@ function VideoRow({
 const videos: Video[] = [
   {
     title: 'Waarom op exchange',
-    description:
-      'Van Rotex - ontdek waarom een exchange ervaring zo waardevol is.',
+    description: 'Van Rotex - ontdek waarom een exchange ervaring zo waardevol is.',
     url: 'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4',
   },
   {
@@ -141,19 +134,13 @@ export default function VideoPromo() {
           </View>
           <Text style={styles.headerTitle}>Promo Video's</Text>
           <Text style={styles.headerSubtitle}>
-            Ontdek inspirerende verhalen en ervaringen van Youth Exchange
-            studenten
+            Ontdek inspirerende verhalen en ervaringen van Youth Exchange studenten
           </Text>
         </View>
 
         {/* Video List */}
         {videos.map((video, index) => (
-          <VideoRow
-            key={index}
-            index={index}
-            video={video}
-            onPlayRequest={onPlayRequest}
-          />
+          <VideoRow key={index} index={index} video={video} onPlayRequest={onPlayRequest} />
         ))}
 
         <View style={{ height: 40 }} />
@@ -164,17 +151,10 @@ export default function VideoPromo() {
         visible={isVideoModalVisible}
         animationType="slide"
         presentationStyle="fullScreen"
-        onRequestClose={handleCloseVideo}
-      >
-        <SafeAreaView
-          style={styles.videoModalContainer}
-          edges={['top', 'left', 'right']}
-        >
+        onRequestClose={handleCloseVideo}>
+        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
           <View style={styles.videoModalHeader}>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={handleCloseVideo}
-            >
+            <TouchableOpacity style={styles.closeButton} onPress={handleCloseVideo}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
@@ -197,9 +177,7 @@ export default function VideoPromo() {
 
           <View style={styles.videoInfoModal}>
             <Text style={styles.videoTitleModal}>{selectedVideo?.title}</Text>
-            <Text style={styles.videoSubtitleModal}>
-              {selectedVideo?.description}
-            </Text>
+            <Text style={styles.videoSubtitleModal}>{selectedVideo?.description}</Text>
           </View>
         </SafeAreaView>
       </Modal>

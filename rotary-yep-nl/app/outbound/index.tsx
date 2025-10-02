@@ -1,16 +1,9 @@
 import React, { useCallback } from 'react';
-import {
-  FlatList,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+
 import * as Haptics from 'expo-haptics';
 
 interface ProgramItem {
@@ -22,22 +15,19 @@ interface ProgramItem {
 }
 
 export default function OutboundScreen() {
-  const handleProgramPress = useCallback(
-    async (route: string, enabled: boolean = true) => {
-      if (!enabled) return;
+  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
+    if (!enabled) return;
 
-      try {
-        if (Platform.OS === 'ios') {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push(route as any);
-      } catch (error) {
-        console.error('Error navigating to route:', error);
-        router.push(route as any);
+    try {
+      if (Platform.OS === 'ios') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    },
-    [],
-  );
+      router.push(route as any);
+    } catch (error) {
+      console.error('Error navigating to route:', error);
+      router.push(route as any);
+    }
+  }, []);
 
   const renderProgramItem = useCallback(
     ({ item }: { item: ProgramItem }) => (
@@ -51,33 +41,16 @@ export default function OutboundScreen() {
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint={
-          item.enabled
-            ? 'Tap to view program details'
-            : 'This program is not yet available'
+          item.enabled ? 'Tap to view program details' : 'This program is not yet available'
         }
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        disabled={!item.enabled}
-      >
+        disabled={!item.enabled}>
         <View style={styles.programContent}>
-          <View
-            style={[
-              styles.iconContainer,
-              !item.enabled && styles.iconContainerDisabled,
-            ]}
-          >
-            <FontAwesome5
-              name={item.icon}
-              size={22}
-              color={item.enabled ? '#007AFF' : '#8E8E93'}
-            />
+          <View style={[styles.iconContainer, !item.enabled && styles.iconContainerDisabled]}>
+            <FontAwesome5 name={item.icon} size={22} color={item.enabled ? '#007AFF' : '#8E8E93'} />
           </View>
           <View style={styles.textContainer}>
-            <Text
-              style={[
-                styles.programTitle,
-                !item.enabled && styles.programTitleDisabled,
-              ]}
-            >
+            <Text style={[styles.programTitle, !item.enabled && styles.programTitleDisabled]}>
               {item.title}
             </Text>
             <Text style={styles.programSubtitle}>{item.subtitle}</Text>
@@ -85,13 +58,7 @@ export default function OutboundScreen() {
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={
-              item.enabled
-                ? Platform.OS === 'ios'
-                  ? '#C7C7CC'
-                  : '#666'
-                : '#C7C7CC'
-            }
+            color={item.enabled ? (Platform.OS === 'ios' ? '#C7C7CC' : '#666') : '#C7C7CC'}
           />
         </View>
       </Pressable>
@@ -131,9 +98,9 @@ export default function OutboundScreen() {
       <View style={styles.introContainer}>
         <Text style={styles.introTitle}>Kandidaten</Text>
         <Text style={styles.introText}>
-          Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor
-          uitwisseling. Wereldwijd gaan er jaarlijks zo'n 8.000 studenten via
-          Rotary op jaaruitwisseling, een hele organisatie.
+          Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling.
+          Wereldwijd gaan er jaarlijks zo'n 8.000 studenten via Rotary op jaaruitwisseling, een hele
+          organisatie.
         </Text>
       </View>
     ),
@@ -181,15 +148,11 @@ export default function OutboundScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback(
-            (item: any, index: number) => `${item.type}-${index}`,
-            [],
-          )}
+          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

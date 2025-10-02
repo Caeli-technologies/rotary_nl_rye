@@ -1,4 +1,4 @@
-import React, { useMemo, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -15,7 +15,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useNavigation } from 'expo-router';
 import { NetworkImage } from '@/components/network-image';
-import { StatusBar } from 'expo-status-bar';
 import { Student, StudentType } from '@/types/student';
 import { getFlagAsset } from '@/utils/flags';
 
@@ -35,13 +34,7 @@ interface ActionButtonProps {
   disabled?: boolean;
 }
 
-function ActionButton({
-  icon,
-  title,
-  subtitle,
-  onPress,
-  disabled = false,
-}: ActionButtonProps) {
+function ActionButton({ icon, title, subtitle, onPress, disabled = false }: ActionButtonProps) {
   const [scaleAnim] = useState(new Animated.Value(1));
 
   const handlePressIn = () => {
@@ -72,50 +65,28 @@ function ActionButton({
         onPress={disabled ? undefined : onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        disabled={disabled}
-      >
+        disabled={disabled}>
         <View style={styles.actionButtonContent}>
-          <View
-            style={[
-              styles.actionIconContainer,
-              disabled && styles.actionIconDisabled,
-            ]}
-          >
-            <Ionicons
-              name={icon}
-              size={24}
-              color={disabled ? '#999' : '#9FA8DA'}
-            />
+          <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
+            <Ionicons name={icon} size={24} color={disabled ? '#999' : '#9FA8DA'} />
           </View>
           <View style={styles.actionTextContainer}>
             <Text
-              style={[
-                styles.actionTitle,
-                disabled && styles.actionTitleDisabled,
-              ]}
-              numberOfLines={1}
-            >
+              style={[styles.actionTitle, disabled && styles.actionTitleDisabled]}
+              numberOfLines={1}>
               {title}
             </Text>
             {subtitle && (
               <Text
-                style={[
-                  styles.actionSubtitle,
-                  disabled && styles.actionSubtitleDisabled,
-                ]}
-                numberOfLines={2}
-              >
+                style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]}
+                numberOfLines={2}>
                 {subtitle}
               </Text>
             )}
           </View>
           {!disabled && (
             <Ionicons
-              name={
-                Platform.OS === 'ios'
-                  ? 'chevron-forward'
-                  : 'chevron-forward-outline'
-              }
+              name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
               size={Platform.OS === 'ios' ? 20 : 24}
               color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
             />
@@ -131,24 +102,14 @@ interface StudentDetailProps {
   studentType: StudentType;
 }
 
-export default function StudentDetail({
-  student,
-  studentType,
-}: StudentDetailProps) {
+export default function StudentDetail({ student, studentType }: StudentDetailProps) {
   const navigation = useNavigation();
 
   const fromFlagAsset = student ? getFlagAsset(student.fromFlag) : null;
   const toFlagAsset = student ? getFlagAsset(student.toFlag) : null;
 
   const handleContactPress = async (
-    type:
-      | 'email'
-      | 'phone'
-      | 'instagram'
-      | 'snapchat'
-      | 'facebook'
-      | 'website'
-      | 'linkedin',
+    type: 'email' | 'phone' | 'instagram' | 'snapchat' | 'facebook' | 'website' | 'linkedin',
   ) => {
     if (!student) return;
 
@@ -194,16 +155,14 @@ export default function StudentDetail({
           <View
             style={{
               alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontSize: Platform.OS === 'ios' ? 18 : 20,
                 fontWeight: '600',
                 color: '#1A237E',
               }}
-              numberOfLines={1}
-            >
+              numberOfLines={1}>
               {student.name}
             </Text>
             <Text
@@ -212,8 +171,7 @@ export default function StudentDetail({
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
-              }}
-            >
+              }}>
               {studentType === 'outbound' ? 'Outbound' : 'Inbound'} Student
             </Text>
           </View>
@@ -225,8 +183,6 @@ export default function StudentDetail({
   if (!student) {
     return (
       <SafeAreaView style={styles.container} edges={['bottom']}>
-        
-
         <View style={styles.errorContainer}>
           <Ionicons name="person-outline" size={64} color="#9FA8DA" />
           <Text style={styles.errorTitle}>Student Not Found</Text>
@@ -240,13 +196,10 @@ export default function StudentDetail({
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         {/* Hero Section */}
         <View style={styles.heroSection}>
           <View style={styles.imageContainer}>
@@ -273,16 +226,10 @@ export default function StudentDetail({
             <View style={styles.exchangeCountry}>
               <View style={styles.exchangeCountryHeader}>
                 {fromFlagAsset ? (
-                  <Image
-                    source={fromFlagAsset}
-                    style={styles.exchangeFlag}
-                    contentFit="contain"
-                  />
+                  <Image source={fromFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
                   <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>
-                      {student.fromFlag.toUpperCase()}
-                    </Text>
+                    <Text style={styles.flagText}>{student.fromFlag.toUpperCase()}</Text>
                   </View>
                 )}
                 <Text style={styles.exchangeLabel}>From</Text>
@@ -297,16 +244,10 @@ export default function StudentDetail({
             <View style={styles.exchangeCountry}>
               <View style={styles.exchangeCountryHeader}>
                 {toFlagAsset ? (
-                  <Image
-                    source={toFlagAsset}
-                    style={styles.exchangeFlag}
-                    contentFit="contain"
-                  />
+                  <Image source={toFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
                   <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>
-                      {student.toFlag.toUpperCase()}
-                    </Text>
+                    <Text style={styles.flagText}>{student.toFlag.toUpperCase()}</Text>
                   </View>
                 )}
                 <Text style={styles.exchangeLabel}>To</Text>
@@ -326,14 +267,8 @@ export default function StudentDetail({
         {student.bio && student.bio.trim() !== '' && (
           <View style={styles.bioCard}>
             <View style={styles.bioHeader}>
-              <Ionicons
-                name="document-text-outline"
-                size={24}
-                color="#9FA8DA"
-              />
-              <Text style={styles.bioTitle}>
-                About {student.name.split(' ')[0]}
-              </Text>
+              <Ionicons name="document-text-outline" size={24} color="#9FA8DA" />
+              <Text style={styles.bioTitle}>About {student.name.split(' ')[0]}</Text>
             </View>
             <Text style={styles.bioText}>{student.bio}</Text>
           </View>

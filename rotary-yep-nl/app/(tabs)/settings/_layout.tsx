@@ -14,10 +14,7 @@ export default function SettingsLayout() {
         await Share.share({
           message: 'Check out the Rotary Youth Exchange Netherlands app! 📱✈️',
           title: 'Rotary Youth Exchange Netherlands',
-          url:
-            Platform.OS === 'ios'
-              ? 'https://apps.apple.com/app/rotary-yep-nl'
-              : undefined, // Add your app store URL when available
+          url: Platform.OS === 'ios' ? 'https://apps.apple.com/app/rotary-yep-nl' : undefined, // Add your app store URL when available
         });
       } else {
         // Fallback for platforms that don't support sharing
@@ -29,10 +26,7 @@ export default function SettingsLayout() {
       }
     } catch (error) {
       console.error('Error sharing:', error);
-      Alert.alert(
-        'Share Error',
-        'Unable to share at this time. Please try again later.',
-      );
+      Alert.alert('Share Error', 'Unable to share at this time. Please try again later.');
     }
   };
 
@@ -60,14 +54,9 @@ export default function SettingsLayout() {
                 alignItems: 'center',
               }}
               onPress={handleShare}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
               <Ionicons
-                name={
-                  Platform.OS === 'ios'
-                    ? 'share-outline'
-                    : 'share-social-outline'
-                }
+                name={Platform.OS === 'ios' ? 'share-outline' : 'share-social-outline'}
                 size={24}
                 color="#007AFF"
               />

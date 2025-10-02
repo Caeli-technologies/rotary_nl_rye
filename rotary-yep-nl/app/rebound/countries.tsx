@@ -1,16 +1,10 @@
 import React, { useMemo } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+
 import { StudentsData } from '../../types/student';
 import studentsData from '../../assets/students/list.json';
 import { getFlagAsset } from '../../utils/flags';
@@ -41,18 +35,10 @@ function CountryCard({ country, onPress }: CountryCardProps) {
   const flagAsset = getFlagAsset(country.flag);
 
   return (
-    <TouchableOpacity
-      style={styles.countryCard}
-      onPress={onPress}
-      activeOpacity={0.7}
-    >
+    <TouchableOpacity style={styles.countryCard} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.countryCardContent}>
         {flagAsset ? (
-          <Image
-            source={flagAsset}
-            style={styles.flagImage}
-            contentFit="contain"
-          />
+          <Image source={flagAsset} style={styles.flagImage} contentFit="contain" />
         ) : (
           <View style={[styles.flagImage, styles.flagPlaceholder]}>
             <Text style={styles.flagText}>{country.flag.toUpperCase()}</Text>
@@ -74,10 +60,7 @@ function CountryCard({ country, onPress }: CountryCardProps) {
 export default function ReboundCountriesScreen() {
   // Get all unique countries across all years with their statistics
   const countries = useMemo(() => {
-    const countryMap = new Map<
-      string,
-      { flag: string; students: number; years: Set<string> }
-    >();
+    const countryMap = new Map<string, { flag: string; students: number; years: Set<string> }>();
 
     Object.entries(data.list).forEach(([year, students]) => {
       students.forEach((student) => {
@@ -121,8 +104,6 @@ export default function ReboundCountriesScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={[]}>
-      
-
       <FlatList
         data={countries}
         renderItem={renderCountry}

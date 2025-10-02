@@ -1,16 +1,8 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
 interface OptionItem {
@@ -36,10 +28,7 @@ export default function RotaryClubsScreen() {
   const renderOptionItem = useCallback(
     ({ item }: { item: OptionItem }) => (
       <Pressable
-        style={({ pressed }) => [
-          styles.optionRow,
-          pressed && styles.optionRowPressed,
-        ]}
+        style={({ pressed }) => [styles.optionRow, pressed && styles.optionRowPressed]}
         onPress={() => handleOptionPress(item.route)}
         android_ripple={{
           color: 'rgba(0, 122, 255, 0.2)',
@@ -48,8 +37,7 @@ export default function RotaryClubsScreen() {
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tap to view more information"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
         <View style={styles.optionContent}>
           <View style={styles.iconContainer}>
             <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
@@ -98,11 +86,10 @@ export default function RotaryClubsScreen() {
     () => (
       <View style={styles.content}>
         <Text style={styles.introText}>
-          Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent
-          te sponsoren en daarmee dus ook een jaar lang een kind binnen jullie
-          club te ontvangen en te begeleiden. Misschien zijn jullie benaderd
-          door een scholier van buiten jullie of mogelijk vanuit de wens van één
-          van jullie clubleden.
+          Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent te sponsoren en
+          daarmee dus ook een jaar lang een kind binnen jullie club te ontvangen en te begeleiden.
+          Misschien zijn jullie benaderd door een scholier van buiten jullie of mogelijk vanuit de
+          wens van één van jullie clubleden.
         </Text>
       </View>
     ),
@@ -111,7 +98,6 @@ export default function RotaryClubsScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={options}

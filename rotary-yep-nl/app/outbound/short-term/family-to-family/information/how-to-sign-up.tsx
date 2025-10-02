@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { StatusBar } from 'expo-status-bar';
 
 const shadowStyle = {
   shadowColor: '#000',
@@ -23,22 +22,15 @@ const shadowStyle = {
 export default function FamilyToFamilyHowToSignUpScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      
-
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior="automatic"
-      >
+        contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
             <View style={styles.headerIcon}>
-              <Ionicons
-                name="document-text-outline"
-                size={32}
-                color="#FF6B35"
-              />
+              <Ionicons name="document-text-outline" size={32} color="#FF6B35" />
             </View>
             <Text style={styles.headerTitle}>Hoe schrijf ik mezelf in</Text>
             <Text style={styles.headerSubtitle}>
@@ -54,13 +46,10 @@ export default function FamilyToFamilyHowToSignUpScreen() {
             </View>
 
             <View style={styles.instructionCard}>
-              <Text style={styles.instructionText}>
-                Je stuurt een gezellig email bericht naar:
-              </Text>
+              <Text style={styles.instructionText}>Je stuurt een gezellig email bericht naar:</Text>
               <Text style={styles.emailText}>interesse@rotaryyep.nl</Text>
               <Text style={styles.instructionText}>
-                Dan krijg je van ons een bevestiging dat we je mail hebben
-                ontvangen.
+                Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.
               </Text>
             </View>
           </View>
@@ -73,14 +62,8 @@ export default function FamilyToFamilyHowToSignUpScreen() {
                 Linking.openURL(
                   'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Family-to-Family%20programma',
                 )
-              }
-            >
-              <Ionicons
-                name="mail"
-                size={24}
-                color="#FFFFFF"
-                style={styles.buttonIcon}
-              />
+              }>
+              <Ionicons name="mail" size={24} color="#FFFFFF" style={styles.buttonIcon} />
               <Text style={styles.emailButtonText}>Verstuur Email</Text>
             </TouchableOpacity>
             <Text style={styles.buttonDescription}>

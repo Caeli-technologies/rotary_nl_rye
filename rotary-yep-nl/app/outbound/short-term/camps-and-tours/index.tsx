@@ -1,16 +1,8 @@
 import React, { useCallback } from 'react';
-import {
-  FlatList,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
 interface MenuItem {
@@ -37,25 +29,19 @@ export default function CampsAndToursScreen() {
   const renderMenuItem = useCallback(
     ({ item }: { item: MenuItem }) => (
       <Pressable
-        style={({ pressed }) => [
-          styles.menuItem,
-          pressed && styles.menuItemPressed,
-        ]}
+        style={({ pressed }) => [styles.menuItem, pressed && styles.menuItemPressed]}
         onPress={() => handleItemPress(item.route)}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tap to view details"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
         <View style={styles.menuContent}>
           <View style={styles.iconContainer}>
             <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.menuTitle}>{item.title}</Text>
-            {item.subtitle && (
-              <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
-            )}
+            {item.subtitle && <Text style={styles.menuSubtitle}>{item.subtitle}</Text>}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
@@ -98,12 +84,11 @@ export default function CampsAndToursScreen() {
         <View style={styles.programCard}>
           <Text style={styles.programTitle}>Wat zijn Camps & Tours?</Text>
           <Text style={styles.programDescription}>
-            Rotary Camps en Tours zijn kortdurende uitwisselingsprogramma's die
-            meestal 2-6 weken duren tijdens schoolvakanties. Deze programma's
-            bieden jongeren de mogelijkheid om verschillende culturen te
-            ervaren, internationale vriendschappen te sluiten en deel te nemen
-            aan spannende activiteiten terwijl ze verblijven bij gastgezinnen of
-            in georganiseerde accommodaties.
+            Rotary Camps en Tours zijn kortdurende uitwisselingsprogramma's die meestal 2-6 weken
+            duren tijdens schoolvakanties. Deze programma's bieden jongeren de mogelijkheid om
+            verschillende culturen te ervaren, internationale vriendschappen te sluiten en deel te
+            nemen aan spannende activiteiten terwijl ze verblijven bij gastgezinnen of in
+            georganiseerde accommodaties.
           </Text>
         </View>
 
@@ -179,15 +164,11 @@ export default function CampsAndToursScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
-          keyExtractor={useCallback(
-            (item: any, index: number) => `${item.type}-${index}`,
-            [],
-          )}
+          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContainer}

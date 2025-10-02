@@ -12,8 +12,7 @@ export default function AboutLayout() {
         contentStyle: {
           backgroundColor: '#F2F2F7',
         },
-      }}
-    >
+      }}>
       <Stack.Screen
         name="index"
         options={{
