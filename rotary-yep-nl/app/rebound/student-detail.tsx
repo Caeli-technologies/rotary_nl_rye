@@ -325,7 +325,7 @@ export default function StudentDetailScreen() {
 
           {student && (
             <View style={styles.videoInfo}>
-              <Text style={styles.videoTitle}>{student.name}'s Exchange Story</Text>
+              <Text style={styles.videoTitle}>{student.name}&apos;s Exchange Story</Text>
               <Text style={styles.videoSubtitle}>
                 {student.from} → {student.to} • {params.year}
               </Text>

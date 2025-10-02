@@ -91,6 +91,7 @@ const HomeCard = React.memo<HomeCardProps>(
     );
   },
 );
+HomeCard.displayName = 'HomeCard';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -168,7 +169,7 @@ export default function HomeScreen() {
     if (containerWidth > 0 && currentImageIndex < carouselImages.length) {
       animateToIndex(currentImageIndex);
     }
-  }, [currentImageIndex, containerWidth]);
+  }, [currentImageIndex, containerWidth, animateToIndex, carouselImages.length]);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>

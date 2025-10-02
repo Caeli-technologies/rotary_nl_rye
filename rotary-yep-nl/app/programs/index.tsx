@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -53,43 +53,49 @@ export default function ProgramsScreen() {
     [handleProgramPress],
   );
 
-  const exchangePrograms: ProgramItem[] = [
-    {
-      title: 'Long Term Exchange',
-      subtitle: 'Year exchange & info',
-      icon: 'calendar-alt' as any,
-      route: '/programs/information/long-term-exchange',
-    },
-    {
-      title: 'Family to Family',
-      subtitle: 'Short-term family exchanges',
-      icon: 'home' as any,
-      route: '/programs/information/family-to-family',
-    },
-    {
-      title: 'Zomerkampen',
-      subtitle: 'Zomerkampen informatie',
-      icon: 'campground' as any,
-      route: '/programs/information/camps-tours',
-    },
-  ];
+  const exchangePrograms: ProgramItem[] = useMemo(
+    () => [
+      {
+        title: 'Long Term Exchange',
+        subtitle: 'Year exchange & info',
+        icon: 'calendar-alt' as any,
+        route: '/programs/information/long-term-exchange',
+      },
+      {
+        title: 'Family to Family',
+        subtitle: 'Short-term family exchanges',
+        icon: 'home' as any,
+        route: '/programs/information/family-to-family',
+      },
+      {
+        title: 'Zomerkampen',
+        subtitle: 'Zomerkampen informatie',
+        icon: 'campground' as any,
+        route: '/programs/information/camps-tours',
+      },
+    ],
+    [],
+  );
 
-  const infoPromoPrograms: ProgramItem[] = [
-    {
-      title: 'Promo',
-      subtitle: 'Podcast & Video',
-      icon: 'podcast' as any,
-      route: '/programs/promo',
-    },
-  ];
+  const infoPromoPrograms: ProgramItem[] = useMemo(
+    () => [
+      {
+        title: 'Promo',
+        subtitle: 'Podcast & Video',
+        icon: 'podcast' as any,
+        route: '/programs/promo',
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={styles.introTitle}>Programma's</Text>
+        <Text style={styles.introTitle}>Programma&apos;s</Text>
         <Text style={styles.introText}>
-          Ontdek alle uitwisselingsprogramma's die Rotary YEP Nederland aanbiedt. Van lange termijn
-          jaaruitwisselingen tot korte zomerprogramma's en promotioneel materiaal.
+          Ontdek alle uitwisselingsprogramma&apos;s die Rotary YEP Nederland aanbiedt. Van lange
+          termijn jaaruitwisselingen tot korte zomerprogramma&apos;s en promotioneel materiaal.
         </Text>
       </View>
     ),
@@ -112,10 +118,10 @@ export default function ProgramsScreen() {
       { type: 'sectionHeader', title: 'Informatie & Promo' },
       ...infoPromoPrograms.map((item) => ({ type: 'program', item })),
       { type: 'spacer' },
-      { type: 'sectionHeader', title: "Uitwisselingsprogramma's" },
+      { type: 'sectionHeader', title: 'Uitwisselingsprogramma&apos;s' },
       ...exchangePrograms.map((item) => ({ type: 'program', item })),
     ];
-  }, []);
+  }, [exchangePrograms, infoPromoPrograms]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {

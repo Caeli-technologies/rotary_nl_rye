@@ -132,7 +132,7 @@ export default function VideoPromo() {
           <View style={styles.headerIcon}>
             <Ionicons name="videocam-outline" size={32} color="#FF6B35" />
           </View>
-          <Text style={styles.headerTitle}>Promo Video's</Text>
+          <Text style={styles.headerTitle}>Promo Video&apos;s</Text>
           <Text style={styles.headerSubtitle}>
             Ontdek inspirerende verhalen en ervaringen van Youth Exchange studenten
           </Text>

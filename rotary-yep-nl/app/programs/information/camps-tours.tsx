@@ -76,7 +76,7 @@ export default function CampsToursScreen() {
                 <Text style={styles.missionTitle}>Onze Missie</Text>
               </View>
               <Text style={styles.missionText}>
-                "Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen"
+                &ldquo;Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen&rdquo;
               </Text>
               <Text style={styles.missionSubtext}>
                 Wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk

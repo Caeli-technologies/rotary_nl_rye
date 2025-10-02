@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -54,20 +54,23 @@ export default function ShortTermScreen() {
     [handleItemPress],
   );
 
-  const menuItems: MenuItem[] = [
-    {
-      title: 'Zomerkampen',
-      subtitle: 'Short-term cultural exchange programs',
-      icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/camps-and-tours',
-    },
-    {
-      title: 'Family to Family',
-      subtitle: 'Host family exchange experiences',
-      icon: 'home' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/family-to-family',
-    },
-  ];
+  const menuItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Zomerkampen',
+        subtitle: 'Short-term cultural exchange programs',
+        icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/camps-and-tours',
+      },
+      {
+        title: 'Family to Family',
+        subtitle: 'Host family exchange experiences',
+        icon: 'home' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/family-to-family',
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
@@ -92,7 +95,7 @@ export default function ShortTermScreen() {
     const allItems = [{ type: 'intro' }, ...menuItems.map((item) => ({ type: 'menuItem', item }))];
 
     return allItems;
-  }, []);
+  }, [menuItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {

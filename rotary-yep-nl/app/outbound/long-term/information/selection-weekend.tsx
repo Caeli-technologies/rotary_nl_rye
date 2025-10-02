@@ -81,8 +81,8 @@ export default function SelectionWeekendScreen() {
               <View style={styles.goalContent}>
                 <Text style={styles.goalText}>
                   <Text style={styles.underlineText}>Selectie:</Text> Je kunt laten zien dat je uit
-                  het goede "uitwisselingshout" bent gesneden. Aanwezigheid is verplicht. Het
-                  weekend is dan ook onderdeel van de uiteindelijke selectie.
+                  het goede &ldquo;uitwisselingshout&rdquo; bent gesneden. Aanwezigheid is
+                  verplicht. Het weekend is dan ook onderdeel van de uiteindelijke selectie.
                 </Text>
               </View>
             </View>

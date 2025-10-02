@@ -94,7 +94,9 @@ export default function AboutScreen() {
               <View style={styles.bulletPoint} />
               <Text style={styles.listItemText}>Zomerkampen</Text>
             </View>
-            <Text style={styles.quote}>"To build peace one young person at a time."</Text>
+            <Text style={styles.quote}>
+              &ldquo;To build peace one young person at a time.&rdquo;
+            </Text>
           </View>
 
           <View style={styles.section}>

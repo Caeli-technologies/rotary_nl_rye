@@ -152,7 +152,7 @@ export default function EmergencyScreen() {
               <Text style={styles.noteTitle}>Important Reminder</Text>
             </View>
             <Text style={styles.noteText}>
-              Always keep your host family's contact information and home address accessible.
+              Always keep your host family&apos;s contact information and home address accessible.
             </Text>
             <Text style={styles.noteText}>
               Your host parents can assist you with medical appointments, hospital visits, or dental

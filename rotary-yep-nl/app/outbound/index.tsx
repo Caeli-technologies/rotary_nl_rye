@@ -99,8 +99,8 @@ export default function OutboundScreen() {
         <Text style={styles.introTitle}>Kandidaten</Text>
         <Text style={styles.introText}>
           Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling.
-          Wereldwijd gaan er jaarlijks zo'n 8.000 studenten via Rotary op jaaruitwisseling, een hele
-          organisatie.
+          Wereldwijd gaan er jaarlijks zo&apos;n 8.000 studenten via Rotary op jaaruitwisseling, een
+          hele organisatie.
         </Text>
       </View>
     ),

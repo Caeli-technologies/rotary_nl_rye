@@ -65,6 +65,7 @@ const DocumentItem = React.memo(({ title, icon, pdfUrl }: DocumentItemProps) => 
     </Pressable>
   );
 });
+DocumentItem.displayName = 'DocumentItem';
 
 export default function CounselorScreen() {
   const renderDocument = useCallback(

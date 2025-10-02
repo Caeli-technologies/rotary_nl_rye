@@ -99,8 +99,8 @@ export default function Top3CountriesScreen() {
               </View>
               <View style={styles.tipContent}>
                 <Text style={styles.tipText}>
-                  Kijk op YouTube en google "Rotary Youth Exchange" dan kom je ook heel veel te
-                  weten.
+                  Kijk op YouTube en google &ldquo;Rotary Youth Exchange&rdquo; dan kom je ook heel
+                  veel te weten.
                 </Text>
               </View>
             </View>

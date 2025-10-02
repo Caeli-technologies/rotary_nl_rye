@@ -84,8 +84,8 @@ export default function CampsAndToursScreen() {
         <View style={styles.programCard}>
           <Text style={styles.programTitle}>Wat zijn Zomerkampen?</Text>
           <Text style={styles.programDescription}>
-            Rotary Zomerkampen zijn kortdurende uitwisselingsprogramma's die meestal 2-6 weken duren
-            tijdens schoolvakanties. Deze programma's bieden jongeren de mogelijkheid om
+            Rotary Zomerkampen zijn kortdurende uitwisselingsprogramma&apos;s die meestal 2-6 weken
+            duren tijdens schoolvakanties. Deze programma&apos;s bieden jongeren de mogelijkheid om
             verschillende culturen te ervaren, internationale vriendschappen te sluiten en deel te
             nemen aan spannende activiteiten terwijl ze verblijven bij gastgezinnen of in
             georganiseerde accommodaties.

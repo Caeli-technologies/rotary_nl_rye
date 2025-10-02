@@ -129,10 +129,10 @@ export default function InboundScreen() {
       <View style={styles.introContainer}>
         <Text style={styles.introTitle}>Inbounds</Text>
         <Text style={styles.introText}>
-          Wow, we're so excited that you will be our inbound exchange student for the coming year.
-          For this to happen we will need some extra information so please watch your email inbox on
-          a regular basis. Also you can find some further information in this app. If you have any
-          questions that are not answered, please contact our inbound coordinator{' '}
+          Wow, we&apos;re so excited that you will be our inbound exchange student for the coming
+          year. For this to happen we will need some extra information so please watch your email
+          inbox on a regular basis. Also you can find some further information in this app. If you
+          have any questions that are not answered, please contact our inbound coordinator{' '}
           <Text style={styles.linkText} onPress={handleSandraContactPress}>
             Sandra Cools
           </Text>

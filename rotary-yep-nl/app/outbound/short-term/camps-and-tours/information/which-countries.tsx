@@ -98,7 +98,7 @@ export default function WhichCountriesScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="star-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Soorten Programma's</Text>
+              <Text style={styles.sectionTitle}>Soorten Programma&apos;s</Text>
             </View>
 
             <View style={styles.programCard}>

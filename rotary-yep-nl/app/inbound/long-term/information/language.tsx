@@ -38,9 +38,9 @@ export default function LanguageScreen() {
                 <Text style={styles.challengeTitle}>The Challenge</Text>
               </View>
               <Text style={styles.challengeText}>
-                There's no hiding it: Dutch is a very difficult language to learn. However, we do
-                expect you to master the language and that within months after your arrival you will
-                be fluent in our language.
+                There&apos;s no hiding it: Dutch is a very difficult language to learn. However, we
+                do expect you to master the language and that within months after your arrival you
+                will be fluent in our language.
               </Text>
             </View>
           </View>

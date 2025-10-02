@@ -15,6 +15,8 @@ const InfoSection = React.memo(({ title, content }: InfoSectionProps) => {
     </View>
   );
 });
+InfoSection.displayName = 'InfoSection';
+InfoSection.displayName = 'InfoSection';
 
 export default function AlgemeneInformatieScreen() {
   const renderInfoSection = useCallback(

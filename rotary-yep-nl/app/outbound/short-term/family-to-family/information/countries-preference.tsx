@@ -104,7 +104,7 @@ export default function CountriesPreferenceScreen() {
               <View style={styles.tipContent}>
                 <Text style={styles.tipTitle}>Reiskosten</Text>
                 <Text style={styles.tipDescription}>
-                  Houd rekening met reiskosten en afstand, vooral bij kortere programma's.
+                  Houd rekening met reiskosten en afstand, vooral bij kortere programma&apos;s.
                 </Text>
               </View>
             </View>
