@@ -22,9 +22,11 @@ export default function AboutScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="flag" size={20} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Nederland MDJC</Text>
+              <Text style={styles.sectionTitle}>Wie zijn wij</Text>
             </View>
-            <Text style={styles.sectionSubtitle}>Multi district Jeugd Commissie</Text>
+            <Text style={styles.sectionSubtitle}>
+              Nederland MDJC - Multi district Jeugd Commissie
+            </Text>
             <Text style={styles.text}>
               Internationale jeugduitwisselingen met Rotary worden al 55 jaar met succes
               georganiseerd. Jeugduitwisselingen zit in het DNA van Rotary. De jeugd heeft de
@@ -37,13 +39,40 @@ export default function AboutScreen() {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Ionicons name="rocket" size={20} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Our Mission</Text>
+              <Text style={styles.sectionTitle}>Onze Missie</Text>
             </View>
             <Text style={styles.text}>
-              To provide young people with opportunities for international cultural exchange,
-              fostering understanding, friendship, and peace among nations through Rotary's global
-              network.
+              Rotary Youth Exchange biedt jongeren de kans om een jaar (of kortere periode) in het
+              buitenland te wonen, studeren en een nieuwe cultuur te ontdekken. Het programma
+              stimuleert:
             </Text>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>
+                Internationaal begrip en vrede door jongeren wereldwijd met elkaar te verbinden
+              </Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>
+                Persoonlijke ontwikkeling door jongeren uit hun comfortzone te laten stappen,
+                zelfstandig te worden en zich aan te passen aan een nieuwe omgeving
+              </Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>
+                Culturele uitwisseling door het leren van talen, gebruiken en gewoonten in een ander
+                land
+              </Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>
+                Ambassadeurschap: deelnemers vertegenwoordigen hun eigen land en cultuur, en brengen
+                deze in contact met hun gastland
+              </Text>
+            </View>
           </View>
 
           <View style={styles.section}>
@@ -51,11 +80,21 @@ export default function AboutScreen() {
               <Ionicons name="airplane" size={20} color="#1A237E" />
               <Text style={styles.sectionTitle}>Exchange Programs</Text>
             </View>
-            <Text style={styles.text}>We offer various exchange programs including:</Text>
-            <Text style={styles.listItem}>• Long-term exchanges (6-12 months)</Text>
-            <Text style={styles.listItem}>• Short-term family-to-family programs</Text>
-            <Text style={styles.listItem}>• Zomerkampen</Text>
-            <Text style={styles.listItem}>• New Generations Service Exchange</Text>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>Longterm exchanges 10-11 maanden</Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>
+                Short term 2x2 weken (Noordelijk Halfrond) of 4x4 weken (Zuidelijk Halfrond)
+              </Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>Zomerkampen</Text>
+            </View>
+            <Text style={styles.quote}>"To build peace one young person at a time."</Text>
           </View>
 
           <View style={styles.section}>
@@ -63,10 +102,22 @@ export default function AboutScreen() {
               <Ionicons name="heart" size={20} color="#1A237E" />
               <Text style={styles.sectionTitle}>Values</Text>
             </View>
-            <Text style={styles.listItem}>• Cultural understanding and respect</Text>
-            <Text style={styles.listItem}>• Personal growth and development</Text>
-            <Text style={styles.listItem}>• Global friendship and peace</Text>
-            <Text style={styles.listItem}>• Service above self</Text>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>Cultural understanding and respect</Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>Personal growth and development</Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>Global friendship and peace</Text>
+            </View>
+            <View style={styles.listItemContainer}>
+              <View style={styles.bulletPoint} />
+              <Text style={styles.listItemText}>Service above self</Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -130,5 +181,36 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 8,
     paddingLeft: 16,
+  },
+  listItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 12,
+    paddingLeft: 8,
+  },
+  bulletPoint: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#1A237E',
+    marginTop: 8,
+    marginRight: 12,
+    flexShrink: 0,
+  },
+  listItemText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#333',
+    flex: 1,
+  },
+  quote: {
+    fontSize: 18,
+    lineHeight: 26,
+    color: '#1A237E',
+    fontWeight: '600',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    marginTop: 16,
+    marginBottom: 8,
   },
 });
