@@ -14,7 +14,7 @@
       "android"
     ],
     "ios": {
-      "buildNumber": "103",
+      "buildNumber": "104",
       "appleTeamId": "A8S2486A44",
       "backgroundColor": "#ffffff",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
@@ -44,7 +44,7 @@
       }
     },
     "android": {
-      "versionCode": 103,
+      "versionCode": 104,
       "package": "com.caelitechnologies.rotary_nl_rye",
       "backgroundColor": "#ffffff",
       "edgeToEdgeEnabled": true,
