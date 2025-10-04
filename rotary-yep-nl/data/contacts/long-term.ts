@@ -25,7 +25,8 @@ export const longTermContacts: Organization[] = [
   {
     name: 'Jitte Wigbold',
     bio: '',
-    imageUrl: undefined,
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/jitte-wigbold.jpg',
     email: undefined,
     phoneNumber: undefined,
     club: '',
@@ -111,7 +112,8 @@ export const longTermContacts: Organization[] = [
   {
     name: 'Christian van Dam',
     bio: undefined,
-    imageUrl: undefined,
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/christian-van-dam.jpg',
     email: undefined,
     phoneNumber: undefined,
     club: '',

@@ -26,7 +26,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Evert Marseille',
     bio: 'Sinds 1988 ben ik Rotary lid en ondanks mijn gevorderde leeftijd ben ik in juni 2023 door mijn clubgenoot Barbara gevraagd om penningmeester te worden. Bestuurlijk bezig zijn is mij met de paplepel ingegoten, dus ik vind het een hele eer om als oudje bezig te kunnen zijn met de ontwikkeling van jonge mensen die door een uitwisseling levenservaring kunnen opdoen.\n\nIn mijn actieve beroepsperiode was ik accountant en heb ik ook nog 20 jaar deel uitgemaakt van de Lelystadse gemeenteraad.\n\nIk ben gehuwd en heb 3 kinderen en 6 kleinkinderen. Wij hebben zelf ook veel mooie reizen gemaakt en daarmee ervaren hoe belangrijk het is om te zien hoe het leven in geheel andere landen is.\nHelaas is dit door de ziekte van mijn echtgenote niet meer mogelijk. Alle reden voor mij om mij naast mijn taak als mantelzorger ook op bestuurlijk gebied in te zetten.',
-    imageUrl: undefined,
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/evert-marseille.jpg',
     email: 'finance@rotaryyep.nl',
     phoneNumber: undefined,
     club: 'RC Lelystad',
