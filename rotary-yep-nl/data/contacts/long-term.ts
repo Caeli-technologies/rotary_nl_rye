@@ -108,4 +108,25 @@ export const longTermContacts: Organization[] = [
     district: '',
     functions: ['Landelijk counselor'],
   },
+  {
+    name: 'Christian van Dam',
+    bio: undefined,
+    imageUrl: undefined,
+    email: undefined,
+    phoneNumber: undefined,
+    club: '',
+    district: '',
+    functions: ['Landelijk counselor'],
+  },
+  {
+    name: 'Ruben Talstra',
+    bio: 'Mijn naam is Ruben Talstra en ik ben de web-app master van de long term exchange. In het dagelijks leven ben ik student aan de Hanze Hogeschool in Groningen, waar ik de opleiding Business IT & Management volg. Ik ben zelf ook op exchange geweest in 2018-2019 naar Halifax in Canada. Dit was een geweldige ervaring waar ik met veel plezier op terugkijk en die ik elke jongere gun. Daarom vind ik het zo fijn om deel uit te maken van dit geweldige team dat zich met veel enthousiasme inzet om de uitwisselingsstudenten een onvergetelijke ervaring te bezorgen hier in Nederland.',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ruben-talstra.jpg',
+    email: 'RubenTalstra1211@outlook.com',
+    phoneNumber: undefined,
+    club: '',
+    district: '',
+    functions: ['Web-app master'],
+  },
 ];

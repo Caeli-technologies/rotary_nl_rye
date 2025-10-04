@@ -80,7 +80,8 @@ export const mdjcContacts: Organization[] = [
   {
     name: 'Mario Meeuwse',
     bio: "Mijn naam is Mario Meeuwse en ik ben District Jeugd Commissaris van District 1580.\nGedurende mijn Rotaract lidmaatschap en later Rotary heb ik veel uitwisselingen meegemaakt.\nDaarnaast was ik actief in voor de Rotary Youth Leadership Award commissie in District 1610.\nOok heb ik veel internationale activiteiten bijgewoond zoals (wereld)congressen en (district)conferenties.\nZelf heb ik een Group Study Exchange gedaan naar Japan, waar ik met veel dankbaarheid en plezier op terugkijk.\nEen geweldige ervaring naar een land met een heel andere cultuur met enthousiaste mensen binnen de Rotary familie.\nDaarom wil ik ook een steentje bijdragen aan uitwisselingen en de jeugd een onvergetelijke ervaring bezorgen.\n\nIk woon in Aalsmeer met Jikkemine en onze twee zonen.\nWij hebben elkaar leren kennen toen wij Rotaracters waren op weg naar Santiago de Compostella tijdens het 100 jarige bestaan van Rotary.\n\nIn het dagelijks leven ben ik accountmanager Grootzakelijk bij de Rabobank, gespecialiseerd in ICT & Zorg.\nMijn hobby's zijn: reizen, talen, skiën, zeilen & zwemmen.",
-    imageUrl: undefined,
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/mario-meeuwse.jpg',
     email: undefined,
     phoneNumber: undefined,
     club: 'RC Haarlemmermeer',
