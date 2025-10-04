@@ -5,9 +5,11 @@
   "scripts": {
     "start": "expo start",
     "prebuild": "npx expo prebuild",
-    "android": "npx run prebuild && expo run:android",
-    "ios": "npx run prebuild && expo run:ios",
-    "lint": "npx expo lint"
+    "android": "npx expo prebuild && expo run:android",
+    "ios": "npx expo prebuild && expo run:ios",
+    "android:release": "cd android && ./gradlew app:bundleRelease",
+    "lint": "npx expo lint",
+    "clean": "npx expo prebuild --clear"
   },
   "dependencies": {
     "@expo/ui": "~0.2.0-beta.6",
@@ -40,7 +42,7 @@
     "react-native-gesture-handler": "~2.28.0",
     "react-native-pdf-renderer": "^2.3.0",
     "react-native-reanimated": "~4.1.2",
-    "react-native-safe-area-context": "~5.6.1",
+    "react-native-safe-area-context": "5.6.1",
     "react-native-screens": "~4.16.0",
     "react-native-svg": "15.12.1",
     "react-native-worklets": "0.5.1"
@@ -55,8 +57,8 @@
     "prettier": "^3.6.2",
     "typescript": "~5.9.3"
   },
-  "resolutions": {
-    "react-native-safe-area-context": "~5.6.1"
+  "overrides": {
+    "react-native-safe-area-context": "5.6.1"
   },
   "private": true
 }

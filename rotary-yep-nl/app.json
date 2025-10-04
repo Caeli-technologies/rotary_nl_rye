@@ -2,11 +2,11 @@
   "expo": {
     "name": "Rotary YEP NL",
     "slug": "rotary-yep-nl",
+    "description": "The official app for Rotary Youth Exchange Netherlands, providing resources, information, and support for exchange students, families, and Rotary clubs.",
+    "owner": "Ruben Talstra",
     "version": "11.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "rotaryyepnl",
-    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "githubUrl": "https://github.com/Caeli-technologies/rotary_nl_rye",
     "platforms": [
@@ -16,32 +16,59 @@
     "ios": {
       "buildNumber": "103",
       "appleTeamId": "A8S2486A44",
-      "userInterfaceStyle": "automatic",
+      "backgroundColor": "#ffffff",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
       "supportsTablet": true,
+      "requireFullScreen": false,
       "bundleIdentifier": "com.caelitechnologies.rotary-nl-rye",
+      "icon": "./assets/app.icon",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
       "splash": {
-        "image": "./assets/images/icon.png",
-        "resizeMode": "contain"
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff",
+        "dark": {
+          "image": "./assets/images/splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#000000"
+        }
       },
       "infoPlist": {
         "UIBackgroundModes": [
           "audio",
           "fetch"
-        ]
+        ],
+        "LSApplicationCategoryType": "public.app-category.education"
       }
     },
     "android": {
       "versionCode": 103,
+      "package": "com.caelitechnologies.rotary_nl_rye",
+      "backgroundColor": "#ffffff",
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": true,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "userInterfaceStyle": "automatic",
-      "edgeToEdgeEnabled": true,
-      "package": "com.caelitechnologies.rotary_nl_rye"
+      "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff",
+        "dark": {
+          "image": "./assets/images/splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#000000"
+        }
+      },
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.WAKE_LOCK",
+        "android.permission.VIBRATE"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -49,7 +76,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
@@ -69,7 +96,8 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": true,
+      "tsconfigPaths": true
     }
   }
 }

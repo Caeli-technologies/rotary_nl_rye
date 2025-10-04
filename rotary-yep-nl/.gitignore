@@ -40,3 +40,7 @@ credentials.json
 *.tsbuildinfo
 
 app-example
+
+# ignore ios and android folders
+# ios/
+# android/

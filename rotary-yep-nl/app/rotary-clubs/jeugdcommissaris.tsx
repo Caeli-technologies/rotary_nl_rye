@@ -102,16 +102,10 @@ export default function JeugdcommissarisScreen() {
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/2024/presentielijst-training-clubs-gastouders-24-25.pdf',
     },
     {
-      title: 'Rotary Exchange voor Middelbare Scholen',
+      title: 'Voor Middelbare Scholen',
       icon: 'school' as keyof typeof FontAwesome5.glyphMap,
       pdfUrl:
         'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/rotary-exchange-voor-middelbare-scholen-2026-2027.pdf',
-    },
-    {
-      title: 'Schooldocument',
-      icon: 'school' as keyof typeof FontAwesome5.glyphMap,
-      pdfUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/rotary-exchange-voor-middelbare-scholen-2022-2023.pdf',
     },
     {
       title: 'Actielijst voorbereiding komst Jaarkind',

@@ -69,9 +69,7 @@ function TravelCard({
   const campIsPast = isPast();
 
   const handlePress = () => {
-    // Don't allow interaction with past camps
-    if (campIsPast) return;
-
+    // Allow PDF viewing for all camps, including past ones
     if (invitation && invitation.trim() !== '') {
       router.push({
         pathname: '/pdf-viewer' as any,
@@ -116,7 +114,7 @@ function TravelCard({
             )}
           </View>
         </View>
-        {invitation && invitation.trim() !== '' && !campIsPast && (
+        {invitation && invitation.trim() !== '' && (
           <View style={styles.actionIndicator}>
             <Ionicons name="document-text-outline" size={18} color="#666" />
           </View>
