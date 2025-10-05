@@ -107,7 +107,7 @@ export const mdjcContacts: Organization[] = [
       'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/elzeline-fischer.png',
     email: 'djc@rotary-d1600.nl',
     phoneNumber: undefined,
-    club: 'RC Leeuwarden-Zuid',
+    club: 'RC Voorburg',
     district: '1600',
     functions: ['DJC 1600'],
   },
