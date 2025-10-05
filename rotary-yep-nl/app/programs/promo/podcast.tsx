@@ -61,6 +61,7 @@ function PodcastRow({ index, podcast, isActive, onPress, status }: PodcastRowPro
         progress: 0,
         buttonIcon: 'play' as const,
         showProgress: false,
+        statusMessage: '',
       };
     }
 
@@ -68,8 +69,16 @@ function PodcastRow({ index, podcast, isActive, onPress, status }: PodcastRowPro
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
     let buttonIcon: 'play' | 'pause' | 'reload-outline' = 'play';
-    if (isBuffering) buttonIcon = 'reload-outline';
-    else if (playing) buttonIcon = 'pause';
+    let statusMessage = '';
+
+    if (isBuffering) {
+      buttonIcon = 'reload-outline';
+      statusMessage = 'Buffering...';
+    } else if (!isLoaded) {
+      statusMessage = 'Loading...';
+    } else if (playing) {
+      buttonIcon = 'pause';
+    }
 
     return {
       isPlaying: playing,
@@ -80,6 +89,7 @@ function PodcastRow({ index, podcast, isActive, onPress, status }: PodcastRowPro
       progress,
       buttonIcon,
       showProgress: isLoaded && duration > 0,
+      statusMessage,
     };
   }, [isActive, status]);
 
@@ -109,10 +119,8 @@ function PodcastRow({ index, podcast, isActive, onPress, status }: PodcastRowPro
           {isActive && (
             <>
               {/* Status indicator */}
-              {(!playbackState.isLoaded || playbackState.isBuffering) && (
-                <Text style={styles.statusText}>
-                  {!playbackState.isLoaded ? 'Loading...' : 'Buffering...'}
-                </Text>
+              {playbackState.statusMessage && (
+                <Text style={styles.statusText}>{playbackState.statusMessage}</Text>
               )}
 
               {/* Progress bar */}
@@ -137,32 +145,37 @@ function PodcastRow({ index, podcast, isActive, onPress, status }: PodcastRowPro
 
 export default function PodcastPromo() {
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+
+  // Use default configuration to avoid simulator audio issues
   const player = useAudioPlayer(null);
   const status = useAudioPlayerStatus(player);
 
+  // No audio configuration - let expo-audio use defaults to avoid simulator issues
+
+  // Remove app state handling that may interfere with simulator audio
+  // Let the system handle audio lifecycle naturally
+
   const handlePodcastPress = useCallback(
     async (index: number) => {
-      try {
-        if (playingIndex === index) {
-          // Toggle play/pause for current podcast
-          if (status.playing) {
-            player.pause();
-          } else {
-            if (status.didJustFinish) {
-              await player.seekTo(0);
-            }
-            player.play();
-          }
+      if (playingIndex === index) {
+        // Toggle play/pause for current podcast
+        if (status.playing) {
+          player.pause();
         } else {
-          // Switch to new podcast
-          const podcast = podcasts[index];
-          setPlayingIndex(index);
-          await player.replace(podcast.url);
+          // Handle replay from end
+          if (status.didJustFinish) {
+            await player.seekTo(0);
+          }
           player.play();
         }
-      } catch (error) {
-        console.warn('Podcast playback error:', error);
-        setPlayingIndex(null);
+      } else {
+        // Switch to new podcast
+        const podcast = podcasts[index];
+        setPlayingIndex(index);
+
+        // Basic replace and play as per Expo Audio documentation
+        player.replace(podcast.url);
+        player.play();
       }
     },
     [playingIndex, status.playing, status.didJustFinish, player],
