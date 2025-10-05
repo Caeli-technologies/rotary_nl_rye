@@ -2,18 +2,15 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Platform, useColorScheme as useRNColorScheme } from 'react-native';
+import { Platform, useColorScheme } from 'react-native';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
 export const unstable_settings = {
-  anchor: '(tabs)',
+  initialRouteName: '(tabs)',
 };
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const rnColorScheme = useRNColorScheme();
 
   // Custom theme that's more aligned with native UI patterns
   const customTheme = {
@@ -29,31 +26,85 @@ export default function RootLayout() {
     },
   };
 
-  // Default stack screen options with native styling
-  const defaultStackOptions = {
-    headerStyle: {
-      backgroundColor: customTheme.colors.card,
-    },
-    headerTitleStyle: {
-      color: customTheme.colors.text,
-      fontWeight: '600' as const,
-      fontSize: Platform.OS === 'ios' ? 20 : 22,
-    },
-    headerTintColor: customTheme.colors.primary,
-    headerShadowVisible: Platform.OS === 'ios',
-    headerBackTitle: Platform.OS === 'ios' ? undefined : '',
-    contentStyle: {
-      backgroundColor: customTheme.colors.background,
-    },
-  };
-
   return (
     <SafeAreaProvider>
       <ThemeProvider value={customTheme}>
-        <Stack screenOptions={defaultStackOptions}>
+        <Stack
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: customTheme.colors.card,
+            },
+            headerTitleStyle: {
+              color: customTheme.colors.text,
+              fontWeight: '600' as const,
+              fontSize: Platform.OS === 'ios' ? 20 : 22,
+            },
+            headerTintColor: customTheme.colors.primary,
+            headerShadowVisible: Platform.OS === 'ios',
+            headerBackTitle: Platform.OS === 'ios' ? 'Terug' : '',
+            contentStyle: {
+              backgroundColor: customTheme.colors.background,
+            },
+          }}>
+          {/* Main tab navigator */}
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+          {/* Settings sub-screen - outside of tabs */}
           <Stack.Screen
-            name="rebound/countries"
+            name="settings/contributors"
+            options={{
+              title: 'Contributors',
+              headerBackTitle: 'Settings',
+            }}
+          />
+
+          {/* Utility Screens */}
+          <Stack.Screen
+            name="camps-tours"
+            options={{
+              title: 'Zomerkampen',
+              headerBackTitle: 'Home',
+            }}
+          />
+          <Stack.Screen
+            name="pdf-viewer"
+            options={({ route }) => ({
+              title: (route.params as any)?.title || 'PDF Document',
+              headerBackTitle: 'Terug',
+              headerTitleStyle: {
+                fontSize: 18,
+              },
+            })}
+          />
+
+          {/* Calendar */}
+          <Stack.Screen
+            name="calendar/index"
+            options={{
+              title: 'Evenementen Kalender',
+              headerBackTitle: 'Home',
+            }}
+          />
+
+          {/* News */}
+          <Stack.Screen
+            name="news/index"
+            options={{
+              title: 'Nieuws & Updates',
+              headerBackTitle: 'Home',
+            }}
+          />
+          <Stack.Screen
+            name="news/[id]"
+            options={({ route }) => ({
+              title: (route.params as any)?.title || 'Nieuws',
+              headerBackTitle: 'Nieuws',
+            })}
+          />
+
+          {/* Rebound */}
+          <Stack.Screen
+            name="rebound/index"
             options={{
               title: 'Rebound Studenten',
               headerBackTitle: 'Home',
@@ -63,7 +114,7 @@ export default function RootLayout() {
             name="rebound/students"
             options={({ route }) => ({
               title: (route.params as any)?.country || 'Studenten',
-              headerBackTitle: 'Countries',
+              headerBackTitle: 'Landen',
             })}
           />
           <Stack.Screen
@@ -73,29 +124,10 @@ export default function RootLayout() {
               headerBackTitle: (route.params as any)?.country || 'Studenten',
             })}
           />
+
+          {/* Rotary Clubs */}
           <Stack.Screen
-            name="news"
-            options={{
-              title: 'Nieuws',
-              headerBackTitle: 'Home',
-            }}
-          />
-          <Stack.Screen
-            name="calendar"
-            options={{
-              title: 'Kalender',
-              headerBackTitle: 'Home',
-            }}
-          />
-          <Stack.Screen
-            name="camps-tours"
-            options={{
-              title: 'Zomerkampen',
-              headerBackTitle: 'Home',
-            }}
-          />
-          <Stack.Screen
-            name="rotary-clubs"
+            name="rotary-clubs/index"
             options={{
               title: 'Voor Rotary Clubs',
               headerBackTitle: 'Home',
@@ -136,23 +168,143 @@ export default function RootLayout() {
               headerBackTitle: 'Rotary Clubs',
             }}
           />
+
+          {/* Programs */}
           <Stack.Screen
-            name="pdf-viewer"
+            name="programs/index"
+            options={{
+              title: "Programma's",
+              headerBackTitle: 'Home',
+            }}
+          />
+          <Stack.Screen
+            name="programs/promo/index"
+            options={{
+              title: 'Promo Materiaal',
+              headerBackTitle: "Programma's",
+            }}
+          />
+          <Stack.Screen
+            name="programs/promo/podcast"
+            options={{
+              title: 'Promo Podcast',
+              headerBackTitle: 'Promo',
+            }}
+          />
+          <Stack.Screen
+            name="programs/promo/video"
+            options={{
+              title: 'Promo Video',
+              headerBackTitle: 'Promo',
+            }}
+          />
+          <Stack.Screen
+            name="programs/information/long-term-exchange"
+            options={{
+              title: 'Long Term Exchange',
+              headerBackTitle: "Programma's",
+            }}
+          />
+          <Stack.Screen
+            name="programs/information/family-to-family"
+            options={{
+              title: 'Family To Family',
+              headerBackTitle: "Programma's",
+            }}
+          />
+          <Stack.Screen
+            name="programs/information/camps-tours"
+            options={{
+              title: 'Zomerkampen',
+              headerBackTitle: "Programma's",
+            }}
+          />
+
+          {/* Inbound */}
+          <Stack.Screen
+            name="inbound/index"
+            options={{
+              title: "Inbound Programma's",
+              headerBackTitle: 'Home',
+            }}
+          />
+          {/* Inbound - Long Term */}
+          <Stack.Screen
+            name="inbound/long-term/index"
+            options={{
+              title: 'Long Term Inbound',
+              headerBackTitle: 'Inbound',
+            }}
+          />
+          <Stack.Screen
+            name="inbound/long-term/class-of/index"
+            options={{
+              title: 'Huidige Studenten',
+              headerBackTitle: 'Long Term',
+            }}
+          />
+          <Stack.Screen
+            name="inbound/long-term/class-of/student-detail"
             options={({ route }) => ({
-              title: (route.params as any)?.title || 'PDF Document',
-              headerBackTitle: 'Terug',
+              title: (route.params as any)?.studentName || 'Student Detail',
+              headerBackTitle: 'Studenten',
               headerTitleStyle: {
                 fontSize: 18,
               },
             })}
           />
           <Stack.Screen
-            name="news/[id]"
-            options={({ route }) => ({
-              title: (route.params as any)?.title || 'Nieuws Detail',
-              headerBackTitle: 'Nieuws',
-            })}
+            name="inbound/long-term/information/welcome-in-the-netherlands"
+            options={{
+              title: 'Welkom in Nederland',
+              headerBackTitle: 'Long Term',
+            }}
           />
+          <Stack.Screen
+            name="inbound/long-term/information/flight-and-arrival"
+            options={{
+              title: 'Vlucht en Aankomst',
+              headerBackTitle: 'Long Term',
+            }}
+          />
+          <Stack.Screen
+            name="inbound/long-term/information/insurance"
+            options={{
+              title: 'Verzekering',
+              headerBackTitle: 'Long Term',
+            }}
+          />
+          <Stack.Screen
+            name="inbound/long-term/information/language"
+            options={{
+              title: 'Nederlandse Taal',
+              headerBackTitle: 'Long Term',
+            }}
+          />
+          <Stack.Screen
+            name="inbound/long-term/information/travel"
+            options={{
+              title: 'Reizen in Nederland',
+              headerBackTitle: 'Long Term',
+            }}
+          />
+          {/* Inbound - Short Term */}
+          <Stack.Screen
+            name="inbound/short-term/camps-and-tours/index"
+            options={{
+              title: 'Zomerkampen',
+              headerBackTitle: 'Inbound',
+            }}
+          />
+          <Stack.Screen
+            name="inbound/short-term/family-to-family/index"
+            options={{
+              title: 'Family To Family',
+              headerBackTitle: 'Inbound',
+            }}
+          />
+
+          {/* Outbound */}
           <Stack.Screen
             name="outbound/index"
             options={{
@@ -160,6 +312,7 @@ export default function RootLayout() {
               headerBackTitle: 'Home',
             }}
           />
+          {/* Outbound - Long Term */}
           <Stack.Screen
             name="outbound/long-term/index"
             options={{
@@ -178,537 +331,109 @@ export default function RootLayout() {
             name="outbound/long-term/class-of/student-detail"
             options={({ route }) => ({
               title: (route.params as any)?.studentName || 'Student Detail',
-              headerBackTitle: (route.params as any)?.country || 'Studenten',
+              headerBackTitle: 'Studenten',
               headerTitleStyle: {
                 fontSize: 18,
               },
             })}
           />
           <Stack.Screen
+            name="outbound/long-term/information/comply-with"
+            options={{
+              title: 'Regels & Voorwaarden',
+              headerBackTitle: 'Long Term',
+            }}
+          />
+          <Stack.Screen
             name="outbound/long-term/information/how-to-sign-up"
             options={{
-              headerShown: true,
-              title: 'Hoe meld ik me aan?',
+              title: 'Hoe Aanmelden',
               headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/long-term/information/selection-day"
             options={{
-              headerShown: true,
-              title: 'Selectie dag',
+              title: 'Selectiedag',
               headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/long-term/information/selection-weekend"
             options={{
-              headerShown: true,
-              title: 'Selectie weekend',
+              title: 'Selectieweekend',
               headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/long-term/information/top-3-countries"
             options={{
-              headerShown: true,
-              title: 'Goede top 3 van landen',
+              title: 'Top 3 Landen',
               headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
-          <Stack.Screen
-            name="outbound/long-term/information/comply-with"
-            options={{
-              headerShown: true,
-              title: 'Waar moet ik aan voldoen?',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
+          {/* Outbound - Short Term */}
           <Stack.Screen
             name="outbound/short-term/index"
             options={{
-              headerShown: true,
               title: "Short Term Programma's",
               headerBackTitle: 'Outbound',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/short-term/camps-and-tours/index"
             options={{
-              headerShown: true,
               title: 'Zomerkampen',
               headerBackTitle: 'Short Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="outbound/short-term/camps-and-tours/information/how-to-sign-up"
-            options={{
-              headerShown: true,
-              title: 'Hoe schrijf ik mezelf in?',
-              headerBackTitle: 'Zomerkampen',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="outbound/short-term/camps-and-tours/information/which-countries"
-            options={{
-              headerShown: true,
-              title: 'Met welke landen?',
-              headerBackTitle: 'Zomerkampen',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/short-term/camps-and-tours/information/comply-with"
             options={{
-              headerShown: true,
-              title: 'Voor wie?',
+              title: 'Regels & Voorwaarden',
               headerBackTitle: 'Zomerkampen',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
+            }}
+          />
+          <Stack.Screen
+            name="outbound/short-term/camps-and-tours/information/how-to-sign-up"
+            options={{
+              title: 'Hoe Aanmelden',
+              headerBackTitle: 'Zomerkampen',
+            }}
+          />
+          <Stack.Screen
+            name="outbound/short-term/camps-and-tours/information/which-countries"
+            options={{
+              title: 'Welke Landen',
+              headerBackTitle: 'Zomerkampen',
             }}
           />
           <Stack.Screen
             name="outbound/short-term/family-to-family/index"
             options={{
-              headerShown: true,
-              title: 'Family to Family',
+              title: 'Family To Family',
               headerBackTitle: 'Short Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="outbound/short-term/family-to-family/information/how-to-sign-up"
-            options={{
-              headerShown: true,
-              title: 'Hoe meld ik me aan?',
-              headerBackTitle: 'Family to Family',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="outbound/short-term/family-to-family/information/countries-preference"
-            options={{
-              headerShown: true,
-              title: 'Landen & Voorkeur',
-              headerBackTitle: 'Family to Family',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/short-term/family-to-family/information/comply-with"
             options={{
-              headerShown: true,
-              title: 'Voor wie?',
-              headerBackTitle: 'Family to Family',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
+              title: 'Regels & Voorwaarden',
+              headerBackTitle: 'Family To Family',
             }}
           />
           <Stack.Screen
-            name="inbound/index"
+            name="outbound/short-term/family-to-family/information/how-to-sign-up"
             options={{
-              headerShown: true,
-              title: "Inbound Programma's",
-              headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
+              title: 'Hoe Aanmelden',
+              headerBackTitle: 'Family To Family',
             }}
           />
           <Stack.Screen
-            name="inbound/long-term/index"
+            name="outbound/short-term/family-to-family/information/countries-preference"
             options={{
-              headerShown: true,
-              title: 'Long Term Inbound',
-              headerBackTitle: 'Inbound',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="inbound/long-term/class-of/index"
-            options={{
-              headerShown: true,
-              title: 'Huidige Studenten',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="inbound/long-term/class-of/student-detail"
-            options={({ route }) => ({
-              headerShown: true,
-              title: (route.params as any)?.studentName || 'Student Detail',
-              headerBackTitle: 'Studenten',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 18,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            })}
-          />
-          <Stack.Screen
-            name="inbound/long-term/information/welcome-in-the-netherlands"
-            options={{
-              headerShown: true,
-              title: 'Welcome to the Netherlands!',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="inbound/long-term/information/flight-and-arrival"
-            options={{
-              headerShown: true,
-              title: 'Flight and Arrival',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="inbound/long-term/information/language"
-            options={{
-              headerShown: true,
-              title: 'Language',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="inbound/long-term/information/insurance"
-            options={{
-              headerShown: true,
-              title: 'Insurance',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="inbound/long-term/information/travel"
-            options={{
-              headerShown: true,
-              title: 'Travel',
-              headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          {/* Programs */}
-          <Stack.Screen
-            name="programs/index"
-            options={{
-              headerShown: true,
-              title: "Programma's",
-              headerBackTitle: 'Home',
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="programs/promo/index"
-            options={{
-              headerShown: true,
-              title: 'Promo Materiaal',
-              headerBackTitle: "Programma's",
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="programs/promo/podcast"
-            options={{
-              headerShown: true,
-              title: 'Promo Podcast',
-              headerBackTitle: 'Promo',
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="programs/promo/video"
-            options={{
-              headerShown: true,
-              title: 'Promo Video',
-              headerBackTitle: 'Promo',
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="programs/information/long-term-exchange"
-            options={{
-              headerShown: true,
-              title: 'Long Term Exchange',
-              headerBackTitle: "Programma's",
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="programs/information/family-to-family"
-            options={{
-              headerShown: true,
-              title: 'Family To Family',
-              headerBackTitle: "Programma's",
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
-            }}
-          />
-          <Stack.Screen
-            name="programs/information/camps-tours"
-            options={{
-              headerShown: true,
-              title: 'Zomerkampen',
-              headerBackTitle: "Programma's",
-              headerStyle: { backgroundColor: '#FFFFFF' },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
+              title: 'Landen Voorkeur',
+              headerBackTitle: 'Family To Family',
             }}
           />
         </Stack>

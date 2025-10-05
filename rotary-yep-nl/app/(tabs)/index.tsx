@@ -285,12 +285,7 @@ export default function HomeScreen() {
               icon="refresh-outline"
               title="Rebound"
               colors={colors}
-              onPress={() =>
-                router.push({
-                  pathname: '/rebound/countries' as any,
-                  params: { title: 'Rebound Students' },
-                })
-              }
+              onPress={() => router.push('/rebound')}
             />
           </View>
 

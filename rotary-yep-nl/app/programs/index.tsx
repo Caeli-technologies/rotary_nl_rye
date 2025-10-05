@@ -142,7 +142,7 @@ export default function ProgramsScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={[]}>
       <View style={styles.container}>
         <FlatList
           data={renderContent()}

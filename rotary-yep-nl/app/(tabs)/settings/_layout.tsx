@@ -1,24 +1,19 @@
 import { Stack } from 'expo-router';
 import { Platform, Pressable, Share, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '@react-navigation/native';
 
 export default function SettingsLayout() {
+  const theme = useTheme();
+
   const handleShare = async () => {
     try {
-      const result = await Share.share({
+      await Share.share({
         message:
           'Check out the Rotary Youth Exchange Netherlands app! 📱✈️\n\nConnect with young global citizens worldwide!',
         title: 'Rotary Youth Exchange Netherlands',
-        url: Platform.OS === 'ios' ? 'https://apps.apple.com/app/rotary-yep-nl' : undefined, // Add your app store URL when available
+        url: Platform.OS === 'ios' ? 'https://apps.apple.com/app/rotary-yep-nl' : undefined,
       });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // Shared with activity type
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // Share dismissed
-      }
     } catch (error) {
       console.error('Error sharing:', error);
       Alert.alert('Share Error', 'Unable to share at this time. Please try again later.');
@@ -26,21 +21,24 @@ export default function SettingsLayout() {
   };
 
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.colors.card,
+        },
+        headerTitleStyle: {
+          color: theme.colors.text,
+          fontWeight: '600',
+          fontSize: Platform.OS === 'ios' ? 20 : 22,
+        },
+        headerTintColor: theme.colors.primary,
+        headerShadowVisible: Platform.OS === 'ios',
+        headerBackTitle: Platform.OS === 'ios' ? 'Terug' : '',
+      }}>
       <Stack.Screen
         name="index"
         options={{
           title: 'Settings',
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#FFFFFF',
-          },
-          headerTitleStyle: {
-            color: '#000000',
-            fontWeight: '600',
-            fontSize: Platform.OS === 'ios' ? 20 : 22,
-          },
-          headerShadowVisible: Platform.OS === 'ios',
           headerRight: () => (
             <Pressable
               style={{
@@ -53,7 +51,7 @@ export default function SettingsLayout() {
               <Ionicons
                 name={Platform.OS === 'ios' ? 'share-outline' : 'share-social-outline'}
                 size={24}
-                color="#007AFF"
+                color={theme.colors.primary}
               />
             </Pressable>
           ),

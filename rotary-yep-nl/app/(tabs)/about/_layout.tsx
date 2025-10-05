@@ -1,33 +1,28 @@
 import { Stack } from 'expo-router';
 import { Platform } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 export default function AboutLayout() {
+  const theme = useTheme();
+
   return (
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: theme.colors.card,
         },
-        headerTintColor: '#000000',
-        contentStyle: {
-          backgroundColor: '#F2F2F7',
+        headerTitleStyle: {
+          color: theme.colors.text,
+          fontWeight: '600',
+          fontSize: Platform.OS === 'ios' ? 20 : 22,
         },
+        headerTintColor: theme.colors.primary,
+        headerShadowVisible: Platform.OS === 'ios',
       }}>
       <Stack.Screen
         name="index"
         options={{
           title: 'About Us',
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#FFFFFF',
-          },
-          headerTitleStyle: {
-            color: '#000000',
-            fontWeight: '600',
-            fontSize: Platform.OS === 'ios' ? 20 : 22,
-          },
-          headerShadowVisible: Platform.OS === 'ios',
-          headerTransparent: false,
         }}
       />
     </Stack>

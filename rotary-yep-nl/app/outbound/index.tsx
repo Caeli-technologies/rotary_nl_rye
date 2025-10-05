@@ -14,6 +14,10 @@ interface ProgramItem {
   enabled?: boolean;
 }
 
+export const unstable_settings = {
+  initialRouteName: 'index',
+};
+
 export default function OutboundScreen() {
   const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
     if (!enabled) return;
