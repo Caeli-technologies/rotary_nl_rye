@@ -2,6 +2,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Platform, useColorScheme as useRNColorScheme } from 'react-native';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -12,334 +13,175 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const rnColorScheme = useRNColorScheme();
+
+  // Custom theme that's more aligned with native UI patterns
+  const customTheme = {
+    ...(colorScheme === 'dark' ? DarkTheme : DefaultTheme),
+    colors: {
+      ...(colorScheme === 'dark' ? DarkTheme.colors : DefaultTheme.colors),
+      primary: colorScheme === 'dark' ? '#9FA8DA' : '#1A237E',
+      background: colorScheme === 'dark' ? '#000000' : '#F2F2F7',
+      card: colorScheme === 'dark' ? '#1C1C1E' : '#FFFFFF',
+      text: colorScheme === 'dark' ? '#FFFFFF' : '#000000',
+      border: colorScheme === 'dark' ? '#38383A' : '#E5E5EA',
+      notification: colorScheme === 'dark' ? '#9FA8DA' : '#1A237E',
+    },
+  };
+
+  // Default stack screen options with native styling
+  const defaultStackOptions = {
+    headerStyle: {
+      backgroundColor: customTheme.colors.card,
+    },
+    headerTitleStyle: {
+      color: customTheme.colors.text,
+      fontWeight: '600' as const,
+      fontSize: Platform.OS === 'ios' ? 20 : 22,
+    },
+    headerTintColor: customTheme.colors.primary,
+    headerShadowVisible: Platform.OS === 'ios',
+    headerBackTitle: Platform.OS === 'ios' ? undefined : '',
+    contentStyle: {
+      backgroundColor: customTheme.colors.background,
+    },
+  };
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
+      <ThemeProvider value={customTheme}>
+        <Stack screenOptions={defaultStackOptions}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen
             name="rebound/countries"
             options={{
-              headerShown: true,
               title: 'Rebound Studenten',
               headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rebound/students"
             options={({ route }) => ({
-              headerShown: true,
               title: (route.params as any)?.country || 'Studenten',
               headerBackTitle: 'Countries',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             })}
           />
           <Stack.Screen
             name="rebound/student-detail"
             options={({ route }) => ({
-              headerShown: true,
               title: (route.params as any)?.country || 'Student Detail',
               headerBackTitle: (route.params as any)?.country || 'Studenten',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             })}
           />
           <Stack.Screen
             name="news"
             options={{
-              headerShown: true,
               title: 'Nieuws',
               headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="calendar"
             options={{
-              headerShown: true,
               title: 'Kalender',
               headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="camps-tours"
             options={{
-              headerShown: true,
               title: 'Zomerkampen',
               headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rotary-clubs"
             options={{
-              headerShown: true,
               title: 'Voor Rotary Clubs',
               headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rotary-clubs/algemene-informatie"
             options={{
-              headerShown: true,
               title: 'Algemene Informatie',
               headerBackTitle: 'Rotary Clubs',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rotary-clubs/jeugdcommissaris"
             options={{
-              headerShown: true,
               title: 'Info Jeugdcommissaris',
               headerBackTitle: 'Rotary Clubs',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rotary-clubs/gastgezin"
             options={{
-              headerShown: true,
               title: 'Info Gastgezin',
               headerBackTitle: 'Rotary Clubs',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rotary-clubs/counselor"
             options={{
-              headerShown: true,
               title: 'Info Counselor',
               headerBackTitle: 'Rotary Clubs',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="rotary-clubs/documenten"
             options={{
-              headerShown: true,
               title: 'Belangrijke Documenten',
               headerBackTitle: 'Rotary Clubs',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="pdf-viewer"
             options={({ route }) => ({
-              headerShown: true,
               title: (route.params as any)?.title || 'PDF Document',
               headerBackTitle: 'Terug',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
               headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
                 fontSize: 18,
               },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             })}
           />
           <Stack.Screen
             name="news/[id]"
             options={({ route }) => ({
-              headerShown: true,
               title: (route.params as any)?.title || 'Nieuws Detail',
               headerBackTitle: 'Nieuws',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             })}
           />
           <Stack.Screen
             name="outbound/index"
             options={{
-              headerShown: true,
               title: "Outbound Programma's",
               headerBackTitle: 'Home',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/long-term/index"
             options={{
-              headerShown: true,
               title: 'Long Term Exchange',
               headerBackTitle: 'Outbound',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/long-term/class-of/index"
             options={{
-              headerShown: true,
               title: 'Huidige Studenten',
               headerBackTitle: 'Long Term',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
-              headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
-                fontSize: 20,
-              },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             }}
           />
           <Stack.Screen
             name="outbound/long-term/class-of/student-detail"
             options={({ route }) => ({
-              headerShown: true,
               title: (route.params as any)?.studentName || 'Student Detail',
               headerBackTitle: (route.params as any)?.country || 'Studenten',
-              headerStyle: {
-                backgroundColor: '#FFFFFF',
-              },
               headerTitleStyle: {
-                color: '#1A237E',
-                fontWeight: '600',
                 fontSize: 18,
               },
-              headerTintColor: '#007AFF',
-              headerShadowVisible: true,
             })}
           />
           <Stack.Screen
@@ -870,7 +712,7 @@ export default function RootLayout() {
             }}
           />
         </Stack>
-        <StatusBar style="auto" />
+        <StatusBar style="auto" backgroundColor={customTheme.colors.background} />
       </ThemeProvider>
     </SafeAreaProvider>
   );

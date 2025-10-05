@@ -15,6 +15,7 @@ import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
+import { useUIColors } from '@/components/ui/native-ui';
 
 interface HomeCardProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -27,7 +28,7 @@ interface HomeCardProps {
   onPress?: () => void;
 }
 
-const HomeCard = React.memo<HomeCardProps>(
+const HomeCard = React.memo<HomeCardProps & { colors: ReturnType<typeof useUIColors> }>(
   ({
     icon = 'settings-outline',
     fontistoIcon,
@@ -37,6 +38,7 @@ const HomeCard = React.memo<HomeCardProps>(
     useSvg = false,
     svgSource,
     onPress,
+    colors,
   }) => {
     const isDefault = variant === 'default';
 
@@ -48,9 +50,16 @@ const HomeCard = React.memo<HomeCardProps>(
     }, [onPress]);
 
     const cardStyle = useMemo(
-      () => [isDefault ? styles.homeCard : styles.homeCardSingle],
-      [isDefault],
+      () => [
+        isDefault
+          ? { ...styles.homeCard, backgroundColor: colors.surface }
+          : { ...styles.homeCardSingle, backgroundColor: colors.surface },
+      ],
+      [isDefault, colors.surface],
     );
+
+    const iconColor = colors.primaryVariant;
+    const textColor = colors.primary;
 
     return (
       <View style={styles.cardWrapper}>
@@ -58,7 +67,7 @@ const HomeCard = React.memo<HomeCardProps>(
           style={({ pressed }) => [cardStyle, pressed && styles.pressedCard]}
           onPress={handlePress}
           android_ripple={{
-            color: 'rgba(159, 168, 218, 0.2)',
+            color: `${colors.primaryVariant}20`,
             borderless: false,
           }}>
           <View style={styles.cardContent}>
@@ -68,22 +77,22 @@ const HomeCard = React.memo<HomeCardProps>(
                   source={svgSource}
                   style={{ width: 35, height: 35 }}
                   contentFit="contain"
-                  tintColor="#9FA8DA"
+                  tintColor={iconColor}
                 />
               ) : materialIcon ? (
-                <MaterialCommunityIcons name={materialIcon} size={35} color="#9FA8DA" />
+                <MaterialCommunityIcons name={materialIcon} size={35} color={iconColor} />
               ) : fontistoIcon ? (
-                <Fontisto name={fontistoIcon} size={35} color="#9FA8DA" />
+                <Fontisto name={fontistoIcon} size={35} color={iconColor} />
               ) : (
-                <Ionicons name={icon} size={35} color="#9FA8DA" />
+                <Ionicons name={icon} size={35} color={iconColor} />
               )}
             </View>
             {isDefault ? (
               <View style={styles.titleContainer}>
-                <Text style={styles.cardTitle}>{title}</Text>
+                <Text style={[styles.cardTitle, { color: textColor }]}>{title}</Text>
               </View>
             ) : (
-              <Text style={styles.cardTitleSingle}>{title}</Text>
+              <Text style={[styles.cardTitleSingle, { color: textColor }]}>{title}</Text>
             )}
           </View>
         </Pressable>
@@ -96,6 +105,8 @@ HomeCard.displayName = 'HomeCard';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function HomeScreen() {
+  const colors = useUIColors();
+
   const carouselImages = useMemo(
     () => [
       require('@/assets/home/carousel/Banner_informatiemarkt_6_september_2025.jpg'),
@@ -172,7 +183,9 @@ export default function HomeScreen() {
   }, [currentImageIndex, containerWidth, animateToIndex, carouselImages.length]);
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      edges={['top']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -238,12 +251,19 @@ export default function HomeScreen() {
             <HomeCard
               icon="list-outline"
               title="Programma"
+              colors={colors}
               onPress={() => router.push('/programs')}
             />
-            <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push('/news')} />
+            <HomeCard
+              icon="newspaper-outline"
+              title="News"
+              colors={colors}
+              onPress={() => router.push('/news')}
+            />
             <HomeCard
               icon="calendar-outline"
               title="Calendar"
+              colors={colors}
               onPress={() => router.push('/calendar')}
             />
           </View>
@@ -252,16 +272,19 @@ export default function HomeScreen() {
             <HomeCard
               materialIcon="airplane-takeoff"
               title="Op Exchange"
+              colors={colors}
               onPress={() => router.push('/outbound')}
             />
             <HomeCard
               materialIcon="airplane-landing"
               title="To NL"
+              colors={colors}
               onPress={() => router.push('/inbound')}
             />
             <HomeCard
               icon="refresh-outline"
               title="Rebound"
+              colors={colors}
               onPress={() =>
                 router.push({
                   pathname: '/rebound/countries' as any,
@@ -276,12 +299,14 @@ export default function HomeScreen() {
               fontistoIcon="tent"
               title="Zomerkampen Lijst"
               variant="single"
+              colors={colors}
               onPress={() => router.push('/camps-tours')}
             />
             <HomeCard
               title="voor Rotary Clubs"
               variant="single"
               useSvg={true}
+              colors={colors}
               svgSource={require('@/assets/logo/rotary-logo-icon.svg')}
               onPress={() => router.push('/rotary-clubs')}
             />
@@ -308,7 +333,6 @@ const shadowStyle = Platform.select({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   scrollView: {
     flex: 1,
@@ -387,13 +411,11 @@ const styles = StyleSheet.create({
   },
   homeCard: {
     height: 120,
-    backgroundColor: '#F5F5F5',
     borderRadius: 10,
     ...shadowStyle,
   },
   homeCardSingle: {
     height: 80,
-    backgroundColor: '#F5F5F5',
     borderRadius: 10,
     ...shadowStyle,
   },
@@ -416,14 +438,12 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#1A237E',
     textAlign: 'center',
     maxWidth: 80,
   },
   cardTitleSingle: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#1A237E',
     textAlign: 'center',
   },
 });
