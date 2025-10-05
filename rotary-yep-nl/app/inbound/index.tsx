@@ -134,7 +134,7 @@ export default function InboundScreen() {
           inbox on a regular basis. Also you can find some further information in this app. If you
           have any questions that are not answered, please contact our inbound coordinator{' '}
           <Text style={styles.linkText} onPress={handleSandraContactPress}>
-            Sandra Cools
+            Sandra Cools-Wemer
           </Text>
           .
         </Text>

@@ -15,7 +15,8 @@ export const shortTermContacts: Organization[] = [
   {
     name: 'Marja Hofland',
     bio: '',
-    imageUrl: undefined,
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/marja-hofland.jpg',
     email: undefined,
     phoneNumber: undefined,
     club: undefined,
