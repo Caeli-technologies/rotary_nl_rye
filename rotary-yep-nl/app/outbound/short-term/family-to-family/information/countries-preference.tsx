@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -12,8 +13,12 @@ const shadowStyle = {
 };
 
 export default function CountriesPreferenceScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -21,11 +26,11 @@ export default function CountriesPreferenceScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="globe-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '20' }]}>
+              <Ionicons name="globe-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Landenvoorkeur</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Landenvoorkeur</Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Kies je voorkeursbestemming voor de Family-to-Family ervaring
             </Text>
           </View>
@@ -33,12 +38,22 @@ export default function CountriesPreferenceScreen() {
           {/* Landenkeuze uitleg */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Hoe kies je je voorkeur?</Text>
+              <Ionicons name="help-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Hoe kies je je voorkeur?
+              </Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
+            <View
+              style={[
+                styles.infoCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <Text style={[styles.infoText, { color: themeColors.text }]}>
                 Als je mee wilt doen aan het Family to Family programma geef je op of je voor het
                 noordelijk of zuidelijk halfrond gaat. Bij de landenkeuze dien je drie landen op 2
                 continenten op te geven. Hierbij gelden de Verenigde Staten en Canada als één
@@ -52,12 +67,23 @@ export default function CountriesPreferenceScreen() {
           {/* Europa aanbeveling */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="star-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Kies voor Europa!</Text>
+              <Ionicons name="star-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Europa: Noordelijk of Zuidelijk
+              </Text>
             </View>
 
-            <View style={styles.europeCard}>
-              <Text style={styles.europeText}>
+            <View
+              style={[
+                styles.europeCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
+              <Text style={[styles.europeText, { color: themeColors.text }]}>
                 Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste uitwisselingen
                 plaats en ontstaan de mooiste vriendschappen met het voordeel dat je deze vrienden
                 makkelijker kunt herbezoeken. De reiskosten zijn veel lager.
@@ -68,42 +94,67 @@ export default function CountriesPreferenceScreen() {
           {/* Tips voor landenkeuze */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="bulb-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Tips voor je keuze</Text>
+              <Ionicons name="bulb-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Tips voor een goede keuze
+              </Text>
             </View>
 
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="language-outline" size={20} color="#2196F3" />
+            <View
+              style={[
+                styles.tipCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View style={[styles.tipIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="language-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Taal</Text>
-                <Text style={styles.tipDescription}>
-                  Overweeg welke talen je spreekt of wilt leren. Basiskennis helpt bij de
-                  communicatie.
+                <Text style={[styles.tipTitle, { color: themeColors.text }]}>Taal en cultuur</Text>
+                <Text style={[styles.tipDescription, { color: themeColors.textSecondary }]}>
+                  Overweeg landen waar je de taal spreekt of wilt leren
                 </Text>
               </View>
             </View>
 
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="globe-outline" size={20} color="#4CAF50" />
+            <View
+              style={[
+                styles.tipCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View style={[styles.tipIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="globe-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Cultuur</Text>
-                <Text style={styles.tipDescription}>
+                <Text style={[styles.tipTitle, { color: themeColors.text }]}>Cultuur</Text>
+                <Text style={[styles.tipDescription, { color: themeColors.textSecondary }]}>
                   Kies landen waarvan de cultuur en geschiedenis je echt interesseren.
                 </Text>
               </View>
             </View>
 
-            <View style={styles.tipCard}>
-              <View style={styles.tipIcon}>
-                <Ionicons name="airplane-outline" size={20} color="#FF9800" />
+            <View
+              style={[
+                styles.tipCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View style={[styles.tipIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="airplane-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipTitle}>Reiskosten</Text>
-                <Text style={styles.tipDescription}>
+                <Text style={[styles.tipTitle, { color: themeColors.text }]}>Reiskosten</Text>
+                <Text style={[styles.tipDescription, { color: themeColors.textSecondary }]}>
                   Houd rekening met reiskosten en afstand, vooral bij kortere programma&apos;s.
                 </Text>
               </View>
@@ -118,7 +169,6 @@ export default function CountriesPreferenceScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -138,7 +188,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -146,13 +195,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -170,13 +217,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Info Card
   infoCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -184,37 +229,27 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333',
   },
 
   // Europe Card Styles
   europeCard: {
-    backgroundColor: '#E8F5E8',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios'
-      ? {
-          shadowColor: '#4CAF50',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-        }
-      : {
-          elevation: 1,
-        }),
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   europeText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333',
   },
 
   // Logo Section
@@ -225,12 +260,10 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: 14,
-    color: '#777777',
   },
 
   // Tip Card Styles
   tipCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 12,
@@ -241,14 +274,12 @@ const styles = StyleSheet.create({
       : {
           elevation: 1,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   tipIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -259,12 +290,10 @@ const styles = StyleSheet.create({
   tipTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   tipDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 });

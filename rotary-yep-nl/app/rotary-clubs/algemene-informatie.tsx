@@ -1,29 +1,46 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { useTheme } from '@/hooks/use-theme';
 interface InfoSectionProps {
   title: string;
   content: string;
+  styles: any;
+  themeColors: any;
 }
 
-const InfoSection = React.memo(({ title, content }: InfoSectionProps) => {
+const InfoSection = React.memo(({ title, content, styles, themeColors }: InfoSectionProps) => {
   return (
-    <View style={styles.infoSection}>
-      <Text style={styles.sectionTitle}>{title}</Text>
-      <Text style={styles.sectionContent}>{content}</Text>
+    <View
+      style={[
+        styles.infoSection,
+        {
+          backgroundColor: themeColors.card,
+          borderColor: themeColors.border,
+          shadowColor: themeColors.shadow,
+        },
+      ]}>
+      <Text style={[styles.sectionTitle, { color: themeColors.text }]}>{title}</Text>
+      <Text style={[styles.sectionContent, { color: themeColors.textSecondary }]}>{content}</Text>
     </View>
   );
 });
 InfoSection.displayName = 'InfoSection';
-InfoSection.displayName = 'InfoSection';
 
 export default function AlgemeneInformatieScreen() {
+  const { colors: themeColors } = useTheme();
+
   const renderInfoSection = useCallback(
     (section: { title: string; content: string }, index: number) => (
-      <InfoSection key={index} title={section.title} content={section.content} />
+      <InfoSection
+        key={index}
+        title={section.title}
+        content={section.content}
+        styles={styles}
+        themeColors={themeColors}
+      />
     ),
-    [],
+    [styles],
   );
 
   const infoSections = [
@@ -50,8 +67,10 @@ export default function AlgemeneInformatieScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
@@ -67,7 +86,6 @@ export default function AlgemeneInformatieScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -80,11 +98,9 @@ const styles = StyleSheet.create({
     paddingBottom: 34,
   },
   infoSection: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -93,14 +109,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 12,
     lineHeight: 24,
   },
   sectionContent: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
     textAlign: 'left',
   },
 });

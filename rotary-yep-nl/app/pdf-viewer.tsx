@@ -14,8 +14,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import PdfRendererView from 'react-native-pdf-renderer';
 import { File, Paths } from 'expo-file-system';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 export default function PDFViewerScreen() {
+  const { colors: themeColors } = useTheme();
+
   const navigation = useNavigation();
   const { url, title } = useLocalSearchParams<{
     url: string;
@@ -118,8 +121,8 @@ export default function PDFViewerScreen() {
             style={{
               fontSize: Platform.OS === 'ios' ? 18 : 20,
               fontWeight: '600',
-              color: '#1A237E',
               textAlign: 'center',
+              color: themeColors.text,
             }}
             numberOfLines={1}>
             {title || 'PDF Document'}
@@ -127,10 +130,10 @@ export default function PDFViewerScreen() {
           {totalPages > 0 && (
             <Text
               style={{
-                color: '#8E8E93',
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
+                color: themeColors.textSecondary,
               }}>
               Page {currentPage + 1} of {totalPages}
             </Text>
@@ -146,7 +149,7 @@ export default function PDFViewerScreen() {
               padding: 8,
             })}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            <Ionicons name="share-outline" size={24} color="#007AFF" />
+            <Ionicons name="share-outline" size={24} color={themeColors.link} />
           </Pressable>
         ) : null,
     });
@@ -167,9 +170,11 @@ export default function PDFViewerScreen() {
         <View style={styles.container}>
           <View style={styles.content}>
             <Ionicons name="alert-circle-outline" size={64} color="#ff6b6b" />
-            <Text style={styles.errorText}>{error}</Text>
-            <Pressable style={styles.retryButton} onPress={downloadPDF}>
-              <Text style={styles.buttonText}>Try Again</Text>
+            <Text style={[styles.errorText, { color: '#ff6b6b' }]}>{error}</Text>
+            <Pressable
+              style={[styles.retryButton, { backgroundColor: themeColors.link }]}
+              onPress={downloadPDF}>
+              <Text style={[styles.buttonText, { color: themeColors.card }]}>Try Again</Text>
             </Pressable>
           </View>
         </View>
@@ -182,8 +187,10 @@ export default function PDFViewerScreen() {
       <SafeAreaView style={styles.safeArea} edges={['bottom']}>
         <View style={styles.container}>
           <View style={styles.content}>
-            <ActivityIndicator size="large" color="#007AFF" />
-            <Text style={styles.loadingText}>Loading PDF...</Text>
+            <ActivityIndicator size="large" color={themeColors.link} />
+            <Text style={[styles.loadingText, { color: themeColors.textSecondary }]}>
+              Loading PDF...
+            </Text>
           </View>
         </View>
       </SafeAreaView>
@@ -191,8 +198,10 @@ export default function PDFViewerScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <PdfRendererView
           source={localFilePath}
           style={styles.pdf}
@@ -210,7 +219,6 @@ export default function PDFViewerScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -223,7 +231,6 @@ const styles = StyleSheet.create({
   },
   pdf: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   errorText: {
     fontSize: 16,
@@ -235,11 +242,9 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#8E8E93',
     marginTop: 16,
   },
   retryButton: {
-    backgroundColor: '#007AFF',
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,

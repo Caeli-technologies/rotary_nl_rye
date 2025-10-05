@@ -1,34 +1,21 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { NativeTabs, Icon, VectorIcon, Label } from 'expo-router/unstable-native-tabs';
-import { Platform, useColorScheme } from 'react-native';
+import { Platform } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 import React from 'react';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { colors: themeColors } = useTheme();
 
-  // Define colors based on color scheme
-  const colors = {
-    light: {
-      tintColor: '#1A237E',
-      backgroundColor: '#FFFFFF',
-      iconColor: '#8E8E93',
-      selectedIconColor: '#1A237E',
-      labelColor: '#8E8E93',
-      selectedLabelColor: '#1A237E',
-      shadowColor: '#000000',
-    },
-    dark: {
-      tintColor: '#9FA8DA',
-      backgroundColor: '#1C1C1E',
-      iconColor: '#8E8E93',
-      selectedIconColor: '#9FA8DA',
-      labelColor: '#8E8E93',
-      selectedLabelColor: '#9FA8DA',
-      shadowColor: '#000000',
-    },
+  // Define tab bar colors using Rotary brand colors
+  const activeColors = {
+    tintColor: themeColors.primary,
+    backgroundColor: themeColors.card,
+    iconColor: themeColors.icon,
+    labelColor: themeColors.textSecondary,
+    shadowColor: themeColors.shadow,
+    selectedIconColor: themeColors.primary,
   };
-
-  const activeColors = colors[colorScheme ?? 'light'];
 
   return (
     <NativeTabs
@@ -44,7 +31,7 @@ export default function TabLayout() {
       blurEffect={Platform.OS === 'ios' ? 'systemMaterial' : undefined}
       shadowColor={Platform.OS === 'ios' ? activeColors.shadowColor : undefined}
       labelVisibilityMode={Platform.OS === 'android' ? 'labeled' : undefined}
-      rippleColor={Platform.OS === 'android' ? 'rgba(26, 35, 126, 0.2)' : undefined}>
+      rippleColor={Platform.OS === 'android' ? `${themeColors.primary}33` : undefined}>
       <NativeTabs.Trigger name="index">
         <Label>Home</Label>
         {Platform.select({

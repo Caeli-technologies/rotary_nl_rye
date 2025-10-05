@@ -2,17 +2,26 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 export default function ComplyWithScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>
+          <View
+            style={[
+              styles.textContainer,
+              { backgroundColor: themeColors.card, borderColor: themeColors.border },
+            ]}>
+            <Text style={[styles.text, { color: themeColors.text }]}>
               Zit je op het VMBO, HAVO of VWO dan kun je na selectie voor deze uitwisseling in
               aanmerking komen. Je hebt wel een Rotaryclub nodig die jou wil voordragen: een
               Sponsorclub. Dat betekent niet dat de club jouw kosten betaalt, maar de club is
@@ -25,14 +34,25 @@ export default function ComplyWithScreen() {
             </Text>
           </View>
 
-          <View style={styles.ageCard}>
-            <View style={styles.ageIconContainer}>
-              <Ionicons name="calendar" size={28} color="#9C27B0" />
+          <View
+            style={[
+              styles.ageCard,
+              {
+                backgroundColor: themeColors.card,
+                borderColor: themeColors.border,
+                borderLeftColor: themeColors.primary,
+              },
+            ]}>
+            <View
+              style={[styles.ageIconContainer, { backgroundColor: themeColors.primary + '20' }]}>
+              <Ionicons name="calendar" size={28} color={themeColors.primary} />
             </View>
             <View style={styles.ageContent}>
-              <Text style={styles.ageTitle}>15 - 18 jaar</Text>
-              <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
-              <Text style={styles.ageNote}>
+              <Text style={[styles.ageTitle, { color: themeColors.primary }]}>15 - 18 jaar</Text>
+              <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>
+                Indicatieve leeftijdsgrenzen
+              </Text>
+              <Text style={[styles.ageNote, { color: themeColors.textSecondary }]}>
                 Voor overheidsscholen, soms enige flexibiliteit mogelijk
               </Text>
             </View>
@@ -46,7 +66,6 @@ export default function ComplyWithScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
   },
   scrollView: {
     flex: 1,
@@ -56,10 +75,10 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   textContainer: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 20,
     marginBottom: 16,
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -69,19 +88,17 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333333',
   },
 
   // Age Card Styles
   ageCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
     borderLeftWidth: 4,
-    borderLeftColor: '#9C27B0',
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -92,7 +109,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#F3E5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -103,18 +119,15 @@ const styles = StyleSheet.create({
   ageTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#9C27B0',
     marginBottom: 2,
   },
   ageSubtitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   ageNote: {
     fontSize: 12,
-    color: '#666',
     fontStyle: 'italic',
   },
 });

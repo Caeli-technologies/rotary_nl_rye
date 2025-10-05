@@ -22,7 +22,8 @@ import { NetworkImage } from '../../components/network-image';
 import { StudentsData } from '../../types/student';
 import studentsData from '../../assets/students/list.json';
 import { getFlagAsset } from '../../utils/flags';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const data = studentsData as StudentsData;
 
 const shadowStyle = {
@@ -39,9 +40,17 @@ interface ActionButtonProps {
   subtitle?: string;
   onPress: () => void;
   disabled?: boolean;
+  themeColors: typeof Colors.light;
 }
 
-function ActionButton({ icon, title, subtitle, onPress, disabled = false }: ActionButtonProps) {
+function ActionButton({
+  icon,
+  title,
+  subtitle,
+  onPress,
+  disabled = false,
+  themeColors,
+}: ActionButtonProps) {
   const [scaleAnim] = useState(new Animated.Value(1));
 
   const handlePressIn = () => {
@@ -66,26 +75,51 @@ function ActionButton({ icon, title, subtitle, onPress, disabled = false }: Acti
       <Pressable
         style={({ pressed }) => [
           styles.actionButton,
+          { backgroundColor: themeColors.card, borderColor: themeColors.border },
           disabled && styles.actionButtonDisabled,
-          !disabled && pressed && styles.actionButtonPressed,
+          !disabled &&
+            pressed && [
+              styles.actionButtonPressed,
+              { backgroundColor: themeColors.backgroundElevated },
+            ],
         ]}
         onPress={disabled ? undefined : onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         disabled={disabled}>
         <View style={styles.actionButtonContent}>
-          <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
-            <Ionicons name={icon} size={24} color={disabled ? '#999' : '#9FA8DA'} />
+          <View
+            style={[
+              styles.actionIconContainer,
+              { backgroundColor: themeColors.primary },
+              disabled && [
+                styles.actionIconDisabled,
+                { backgroundColor: themeColors.backgroundElevated },
+              ],
+            ]}>
+            <Ionicons
+              name={icon}
+              size={24}
+              color={disabled ? themeColors.textTertiary : themeColors.card}
+            />
           </View>
           <View style={styles.actionTextContainer}>
             <Text
-              style={[styles.actionTitle, disabled && styles.actionTitleDisabled]}
+              style={[
+                styles.actionTitle,
+                { color: themeColors.text },
+                disabled && [styles.actionTitleDisabled, { color: themeColors.textTertiary }],
+              ]}
               numberOfLines={1}>
               {title}
             </Text>
             {subtitle && (
               <Text
-                style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]}
+                style={[
+                  styles.actionSubtitle,
+                  { color: themeColors.textSecondary },
+                  disabled && [styles.actionSubtitleDisabled, { color: themeColors.textTertiary }],
+                ]}
                 numberOfLines={2}>
                 {subtitle}
               </Text>
@@ -95,7 +129,7 @@ function ActionButton({ icon, title, subtitle, onPress, disabled = false }: Acti
             <Ionicons
               name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
               size={Platform.OS === 'ios' ? 20 : 24}
-              color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
+              color={themeColors.textTertiary}
             />
           )}
         </View>
@@ -105,6 +139,8 @@ function ActionButton({ icon, title, subtitle, onPress, disabled = false }: Acti
 }
 
 export default function StudentDetailScreen() {
+  const { colors: themeColors } = useTheme();
+
   const navigation = useNavigation();
   const params = useLocalSearchParams<{
     year: string;
@@ -164,17 +200,17 @@ export default function StudentDetailScreen() {
               style={{
                 fontSize: Platform.OS === 'ios' ? 18 : 20,
                 fontWeight: '600',
-                color: '#1A237E',
+                color: themeColors.text,
               }}
               numberOfLines={1}>
               {student.name}
             </Text>
             <Text
               style={{
-                color: '#8E8E93',
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
+                color: themeColors.textSecondary,
               }}>
               {params.year} Exchange
             </Text>
@@ -182,15 +218,17 @@ export default function StudentDetailScreen() {
         ),
       });
     }
-  }, [navigation, student, params.year]);
+  }, [navigation, student, params.year, themeColors]);
 
   if (!student) {
     return (
-      <SafeAreaView style={styles.container} edges={['bottom']}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: themeColors.background }]}
+        edges={['bottom']}>
         <View style={styles.errorContainer}>
-          <Ionicons name="person-outline" size={64} color="#9FA8DA" />
-          <Text style={styles.errorTitle}>Student Not Found</Text>
-          <Text style={styles.errorMessage}>
+          <Ionicons name="person-outline" size={64} color={themeColors.primary} />
+          <Text style={[styles.errorTitle, { color: themeColors.text }]}>Student Not Found</Text>
+          <Text style={[styles.errorMessage, { color: themeColors.textSecondary }]}>
             The student information could not be loaded. Please try again.
           </Text>
         </View>
@@ -199,9 +237,11 @@ export default function StudentDetailScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
-        style={styles.scrollView}
+        style={[styles.scrollView, { backgroundColor: themeColors.background }]}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         {/* Hero Section */}
@@ -216,15 +256,23 @@ export default function StudentDetailScreen() {
             />
           </View>
 
-          <Text style={styles.studentName}>{student.name}</Text>
-          <Text style={styles.studentDescription}>{student.description}</Text>
+          <Text style={[styles.studentName, { color: themeColors.text }]}>{student.name}</Text>
+          <Text style={[styles.studentDescription, { color: themeColors.textSecondary }]}>
+            {student.description}
+          </Text>
         </View>
 
         {/* Exchange Info Card */}
-        <View style={styles.exchangeCard}>
+        <View
+          style={[
+            styles.exchangeCard,
+            { backgroundColor: themeColors.card, borderColor: themeColors.border },
+          ]}>
           <View style={styles.exchangeHeader}>
-            <Ionicons name="airplane-outline" size={24} color="#9FA8DA" />
-            <Text style={styles.exchangeTitle}>Exchange Details</Text>
+            <Ionicons name="airplane-outline" size={24} color={themeColors.primary} />
+            <Text style={[styles.exchangeTitle, { color: themeColors.text }]}>
+              Exchange Details
+            </Text>
           </View>
 
           <View style={styles.exchangeRoute}>
@@ -233,17 +281,28 @@ export default function StudentDetailScreen() {
                 {fromFlagAsset ? (
                   <Image source={fromFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
-                  <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>{student.fromFlag.toUpperCase()}</Text>
+                  <View
+                    style={[
+                      styles.exchangeFlag,
+                      styles.flagPlaceholder,
+                      { backgroundColor: themeColors.backgroundElevated },
+                    ]}>
+                    <Text style={[styles.flagText, { color: themeColors.textTertiary }]}>
+                      {student.fromFlag.toUpperCase()}
+                    </Text>
                   </View>
                 )}
-                <Text style={styles.exchangeLabel}>From</Text>
+                <Text style={[styles.exchangeLabel, { color: themeColors.textTertiary }]}>
+                  From
+                </Text>
               </View>
-              <Text style={styles.exchangeCountryName}>{student.from}</Text>
+              <Text style={[styles.exchangeCountryName, { color: themeColors.text }]}>
+                {student.from}
+              </Text>
             </View>
 
             <View style={styles.exchangeArrow}>
-              <Ionicons name="arrow-forward" size={24} color="#9FA8DA" />
+              <Ionicons name="arrow-forward" size={24} color={themeColors.primary} />
             </View>
 
             <View style={styles.exchangeCountry}>
@@ -251,35 +310,50 @@ export default function StudentDetailScreen() {
                 {toFlagAsset ? (
                   <Image source={toFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
-                  <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>{student.toFlag.toUpperCase()}</Text>
+                  <View
+                    style={[
+                      styles.exchangeFlag,
+                      styles.flagPlaceholder,
+                      { backgroundColor: themeColors.backgroundElevated },
+                    ]}>
+                    <Text style={[styles.flagText, { color: themeColors.textTertiary }]}>
+                      {student.toFlag.toUpperCase()}
+                    </Text>
                   </View>
                 )}
-                <Text style={styles.exchangeLabel}>To</Text>
+                <Text style={[styles.exchangeLabel, { color: themeColors.textTertiary }]}>To</Text>
               </View>
-              <Text style={styles.exchangeCountryName}>{student.to}</Text>
+              <Text style={[styles.exchangeCountryName, { color: themeColors.text }]}>
+                {student.to}
+              </Text>
             </View>
           </View>
 
-          <View style={styles.yearBadge}>
-            <Text style={styles.yearText}>{params.year}</Text>
+          <View style={[styles.yearBadge, { backgroundColor: themeColors.primary }]}>
+            <Text style={[styles.yearText, { color: themeColors.card }]}>{params.year}</Text>
           </View>
         </View>
 
         {/* Bio Section */}
         {student.bio && student.bio.trim() !== '' && (
-          <View style={styles.bioCard}>
+          <View
+            style={[
+              styles.bioCard,
+              { backgroundColor: themeColors.card, borderColor: themeColors.border },
+            ]}>
             <View style={styles.bioHeader}>
-              <Ionicons name="document-text-outline" size={24} color="#9FA8DA" />
-              <Text style={styles.bioTitle}>Biography</Text>
+              <Ionicons name="document-text-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.bioTitle, { color: themeColors.text }]}>Biography</Text>
             </View>
-            <Text style={styles.bioText}>{student.bio}</Text>
+            <Text style={[styles.bioText, { color: themeColors.textSecondary }]}>
+              {student.bio}
+            </Text>
           </View>
         )}
 
         {/* Actions */}
         <View style={styles.actionsSection}>
-          <Text style={styles.sectionTitle}>Actions</Text>
+          <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Actions</Text>
 
           <ActionButton
             icon="play-circle-outline"
@@ -287,6 +361,7 @@ export default function StudentDetailScreen() {
             subtitle={student.videoUrl ? 'View exchange experience' : 'Video not available'}
             onPress={handleVideoPress}
             disabled={!student.videoUrl}
+            themeColors={themeColors}
           />
         </View>
       </ScrollView>
@@ -303,14 +378,14 @@ export default function StudentDetailScreen() {
               style={styles.closeButton}
               onPress={handleCloseVideo}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-              <Ionicons name="close" size={28} color="#FFFFFF" />
+              <Ionicons name="close" size={28} color={themeColors.card} />
             </Pressable>
           </View>
 
           <View style={styles.videoContainer}>
             {status === 'loading' && (
               <View style={styles.loadingContainer}>
-                <Text style={styles.loadingText}>Loading video...</Text>
+                <Text style={[styles.loadingText, { color: '#FFFFFF' }]}>Loading video...</Text>
               </View>
             )}
             <VideoView
@@ -325,8 +400,10 @@ export default function StudentDetailScreen() {
 
           {student && (
             <View style={styles.videoInfo}>
-              <Text style={styles.videoTitle}>{student.name}&apos;s Exchange Story</Text>
-              <Text style={styles.videoSubtitle}>
+              <Text style={[styles.videoTitle, { color: '#FFFFFF' }]}>
+                {student.name}&apos;s Exchange Story
+              </Text>
+              <Text style={[styles.videoSubtitle, { color: 'rgba(255, 255, 255, 0.7)' }]}>
                 {student.from} → {student.to} • {params.year}
               </Text>
             </View>
@@ -340,7 +417,6 @@ export default function StudentDetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -350,7 +426,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24, // Extra padding to prevent clipping
     paddingTop: Platform.OS === 'ios' ? 32 : 24,
     paddingBottom: 32,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#FFFFFF',
+    backgroundColor: 'transparent',
     overflow: 'visible',
   },
   imageContainer: {
@@ -365,19 +441,16 @@ const styles = StyleSheet.create({
   studentName: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '500',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
     marginTop: 16,
   },
   studentDescription: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
   },
   exchangeCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
@@ -390,7 +463,6 @@ const styles = StyleSheet.create({
       : {
           elevation: 3,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   exchangeHeader: {
@@ -401,7 +473,6 @@ const styles = StyleSheet.create({
   exchangeTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
   exchangeRoute: {
@@ -425,7 +496,6 @@ const styles = StyleSheet.create({
   },
   exchangeLabel: {
     fontSize: 12,
-    color: '#666',
     fontWeight: '500',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
@@ -433,14 +503,12 @@ const styles = StyleSheet.create({
   exchangeCountryName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     textAlign: 'center',
   },
   exchangeArrow: {
     marginHorizontal: 20,
   },
   yearBadge: {
-    backgroundColor: '#E8EAF6',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
@@ -449,10 +517,8 @@ const styles = StyleSheet.create({
   yearText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1A237E',
   },
   bioCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 8,
     margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
@@ -461,7 +527,6 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   bioHeader: {
@@ -472,12 +537,10 @@ const styles = StyleSheet.create({
   bioTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
   bioText: {
     fontSize: 16,
-    color: '#333',
     lineHeight: 24,
   },
   actionsSection: {
@@ -487,11 +550,9 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 20 : 18,
     fontWeight: Platform.OS === 'ios' ? '600' : '500',
-    color: '#1A237E',
     marginBottom: 16,
   },
   actionButton: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     marginBottom: 16,
     overflow: 'hidden',
@@ -504,16 +565,12 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   actionButtonDisabled: {
-    backgroundColor: '#F9F9F9',
     opacity: 0.6,
   },
-  actionButtonPressed: {
-    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
-  },
+  actionButtonPressed: {},
   actionButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -524,48 +581,36 @@ const styles = StyleSheet.create({
     width: Platform.OS === 'ios' ? 48 : 52,
     height: Platform.OS === 'ios' ? 48 : 52,
     borderRadius: Platform.OS === 'ios' ? 24 : 26,
-    backgroundColor: Platform.OS === 'ios' ? '#E8EAF6' : '#F3E5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
     ...(Platform.OS === 'ios' && {
-      shadowColor: '#1A237E',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,
       shadowRadius: 4,
     }),
   },
-  actionIconDisabled: {
-    backgroundColor: '#F0F0F0',
-  },
+  actionIconDisabled: {},
   actionTextContainer: {
     flex: 1,
   },
   actionTitle: {
     fontSize: Platform.OS === 'ios' ? 16 : 16,
     fontWeight: Platform.OS === 'ios' ? '600' : '500',
-    color: '#1A237E',
     marginBottom: 2,
   },
-  actionTitleDisabled: {
-    color: '#999',
-  },
+  actionTitleDisabled: {},
   actionSubtitle: {
     fontSize: 14,
-    color: '#666',
     fontWeight: '400',
   },
-  actionSubtitleDisabled: {
-    color: '#999',
-  },
+  actionSubtitleDisabled: {},
   flagPlaceholder: {
-    backgroundColor: '#E0E0E0',
     justifyContent: 'center',
     alignItems: 'center',
   },
   flagText: {
     fontSize: 10,
-    color: '#666',
     fontWeight: '600',
   },
   errorContainer: {
@@ -577,13 +622,11 @@ const styles = StyleSheet.create({
   errorTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#1A237E',
     marginTop: 16,
     marginBottom: 8,
   },
   errorMessage: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
   },
@@ -623,7 +666,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   loadingText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '500',
   },
@@ -640,13 +682,12 @@ const styles = StyleSheet.create({
   videoTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#FFFFFF',
     textAlign: 'center',
     marginBottom: 8,
   },
   videoSubtitle: {
     fontSize: 16,
-    color: '#CCCCCC',
+    color: 'rgba(255, 255, 255, 0.7)',
     textAlign: 'center',
   },
 });

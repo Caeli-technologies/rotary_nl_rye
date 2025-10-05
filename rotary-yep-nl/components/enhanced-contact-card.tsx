@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, Pressable, Platform, Text } from 'react-native';
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 import { NetworkImage } from './network-image';
 import { Contact, Organization, Rotex } from '@/types/contact';
 import { useContactInfo } from '@/hooks/use-contact-info';
@@ -28,6 +30,7 @@ const shadowStyle = {
 };
 
 export function ContactCard({ contact, index }: ContactCardProps) {
+  const { colors: themeColors } = useTheme();
   const [showDetails, setShowDetails] = useState(false);
   const contactInfo = useContactInfo(contact);
 
@@ -41,7 +44,11 @@ export function ContactCard({ contact, index }: ContactCardProps) {
   return (
     <>
       <Pressable
-        style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+        style={({ pressed }) => [
+          styles.card,
+          { backgroundColor: themeColors.card, borderColor: themeColors.border },
+          pressed && styles.cardPressed,
+        ]}
         onPress={handleCardPress}>
         <View style={styles.content}>
           <NetworkImage
@@ -53,16 +60,20 @@ export function ContactCard({ contact, index }: ContactCardProps) {
           />
 
           <View style={styles.middleSection}>
-            <Text style={styles.name} numberOfLines={1}>
+            <Text style={[styles.name, { color: themeColors.text }]} numberOfLines={1}>
               {contact.name}
             </Text>
             {contactInfo.primaryFunction && (
-              <Text style={styles.function} numberOfLines={1}>
+              <Text
+                style={[styles.function, { color: themeColors.textSecondary }]}
+                numberOfLines={1}>
                 {contactInfo.primaryFunction}
               </Text>
             )}
             {contactInfo.isOrg && getOrgClub(contact) && (
-              <Text style={styles.organization} numberOfLines={1}>
+              <Text
+                style={[styles.organization, { color: themeColors.textTertiary }]}
+                numberOfLines={1}>
                 {getOrgClub(contact)}
               </Text>
             )}
@@ -71,7 +82,7 @@ export function ContactCard({ contact, index }: ContactCardProps) {
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
             size={Platform.OS === 'ios' ? 20 : 24}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
@@ -83,12 +94,10 @@ export function ContactCard({ contact, index }: ContactCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     marginHorizontal: Platform.OS === 'ios' ? 0 : 16,
     marginBottom: Platform.OS === 'ios' ? 0 : 12,
     borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
-    borderBottomColor: '#E0E0E0',
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
@@ -96,8 +105,8 @@ const styles = StyleSheet.create({
         }),
   },
   cardPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
-    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
+    opacity: Platform.OS === 'ios' ? 0.8 : 1,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   content: {
     flexDirection: 'row',
@@ -115,15 +124,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 4,
-    color: '#1A237E',
   },
   function: {
     fontSize: 14,
-    color: '#666',
     marginBottom: 2,
   },
   organization: {
     fontSize: 12,
-    color: '#999',
   },
 });

@@ -5,7 +5,8 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
   subtitle?: string;
@@ -14,11 +15,11 @@ interface MenuItem {
 }
 
 export default function ShortTermScreen() {
+  const { colors: themeColors } = useTheme();
+
   const handleItemPress = useCallback(async (route: string) => {
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch (error) {
       console.error('Error navigating to route:', error);
@@ -29,24 +30,37 @@ export default function ShortTermScreen() {
   const renderMenuItem = useCallback(
     ({ item }: { item: MenuItem }) => (
       <Pressable
-        style={({ pressed }) => [styles.menuItem, pressed && styles.menuItemPressed]}
+        style={({ pressed }) => [
+          styles.menuItem,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+        ]}
         onPress={() => handleItemPress(item.route)}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tap to view details"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        android_ripple={{ color: themeColors.primary + '20', borderless: false }}>
         <View style={styles.menuContent}>
-          <View style={styles.iconContainer}>
-            <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+          <View style={[styles.iconContainer, { backgroundColor: themeColors.primary + '15' }]}>
+            <FontAwesome5 name={item.icon} size={22} color={themeColors.primary} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.menuTitle}>{item.title}</Text>
-            {item.subtitle && <Text style={styles.menuSubtitle}>{item.subtitle}</Text>}
+            <Text style={[styles.menuTitle, { color: themeColors.text }]}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={[styles.menuSubtitle, { color: themeColors.textSecondary }]}>
+                {item.subtitle}
+              </Text>
+            )}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
@@ -76,12 +90,12 @@ export default function ShortTermScreen() {
     () => (
       <View style={styles.introContainer}>
         <View style={styles.headerSection}>
-          <Text style={styles.headerTitle}>Short Term Programs</Text>
-          <Text style={styles.headerSubtitle}>
+          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Short Term Programs</Text>
+          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
             Experience different cultures through shorter exchange programs
           </Text>
         </View>
-        <Text style={styles.introText}>
+        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Rotary short-term programs offer young people the opportunity to experience different
           cultures through shorter exchange periods. These programs are perfect for students who
           want to gain international experience but cannot commit to a full year abroad.
@@ -112,7 +126,9 @@ export default function ShortTermScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
@@ -133,7 +149,6 @@ export default function ShortTermScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -152,36 +167,28 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     marginBottom: 16,
   },
   introText: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
     textAlign: 'left',
   },
   menuItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 1 },
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
-    elevation: 2,
-  },
-  menuItemPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 1,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+    elevation: 3,
   },
   menuContent: {
     flexDirection: 'row',
@@ -190,13 +197,12 @@ const styles = StyleSheet.create({
     minHeight: 72,
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
-    backgroundColor: '#F2F2F7',
   },
   textContainer: {
     flex: 1,
@@ -205,13 +211,11 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
   },
   menuSubtitle: {
     fontSize: 13,
     fontWeight: '400',
-    color: '#8E8E93',
   },
 });

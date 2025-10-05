@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import * as Haptics from 'expo-haptics';
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -20,8 +14,12 @@ const shadowStyle = {
 };
 
 export default function FamilyToFamilyHowToSignUpScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -29,11 +27,13 @@ export default function FamilyToFamilyHowToSignUpScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="document-text-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '20' }]}>
+              <Ionicons name="document-text-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Hoe schrijf ik mezelf in</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
+              Hoe schrijf ik mezelf in
+            </Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Stappen om je aan te melden voor het Family-to-Family programma
             </Text>
           </View>
@@ -41,14 +41,22 @@ export default function FamilyToFamilyHowToSignUpScreen() {
           {/* Email instructies */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="mail-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Aanmelding</Text>
+              <Ionicons name="mail-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Aanmelding</Text>
             </View>
 
-            <View style={styles.instructionCard}>
-              <Text style={styles.instructionText}>Je stuurt een gezellig email bericht naar:</Text>
-              <Text style={styles.emailText}>interesse@rotaryyep.nl</Text>
-              <Text style={styles.instructionText}>
+            <View
+              style={[
+                styles.instructionCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <Text style={[styles.instructionText, { color: themeColors.text }]}>
+                Je stuurt een gezellig email bericht naar:
+              </Text>
+              <Text style={[styles.emailText, { color: themeColors.primary }]}>
+                interesse@rotaryyep.nl
+              </Text>
+              <Text style={[styles.instructionText, { color: themeColors.text }]}>
                 Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.
               </Text>
             </View>
@@ -56,17 +64,32 @@ export default function FamilyToFamilyHowToSignUpScreen() {
 
           {/* Email Button */}
           <View style={styles.buttonSection}>
-            <TouchableOpacity
-              style={styles.emailButton}
-              onPress={() =>
-                Linking.openURL(
-                  'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Family-to-Family%20programma',
-                )
-              }>
-              <Ionicons name="mail" size={24} color="#FFFFFF" style={styles.buttonIcon} />
-              <Text style={styles.emailButtonText}>Verstuur Email</Text>
-            </TouchableOpacity>
-            <Text style={styles.buttonDescription}>
+            <Pressable
+              style={({ pressed }) => [
+                styles.emailButton,
+                { backgroundColor: themeColors.primary, shadowColor: themeColors.shadow },
+                pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+              ]}
+              onPress={async () => {
+                try {
+                  await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  await Linking.openURL(
+                    'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Family-to-Family%20programma',
+                  );
+                } catch (error) {
+                  console.error('Error opening email:', error);
+                }
+              }}
+              accessibilityRole="button"
+              accessibilityLabel="Verstuur Email"
+              accessibilityHint="Opent je email app met een voorgeschreven bericht"
+              android_ripple={{ color: 'rgba(255,255,255,0.2)', borderless: false }}>
+              <Ionicons name="mail" size={24} color={themeColors.card} style={styles.buttonIcon} />
+              <Text style={[styles.emailButtonText, { color: themeColors.card }]}>
+                Verstuur Email
+              </Text>
+            </Pressable>
+            <Text style={[styles.buttonDescription, { color: themeColors.textSecondary }]}>
               Klik om direct een email te sturen naar interesse@rotaryyep.nl
             </Text>
           </View>
@@ -79,7 +102,6 @@ export default function FamilyToFamilyHowToSignUpScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -99,7 +121,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -107,13 +128,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -131,13 +150,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Instruction Card Styles
   instructionCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -145,19 +162,16 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   instructionText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333',
     marginBottom: 12,
   },
   emailText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2196F3',
     textAlign: 'center',
     paddingVertical: 12,
     marginBottom: 12,
@@ -170,35 +184,26 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   emailButton: {
-    backgroundColor: '#FF6B35',
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 16,
     paddingHorizontal: 32,
     borderRadius: 25,
     marginBottom: 12,
-    ...(Platform.OS === 'ios'
-      ? {
-          shadowColor: '#FF6B35',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.3,
-          shadowRadius: 4,
-        }
-      : {
-          elevation: 4,
-        }),
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
   },
   buttonIcon: {
     marginRight: 8,
   },
   emailButtonText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
   },
   buttonDescription: {
     fontSize: 14,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 20,
     paddingHorizontal: 20,
@@ -212,6 +217,5 @@ const styles = StyleSheet.create({
   },
   updateText: {
     fontSize: 14,
-    color: '#777777',
   },
 });

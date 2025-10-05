@@ -11,6 +11,7 @@ import {
   Platform,
   Text,
 } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getInitials } from '@/utils/communications';
 import { Ionicons } from '@expo/vector-icons';
@@ -40,6 +41,7 @@ export function NetworkImage({
   style,
   ...props
 }: NetworkImageProps) {
+  const { colors: themeColors } = useTheme();
   const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error' | 'placeholder'>(
     isValidImageUrl(imageUrl) ? 'loading' : 'placeholder',
   );
@@ -92,9 +94,21 @@ export function NetworkImage({
 
   const renderPlaceholder = useCallback(() => {
     const placeholder = (
-      <View style={[styles.placeholder, imageSize, style]}>
+      <View
+        style={[
+          styles.placeholder,
+          imageSize,
+          { backgroundColor: themeColors.primary + '20' },
+          style,
+        ]}>
         {showInitials && (
-          <Text style={[styles.initials, { fontSize: Math.min(size * 0.26, 26) }]}>{initials}</Text>
+          <Text
+            style={[
+              styles.initials,
+              { fontSize: Math.min(size * 0.26, 26), color: themeColors.primary },
+            ]}>
+            {initials}
+          </Text>
         )}
       </View>
     );
@@ -127,7 +141,7 @@ export function NetworkImage({
         />
         {imageState === 'loading' && (
           <View style={[styles.loadingContainer, imageSize]}>
-            <ActivityIndicator size="small" color="#1f4e79" />
+            <ActivityIndicator size="small" color={themeColors.primary} />
           </View>
         )}
       </View>
@@ -162,8 +176,8 @@ export function NetworkImage({
     }
 
     return (
-      <View style={styles.expandedPlaceholder}>
-        <Text style={styles.expandedInitials}>{initials}</Text>
+      <View style={[styles.expandedPlaceholder, { backgroundColor: themeColors.primary + '20' }]}>
+        <Text style={[styles.expandedInitials, { color: themeColors.primary }]}>{initials}</Text>
       </View>
     );
   }, [imageState, shouldShowImage, imageUrl, initials]);
@@ -178,14 +192,23 @@ export function NetworkImage({
           animationType="fade"
           transparent={true}
           onRequestClose={closeModal}>
-          <SafeAreaView style={styles.modalOverlay} edges={['top', 'left', 'right', 'bottom']}>
+          <SafeAreaView
+            style={[styles.modalOverlay, { backgroundColor: 'rgba(0, 0, 0, 0.95)' }]}
+            edges={['top', 'left', 'right', 'bottom']}>
             <Pressable style={styles.modalBackground} onPress={closeModal}>
               <View style={styles.expandedImageContainer}>{renderExpandedContent()}</View>
             </Pressable>
             <Pressable
-              style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}
+              style={({ pressed }) => [
+                styles.closeButton,
+                { backgroundColor: themeColors.surface + '99' },
+                pressed && [
+                  styles.closeButtonPressed,
+                  { backgroundColor: themeColors.surface + 'CC' },
+                ],
+              ]}
               onPress={closeModal}>
-              <Ionicons name="close" size={24} color="#FFFFFF" />
+              <Ionicons name="close" size={24} color={themeColors.onSurface} />
             </Pressable>
           </SafeAreaView>
         </Modal>
@@ -196,25 +219,21 @@ export function NetworkImage({
 
 const styles = StyleSheet.create({
   placeholder: {
-    backgroundColor: '#1A237E',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
   },
   initials: {
     fontWeight: Platform.OS === 'ios' ? '600' : '700',
-    color: '#FFFFFF',
     textAlign: 'center',
   },
   loadingContainer: {
-    backgroundColor: '#F5F5F5',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -239,7 +258,6 @@ const styles = StyleSheet.create({
   expandedPlaceholder: {
     width: screenWidth * 0.6,
     height: screenWidth * 0.6,
-    backgroundColor: '#1A237E',
     borderRadius: (screenWidth * 0.6) / 2,
     alignItems: 'center',
     justifyContent: 'center',
@@ -247,7 +265,6 @@ const styles = StyleSheet.create({
   expandedInitials: {
     fontSize: screenWidth * 0.15,
     fontWeight: Platform.OS === 'ios' ? '700' : '800',
-    color: '#FFFFFF',
     textAlign: 'center',
   },
   closeButton: {
@@ -257,12 +274,11 @@ const styles = StyleSheet.create({
     width: Platform.OS === 'ios' ? 44 : 48,
     height: Platform.OS === 'ios' ? 44 : 48,
     borderRadius: Platform.OS === 'ios' ? 22 : 24,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   closeButtonPressed: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     opacity: 0.8,
+    transform: [{ scale: 0.95 }],
   },
 });

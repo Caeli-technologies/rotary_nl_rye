@@ -5,6 +5,7 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { longTermContacts } from '@/data/contacts/long-term';
 import { ContactModal } from '@/components/contact-modal';
+import { useTheme } from '@/hooks/use-theme';
 import * as Haptics from 'expo-haptics';
 
 interface ProgramItem {
@@ -16,15 +17,14 @@ interface ProgramItem {
 }
 
 export default function InboundScreen() {
+  const { colors: themeColors } = useTheme();
   const [showSandraContact, setShowSandraContact] = useState(false);
 
   const sandraCools = longTermContacts.find((contact) => contact.name === 'Sandra Cools-Wemer');
 
   const handleSandraContactPress = useCallback(async () => {
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       setShowSandraContact(true);
     } catch (error) {
       console.error('Error showing contact:', error);
@@ -39,9 +39,7 @@ export default function InboundScreen() {
     if (!enabled) return;
 
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch (error) {
       console.error('Error navigating to route:', error);
@@ -51,9 +49,7 @@ export default function InboundScreen() {
 
   const handleEmailPress = useCallback(async (email: string, name: string) => {
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       await Linking.openURL(`mailto:${email}`);
     } catch (error) {
       console.error('Error opening email:', error);
@@ -65,7 +61,12 @@ export default function InboundScreen() {
       <Pressable
         style={({ pressed }) => [
           styles.programItem,
-          pressed && styles.programItemPressed,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
           !item.enabled && styles.programItemDisabled,
         ]}
         onPress={() => handleProgramPress(item.route, item.enabled)}
@@ -77,19 +78,35 @@ export default function InboundScreen() {
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         disabled={!item.enabled}>
         <View style={styles.programContent}>
-          <View style={[styles.iconContainer, !item.enabled && styles.iconContainerDisabled]}>
-            <FontAwesome5 name={item.icon} size={22} color={item.enabled ? '#007AFF' : '#8E8E93'} />
+          <View
+            style={[
+              styles.iconContainer,
+              { backgroundColor: themeColors.primary + '15' },
+              !item.enabled && styles.iconContainerDisabled,
+            ]}>
+            <FontAwesome5
+              name={item.icon}
+              size={22}
+              color={item.enabled ? themeColors.primary : themeColors.textTertiary}
+            />
           </View>
           <View style={styles.textContainer}>
-            <Text style={[styles.programTitle, !item.enabled && styles.programTitleDisabled]}>
+            <Text
+              style={[
+                styles.programTitle,
+                { color: themeColors.text },
+                !item.enabled && { color: themeColors.textTertiary },
+              ]}>
               {item.title}
             </Text>
-            <Text style={styles.programSubtitle}>{item.subtitle}</Text>
+            <Text style={[styles.programSubtitle, { color: themeColors.textTertiary }]}>
+              {item.subtitle}
+            </Text>
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={item.enabled ? (Platform.OS === 'ios' ? '#C7C7CC' : '#666') : '#C7C7CC'}
+            color={item.enabled ? themeColors.textTertiary : themeColors.textDisabled}
           />
         </View>
       </Pressable>
@@ -127,13 +144,15 @@ export default function InboundScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={styles.introTitle}>Inbounds</Text>
-        <Text style={styles.introText}>
+        <Text style={[styles.introTitle, { color: themeColors.primary }]}>Inbounds</Text>
+        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Wow, we&apos;re so excited that you will be our inbound exchange student for the coming
           year. For this to happen we will need some extra information so please watch your email
           inbox on a regular basis. Also you can find some further information in this app. If you
           have any questions that are not answered, please contact our inbound coordinator{' '}
-          <Text style={styles.linkText} onPress={handleSandraContactPress}>
+          <Text
+            style={[styles.linkText, { color: themeColors.link }]}
+            onPress={handleSandraContactPress}>
             Sandra Cools-Wemer
           </Text>
           .
@@ -146,8 +165,8 @@ export default function InboundScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={styles.sectionHeaderTitle}>{title}</Text>
-        <View style={styles.sectionHeaderDivider} />
+        <Text style={[styles.sectionHeaderTitle, { color: themeColors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
     [],
@@ -185,7 +204,9 @@ export default function InboundScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
@@ -215,7 +236,6 @@ export default function InboundScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -230,17 +250,14 @@ const styles = StyleSheet.create({
   introTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 16,
   },
   introText: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
     textAlign: 'left',
   },
   linkText: {
-    color: '#007AFF',
     textDecorationLine: 'underline',
   },
   sectionHeaderContainer: {
@@ -250,20 +267,16 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   sectionHeaderDivider: {
     height: 2,
-    backgroundColor: '#E5E5EA',
     borderRadius: 1,
   },
   programItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -282,18 +295,23 @@ const styles = StyleSheet.create({
     padding: 16,
     minHeight: 72,
   },
-  iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#F2F2F7',
+  programCardInner: {
+    flexDirection: 'row',
     alignItems: 'center',
+    opacity: 1,
+  },
+  programCardDisabled: {
+    opacity: 0.5,
+  },
+  iconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 16,
   },
-  iconContainerDisabled: {
-    backgroundColor: '#F8F8F8',
-  },
+  iconContainerDisabled: {},
   textContainer: {
     flex: 1,
     marginRight: 8,
@@ -301,17 +319,13 @@ const styles = StyleSheet.create({
   programTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
   },
-  programTitleDisabled: {
-    color: '#8E8E93',
-  },
+  programTitleDisabled: {},
   programSubtitle: {
     fontSize: 13,
     fontWeight: '400',
-    color: '#8E8E93',
   },
   spacer: {
     height: 10,

@@ -1,5 +1,6 @@
-import React, { useMemo, useLayoutEffect } from 'react';
+import React, { useMemo, useLayoutEffect, useCallback } from 'react';
 import { StyleSheet, View, Text, Pressable, SectionList, Platform } from 'react-native';
+import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
@@ -9,7 +10,8 @@ import { NetworkImage } from '../../components/network-image';
 import { StudentsData, Student } from '../../types/student';
 import studentsData from '../../assets/students/list.json';
 import { getFlagAsset } from '../../utils/flags';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const data = studentsData as StudentsData;
 
 const shadowStyle = {
@@ -23,13 +25,26 @@ const shadowStyle = {
 interface StudentCardProps {
   student: StudentWithYear;
   onPress: () => void;
+  themeColors: typeof Colors.light;
 }
 
-function StudentCard({ student, onPress }: StudentCardProps) {
+function StudentCard({ student, onPress, themeColors }: StudentCardProps) {
   return (
     <Pressable
-      style={({ pressed }) => [styles.studentCard, pressed && styles.studentCardPressed]}
-      onPress={onPress}>
+      style={({ pressed }) => [
+        styles.studentCard,
+        { backgroundColor: themeColors.card, borderColor: themeColors.border },
+        pressed && styles.studentCardPressed,
+      ]}
+      onPress={onPress}
+      android_ripple={{
+        color: 'rgba(0, 122, 255, 0.2)',
+        borderless: false,
+      }}
+      accessibilityRole="button"
+      accessibilityLabel={`View details for ${student.name}`}
+      accessibilityHint="Tap to view student exchange details"
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
       <View style={styles.studentCardContent}>
         <NetworkImage
           imageUrl={student.imageUrl}
@@ -40,14 +55,16 @@ function StudentCard({ student, onPress }: StudentCardProps) {
         />
 
         <View style={styles.studentInfo}>
-          <Text style={styles.studentName}>{student.name}</Text>
-          <Text style={styles.studentDescription}>{student.description}</Text>
+          <Text style={[styles.studentName, { color: themeColors.text }]}>{student.name}</Text>
+          <Text style={[styles.studentDescription, { color: themeColors.textSecondary }]}>
+            {student.description}
+          </Text>
         </View>
 
         <Ionicons
           name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
           size={Platform.OS === 'ios' ? 20 : 24}
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
+          color={themeColors.textTertiary}
         />
       </View>
     </Pressable>
@@ -59,6 +76,8 @@ interface StudentWithYear extends Student {
 }
 
 export default function ReboundStudentsScreen() {
+  const { colors: themeColors } = useTheme();
+
   const navigation = useNavigation();
   const params = useLocalSearchParams<{
     country: string;
@@ -99,16 +118,35 @@ export default function ReboundStudentsScreen() {
     return Array.from(groups.entries()).sort(([a], [b]) => b.localeCompare(a)); // Sort years descending
   }, [studentsWithYears]);
 
-  const handleStudentPress = (student: StudentWithYear) => {
-    router.push({
-      pathname: '/rebound/student-detail' as any,
-      params: {
-        year: student.year,
-        country: params.country,
-        studentName: student.name,
-      },
-    });
-  };
+  const handleStudentPress = useCallback(
+    async (student: StudentWithYear) => {
+      try {
+        if (Platform.OS === 'ios') {
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        router.push({
+          pathname: '/rebound/student-detail' as any,
+          params: {
+            year: student.year,
+            country: params.country,
+            studentName: student.name,
+          },
+        });
+      } catch (error) {
+        console.error('Error navigating to student detail:', error);
+        // Still navigate even if haptics fail
+        router.push({
+          pathname: '/rebound/student-detail' as any,
+          params: {
+            year: student.year,
+            country: params.country,
+            studentName: student.name,
+          },
+        });
+      }
+    },
+    [params.country],
+  );
 
   const headerFlagAsset = getFlagAsset(params.flag || '');
 
@@ -133,13 +171,17 @@ export default function ReboundStudentsScreen() {
                 style={{
                   width: 24,
                   height: 16,
-                  backgroundColor: '#E0E0E0',
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginRight: 8,
                   borderRadius: 2,
+                  backgroundColor: themeColors.backgroundElevated,
                 }}>
-                <Text style={{ fontSize: 8, color: '#666', fontWeight: '600' }}>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    color: themeColors.textTertiary,
+                  }}>
                   {(params.flag || '').toUpperCase()}
                 </Text>
               </View>
@@ -148,7 +190,7 @@ export default function ReboundStudentsScreen() {
               style={{
                 fontSize: Platform.OS === 'ios' ? 18 : 20,
                 fontWeight: '600',
-                color: '#1A237E',
+                color: themeColors.text,
               }}>
               {params.country}
             </Text>
@@ -156,10 +198,10 @@ export default function ReboundStudentsScreen() {
           {studentsWithYears.length > 0 && (
             <Text
               style={{
-                color: '#8E8E93',
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
+                color: themeColors.textSecondary,
               }}>
               {studentsWithYears.length} student
               {studentsWithYears.length !== 1 ? 's' : ''}
@@ -168,7 +210,14 @@ export default function ReboundStudentsScreen() {
         </View>
       ),
     });
-  }, [navigation, params.country, params.flag, headerFlagAsset, studentsWithYears.length]);
+  }, [
+    navigation,
+    params.country,
+    params.flag,
+    headerFlagAsset,
+    studentsWithYears.length,
+    themeColors,
+  ]);
 
   // Convert yearGroups to sections format for SectionList
   const sections = useMemo(() => {
@@ -179,26 +228,44 @@ export default function ReboundStudentsScreen() {
     }));
   }, [yearGroups]);
 
-  const renderStudent = ({ item }: { item: StudentWithYear }) => (
-    <StudentCard student={item} onPress={() => handleStudentPress(item)} />
+  const renderStudent = useCallback(
+    ({ item }: { item: StudentWithYear }) => (
+      <StudentCard
+        student={item}
+        onPress={() => handleStudentPress(item)}
+        themeColors={themeColors}
+      />
+    ),
+    [handleStudentPress, themeColors],
   );
 
-  const renderSectionHeader = ({ section }: { section: { title: string; count: number } }) => (
-    <View style={styles.sectionHeader}>
-      <Text style={styles.sectionTitle}>{section.title}</Text>
-      <Text style={styles.sectionCount}>
-        {section.count} student{section.count !== 1 ? 's' : ''}
-      </Text>
-    </View>
+  const renderSectionHeader = useCallback(
+    ({ section }: { section: { title: string; count: number } }) => (
+      <View
+        style={[
+          styles.sectionHeader,
+          { backgroundColor: themeColors.background, borderBottomColor: themeColors.divider },
+        ]}>
+        <Text style={[styles.sectionTitle, { color: themeColors.primary }]}>{section.title}</Text>
+        <Text style={[styles.sectionCount, { color: themeColors.textSecondary }]}>
+          {section.count} student{section.count !== 1 ? 's' : ''}
+        </Text>
+      </View>
+    ),
+    [themeColors],
   );
 
   if (sections.length === 0) {
     return (
-      <SafeAreaView style={styles.container} edges={['bottom']}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: themeColors.background }]}
+        edges={['bottom']}>
         <View style={styles.emptyState}>
-          <Ionicons name="school-outline" size={48} color="#9FA8DA" />
-          <Text style={styles.emptyStateTitle}>No students found</Text>
-          <Text style={styles.emptyStateMessage}>
+          <Ionicons name="school-outline" size={48} color={themeColors.primary} />
+          <Text style={[styles.emptyStateTitle, { color: themeColors.primary }]}>
+            No students found
+          </Text>
+          <Text style={[styles.emptyStateMessage, { color: themeColors.textSecondary }]}>
             There are no exchange students who went to {params.country}.
           </Text>
         </View>
@@ -207,7 +274,9 @@ export default function ReboundStudentsScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <SectionList
         sections={sections}
         renderItem={renderStudent}
@@ -231,7 +300,6 @@ export default function ReboundStudentsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   contentContainer: {
     paddingBottom: 20,
@@ -242,32 +310,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: Platform.OS === 'ios' ? 8 : 12,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#F5F5F5',
     borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
-    borderBottomColor: '#E0E0E0',
   },
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '500',
-    color: '#1A237E',
     letterSpacing: Platform.OS === 'ios' ? 0.35 : 0,
   },
   sectionCount: {
     fontSize: 14,
-    color: '#666',
     fontWeight: '400',
   },
   studentCard: {
-    backgroundColor: '#FFFFFF',
     marginHorizontal: Platform.OS === 'ios' ? 16 : 0,
     borderRadius: Platform.OS === 'ios' ? 12 : 0,
     borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
-    borderBottomColor: '#E0E0E0',
     ...(Platform.OS === 'ios' ? shadowStyle : {}),
   },
   studentCardPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
-    backgroundColor: Platform.OS === 'ios' ? '#F0F0F0' : '#F5F5F5',
+    opacity: Platform.OS === 'ios' ? 0.8 : 1,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   studentCardContent: {
     flexDirection: 'row',
@@ -284,12 +346,10 @@ const styles = StyleSheet.create({
   studentName: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   studentDescription: {
     fontSize: 14,
-    color: '#666',
     marginBottom: 8,
   },
   exchangeInfo: {
@@ -307,7 +367,6 @@ const styles = StyleSheet.create({
   },
   countryText: {
     fontSize: 12,
-    color: '#666',
     fontWeight: '500',
   },
   arrowIcon: {
@@ -329,24 +388,20 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1A237E',
     marginTop: 16,
     marginBottom: 8,
   },
   emptyStateMessage: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
   },
   flagPlaceholder: {
-    backgroundColor: '#E0E0E0',
     justifyContent: 'center',
     alignItems: 'center',
   },
   flagText: {
     fontSize: 8,
-    color: '#666',
     fontWeight: '600',
   },
 });

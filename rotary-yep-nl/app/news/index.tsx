@@ -7,12 +7,14 @@ import {
   Pressable,
   ActivityIndicator,
   Alert,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 interface NewsItem {
   id: number;
   images: string;
@@ -34,13 +36,25 @@ interface NewsData {
   news: NewsItem[];
 }
 
-function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
+function NewsCard({
+  item,
+  onPress,
+  themeColors,
+}: {
+  item: NewsItem;
+  onPress: () => void;
+  themeColors: typeof Colors.light;
+}) {
   return (
     <Pressable
-      style={({ pressed }) => [styles.newsCard, pressed && styles.newsCardPressed]}
+      style={({ pressed }) => [
+        styles.newsCard,
+        { backgroundColor: themeColors.card, shadowColor: themeColors.shadow },
+        pressed && styles.newsCardPressed,
+      ]}
       onPress={onPress}
       android_ripple={{
-        color: 'rgba(0, 122, 255, 0.2)',
+        color: themeColors.primary + '20',
         borderless: false,
       }}>
       <View style={styles.cardContent}>
@@ -59,11 +73,13 @@ function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
           )}
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.newsTitle} numberOfLines={2}>
+          <Text style={[styles.newsTitle, { color: themeColors.text }]} numberOfLines={2}>
             {item.title}
           </Text>
           {item.description && (
-            <Text style={styles.newsDescription} numberOfLines={3}>
+            <Text
+              style={[styles.newsDescription, { color: themeColors.textSecondary }]}
+              numberOfLines={3}>
               {item.description}
             </Text>
           )}
@@ -74,6 +90,8 @@ function NewsCard({ item, onPress }: { item: NewsItem; onPress: () => void }) {
 }
 
 export default function NewsScreen() {
+  const { colors: themeColors } = useTheme();
+
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -142,15 +160,17 @@ export default function NewsScreen() {
   };
 
   const renderNewsItem = ({ item }: { item: NewsItem }) => (
-    <NewsCard item={item} onPress={() => handleNewsItemPress(item)} />
+    <NewsCard item={item} onPress={() => handleNewsItemPress(item)} themeColors={themeColors} />
   );
 
   const renderEmptyComponent = () => {
     if (loading) {
       return (
         <View style={styles.centered}>
-          <ActivityIndicator size="large" color="#007AFF" />
-          <Text style={styles.loadingText}>Loading news...</Text>
+          <ActivityIndicator size="large" color={themeColors.link} />
+          <Text style={[styles.loadingText, { color: themeColors.textSecondary }]}>
+            Loading news...
+          </Text>
         </View>
       );
     }
@@ -158,11 +178,13 @@ export default function NewsScreen() {
     if (error) {
       return (
         <View style={styles.centered}>
-          <Ionicons name="alert-circle" size={64} color="#ff6b6b" />
-          <Text style={styles.errorText}>Failed to load news</Text>
-          <Text style={styles.errorSubtext}>{error}</Text>
-          <Pressable style={styles.retryButton} onPress={() => fetchNews()}>
-            <Text style={styles.retryText}>Try Again</Text>
+          <Ionicons name="alert-circle" size={64} color={themeColors.error} />
+          <Text style={[styles.errorText, { color: themeColors.error }]}>Failed to load news</Text>
+          <Text style={[styles.errorSubtext, { color: themeColors.textSecondary }]}>{error}</Text>
+          <Pressable
+            style={[styles.retryButton, { backgroundColor: themeColors.primary }]}
+            onPress={() => fetchNews()}>
+            <Text style={[styles.retryText, { color: themeColors.onPrimary }]}>Try Again</Text>
           </Pressable>
         </View>
       );
@@ -170,14 +192,16 @@ export default function NewsScreen() {
 
     return (
       <View style={styles.centered}>
-        <Ionicons name="newspaper-outline" size={64} color="#ccc" />
-        <Text style={styles.emptyText}>No news available</Text>
+        <Ionicons name="newspaper-outline" size={64} color={themeColors.textTertiary} />
+        <Text style={[styles.emptyText, { color: themeColors.textSecondary }]}>
+          No news available
+        </Text>
       </View>
     );
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={[]}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: themeColors.background }]} edges={[]}>
       <FlatList
         data={newsData}
         renderItem={renderNewsItem}
@@ -195,7 +219,6 @@ export default function NewsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   listContent: {
     paddingHorizontal: 16,
@@ -208,10 +231,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   newsCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -220,6 +241,7 @@ const styles = StyleSheet.create({
   },
   newsCardPressed: {
     opacity: 0.8,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   cardContent: {
     flexDirection: 'row',
@@ -258,14 +280,12 @@ const styles = StyleSheet.create({
   newsTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 8,
     lineHeight: 22,
   },
   newsDescription: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#8E8E93',
     lineHeight: 20,
   },
   centered: {
@@ -277,7 +297,6 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#666',
   },
   errorText: {
     marginTop: 16,
@@ -289,12 +308,10 @@ const styles = StyleSheet.create({
   errorSubtext: {
     marginTop: 8,
     fontSize: 14,
-    color: '#666',
     textAlign: 'center',
   },
   retryButton: {
     marginTop: 20,
-    backgroundColor: '#007AFF',
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
@@ -307,7 +324,6 @@ const styles = StyleSheet.create({
   emptyText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
   },
 });

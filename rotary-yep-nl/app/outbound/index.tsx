@@ -5,7 +5,8 @@ import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 interface ProgramItem {
   title: string;
   subtitle: string;
@@ -19,13 +20,13 @@ export const unstable_settings = {
 };
 
 export default function OutboundScreen() {
+  const { colors: themeColors } = useTheme();
+
   const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
     if (!enabled) return;
 
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch (error) {
       console.error('Error navigating to route:', error);
@@ -38,7 +39,12 @@ export default function OutboundScreen() {
       <Pressable
         style={({ pressed }) => [
           styles.programItem,
-          pressed && styles.programItemPressed,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
           !item.enabled && styles.programItemDisabled,
         ]}
         onPress={() => handleProgramPress(item.route, item.enabled)}
@@ -48,21 +54,38 @@ export default function OutboundScreen() {
           item.enabled ? 'Tap to view program details' : 'This program is not yet available'
         }
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        android_ripple={{ color: themeColors.primary + '20', borderless: false }}
         disabled={!item.enabled}>
         <View style={styles.programContent}>
-          <View style={[styles.iconContainer, !item.enabled && styles.iconContainerDisabled]}>
-            <FontAwesome5 name={item.icon} size={22} color={item.enabled ? '#007AFF' : '#8E8E93'} />
+          <View
+            style={[
+              styles.iconContainer,
+              { backgroundColor: themeColors.primary + '15' },
+              !item.enabled && styles.iconContainerDisabled,
+            ]}>
+            <FontAwesome5
+              name={item.icon}
+              size={22}
+              color={item.enabled ? themeColors.primary : themeColors.textTertiary}
+            />
           </View>
           <View style={styles.textContainer}>
-            <Text style={[styles.programTitle, !item.enabled && styles.programTitleDisabled]}>
+            <Text
+              style={[
+                styles.programTitle,
+                { color: themeColors.text },
+                !item.enabled && { color: themeColors.textTertiary },
+              ]}>
               {item.title}
             </Text>
-            <Text style={styles.programSubtitle}>{item.subtitle}</Text>
+            <Text style={[styles.programSubtitle, { color: themeColors.textTertiary }]}>
+              {item.subtitle}
+            </Text>
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={item.enabled ? (Platform.OS === 'ios' ? '#C7C7CC' : '#666') : '#C7C7CC'}
+            color={item.enabled ? themeColors.textTertiary : themeColors.textDisabled}
           />
         </View>
       </Pressable>
@@ -100,8 +123,8 @@ export default function OutboundScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={styles.introTitle}>Kandidaten</Text>
-        <Text style={styles.introText}>
+        <Text style={[styles.introTitle, { color: themeColors.primary }]}>Kandidaten</Text>
+        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling.
           Wereldwijd gaan er jaarlijks zo&apos;n 8.000 studenten via Rotary op jaaruitwisseling, een
           hele organisatie.
@@ -114,8 +137,8 @@ export default function OutboundScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={styles.sectionHeaderTitle}>{title}</Text>
-        <View style={styles.sectionHeaderDivider} />
+        <Text style={[styles.sectionHeaderTitle, { color: themeColors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
     [],
@@ -151,7 +174,9 @@ export default function OutboundScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
@@ -172,7 +197,6 @@ export default function OutboundScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -187,13 +211,11 @@ const styles = StyleSheet.create({
   introTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 16,
   },
   introText: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
     textAlign: 'left',
   },
   sectionHeaderContainer: {
@@ -203,28 +225,20 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   sectionHeaderDivider: {
     height: 2,
-    backgroundColor: '#E5E5EA',
     borderRadius: 1,
   },
   programItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
     elevation: 2,
-  },
-  programItemPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 1,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   programItemDisabled: {
     opacity: 0.6,
@@ -236,16 +250,15 @@ const styles = StyleSheet.create({
     minHeight: 72,
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#F2F2F7',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
   },
   iconContainerDisabled: {
-    backgroundColor: '#F8F8F8',
+    opacity: 0.5,
   },
   textContainer: {
     flex: 1,
@@ -254,17 +267,12 @@ const styles = StyleSheet.create({
   programTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
-  },
-  programTitleDisabled: {
-    color: '#8E8E93',
   },
   programSubtitle: {
     fontSize: 13,
     fontWeight: '400',
-    color: '#8E8E93',
   },
   spacer: {
     height: 10,

@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { NetworkImage } from '@/components/network-image';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -53,8 +54,10 @@ const contributors: Contributor[] = [
 ];
 
 export default function ContributorsScreen() {
+  const { colors: themeColors } = useTheme();
+
   const ContributorCard = ({ contributor }: { contributor: Contributor }) => (
-    <View style={styles.contributorCard}>
+    <View style={[styles.contributorCard, { borderBottomColor: themeColors.border }]}>
       <NetworkImage
         imageUrl={contributor.imageUrl}
         name={contributor.name}
@@ -62,36 +65,50 @@ export default function ContributorsScreen() {
         expandable={false}
       />
       <View style={styles.contributorInfo}>
-        <Text style={styles.contributorName}>{contributor.name}</Text>
-        <Text style={styles.contributorRole}>{contributor.role}</Text>
+        <Text style={[styles.contributorName, { color: themeColors.text }]}>
+          {contributor.name}
+        </Text>
+        <Text style={[styles.contributorRole, { color: themeColors.accent }]}>
+          {contributor.role}
+        </Text>
         <View style={styles.locationContainer}>
-          <Ionicons name="location-outline" size={14} color="#666" />
-          <Text style={styles.contributorLocation}>{contributor.location}</Text>
+          <Ionicons name="location-outline" size={14} color={themeColors.textSecondary} />
+          <Text style={[styles.contributorLocation, { color: themeColors.textSecondary }]}>
+            {contributor.location}
+          </Text>
         </View>
       </View>
     </View>
   );
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
-        style={styles.scrollView}
+        style={[styles.scrollView, { backgroundColor: themeColors.background }]}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="people-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="people-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.pageTitle}>Contributors</Text>
-            <Text style={styles.pageSubtitle}>Thanks to everyone who made this app possible!</Text>
+            <Text style={[styles.pageTitle, { color: themeColors.text }]}>Contributors</Text>
+            <Text style={[styles.pageSubtitle, { color: themeColors.textSecondary }]}>
+              Thanks to everyone who made this app possible!
+            </Text>
           </View>
 
           {/* Contributors List */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Development Team</Text>
-            <View style={styles.contributorsContainer}>
+            <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Development Team</Text>
+            <View
+              style={[
+                styles.contributorsContainer,
+                { backgroundColor: themeColors.card, shadowColor: themeColors.shadow },
+              ]}>
               {contributors.map((contributor) => (
                 <ContributorCard key={contributor.id} contributor={contributor} />
               ))}
@@ -106,7 +123,6 @@ export default function ContributorsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   scrollView: {
     flex: 1,
@@ -126,7 +142,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -134,13 +149,11 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   pageSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -153,13 +166,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 16,
   },
 
   // Contributors
   contributorsContainer: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     overflow: 'hidden',
     ...shadowStyle,
@@ -169,7 +180,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#E0E0E0',
   },
   contributorInfo: {
     flex: 1,
@@ -178,12 +188,10 @@ const styles = StyleSheet.create({
   contributorName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   contributorRole: {
     fontSize: 14,
-    color: '#666',
     marginBottom: 4,
   },
   locationContainer: {
@@ -192,7 +200,6 @@ const styles = StyleSheet.create({
   },
   contributorLocation: {
     fontSize: 12,
-    color: '#666',
     marginLeft: 4,
   },
 });

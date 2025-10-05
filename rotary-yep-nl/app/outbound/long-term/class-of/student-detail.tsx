@@ -3,10 +3,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 
-import StudentDetail from '@/components/students/StudentDetail';
+import { StudentDetail } from '@/components/students/StudentDetail';
 import { currentOutboundStudents } from '@/data/outbound-students';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 export default function StudentDetailScreen() {
+  const { colors: themeColors } = useTheme();
+
   const params = useLocalSearchParams();
 
   const student = useMemo(() => {
@@ -16,9 +19,9 @@ export default function StudentDetailScreen() {
 
   if (!student) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
         <View style={styles.centered}>
-          <Text style={styles.errorText}>Student niet gevonden</Text>
+          <Text style={[styles.errorText, { color: themeColors.text }]}>Student niet gevonden</Text>
         </View>
       </SafeAreaView>
     );
@@ -30,7 +33,6 @@ export default function StudentDetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   centered: {
     flex: 1,
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 18,
-    color: '#666',
     textAlign: 'center',
   },
 });

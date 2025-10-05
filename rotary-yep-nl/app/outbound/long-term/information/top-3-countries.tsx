@@ -7,7 +7,8 @@ import { Image } from 'expo-image';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEvent } from 'expo';
 import * as VideoThumbnails from 'expo-video-thumbnails';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -20,6 +21,8 @@ const videoUrl =
   'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/proud_to_be_European.mp4';
 
 export default function Top3CountriesScreen() {
+  const { colors: themeColors } = useTheme();
+
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [thumbnailLoading, setThumbnailLoading] = useState(true);
@@ -58,7 +61,9 @@ export default function Top3CountriesScreen() {
     setIsVideoModalVisible(false);
   };
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -66,11 +71,13 @@ export default function Top3CountriesScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="earth-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '20' }]}>
+              <Ionicons name="earth-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Goede top 3 van landen</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
+              Goede top 3 van landen
+            </Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Tips voor het kiezen van jouw voorkeursbestemmingen
             </Text>
           </View>
@@ -78,39 +85,53 @@ export default function Top3CountriesScreen() {
           {/* Tips */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="bulb-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Tips voor een goede keuze</Text>
+              <Ionicons name="bulb-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Tips voor een goede keuze
+              </Text>
             </View>
 
-            <View style={styles.tipCard}>
-              <View style={styles.tipNumber}>
-                <Text style={styles.tipNumberText}>1</Text>
+            <View
+              style={[
+                styles.tipCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <View style={[styles.tipNumber, { backgroundColor: themeColors.primary }]}>
+                <Text style={[styles.tipNumberText, { color: themeColors.card }]}>1</Text>
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipText}>
+                <Text style={[styles.tipText, { color: themeColors.text }]}>
                   Lees in deze app de verhalen van exchange studenten
                 </Text>
               </View>
             </View>
 
-            <View style={styles.tipCard}>
-              <View style={styles.tipNumber}>
-                <Text style={styles.tipNumberText}>2</Text>
+            <View
+              style={[
+                styles.tipCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <View style={[styles.tipNumber, { backgroundColor: themeColors.primary }]}>
+                <Text style={[styles.tipNumberText, { color: themeColors.card }]}>2</Text>
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipText}>
+                <Text style={[styles.tipText, { color: themeColors.text }]}>
                   Kijk op YouTube en google &ldquo;Rotary Youth Exchange&rdquo; dan kom je ook heel
                   veel te weten.
                 </Text>
               </View>
             </View>
 
-            <View style={styles.tipCard}>
-              <View style={styles.tipNumber}>
-                <Text style={styles.tipNumberText}>3</Text>
+            <View
+              style={[
+                styles.tipCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <View style={[styles.tipNumber, { backgroundColor: themeColors.primary }]}>
+                <Text style={[styles.tipNumberText, { color: themeColors.card }]}>3</Text>
               </View>
               <View style={styles.tipContent}>
-                <Text style={styles.tipText}>
+                <Text style={[styles.tipText, { color: themeColors.text }]}>
                   Praat met voormalige uitwisselingsstudenten over hun ervaringen in verschillende
                   landen.
                 </Text>
@@ -121,16 +142,26 @@ export default function Top3CountriesScreen() {
           {/* Inspirational Video */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="play-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Inspiratie Video</Text>
+              <Ionicons name="play-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Inspiratie Video
+              </Text>
             </View>
 
-            <Pressable style={styles.videoCard} onPress={() => setIsVideoModalVisible(true)}>
+            <Pressable
+              style={[
+                styles.videoCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}
+              onPress={() => setIsVideoModalVisible(true)}>
               <View style={styles.videoPreview}>
                 {thumbnailLoading ? (
                   <View style={styles.thumbnailLoading}>
-                    <Ionicons name="image-outline" size={48} color="#999" />
-                    <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
+                    <Ionicons name="image-outline" size={48} color={themeColors.textTertiary} />
+                    <Text
+                      style={[styles.loadingThumbnailText, { color: themeColors.textTertiary }]}>
+                      Thumbnail laden...
+                    </Text>
                   </View>
                 ) : thumbnailUri ? (
                   <Image
@@ -140,20 +171,26 @@ export default function Top3CountriesScreen() {
                     transition={300}
                   />
                 ) : (
-                  <View style={styles.thumbnailFallback}>
-                    <Ionicons name="flag-outline" size={48} color="#FFFFFF" />
-                    <Text style={styles.fallbackText}>Proud to be European</Text>
+                  <View
+                    style={[styles.thumbnailFallback, { backgroundColor: themeColors.primary }]}>
+                    <Ionicons name="flag-outline" size={48} color={themeColors.card} />
+                    <Text style={[styles.fallbackText, { color: themeColors.card }]}>
+                      Proud to be European
+                    </Text>
                   </View>
                 )}
                 <View style={styles.playButtonOverlay}>
-                  <View style={styles.playButton}>
-                    <Ionicons name="play" size={32} color="#FFFFFF" />
+                  <View
+                    style={[styles.playButton, { backgroundColor: themeColors.primary + 'F0' }]}>
+                    <Ionicons name="play" size={32} color={themeColors.card} />
                   </View>
                 </View>
               </View>
               <View style={styles.videoInfo}>
-                <Text style={styles.videoTitle}>Proud to be European</Text>
-                <Text style={styles.videoDescription}>
+                <Text style={[styles.videoTitle, { color: themeColors.text }]}>
+                  Proud to be European
+                </Text>
+                <Text style={[styles.videoDescription, { color: themeColors.textSecondary }]}>
                   Ontdek wat het betekent om een Europese uitwisselingsstudent te zijn en laat je
                   inspireren door de verhalen van anderen.
                 </Text>
@@ -169,17 +206,19 @@ export default function Top3CountriesScreen() {
         animationType="slide"
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}>
-        <SafeAreaView style={styles.videoModalContainer} edges={['top', 'left', 'right']}>
+        <SafeAreaView
+          style={[styles.videoModalContainer, { backgroundColor: '#000' }]}
+          edges={['top', 'left', 'right']}>
           <View style={styles.videoModalHeader}>
             <Pressable style={styles.closeButton} onPress={handleCloseVideo}>
-              <Ionicons name="close" size={28} color="#FFFFFF" />
+              <Ionicons name="close" size={28} color="#FFF" />
             </Pressable>
           </View>
 
           <View style={styles.videoContainer}>
             {status === 'loading' && (
               <View style={styles.loadingContainer}>
-                <Text style={styles.loadingText}>Video laden...</Text>
+                <Text style={[styles.loadingText, { color: '#FFF' }]}>Video laden...</Text>
               </View>
             )}
             <VideoView
@@ -193,8 +232,10 @@ export default function Top3CountriesScreen() {
           </View>
 
           <View style={styles.videoInfoModal}>
-            <Text style={styles.videoTitleModal}>Proud to be European</Text>
-            <Text style={styles.videoSubtitleModal}>Rotary Youth Exchange Inspiratie Video</Text>
+            <Text style={[styles.videoTitleModal, { color: '#FFF' }]}>Proud to be European</Text>
+            <Text style={[styles.videoSubtitleModal, { color: '#CCCCCC' }]}>
+              Rotary Youth Exchange Inspiratie Video
+            </Text>
           </View>
         </SafeAreaView>
       </Modal>
@@ -205,7 +246,6 @@ export default function Top3CountriesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -225,7 +265,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -233,13 +272,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -257,13 +294,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Info Card
   infoCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -271,18 +306,11 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
-  },
-  infoText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
   },
 
   // Tip Card Styles
   tipCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 16,
@@ -293,20 +321,17 @@ const styles = StyleSheet.create({
       : {
           elevation: 1,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   tipNumber: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#FF6B35',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
   },
   tipNumberText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -315,26 +340,22 @@ const styles = StyleSheet.create({
   },
   tipText: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
   // Video Card Styles
   videoCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     overflow: 'hidden',
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
           elevation: 2,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   videoPreview: {
     height: 200,
-    backgroundColor: '#F5F5F5',
     position: 'relative',
     overflow: 'hidden',
   },
@@ -346,24 +367,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5',
   },
   loadingThumbnailText: {
     marginTop: 8,
     fontSize: 14,
-    color: '#999',
   },
   thumbnailFallback: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1A237E',
   },
   fallbackText: {
     marginTop: 8,
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
     textAlign: 'center',
   },
   playButtonOverlay: {
@@ -380,7 +397,6 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: 'rgba(255, 107, 53, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
@@ -395,19 +411,16 @@ const styles = StyleSheet.create({
   videoTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   videoDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
   // Video Modal Styles
   videoModalContainer: {
     flex: 1,
-    backgroundColor: '#000000',
   },
   videoModalHeader: {
     position: 'absolute',
@@ -440,7 +453,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   loadingText: {
-    color: '#FFFFFF',
     fontSize: 16,
   },
   videoInfoModal: {
@@ -450,11 +462,9 @@ const styles = StyleSheet.create({
   videoTitleModal: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#FFFFFF',
     marginBottom: 4,
   },
   videoSubtitleModal: {
     fontSize: 14,
-    color: '#CCCCCC',
   },
 });

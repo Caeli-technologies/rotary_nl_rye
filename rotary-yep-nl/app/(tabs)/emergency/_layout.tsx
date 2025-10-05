@@ -1,7 +1,10 @@
 import { Stack } from 'expo-router';
+import { useTheme } from '@/hooks/use-theme';
 import { Platform } from 'react-native';
 
 export default function EmergencyLayout() {
+  const { colors: themeColors } = useTheme();
+
   return (
     <Stack
       screenOptions={{
@@ -9,11 +12,10 @@ export default function EmergencyLayout() {
           backgroundColor: '#d32f2f',
         },
         headerTitleStyle: {
-          color: '#FFFFFF',
           fontWeight: '600',
           fontSize: Platform.OS === 'ios' ? 20 : 22,
+          color: '#ffffff',
         },
-        headerTintColor: '#FFFFFF',
         headerShadowVisible: Platform.OS === 'ios',
       }}>
       <Stack.Screen

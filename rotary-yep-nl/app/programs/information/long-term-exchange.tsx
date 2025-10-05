@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -20,20 +12,30 @@ const shadowStyle = {
 };
 
 export default function LongTermExchangeScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
-        style={styles.scrollView}
+        style={[styles.scrollView, { backgroundColor: themeColors.background }]}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Header Section */}
-          <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="school-outline" size={32} color="#FF6B35" />
+          <View
+            style={[
+              styles.headerSection,
+              { backgroundColor: themeColors.card, shadowColor: themeColors.shadow },
+            ]}>
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="school-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Long Term Exchange</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
+              Long Term Exchange
+            </Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Een jaar High School in het buitenland via Rotary International
             </Text>
           </View>
@@ -41,12 +43,22 @@ export default function LongTermExchangeScreen() {
           {/* What is it Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Wat houdt dat in?</Text>
+              <Ionicons name="help-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Wat houdt dat in?
+              </Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
+            <View
+              style={[
+                styles.infoCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                },
+              ]}>
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
                 Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde
                 scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het
                 buitenland een jaar High School volgt.
@@ -56,14 +68,28 @@ export default function LongTermExchangeScreen() {
 
           {/* Age Section */}
           <View style={styles.section}>
-            <View style={styles.ageCard}>
-              <View style={styles.ageIconContainer}>
-                <Ionicons name="calendar" size={28} color="#673AB7" />
+            <View
+              style={[
+                styles.ageCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.accent,
+                },
+              ]}>
+              <View
+                style={[styles.ageIconContainer, { backgroundColor: themeColors.accent + '15' }]}>
+                <Ionicons name="calendar" size={28} color={themeColors.accent} />
               </View>
               <View style={styles.ageContent}>
-                <Text style={styles.ageTitle}>15,5 - 18,5 jaar</Text>
-                <Text style={styles.ageSubtitle}>Indicatieve leeftijdsgrenzen</Text>
-                <Text style={styles.ageNote}>
+                <Text style={[styles.ageTitle, { color: themeColors.accent }]}>
+                  15,5 - 18,5 jaar
+                </Text>
+                <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>
+                  Indicatieve leeftijdsgrenzen
+                </Text>
+                <Text style={[styles.ageNote, { color: themeColors.textSecondary }]}>
                   Selectiedag in oktober + selectieweekend in november
                 </Text>
               </View>
@@ -73,16 +99,28 @@ export default function LongTermExchangeScreen() {
           {/* Countries Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="earth-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Met welke landen?</Text>
+              <Ionicons name="earth-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Met welke landen?
+              </Text>
             </View>
 
-            <View style={styles.countryCard}>
+            <View
+              style={[
+                styles.countryCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                },
+              ]}>
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
-                  <Text style={styles.hemisphereTitle}>Noordelijk halfrond</Text>
+                  <Text style={[styles.hemisphereTitle, { color: themeColors.text }]}>
+                    Noordelijk halfrond
+                  </Text>
                 </View>
-                <Text style={styles.countryText}>
+                <Text style={[styles.countryText, { color: themeColors.textSecondary }]}>
                   USA, Canada, Mexico, India, Indonesië, Japan, Thailand, Taiwan en diverse Europese
                   landen
                 </Text>
@@ -90,9 +128,13 @@ export default function LongTermExchangeScreen() {
 
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
-                  <Text style={styles.hemisphereTitle}>Zuidelijk halfrond</Text>
+                  <Text style={[styles.hemisphereTitle, { color: themeColors.text }]}>
+                    Zuidelijk halfrond
+                  </Text>
                 </View>
-                <Text style={styles.countryText}>Brazilië, Chili, Argentinië, Ecuador, Peru</Text>
+                <Text style={[styles.countryText, { color: themeColors.textSecondary }]}>
+                  Brazilië, Chili, Argentinië, Ecuador, Peru
+                </Text>
               </View>
             </View>
           </View>
@@ -100,13 +142,21 @@ export default function LongTermExchangeScreen() {
           {/* Costs Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="card-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Kosten</Text>
+              <Ionicons name="card-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Kosten</Text>
             </View>
 
-            <View style={styles.costCard}>
-              <Text style={styles.costTitle}>Vanaf €2.400</Text>
-              <Text style={styles.costSubtitle}>
+            <View
+              style={[
+                styles.costCard,
+                {
+                  backgroundColor: themeColors.secondary + '15',
+                  shadowColor: themeColors.shadow,
+                  borderLeftColor: themeColors.secondary,
+                },
+              ]}>
+              <Text style={[styles.costTitle, { color: themeColors.secondary }]}>Vanaf €2.400</Text>
+              <Text style={[styles.costSubtitle, { color: themeColors.textSecondary }]}>
                 Exclusief BTW, verzekering, ticket kosten etc.
               </Text>
             </View>
@@ -115,45 +165,64 @@ export default function LongTermExchangeScreen() {
           {/* Registration Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="person-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Aanmelden</Text>
+              <Ionicons name="person-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Aanmelden</Text>
             </View>
 
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.emailButton}
-                onPress={() => Linking.openURL('mailto:interesse@rotaryyep.nl')}>
-                <Ionicons name="mail-outline" size={24} color="#FFFFFF" />
-                <Text style={styles.emailButtonText}>interesse@rotaryyep.nl</Text>
-              </TouchableOpacity>
-            </View>
+            <Pressable
+              style={({ pressed }) => [
+                styles.emailButton,
+                { backgroundColor: themeColors.primary },
+                pressed && styles.emailButtonPressed,
+              ]}
+              onPress={() => Linking.openURL('mailto:interesse@rotaryyep.nl')}
+              accessibilityRole="button"
+              accessibilityLabel="Send email to interesse@rotaryyep.nl">
+              <Ionicons name="mail-outline" size={24} color={themeColors.onPrimary} />
+              <Text style={[styles.emailButtonText, { color: themeColors.onPrimary }]}>
+                interesse@rotaryyep.nl
+              </Text>
+            </Pressable>
           </View>
 
           {/* Why Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="heart-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Waarom Rotary Youth Exchange?</Text>
+              <Ionicons name="heart-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Waarom Rotary Youth Exchange?
+              </Text>
             </View>
 
             {/* Internationale ervaring */}
-            <View style={styles.whyCard}>
+            <View
+              style={[
+                styles.whyCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.whyHeader}>
-                <View style={styles.whyNumber}>
-                  <Text style={styles.whyNumberText}>1</Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>1</Text>
                 </View>
-                <Text style={styles.whyTitle}>Internationale ervaring</Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>
+                  Internationale ervaring
+                </Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Jongeren leren een nieuwe cultuur, taal en manier van leven kennen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Het vergroot hun wereldbeeld en respect voor diversiteit
                   </Text>
                 </View>
@@ -161,23 +230,34 @@ export default function LongTermExchangeScreen() {
             </View>
 
             {/* Persoonlijke ontwikkeling */}
-            <View style={styles.whyCard}>
+            <View
+              style={[
+                styles.whyCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.whyHeader}>
-                <View style={styles.whyNumber}>
-                  <Text style={styles.whyNumberText}>2</Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>2</Text>
                 </View>
-                <Text style={styles.whyTitle}>Persoonlijke ontwikkeling</Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>
+                  Persoonlijke ontwikkeling
+                </Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Zelfstandigheid, zelfvertrouwen en verantwoordelijkheid nemen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Aanpassen aan nieuwe situaties en omgaan met uitdagingen
                   </Text>
                 </View>
@@ -185,17 +265,26 @@ export default function LongTermExchangeScreen() {
             </View>
 
             {/* Taalontwikkeling */}
-            <View style={styles.whyCard}>
+            <View
+              style={[
+                styles.whyCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.whyHeader}>
-                <View style={styles.whyNumber}>
-                  <Text style={styles.whyNumberText}>3</Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>3</Text>
                 </View>
-                <Text style={styles.whyTitle}>Taalontwikkeling</Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>Taalontwikkeling</Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Door dagelijks contact met de taal van het gastland, leren jongeren snel en
                     effectief communiceren
                   </Text>
@@ -204,24 +293,35 @@ export default function LongTermExchangeScreen() {
             </View>
 
             {/* Onderwijs en culturele verrijking */}
-            <View style={styles.whyCard}>
+            <View
+              style={[
+                styles.whyCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.whyHeader}>
-                <View style={styles.whyNumber}>
-                  <Text style={styles.whyNumberText}>4</Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>4</Text>
                 </View>
-                <Text style={styles.whyTitle}>Onderwijs en culturele verrijking</Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>
+                  Onderwijs en culturele verrijking
+                </Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Scholing in het gastland én vaak ook het geven van presentaties over de eigen
                     cultuur
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Wederzijdse uitwisseling van kennis en gebruiken
                   </Text>
                 </View>
@@ -229,24 +329,33 @@ export default function LongTermExchangeScreen() {
             </View>
 
             {/* Rotary netwerk */}
-            <View style={styles.whyCard}>
+            <View
+              style={[
+                styles.whyCard,
+                {
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.whyHeader}>
-                <View style={styles.whyNumber}>
-                  <Text style={styles.whyNumberText}>5</Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>5</Text>
                 </View>
-                <Text style={styles.whyTitle}>Rotary netwerk</Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>Rotary netwerk</Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Betrouwbare begeleiding: jongeren verblijven bij gastgezinnen die door Rotary
                     zorgvuldig zijn geselecteerd
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Ondersteuning van lokale Rotaryclubs en toegang tot een wereldwijd netwerk van
                     contacten
                   </Text>
@@ -255,24 +364,36 @@ export default function LongTermExchangeScreen() {
             </View>
 
             {/* Vriendschappen voor het leven */}
-            <View style={[styles.whyCard, { marginBottom: 0 }]}>
+            <View
+              style={[
+                styles.whyCard,
+                {
+                  marginBottom: 0,
+                  backgroundColor: themeColors.card,
+                  shadowColor: themeColors.shadow,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.whyHeader}>
-                <View style={styles.whyNumber}>
-                  <Text style={styles.whyNumberText}>6</Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>6</Text>
                 </View>
-                <Text style={styles.whyTitle}>Vriendschappen voor het leven</Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>
+                  Vriendschappen voor het leven
+                </Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Contacten met mensen uit het gastland én met andere uitwisselingsstudenten van
                     over de hele wereld
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.bulletText}>
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Kortom: Rotary Youth Exchange draait om vrede, begrip en vriendschap tussen
                     culturen, en geeft jongeren een kans om zich persoonlijk én internationaal te
                     ontwikkelen
@@ -290,7 +411,6 @@ export default function LongTermExchangeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   scrollView: {
     flex: 1,
@@ -299,21 +419,21 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 16 : 12,
     paddingBottom: 30,
   },
-
   // Header Section
   headerSection: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 20,
     marginBottom: 20,
     alignItems: 'center',
     ...shadowStyle,
+    ...(Platform.OS === 'android' && {
+      borderWidth: StyleSheet.hairlineWidth,
+    }),
   },
   headerIcon: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: '#FFF4F1',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -321,13 +441,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -346,13 +464,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 20 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Info Card
   infoCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -360,37 +476,31 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333',
   },
 
   // Age Card Styles
   ageCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
     borderLeftWidth: 4,
-    borderLeftColor: '#673AB7',
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   ageIconContainer: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#EDE7F6',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -401,24 +511,20 @@ const styles = StyleSheet.create({
   ageTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#673AB7',
     marginBottom: 2,
   },
   ageSubtitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   ageNote: {
     fontSize: 12,
-    color: '#666',
     fontStyle: 'italic',
   },
 
   // Country Card
   countryCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -426,7 +532,6 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   hemisphereSection: {
@@ -438,45 +543,37 @@ const styles = StyleSheet.create({
   hemisphereTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
   },
   countryText: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#666',
   },
 
   // Cost Card
   costCard: {
-    backgroundColor: '#E8F5E8',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     alignItems: 'center',
     borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   costTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#2E7D32',
     marginBottom: 4,
   },
   costSubtitle: {
     fontSize: 14,
-    color: '#666',
     textAlign: 'center',
   },
 
   // Button Container
   buttonContainer: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -484,13 +581,11 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
 
   // Email Button
   emailButton: {
-    backgroundColor: '#FF6B35',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     paddingVertical: 16,
     paddingHorizontal: 24,
@@ -499,7 +594,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     ...(Platform.OS === 'ios'
       ? {
-          shadowColor: '#FF6B35',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.2,
           shadowRadius: 4,
@@ -508,8 +602,11 @@ const styles = StyleSheet.create({
           elevation: 3,
         }),
   },
+  emailButtonPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+  },
   emailButtonText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
     marginLeft: 8,
@@ -517,18 +614,15 @@ const styles = StyleSheet.create({
 
   // Why Section Styles
   whyCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 12,
     borderLeftWidth: 4,
-    borderLeftColor: '#FF6B35',
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   whyHeader: {
@@ -540,20 +634,17 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#FF6B35',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
   },
   whyNumberText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
   },
   whyTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     flex: 1,
   },
   whyBullets: {
@@ -574,14 +665,12 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#FF6B35',
     marginTop: 8,
     marginRight: 12,
   },
   bulletText: {
     fontSize: 16,
     lineHeight: 22,
-    color: '#333',
     flex: 1,
   },
 });

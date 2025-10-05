@@ -5,7 +5,7 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-
+import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
   subtitle?: string;
@@ -15,11 +15,11 @@ interface MenuItem {
 }
 
 export default function LongTermInboundScreen() {
+  const { colors: themeColors } = useTheme();
+
   const handleItemPress = useCallback(async (route: string) => {
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch (error) {
       console.error('Error navigating to route:', error);
@@ -30,8 +30,20 @@ export default function LongTermInboundScreen() {
   const renderMenuItem = useCallback(
     ({ item }: { item: MenuItem }) => (
       <Pressable
-        style={({ pressed }) => [styles.menuItem, pressed && styles.menuItemPressed]}
+        style={({ pressed }) => [
+          styles.menuItem,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+        ]}
         onPress={() => handleItemPress(item.route)}
+        android_ripple={{
+          color: 'rgba(0, 122, 255, 0.2)',
+          borderless: false,
+        }}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tap to view details"
@@ -40,22 +52,23 @@ export default function LongTermInboundScreen() {
           <View
             style={[
               styles.iconContainer,
+              { backgroundColor: themeColors.primary + '15' },
               item.type === 'class' ? styles.classIconContainer : styles.infoIconContainer,
             ]}>
-            <FontAwesome5
-              name={item.icon}
-              size={22}
-              color={item.type === 'class' ? '#9FA8DA' : '#007AFF'}
-            />
+            <FontAwesome5 name={item.icon} size={22} color={themeColors.primary} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.menuTitle}>{item.title}</Text>
-            {item.subtitle && <Text style={styles.menuSubtitle}>{item.subtitle}</Text>}
+            <Text style={[styles.menuTitle, { color: themeColors.text }]}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={[styles.menuSubtitle, { color: themeColors.textSecondary }]}>
+                {item.subtitle}
+              </Text>
+            )}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
@@ -114,8 +127,8 @@ export default function LongTermInboundScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={styles.sectionHeaderTitle}>{title}</Text>
-        <View style={styles.sectionHeaderDivider} />
+        <Text style={[styles.sectionHeaderTitle, { color: themeColors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
     [],
@@ -151,8 +164,10 @@ export default function LongTermInboundScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
@@ -172,7 +187,6 @@ export default function LongTermInboundScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -187,7 +201,6 @@ const styles = StyleSheet.create({
   introText: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
     textAlign: 'left',
   },
   sectionHeaderContainer: {
@@ -197,20 +210,16 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   sectionHeaderDivider: {
     height: 2,
-    backgroundColor: '#E5E5EA',
     borderRadius: 1,
   },
   menuItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -234,12 +243,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 16,
   },
-  classIconContainer: {
-    backgroundColor: '#F2F2F7',
-  },
-  infoIconContainer: {
-    backgroundColor: '#F2F2F7',
-  },
+  classIconContainer: {},
+  infoIconContainer: {},
   textContainer: {
     flex: 1,
     marginRight: 8,
@@ -247,14 +252,12 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
   },
   menuSubtitle: {
     fontSize: 13,
     fontWeight: '400',
-    color: '#8E8E93',
   },
   spacer: {
     height: 10,

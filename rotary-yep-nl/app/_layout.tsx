@@ -2,7 +2,8 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Platform, useColorScheme } from 'react-native';
+import { Platform } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 import 'react-native-reanimated';
 
 export const unstable_settings = {
@@ -10,19 +11,13 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const { colors: themeColors, colorScheme } = useTheme();
 
-  // Custom theme that's more aligned with native UI patterns
+  // Custom theme using Rotary brand colors
   const customTheme = {
     ...(colorScheme === 'dark' ? DarkTheme : DefaultTheme),
     colors: {
       ...(colorScheme === 'dark' ? DarkTheme.colors : DefaultTheme.colors),
-      primary: colorScheme === 'dark' ? '#9FA8DA' : '#1A237E',
-      background: colorScheme === 'dark' ? '#000000' : '#F2F2F7',
-      card: colorScheme === 'dark' ? '#1C1C1E' : '#FFFFFF',
-      text: colorScheme === 'dark' ? '#FFFFFF' : '#000000',
-      border: colorScheme === 'dark' ? '#38383A' : '#E5E5EA',
-      notification: colorScheme === 'dark' ? '#9FA8DA' : '#1A237E',
     },
   };
 
@@ -373,13 +368,6 @@ export default function RootLayout() {
             }}
           />
           {/* Outbound - Short Term */}
-          <Stack.Screen
-            name="outbound/short-term/index"
-            options={{
-              title: "Short Term Programma's",
-              headerBackTitle: 'Outbound',
-            }}
-          />
           <Stack.Screen
             name="outbound/short-term/camps-and-tours/index"
             options={{

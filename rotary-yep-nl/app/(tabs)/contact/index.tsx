@@ -1,35 +1,24 @@
 import React, { useState } from 'react';
-import { Platform, StyleSheet, View, Text, SectionList, useColorScheme } from 'react-native';
+import { Platform, StyleSheet, View, Text, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
 import { ContactCard } from '@/components/enhanced-contact-card';
 import { contactSections } from '@/data/contacts';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
-  const colorScheme = useColorScheme();
+  const { colors: themeColors, colorScheme } = useTheme();
 
-  // Colors based on theme
-  const colors = {
-    light: {
-      primary: '#1A237E',
-      background: '#F2F2F7',
-      cardBackground: '#FFFFFF',
-      text: '#666',
-      activeText: '#FFFFFF',
-      segmentedBg: '#E5E5EA',
-    },
-    dark: {
-      primary: '#9FA8DA',
-      background: '#000000',
-      cardBackground: '#1C1C1E',
-      text: '#8E8E93',
-      activeText: '#000000',
-      segmentedBg: '#2C2C2E',
-    },
+  // Map theme colors to component-specific colors
+  const activeColors = {
+    primary: themeColors.primary,
+    background: themeColors.background,
+    cardBackground: themeColors.card,
+    text: themeColors.textSecondary,
+    activeText: themeColors.onPrimary,
+    segmentedBg: themeColors.surfaceVariant,
   };
-
-  const activeColors = colors[colorScheme ?? 'light'];
 
   const currentSection = contactSections[activeTab];
   const tabValues = contactSections.map((section) => section.title);

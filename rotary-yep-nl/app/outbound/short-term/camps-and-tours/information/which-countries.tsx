@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import * as Haptics from 'expo-haptics';
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -20,8 +14,12 @@ const shadowStyle = {
 };
 
 export default function WhichCountriesScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -29,11 +27,11 @@ export default function WhichCountriesScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="globe-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '20' }]}>
+              <Ionicons name="globe-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Met welke landen?</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Met welke landen?</Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Ontdek de bestemmingen beschikbaar voor Zomerkampen
             </Text>
           </View>
@@ -41,53 +39,93 @@ export default function WhichCountriesScreen() {
           {/* Main Content */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="globe-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Internationale Bestemmingen</Text>
+              <Ionicons name="globe-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Internationale Bestemmingen
+              </Text>
             </View>
 
-            <View style={styles.regionCard}>
+            <View
+              style={[
+                styles.regionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.regionIcon}>
                 <Text style={styles.regionEmoji}>🇪🇺</Text>
               </View>
               <View style={styles.regionContent}>
-                <Text style={styles.regionTitle}>Europa</Text>
-                <Text style={styles.regionDescription}>
+                <Text style={[styles.regionTitle, { color: themeColors.text }]}>Europa</Text>
+                <Text style={[styles.regionDescription, { color: themeColors.textSecondary }]}>
                   Verschillende Europese landen met rijke cultuur en geschiedenis
                 </Text>
               </View>
             </View>
 
-            <View style={styles.regionCard}>
+            <View
+              style={[
+                styles.regionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.regionIcon}>
                 <Text style={styles.regionEmoji}>🇨🇦</Text>
               </View>
               <View style={styles.regionContent}>
-                <Text style={styles.regionTitle}>Canada</Text>
-                <Text style={styles.regionDescription}>
+                <Text style={[styles.regionTitle, { color: themeColors.text }]}>Canada</Text>
+                <Text style={[styles.regionDescription, { color: themeColors.textSecondary }]}>
                   Prachtige natuur en vriendelijke cultuur in Noord-Amerika
                 </Text>
               </View>
             </View>
 
-            <View style={styles.regionCard}>
+            <View
+              style={[
+                styles.regionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.regionIcon}>
                 <Text style={styles.regionEmoji}>🇺🇸</Text>
               </View>
               <View style={styles.regionContent}>
-                <Text style={styles.regionTitle}>Verenigde Staten</Text>
-                <Text style={styles.regionDescription}>
+                <Text style={[styles.regionTitle, { color: themeColors.text }]}>
+                  Verenigde Staten
+                </Text>
+                <Text style={[styles.regionDescription, { color: themeColors.textSecondary }]}>
                   Diverse staten met verschillende ervaringen en culturen
                 </Text>
               </View>
             </View>
 
-            <View style={styles.regionCard}>
+            <View
+              style={[
+                styles.regionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
               <View style={styles.regionIcon}>
                 <Text style={styles.regionEmoji}>🇹🇼</Text>
               </View>
               <View style={styles.regionContent}>
-                <Text style={styles.regionTitle}>Taiwan</Text>
-                <Text style={styles.regionDescription}>
+                <Text style={[styles.regionTitle, { color: themeColors.text }]}>Taiwan</Text>
+                <Text style={[styles.regionDescription, { color: themeColors.textSecondary }]}>
                   Fascinierende Aziatische cultuur en moderne technologie
                 </Text>
               </View>
@@ -97,41 +135,73 @@ export default function WhichCountriesScreen() {
           {/* Program Types */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="star-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Soorten Programma&apos;s</Text>
+              <Ionicons name="star-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Soorten Programma&apos;s
+              </Text>
             </View>
 
-            <View style={styles.programCard}>
-              <View style={styles.programIcon}>
-                <Ionicons name="school-outline" size={20} color="#4CAF50" />
+            <View
+              style={[
+                styles.programCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View style={[styles.programIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="school-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.programContent}>
-                <Text style={styles.programTitle}>Educatieve Tours</Text>
-                <Text style={styles.programDescription}>
+                <Text style={[styles.programTitle, { color: themeColors.text }]}>
+                  Educatieve Tours
+                </Text>
+                <Text style={[styles.programDescription, { color: themeColors.textSecondary }]}>
                   Leren over geschiedenis, cultuur en taal
                 </Text>
               </View>
             </View>
 
-            <View style={styles.programCard}>
-              <View style={styles.programIcon}>
-                <Ionicons name="trail-sign-outline" size={20} color="#FF9800" />
+            <View
+              style={[
+                styles.programCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View style={[styles.programIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="trail-sign-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.programContent}>
-                <Text style={styles.programTitle}>Avontuur Kampen</Text>
-                <Text style={styles.programDescription}>
+                <Text style={[styles.programTitle, { color: themeColors.text }]}>
+                  Avontuur Kampen
+                </Text>
+                <Text style={[styles.programDescription, { color: themeColors.textSecondary }]}>
                   Buitenactiviteiten en natuurverkenning
                 </Text>
               </View>
             </View>
 
-            <View style={styles.programCard}>
-              <View style={styles.programIcon}>
-                <Ionicons name="people-outline" size={20} color="#2196F3" />
+            <View
+              style={[
+                styles.programCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View style={[styles.programIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="people-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.programContent}>
-                <Text style={styles.programTitle}>Culturele Uitwisseling</Text>
-                <Text style={styles.programDescription}>
+                <Text style={[styles.programTitle, { color: themeColors.text }]}>
+                  Culturele Uitwisseling
+                </Text>
+                <Text style={[styles.programDescription, { color: themeColors.textSecondary }]}>
                   Onderdompeling in lokale gewoonten en tradities
                 </Text>
               </View>
@@ -141,28 +211,58 @@ export default function WhichCountriesScreen() {
           {/* Contact Information */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="mail-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Aanmelden</Text>
+              <Ionicons name="mail-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Aanmelden</Text>
             </View>
 
-            <View style={styles.emailCard}>
-              <Text style={styles.emailDescription}>
+            <View
+              style={[
+                styles.emailCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <Text style={[styles.emailDescription, { color: themeColors.text }]}>
                 Aanmelden via het emailadres{' '}
-                <Text style={styles.emailLink}>interesse@rotaryyep.nl</Text>
+                <Text style={[styles.emailLink, { color: themeColors.primary }]}>
+                  interesse@rotaryyep.nl
+                </Text>
               </Text>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.emailButton}
-                onPress={() => {
-                  const emailUrl =
-                    'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Zomerkampen';
-                  Linking.openURL(emailUrl);
-                }}>
-                <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
-                <Text style={styles.emailButtonText}>Contact Opnemen</Text>
-              </TouchableOpacity>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.emailButton,
+                  { backgroundColor: themeColors.primary, shadowColor: themeColors.shadow },
+                  pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+                ]}
+                onPress={async () => {
+                  try {
+                    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    const emailUrl =
+                      'mailto:interesse@rotaryyep.nl?subject=Interesse%20in%20Zomerkampen';
+                    await Linking.openURL(emailUrl);
+                  } catch (error) {
+                    console.error('Error opening email:', error);
+                  }
+                }}
+                accessibilityRole="button"
+                accessibilityLabel="Contact Opnemen"
+                accessibilityHint="Opent je email app voor het versturen van een email"
+                android_ripple={{ color: 'rgba(255,255,255,0.2)', borderless: false }}>
+                <Ionicons
+                  name="mail"
+                  size={20}
+                  color={themeColors.card}
+                  style={{ marginRight: 8 }}
+                />
+                <Text style={[styles.emailButtonText, { color: themeColors.card }]}>
+                  Contact Opnemen
+                </Text>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -174,7 +274,6 @@ export default function WhichCountriesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -194,7 +293,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -202,13 +300,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -226,7 +322,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
@@ -239,37 +334,30 @@ const styles = StyleSheet.create({
   destinationTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1A237E',
     marginBottom: 8,
   },
   destinationSubtitle: {
     fontSize: 14,
-    color: '#666',
     textAlign: 'center',
     fontStyle: 'italic',
   },
   regionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
     borderLeftWidth: 4,
-    borderLeftColor: '#FF6B35',
-    ...(Platform.OS === 'ios'
-      ? shadowStyle
-      : {
-          elevation: 2,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
-        }),
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 4,
   },
   regionIcon: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -293,18 +381,15 @@ const styles = StyleSheet.create({
   regionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   regionDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
   // Program Card Styles
   programCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 12,
@@ -315,14 +400,12 @@ const styles = StyleSheet.create({
       : {
           elevation: 1,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   programIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -333,18 +416,15 @@ const styles = StyleSheet.create({
   programTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   programDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
   // Email Card Styles
   emailCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 24,
@@ -353,17 +433,14 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   emailDescription: {
     fontSize: 16,
-    color: '#333',
     lineHeight: 24,
     textAlign: 'center',
   },
   emailLink: {
-    color: '#2196F3',
     fontWeight: '600',
   },
 
@@ -373,7 +450,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   emailButton: {
-    backgroundColor: '#FF6B35',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     paddingHorizontal: 24,
     paddingVertical: 16,
@@ -381,19 +457,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 200,
-    ...(Platform.OS === 'ios'
-      ? {
-          shadowColor: '#FF6B35',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.3,
-          shadowRadius: 4,
-        }
-      : {
-          elevation: 3,
-        }),
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   emailButtonText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
   },

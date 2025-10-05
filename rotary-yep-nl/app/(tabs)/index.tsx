@@ -15,7 +15,8 @@ import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
-import { useUIColors } from '@/components/ui/native-ui';
+import { useTheme } from '@/hooks/use-theme';
+import type { ThemeColors } from '@/hooks/use-theme';
 
 interface HomeCardProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -28,7 +29,7 @@ interface HomeCardProps {
   onPress?: () => void;
 }
 
-const HomeCard = React.memo<HomeCardProps & { colors: ReturnType<typeof useUIColors> }>(
+const HomeCard = React.memo<HomeCardProps & { colors: ThemeColors }>(
   ({
     icon = 'settings-outline',
     fontistoIcon,
@@ -58,7 +59,7 @@ const HomeCard = React.memo<HomeCardProps & { colors: ReturnType<typeof useUICol
       [isDefault, colors.surface],
     );
 
-    const iconColor = colors.primaryVariant;
+    const iconColor = colors.primary;
     const textColor = colors.primary;
 
     return (
@@ -105,7 +106,7 @@ HomeCard.displayName = 'HomeCard';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const colors = useUIColors();
+  const { colors } = useTheme();
 
   const carouselImages = useMemo(
     () => [

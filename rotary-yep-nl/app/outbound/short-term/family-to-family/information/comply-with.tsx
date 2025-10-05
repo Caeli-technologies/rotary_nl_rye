@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -12,8 +13,12 @@ const shadowStyle = {
 };
 
 export default function FamilyToFamilyComplyWithScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -21,11 +26,13 @@ export default function FamilyToFamilyComplyWithScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="shield-checkmark-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="shield-checkmark-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Waar moet ik aan voldoen?</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
+              Waar moet ik aan voldoen?
+            </Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Vereisten en richtlijnen voor Family-to-Family deelnemers
             </Text>
           </View>
@@ -33,12 +40,22 @@ export default function FamilyToFamilyComplyWithScreen() {
           {/* Main Content */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="information-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Geschiktheid voor deelname</Text>
+              <Ionicons name="information-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Geschiktheid voor deelname
+              </Text>
             </View>
 
-            <View style={styles.mainCard}>
-              <Text style={styles.mainText}>
+            <View
+              style={[
+                styles.mainCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <Text style={[styles.mainText, { color: themeColors.text }]}>
                 Alle jongens en meisjes in de leeftijd van 15 t/m 19* jaar, die open staan voor
                 anderen, van hen willen leren, met hen ervaringen willen uitwisselen, die uit hun
                 eigen vertrouwde omgeving willen stappen en die anderen zonder vooroordelen willen
@@ -48,12 +65,23 @@ export default function FamilyToFamilyComplyWithScreen() {
           </View>
 
           {/* Age Note */}
-          <View style={styles.noteCard}>
+          <View
+            style={[
+              styles.noteCard,
+              {
+                backgroundColor: themeColors.card,
+                borderColor: themeColors.border,
+                shadowColor: themeColors.shadow,
+                borderLeftColor: themeColors.primary,
+              },
+            ]}>
             <View style={styles.noteTitleContainer}>
-              <Ionicons name="calendar-outline" size={20} color="#F57C00" />
-              <Text style={styles.noteTitle}>Leeftijdsvereisten</Text>
+              <Ionicons name="calendar-outline" size={20} color={themeColors.primary} />
+              <Text style={[styles.noteTitle, { color: themeColors.text }]}>
+                Leeftijdsvereisten
+              </Text>
             </View>
-            <Text style={styles.noteDescription}>
+            <Text style={[styles.noteDescription, { color: themeColors.textSecondary }]}>
               *Deelnemers moeten tussen 15 en 19 jaar oud zijn om deel te kunnen nemen aan het
               Family-to-Family programma.
             </Text>
@@ -67,7 +95,6 @@ export default function FamilyToFamilyComplyWithScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -87,7 +114,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -95,13 +121,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -119,13 +143,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Main Card Styles
   mainCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
@@ -133,30 +155,24 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   mainText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333',
   },
 
   // Note Card Styles
   noteCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 20,
     borderLeftWidth: 4,
-    borderLeftColor: '#FF9800',
-    ...(Platform.OS === 'ios'
-      ? shadowStyle
-      : {
-          elevation: 1,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
-        }),
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 2,
   },
   noteTitleContainer: {
     flexDirection: 'row',
@@ -166,12 +182,10 @@ const styles = StyleSheet.create({
   noteTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#F57C00',
     marginLeft: 8,
   },
   noteDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
@@ -183,12 +197,10 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: 14,
-    color: '#777777',
   },
 
   // Requirement Card Styles
   requirementCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 12,
@@ -199,14 +211,12 @@ const styles = StyleSheet.create({
       : {
           elevation: 1,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   requirementIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -217,12 +227,10 @@ const styles = StyleSheet.create({
   requirementTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   requirementDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 });

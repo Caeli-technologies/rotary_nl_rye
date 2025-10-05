@@ -4,80 +4,101 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
-
+import { useTheme } from '@/hooks/use-theme';
 interface DocumentItemProps {
   title: string;
   icon: keyof typeof FontAwesome5.glyphMap;
   pdfUrl: string;
+  themeColors: any;
+  styles: any;
 }
 
-const DocumentItem = React.memo(({ title, icon, pdfUrl }: DocumentItemProps) => {
-  const handlePress = useCallback(async () => {
-    try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+const DocumentItem = React.memo(
+  ({ title, icon, pdfUrl, themeColors, styles }: DocumentItemProps) => {
+    const handlePress = useCallback(async () => {
+      try {
+        if (Platform.OS === 'ios') {
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        router.push({
+          pathname: '/pdf-viewer',
+          params: {
+            url: pdfUrl,
+            title: title,
+          },
+        });
+      } catch (error) {
+        console.error('Error opening PDF:', error);
+        router.push({
+          pathname: '/pdf-viewer',
+          params: {
+            url: pdfUrl,
+            title: title,
+          },
+        });
       }
-      router.push({
-        pathname: '/pdf-viewer',
-        params: {
-          url: pdfUrl,
-          title: title,
-        },
-      });
-    } catch (error) {
-      console.error('Error opening PDF:', error);
-      router.push({
-        pathname: '/pdf-viewer',
-        params: {
-          url: pdfUrl,
-          title: title,
-        },
-      });
-    }
-  }, [pdfUrl, title]);
+    }, [pdfUrl, title]);
 
-  return (
-    <Pressable
-      style={({ pressed }) => [styles.documentItem, pressed && styles.documentItemPressed]}
-      onPress={handlePress}
-      android_ripple={{
-        color: 'rgba(0, 122, 255, 0.2)',
-        borderless: false,
-      }}
-      accessibilityRole="button"
-      accessibilityLabel={`Open ${title} PDF document`}
-      accessibilityHint="Tap to view PDF in document viewer"
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-      <View style={styles.documentContent}>
-        <View style={styles.iconContainer}>
-          <FontAwesome5 name={icon} size={22} color="#007AFF" />
+    return (
+      <Pressable
+        style={({ pressed }) => [
+          styles.documentItem,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && styles.documentItemPressed,
+        ]}
+        onPress={handlePress}
+        android_ripple={{
+          color: 'rgba(0, 122, 255, 0.2)',
+          borderless: false,
+        }}
+        accessibilityRole="button"
+        accessibilityLabel={`Open ${title} PDF document`}
+        accessibilityHint="Tap to view PDF in document viewer"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        <View style={styles.documentContent}>
+          <View style={[styles.iconContainer, { backgroundColor: themeColors.primary + '15' }]}>
+            <FontAwesome5 name={icon} size={22} color={themeColors.link} />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={[styles.documentTitle, { color: themeColors.text }]}>{title}</Text>
+            <Text style={[styles.documentSubtext, { color: themeColors.textSecondary }]}>
+              Tik om PDF te openen
+            </Text>
+          </View>
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
+            size={20}
+            color={themeColors.textTertiary}
+          />
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.documentTitle}>{title}</Text>
-          <Text style={styles.documentSubtext}>Tik om PDF te openen</Text>
-        </View>
-        <Ionicons
-          name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
-          size={20}
-          color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
-        />
-      </View>
-    </Pressable>
-  );
-});
+      </Pressable>
+    );
+  },
+);
 DocumentItem.displayName = 'DocumentItem';
 
 export default function CounselorScreen() {
+  const { colors: themeColors } = useTheme();
+
   const renderDocument = useCallback(
-    (document: DocumentItemProps, index: number) => (
+    (
+      document: { title: string; icon: keyof typeof FontAwesome5.glyphMap; pdfUrl: string },
+      index: number,
+    ) => (
       <DocumentItem
         key={index}
         title={document.title}
         icon={document.icon}
         pdfUrl={document.pdfUrl}
+        themeColors={themeColors}
+        styles={styles}
       />
     ),
-    [],
+    [themeColors, styles],
   );
 
   const documents = [
@@ -102,14 +123,16 @@ export default function CounselorScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           contentInsetAdjustmentBehavior="automatic">
-          <Text style={styles.description}>
+          <Text style={[styles.description, { color: themeColors.textSecondary }]}>
             Informatie en handleidingen voor counselors die exchange students begeleiden.
           </Text>
 
@@ -123,7 +146,6 @@ export default function CounselorScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -138,17 +160,14 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#8E8E93',
     marginBottom: 20,
     textAlign: 'center',
     paddingHorizontal: 16,
   },
   documentItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -168,7 +187,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F2F2F7',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
@@ -180,13 +198,11 @@ const styles = StyleSheet.create({
   documentTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
   },
   documentSubtext: {
     fontSize: 13,
     fontWeight: '400',
-    color: '#8E8E93',
   },
 });

@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useLocalSearchParams } from 'expo-router';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 interface NewsText {
   heading?: string;
   body?: {
@@ -25,6 +26,8 @@ interface NewsItem {
 }
 
 export default function NewsDetailScreen() {
+  const { colors: themeColors } = useTheme();
+
   const { id, title, content } = useLocalSearchParams<{
     id: string;
     title: string;
@@ -43,10 +46,14 @@ export default function NewsDetailScreen() {
 
   if (!newsItem) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-        <View style={styles.container}>
+      <SafeAreaView
+        style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+        edges={['bottom']}>
+        <View style={[styles.container, { backgroundColor: themeColors.background }]}>
           <View style={styles.centered}>
-            <Text style={styles.errorText}>News item not found</Text>
+            <Text style={[styles.errorText, { color: themeColors.error }]}>
+              News item not found
+            </Text>
           </View>
         </View>
       </SafeAreaView>
@@ -61,8 +68,10 @@ export default function NewsDetailScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}>
@@ -78,18 +87,24 @@ export default function NewsDetailScreen() {
 
           <View style={styles.contentContainer}>
             {/* Title */}
-            <Text style={styles.newsTitle}>{newsItem.title}</Text>
+            <Text style={[styles.newsTitle, { color: themeColors.text }]}>{newsItem.title}</Text>
 
             {/* Description */}
             {newsItem.description && (
-              <Text style={styles.newsDescription}>{newsItem.description}</Text>
+              <Text style={[styles.newsDescription, { color: themeColors.textSecondary }]}>
+                {newsItem.description}
+              </Text>
             )}
 
             {/* Content Sections */}
             {newsItem.text &&
               newsItem.text.map((section, sectionIndex) => (
                 <View key={sectionIndex} style={styles.section}>
-                  {section.heading && <Text style={styles.sectionHeading}>{section.heading}</Text>}
+                  {section.heading && (
+                    <Text style={[styles.sectionHeading, { color: themeColors.text }]}>
+                      {section.heading}
+                    </Text>
+                  )}
 
                   {section.body &&
                     section.body.map((bodyItem, bodyIndex) => (
@@ -97,7 +112,9 @@ export default function NewsDetailScreen() {
                         {/* Paragraphs */}
                         {bodyItem.paragraph &&
                           bodyItem.paragraph.map((paragraph, paragraphIndex) => (
-                            <Text key={paragraphIndex} style={styles.paragraph}>
+                            <Text
+                              key={paragraphIndex}
+                              style={[styles.paragraph, { color: themeColors.textSecondary }]}>
                               {paragraph}
                             </Text>
                           ))}
@@ -105,18 +122,28 @@ export default function NewsDetailScreen() {
                         {/* Video */}
                         {bodyItem.videoUrl && (
                           <Pressable
-                            style={styles.videoContainer}
+                            style={[styles.videoContainer, { backgroundColor: themeColors.card }]}
                             onPress={() => handleVideoPress(bodyItem.videoUrl!)}>
-                            <View style={styles.videoPlaceholder}>
-                              <Ionicons name="play-circle" size={64} color="#007AFF" />
-                              <Text style={styles.videoText}>Tap to play video</Text>
+                            <View
+                              style={[
+                                styles.videoPlaceholder,
+                                { backgroundColor: themeColors.backgroundElevated },
+                              ]}>
+                              <Ionicons name="play-circle" size={64} color={themeColors.primary} />
+                              <Text style={[styles.videoText, { color: themeColors.text }]}>
+                                Tap to play video
+                              </Text>
                             </View>
                           </Pressable>
                         )}
 
                         {/* Image */}
                         {bodyItem.imageUrl && (
-                          <View style={styles.contentImageContainer}>
+                          <View
+                            style={[
+                              styles.contentImageContainer,
+                              { backgroundColor: themeColors.card },
+                            ]}>
                             <Image
                               source={{ uri: bodyItem.imageUrl }}
                               style={styles.contentImage}
@@ -139,7 +166,6 @@ export default function NewsDetailScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -156,19 +182,16 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
   },
   newsTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 16,
     lineHeight: 32,
   },
   newsDescription: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#8E8E93',
     lineHeight: 24,
     marginBottom: 20,
   },
@@ -178,7 +201,6 @@ const styles = StyleSheet.create({
   sectionHeading: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 12,
     lineHeight: 28,
   },
@@ -188,7 +210,6 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#3C3C43',
     lineHeight: 24,
     marginBottom: 12,
   },
@@ -207,7 +228,6 @@ const styles = StyleSheet.create({
   videoText: {
     marginTop: 8,
     fontSize: 16,
-    color: '#007AFF',
     fontWeight: '600',
   },
   contentImageContainer: {

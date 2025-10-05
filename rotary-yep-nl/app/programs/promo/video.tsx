@@ -4,7 +4,7 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
+  Pressable,
   Modal,
   Image,
   Platform,
@@ -15,17 +15,19 @@ import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEvent } from 'expo';
 import * as VideoThumbnails from 'expo-video-thumbnails';
 import * as Haptics from 'expo-haptics';
-
+import { useTheme } from '@/hooks/use-theme';
 type Video = { title: string; description: string; url: string };
 
 function VideoRow({
   video,
   index,
   onPlayRequest,
+  themeColors,
 }: {
   video: Video;
   index: number;
   onPlayRequest: (video: Video) => void;
+  themeColors: any;
 }) {
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [thumbnailLoading, setThumbnailLoading] = useState(true);
@@ -60,31 +62,48 @@ function VideoRow({
   };
 
   return (
-    <TouchableOpacity style={styles.videoCard} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.videoCard,
+        {
+          backgroundColor: themeColors.card,
+          borderColor: themeColors.border,
+          shadowColor: themeColors.shadow,
+        },
+        pressed && styles.videoCardPressed,
+      ]}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`Play ${video.title}`}>
       <View style={styles.videoPreview}>
         {thumbnailLoading ? (
-          <View style={styles.thumbnailLoading}>
-            <Ionicons name="image-outline" size={48} color="#999" />
-            <Text style={styles.loadingThumbnailText}>Thumbnail laden...</Text>
+          <View
+            style={[styles.thumbnailLoading, { backgroundColor: themeColors.backgroundElevated }]}>
+            <Ionicons name="image-outline" size={48} color={themeColors.textTertiary} />
+            <Text style={[styles.loadingThumbnailText, { color: themeColors.textSecondary }]}>
+              Thumbnail laden...
+            </Text>
           </View>
         ) : thumbnailUri ? (
           <Image source={{ uri: thumbnailUri }} style={styles.thumbnail} resizeMode="cover" />
         ) : (
-          <View style={styles.thumbnailFallback}>
-            <Ionicons name="videocam-outline" size={48} color="#FFFFFF" />
+          <View style={[styles.thumbnailFallback, { backgroundColor: themeColors.primary }]}>
+            <Ionicons name="videocam-outline" size={48} color={themeColors.onPrimary} />
           </View>
         )}
         <View style={styles.playButtonOverlay}>
           <View style={styles.playButton}>
-            <Ionicons name="play" size={28} color="#FFFFFF" />
+            <Ionicons name="play" size={28} color={themeColors.onPrimary} />
           </View>
         </View>
       </View>
-      <View style={styles.videoInfo}>
-        <Text style={styles.videoTitle}>{video.title}</Text>
-        <Text style={styles.videoDescription}>{video.description}</Text>
+      <View style={[styles.videoInfo, { backgroundColor: themeColors.card }]}>
+        <Text style={[styles.videoTitle, { color: themeColors.text }]}>{video.title}</Text>
+        <Text style={[styles.videoDescription, { color: themeColors.textSecondary }]}>
+          {video.description}
+        </Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -103,6 +122,8 @@ const videos: Video[] = [
 ];
 
 export default function VideoPromo() {
+  const { colors: themeColors } = useTheme();
+
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
 
@@ -125,22 +146,31 @@ export default function VideoPromo() {
   }, [player]);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <ScrollView contentContainerStyle={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <ScrollView
+        contentContainerStyle={[styles.container, { backgroundColor: themeColors.background }]}>
         {/* Header Section */}
-        <View style={styles.headerSection}>
-          <View style={styles.headerIcon}>
-            <Ionicons name="videocam-outline" size={32} color="#FF6B35" />
+        <View style={[styles.headerSection, { backgroundColor: themeColors.card }]}>
+          <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '15' }]}>
+            <Ionicons name="videocam-outline" size={32} color={themeColors.primary} />
           </View>
-          <Text style={styles.headerTitle}>Promo Video&apos;s</Text>
-          <Text style={styles.headerSubtitle}>
+          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Promo Video&apos;s</Text>
+          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
             Ontdek inspirerende verhalen en ervaringen van Youth Exchange studenten
           </Text>
         </View>
 
         {/* Video List */}
         {videos.map((video, index) => (
-          <VideoRow key={index} index={index} video={video} onPlayRequest={onPlayRequest} />
+          <VideoRow
+            key={index}
+            index={index}
+            video={video}
+            onPlayRequest={onPlayRequest}
+            themeColors={themeColors}
+          />
         ))}
 
         <View style={{ height: 40 }} />
@@ -154,15 +184,19 @@ export default function VideoPromo() {
         onRequestClose={handleCloseVideo}>
         <SafeAreaView style={styles.videoModalContainer} edges={['top', 'bottom', 'left', 'right']}>
           <View style={styles.videoModalHeader}>
-            <TouchableOpacity style={styles.closeButton} onPress={handleCloseVideo}>
-              <Ionicons name="close" size={28} color="#FFFFFF" />
-            </TouchableOpacity>
+            <Pressable
+              style={({ pressed }) => [styles.closeButton, pressed && { opacity: 0.8 }]}
+              onPress={handleCloseVideo}
+              accessibilityRole="button"
+              accessibilityLabel="Close video">
+              <Ionicons name="close" size={28} color="white" />
+            </Pressable>
           </View>
 
           <View style={styles.videoContainer}>
             {status === 'loading' && (
               <View style={styles.loadingContainer}>
-                <Text style={styles.loadingText}>Video laden...</Text>
+                <Text style={[styles.loadingText, { color: 'white' }]}>Video laden...</Text>
               </View>
             )}
             <VideoView
@@ -176,7 +210,7 @@ export default function VideoPromo() {
           </View>
 
           <View style={styles.videoInfoModal}>
-            <Text style={styles.videoTitleModal}>{selectedVideo?.title}</Text>
+            <Text style={[styles.videoTitleModal, { color: 'white' }]}>{selectedVideo?.title}</Text>
             <Text style={styles.videoSubtitleModal}>{selectedVideo?.description}</Text>
           </View>
         </SafeAreaView>
@@ -196,27 +230,26 @@ const shadowStyle = {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     padding: 16,
     paddingBottom: 40,
   },
-
   // Header Styles
   headerSection: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 20,
     marginBottom: 20,
     alignItems: 'center',
     ...shadowStyle,
+    ...(Platform.OS === 'android' && {
+      borderWidth: StyleSheet.hairlineWidth,
+    }),
   },
   headerIcon: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: '#FFF4F1',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 16,
@@ -224,25 +257,28 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#1A237E',
     marginBottom: 8,
     textAlign: 'center',
   },
   headerSubtitle: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#666',
     textAlign: 'center',
     paddingHorizontal: 10,
   },
-
   // Video Card Styles
   videoCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     marginBottom: 16,
     overflow: 'hidden',
     ...shadowStyle,
+    ...(Platform.OS === 'android' && {
+      borderWidth: StyleSheet.hairlineWidth,
+    }),
+  },
+  videoCardPressed: {
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   videoPreview: {
     position: 'relative',
@@ -258,11 +294,9 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
   },
   loadingThumbnailText: {
     fontSize: 13,
-    color: '#999',
     marginTop: 8,
   },
   thumbnailFallback: {
@@ -270,7 +304,6 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FF6B35',
   },
   playButtonOverlay: {
     position: 'absolute',
@@ -295,15 +328,12 @@ const styles = StyleSheet.create({
   videoTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   videoDescription: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#666',
   },
-
   // Video Modal Styles
   videoModalContainer: {
     flex: 1,
@@ -342,7 +372,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   loadingText: {
-    color: '#FFFFFF',
     fontSize: 16,
   },
   videoInfoModal: {
@@ -352,7 +381,6 @@ const styles = StyleSheet.create({
   videoTitleModal: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#FFFFFF',
     marginBottom: 8,
   },
   videoSubtitleModal: {

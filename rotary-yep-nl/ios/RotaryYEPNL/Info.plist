@@ -58,7 +58,7 @@
     <key>RCTNewArchEnabled</key>
     <true/>
     <key>RCTRootViewBackgroundColor</key>
-    <integer>4294967295</integer>
+    <integer>4279715215</integer>
     <key>UIBackgroundModes</key>
     <array>
       <string>audio</string>
@@ -89,7 +89,7 @@
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>UIUserInterfaceStyle</key>
-    <string>Light</string>
+    <string>Automatic</string>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
   </dict>

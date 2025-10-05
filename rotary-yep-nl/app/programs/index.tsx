@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
-
+import { useTheme } from '@/hooks/use-theme';
 interface ProgramItem {
   title: string;
   subtitle?: string;
@@ -13,6 +13,8 @@ interface ProgramItem {
 }
 
 export default function ProgramsScreen() {
+  const { colors: themeColors } = useTheme();
+
   const handleProgramPress = useCallback(async (route: string) => {
     try {
       if (Platform.OS === 'ios') {
@@ -28,24 +30,36 @@ export default function ProgramsScreen() {
   const renderProgramItem = useCallback(
     ({ item }: { item: ProgramItem }) => (
       <Pressable
-        style={({ pressed }) => [styles.programItem, pressed && styles.programItemPressed]}
+        style={({ pressed }) => [
+          styles.programItem,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && styles.programItemPressed,
+        ]}
         onPress={() => handleProgramPress(item.route)}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tap to view details"
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
         <View style={styles.programContent}>
-          <View style={styles.iconContainer}>
-            <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+          <View style={[styles.iconContainer, { backgroundColor: themeColors.primary + '15' }]}>
+            <FontAwesome5 name={item.icon} size={22} color={themeColors.primary} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.programTitle}>{item.title}</Text>
-            {item.subtitle && <Text style={styles.programSubtitle}>{item.subtitle}</Text>}
+            <Text style={[styles.programTitle, { color: themeColors.text }]}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={[styles.programSubtitle, { color: themeColors.textSecondary }]}>
+                {item.subtitle}
+              </Text>
+            )}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
@@ -92,8 +106,8 @@ export default function ProgramsScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={styles.introTitle}>Programma&apos;s</Text>
-        <Text style={styles.introText}>
+        <Text style={[styles.introTitle, { color: themeColors.primary }]}>Programma&apos;s</Text>
+        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Ontdek alle uitwisselingsprogramma&apos;s die Rotary YEP Nederland aanbiedt. Van lange
           termijn jaaruitwisselingen tot korte zomerprogramma&apos;s en promotioneel materiaal.
         </Text>
@@ -105,8 +119,8 @@ export default function ProgramsScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={styles.sectionHeaderTitle}>{title}</Text>
-        <View style={styles.sectionHeaderDivider} />
+        <Text style={[styles.sectionHeaderTitle, { color: themeColors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
     [],
@@ -142,8 +156,8 @@ export default function ProgramsScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={[]}>
-      <View style={styles.container}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: themeColors.background }]} edges={[]}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
@@ -158,42 +172,56 @@ export default function ProgramsScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#F2F2F7' },
-  container: { flex: 1 },
-  listContainer: { padding: 16, paddingBottom: 34 },
-  introContainer: { marginBottom: 32 },
+  safeArea: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+  },
+  listContainer: {
+    padding: 16,
+    paddingBottom: 34,
+  },
+  introContainer: {
+    marginBottom: 32,
+  },
   introTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 16,
   },
-  introText: { fontSize: 15, lineHeight: 22, color: '#3C3C43', textAlign: 'left' },
-  sectionHeaderContainer: { marginBottom: 16, marginTop: 8 },
+  introText: {
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: 'left',
+  },
+  sectionHeaderContainer: {
+    marginBottom: 16,
+    marginTop: 8,
+  },
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   sectionHeaderDivider: {
     height: 2,
-    backgroundColor: '#E5E5EA',
     borderRadius: 1,
   },
   programItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
     elevation: 2,
+    ...(Platform.OS === 'android' && {
+      borderWidth: StyleSheet.hairlineWidth,
+    }),
   },
   programItemPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 1,
+    opacity: Platform.OS === 'ios' ? 0.8 : 0.6,
     transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   programContent: {
@@ -206,19 +234,26 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F2F2F7',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
   },
-  textContainer: { flex: 1, marginRight: 8 },
+  textContainer: {
+    flex: 1,
+    marginRight: 8,
+  },
   programTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
   },
-  programSubtitle: { fontSize: 13, fontWeight: '400', color: '#8E8E93' },
-  spacer: { height: 10 },
+  programSubtitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 20,
+  },
+  spacer: {
+    height: 10,
+  },
 });

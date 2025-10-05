@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Colors, RotaryColors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -12,8 +13,12 @@ const shadowStyle = {
 };
 
 export default function CampsToursComplyWithScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -21,29 +26,40 @@ export default function CampsToursComplyWithScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="people-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="people-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Voor wie?</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Voor wie?</Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Leeftijd en deelname informatie voor Zomerkampen
             </Text>
           </View>
 
           {/* Age Requirements */}
           <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="calendar-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Leeftijdsvereisten</Text>
+            <View style={(styles.sectionHeader, { borderLeftColor: themeColors.primary })}>
+              <Ionicons name="calendar-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Leeftijdsvereisten
+              </Text>
             </View>
 
-            <View style={styles.ageCard}>
-              <View style={styles.ageIconContainer}>
-                <Ionicons name="person-outline" size={32} color="#4CAF50" />
+            <View
+              style={[
+                styles.ageCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View
+                style={[styles.ageIconContainer, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="person-outline" size={32} color={themeColors.primary} />
               </View>
               <View style={styles.ageContent}>
-                <Text style={styles.ageTitle}>15 - 21 jaar</Text>
-                <Text style={styles.ageDescription}>
+                <Text style={[styles.ageTitle, { color: themeColors.primary }]}>15 - 21 jaar</Text>
+                <Text style={[styles.ageDescription, { color: themeColors.textSecondary }]}>
                   Perfecte leeftijd voor internationale ervaringen en persoonlijke groei
                 </Text>
               </View>
@@ -53,32 +69,53 @@ export default function CampsToursComplyWithScreen() {
           {/* Eligibility */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Wie kan deelnemen?</Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Wie kan deelnemen?
+              </Text>
             </View>
 
-            <View style={styles.eligibilityCard}>
+            <View
+              style={[
+                styles.eligibilityCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
               <View style={styles.eligibilityItem}>
-                <View style={styles.eligibilityIcon}>
-                  <Ionicons name="people-outline" size={20} color="#2196F3" />
+                <View
+                  style={[styles.eligibilityIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                  <Ionicons name="people-outline" size={20} color={themeColors.primary} />
                 </View>
                 <View style={styles.eligibilityContent}>
-                  <Text style={styles.eligibilityTitle}>Rotarian Families</Text>
-                  <Text style={styles.eligibilityDescription}>
+                  <Text style={[styles.eligibilityTitle, { color: themeColors.text }]}>
+                    Rotarian Families
+                  </Text>
+                  <Text
+                    style={[styles.eligibilityDescription, { color: themeColors.textSecondary }]}>
                     Kinderen en kleinkinderen van Rotary leden
                   </Text>
                 </View>
               </View>
 
-              <View style={styles.eligibilityDivider} />
+              <View style={[styles.eligibilityDivider, { backgroundColor: themeColors.border }]} />
 
               <View style={styles.eligibilityItem}>
-                <View style={styles.eligibilityIcon}>
-                  <Ionicons name="heart-outline" size={20} color="#E91E63" />
+                <View
+                  style={[
+                    styles.eligibilityIcon,
+                    { backgroundColor: RotaryColors.cardinal + '15' },
+                  ]}>
+                  <Ionicons name="heart-outline" size={20} color={RotaryColors.cardinal} />
                 </View>
                 <View style={styles.eligibilityContent}>
-                  <Text style={styles.eligibilityTitle}>Non-Rotarian Youth</Text>
-                  <Text style={styles.eligibilityDescription}>
+                  <Text style={[styles.eligibilityTitle, { color: themeColors.text }]}>
+                    Non-Rotarian Youth
+                  </Text>
+                  <Text
+                    style={[styles.eligibilityDescription, { color: themeColors.textSecondary }]}>
                     Alle gemotiveerde jongeren uit de gemeenschap
                   </Text>
                 </View>
@@ -89,41 +126,76 @@ export default function CampsToursComplyWithScreen() {
           {/* What to Expect */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="star-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Wat kun je verwachten?</Text>
+              <Ionicons name="star-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Wat kun je verwachten?
+              </Text>
             </View>
 
-            <View style={styles.expectationCard}>
-              <View style={styles.expectationIcon}>
-                <Ionicons name="globe-outline" size={20} color="#FF6B35" />
+            <View
+              style={[
+                styles.expectationCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View
+                style={[styles.expectationIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="globe-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>Internationale Ervaring</Text>
-                <Text style={styles.expectationDescription}>
+                <Text style={[styles.expectationTitle, { color: themeColors.text }]}>
+                  Internationale Ervaring
+                </Text>
+                <Text style={[styles.expectationDescription, { color: themeColors.textSecondary }]}>
                   Ontdek nieuwe culturen en maak vrienden over de hele wereld
                 </Text>
               </View>
             </View>
 
-            <View style={styles.expectationCard}>
-              <View style={styles.expectationIcon}>
-                <Ionicons name="school-outline" size={20} color="#4CAF50" />
+            <View
+              style={[
+                styles.expectationCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View
+                style={[styles.expectationIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="school-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>Persoonlijke Ontwikkeling</Text>
-                <Text style={styles.expectationDescription}>
+                <Text style={[styles.expectationTitle, { color: themeColors.text }]}>
+                  Persoonlijke Ontwikkeling
+                </Text>
+                <Text style={[styles.expectationDescription, { color: themeColors.textSecondary }]}>
                   Ontwikkel zelfvertrouwen en leiderschapsvaardigheden
                 </Text>
               </View>
             </View>
 
-            <View style={styles.expectationCard}>
-              <View style={styles.expectationIcon}>
-                <Ionicons name="camera-outline" size={20} color="#9C27B0" />
+            <View
+              style={[
+                styles.expectationCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  shadowColor: themeColors.shadow,
+                },
+              ]}>
+              <View
+                style={[styles.expectationIcon, { backgroundColor: themeColors.primary + '15' }]}>
+                <Ionicons name="camera-outline" size={20} color={themeColors.primary} />
               </View>
               <View style={styles.expectationContent}>
-                <Text style={styles.expectationTitle}>Onvergetelijke Herinneringen</Text>
-                <Text style={styles.expectationDescription}>
+                <Text style={[styles.expectationTitle, { color: themeColors.text }]}>
+                  Onvergetelijke Herinneringen
+                </Text>
+                <Text style={[styles.expectationDescription, { color: themeColors.textSecondary }]}>
                   Creëer levenslange herinneringen en verhalen om te delen
                 </Text>
               </View>
@@ -138,7 +210,6 @@ export default function CampsToursComplyWithScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -158,7 +229,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -166,13 +236,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -190,33 +258,27 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Age Card Styles
   ageCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
     borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
-    ...(Platform.OS === 'ios'
-      ? shadowStyle
-      : {
-          elevation: 2,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
-        }),
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 4,
   },
   ageIconContainer: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#E8F5E8',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -227,28 +289,23 @@ const styles = StyleSheet.create({
   ageTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#4CAF50',
     marginBottom: 4,
   },
   ageDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
   // Eligibility Card Styles
   eligibilityCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
-    ...(Platform.OS === 'ios'
-      ? shadowStyle
-      : {
-          elevation: 2,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
-        }),
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 4,
   },
   eligibilityItem: {
     flexDirection: 'row',
@@ -259,7 +316,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -270,42 +326,35 @@ const styles = StyleSheet.create({
   eligibilityTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   eligibilityDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
   eligibilityDivider: {
     height: 1,
-    backgroundColor: '#E0E0E0',
     marginVertical: 16,
     marginLeft: 56,
   },
 
   // Expectation Card Styles
   expectationCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 12,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios'
-      ? shadowStyle
-      : {
-          elevation: 1,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
-        }),
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 4,
   },
   expectationIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -316,12 +365,10 @@ const styles = StyleSheet.create({
   expectationTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   expectationDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 

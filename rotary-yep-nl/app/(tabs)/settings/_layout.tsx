@@ -1,10 +1,10 @@
 import { Stack } from 'expo-router';
 import { Platform, Pressable, Share, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function SettingsLayout() {
-  const theme = useTheme();
+  const { colors: theme } = useTheme();
 
   const handleShare = async () => {
     try {
@@ -24,14 +24,14 @@ export default function SettingsLayout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.colors.card,
+          backgroundColor: theme.card,
         },
         headerTitleStyle: {
-          color: theme.colors.text,
+          color: theme.text,
           fontWeight: '600',
           fontSize: Platform.OS === 'ios' ? 20 : 22,
         },
-        headerTintColor: theme.colors.primary,
+        headerTintColor: theme.primary,
         headerShadowVisible: Platform.OS === 'ios',
         headerBackTitle: Platform.OS === 'ios' ? 'Terug' : '',
       }}>
@@ -51,7 +51,7 @@ export default function SettingsLayout() {
               <Ionicons
                 name={Platform.OS === 'ios' ? 'share-outline' : 'share-social-outline'}
                 size={24}
-                color={theme.colors.primary}
+                color={theme.primary}
               />
             </Pressable>
           ),

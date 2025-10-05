@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
-
+import { useTheme } from '@/hooks/use-theme';
 interface OptionItem {
   title: string;
   icon: keyof typeof FontAwesome5.glyphMap;
@@ -12,6 +12,8 @@ interface OptionItem {
 }
 
 export default function RotaryClubsScreen() {
+  const { colors: themeColors } = useTheme();
+
   const handleOptionPress = useCallback(async (route: string) => {
     try {
       if (Platform.OS === 'ios') {
@@ -28,7 +30,15 @@ export default function RotaryClubsScreen() {
   const renderOptionItem = useCallback(
     ({ item }: { item: OptionItem }) => (
       <Pressable
-        style={({ pressed }) => [styles.optionRow, pressed && styles.optionRowPressed]}
+        style={({ pressed }) => [
+          styles.optionRow,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && styles.optionRowPressed,
+        ]}
         onPress={() => handleOptionPress(item.route)}
         android_ripple={{
           color: 'rgba(0, 122, 255, 0.2)',
@@ -39,14 +49,14 @@ export default function RotaryClubsScreen() {
         accessibilityHint="Tap to view more information"
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
         <View style={styles.optionContent}>
-          <View style={styles.iconContainer}>
-            <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+          <View style={[styles.iconContainer, { backgroundColor: themeColors.primary + '15' }]}>
+            <FontAwesome5 name={item.icon} size={22} color={themeColors.link} />
           </View>
-          <Text style={styles.optionTitle}>{item.title}</Text>
+          <Text style={[styles.optionTitle, { color: themeColors.text }]}>{item.title}</Text>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
@@ -85,7 +95,7 @@ export default function RotaryClubsScreen() {
   const ListHeaderComponent = useCallback(
     () => (
       <View style={styles.content}>
-        <Text style={styles.introText}>
+        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent te supporten en
           daarmee dus ook een jaar lang een kind binnen jullie club te ontvangen en te begeleiden.
           Misschien zijn jullie benaderd door een scholier van buiten jullie of mogelijk vanuit de
@@ -97,8 +107,10 @@ export default function RotaryClubsScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <FlatList
           data={options}
           renderItem={renderOptionItem}
@@ -119,7 +131,6 @@ export default function RotaryClubsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -134,16 +145,13 @@ const styles = StyleSheet.create({
   introText: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#3C3C43',
     textAlign: 'left',
     paddingHorizontal: 16,
   },
   optionRow: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -163,7 +171,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F2F2F7',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
@@ -172,7 +179,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginRight: 8,
   },
 });

@@ -3,14 +3,18 @@ import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Ionicons } from '@expo/vector-icons';
-
+import { useTheme } from '@/hooks/use-theme';
 export default function CampsAndToursInboundScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <View style={styles.emptyState}>
-        <Ionicons name="construct-outline" size={48} color="#9FA8DA" />
-        <Text style={styles.emptyStateTitle}>Coming Soon</Text>
-        <Text style={styles.emptyStateMessage}>
+        <Ionicons name="construct-outline" size={48} color={themeColors.primary} />
+        <Text style={[styles.emptyStateTitle, { color: themeColors.text }]}>Coming Soon</Text>
+        <Text style={[styles.emptyStateMessage, { color: themeColors.textSecondary }]}>
           Information for inbound zomerkampen participants will be available here soon.
         </Text>
       </View>
@@ -21,7 +25,6 @@ export default function CampsAndToursInboundScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   emptyState: {
     flex: 1,
@@ -33,13 +36,11 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1A237E',
     marginTop: 16,
     marginBottom: 8,
   },
   emptyStateMessage: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
   },

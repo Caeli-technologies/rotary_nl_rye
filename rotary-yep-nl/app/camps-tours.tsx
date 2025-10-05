@@ -9,6 +9,7 @@ import {
   Alert,
   RefreshControl,
   Modal,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,7 +17,8 @@ import { router, useNavigation } from 'expo-router';
 import { Image } from 'expo-image';
 import { readString } from 'react-native-csv';
 import { getFlagAsset } from '../utils/flags';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 interface CampTourData {
   startDate: string;
   endDate: string;
@@ -31,7 +33,9 @@ interface CampTourData {
   full: string;
 }
 
-interface TravelCardProps extends CampTourData {}
+interface TravelCardProps extends CampTourData {
+  themeColors: typeof Colors.light;
+}
 
 function TravelCard({
   startDate,
@@ -45,6 +49,7 @@ function TravelCard({
   contribution,
   invitation,
   full,
+  themeColors,
 }: TravelCardProps) {
   const hostCountries = hostCountry.split('/');
   const hostCountryCodes = hostCountryCode.split('/');
@@ -85,8 +90,9 @@ function TravelCard({
     <Pressable
       style={({ pressed }) => [
         styles.card,
+        { backgroundColor: themeColors.card, borderColor: themeColors.border },
         isFull && styles.cardFull,
-        campIsPast && styles.cardPast,
+        campIsPast && [styles.cardPast, { borderLeftColor: themeColors.textTertiary }],
         pressed && styles.cardPressed,
       ]}
       onPress={handlePress}
@@ -96,35 +102,49 @@ function TravelCard({
       }}>
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title} numberOfLines={2}>
+          <Text style={[styles.title, { color: themeColors.text }]} numberOfLines={2}>
             {title}
           </Text>
           <View style={styles.badgeContainer}>
             {campIsPast && (
-              <View style={styles.pastBadge}>
+              <View style={[styles.pastBadge, { backgroundColor: themeColors.textTertiary }]}>
                 <Ionicons name="time" size={12} color="#fff" />
-                <Text style={styles.pastBadgeText}>AFGELOPEN</Text>
+                <Text style={[styles.pastBadgeText, { color: '#fff' }]}>AFGELOPEN</Text>
               </View>
             )}
             {isFull && (
               <View style={[styles.fullBadge, campIsPast && styles.badgeSpacing]}>
                 <Ionicons name="warning" size={14} color="#fff" />
-                <Text style={styles.fullBadgeText}>VOL</Text>
+                <Text style={[styles.fullBadgeText, { color: '#fff' }]}>VOL</Text>
               </View>
             )}
           </View>
         </View>
         {invitation && invitation.trim() !== '' && (
           <View style={styles.actionIndicator}>
-            <Ionicons name="document-text-outline" size={18} color="#666" />
+            <Ionicons name="document-text-outline" size={18} color={themeColors.textSecondary} />
           </View>
         )}
       </View>
 
       <View style={styles.cardBody}>
-        <View style={[styles.dateContainer, campIsPast && styles.dateContainerPast]}>
-          <Ionicons name="calendar-outline" size={16} color={campIsPast ? '#8E8E93' : '#007AFF'} />
-          <Text style={[styles.dateText, campIsPast && styles.dateTextPast]}>
+        <View
+          style={[
+            styles.dateContainer,
+            { backgroundColor: themeColors.backgroundElevated },
+            campIsPast && styles.dateContainerPast,
+          ]}>
+          <Ionicons
+            name="calendar-outline"
+            size={16}
+            color={campIsPast ? themeColors.textTertiary : themeColors.link}
+          />
+          <Text
+            style={[
+              styles.dateText,
+              { color: campIsPast ? themeColors.textTertiary : themeColors.text },
+              campIsPast && styles.dateTextPast,
+            ]}>
             {startDate} - {endDate}
           </Text>
         </View>
@@ -132,8 +152,8 @@ function TravelCard({
         <View style={styles.detailsGrid}>
           <View style={styles.detailItem}>
             <View style={styles.detailHeader}>
-              <Ionicons name="location-outline" size={14} color="#666" />
-              <Text style={styles.detailLabel}>Land</Text>
+              <Ionicons name="location-outline" size={14} color={themeColors.textSecondary} />
+              <Text style={[styles.detailLabel, { color: themeColors.textSecondary }]}>Land</Text>
             </View>
             <View style={styles.countryContainer}>
               {hostCountries.map((country, index) => {
@@ -141,16 +161,28 @@ function TravelCard({
                 const flagAsset = countryCode ? getFlagAsset(countryCode.toLowerCase()) : null;
 
                 return (
-                  <View key={index} style={styles.countryItem}>
+                  <View
+                    key={index}
+                    style={[
+                      styles.countryItem,
+                      { backgroundColor: themeColors.backgroundElevated },
+                    ]}>
                     {flagAsset && (
                       <Image source={flagAsset} style={styles.flag} contentFit="cover" />
                     )}
                     {!flagAsset && countryCode && (
-                      <View style={[styles.flag, styles.flagPlaceholder]}>
-                        <Ionicons name="flag-outline" size={10} color="#8E8E93" />
+                      <View
+                        style={[
+                          styles.flag,
+                          styles.flagPlaceholder,
+                          { backgroundColor: themeColors.background },
+                        ]}>
+                        <Ionicons name="flag-outline" size={10} color={themeColors.textTertiary} />
                       </View>
                     )}
-                    <Text style={styles.countryText}>{country.trim()}</Text>
+                    <Text style={[styles.countryText, { color: themeColors.text }]}>
+                      {country.trim()}
+                    </Text>
                   </View>
                 );
               })}
@@ -159,29 +191,35 @@ function TravelCard({
 
           <View style={styles.detailItem}>
             <View style={styles.detailHeader}>
-              <Ionicons name="business-outline" size={14} color="#666" />
-              <Text style={styles.detailLabel}>District</Text>
+              <Ionicons name="business-outline" size={14} color={themeColors.textSecondary} />
+              <Text style={[styles.detailLabel, { color: themeColors.textSecondary }]}>
+                District
+              </Text>
             </View>
-            <Text style={styles.detailValue}>{hostDistrict}</Text>
+            <Text style={[styles.detailValue, { color: themeColors.text }]}>{hostDistrict}</Text>
           </View>
 
           <View style={styles.detailRow}>
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons name="people-outline" size={14} color="#666" />
-                <Text style={styles.detailLabel}>Leeftijd</Text>
+                <Ionicons name="people-outline" size={14} color={themeColors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: themeColors.textSecondary }]}>
+                  Leeftijd
+                </Text>
               </View>
-              <Text style={styles.detailValue}>
+              <Text style={[styles.detailValue, { color: themeColors.text }]}>
                 {ageMin}-{ageMax} jr
               </Text>
             </View>
 
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons name="card-outline" size={14} color="#666" />
-                <Text style={styles.detailLabel}>Kosten</Text>
+                <Ionicons name="card-outline" size={14} color={themeColors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: themeColors.textSecondary }]}>
+                  Kosten
+                </Text>
               </View>
-              <Text style={styles.detailValue}>{contribution}</Text>
+              <Text style={[styles.detailValue, { color: themeColors.text }]}>{contribution}</Text>
             </View>
           </View>
         </View>
@@ -191,6 +229,8 @@ function TravelCard({
 }
 
 export default function CampsToursScreen() {
+  const { colors: themeColors } = useTheme();
+
   const [data, setData] = useState<CampTourData[]>([]);
   const [filteredData, setFilteredData] = useState<CampTourData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -394,16 +434,25 @@ export default function CampsToursScreen() {
     return (
       <View style={{ marginRight: 8 }}>
         <Pressable
-          style={[styles.filterChip, filters.availability !== 'alle' && styles.filterChipActive]}
+          style={[
+            styles.filterChip,
+            {
+              backgroundColor:
+                filters.availability !== 'alle' ? themeColors.link : themeColors.card,
+              borderColor: themeColors.border,
+            },
+            filters.availability !== 'alle' && styles.filterChipActive,
+          ]}
           onPress={showAvailabilityOptions}>
           <Ionicons
             name="checkmark-circle-outline"
             size={16}
-            color={filters.availability !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+            color={filters.availability !== 'alle' ? themeColors.card : themeColors.textTertiary}
           />
           <Text
             style={[
               styles.filterChipText,
+              { color: filters.availability !== 'alle' ? themeColors.card : themeColors.text },
               filters.availability !== 'alle' && styles.filterChipTextActive,
             ]}>
             {filters.availability === 'alle'
@@ -415,7 +464,7 @@ export default function CampsToursScreen() {
           <Ionicons
             name="chevron-down"
             size={14}
-            color={filters.availability !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+            color={filters.availability !== 'alle' ? themeColors.card : themeColors.textTertiary}
             style={styles.filterChipChevron}
           />
         </Pressable>
@@ -453,16 +502,24 @@ export default function CampsToursScreen() {
     return (
       <View style={{ marginRight: 8 }}>
         <Pressable
-          style={[styles.filterChip, filters.timing !== 'alle' && styles.filterChipActive]}
+          style={[
+            styles.filterChip,
+            {
+              backgroundColor: filters.timing !== 'alle' ? themeColors.link : themeColors.card,
+              borderColor: themeColors.border,
+            },
+            filters.timing !== 'alle' && styles.filterChipActive,
+          ]}
           onPress={showTimingOptions}>
           <Ionicons
             name="time-outline"
             size={16}
-            color={filters.timing !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+            color={filters.timing !== 'alle' ? themeColors.card : themeColors.textTertiary}
           />
           <Text
             style={[
               styles.filterChipText,
+              { color: filters.timing !== 'alle' ? themeColors.card : themeColors.text },
               filters.timing !== 'alle' && styles.filterChipTextActive,
             ]}>
             {filters.timing === 'alle'
@@ -474,7 +531,7 @@ export default function CampsToursScreen() {
           <Ionicons
             name="chevron-down"
             size={14}
-            color={filters.timing !== 'alle' ? '#FFFFFF' : '#8E8E93'}
+            color={filters.timing !== 'alle' ? themeColors.card : themeColors.textTertiary}
             style={styles.filterChipChevron}
           />
         </Pressable>
@@ -486,21 +543,32 @@ export default function CampsToursScreen() {
     return (
       <View style={{ marginRight: 8 }}>
         <Pressable
-          style={[styles.filterChip, filters.country !== '' && styles.filterChipActive]}
+          style={[
+            styles.filterChip,
+            {
+              backgroundColor: filters.country !== '' ? themeColors.link : themeColors.card,
+              borderColor: themeColors.border,
+            },
+            filters.country !== '' && styles.filterChipActive,
+          ]}
           onPress={() => setShowCountryModal(true)}>
           <Ionicons
             name="location-outline"
             size={16}
-            color={filters.country !== '' ? '#FFFFFF' : '#8E8E93'}
+            color={filters.country !== '' ? themeColors.card : themeColors.textTertiary}
           />
           <Text
-            style={[styles.filterChipText, filters.country !== '' && styles.filterChipTextActive]}>
+            style={[
+              styles.filterChipText,
+              { color: filters.country !== '' ? themeColors.card : themeColors.text },
+              filters.country !== '' && styles.filterChipTextActive,
+            ]}>
             {filters.country || 'Land'}
           </Text>
           <Ionicons
             name="chevron-down"
             size={14}
-            color={filters.country !== '' ? '#FFFFFF' : '#8E8E93'}
+            color={filters.country !== '' ? themeColors.card : themeColors.textTertiary}
             style={styles.filterChipChevron}
           />
         </Pressable>
@@ -513,8 +581,14 @@ export default function CampsToursScreen() {
       <Pressable
         style={({ pressed }) => [
           styles.countryModalItem,
-          filters.country === item.country && styles.countryModalItemSelected,
-          pressed && styles.countryModalItemPressed,
+          filters.country === item.country && [
+            styles.countryModalItemSelected,
+            { backgroundColor: themeColors.backgroundElevated },
+          ],
+          pressed && [
+            styles.countryModalItemPressed,
+            { backgroundColor: themeColors.backgroundElevated },
+          ],
         ]}
         onPress={() => {
           setFilters((prev) => ({ ...prev, country: item.country }));
@@ -528,20 +602,21 @@ export default function CampsToursScreen() {
                 <Image source={flagAsset} style={styles.countryModalFlag} contentFit="cover" />
               ) : (
                 <View style={[styles.countryModalFlag, styles.countryModalFlagPlaceholder]}>
-                  <Ionicons name="flag-outline" size={16} color="#8E8E93" />
+                  <Ionicons name="flag-outline" size={16} color={themeColors.textTertiary} />
                 </View>
               );
             })()}
           <Text
             style={[
               styles.countryModalItemText,
+              { color: themeColors.text },
               filters.country === item.country && styles.countryModalItemTextSelected,
             ]}>
             {item.country}
           </Text>
         </View>
         {filters.country === item.country && (
-          <Ionicons name="checkmark" size={20} color="#007AFF" />
+          <Ionicons name="checkmark" size={20} color={themeColors.link} />
         )}
       </Pressable>
     );
@@ -552,13 +627,16 @@ export default function CampsToursScreen() {
         animationType="slide"
         presentationStyle="pageSheet"
         onRequestClose={() => setShowCountryModal(false)}>
-        <SafeAreaView style={styles.countryModalContainer}>
-          <View style={styles.countryModalHeader}>
-            <Text style={styles.countryModalTitle}>Selecteer Land</Text>
+        <SafeAreaView
+          style={[styles.countryModalContainer, { backgroundColor: themeColors.background }]}>
+          <View style={[styles.countryModalHeader, { borderBottomColor: themeColors.divider }]}>
+            <Text style={[styles.countryModalTitle, { color: themeColors.text }]}>
+              Selecteer Land
+            </Text>
             <Pressable
               style={styles.countryModalCloseButton}
               onPress={() => setShowCountryModal(false)}>
-              <Ionicons name="close" size={24} color="#8E8E93" />
+              <Ionicons name="close" size={24} color={themeColors.textTertiary} />
             </Pressable>
           </View>
 
@@ -570,8 +648,14 @@ export default function CampsToursScreen() {
                   <Pressable
                     style={({ pressed }) => [
                       styles.countryModalItem,
-                      filters.country === '' && styles.countryModalItemSelected,
-                      pressed && styles.countryModalItemPressed,
+                      filters.country === '' && [
+                        styles.countryModalItemSelected,
+                        { backgroundColor: themeColors.backgroundElevated },
+                      ],
+                      pressed && [
+                        styles.countryModalItemPressed,
+                        { backgroundColor: themeColors.backgroundElevated },
+                      ],
                     ]}
                     onPress={() => {
                       setFilters((prev) => ({ ...prev, country: '' }));
@@ -579,18 +663,19 @@ export default function CampsToursScreen() {
                     }}>
                     <View style={styles.countryModalItemContent}>
                       <View style={[styles.countryModalFlag, styles.allCountriesIcon]}>
-                        <Ionicons name="globe-outline" size={14} color="#8E8E93" />
+                        <Ionicons name="globe-outline" size={14} color={themeColors.textTertiary} />
                       </View>
                       <Text
                         style={[
                           styles.countryModalItemText,
+                          { color: themeColors.text },
                           filters.country === '' && styles.countryModalItemTextSelected,
                         ]}>
                         Alle landen
                       </Text>
                     </View>
                     {filters.country === '' && (
-                      <Ionicons name="checkmark" size={20} color="#007AFF" />
+                      <Ionicons name="checkmark" size={20} color={themeColors.link} />
                     )}
                   </Pressable>
                 );
@@ -613,8 +698,15 @@ export default function CampsToursScreen() {
       headerRight: () => (
         <View style={styles.headerRightContainer}>
           {/* <View style={styles.headerStatsContainer}> */}
-          {hasActiveFilters && <View style={styles.headerActiveIndicator} />}
-          <Text style={[styles.headerStatsText, hasActiveFilters && styles.headerStatsTextActive]}>
+          {hasActiveFilters && (
+            <View style={[styles.headerActiveIndicator, { backgroundColor: themeColors.link }]} />
+          )}
+          <Text
+            style={[
+              styles.headerStatsText,
+              { color: themeColors.textSecondary },
+              hasActiveFilters && [styles.headerStatsTextActive, { color: themeColors.link }],
+            ]}>
             {loading ? 'Laden...' : `${filteredData.length}/${data.length}`}
           </Text>
           {/* </View> */}
@@ -643,9 +735,11 @@ export default function CampsToursScreen() {
   }, [filters, data]);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       {/* Filter Chips */}
-      <View style={styles.filterChipsContainer}>
+      <View style={[styles.filterChipsContainer, { borderBottomColor: themeColors.divider }]}>
         <FlatList
           data={[
             { id: 'availability', component: <AvailabilityContextMenu /> },
@@ -664,30 +758,40 @@ export default function CampsToursScreen() {
       <CountryModal />
 
       {/* Content */}
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         {/* Main Content */}
         {loading ? (
           <View style={styles.centerContainer}>
-            <ActivityIndicator size="large" color="#007AFF" />
-            <Text style={styles.loadingText}>Zomerkampen laden...</Text>
+            <ActivityIndicator size="large" color={themeColors.link} />
+            <Text style={[styles.loadingText, { color: themeColors.textSecondary }]}>
+              Zomerkampen laden...
+            </Text>
           </View>
         ) : error ? (
           <View style={styles.centerContainer}>
             <View style={styles.errorIcon}>
               <Ionicons name="warning-outline" size={64} color="#FF3B30" />
             </View>
-            <Text style={styles.errorTitle}>Oops! Er is iets misgegaan</Text>
-            <Text style={styles.errorText}>{error}</Text>
+            <Text style={[styles.errorTitle, { color: themeColors.text }]}>
+              Oops! Er is iets misgegaan
+            </Text>
+            <Text style={[styles.errorText, { color: themeColors.textSecondary }]}>{error}</Text>
             <Pressable
-              style={({ pressed }) => [styles.retryButton, pressed && styles.retryButtonPressed]}
+              style={({ pressed }) => [
+                styles.retryButton,
+                { backgroundColor: themeColors.link },
+                pressed && styles.retryButtonPressed,
+              ]}
               onPress={fetchCsvData}>
-              <Text style={styles.retryButtonText}>Opnieuw Proberen</Text>
+              <Text style={[styles.retryButtonText, { color: themeColors.card }]}>
+                Opnieuw Proberen
+              </Text>
             </Pressable>
           </View>
         ) : (
           <FlatList
             data={filteredData}
-            renderItem={({ item }) => <TravelCard {...item} />}
+            renderItem={({ item }) => <TravelCard {...item} themeColors={themeColors} />}
             keyExtractor={(item, index) => `${item.title}-${index}`}
             style={styles.flatList}
             contentContainerStyle={[
@@ -701,7 +805,7 @@ export default function CampsToursScreen() {
                 refreshing={loading}
                 onRefresh={fetchCsvData}
                 colors={['#007AFF']}
-                tintColor="#007AFF"
+                tintColor={themeColors.link}
               />
             }
             ListEmptyComponent={() => {
@@ -709,10 +813,12 @@ export default function CampsToursScreen() {
                 return (
                   <View style={styles.emptyContainer}>
                     <View style={styles.emptyIcon}>
-                      <Ionicons name="search-outline" size={64} color="#C7C7CC" />
+                      <Ionicons name="search-outline" size={64} color={themeColors.textDisabled} />
                     </View>
-                    <Text style={styles.emptyTitle}>Geen Overeenkomende Kampen</Text>
-                    <Text style={styles.emptyText}>
+                    <Text style={[styles.emptyTitle, { color: themeColors.text }]}>
+                      Geen Overeenkomende Kampen
+                    </Text>
+                    <Text style={[styles.emptyText, { color: themeColors.textSecondary }]}>
                       Pas je filters aan om meer resultaten te zien.
                     </Text>
                   </View>
@@ -721,7 +827,11 @@ export default function CampsToursScreen() {
                 return (
                   <View style={styles.emptyContainer}>
                     <View style={styles.emptyIcon}>
-                      <Ionicons name="calendar-outline" size={64} color="#C7C7CC" />
+                      <Ionicons
+                        name="calendar-outline"
+                        size={64}
+                        color={themeColors.textDisabled}
+                      />
                     </View>
                     <Text style={styles.emptyTitle}>Geen Kampen Beschikbaar</Text>
                     <Text style={styles.emptyText}>
@@ -742,7 +852,6 @@ export default function CampsToursScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -763,29 +872,24 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#007AFF',
     marginRight: 6,
   },
   headerStatsText: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#8E8E93',
   },
   headerStatsTextActive: {
-    color: '#007AFF',
     fontWeight: '600',
   },
   headerClearButton: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 8,
   },
   headerClearButtonPressed: {
-    backgroundColor: '#E5E5EA',
     transform: [{ scale: 0.95 }],
   },
 
@@ -797,10 +901,8 @@ const styles = StyleSheet.create({
     paddingBottom: 34,
   },
   card: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -826,7 +928,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     lineHeight: 22,
     marginBottom: 4,
   },
@@ -840,7 +941,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   fullBadgeText: {
-    color: '#FFFFFF',
     fontSize: 11,
     fontWeight: '600',
     marginLeft: 4,
@@ -850,7 +950,6 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -861,7 +960,6 @@ const styles = StyleSheet.create({
   dateContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F2F2F7',
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 8,
@@ -870,7 +968,6 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#007AFF',
     marginLeft: 8,
   },
   detailsGrid: {
@@ -891,13 +988,11 @@ const styles = StyleSheet.create({
   detailLabel: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#8E8E93',
     marginLeft: 6,
   },
   detailValue: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#000000',
   },
   countryContainer: {
     flexDirection: 'row',
@@ -907,7 +1002,6 @@ const styles = StyleSheet.create({
   countryItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F2F2F7',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
@@ -915,7 +1009,6 @@ const styles = StyleSheet.create({
   countryText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#000000',
   },
   flag: {
     width: 16,
@@ -924,12 +1017,10 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   flagPlaceholder: {
-    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
   },
   countryModalFlagPlaceholder: {
-    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -942,7 +1033,6 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#8E8E93',
     marginTop: 16,
     textAlign: 'center',
   },
@@ -958,28 +1048,24 @@ const styles = StyleSheet.create({
   errorTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#000000',
     textAlign: 'center',
     marginBottom: 8,
   },
   errorText: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#8E8E93',
     textAlign: 'center',
     lineHeight: 22,
     marginBottom: 32,
     paddingHorizontal: 20,
   },
   retryButton: {
-    backgroundColor: '#007AFF',
     paddingHorizontal: 32,
     paddingVertical: 14,
     borderRadius: 8,
     minWidth: 120,
   },
   retryButtonText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
@@ -993,7 +1079,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
@@ -1001,22 +1086,18 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#000000',
     textAlign: 'center',
     marginBottom: 8,
   },
   emptyText: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#8E8E93',
     textAlign: 'center',
     lineHeight: 22,
   },
   // Filter Chips styles
   filterChipsContainer: {
-    backgroundColor: '#FFFFFF',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#E5E5EA',
     paddingHorizontal: 16,
     paddingVertical: 12,
     flexDirection: 'row',
@@ -1038,31 +1119,24 @@ const styles = StyleSheet.create({
   filterChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F2F2F7',
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 8,
     marginRight: 8,
     borderWidth: 1,
-    borderColor: '#E5E5EA',
     minHeight: 36,
   },
-  filterChipActive: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
-  },
+  filterChipActive: {},
   filterChipPressed: {
     opacity: 0.7,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.96 }] : [],
   },
   filterChipText: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#000000',
     marginLeft: 6,
   },
-  filterChipTextActive: {
-    color: '#FFFFFF',
-  },
+  filterChipTextActive: {},
   filterChipChevron: {
     marginLeft: 4,
   },
@@ -1070,9 +1144,11 @@ const styles = StyleSheet.create({
   // Native component pressed states
   cardPressed: {
     opacity: 0.8,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   retryButtonPressed: {
     opacity: 0.8,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
   // FlatList styles
   flatList: {
@@ -1093,7 +1169,6 @@ const styles = StyleSheet.create({
   cardPast: {
     opacity: 0.7,
     borderLeftWidth: 4,
-    borderLeftColor: '#8E8E93',
   },
   badgeContainer: {
     flexDirection: 'column',
@@ -1103,14 +1178,12 @@ const styles = StyleSheet.create({
   pastBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#8E8E93',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 10,
     alignSelf: 'flex-start',
   },
   pastBadgeText: {
-    color: '#FFFFFF',
     fontSize: 10,
     fontWeight: '600',
     marginLeft: 3,
@@ -1119,16 +1192,11 @@ const styles = StyleSheet.create({
   badgeSpacing: {
     marginTop: 0,
   },
-  dateContainerPast: {
-    backgroundColor: '#F8F8F8',
-  },
-  dateTextPast: {
-    color: '#8E8E93',
-  },
+  dateContainerPast: {},
+  dateTextPast: {},
   // Country Modal styles
   countryModalContainer: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   countryModalHeader: {
     flexDirection: 'row',
@@ -1137,12 +1205,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#E5E5EA',
   },
   countryModalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#000000',
   },
   countryModalCloseButton: {
     padding: 4,
@@ -1156,14 +1222,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: '#FFFFFF',
   },
   countryModalItemSelected: {
     backgroundColor: '#F0F8FF',
   },
-  countryModalItemPressed: {
-    backgroundColor: '#E5E5EA',
-  },
+  countryModalItemPressed: {},
   countryModalItemContent: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1176,17 +1239,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   allCountriesIcon: {
-    backgroundColor: '#F2F2F7',
     justifyContent: 'center',
     alignItems: 'center',
   },
   countryModalItemText: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#000000',
   },
   countryModalItemTextSelected: {
-    color: '#007AFF',
     fontWeight: '500',
   },
 });

@@ -7,6 +7,7 @@
     "version": "11.0.0",
     "scheme": "rotaryyepnl",
     "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
     "githubUrl": "https://github.com/Caeli-technologies/rotary_nl_rye",
     "platforms": [
       "ios",
@@ -15,7 +16,7 @@
     "ios": {
       "buildNumber": "105",
       "appleTeamId": "A8S2486A44",
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#17458f",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
       "supportsTablet": true,
       "requireFullScreen": false,
@@ -27,7 +28,7 @@
       "splash": {
         "image": "./assets/images/splash.png",
         "resizeMode": "contain",
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#17458f",
         "dark": {
           "image": "./assets/images/splash.png",
           "resizeMode": "contain",
@@ -45,17 +46,17 @@
     "android": {
       "versionCode": 105,
       "package": "com.caelitechnologies.rotary_nl_rye",
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#17458f",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": true,
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#17458f",
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "splash": {
         "image": "./assets/images/splash.png",
         "resizeMode": "contain",
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#17458f",
         "dark": {
           "image": "./assets/images/splash.png",
           "resizeMode": "contain",
@@ -80,6 +81,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
           "dark": {
+            "image": "./assets/images/splash.png",
+            "resizeMode": "contain",
             "backgroundColor": "#000000"
           }
         }

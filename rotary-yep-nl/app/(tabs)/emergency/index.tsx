@@ -1,12 +1,14 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, Platform, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from 'expo-router';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { makePhoneCall, sendEmail } from '@/utils/communications';
 
 import * as Haptics from 'expo-haptics';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -23,6 +25,8 @@ interface EmergencyContact {
 }
 
 export default function EmergencyScreen() {
+  const navigation = useNavigation();
+  const { colors: themeColors } = useTheme();
   const rotaryYouthExchange: EmergencyContact[] = [
     {
       name: 'Barbara Tusveld',
@@ -76,23 +80,41 @@ export default function EmergencyScreen() {
   };
 
   const EmergencyContactCard = ({ contact }: { contact: EmergencyContact }) => (
-    <View style={styles.contactCard}>
+    <View
+      style={[
+        styles.contactCard,
+        {
+          backgroundColor: themeColors.card,
+          shadowColor: themeColors.shadow,
+          borderColor: themeColors.border,
+        },
+      ]}>
       <View style={styles.contactInfo}>
-        <Text style={styles.contactName}>{contact.name}</Text>
-        <Text style={styles.contactFunction}>{contact.function}</Text>
-        <Text style={styles.contactPhone}>{contact.phone}</Text>
+        <Text style={[styles.contactName, { color: themeColors.text }]}>{contact.name}</Text>
+        <Text style={[styles.contactFunction, { color: themeColors.textSecondary }]}>
+          {contact.function}
+        </Text>
+        <Text style={[styles.contactPhone, { color: themeColors.accent }]}>{contact.phone}</Text>
       </View>
       <View style={styles.contactActions}>
         <Pressable
-          style={({ pressed }) => [styles.actionButton, pressed && styles.actionButtonPressed]}
+          style={({ pressed }) => [
+            styles.actionButton,
+            { backgroundColor: themeColors.primary + '15' },
+            pressed && styles.actionButtonPressed,
+          ]}
           onPress={() => handleCall(contact.phone, contact.name)}>
-          <Ionicons name="call" size={20} color="#1A237E" />
+          <Ionicons name="call" size={20} color={themeColors.primary} />
         </Pressable>
         {contact.email && (
           <Pressable
-            style={({ pressed }) => [styles.actionButton, pressed && styles.actionButtonPressed]}
+            style={({ pressed }) => [
+              styles.actionButton,
+              { backgroundColor: themeColors.primary + '15' },
+              pressed && styles.actionButtonPressed,
+            ]}
             onPress={() => handleEmail(contact.email!, contact.name)}>
-            <Ionicons name="mail" size={20} color="#1A237E" />
+            <Ionicons name="mail" size={20} color={themeColors.primary} />
           </Pressable>
         )}
       </View>
@@ -100,19 +122,33 @@ export default function EmergencyScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
-        style={styles.container}
+        style={[styles.container, { backgroundColor: themeColors.background }]}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
           {/* Emergency 112 Section */}
-          <View style={styles.emergencySection}>
+          <View
+            style={[
+              styles.emergencySection,
+              {
+                backgroundColor: themeColors.error + '10',
+                shadowColor: themeColors.shadow,
+                borderColor: themeColors.border,
+              },
+            ]}>
             <View style={styles.emergencyHeader}>
-              <Ionicons name="warning" size={24} color="#FF3B30" />
-              <Text style={styles.emergencyTitle}>Emergency Services</Text>
+              <Ionicons name="warning" size={24} color={themeColors.error} />
+              <Text style={[styles.emergencyTitle, { color: themeColors.text }]}>
+                Emergency Services
+              </Text>
             </View>
-            <Text style={styles.emergencySubtitle}>112 for ambulance, fire brigade or police</Text>
+            <Text style={[styles.emergencySubtitle, { color: themeColors.textSecondary }]}>
+              112 for ambulance, fire brigade or police
+            </Text>
             <Image
               source={require('@/assets/emergency/112_logo.png')}
               style={styles.emergencyImage}
@@ -123,8 +159,10 @@ export default function EmergencyScreen() {
           {/* Rotary Youth Exchange */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="shield-checkmark" size={20} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Rotary Youth Exchange</Text>
+              <Ionicons name="shield-checkmark" size={20} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Rotary Youth Exchange
+              </Text>
             </View>
             {rotaryYouthExchange.map((contact, index) => (
               <EmergencyContactCard key={index} contact={contact} />
@@ -134,10 +172,12 @@ export default function EmergencyScreen() {
           {/* Confidants */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="heart" size={20} color="#1A237E" />
-              <Text style={styles.sectionTitle}>Independent Confidants</Text>
+              <Ionicons name="heart" size={20} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Independent Confidants
+              </Text>
             </View>
-            <Text style={styles.sectionDescription}>
+            <Text style={[styles.sectionDescription, { color: themeColors.textSecondary }]}>
               Not connected to Rotary - In case of f.e. sexual harassment
             </Text>
             {confidants.map((contact, index) => (
@@ -146,15 +186,25 @@ export default function EmergencyScreen() {
           </View>
 
           {/* Important Note */}
-          <View style={styles.noteCard}>
+          <View
+            style={[
+              styles.noteCard,
+              {
+                backgroundColor: themeColors.warning + '10',
+                shadowColor: themeColors.shadow,
+                borderLeftColor: themeColors.warning,
+              },
+            ]}>
             <View style={styles.noteHeader}>
-              <Ionicons name="information-circle" size={24} color="#FF9800" />
-              <Text style={styles.noteTitle}>Important Reminder</Text>
+              <Ionicons name="information-circle" size={24} color={themeColors.warning} />
+              <Text style={[styles.noteTitle, { color: themeColors.text }]}>
+                Important Reminder
+              </Text>
             </View>
-            <Text style={styles.noteText}>
+            <Text style={[styles.noteText, { color: themeColors.textSecondary }]}>
               Always keep your host family&apos;s contact information and home address accessible.
             </Text>
-            <Text style={styles.noteText}>
+            <Text style={[styles.noteText, { color: themeColors.textSecondary }]}>
               Your host parents can assist you with medical appointments, hospital visits, or dental
               care.
             </Text>
@@ -168,11 +218,9 @@ export default function EmergencyScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   content: {
     padding: Platform.OS === 'ios' ? 16 : 12,
@@ -181,7 +229,6 @@ const styles = StyleSheet.create({
 
   // Emergency Section
   emergencySection: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 24,
     marginBottom: 20,
@@ -191,7 +238,6 @@ const styles = StyleSheet.create({
       : {
           elevation: 3,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   emergencyHeader: {
@@ -202,12 +248,10 @@ const styles = StyleSheet.create({
   emergencyTitle: {
     fontSize: Platform.OS === 'ios' ? 20 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 8,
   },
   emergencySubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     marginBottom: 16,
   },
@@ -229,19 +273,16 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 8,
   },
   sectionDescription: {
     fontSize: 14,
-    color: '#666',
     marginBottom: 16,
     lineHeight: 20,
   },
 
   // Contact Card Styles
   contactCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 12,
@@ -252,7 +293,6 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   contactInfo: {
@@ -261,17 +301,14 @@ const styles = StyleSheet.create({
   contactName: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   contactFunction: {
     fontSize: 14,
-    color: '#666',
     marginBottom: 2,
   },
   contactPhone: {
     fontSize: 14,
-    color: '#9FA8DA',
     fontWeight: '500',
   },
   contactActions: {
@@ -282,26 +319,22 @@ const styles = StyleSheet.create({
     width: Platform.OS === 'ios' ? 44 : 48,
     height: Platform.OS === 'ios' ? 44 : 48,
     borderRadius: Platform.OS === 'ios' ? 22 : 24,
-    backgroundColor: '#E8EAF6',
     justifyContent: 'center',
     alignItems: 'center',
   },
   actionButtonPressed: {
-    backgroundColor: '#C5CAE9',
     opacity: 0.8,
+    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
   },
 
   // Note Card Styles
   noteCard: {
-    backgroundColor: '#FFF8E1',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginTop: 8,
     borderLeftWidth: 4,
-    borderLeftColor: '#FF9800',
     ...(Platform.OS === 'ios'
       ? {
-          shadowColor: '#FF9800',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
@@ -318,13 +351,11 @@ const styles = StyleSheet.create({
   noteTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#E65100',
     marginLeft: 8,
   },
   noteText: {
     fontSize: 16,
     lineHeight: 24,
     marginBottom: 8,
-    color: '#333',
   },
 });

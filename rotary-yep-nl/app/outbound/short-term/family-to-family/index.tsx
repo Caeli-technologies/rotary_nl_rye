@@ -5,7 +5,8 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
   subtitle?: string;
@@ -15,11 +16,11 @@ interface MenuItem {
 }
 
 export default function FamilyToFamilyScreen() {
+  const { colors: themeColors } = useTheme();
+
   const handleItemPress = useCallback(async (route: string) => {
     try {
-      if (Platform.OS === 'ios') {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch (error) {
       console.error('Error navigating to route:', error);
@@ -30,24 +31,37 @@ export default function FamilyToFamilyScreen() {
   const renderMenuItem = useCallback(
     ({ item }: { item: MenuItem }) => (
       <Pressable
-        style={({ pressed }) => [styles.menuItem, pressed && styles.menuItemPressed]}
+        style={({ pressed }) => [
+          styles.menuItem,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
+          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+        ]}
         onPress={() => handleItemPress(item.route)}
         accessibilityRole="button"
         accessibilityLabel={item.title}
         accessibilityHint="Tik om details te bekijken"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        android_ripple={{ color: themeColors.primary + '20', borderless: false }}>
         <View style={styles.menuContent}>
-          <View style={styles.iconContainer}>
-            <FontAwesome5 name={item.icon} size={22} color="#007AFF" />
+          <View style={[styles.iconContainer, { backgroundColor: themeColors.primary + '15' }]}>
+            <FontAwesome5 name={item.icon} size={22} color={themeColors.primary} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.menuTitle}>{item.title}</Text>
-            {item.subtitle && <Text style={styles.menuSubtitle}>{item.subtitle}</Text>}
+            <Text style={[styles.menuTitle, { color: themeColors.text }]}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={[styles.menuSubtitle, { color: themeColors.textSecondary }]}>
+                {item.subtitle}
+              </Text>
+            )}
           </View>
           <Ionicons
             name={Platform.OS === 'ios' ? 'chevron-forward' : 'arrow-forward'}
             size={20}
-            color={Platform.OS === 'ios' ? '#C7C7CC' : '#666'}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
@@ -82,9 +96,19 @@ export default function FamilyToFamilyScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <View style={styles.programCard}>
-          <Text style={styles.programTitle}>Wat is Family-to-Family?</Text>
-          <Text style={styles.programDescription}>
+        <View
+          style={[
+            styles.programCard,
+            {
+              backgroundColor: themeColors.card,
+              borderColor: themeColors.border,
+              shadowColor: themeColors.shadow,
+            },
+          ]}>
+          <Text style={[styles.programTitle, { color: themeColors.text }]}>
+            Wat is Family-to-Family?
+          </Text>
+          <Text style={[styles.programDescription, { color: themeColors.textSecondary }]}>
             Het Family-to-Family programma biedt jongeren de mogelijkheid om het leven in een andere
             cultuur te ervaren door 2-6 weken bij een gastgezin te verblijven. Deze authentieke
             culturele uitwisseling stelt deelnemers in staat zich volledig onder te dompelen in het
@@ -93,33 +117,63 @@ export default function FamilyToFamilyScreen() {
         </View>
 
         <View style={styles.highlightsContainer}>
-          <View style={styles.highlight}>
-            <View style={styles.highlightIcon}>
-              <Ionicons name="calendar-outline" size={20} color="#4CAF50" />
+          <View
+            style={[
+              styles.highlight,
+              {
+                backgroundColor: themeColors.card,
+                borderColor: themeColors.border,
+                shadowColor: themeColors.shadow,
+              },
+            ]}>
+            <View style={[styles.highlightIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="calendar-outline" size={20} color={themeColors.primary} />
             </View>
             <View style={styles.highlightContent}>
-              <Text style={styles.highlightTitle}>Duur</Text>
-              <Text style={styles.highlightText}>2-6 weken</Text>
+              <Text style={[styles.highlightTitle, { color: themeColors.text }]}>Duur</Text>
+              <Text style={[styles.highlightText, { color: themeColors.textSecondary }]}>
+                2-6 weken
+              </Text>
             </View>
           </View>
 
-          <View style={styles.highlight}>
-            <View style={styles.highlightIcon}>
-              <Ionicons name="people-outline" size={20} color="#2196F3" />
+          <View
+            style={[
+              styles.highlight,
+              {
+                backgroundColor: themeColors.card,
+                borderColor: themeColors.border,
+                shadowColor: themeColors.shadow,
+              },
+            ]}>
+            <View style={[styles.highlightIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="people-outline" size={20} color={themeColors.primary} />
             </View>
             <View style={styles.highlightContent}>
-              <Text style={styles.highlightTitle}>Leeftijd</Text>
-              <Text style={styles.highlightText}>15-25 jaar</Text>
+              <Text style={[styles.highlightTitle, { color: themeColors.text }]}>Leeftijd</Text>
+              <Text style={[styles.highlightText, { color: themeColors.textSecondary }]}>
+                15-25 jaar
+              </Text>
             </View>
           </View>
 
-          <View style={styles.highlight}>
-            <View style={styles.highlightIcon}>
-              <Ionicons name="home-outline" size={20} color="#FF9800" />
+          <View
+            style={[
+              styles.highlight,
+              {
+                backgroundColor: themeColors.card,
+                borderColor: themeColors.border,
+                shadowColor: themeColors.shadow,
+              },
+            ]}>
+            <View style={[styles.highlightIcon, { backgroundColor: themeColors.primary + '15' }]}>
+              <Ionicons name="home-outline" size={20} color={themeColors.primary} />
             </View>
             <View style={styles.highlightContent}>
-              <Text style={styles.highlightTitle}>Onderdak</Text>
-              <Text style={styles.highlightText}>Gastgezinnen</Text>
+              <Text style={[styles.highlightTitle, { color: themeColors.text }]}>Onderdak</Text>
+              <Text style={[styles.highlightText, { color: themeColors.textSecondary }]}>
+                Gastgezinnen
+              </Text>
             </View>
           </View>
         </View>
@@ -131,8 +185,8 @@ export default function FamilyToFamilyScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={styles.sectionHeaderTitle}>{title}</Text>
-        <View style={styles.sectionHeaderDivider} />
+        <Text style={[styles.sectionHeaderTitle, { color: themeColors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
     [],
@@ -165,7 +219,9 @@ export default function FamilyToFamilyScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <View style={styles.container}>
         <FlatList
           data={renderContent()}
@@ -186,7 +242,6 @@ export default function FamilyToFamilyScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
   },
   container: {
     flex: 1,
@@ -206,7 +261,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -214,22 +268,19 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     paddingHorizontal: 20,
   },
   programCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 20,
     marginBottom: 20,
-    shadowColor: '#000',
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 20,
@@ -238,24 +289,21 @@ const styles = StyleSheet.create({
   programTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 12,
   },
   programDescription: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#333',
   },
   highlightsContainer: {
     gap: 16,
   },
   highlight: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    shadowColor: '#000',
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
@@ -265,7 +313,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -276,12 +323,10 @@ const styles = StyleSheet.create({
   highlightTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 2,
   },
   highlightText: {
     fontSize: 13,
-    color: '#666',
   },
   sectionHeaderContainer: {
     marginBottom: 16,
@@ -290,28 +335,21 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 8,
   },
   sectionHeaderDivider: {
     height: 2,
-    backgroundColor: '#E5E5EA',
     borderRadius: 1,
   },
   menuItem: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 12,
     overflow: 'hidden',
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 1 },
+    borderWidth: Platform.OS === 'android' ? StyleSheet.hairlineWidth : 0,
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
-    elevation: 2,
-  },
-  menuItemPressed: {
-    opacity: Platform.OS === 'ios' ? 0.8 : 1,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+    elevation: 3,
   },
   menuContent: {
     flexDirection: 'row',
@@ -320,13 +358,12 @@ const styles = StyleSheet.create({
     minHeight: 72,
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
-    backgroundColor: '#F2F2F7',
   },
   textContainer: {
     flex: 1,
@@ -335,13 +372,11 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000000',
     marginBottom: 4,
     lineHeight: 22,
   },
   menuSubtitle: {
     fontSize: 13,
     fontWeight: '400',
-    color: '#8E8E93',
   },
 });

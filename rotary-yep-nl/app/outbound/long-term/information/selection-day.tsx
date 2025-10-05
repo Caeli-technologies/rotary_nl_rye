@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -12,8 +13,12 @@ const shadowStyle = {
 };
 
 export default function SelectionDayScreen() {
+  const { colors: themeColors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -21,11 +26,11 @@ export default function SelectionDayScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View style={styles.headerIcon}>
-              <Ionicons name="people-outline" size={32} color="#FF6B35" />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + '20' }]}>
+              <Ionicons name="people-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={styles.headerTitle}>Selectie dag</Text>
-            <Text style={styles.headerSubtitle}>
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Selectie dag</Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Wat je kunt verwachten tijdens de selectiedag voor Rotary Youth Exchange
             </Text>
           </View>
@@ -33,31 +38,49 @@ export default function SelectionDayScreen() {
           {/* What to do */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="checkmark-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Wat moet ik doen voor de selectie dag:</Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Wat moet ik doen voor de selectie dag:
+              </Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>Ik zou gewoon je best en doen en jezelf zijn.</Text>
+            <View
+              style={[
+                styles.infoCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <Text style={[styles.infoText, { color: themeColors.text }]}>
+                Ik zou gewoon je best en doen en jezelf zijn.
+              </Text>
             </View>
           </View>
 
           {/* What to expect */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="eye-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Dit is wat je deze dag kan verwachten:</Text>
+              <Ionicons name="eye-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Dit is wat je deze dag kan verwachten:
+              </Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
+            <View
+              style={[
+                styles.infoCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <Text style={[styles.infoText, { color: themeColors.text }]}>
                 Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis
                 van Nederland.
               </Text>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoText}>
+            <View
+              style={[
+                styles.infoCard,
+                { backgroundColor: themeColors.card, borderColor: themeColors.border },
+              ]}>
+              <Text style={[styles.infoText, { color: themeColors.text }]}>
                 Dit zijn een paar voorbeeld vragen uit het interview tijdens de selectie dag. We
                 gaan je niet alles vertellen, maar zo krijg je een beetje een idee.
               </Text>
@@ -67,34 +90,78 @@ export default function SelectionDayScreen() {
           {/* Example Questions */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="help-circle-outline" size={24} color="#FF6B35" />
-              <Text style={styles.sectionTitle}>Voorbeeld vragen:</Text>
+              <Ionicons name="help-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+                Voorbeeld vragen:
+              </Text>
             </View>
 
-            <View style={styles.questionCard}>
-              <Text style={styles.questionText}>
+            <View
+              style={[
+                styles.questionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
+              <Text style={[styles.questionText, { color: themeColors.textSecondary }]}>
                 Wat betekent volgens jou het zijn van Ambassadeur voor Rotary
               </Text>
             </View>
 
-            <View style={styles.questionCard}>
-              <Text style={styles.questionText}>
+            <View
+              style={[
+                styles.questionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
+              <Text style={[styles.questionText, { color: themeColors.textSecondary }]}>
                 Wie is je rolmodel, voor wie heb je bewondering
               </Text>
             </View>
 
-            <View style={styles.questionCard}>
-              <Text style={styles.questionText}>
+            <View
+              style={[
+                styles.questionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
+              <Text style={[styles.questionText, { color: themeColors.textSecondary }]}>
                 Wat was de gelukkigste/mooiste dag in je leven
               </Text>
             </View>
 
-            <View style={styles.questionCard}>
-              <Text style={styles.questionText}>Op welke eigenschap ben je het meest trots</Text>
+            <View
+              style={[
+                styles.questionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
+              <Text style={[styles.questionText, { color: themeColors.textSecondary }]}>
+                Op welke eigenschap ben je het meest trots
+              </Text>
             </View>
 
-            <View style={styles.questionCard}>
-              <Text style={styles.questionText}>
+            <View
+              style={[
+                styles.questionCard,
+                {
+                  backgroundColor: themeColors.card,
+                  borderColor: themeColors.border,
+                  borderLeftColor: themeColors.primary,
+                },
+              ]}>
+              <Text style={[styles.questionText, { color: themeColors.textSecondary }]}>
                 Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent
               </Text>
             </View>
@@ -108,7 +175,6 @@ export default function SelectionDayScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -128,7 +194,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#FFF3F0',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -136,13 +201,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 20,
@@ -160,13 +223,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 22 : 18,
     fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
 
   // Info Card
   infoCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     marginBottom: 16,
@@ -175,18 +236,15 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   infoText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#333',
   },
 
   // Activity Card Styles
   activityCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 12,
@@ -197,14 +255,12 @@ const styles = StyleSheet.create({
       : {
           elevation: 1,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   activityIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#E8EAF6',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -215,34 +271,28 @@ const styles = StyleSheet.create({
   activityTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     marginBottom: 4,
   },
   activityDescription: {
     fontSize: 14,
-    color: '#666',
     lineHeight: 20,
   },
 
   // Question Card Styles
   questionCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 12 : 8,
     padding: 16,
     marginBottom: 16,
     borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
     ...(Platform.OS === 'ios'
       ? shadowStyle
       : {
           elevation: 1,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   questionText: {
     fontSize: 14,
-    color: '#666',
     fontStyle: 'italic',
     lineHeight: 20,
   },
@@ -258,6 +308,5 @@ const styles = StyleSheet.create({
   },
   updateText: {
     fontSize: 14,
-    color: '#777777',
   },
 });

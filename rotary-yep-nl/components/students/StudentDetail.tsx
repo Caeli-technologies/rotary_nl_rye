@@ -9,6 +9,8 @@ import {
   Animated,
   Linking,
 } from 'react-native';
+import { Colors } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { Ionicons } from '@expo/vector-icons';
@@ -32,9 +34,19 @@ interface ActionButtonProps {
   subtitle?: string;
   onPress: () => void;
   disabled?: boolean;
+  styles: any;
+  themeColors: typeof Colors.light;
 }
 
-function ActionButton({ icon, title, subtitle, onPress, disabled = false }: ActionButtonProps) {
+function ActionButton({
+  icon,
+  title,
+  subtitle,
+  onPress,
+  disabled = false,
+  styles,
+  themeColors,
+}: ActionButtonProps) {
   const [scaleAnim] = useState(new Animated.Value(1));
 
   const handlePressIn = () => {
@@ -59,26 +71,55 @@ function ActionButton({ icon, title, subtitle, onPress, disabled = false }: Acti
       <Pressable
         style={({ pressed }) => [
           styles.actionButton,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+            shadowColor: themeColors.shadow,
+          },
           disabled && styles.actionButtonDisabled,
           !disabled && pressed && styles.actionButtonPressed,
         ]}
         onPress={disabled ? undefined : onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        disabled={disabled}>
+        disabled={disabled}
+        android_ripple={{
+          color: themeColors.primary + '20',
+          borderless: false,
+        }}
+        accessibilityRole="button"
+        accessibilityLabel={title}
+        accessibilityHint={subtitle}>
         <View style={styles.actionButtonContent}>
-          <View style={[styles.actionIconContainer, disabled && styles.actionIconDisabled]}>
-            <Ionicons name={icon} size={24} color={disabled ? '#999' : '#9FA8DA'} />
+          <View
+            style={[
+              styles.actionIconContainer,
+              { backgroundColor: themeColors.primary + '15' },
+              disabled && styles.actionIconDisabled,
+            ]}>
+            <Ionicons
+              name={icon}
+              size={24}
+              color={disabled ? themeColors.textTertiary : themeColors.primary}
+            />
           </View>
           <View style={styles.actionTextContainer}>
             <Text
-              style={[styles.actionTitle, disabled && styles.actionTitleDisabled]}
+              style={[
+                styles.actionTitle,
+                { color: disabled ? themeColors.textTertiary : themeColors.text },
+                disabled && styles.actionTitleDisabled,
+              ]}
               numberOfLines={1}>
               {title}
             </Text>
             {subtitle && (
               <Text
-                style={[styles.actionSubtitle, disabled && styles.actionSubtitleDisabled]}
+                style={[
+                  styles.actionSubtitle,
+                  { color: disabled ? themeColors.textTertiary : themeColors.textSecondary },
+                  disabled && styles.actionSubtitleDisabled,
+                ]}
                 numberOfLines={2}>
                 {subtitle}
               </Text>
@@ -88,7 +129,7 @@ function ActionButton({ icon, title, subtitle, onPress, disabled = false }: Acti
             <Ionicons
               name={Platform.OS === 'ios' ? 'chevron-forward' : 'chevron-forward-outline'}
               size={Platform.OS === 'ios' ? 20 : 24}
-              color={Platform.OS === 'ios' ? '#C7C7CC' : '#9FA8DA'}
+              color={themeColors.textTertiary}
             />
           )}
         </View>
@@ -102,7 +143,8 @@ interface StudentDetailProps {
   studentType: StudentType;
 }
 
-export default function StudentDetail({ student, studentType }: StudentDetailProps) {
+export function StudentDetail({ student, studentType }: StudentDetailProps) {
+  const { colors: themeColors } = useTheme();
   const navigation = useNavigation();
 
   const fromFlagAsset = student ? getFlagAsset(student.fromFlag) : null;
@@ -160,17 +202,17 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
               style={{
                 fontSize: Platform.OS === 'ios' ? 18 : 20,
                 fontWeight: '600',
-                color: '#1A237E',
+                color: themeColors.text,
               }}
               numberOfLines={1}>
               {student.name}
             </Text>
             <Text
               style={{
-                color: '#8E8E93',
                 fontSize: 13,
                 fontWeight: '400',
                 marginTop: 2,
+                color: themeColors.textSecondary,
               }}>
               {studentType === 'outbound' ? 'Outbound' : 'Inbound'} Student
             </Text>
@@ -178,15 +220,17 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
         ),
       });
     }
-  }, [navigation, student, studentType]);
+  }, [navigation, student, studentType, themeColors]);
 
   if (!student) {
     return (
-      <SafeAreaView style={styles.container} edges={['bottom']}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: themeColors.background }]}
+        edges={['bottom']}>
         <View style={styles.errorContainer}>
-          <Ionicons name="person-outline" size={64} color="#9FA8DA" />
-          <Text style={styles.errorTitle}>Student Not Found</Text>
-          <Text style={styles.errorMessage}>
+          <Ionicons name="person-outline" size={64} color={themeColors.accent} />
+          <Text style={[styles.errorTitle, { color: themeColors.text }]}>Student Not Found</Text>
+          <Text style={[styles.errorMessage, { color: themeColors.textSecondary }]}>
             The student information could not be loaded. Please try again.
           </Text>
         </View>
@@ -195,9 +239,11 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeColors.background }]}
+      edges={['bottom']}>
       <ScrollView
-        style={styles.scrollView}
+        style={[styles.scrollView, { backgroundColor: themeColors.background }]}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         {/* Hero Section */}
@@ -212,14 +258,20 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
             />
           </View>
 
-          <Text style={styles.studentName}>{student.name}</Text>
+          <Text style={[styles.studentName, { color: themeColors.text }]}>{student.name}</Text>
         </View>
 
         {/* Exchange Info Card */}
-        <View style={styles.exchangeCard}>
+        <View
+          style={[
+            styles.exchangeCard,
+            { backgroundColor: themeColors.card, borderColor: themeColors.border },
+          ]}>
           <View style={styles.exchangeHeader}>
-            <Ionicons name="airplane-outline" size={24} color="#9FA8DA" />
-            <Text style={styles.exchangeTitle}>Exchange Details</Text>
+            <Ionicons name="airplane-outline" size={24} color={themeColors.accent} />
+            <Text style={[styles.exchangeTitle, { color: themeColors.text }]}>
+              Exchange Details
+            </Text>
           </View>
 
           <View style={styles.exchangeRoute}>
@@ -228,17 +280,28 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 {fromFlagAsset ? (
                   <Image source={fromFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
-                  <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>{student.fromFlag.toUpperCase()}</Text>
+                  <View
+                    style={[
+                      styles.exchangeFlag,
+                      styles.flagPlaceholder,
+                      { backgroundColor: themeColors.accent + '20' },
+                    ]}>
+                    <Text style={[styles.flagText, { color: themeColors.accent }]}>
+                      {student.fromFlag.toUpperCase()}
+                    </Text>
                   </View>
                 )}
-                <Text style={styles.exchangeLabel}>From</Text>
+                <Text style={[styles.exchangeLabel, { color: themeColors.textSecondary }]}>
+                  From
+                </Text>
               </View>
-              <Text style={styles.exchangeCountryName}>{student.from}</Text>
+              <Text style={[styles.exchangeCountryName, { color: themeColors.text }]}>
+                {student.from}
+              </Text>
             </View>
 
             <View style={styles.exchangeArrow}>
-              <Ionicons name="arrow-forward" size={24} color="#9FA8DA" />
+              <Ionicons name="arrow-forward" size={24} color={themeColors.accent} />
             </View>
 
             <View style={styles.exchangeCountry}>
@@ -246,18 +309,27 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 {toFlagAsset ? (
                   <Image source={toFlagAsset} style={styles.exchangeFlag} contentFit="contain" />
                 ) : (
-                  <View style={[styles.exchangeFlag, styles.flagPlaceholder]}>
-                    <Text style={styles.flagText}>{student.toFlag.toUpperCase()}</Text>
+                  <View
+                    style={[
+                      styles.exchangeFlag,
+                      styles.flagPlaceholder,
+                      { backgroundColor: themeColors.accent + '20' },
+                    ]}>
+                    <Text style={[styles.flagText, { color: themeColors.accent }]}>
+                      {student.toFlag.toUpperCase()}
+                    </Text>
                   </View>
                 )}
-                <Text style={styles.exchangeLabel}>To</Text>
+                <Text style={[styles.exchangeLabel, { color: themeColors.textSecondary }]}>To</Text>
               </View>
-              <Text style={styles.exchangeCountryName}>{student.to}</Text>
+              <Text style={[styles.exchangeCountryName, { color: themeColors.text }]}>
+                {student.to}
+              </Text>
             </View>
           </View>
 
-          <View style={styles.yearBadge}>
-            <Text style={styles.yearText}>
+          <View style={[styles.yearBadge, { backgroundColor: themeColors.primary + '20' }]}>
+            <Text style={[styles.yearText, { color: themeColors.primary }]}>
               Current {studentType === 'outbound' ? 'Outbound' : 'Inbound'}
             </Text>
           </View>
@@ -265,12 +337,20 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
 
         {/* Bio Section */}
         {student.bio && student.bio.trim() !== '' && (
-          <View style={styles.bioCard}>
+          <View
+            style={[
+              styles.bioCard,
+              { backgroundColor: themeColors.card, borderColor: themeColors.border },
+            ]}>
             <View style={styles.bioHeader}>
-              <Ionicons name="document-text-outline" size={24} color="#9FA8DA" />
-              <Text style={styles.bioTitle}>About {student.name.split(' ')[0]}</Text>
+              <Ionicons name="document-text-outline" size={24} color={themeColors.accent} />
+              <Text style={[styles.bioTitle, { color: themeColors.text }]}>
+                About {student.name.split(' ')[0]}
+              </Text>
             </View>
-            <Text style={styles.bioText}>{student.bio}</Text>
+            <Text style={[styles.bioText, { color: themeColors.textSecondary }]}>
+              {student.bio}
+            </Text>
           </View>
         )}
 
@@ -283,7 +363,7 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
           student.linkedinUrl ||
           student.websiteUrl) && (
           <View style={styles.actionsSection}>
-            <Text style={styles.sectionTitle}>Contact</Text>
+            <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Contact</Text>
 
             {student.email && (
               <ActionButton
@@ -291,6 +371,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="Send Email"
                 subtitle={student.email}
                 onPress={() => handleContactPress('email')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
 
@@ -300,6 +382,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="Call Phone"
                 subtitle={student.phoneNumber}
                 onPress={() => handleContactPress('phone')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
 
@@ -309,6 +393,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="Instagram"
                 subtitle="Follow on Instagram"
                 onPress={() => handleContactPress('instagram')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
 
@@ -318,6 +404,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="Snapchat"
                 subtitle="Connect on Snapchat"
                 onPress={() => handleContactPress('snapchat')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
 
@@ -327,6 +415,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="Facebook"
                 subtitle="View Facebook profile"
                 onPress={() => handleContactPress('facebook')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
 
@@ -336,6 +426,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="LinkedIn"
                 subtitle="Connect on LinkedIn"
                 onPress={() => handleContactPress('linkedin')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
 
@@ -345,6 +437,8 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
                 title="Website"
                 subtitle="Visit personal website"
                 onPress={() => handleContactPress('website')}
+                styles={styles}
+                themeColors={themeColors}
               />
             )}
           </View>
@@ -357,7 +451,6 @@ export default function StudentDetail({ student, studentType }: StudentDetailPro
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === 'ios' ? '#F2F2F7' : '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -367,7 +460,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: Platform.OS === 'ios' ? 32 : 24,
     paddingBottom: 32,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#FFFFFF',
     overflow: 'visible',
   },
   imageContainer: {
@@ -381,26 +473,23 @@ const styles = StyleSheet.create({
   studentName: {
     fontSize: Platform.OS === 'ios' ? 28 : 24,
     fontWeight: Platform.OS === 'ios' ? '700' : '500',
-    color: '#1A237E',
     textAlign: 'center',
     marginBottom: 8,
     marginTop: 16,
   },
   exchangeCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
     ...(Platform.OS === 'ios'
       ? {
-          ...shadowStyle,
+          shadowOffset: { width: 0, height: 4 },
           shadowOpacity: 0.12,
           shadowRadius: 24,
         }
       : {
           elevation: 3,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   exchangeHeader: {
@@ -411,7 +500,6 @@ const styles = StyleSheet.create({
   exchangeTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
   exchangeRoute: {
@@ -435,7 +523,6 @@ const styles = StyleSheet.create({
   },
   exchangeLabel: {
     fontSize: 12,
-    color: '#666',
     fontWeight: '500',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
@@ -443,14 +530,12 @@ const styles = StyleSheet.create({
   exchangeCountryName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A237E',
     textAlign: 'center',
   },
   exchangeArrow: {
     marginHorizontal: 20,
   },
   yearBadge: {
-    backgroundColor: '#E8EAF6',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
@@ -459,10 +544,8 @@ const styles = StyleSheet.create({
   yearText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1A237E',
   },
   bioCard: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 8,
     margin: Platform.OS === 'ios' ? 16 : 12,
     padding: 20,
@@ -471,7 +554,6 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   bioHeader: {
@@ -482,12 +564,10 @@ const styles = StyleSheet.create({
   bioTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A237E',
     marginLeft: 12,
   },
   bioText: {
     fontSize: 16,
-    color: '#333',
     lineHeight: 24,
   },
   actionsSection: {
@@ -497,11 +577,9 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: Platform.OS === 'ios' ? 20 : 18,
     fontWeight: Platform.OS === 'ios' ? '600' : '500',
-    color: '#1A237E',
     marginBottom: 16,
   },
   actionButton: {
-    backgroundColor: '#FFFFFF',
     borderRadius: Platform.OS === 'ios' ? 16 : 12,
     marginBottom: 16,
     overflow: 'hidden',
@@ -514,16 +592,12 @@ const styles = StyleSheet.create({
       : {
           elevation: 2,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: '#E0E0E0',
         }),
   },
   actionButtonDisabled: {
-    backgroundColor: '#F9F9F9',
     opacity: 0.6,
   },
-  actionButtonPressed: {
-    backgroundColor: Platform.OS === 'ios' ? '#F8F9FA' : '#F5F5F5',
-  },
+  actionButtonPressed: {},
   actionButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -534,48 +608,32 @@ const styles = StyleSheet.create({
     width: Platform.OS === 'ios' ? 48 : 52,
     height: Platform.OS === 'ios' ? 48 : 52,
     borderRadius: Platform.OS === 'ios' ? 24 : 26,
-    backgroundColor: Platform.OS === 'ios' ? '#E8EAF6' : '#F3E5F5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
-    ...(Platform.OS === 'ios' && {
-      shadowColor: '#1A237E',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    }),
+    ...(Platform.OS === 'ios' && shadowStyle),
   },
-  actionIconDisabled: {
-    backgroundColor: '#F0F0F0',
-  },
+  actionIconDisabled: {},
   actionTextContainer: {
     flex: 1,
   },
   actionTitle: {
     fontSize: Platform.OS === 'ios' ? 16 : 16,
     fontWeight: Platform.OS === 'ios' ? '600' : '500',
-    color: '#1A237E',
     marginBottom: 2,
   },
-  actionTitleDisabled: {
-    color: '#999',
-  },
+  actionTitleDisabled: {},
   actionSubtitle: {
     fontSize: 14,
-    color: '#666',
     fontWeight: '400',
   },
-  actionSubtitleDisabled: {
-    color: '#999',
-  },
+  actionSubtitleDisabled: {},
   flagPlaceholder: {
-    backgroundColor: '#E0E0E0',
     justifyContent: 'center',
     alignItems: 'center',
   },
   flagText: {
     fontSize: 10,
-    color: '#666',
     fontWeight: '600',
   },
 
@@ -588,13 +646,11 @@ const styles = StyleSheet.create({
   errorTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#1A237E',
     marginTop: 16,
     marginBottom: 8,
   },
   errorMessage: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
     lineHeight: 22,
   },
