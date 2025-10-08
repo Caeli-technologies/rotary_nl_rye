@@ -65,14 +65,14 @@ function NewsCard({
             contentFit="cover"
             placeholder="https://via.placeholder.com/300x200/E0E0E0/999999?text=Loading"
           />
+        </View>
+        <View style={styles.textContainer}>
           {item.isPdf === 'yes' && (
             <View style={styles.pdfBadge}>
               <Ionicons name="document-text" size={16} color="#fff" />
               <Text style={styles.pdfText}>PDF</Text>
             </View>
           )}
-        </View>
-        <View style={styles.textContainer}>
           <Text style={[styles.newsTitle, { color: themeColors.text }]} numberOfLines={2}>
             {item.title}
           </Text>
@@ -231,12 +231,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   newsCard: {
-    borderRadius: 12,
-    marginBottom: 12,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
+    borderRadius: 16,
+    marginBottom: 16,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
     shadowRadius: 8,
-    elevation: 2,
+    elevation: 4,
     overflow: 'hidden',
   },
   newsCardPressed: {
@@ -247,8 +247,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   imageContainer: {
-    width: 120,
-    height: 100,
+    width: 140,
+    height: 120,
     position: 'relative',
   },
   newsImage: {
@@ -257,36 +257,38 @@ const styles = StyleSheet.create({
   },
   pdfBadge: {
     position: 'absolute',
-    top: 8,
-    right: 8,
-    backgroundColor: 'rgba(31, 78, 121, 0.9)',
+    top: 12,
+    right: 12,
+    backgroundColor: 'rgba(31, 78, 121, 0.95)',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
   },
   pdfText: {
     color: '#fff',
-    fontSize: 10,
-    fontWeight: 'bold',
-    marginLeft: 2,
+    fontSize: 12,
+    fontWeight: '600',
+    marginLeft: 4,
   },
   textContainer: {
     flex: 1,
     padding: 16,
+    paddingTop: 20,
     justifyContent: 'center',
+    position: 'relative',
   },
   newsTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '700',
     marginBottom: 8,
-    lineHeight: 22,
+    lineHeight: 24,
   },
   newsDescription: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '400',
-    lineHeight: 20,
+    lineHeight: 22,
   },
   centered: {
     flex: 1,
@@ -296,34 +298,34 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     marginTop: 16,
-    fontSize: 16,
+    fontSize: 17,
+    fontWeight: '500',
   },
   errorText: {
     marginTop: 16,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#ff6b6b',
+    fontSize: 20,
+    fontWeight: '600',
     textAlign: 'center',
   },
   errorSubtext: {
     marginTop: 8,
-    fontSize: 14,
+    fontSize: 15,
     textAlign: 'center',
   },
   retryButton: {
-    marginTop: 20,
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 8,
+    marginTop: 24,
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 12,
   },
   retryText: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: '600',
   },
   emptyText: {
     marginTop: 16,
-    fontSize: 16,
+    fontSize: 17,
+    fontWeight: '500',
     textAlign: 'center',
   },
 });

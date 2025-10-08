@@ -144,8 +144,9 @@ export default function PDFViewerScreen() {
           <Pressable
             onPress={handleShare}
             style={({ pressed }) => ({
-              opacity: pressed ? 0.6 : 1,
               padding: 8,
+              borderRadius: 6,
+              backgroundColor: pressed ? themeColors.surface : 'transparent',
             })}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
             <Ionicons name="share-outline" size={24} color={themeColors.link} />
