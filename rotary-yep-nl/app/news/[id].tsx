@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useLocalSearchParams } from 'expo-router';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 interface NewsText {
   heading?: string;
@@ -28,9 +27,7 @@ interface NewsItem {
 export default function NewsDetailScreen() {
   const { colors: themeColors } = useTheme();
 
-  const { id, title, content } = useLocalSearchParams<{
-    id: string;
-    title: string;
+  const { content } = useLocalSearchParams<{
     content: string;
   }>();
 

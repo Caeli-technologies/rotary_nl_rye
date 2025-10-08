@@ -32,7 +32,7 @@ export default function PromoIndex() {
     try {
       if (Platform.OS === 'ios') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
-    } catch (e) {
+    } catch {
       router.push(route as any);
     }
   }, []);

@@ -79,7 +79,17 @@ export default function JeugdcommissarisScreen() {
         </Pressable>
       );
     },
-    [handleDocumentPress],
+    [
+      handleDocumentPress,
+      themeColors.card,
+      themeColors.border,
+      themeColors.shadow,
+      themeColors.primary,
+      themeColors.link,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
   const documents: DocumentItem[] = [
@@ -147,7 +157,7 @@ export default function JeugdcommissarisScreen() {
         </Text>
       </View>
     ),
-    [],
+    [themeColors.textSecondary],
   );
 
   return (

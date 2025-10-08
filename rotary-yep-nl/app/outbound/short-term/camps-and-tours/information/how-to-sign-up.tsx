@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from
 import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',

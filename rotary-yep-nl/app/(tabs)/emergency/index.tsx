@@ -1,13 +1,11 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, Platform, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from 'expo-router';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { makePhoneCall, sendEmail } from '@/utils/communications';
 
 import * as Haptics from 'expo-haptics';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
@@ -25,7 +23,6 @@ interface EmergencyContact {
 }
 
 export default function EmergencyScreen() {
-  const navigation = useNavigation();
   const { colors: themeColors } = useTheme();
   const rotaryYouthExchange: EmergencyContact[] = [
     {

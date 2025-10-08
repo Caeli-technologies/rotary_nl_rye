@@ -1,10 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FlatList, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
@@ -65,32 +64,44 @@ export default function CampsAndToursScreen() {
         </View>
       </Pressable>
     ),
-    [handleItemPress],
+    [
+      handleItemPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
-  const informationItems: MenuItem[] = [
-    {
-      title: 'Hoe schrijf ik mezelf in?',
-      subtitle: 'Aanmeldproces voor zomerkampen',
-      icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/camps-and-tours/information/how-to-sign-up',
-      type: 'info',
-    },
-    {
-      title: 'Met welke landen?',
-      subtitle: "Beschikbare bestemmingen en programma's",
-      icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/camps-and-tours/information/which-countries',
-      type: 'info',
-    },
-    {
-      title: 'Voor wie?',
-      subtitle: 'Leeftijd en deelname informatie',
-      icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/camps-and-tours/information/comply-with',
-      type: 'info',
-    },
-  ];
+  const informationItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Hoe schrijf ik mezelf in?',
+        subtitle: 'Aanmeldproces voor zomerkampen',
+        icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/camps-and-tours/information/how-to-sign-up',
+        type: 'info',
+      },
+      {
+        title: 'Met welke landen?',
+        subtitle: "Beschikbare bestemmingen en programma's",
+        icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/camps-and-tours/information/which-countries',
+        type: 'info',
+      },
+      {
+        title: 'Voor wie?',
+        subtitle: 'Leeftijd en deelname informatie',
+        icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/camps-and-tours/information/comply-with',
+        type: 'info',
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
@@ -179,7 +190,14 @@ export default function CampsAndToursScreen() {
         </View>
       </View>
     ),
-    [],
+    [
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+    ],
   );
 
   const SectionHeader = useCallback(
@@ -189,7 +207,7 @@ export default function CampsAndToursScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.border, themeColors.primary],
   );
 
   const renderContent = useCallback(() => {
@@ -198,7 +216,7 @@ export default function CampsAndToursScreen() {
       { type: 'sectionHeader', title: 'Informatie & Richtlijnen' },
       ...informationItems.map((item) => ({ type: 'menuItem', item })),
     ];
-  }, []);
+  }, [informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {

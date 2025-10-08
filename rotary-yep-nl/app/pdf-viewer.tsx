@@ -14,7 +14,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import PdfRendererView from 'react-native-pdf-renderer';
 import { File, Paths } from 'expo-file-system';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 export default function PDFViewerScreen() {
   const { colors: themeColors } = useTheme();
@@ -89,7 +88,7 @@ export default function PDFViewerScreen() {
           dialogTitle: `Share ${title || 'PDF Document'}`,
         },
       );
-    } catch (error) {
+    } catch {
       Alert.alert('Share Error', 'Failed to share the PDF file.');
     }
   }, [localFilePath, title]);
@@ -153,7 +152,18 @@ export default function PDFViewerScreen() {
           </Pressable>
         ) : null,
     });
-  }, [navigation, title, localFilePath, loading, currentPage, totalPages, handleShare]);
+  }, [
+    navigation,
+    title,
+    localFilePath,
+    loading,
+    currentPage,
+    totalPages,
+    handleShare,
+    themeColors.link,
+    themeColors.text,
+    themeColors.textSecondary,
+  ]);
 
   useEffect(() => {
     downloadPDF();

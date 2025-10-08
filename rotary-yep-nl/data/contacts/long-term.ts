@@ -16,7 +16,7 @@ export const longTermContacts: Organization[] = [
     name: 'Sandra Cools-Wemer',
     bio: '',
     imageUrl:
-      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/sandra-cools-wemer.jpg',
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/sandra-cools-wemer.jpeg',
     email: 'longtermin@rotaryyep.nl',
     phoneNumber: undefined,
     club: '',

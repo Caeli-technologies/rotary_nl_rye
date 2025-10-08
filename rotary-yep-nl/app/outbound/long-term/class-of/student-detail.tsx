@@ -5,7 +5,6 @@ import { useLocalSearchParams } from 'expo-router';
 
 import { StudentDetail } from '@/components/students/StudentDetail';
 import { currentOutboundStudents } from '@/data/outbound-students';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 export default function StudentDetailScreen() {
   const { colors: themeColors } = useTheme();

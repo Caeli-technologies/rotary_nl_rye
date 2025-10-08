@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
@@ -66,32 +65,44 @@ export default function FamilyToFamilyScreen() {
         </View>
       </Pressable>
     ),
-    [handleItemPress],
+    [
+      handleItemPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
-  const informationItems: MenuItem[] = [
-    {
-      title: 'Hoe aanmelden',
-      subtitle: 'Stap-voor-stap aanmeldingsproces',
-      icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/family-to-family/information/how-to-sign-up',
-      type: 'info',
-    },
-    {
-      title: 'Landen & Voorkeur',
-      subtitle: 'Beschikbare bestemmingen en hoe te kiezen',
-      icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/family-to-family/information/countries-preference',
-      type: 'info',
-    },
-    {
-      title: 'Vereisten',
-      subtitle: 'Regels en richtlijnen om te volgen',
-      icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/family-to-family/information/comply-with',
-      type: 'info',
-    },
-  ];
+  const informationItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Hoe aanmelden',
+        subtitle: 'Stap-voor-stap aanmeldingsproces',
+        icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/family-to-family/information/how-to-sign-up',
+        type: 'info',
+      },
+      {
+        title: 'Landen & Voorkeur',
+        subtitle: 'Beschikbare bestemmingen en hoe te kiezen',
+        icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/family-to-family/information/countries-preference',
+        type: 'info',
+      },
+      {
+        title: 'Vereisten',
+        subtitle: 'Regels en richtlijnen om te volgen',
+        icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/family-to-family/information/comply-with',
+        type: 'info',
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
@@ -179,7 +190,14 @@ export default function FamilyToFamilyScreen() {
         </View>
       </View>
     ),
-    [],
+    [
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+    ],
   );
 
   const SectionHeader = useCallback(
@@ -189,7 +207,7 @@ export default function FamilyToFamilyScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.border, themeColors.primary],
   );
 
   const renderContent = useCallback(() => {
@@ -200,7 +218,7 @@ export default function FamilyToFamilyScreen() {
     ];
 
     return allItems;
-  }, []);
+  }, [informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {

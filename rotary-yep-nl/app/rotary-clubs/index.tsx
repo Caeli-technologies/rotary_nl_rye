@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -61,37 +61,48 @@ export default function RotaryClubsScreen() {
         </View>
       </Pressable>
     ),
-    [handleOptionPress],
+    [
+      handleOptionPress,
+      themeColors.card,
+      themeColors.border,
+      themeColors.shadow,
+      themeColors.primary,
+      themeColors.link,
+      themeColors.text,
+      themeColors.textTertiary,
+    ],
   );
 
-  const options: OptionItem[] = [
-    {
-      title: 'Algemene Informatie',
-      icon: 'info-circle' as keyof typeof FontAwesome5.glyphMap,
-      route: '/rotary-clubs/algemene-informatie',
-    },
-    {
-      title: 'Info voor de Jeugdcommissaris',
-      icon: 'user-tie' as keyof typeof FontAwesome5.glyphMap,
-      route: '/rotary-clubs/jeugdcommissaris',
-    },
-    {
-      title: 'Info Gastgezin',
-      icon: 'home' as keyof typeof FontAwesome5.glyphMap,
-      route: '/rotary-clubs/gastgezin',
-    },
-    {
-      title: 'Info Counselor',
-      icon: 'hands-helping' as keyof typeof FontAwesome5.glyphMap,
-      route: '/rotary-clubs/counselor',
-    },
-    {
-      title: 'Belangrijke Documenten',
-      icon: 'exclamation-triangle' as keyof typeof FontAwesome5.glyphMap,
-      route: '/rotary-clubs/documenten',
-    },
-  ];
-
+  const options: OptionItem[] = useMemo(
+    () => [
+      {
+        title: 'Algemene Informatie',
+        icon: 'info-circle' as keyof typeof FontAwesome5.glyphMap,
+        route: '/rotary-clubs/algemene-informatie',
+      },
+      {
+        title: 'Info voor de Jeugdcommissaris',
+        icon: 'user-tie' as keyof typeof FontAwesome5.glyphMap,
+        route: '/rotary-clubs/jeugdcommissaris',
+      },
+      {
+        title: 'Info Gastgezin',
+        icon: 'home' as keyof typeof FontAwesome5.glyphMap,
+        route: '/rotary-clubs/gastgezin',
+      },
+      {
+        title: 'Info Counselor',
+        icon: 'hands-helping' as keyof typeof FontAwesome5.glyphMap,
+        route: '/rotary-clubs/counselor',
+      },
+      {
+        title: 'Belangrijke Documenten',
+        icon: 'exclamation-triangle' as keyof typeof FontAwesome5.glyphMap,
+        route: '/rotary-clubs/documenten',
+      },
+    ],
+    [],
+  );
   const ListHeaderComponent = useCallback(
     () => (
       <View style={styles.content}>
@@ -103,7 +114,7 @@ export default function RotaryClubsScreen() {
         </Text>
       </View>
     ),
-    [],
+    [themeColors.textSecondary],
   );
 
   return (

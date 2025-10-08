@@ -10,13 +10,11 @@ import {
   Text,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from 'expo-router';
+import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
 import * as Haptics from 'expo-haptics';
 
-import { router } from 'expo-router';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',
@@ -27,7 +25,6 @@ const shadowStyle = {
 };
 
 export default function SettingsScreen() {
-  const navigation = useNavigation();
   const { colors: themeColors } = useTheme();
   const [appVersion, setAppVersion] = useState<string>('Loading...');
   const [buildVersion, setBuildVersion] = useState<string>('');

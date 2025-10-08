@@ -7,7 +7,6 @@ import { Image } from 'expo-image';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { useEvent } from 'expo';
 import * as VideoThumbnails from 'expo-video-thumbnails';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
   shadowColor: '#000',

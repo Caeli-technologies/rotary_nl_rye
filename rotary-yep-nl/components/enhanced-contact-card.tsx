@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, Pressable, Platform, Text } from 'react-native';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { NetworkImage } from './network-image';
 import { Contact, Organization, Rotex } from '@/types/contact';
@@ -12,7 +11,6 @@ import * as Haptics from 'expo-haptics';
 
 interface ContactCardProps {
   contact: Contact | Organization | Rotex;
-  index: number;
 }
 
 // Helper functions for safe data access
@@ -21,15 +19,7 @@ const getOrgClub = (contact: Contact | Organization | Rotex): string | undefined
   return orgContact.club && orgContact.club.trim() !== '' ? orgContact.club : undefined;
 };
 
-const shadowStyle = {
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.08,
-  shadowRadius: 20,
-  elevation: 4,
-};
-
-export function ContactCard({ contact, index }: ContactCardProps) {
+export function ContactCard({ contact }: ContactCardProps) {
   const { colors: themeColors } = useTheme();
   const [showDetails, setShowDetails] = useState(false);
   const contactInfo = useContactInfo(contact);
@@ -99,7 +89,12 @@ const styles = StyleSheet.create({
     marginBottom: Platform.OS === 'ios' ? 0 : 12,
     borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
     ...(Platform.OS === 'ios'
-      ? shadowStyle
+      ? {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 20,
+        }
       : {
           elevation: 2,
         }),

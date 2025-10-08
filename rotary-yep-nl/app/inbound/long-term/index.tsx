@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -73,56 +74,71 @@ export default function LongTermInboundScreen() {
         </View>
       </Pressable>
     ),
-    [handleItemPress],
+    [
+      handleItemPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
-  const classOfItems: MenuItem[] = [
-    {
-      title: 'Class of 2024-2025',
-      subtitle: 'Meet the incoming exchange students',
-      icon: 'users' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term/class-of',
-      type: 'class',
-    },
-  ];
+  const classOfItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Class of 2024-2025',
+        subtitle: 'Meet the incoming exchange students',
+        icon: 'users' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term/class-of',
+        type: 'class',
+      },
+    ],
+    [],
+  );
 
-  const informationItems: MenuItem[] = [
-    {
-      title: 'Welcome to the Netherlands!',
-      subtitle: 'Important information for new students',
-      icon: 'door-open' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term/information/welcome-in-the-netherlands',
-      type: 'info',
-    },
-    {
-      title: 'Flight and Arrival',
-      subtitle: 'Information about traveling to the Netherlands',
-      icon: 'plane' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term/information/flight-and-arrival',
-      type: 'info',
-    },
-    {
-      title: 'Language',
-      subtitle: 'Learning Dutch and language assistance',
-      icon: 'language' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term/information/language',
-      type: 'info',
-    },
-    {
-      title: 'Insurance',
-      subtitle: 'Healthcare and insurance information',
-      icon: 'umbrella' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term/information/insurance',
-      type: 'info',
-    },
-    {
-      title: 'Travel',
-      subtitle: 'Tips for exploring the Netherlands and Europe',
-      icon: 'passport' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term/information/travel',
-      type: 'info',
-    },
-  ];
+  const informationItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Welcome to the Netherlands!',
+        subtitle: 'Important information for new students',
+        icon: 'door-open' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term/information/welcome-in-the-netherlands',
+        type: 'info',
+      },
+      {
+        title: 'Flight and Arrival',
+        subtitle: 'Information about traveling to the Netherlands',
+        icon: 'plane' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term/information/flight-and-arrival',
+        type: 'info',
+      },
+      {
+        title: 'Language',
+        subtitle: 'Learning Dutch and language assistance',
+        icon: 'language' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term/information/language',
+        type: 'info',
+      },
+      {
+        title: 'Insurance',
+        subtitle: 'Healthcare and insurance information',
+        icon: 'umbrella' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term/information/insurance',
+        type: 'info',
+      },
+      {
+        title: 'Travel',
+        subtitle: 'Tips for exploring the Netherlands and Europe',
+        icon: 'passport' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term/information/travel',
+        type: 'info',
+      },
+    ],
+    [],
+  );
 
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
@@ -131,11 +147,12 @@ export default function LongTermInboundScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.border, themeColors.primary],
   );
 
   const renderContent = useCallback(() => {
     const allItems = [
+      { type: 'image' },
       { type: 'intro' },
       { type: 'sectionHeader', title: 'Current Students' },
       ...classOfItems.map((item) => ({ type: 'menuItem', item })),
@@ -145,11 +162,19 @@ export default function LongTermInboundScreen() {
     ];
 
     return allItems;
-  }, []);
+  }, [classOfItems, informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {
       switch (item.type) {
+        case 'image':
+          return (
+            <Image
+              source={require('@/assets/pictures/inbounds-with-flags.jpeg')}
+              style={styles.headerImage}
+              contentFit="cover"
+            />
+          );
         case 'sectionHeader':
           return <SectionHeader title={item.title} />;
         case 'menuItem':
@@ -194,6 +219,12 @@ const styles = StyleSheet.create({
   listContainer: {
     padding: 16,
     paddingBottom: 34,
+  },
+  headerImage: {
+    width: '100%',
+    height: 150,
+    marginBottom: 16,
+    borderRadius: 8,
   },
   introContainer: {
     marginBottom: 32,

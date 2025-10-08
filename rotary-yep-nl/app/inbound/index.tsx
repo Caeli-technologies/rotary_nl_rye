@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -44,15 +44,6 @@ export default function InboundScreen() {
     } catch (error) {
       console.error('Error navigating to route:', error);
       router.push(route as any);
-    }
-  }, []);
-
-  const handleEmailPress = useCallback(async (email: string, name: string) => {
-    try {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      await Linking.openURL(`mailto:${email}`);
-    } catch (error) {
-      console.error('Error opening email:', error);
     }
   }, []);
 
@@ -111,35 +102,50 @@ export default function InboundScreen() {
         </View>
       </Pressable>
     ),
-    [handleProgramPress],
+    [
+      handleProgramPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textDisabled,
+      themeColors.textTertiary,
+    ],
   );
 
-  const longTermPrograms: ProgramItem[] = [
-    {
-      title: 'Long Term Exchange Program',
-      subtitle: 'Year Exchange',
-      icon: 'calendar-alt' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/long-term',
-      enabled: true,
-    },
-  ];
+  const longTermPrograms: ProgramItem[] = useMemo(
+    () => [
+      {
+        title: 'Long Term Exchange Program',
+        subtitle: 'Year Exchange',
+        icon: 'calendar-alt' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/long-term',
+        enabled: true,
+      },
+    ],
+    [],
+  );
 
-  const shortTermPrograms: ProgramItem[] = [
-    {
-      title: 'Zomerkampen',
-      subtitle: 'Zomerkampen & Culturele Programmas',
-      icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/short-term/camps-and-tours',
-      enabled: false,
-    },
-    {
-      title: 'Family to Family',
-      subtitle: 'Exchange between families',
-      icon: 'home' as keyof typeof FontAwesome5.glyphMap,
-      route: '/inbound/short-term/family-to-family',
-      enabled: false,
-    },
-  ];
+  const shortTermPrograms: ProgramItem[] = useMemo(
+    () => [
+      {
+        title: 'Zomerkampen',
+        subtitle: 'Zomerkampen & Culturele Programmas',
+        icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/short-term/camps-and-tours',
+        enabled: false,
+      },
+      {
+        title: 'Family to Family',
+        subtitle: 'Exchange between families',
+        icon: 'home' as keyof typeof FontAwesome5.glyphMap,
+        route: '/inbound/short-term/family-to-family',
+        enabled: false,
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
@@ -159,7 +165,7 @@ export default function InboundScreen() {
         </Text>
       </View>
     ),
-    [handleEmailPress],
+    [handleSandraContactPress, themeColors.link, themeColors.primary, themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -169,7 +175,7 @@ export default function InboundScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.border, themeColors.primary],
   );
 
   const renderContent = useCallback(() => {
@@ -183,15 +189,15 @@ export default function InboundScreen() {
     ];
 
     return allItems;
-  }, []);
+  }, [longTermPrograms, shortTermPrograms]);
 
   const renderItem = useCallback(
-    ({ item }: { item: any }) => {
+    ({ item }: { item: { type: string; title?: string; item?: any } }) => {
       switch (item.type) {
         case 'intro':
           return <IntroSection />;
         case 'sectionHeader':
-          return <SectionHeader title={item.title} />;
+          return <SectionHeader title={item.title!} />;
         case 'program':
           return renderProgramItem({ item: item.item });
         case 'spacer':

@@ -64,7 +64,16 @@ export default function ProgramsScreen() {
         </View>
       </Pressable>
     ),
-    [handleProgramPress],
+    [
+      handleProgramPress,
+      themeColors.card,
+      themeColors.border,
+      themeColors.shadow,
+      themeColors.primary,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
   const exchangePrograms: ProgramItem[] = useMemo(
@@ -113,7 +122,7 @@ export default function ProgramsScreen() {
         </Text>
       </View>
     ),
-    [],
+    [themeColors.primary, themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -123,7 +132,7 @@ export default function ProgramsScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.primary, themeColors.border],
   );
 
   const renderContent = useCallback(() => {

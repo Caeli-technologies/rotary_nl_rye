@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FlatList, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 interface ProgramItem {
   title: string;
@@ -90,35 +89,50 @@ export default function OutboundScreen() {
         </View>
       </Pressable>
     ),
-    [handleProgramPress],
+    [
+      handleProgramPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textDisabled,
+      themeColors.textTertiary,
+    ],
   );
 
-  const longTermPrograms: ProgramItem[] = [
-    {
-      title: 'Long Term Exchange Program',
-      subtitle: 'Year Exchange',
-      icon: 'calendar-alt' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term',
-      enabled: true,
-    },
-  ];
+  const longTermPrograms: ProgramItem[] = useMemo(
+    () => [
+      {
+        title: 'Long Term Exchange Program',
+        subtitle: 'Year Exchange',
+        icon: 'calendar-alt' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term',
+        enabled: true,
+      },
+    ],
+    [],
+  );
 
-  const shortTermPrograms: ProgramItem[] = [
-    {
-      title: 'Zomerkampen',
-      subtitle: 'Zomerkampen & Culturele Programmas',
-      icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/camps-and-tours',
-      enabled: true,
-    },
-    {
-      title: 'Family to Family',
-      subtitle: 'Exchange between families',
-      icon: 'home' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/short-term/family-to-family',
-      enabled: true,
-    },
-  ];
+  const shortTermPrograms: ProgramItem[] = useMemo(
+    () => [
+      {
+        title: 'Zomerkampen',
+        subtitle: 'Zomerkampen & Culturele Programmas',
+        icon: 'campground' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/camps-and-tours',
+        enabled: true,
+      },
+      {
+        title: 'Family to Family',
+        subtitle: 'Exchange between families',
+        icon: 'home' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/short-term/family-to-family',
+        enabled: true,
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
@@ -131,7 +145,7 @@ export default function OutboundScreen() {
         </Text>
       </View>
     ),
-    [],
+    [themeColors.primary, themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -141,7 +155,7 @@ export default function OutboundScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.border, themeColors.primary],
   );
 
   const renderContent = useCallback(() => {
@@ -153,7 +167,7 @@ export default function OutboundScreen() {
       { type: 'sectionHeader', title: 'Short Term Exchange Program' },
       ...shortTermPrograms.map((item) => ({ type: 'program', item })),
     ];
-  }, []);
+  }, [longTermPrograms, shortTermPrograms]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {

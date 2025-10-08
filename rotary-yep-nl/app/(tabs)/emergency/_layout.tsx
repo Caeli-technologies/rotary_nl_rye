@@ -1,10 +1,7 @@
 import { Stack } from 'expo-router';
-import { useTheme } from '@/hooks/use-theme';
 import { Platform } from 'react-native';
 
 export default function EmergencyLayout() {
-  const { colors: themeColors } = useTheme();
-
   return (
     <Stack
       screenOptions={{

@@ -274,6 +274,17 @@ export const currentOutboundStudents: OutboundStudent[] = [
     to: 'Brazil',
     toFlag: 'br',
   },
+
+  {
+    name: 'Max Weijters',
+    bio: 'Hoi ik ben Max Weijters 17 jaar oud en woon in Zaandam. Ik zit nu op de koksopleiding op het mbo en ga aankomend schooljaar naar Brazilië vlakbij São Paulo. \nIk heb al contact gehad met m’n gastgezin en zijn echt heel gastvriendelijk. \nIk heb er super veel zin in om nieuwe vrienden te maken in een nieuw land met een warm cultuur.',
+    imageUrl:
+      'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/outbound/long-term/25-26/max-weijters.png',
+    from: 'Nederland',
+    fromFlag: 'nl',
+    to: 'Brazil',
+    toFlag: 'br',
+  },
 ];
 
 // Helper function to group students by destination country

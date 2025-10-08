@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  currentInboundStudents,
-  groupInboundStudentsByCountry,
-} from '@/data/inbound-students';
+import { currentInboundStudents, groupInboundStudentsByCountry } from '@/data/inbound-students';
 import StudentsList from '@/components/students/StudentsList';
 
 export default function InboundClassOfScreen() {
@@ -15,7 +12,6 @@ export default function InboundClassOfScreen() {
       studentType="inbound"
       basePath="/inbound/long-term/class-of"
       title="Class Of 2024-25"
-      groupByCountryKey="from"
     />
   );
 }

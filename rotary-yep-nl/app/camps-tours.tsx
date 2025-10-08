@@ -240,7 +240,6 @@ export default function CampsToursScreen() {
     timing: 'alle', // 'alle', 'toekomstig', 'afgelopen'
     country: '',
   });
-  const [availableCountries, setAvailableCountries] = useState<string[]>([]);
   const [availableCountriesWithCodes, setAvailableCountriesWithCodes] = useState<
     { country: string; code: string }[]
   >([]);
@@ -321,7 +320,6 @@ export default function CampsToursScreen() {
         code: countriesWithCodes.get(country) || '',
       }));
 
-      setAvailableCountries(sortedCountries);
       setAvailableCountriesWithCodes(countriesWithCodesArray);
     } catch (err) {
       console.error('Error fetching CSV data:', err);
@@ -331,7 +329,7 @@ export default function CampsToursScreen() {
     }
   }, []);
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...data];
 
     // Apply availability filter
@@ -389,16 +387,16 @@ export default function CampsToursScreen() {
     });
 
     setFilteredData(sortedFiltered);
-  };
+  }, [filters, data]);
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     setFilters({
       availability: 'alle',
       timing: 'alle',
       country: '',
     });
     setFilteredData(data);
-  };
+  }, [data]);
 
   const hasActiveFilters =
     filters.availability !== 'alle' || filters.timing !== 'alle' || filters.country !== '';
@@ -724,15 +722,24 @@ export default function CampsToursScreen() {
         </View>
       ),
     });
-  }, [navigation, loading, filteredData.length, data.length, hasActiveFilters, clearFilters]);
+  }, [
+    navigation,
+    loading,
+    filteredData.length,
+    data.length,
+    hasActiveFilters,
+    clearFilters,
+    themeColors.link,
+    themeColors.textSecondary,
+  ]);
 
   useEffect(() => {
     fetchCsvData();
-  }, []);
+  }, [fetchCsvData]);
 
   useEffect(() => {
     applyFilters();
-  }, [filters, data]);
+  }, [filters, data, applyFilters]);
 
   return (
     <SafeAreaView

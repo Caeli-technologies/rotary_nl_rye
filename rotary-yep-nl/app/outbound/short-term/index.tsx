@@ -5,7 +5,6 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
@@ -65,7 +64,16 @@ export default function ShortTermScreen() {
         </View>
       </Pressable>
     ),
-    [handleItemPress],
+    [
+      handleItemPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
   const menuItems: MenuItem[] = useMemo(
@@ -102,7 +110,7 @@ export default function ShortTermScreen() {
         </Text>
       </View>
     ),
-    [],
+    [themeColors.text, themeColors.textSecondary],
   );
 
   const renderContent = useCallback(() => {

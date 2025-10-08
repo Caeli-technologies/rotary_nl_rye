@@ -10,9 +10,8 @@ import {
   Linking,
   Alert,
 } from 'react-native';
-import { Colors, RotaryColors } from '@/constants/theme';
+import { RotaryColors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { NetworkImage } from './network-image';
 import { makePhoneCall, sendEmail } from '../utils/communications';

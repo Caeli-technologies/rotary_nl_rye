@@ -111,7 +111,7 @@ export default function DocumentenScreen() {
       title: 'First Night Questions',
       icon: 'question-circle' as keyof typeof FontAwesome5.glyphMap,
       pdfUrl:
-        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/questions-first-night-host-family.pdf',
+        'https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/rotary-club-info/25-26/first-nights-questions-aangepast.pdf',
     },
   ];
 

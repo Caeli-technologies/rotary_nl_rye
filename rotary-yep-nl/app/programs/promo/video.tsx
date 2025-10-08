@@ -20,7 +20,7 @@ type Video = { title: string; description: string; url: string };
 
 function VideoRow({
   video,
-  index,
+  index: _index,
   onPlayRequest,
   themeColors,
 }: {
@@ -56,7 +56,7 @@ function VideoRow({
     try {
       if (Platform.OS === 'ios') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       onPlayRequest(video);
-    } catch (e) {
+    } catch {
       onPlayRequest(video);
     }
   };

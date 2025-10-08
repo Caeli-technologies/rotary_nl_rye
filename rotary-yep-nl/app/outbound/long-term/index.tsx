@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 import * as Haptics from 'expo-haptics';
-import { Colors } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 interface MenuItem {
   title: string;
@@ -71,56 +71,71 @@ export default function LongTermExchangeScreen() {
         </View>
       </Pressable>
     ),
-    [handleItemPress],
+    [
+      handleItemPress,
+      themeColors.border,
+      themeColors.card,
+      themeColors.primary,
+      themeColors.shadow,
+      themeColors.text,
+      themeColors.textSecondary,
+      themeColors.textTertiary,
+    ],
   );
 
-  const classOfItems: MenuItem[] = [
-    {
-      title: 'Huidige Studenten',
-      subtitle: 'Onze studenten in het buitenland dit jaar',
-      icon: 'users' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/class-of',
-      type: 'class',
-    },
-  ];
+  const classOfItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Huidige Studenten',
+        subtitle: 'Onze studenten in het buitenland dit jaar',
+        icon: 'users' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term/class-of',
+        type: 'class',
+      },
+    ],
+    [],
+  );
 
-  const informationItems: MenuItem[] = [
-    {
-      title: 'Hoe meld ik me aan?',
-      subtitle: 'Volledige aanmeldprocedure en vereisten',
-      icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/how-to-sign-up',
-      type: 'info',
-    },
-    {
-      title: 'Selectie dag',
-      subtitle: 'Wat je kunt verwachten tijdens het selectieproces',
-      icon: 'calendar-day' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/selection-day',
-      type: 'info',
-    },
-    {
-      title: 'Selectie weekend',
-      subtitle: 'Finale selectieweekend activiteiten en verwachtingen',
-      icon: 'calendar-week' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/selection-weekend',
-      type: 'info',
-    },
-    {
-      title: 'Goede top 3 van landen',
-      subtitle: 'Hoe kies je jouw voorkeursbestemmingen',
-      icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/top-3-countries',
-      type: 'info',
-    },
-    {
-      title: 'Waar moet ik aan voldoen?',
-      subtitle: 'Regels en richtlijnen voor uitwisselingsstudenten',
-      icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
-      route: '/outbound/long-term/information/comply-with',
-      type: 'info',
-    },
-  ];
+  const informationItems: MenuItem[] = useMemo(
+    () => [
+      {
+        title: 'Hoe meld ik me aan?',
+        subtitle: 'Volledige aanmeldprocedure en vereisten',
+        icon: 'edit' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term/information/how-to-sign-up',
+        type: 'info',
+      },
+      {
+        title: 'Selectie dag',
+        subtitle: 'Wat je kunt verwachten tijdens het selectieproces',
+        icon: 'calendar-day' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term/information/selection-day',
+        type: 'info',
+      },
+      {
+        title: 'Selectie weekend',
+        subtitle: 'Finale selectieweekend activiteiten en verwachtingen',
+        icon: 'calendar-week' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term/information/selection-weekend',
+        type: 'info',
+      },
+      {
+        title: 'Goede top 3 van landen',
+        subtitle: 'Hoe kies je jouw voorkeursbestemmingen',
+        icon: 'globe-americas' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term/information/top-3-countries',
+        type: 'info',
+      },
+      {
+        title: 'Waar moet ik aan voldoen?',
+        subtitle: 'Regels en richtlijnen voor uitwisselingsstudenten',
+        icon: 'shield-alt' as keyof typeof FontAwesome5.glyphMap,
+        route: '/outbound/long-term/information/comply-with',
+        type: 'info',
+      },
+    ],
+    [],
+  );
 
   const IntroSection = useCallback(
     () => (
@@ -133,7 +148,7 @@ export default function LongTermExchangeScreen() {
         </Text>
       </View>
     ),
-    [],
+    [themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -143,11 +158,12 @@ export default function LongTermExchangeScreen() {
         <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
       </View>
     ),
-    [],
+    [themeColors.border, themeColors.primary],
   );
 
   const renderContent = useCallback(() => {
     const allItems = [
+      { type: 'image' },
       { type: 'intro' },
       { type: 'sectionHeader', title: 'Klas van 25-26' },
       ...classOfItems.map((item) => ({ type: 'menuItem', item })),
@@ -157,11 +173,19 @@ export default function LongTermExchangeScreen() {
     ];
 
     return allItems;
-  }, []);
+  }, [classOfItems, informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {
       switch (item.type) {
+        case 'image':
+          return (
+            <Image
+              source={require('@/assets/pictures/outbound-25-26-group.jpeg')}
+              style={styles.headerImage}
+              contentFit="cover"
+            />
+          );
         case 'intro':
           return <IntroSection />;
         case 'sectionHeader':
@@ -208,6 +232,12 @@ const styles = StyleSheet.create({
   listContainer: {
     padding: Platform.OS === 'ios' ? 20 : 16,
     paddingBottom: Platform.OS === 'ios' ? 40 : 34,
+  },
+  headerImage: {
+    width: '100%',
+    height: 150,
+    marginBottom: 16,
+    borderRadius: 8,
   },
   introContainer: {
     marginBottom: 32,

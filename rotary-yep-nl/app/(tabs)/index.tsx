@@ -110,8 +110,9 @@ export default function HomeScreen() {
 
   const carouselImages = useMemo(
     () => [
-      require('@/assets/home/carousel/Banner_informatiemarkt_6_september_2025.jpg'),
-      require('@/assets/home/carousel/Rebounddag_2024_Laren.png'),
+      require('@/assets/home/carousel/outbound-25-26-group.jpeg'),
+      require('@/assets/home/carousel/inbounds-with-flags.jpeg'),
+      require('@/assets/home/carousel/inbound-andre-schiphol.jpeg'),
     ],
     [],
   );

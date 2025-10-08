@@ -1,8 +1,19 @@
-import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from 'react-native';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Platform,
+  Pressable,
+  Linking,
+  Modal,
+} from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/use-theme';
+import { ImageModal } from '@/components/image-modal';
 const shadowStyle = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 4 },
@@ -13,6 +24,12 @@ const shadowStyle = {
 
 export default function CampsToursScreen() {
   const { colors: themeColors } = useTheme();
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+
+  const campImages = [
+    require('@/assets/pictures/zomerkamp-amazon-tour.jpeg'),
+    require('@/assets/pictures/zomerkamp-amazon-tour-2.jpeg'),
+  ];
 
   return (
     <SafeAreaView
@@ -141,6 +158,30 @@ export default function CampsToursScreen() {
             </View>
           </View>
 
+          {/* Gallery Section */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Ionicons name="images-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Camp Pictures</Text>
+            </View>
+
+            <View style={styles.galleryContainer}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.galleryScroll}>
+                {campImages.map((image, index) => (
+                  <Pressable key={index} onPress={() => setSelectedImage(image)}>
+                    <Image source={image} style={styles.galleryImage} contentFit="cover" />
+                  </Pressable>
+                ))}
+              </ScrollView>
+              <View style={[styles.scrollIndicator, { backgroundColor: themeColors.background }]}>
+                <Ionicons name="chevron-forward" size={20} color={themeColors.textTertiary} />
+              </View>
+            </View>
+          </View>
+
           {/* Registration Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
@@ -236,6 +277,12 @@ export default function CampsToursScreen() {
           </View>
         </View>
       </ScrollView>
+
+      <ImageModal
+        visible={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        source={selectedImage}
+      />
     </SafeAreaView>
   );
 }
@@ -468,5 +515,29 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: '#333',
     flex: 1,
+  },
+  // Gallery Styles
+  galleryContainer: {
+    position: 'relative',
+    marginTop: 10,
+  },
+  galleryScroll: {
+    paddingRight: 40,
+  },
+  galleryImage: {
+    width: 200,
+    height: 150,
+    marginRight: 12,
+    borderRadius: 8,
+  },
+  scrollIndicator: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 0.8,
   },
 });

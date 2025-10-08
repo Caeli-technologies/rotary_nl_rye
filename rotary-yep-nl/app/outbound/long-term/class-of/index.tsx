@@ -12,7 +12,6 @@ export default function CurrentStudentsScreen() {
       studentType="outbound"
       basePath="/outbound/long-term/class-of"
       title="Current Students"
-      groupByCountryKey="to"
     />
   );
 }

@@ -58,14 +58,6 @@ export default function CalendarScreen() {
     return marked;
   };
 
-  // Computed values - no need for separate state
-  const selectedEvents = getEventsForDay(eventsData, new Date(selectedDate + 'T00:00:00'));
-  const markedDates = createMarkedDates(eventsData, selectedDate);
-
-  useEffect(() => {
-    loadEvents();
-  }, []);
-
   const loadEvents = useCallback(async () => {
     try {
       setLoading(true);
@@ -80,6 +72,14 @@ export default function CalendarScreen() {
       setLoading(false);
     }
   }, []);
+
+  // Computed values - no need for separate state
+  const selectedEvents = getEventsForDay(eventsData, new Date(selectedDate + 'T00:00:00'));
+  const markedDates = createMarkedDates(eventsData, selectedDate);
+
+  useEffect(() => {
+    loadEvents();
+  }, [loadEvents]);
 
   const onDayPress = useCallback((day: any) => {
     setSelectedDate(day.dateString);

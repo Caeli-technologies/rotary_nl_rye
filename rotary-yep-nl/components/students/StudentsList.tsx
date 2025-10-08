@@ -11,14 +11,6 @@ import { NetworkImage } from '@/components/network-image';
 import { Student, CountryGroup, StudentType } from '@/types/student';
 import { getFlagAsset } from '@/utils/flags';
 
-const shadowStyle = {
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.08,
-  shadowRadius: 20,
-  elevation: 4,
-};
-
 interface StudentCardProps {
   student: Student;
   onPress: () => void;
@@ -83,7 +75,6 @@ interface StudentsListProps {
   studentType: StudentType;
   basePath: string;
   title: string;
-  groupByCountryKey?: 'from' | 'to';
 }
 
 export default function StudentsList({
@@ -92,7 +83,6 @@ export default function StudentsList({
   studentType,
   basePath,
   title,
-  groupByCountryKey = 'to',
 }: StudentsListProps) {
   const { colors: themeColors } = useTheme();
   const navigation = useNavigation();

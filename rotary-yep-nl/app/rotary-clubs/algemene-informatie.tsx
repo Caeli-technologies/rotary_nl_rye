@@ -40,7 +40,7 @@ export default function AlgemeneInformatieScreen() {
         themeColors={themeColors}
       />
     ),
-    [styles],
+    [themeColors],
   );
 
   const infoSections = [

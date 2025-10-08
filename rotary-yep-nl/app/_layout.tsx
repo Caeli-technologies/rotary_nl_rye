@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Platform } from 'react-native';
+import { useMemo } from 'react';
 import { useTheme } from '@/hooks/use-theme';
 import 'react-native-reanimated';
 
@@ -11,36 +12,49 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  const { colors: themeColors, colorScheme } = useTheme();
+  const { colorScheme } = useTheme();
 
-  // Custom theme using Rotary brand colors
-  const customTheme = {
-    ...(colorScheme === 'dark' ? DarkTheme : DefaultTheme),
-    colors: {
-      ...(colorScheme === 'dark' ? DarkTheme.colors : DefaultTheme.colors),
-    },
-  };
+  // Memoize custom theme to prevent recreation on every render
+  const customTheme = useMemo(
+    () => ({
+      ...(colorScheme === 'dark' ? DarkTheme : DefaultTheme),
+      colors: {
+        ...(colorScheme === 'dark' ? DarkTheme.colors : DefaultTheme.colors),
+      },
+    }),
+    [colorScheme],
+  );
+
+  // Memoize screen options to prevent recreation on every render
+  const screenOptions = useMemo(
+    () => ({
+      headerStyle: {
+        backgroundColor: customTheme.colors.card,
+      },
+      headerTitleStyle: {
+        color: customTheme.colors.text,
+        fontWeight: '600' as const,
+        fontSize: Platform.OS === 'ios' ? 20 : 22,
+      },
+      headerTintColor: customTheme.colors.primary,
+      headerShadowVisible: Platform.OS === 'ios',
+      headerBackTitle: Platform.OS === 'ios' ? 'Terug' : '',
+      contentStyle: {
+        backgroundColor: customTheme.colors.background,
+      },
+    }),
+    [
+      customTheme.colors.card,
+      customTheme.colors.text,
+      customTheme.colors.primary,
+      customTheme.colors.background,
+    ],
+  );
 
   return (
     <SafeAreaProvider>
       <ThemeProvider value={customTheme}>
-        <Stack
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: customTheme.colors.card,
-            },
-            headerTitleStyle: {
-              color: customTheme.colors.text,
-              fontWeight: '600' as const,
-              fontSize: Platform.OS === 'ios' ? 20 : 22,
-            },
-            headerTintColor: customTheme.colors.primary,
-            headerShadowVisible: Platform.OS === 'ios',
-            headerBackTitle: Platform.OS === 'ios' ? 'Terug' : '',
-            contentStyle: {
-              backgroundColor: customTheme.colors.background,
-            },
-          }}>
+        <Stack screenOptions={screenOptions}>
           {/* Main tab navigator */}
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
