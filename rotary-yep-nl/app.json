@@ -46,6 +46,7 @@
     "android": {
       "versionCode": 107,
       "package": "com.caelitechnologies.rotary_nl_rye",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
       "backgroundColor": "#17458f",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": true,

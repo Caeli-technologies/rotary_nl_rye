@@ -14,6 +14,7 @@ import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
 import * as Haptics from 'expo-haptics';
+import * as StoreReview from 'expo-store-review';
 
 import { useTheme } from '@/hooks/use-theme';
 const shadowStyle = {
@@ -50,7 +51,7 @@ export default function SettingsScreen() {
         if (supported) {
           Linking.openURL('https://www.rotary.nl/yep/yep-app/privacy-policy.html');
         } else {
-          Alert.alert('Error', 'Unable to open privacy policy link');
+          Alert.alert('Fout', 'Kan privacybeleid link niet openen');
         }
       },
     );
@@ -65,7 +66,7 @@ export default function SettingsScreen() {
         if (supported) {
           Linking.openURL('https://www.rotary.nl/yep/yep-app/terms-and-conditions.html');
         } else {
-          Alert.alert('Error', 'Unable to open terms and conditions link');
+          Alert.alert('Fout', 'Kan algemene voorwaarden link niet openen');
         }
       },
     );
@@ -86,9 +87,34 @@ export default function SettingsScreen() {
       if (supported) {
         Linking.openURL('https://www.instagram.com/rotexnederland/');
       } else {
-        Alert.alert('Error', 'Unable to open Instagram link');
+        Alert.alert('Fout', 'Kan Instagram link niet openen');
       }
     });
+  };
+
+  const handleStoreReview = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+
+    const isAvailable = await StoreReview.hasAction();
+    if (isAvailable) {
+      await StoreReview.requestReview();
+    } else {
+      // Fallback: open store URL
+      const storeUrl = StoreReview.storeUrl();
+      if (storeUrl) {
+        Linking.canOpenURL(storeUrl).then((supported) => {
+          if (supported) {
+            Linking.openURL(storeUrl);
+          } else {
+            Alert.alert('Fout', 'Kan winkel niet openen');
+          }
+        });
+      } else {
+        Alert.alert('Niet beschikbaar', 'Winkelbeoordeling is niet beschikbaar op dit apparaat.');
+      }
+    }
   };
 
   const SettingsSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -155,29 +181,38 @@ export default function SettingsScreen() {
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic">
         <View style={styles.content}>
-          <SettingsSection title="General">
+          <SettingsSection title="Algemeen">
             <SettingsItem
-              title="Follow us on Instagram"
+              title="Volg ons op Instagram"
               subtitle="@rotexnederland"
               onPress={handleSocialMedia}
             />
+            <SettingsItem
+              title="Beoordeel de App"
+              subtitle={
+                Platform.OS === 'ios'
+                  ? 'Laat een beoordeling achter in de App Store'
+                  : 'Laat een beoordeling achter in de Google Play Store'
+              }
+              onPress={handleStoreReview}
+            />
           </SettingsSection>
 
-          <SettingsSection title="Development">
+          <SettingsSection title="Ontwikkeling">
             <SettingsItem
-              title="Contributors"
-              subtitle="View app contributors"
+              title="Bijdragers"
+              subtitle="Bekijk app-bijdragers"
               onPress={handleContributors}
             />
             <SettingsItem
-              title="App Version"
+              title="App Versie"
               subtitle={buildVersion ? `${appVersion} (${buildVersion})` : appVersion}
             />
           </SettingsSection>
 
-          <SettingsSection title="Legal">
-            <SettingsItem title="Privacy Policy" onPress={handlePrivacyPolicy} />
-            <SettingsItem title="Terms & Conditions" onPress={handleTermsAndConditions} />
+          <SettingsSection title="Juridisch">
+            <SettingsItem title="Privacybeleid" onPress={handlePrivacyPolicy} />
+            <SettingsItem title="Algemene Voorwaarden" onPress={handleTermsAndConditions} />
           </SettingsSection>
 
           <View style={styles.footer}>
@@ -185,7 +220,7 @@ export default function SettingsScreen() {
               Rotary Youth Exchange Netherlands
             </Text>
             <Text style={[styles.footerText, { color: themeColors.textSecondary }]}>
-              Made with ❤️ for young global citizens
+              Gemaakt met ❤️ voor jonge wereldburgers
             </Text>
           </View>
         </View>
