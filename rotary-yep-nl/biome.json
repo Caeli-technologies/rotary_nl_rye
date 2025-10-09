@@ -1,0 +1,91 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignoreUnknown": false
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"linter": {
+		"enabled": true,
+		"domains": {
+			"react": "recommended"
+		},
+		"rules": {
+			"recommended": true
+		},
+		"includes": [
+			"**",
+			"!android/app/build",
+			"!dist/*",
+			"!./.expo",
+			"!**/node_modules"
+		]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		}
+	},
+	"overrides": [
+		{
+			"includes": [
+				"**/*.d.ts"
+			],
+			"linter": {
+				"rules": {}
+			}
+		},
+		{
+			"includes": [
+				"**/metro.config.js"
+			],
+			"javascript": {
+				"globals": [
+					"exports"
+				]
+			}
+		},
+		{
+			"includes": [
+				"**/*.ts",
+				"**/*.tsx",
+				"**/*.d.ts"
+			],
+			"javascript": {
+				"globals": []
+			},
+			"formatter": {
+				"enabled": true
+			},
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUndeclaredVariables": "off",
+						"noUnusedVariables": "warn"
+					},
+					"style": {
+						"noCommonJs": "warn"
+					},
+					"suspicious": {
+						"noDuplicateClassMembers": "error"
+					}
+				}
+			}
+		}
+	],
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	}
+}
