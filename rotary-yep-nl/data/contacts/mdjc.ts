@@ -43,7 +43,10 @@ export const mdjcContacts: Organization[] = [
 		phoneNumber: "+31629586813",
 		club: "Rotary Club Oosterwolde",
 		district: "1590 NOORD-NEDERLAND",
-		functions: ["Longterm Chair"],
+		functions: [
+			"Longterm Chair",
+			"Coördinator Amerika, Canada, Azië en Europa",
+		],
 	},
 	{
 		name: "Ernst Ziengs",

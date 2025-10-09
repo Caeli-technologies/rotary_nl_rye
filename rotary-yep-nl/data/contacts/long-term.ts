@@ -10,7 +10,10 @@ export const longTermContacts: Organization[] = [
 		phoneNumber: "+31629586813",
 		club: "Rotary Club Oosterwolde",
 		district: "1590 NOORD-NEDERLAND",
-		functions: ["Chair Longterm", "Coördinator USA & Canada"],
+		functions: [
+			"Chair Longterm",
+			"Coördinator Amerika, Canada, Azië en Europa",
+		],
 	},
 	{
 		name: "Sandra Cools-Wemer",
