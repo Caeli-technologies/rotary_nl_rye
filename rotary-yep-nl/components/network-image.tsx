@@ -1,7 +1,7 @@
-import React, { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 import {
 	Image,
-	ImageProps,
+	type ImageProps,
 	ActivityIndicator,
 	View,
 	StyleSheet,
@@ -27,7 +27,7 @@ const isValidImageUrl = (url?: string): boolean => {
 	return !!(url && !url.includes("Profile_avatar_placeholder_large.png"));
 };
 
-export const NetworkImage = React.memo(function NetworkImage({
+export const NetworkImage = memo(function NetworkImage({
 	imageUrl,
 	name,
 	size = 60,
@@ -83,7 +83,7 @@ export const NetworkImage = React.memo(function NetworkImage({
 				style={[
 					styles.placeholder,
 					imageSize,
-					{ backgroundColor: themeColors.primary + "20" },
+					{ backgroundColor: `${themeColors.primary}20` },
 					style,
 				]}
 			>

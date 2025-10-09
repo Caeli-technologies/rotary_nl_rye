@@ -56,7 +56,7 @@ export default function ProgramsScreen() {
 					<View
 						style={[
 							styles.iconContainer,
-							{ backgroundColor: themeColors.primary + "15" },
+							{ backgroundColor: `${themeColors.primary}15` },
 						]}
 					>
 						<FontAwesome5

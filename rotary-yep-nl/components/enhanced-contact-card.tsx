@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { View, StyleSheet, Pressable, Platform, Text } from "react-native";
 import { useTheme } from "@/hooks/use-theme";
 import { NetworkImage } from "./network-image";

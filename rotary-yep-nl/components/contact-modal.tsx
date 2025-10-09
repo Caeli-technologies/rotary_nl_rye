@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import {
 	Modal,
 	View,
@@ -15,7 +15,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
 import { NetworkImage } from "./network-image";
 import { makePhoneCall, sendEmail } from "../utils/communications";
-import { Contact, Organization, Rotex } from "@/types/contact";
+import type { Contact, Organization, Rotex } from "@/types/contact";
 import { useContactInfo } from "@/hooks/use-contact-info";
 import { Image } from "expo-image";
 
@@ -188,7 +188,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
 								{ backgroundColor: themeColors.backgroundElevated },
 								pressed && styles.socialLinkPressed,
 							]}
-							onPress={() => handleSocialMedia(platform.url!)}
+							onPress={() => platform.url && handleSocialMedia(platform.url)}
 							accessibilityRole="button"
 							accessibilityLabel={`Open ${platform.key} profile`}
 							accessibilityHint="Opens in external app"
@@ -196,7 +196,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
 							<View
 								style={[
 									styles.socialIconContainer,
-									{ backgroundColor: platform.color + "15" },
+									{ backgroundColor: `${platform.color}15` },
 								]}
 							>
 								<Ionicons
@@ -411,7 +411,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
 										<View
 											style={[
 												styles.orgIconContainer,
-												{ backgroundColor: themeColors.secondary + "15" },
+												{ backgroundColor: `${themeColors.secondary}15` },
 											]}
 										>
 											<Image
@@ -448,7 +448,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
 										<View
 											style={[
 												styles.orgIconContainer,
-												{ backgroundColor: themeColors.accent + "15" },
+												{ backgroundColor: `${themeColors.accent}15` },
 											]}
 										>
 											<Ionicons
@@ -522,7 +522,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
 										<View
 											style={[
 												styles.contactIconContainer,
-												{ backgroundColor: themeColors.primary + "15" },
+												{ backgroundColor: `${themeColors.primary}15` },
 											]}
 										>
 											<Ionicons
@@ -571,7 +571,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
 										<View
 											style={[
 												styles.contactIconContainer,
-												{ backgroundColor: themeColors.primary + "15" },
+												{ backgroundColor: `${themeColors.primary}15` },
 											]}
 										>
 											<Ionicons

@@ -60,9 +60,9 @@ function TravelCard({
 		const endDateParts = endDate.split("/");
 		if (endDateParts.length === 3) {
 			const campEndDate = new Date(
-				parseInt(endDateParts[2]),
-				parseInt(endDateParts[1]) - 1, // Month is 0-indexed
-				parseInt(endDateParts[0]),
+				parseInt(endDateParts[2], 10),
+				parseInt(endDateParts[1], 10) - 1, // Month is 0-indexed
+				parseInt(endDateParts[0], 10),
 			);
 			const today = new Date();
 			today.setHours(0, 0, 0, 0); // Reset time to start of day
@@ -77,7 +77,7 @@ function TravelCard({
 		// Allow PDF viewing for all camps, including past ones
 		if (invitation && invitation.trim() !== "") {
 			router.push({
-				pathname: "/pdf-viewer" as any,
+				pathname: "/pdf-viewer",
 				params: {
 					url: invitation,
 					title: title,
@@ -310,6 +310,442 @@ function TravelCard({
 	);
 }
 
+const AvailabilityContextMenu = ({
+	filters,
+	setFilters,
+	themeColors,
+}: {
+	filters: { availability: string; timing: string; country: string };
+	setFilters: React.Dispatch<
+		React.SetStateAction<{
+			availability: string;
+			timing: string;
+			country: string;
+		}>
+	>;
+	themeColors: typeof Colors.light;
+}) => {
+	const showAvailabilityOptions = () => {
+		Alert.alert(
+			"Beschikbaarheid",
+			"Selecteer welke kampen je wilt zien:",
+			[
+				{
+					text: "Alle kampen",
+					onPress: () =>
+						setFilters((prev) => ({ ...prev, availability: "alle" })),
+				},
+				{
+					text: "Alleen niet-volle kampen",
+					onPress: () =>
+						setFilters((prev) => ({ ...prev, availability: "niet-vol" })),
+				},
+				{
+					text: "Alleen volle kampen",
+					onPress: () =>
+						setFilters((prev) => ({ ...prev, availability: "vol" })),
+				},
+				{
+					text: "Annuleren",
+					style: "cancel",
+				},
+			],
+			{ cancelable: true },
+		);
+	};
+
+	return (
+		<View style={{ marginRight: 8 }}>
+			<Pressable
+				style={[
+					styles.filterChip,
+					{
+						backgroundColor:
+							filters.availability !== "alle"
+								? themeColors.link
+								: themeColors.card,
+						borderColor: themeColors.border,
+					},
+					filters.availability !== "alle" && styles.filterChipActive,
+				]}
+				onPress={showAvailabilityOptions}
+			>
+				<Ionicons
+					name="checkmark-circle-outline"
+					size={16}
+					color={
+						filters.availability !== "alle"
+							? themeColors.card
+							: themeColors.textTertiary
+					}
+				/>
+				<Text
+					style={[
+						styles.filterChipText,
+						{
+							color:
+								filters.availability !== "alle"
+									? themeColors.card
+									: themeColors.text,
+						},
+						filters.availability !== "alle" && styles.filterChipTextActive,
+					]}
+				>
+					{filters.availability === "alle"
+						? "Beschikbaarheid"
+						: filters.availability === "niet-vol"
+							? "Niet vol"
+							: "Vol"}
+				</Text>
+				<Ionicons
+					name="chevron-down"
+					size={14}
+					color={
+						filters.availability !== "alle"
+							? themeColors.card
+							: themeColors.textTertiary
+					}
+					style={styles.filterChipChevron}
+				/>
+			</Pressable>
+		</View>
+	);
+};
+
+const TimingContextMenu = ({
+	filters,
+	setFilters,
+	themeColors,
+}: {
+	filters: { availability: string; timing: string; country: string };
+	setFilters: React.Dispatch<
+		React.SetStateAction<{
+			availability: string;
+			timing: string;
+			country: string;
+		}>
+	>;
+	themeColors: typeof Colors.light;
+}) => {
+	const showTimingOptions = () => {
+		Alert.alert(
+			"Tijdperiode",
+			"Selecteer welke kampen je wilt zien:",
+			[
+				{
+					text: "Alle kampen",
+					onPress: () => setFilters((prev) => ({ ...prev, timing: "alle" })),
+				},
+				{
+					text: "Alleen toekomstige kampen",
+					onPress: () =>
+						setFilters((prev) => ({ ...prev, timing: "toekomstig" })),
+				},
+				{
+					text: "Alleen afgelopen kampen",
+					onPress: () =>
+						setFilters((prev) => ({ ...prev, timing: "afgelopen" })),
+				},
+				{
+					text: "Annuleren",
+					style: "cancel",
+				},
+			],
+			{ cancelable: true },
+		);
+	};
+
+	return (
+		<View style={{ marginRight: 8 }}>
+			<Pressable
+				style={[
+					styles.filterChip,
+					{
+						backgroundColor:
+							filters.timing !== "alle" ? themeColors.link : themeColors.card,
+						borderColor: themeColors.border,
+					},
+					filters.timing !== "alle" && styles.filterChipActive,
+				]}
+				onPress={showTimingOptions}
+			>
+				<Ionicons
+					name="time-outline"
+					size={16}
+					color={
+						filters.timing !== "alle"
+							? themeColors.card
+							: themeColors.textTertiary
+					}
+				/>
+				<Text
+					style={[
+						styles.filterChipText,
+						{
+							color:
+								filters.timing !== "alle" ? themeColors.card : themeColors.text,
+						},
+						filters.timing !== "alle" && styles.filterChipTextActive,
+					]}
+				>
+					{filters.timing === "alle"
+						? "Tijdperiode"
+						: filters.timing === "toekomstig"
+							? "Toekomstig"
+							: "Afgelopen"}
+				</Text>
+				<Ionicons
+					name="chevron-down"
+					size={14}
+					color={
+						filters.timing !== "alle"
+							? themeColors.card
+							: themeColors.textTertiary
+					}
+					style={styles.filterChipChevron}
+				/>
+			</Pressable>
+		</View>
+	);
+};
+
+const CountryContextMenu = ({
+	filters,
+	themeColors,
+	onPress,
+}: {
+	filters: { availability: string; timing: string; country: string };
+	themeColors: typeof Colors.light;
+	onPress: () => void;
+}) => {
+	return (
+		<View style={{ marginRight: 8 }}>
+			<Pressable
+				style={[
+					styles.filterChip,
+					{
+						backgroundColor:
+							filters.country !== "" ? themeColors.link : themeColors.card,
+						borderColor: themeColors.border,
+					},
+					filters.country !== "" && styles.filterChipActive,
+				]}
+				onPress={onPress}
+			>
+				<Ionicons
+					name="location-outline"
+					size={16}
+					color={
+						filters.country !== "" ? themeColors.card : themeColors.textTertiary
+					}
+				/>
+				<Text
+					style={[
+						styles.filterChipText,
+						{
+							color:
+								filters.country !== "" ? themeColors.card : themeColors.text,
+						},
+						filters.country !== "" && styles.filterChipTextActive,
+					]}
+				>
+					{filters.country || "Land"}
+				</Text>
+				<Ionicons
+					name="chevron-down"
+					size={14}
+					color={
+						filters.country !== "" ? themeColors.card : themeColors.textTertiary
+					}
+					style={styles.filterChipChevron}
+				/>
+			</Pressable>
+		</View>
+	);
+};
+
+const CountryModal = ({
+	showCountryModal,
+	setShowCountryModal,
+	availableCountriesWithCodes,
+	filters,
+	setFilters,
+	themeColors,
+}: {
+	showCountryModal: boolean;
+	setShowCountryModal: (show: boolean) => void;
+	availableCountriesWithCodes: { country: string; code: string }[];
+	filters: { availability: string; timing: string; country: string };
+	setFilters: React.Dispatch<
+		React.SetStateAction<{
+			availability: string;
+			timing: string;
+			country: string;
+		}>
+	>;
+	themeColors: typeof Colors.light;
+}) => {
+	const renderCountryItem = ({
+		item,
+	}: {
+		item: { country: string; code: string };
+	}) => (
+		<Pressable
+			style={({ pressed }) => [
+				styles.countryModalItem,
+				filters.country === item.country && [
+					styles.countryModalItemSelected,
+					{ backgroundColor: themeColors.backgroundElevated },
+				],
+				pressed && [
+					styles.countryModalItemPressed,
+					{ backgroundColor: themeColors.backgroundElevated },
+				],
+			]}
+			onPress={() => {
+				setFilters((prev) => ({ ...prev, country: item.country }));
+				setShowCountryModal(false);
+			}}
+		>
+			<View style={styles.countryModalItemContent}>
+				{item.code &&
+					(() => {
+						const flagAsset = getFlagAsset(item.code.toLowerCase());
+						return flagAsset ? (
+							<Image
+								source={flagAsset}
+								style={styles.countryModalFlag}
+								contentFit="cover"
+							/>
+						) : (
+							<View
+								style={[
+									styles.countryModalFlag,
+									styles.countryModalFlagPlaceholder,
+								]}
+							>
+								<Ionicons
+									name="flag-outline"
+									size={16}
+									color={themeColors.textTertiary}
+								/>
+							</View>
+						);
+					})()}
+				<Text
+					style={[
+						styles.countryModalItemText,
+						{ color: themeColors.text },
+						filters.country === item.country &&
+							styles.countryModalItemTextSelected,
+					]}
+				>
+					{item.country}
+				</Text>
+			</View>
+			{filters.country === item.country && (
+				<Ionicons name="checkmark" size={20} color={themeColors.link} />
+			)}
+		</Pressable>
+	);
+
+	return (
+		<Modal
+			visible={showCountryModal}
+			animationType="slide"
+			presentationStyle="pageSheet"
+			onRequestClose={() => setShowCountryModal(false)}
+		>
+			<SafeAreaView
+				style={[
+					styles.countryModalContainer,
+					{ backgroundColor: themeColors.background },
+				]}
+			>
+				<View
+					style={[
+						styles.countryModalHeader,
+						{ borderBottomColor: themeColors.divider },
+					]}
+				>
+					<Text style={[styles.countryModalTitle, { color: themeColors.text }]}>
+						Selecteer Land
+					</Text>
+					<Pressable
+						style={styles.countryModalCloseButton}
+						onPress={() => setShowCountryModal(false)}
+					>
+						<Ionicons name="close" size={24} color={themeColors.textTertiary} />
+					</Pressable>
+				</View>
+
+				<FlatList
+					data={[
+						{ country: "Alle landen", code: "" },
+						...availableCountriesWithCodes,
+					]}
+					renderItem={({ item }) => {
+						if (item.country === "Alle landen") {
+							return (
+								<Pressable
+									style={({ pressed }) => [
+										styles.countryModalItem,
+										filters.country === "" && [
+											styles.countryModalItemSelected,
+											{ backgroundColor: themeColors.backgroundElevated },
+										],
+										pressed && [
+											styles.countryModalItemPressed,
+											{ backgroundColor: themeColors.backgroundElevated },
+										],
+									]}
+									onPress={() => {
+										setFilters((prev) => ({ ...prev, country: "" }));
+										setShowCountryModal(false);
+									}}
+								>
+									<View style={styles.countryModalItemContent}>
+										<View
+											style={[styles.countryModalFlag, styles.allCountriesIcon]}
+										>
+											<Ionicons
+												name="globe-outline"
+												size={14}
+												color={themeColors.textTertiary}
+											/>
+										</View>
+										<Text
+											style={[
+												styles.countryModalItemText,
+												{ color: themeColors.text },
+												filters.country === "" &&
+													styles.countryModalItemTextSelected,
+											]}
+										>
+											Alle landen
+										</Text>
+									</View>
+									{filters.country === "" && (
+										<Ionicons
+											name="checkmark"
+											size={20}
+											color={themeColors.link}
+										/>
+									)}
+								</Pressable>
+							);
+						}
+						return renderCountryItem({ item });
+					}}
+					keyExtractor={(item) => item.country}
+					showsVerticalScrollIndicator={true}
+					contentContainerStyle={styles.countryModalList}
+				/>
+			</SafeAreaView>
+		</Modal>
+	);
+};
+
 export default function CampsToursScreen() {
 	const { colors: themeColors } = useTheme();
 
@@ -351,7 +787,7 @@ export default function CampsToursScreen() {
 			const formattedData: CampTourData[] = parsedData.data
 				.slice(1)
 				.map((row: unknown) => {
-					const rowArray = row as any[];
+					const rowArray = row as string[];
 					return {
 						startDate: rowArray[0]?.toString() || "",
 						endDate: rowArray[1]?.toString() || "",
@@ -432,9 +868,9 @@ export default function CampsToursScreen() {
 				const endDateParts = item.endDate.split("/");
 				if (endDateParts.length === 3) {
 					const campEndDate = new Date(
-						parseInt(endDateParts[2]),
-						parseInt(endDateParts[1]) - 1,
-						parseInt(endDateParts[0]),
+						parseInt(endDateParts[2], 10),
+						parseInt(endDateParts[1], 10) - 1,
+						parseInt(endDateParts[0], 10),
 					);
 					const today = new Date();
 					today.setHours(0, 0, 0, 0);
@@ -447,9 +883,9 @@ export default function CampsToursScreen() {
 				const endDateParts = item.endDate.split("/");
 				if (endDateParts.length === 3) {
 					const campEndDate = new Date(
-						parseInt(endDateParts[2]),
-						parseInt(endDateParts[1]) - 1,
-						parseInt(endDateParts[0]),
+						parseInt(endDateParts[2], 10),
+						parseInt(endDateParts[1], 10) - 1,
+						parseInt(endDateParts[0], 10),
 					);
 					const today = new Date();
 					today.setHours(0, 0, 0, 0);
@@ -489,402 +925,6 @@ export default function CampsToursScreen() {
 		filters.availability !== "alle" ||
 		filters.timing !== "alle" ||
 		filters.country !== "";
-
-	// Native filter components
-	const AvailabilityContextMenu = () => {
-		const showAvailabilityOptions = () => {
-			Alert.alert(
-				"Beschikbaarheid",
-				"Selecteer welke kampen je wilt zien:",
-				[
-					{
-						text: "Alle kampen",
-						onPress: () =>
-							setFilters((prev) => ({ ...prev, availability: "alle" })),
-					},
-					{
-						text: "Alleen niet-volle kampen",
-						onPress: () =>
-							setFilters((prev) => ({ ...prev, availability: "niet-vol" })),
-					},
-					{
-						text: "Alleen volle kampen",
-						onPress: () =>
-							setFilters((prev) => ({ ...prev, availability: "vol" })),
-					},
-					{
-						text: "Annuleren",
-						style: "cancel",
-					},
-				],
-				{ cancelable: true },
-			);
-		};
-
-		return (
-			<View style={{ marginRight: 8 }}>
-				<Pressable
-					style={[
-						styles.filterChip,
-						{
-							backgroundColor:
-								filters.availability !== "alle"
-									? themeColors.link
-									: themeColors.card,
-							borderColor: themeColors.border,
-						},
-						filters.availability !== "alle" && styles.filterChipActive,
-					]}
-					onPress={showAvailabilityOptions}
-				>
-					<Ionicons
-						name="checkmark-circle-outline"
-						size={16}
-						color={
-							filters.availability !== "alle"
-								? themeColors.card
-								: themeColors.textTertiary
-						}
-					/>
-					<Text
-						style={[
-							styles.filterChipText,
-							{
-								color:
-									filters.availability !== "alle"
-										? themeColors.card
-										: themeColors.text,
-							},
-							filters.availability !== "alle" && styles.filterChipTextActive,
-						]}
-					>
-						{filters.availability === "alle"
-							? "Beschikbaarheid"
-							: filters.availability === "niet-vol"
-								? "Niet vol"
-								: "Vol"}
-					</Text>
-					<Ionicons
-						name="chevron-down"
-						size={14}
-						color={
-							filters.availability !== "alle"
-								? themeColors.card
-								: themeColors.textTertiary
-						}
-						style={styles.filterChipChevron}
-					/>
-				</Pressable>
-			</View>
-		);
-	};
-
-	const TimingContextMenu = () => {
-		const showTimingOptions = () => {
-			Alert.alert(
-				"Tijdperiode",
-				"Selecteer welke kampen je wilt zien:",
-				[
-					{
-						text: "Alle kampen",
-						onPress: () => setFilters((prev) => ({ ...prev, timing: "alle" })),
-					},
-					{
-						text: "Alleen toekomstige kampen",
-						onPress: () =>
-							setFilters((prev) => ({ ...prev, timing: "toekomstig" })),
-					},
-					{
-						text: "Alleen afgelopen kampen",
-						onPress: () =>
-							setFilters((prev) => ({ ...prev, timing: "afgelopen" })),
-					},
-					{
-						text: "Annuleren",
-						style: "cancel",
-					},
-				],
-				{ cancelable: true },
-			);
-		};
-
-		return (
-			<View style={{ marginRight: 8 }}>
-				<Pressable
-					style={[
-						styles.filterChip,
-						{
-							backgroundColor:
-								filters.timing !== "alle" ? themeColors.link : themeColors.card,
-							borderColor: themeColors.border,
-						},
-						filters.timing !== "alle" && styles.filterChipActive,
-					]}
-					onPress={showTimingOptions}
-				>
-					<Ionicons
-						name="time-outline"
-						size={16}
-						color={
-							filters.timing !== "alle"
-								? themeColors.card
-								: themeColors.textTertiary
-						}
-					/>
-					<Text
-						style={[
-							styles.filterChipText,
-							{
-								color:
-									filters.timing !== "alle"
-										? themeColors.card
-										: themeColors.text,
-							},
-							filters.timing !== "alle" && styles.filterChipTextActive,
-						]}
-					>
-						{filters.timing === "alle"
-							? "Tijdperiode"
-							: filters.timing === "toekomstig"
-								? "Toekomstig"
-								: "Afgelopen"}
-					</Text>
-					<Ionicons
-						name="chevron-down"
-						size={14}
-						color={
-							filters.timing !== "alle"
-								? themeColors.card
-								: themeColors.textTertiary
-						}
-						style={styles.filterChipChevron}
-					/>
-				</Pressable>
-			</View>
-		);
-	};
-
-	const CountryContextMenu = () => {
-		return (
-			<View style={{ marginRight: 8 }}>
-				<Pressable
-					style={[
-						styles.filterChip,
-						{
-							backgroundColor:
-								filters.country !== "" ? themeColors.link : themeColors.card,
-							borderColor: themeColors.border,
-						},
-						filters.country !== "" && styles.filterChipActive,
-					]}
-					onPress={() => setShowCountryModal(true)}
-				>
-					<Ionicons
-						name="location-outline"
-						size={16}
-						color={
-							filters.country !== ""
-								? themeColors.card
-								: themeColors.textTertiary
-						}
-					/>
-					<Text
-						style={[
-							styles.filterChipText,
-							{
-								color:
-									filters.country !== "" ? themeColors.card : themeColors.text,
-							},
-							filters.country !== "" && styles.filterChipTextActive,
-						]}
-					>
-						{filters.country || "Land"}
-					</Text>
-					<Ionicons
-						name="chevron-down"
-						size={14}
-						color={
-							filters.country !== ""
-								? themeColors.card
-								: themeColors.textTertiary
-						}
-						style={styles.filterChipChevron}
-					/>
-				</Pressable>
-			</View>
-		);
-	};
-
-	const CountryModal = () => {
-		const renderCountryItem = ({
-			item,
-		}: {
-			item: { country: string; code: string };
-		}) => (
-			<Pressable
-				style={({ pressed }) => [
-					styles.countryModalItem,
-					filters.country === item.country && [
-						styles.countryModalItemSelected,
-						{ backgroundColor: themeColors.backgroundElevated },
-					],
-					pressed && [
-						styles.countryModalItemPressed,
-						{ backgroundColor: themeColors.backgroundElevated },
-					],
-				]}
-				onPress={() => {
-					setFilters((prev) => ({ ...prev, country: item.country }));
-					setShowCountryModal(false);
-				}}
-			>
-				<View style={styles.countryModalItemContent}>
-					{item.code &&
-						(() => {
-							const flagAsset = getFlagAsset(item.code.toLowerCase());
-							return flagAsset ? (
-								<Image
-									source={flagAsset}
-									style={styles.countryModalFlag}
-									contentFit="cover"
-								/>
-							) : (
-								<View
-									style={[
-										styles.countryModalFlag,
-										styles.countryModalFlagPlaceholder,
-									]}
-								>
-									<Ionicons
-										name="flag-outline"
-										size={16}
-										color={themeColors.textTertiary}
-									/>
-								</View>
-							);
-						})()}
-					<Text
-						style={[
-							styles.countryModalItemText,
-							{ color: themeColors.text },
-							filters.country === item.country &&
-								styles.countryModalItemTextSelected,
-						]}
-					>
-						{item.country}
-					</Text>
-				</View>
-				{filters.country === item.country && (
-					<Ionicons name="checkmark" size={20} color={themeColors.link} />
-				)}
-			</Pressable>
-		);
-
-		return (
-			<Modal
-				visible={showCountryModal}
-				animationType="slide"
-				presentationStyle="pageSheet"
-				onRequestClose={() => setShowCountryModal(false)}
-			>
-				<SafeAreaView
-					style={[
-						styles.countryModalContainer,
-						{ backgroundColor: themeColors.background },
-					]}
-				>
-					<View
-						style={[
-							styles.countryModalHeader,
-							{ borderBottomColor: themeColors.divider },
-						]}
-					>
-						<Text
-							style={[styles.countryModalTitle, { color: themeColors.text }]}
-						>
-							Selecteer Land
-						</Text>
-						<Pressable
-							style={styles.countryModalCloseButton}
-							onPress={() => setShowCountryModal(false)}
-						>
-							<Ionicons
-								name="close"
-								size={24}
-								color={themeColors.textTertiary}
-							/>
-						</Pressable>
-					</View>
-
-					<FlatList
-						data={[
-							{ country: "Alle landen", code: "" },
-							...availableCountriesWithCodes,
-						]}
-						renderItem={({ item }) => {
-							if (item.country === "Alle landen") {
-								return (
-									<Pressable
-										style={({ pressed }) => [
-											styles.countryModalItem,
-											filters.country === "" && [
-												styles.countryModalItemSelected,
-												{ backgroundColor: themeColors.backgroundElevated },
-											],
-											pressed && [
-												styles.countryModalItemPressed,
-												{ backgroundColor: themeColors.backgroundElevated },
-											],
-										]}
-										onPress={() => {
-											setFilters((prev) => ({ ...prev, country: "" }));
-											setShowCountryModal(false);
-										}}
-									>
-										<View style={styles.countryModalItemContent}>
-											<View
-												style={[
-													styles.countryModalFlag,
-													styles.allCountriesIcon,
-												]}
-											>
-												<Ionicons
-													name="globe-outline"
-													size={14}
-													color={themeColors.textTertiary}
-												/>
-											</View>
-											<Text
-												style={[
-													styles.countryModalItemText,
-													{ color: themeColors.text },
-													filters.country === "" &&
-														styles.countryModalItemTextSelected,
-												]}
-											>
-												Alle landen
-											</Text>
-										</View>
-										{filters.country === "" && (
-											<Ionicons
-												name="checkmark"
-												size={20}
-												color={themeColors.link}
-											/>
-										)}
-									</Pressable>
-								);
-							}
-							return renderCountryItem({ item });
-						}}
-						keyExtractor={(item) => item.country}
-						showsVerticalScrollIndicator={true}
-						contentContainerStyle={styles.countryModalList}
-					/>
-				</SafeAreaView>
-			</Modal>
-		);
-	};
 
 	const navigation = useNavigation();
 
@@ -946,7 +986,7 @@ export default function CampsToursScreen() {
 
 	useEffect(() => {
 		applyFilters();
-	}, [filters, data, applyFilters]);
+	}, [applyFilters]);
 
 	return (
 		<SafeAreaView
@@ -962,9 +1002,36 @@ export default function CampsToursScreen() {
 			>
 				<FlatList
 					data={[
-						{ id: "availability", component: <AvailabilityContextMenu /> },
-						{ id: "timing", component: <TimingContextMenu /> },
-						{ id: "country", component: <CountryContextMenu /> },
+						{
+							id: "availability",
+							component: (
+								<AvailabilityContextMenu
+									filters={filters}
+									setFilters={setFilters}
+									themeColors={themeColors}
+								/>
+							),
+						},
+						{
+							id: "timing",
+							component: (
+								<TimingContextMenu
+									filters={filters}
+									setFilters={setFilters}
+									themeColors={themeColors}
+								/>
+							),
+						},
+						{
+							id: "country",
+							component: (
+								<CountryContextMenu
+									filters={filters}
+									themeColors={themeColors}
+									onPress={() => setShowCountryModal(true)}
+								/>
+							),
+						},
 					]}
 					renderItem={({ item }) => item.component}
 					keyExtractor={(item) => item.id}
@@ -975,7 +1042,14 @@ export default function CampsToursScreen() {
 				/>
 			</View>
 
-			<CountryModal />
+			<CountryModal
+				showCountryModal={showCountryModal}
+				setShowCountryModal={setShowCountryModal}
+				availableCountriesWithCodes={availableCountriesWithCodes}
+				filters={filters}
+				setFilters={setFilters}
+				themeColors={themeColors}
+			/>
 
 			{/* Content */}
 			<View

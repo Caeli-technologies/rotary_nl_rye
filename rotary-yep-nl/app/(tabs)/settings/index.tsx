@@ -17,12 +17,97 @@ import * as Haptics from "expo-haptics";
 import * as StoreReview from "expo-store-review";
 
 import { useTheme } from "@/hooks/use-theme";
+
 const shadowStyle = {
 	shadowColor: "#000",
 	shadowOffset: { width: 0, height: 4 },
 	shadowOpacity: 0.08,
 	shadowRadius: 20,
 	elevation: 4,
+};
+
+const SettingsSection = ({
+	title,
+	children,
+}: {
+	title: string;
+	children: React.ReactNode;
+}) => {
+	const { colors: themeColors } = useTheme();
+
+	return (
+		<View style={styles.section}>
+			<Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+				{title}
+			</Text>
+			<View
+				style={[
+					styles.sectionContent,
+					{
+						backgroundColor: themeColors.card,
+						shadowColor: themeColors.shadow,
+						borderColor: themeColors.border,
+					},
+				]}
+			>
+				{children}
+			</View>
+		</View>
+	);
+};
+
+const SettingsItem = ({
+	title,
+	subtitle,
+	onPress,
+	rightElement,
+}: {
+	title: string;
+	subtitle?: string;
+	onPress?: () => void;
+	rightElement?: React.ReactNode;
+}) => {
+	const { colors: themeColors } = useTheme();
+
+	return (
+		<Pressable
+			style={({ pressed }) => [
+				styles.settingsItem,
+				{ borderBottomColor: themeColors.border },
+				pressed && styles.settingsItemPressed,
+			]}
+			onPress={onPress}
+			disabled={!onPress}
+		>
+			<View style={styles.settingsItemContent}>
+				<Text style={[styles.settingsItemTitle, { color: themeColors.text }]}>
+					{title}
+				</Text>
+				{subtitle && (
+					<Text
+						style={[
+							styles.settingsItemSubtitle,
+							{ color: themeColors.textSecondary },
+						]}
+					>
+						{subtitle}
+					</Text>
+				)}
+			</View>
+			{rightElement ||
+				(onPress && (
+					<Ionicons
+						name={
+							Platform.OS === "ios"
+								? "chevron-forward"
+								: "chevron-forward-outline"
+						}
+						size={Platform.OS === "ios" ? 20 : 24}
+						color={themeColors.textTertiary}
+					/>
+				))}
+		</Pressable>
+	);
 };
 
 export default function SettingsScreen() {
@@ -125,82 +210,6 @@ export default function SettingsScreen() {
 			}
 		}
 	};
-
-	const SettingsSection = ({
-		title,
-		children,
-	}: {
-		title: string;
-		children: React.ReactNode;
-	}) => (
-		<View style={styles.section}>
-			<Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-				{title}
-			</Text>
-			<View
-				style={[
-					styles.sectionContent,
-					{
-						backgroundColor: themeColors.card,
-						shadowColor: themeColors.shadow,
-						borderColor: themeColors.border,
-					},
-				]}
-			>
-				{children}
-			</View>
-		</View>
-	);
-
-	const SettingsItem = ({
-		title,
-		subtitle,
-		onPress,
-		rightElement,
-	}: {
-		title: string;
-		subtitle?: string;
-		onPress?: () => void;
-		rightElement?: React.ReactNode;
-	}) => (
-		<Pressable
-			style={({ pressed }) => [
-				styles.settingsItem,
-				{ borderBottomColor: themeColors.border },
-				pressed && styles.settingsItemPressed,
-			]}
-			onPress={onPress}
-			disabled={!onPress}
-		>
-			<View style={styles.settingsItemContent}>
-				<Text style={[styles.settingsItemTitle, { color: themeColors.text }]}>
-					{title}
-				</Text>
-				{subtitle && (
-					<Text
-						style={[
-							styles.settingsItemSubtitle,
-							{ color: themeColors.textSecondary },
-						]}
-					>
-						{subtitle}
-					</Text>
-				)}
-			</View>
-			{rightElement ||
-				(onPress && (
-					<Ionicons
-						name={
-							Platform.OS === "ios"
-								? "chevron-forward"
-								: "chevron-forward-outline"
-						}
-						size={Platform.OS === "ios" ? 20 : 24}
-						color={themeColors.textTertiary}
-					/>
-				))}
-		</Pressable>
-	);
 
 	return (
 		<SafeAreaView

@@ -1,4 +1,4 @@
-import React, { useMemo, useLayoutEffect } from "react";
+import { useMemo, useLayoutEffect } from "react";
 import {
 	StyleSheet,
 	View,
@@ -7,7 +7,7 @@ import {
 	SectionList,
 	Platform,
 } from "react-native";
-import { Colors } from "@/constants/theme";
+import type { Colors } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -52,7 +52,7 @@ function StudentCard({
 				pressed && styles.studentCardPressed,
 			]}
 			onPress={handlePress}
-			android_ripple={{ color: themeColors.primary + "20", borderless: false }}
+			android_ripple={{ color: `${themeColors.primary}20`, borderless: false }}
 			accessibilityRole="button"
 			accessibilityLabel={`View details for ${student.name}`}
 			accessibilityHint={`Opens ${student.name}'s profile page`}
@@ -192,7 +192,7 @@ export default function StudentsList({
 		section,
 	}: {
 		item: Student;
-		section: any;
+		section: { title: string; flag: string; count: number };
 	}) => (
 		<StudentCard
 			student={item}

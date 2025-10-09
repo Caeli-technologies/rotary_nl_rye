@@ -64,7 +64,7 @@ export default function PromoIndex() {
 					<View
 						style={[
 							styles.headerIcon,
-							{ backgroundColor: themeColors.primary + "15" },
+							{ backgroundColor: `${themeColors.primary}15` },
 						]}
 					>
 						<Ionicons
@@ -109,7 +109,7 @@ export default function PromoIndex() {
 							<View
 								style={[
 									styles.iconContainer,
-									{ backgroundColor: themeColors.primary + "15" },
+									{ backgroundColor: `${themeColors.primary}15` },
 								]}
 							>
 								<Ionicons

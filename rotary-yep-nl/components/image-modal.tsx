@@ -60,7 +60,7 @@ export function ImageModal({
 							<View
 								style={[
 									styles.expandedPlaceholder,
-									{ backgroundColor: themeColors.primary + "20" },
+									{ backgroundColor: `${themeColors.primary}20` },
 								]}
 							>
 								<Text

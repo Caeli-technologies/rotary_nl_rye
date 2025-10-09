@@ -131,7 +131,7 @@ function PodcastRow({
 				<View
 					style={[
 						styles.playButton,
-						{ backgroundColor: themeColors.primary + "15" },
+						{ backgroundColor: `${themeColors.primary}15` },
 						playbackState.isBuffering && styles.playButtonBuffering,
 					]}
 				>
@@ -279,7 +279,7 @@ export default function PodcastPromo() {
 					<View
 						style={[
 							styles.headerIcon,
-							{ backgroundColor: themeColors.primary + "15" },
+							{ backgroundColor: `${themeColors.primary}15` },
 						]}
 					>
 						<Ionicons

@@ -13,6 +13,7 @@ import { makePhoneCall, sendEmail } from "@/utils/communications";
 
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/hooks/use-theme";
+
 const shadowStyle = {
 	shadowColor: "#000",
 	shadowOffset: { width: 0, height: 4 },
@@ -28,45 +29,8 @@ interface EmergencyContact {
 	email?: string;
 }
 
-export default function EmergencyScreen() {
+const EmergencyContactCard = ({ contact }: { contact: EmergencyContact }) => {
 	const { colors: themeColors } = useTheme();
-	const rotaryYouthExchange: EmergencyContact[] = [
-		{
-			name: "Barbara Tusveld",
-			function: "Voorzitter Rotary Youth Exchange",
-			phone: "+31655128529",
-		},
-		{
-			name: "Marga Oosterveld",
-			function: "Voorzitter Longterm",
-			phone: "+31629586813",
-		},
-		{
-			name: "Clasine Scheepers",
-			function: "Secretaris",
-			phone: "+31652710977",
-		},
-		{
-			name: "Hilleke van der Veer",
-			function: "Landelijke Counselor",
-			phone: "+31638300427",
-		},
-	];
-
-	const confidants: EmergencyContact[] = [
-		{
-			name: "Pauline Memelink",
-			function: "Lawyer",
-			phone: "+31624235624",
-			email: "p.memelink@t-mobilethuis.nl",
-		},
-		{
-			name: "Reinout Vriesendorp",
-			function: "Doctor's office",
-			phone: "+31182612676",
-			email: "info@medischcentrumwest.org",
-		},
-	];
 
 	const handleCall = async (phone: string, name: string) => {
 		if (Platform.OS === "ios") {
@@ -82,7 +46,7 @@ export default function EmergencyScreen() {
 		sendEmail(email, name);
 	};
 
-	const EmergencyContactCard = ({ contact }: { contact: EmergencyContact }) => (
+	return (
 		<View
 			style={[
 				styles.contactCard,
@@ -134,6 +98,47 @@ export default function EmergencyScreen() {
 			</View>
 		</View>
 	);
+};
+
+export default function EmergencyScreen() {
+	const { colors: themeColors } = useTheme();
+	const rotaryYouthExchange: EmergencyContact[] = [
+		{
+			name: "Barbara Tusveld",
+			function: "Voorzitter Rotary Youth Exchange",
+			phone: "+31655128529",
+		},
+		{
+			name: "Marga Oosterveld",
+			function: "Voorzitter Longterm",
+			phone: "+31629586813",
+		},
+		{
+			name: "Clasine Scheepers",
+			function: "Secretaris",
+			phone: "+31652710977",
+		},
+		{
+			name: "Hilleke van der Veer",
+			function: "Landelijke Counselor",
+			phone: "+31638300427",
+		},
+	];
+
+	const confidants: EmergencyContact[] = [
+		{
+			name: "Pauline Memelink",
+			function: "Lawyer",
+			phone: "+31624235624",
+			email: "p.memelink@t-mobilethuis.nl",
+		},
+		{
+			name: "Reinout Vriesendorp",
+			function: "Doctor's office",
+			phone: "+31182612676",
+			email: "info@medischcentrumwest.org",
+		},
+	];
 
 	return (
 		<SafeAreaView

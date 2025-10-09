@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
 	StyleSheet,
 	View,
@@ -84,7 +84,7 @@ function ActionButton({
 				onPressOut={handlePressOut}
 				disabled={disabled}
 				android_ripple={{
-					color: themeColors.primary + "20",
+					color: `${themeColors.primary}20`,
 					borderless: false,
 				}}
 				accessibilityRole="button"
@@ -95,7 +95,7 @@ function ActionButton({
 					<View
 						style={[
 							styles.actionIconContainer,
-							{ backgroundColor: themeColors.primary + "15" },
+							{ backgroundColor: `${themeColors.primary}15` },
 							disabled && styles.actionIconDisabled,
 						]}
 					>
@@ -333,7 +333,7 @@ export function StudentDetail({ student, studentType }: StudentDetailProps) {
 										style={[
 											styles.exchangeFlag,
 											styles.flagPlaceholder,
-											{ backgroundColor: themeColors.accent + "20" },
+											{ backgroundColor: `${themeColors.accent}20` },
 										]}
 									>
 										<Text
@@ -383,7 +383,7 @@ export function StudentDetail({ student, studentType }: StudentDetailProps) {
 										style={[
 											styles.exchangeFlag,
 											styles.flagPlaceholder,
-											{ backgroundColor: themeColors.accent + "20" },
+											{ backgroundColor: `${themeColors.accent}20` },
 										]}
 									>
 										<Text
@@ -416,7 +416,7 @@ export function StudentDetail({ student, studentType }: StudentDetailProps) {
 					<View
 						style={[
 							styles.yearBadge,
-							{ backgroundColor: themeColors.primary + "20" },
+							{ backgroundColor: `${themeColors.primary}20` },
 						]}
 					>
 						<Text style={[styles.yearText, { color: themeColors.primary }]}>

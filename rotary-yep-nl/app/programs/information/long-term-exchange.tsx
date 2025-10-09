@@ -56,7 +56,7 @@ export default function LongTermExchangeScreen() {
 						<View
 							style={[
 								styles.headerIcon,
-								{ backgroundColor: themeColors.primary + "15" },
+								{ backgroundColor: `${themeColors.primary}15` },
 							]}
 						>
 							<Ionicons
@@ -128,7 +128,7 @@ export default function LongTermExchangeScreen() {
 							<View
 								style={[
 									styles.ageIconContainer,
-									{ backgroundColor: themeColors.accent + "15" },
+									{ backgroundColor: `${themeColors.accent}15` },
 								]}
 							>
 								<Ionicons
@@ -285,7 +285,7 @@ export default function LongTermExchangeScreen() {
 							style={[
 								styles.costCard,
 								{
-									backgroundColor: themeColors.secondary + "15",
+									backgroundColor: `${themeColors.secondary}15`,
 									shadowColor: themeColors.shadow,
 									borderLeftColor: themeColors.secondary,
 								},

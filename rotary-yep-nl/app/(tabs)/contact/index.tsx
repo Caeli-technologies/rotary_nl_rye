@@ -101,7 +101,7 @@ export default function ContactScreen() {
 				<SectionList
 					sections={[{ data: contacts }]}
 					renderItem={({ item }) => <ContactCard contact={item} />}
-					keyExtractor={(index) => `${currentSection.id}-${index}`}
+					keyExtractor={(_item, index) => `${currentSection.id}-${index}`}
 					showsVerticalScrollIndicator={false}
 					ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
 					contentContainerStyle={styles.contentContainer}

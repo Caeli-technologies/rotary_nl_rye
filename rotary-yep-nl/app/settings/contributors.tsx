@@ -51,47 +51,50 @@ const contributors: Contributor[] = [
 	},
 ];
 
-export default function ContributorsScreen() {
-	const { colors: themeColors } = useTheme();
-
-	const ContributorCard = ({ contributor }: { contributor: Contributor }) => (
-		<View
-			style={[
-				styles.contributorCard,
-				{ borderBottomColor: themeColors.border },
-			]}
-		>
-			<NetworkImage
-				imageUrl={contributor.imageUrl}
-				name={contributor.name}
-				size={60}
-				expandable={false}
-			/>
-			<View style={styles.contributorInfo}>
-				<Text style={[styles.contributorName, { color: themeColors.text }]}>
-					{contributor.name}
+const ContributorCard = ({
+	contributor,
+	themeColors,
+}: {
+	contributor: Contributor;
+	themeColors: any;
+}) => (
+	<View
+		style={[styles.contributorCard, { borderBottomColor: themeColors.border }]}
+	>
+		<NetworkImage
+			imageUrl={contributor.imageUrl}
+			name={contributor.name}
+			size={60}
+			expandable={false}
+		/>
+		<View style={styles.contributorInfo}>
+			<Text style={[styles.contributorName, { color: themeColors.text }]}>
+				{contributor.name}
+			</Text>
+			<Text style={[styles.contributorRole, { color: themeColors.accent }]}>
+				{contributor.role}
+			</Text>
+			<View style={styles.locationContainer}>
+				<Ionicons
+					name="location-outline"
+					size={14}
+					color={themeColors.textSecondary}
+				/>
+				<Text
+					style={[
+						styles.contributorLocation,
+						{ color: themeColors.textSecondary },
+					]}
+				>
+					{contributor.location}
 				</Text>
-				<Text style={[styles.contributorRole, { color: themeColors.accent }]}>
-					{contributor.role}
-				</Text>
-				<View style={styles.locationContainer}>
-					<Ionicons
-						name="location-outline"
-						size={14}
-						color={themeColors.textSecondary}
-					/>
-					<Text
-						style={[
-							styles.contributorLocation,
-							{ color: themeColors.textSecondary },
-						]}
-					>
-						{contributor.location}
-					</Text>
-				</View>
 			</View>
 		</View>
-	);
+	</View>
+);
+
+export default function ContributorsScreen() {
+	const { colors: themeColors } = useTheme();
 
 	return (
 		<SafeAreaView
@@ -109,7 +112,7 @@ export default function ContributorsScreen() {
 						<View
 							style={[
 								styles.headerIcon,
-								{ backgroundColor: themeColors.primary + "15" },
+								{ backgroundColor: `${themeColors.primary}15` },
 							]}
 						>
 							<Ionicons
@@ -149,6 +152,7 @@ export default function ContributorsScreen() {
 								<ContributorCard
 									key={contributor.id}
 									contributor={contributor}
+									themeColors={themeColors}
 								/>
 							))}
 						</View>

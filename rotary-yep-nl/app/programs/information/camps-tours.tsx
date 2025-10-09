@@ -122,7 +122,7 @@ export default function CampsToursScreen() {
 							<View
 								style={[
 									styles.ageIconContainer,
-									{ backgroundColor: themeColors.accent + "15" },
+									{ backgroundColor: `${themeColors.accent}15` },
 								]}
 							>
 								<Ionicons
@@ -165,7 +165,7 @@ export default function CampsToursScreen() {
 							style={[
 								styles.missionCard,
 								{
-									backgroundColor: themeColors.secondary + "15",
+									backgroundColor: `${themeColors.secondary}15`,
 									shadowColor: themeColors.shadow,
 									borderLeftColor: themeColors.secondary,
 								},

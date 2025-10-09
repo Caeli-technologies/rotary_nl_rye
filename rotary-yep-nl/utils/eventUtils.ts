@@ -1,5 +1,10 @@
 import { fetch } from "expo/fetch";
-import type { Event, EventsData } from "../types/events";
+import type { Event, EventsData, EventWithOriginalData } from "../types/events";
+import type {
+	GoogleCalendarDateTime,
+	GoogleCalendarEvent,
+	GoogleCalendarResponse,
+} from "../types/googleCalendar";
 
 // Configuration
 const API_KEY = "AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY";
@@ -75,14 +80,14 @@ export const fetchCalendarEvents = async (): Promise<EventsData> => {
 /**
  * Parses raw calendar data into structured Event objects
  */
-const parseEvents = (data: any): Event[] => {
+const parseEvents = (data: GoogleCalendarResponse): Event[] => {
 	if (!data?.items || !Array.isArray(data.items)) {
 		return [];
 	}
 
 	return data.items
-		.filter((item: any) => item?.status !== "cancelled")
-		.map((item: any) => {
+		.filter((item: GoogleCalendarEvent) => item?.status !== "cancelled")
+		.map((item: GoogleCalendarEvent) => {
 			const startDateTime = parseDateTime(item.start) || new Date();
 			const endDateTime =
 				parseDateTime(item.end) || new Date(startDateTime.getTime() + 3600000);
@@ -102,7 +107,7 @@ const parseEvents = (data: any): Event[] => {
 				end: { dateTime: endDateTime },
 				_originalStart: item.start,
 				_originalEnd: item.end,
-			} as Event & { _originalStart: any; _originalEnd: any };
+			} as EventWithOriginalData;
 		})
 		.filter(Boolean);
 };
@@ -110,7 +115,7 @@ const parseEvents = (data: any): Event[] => {
 /**
  * Parses a date/time object from the API
  */
-const parseDateTime = (dateObj: any): Date | null => {
+const parseDateTime = (dateObj: GoogleCalendarDateTime): Date | null => {
 	if (!dateObj) return null;
 
 	if (dateObj.dateTime) {
@@ -118,7 +123,7 @@ const parseDateTime = (dateObj: any): Date | null => {
 	}
 
 	if (dateObj.date) {
-		return new Date(dateObj.date + "T00:00:00");
+		return new Date(`${dateObj.date}T00:00:00`);
 	}
 
 	return null;
@@ -218,11 +223,8 @@ export const extractLinksFromDescription = (description: string): string[] => {
  * Checks if an event is an all-day event
  */
 export const isAllDayEvent = (event: Event): boolean => {
-	const eventWithOriginal = event as Event & {
-		_originalStart?: any;
-		_originalEnd?: any;
-	};
-	return (
+	const eventWithOriginal = event as EventWithOriginalData;
+	return !!(
 		eventWithOriginal._originalStart?.date &&
 		!eventWithOriginal._originalStart?.dateTime
 	);
@@ -232,10 +234,7 @@ export const isAllDayEvent = (event: Event): boolean => {
  * Gets the display end date for an event
  */
 export const getDisplayEndDate = (event: Event): Date => {
-	const eventWithOriginal = event as Event & {
-		_originalStart?: any;
-		_originalEnd?: any;
-	};
+	const eventWithOriginal = event as EventWithOriginalData;
 
 	if (
 		eventWithOriginal._originalEnd?.date &&
