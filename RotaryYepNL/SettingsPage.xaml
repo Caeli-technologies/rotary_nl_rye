@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RotaryYepNL.SettingsPage"
+             Title="Settings">
+
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+        <Label
+            Text="Settings"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1"/>
+
+        <Label
+            Text="Application settings will be displayed here."
+            Style="{StaticResource SubHeadline}"
+            SemanticProperties.HeadingLevel="Level2"/>
+    </VerticalStackLayout>
+
+</ContentPage>

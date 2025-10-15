@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/Users/rubentalstra/Programs/Privat/Rotary/rotary_nl_rye/rotary-yep-nl/node_modules/react-native-reanimated/android"
+    "cmake.sourceDirectory": "/Users/rubentalstra/Programs/Privat/Rotary/rotary_nl_rye/rotary-yep-nl/node_modules/react-native-reanimated/android",
+    "dotnet.defaultSolution": "RotaryYepNL.slnx"
 }

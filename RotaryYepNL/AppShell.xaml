@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="RotaryYepNL.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:RotaryYepNL"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="RotaryYepNL">
+
+    <TabBar>
+        <Tab Title="Home">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf30c;"
+                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"/>
+            </Tab.Icon>
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage">
+            </ShellContent>
+        </Tab>
+        <Tab Title="About">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf129;"
+                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"/>
+            </Tab.Icon>
+            <ShellContent
+                Title="About"
+                ContentTemplate="{DataTemplate local:AboutPage}"
+                Route="AboutPage">
+            </ShellContent>
+        </Tab>
+        <Tab Title="Settings">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf4fe;"
+                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"/>
+            </Tab.Icon>
+            <ShellContent
+                Title="Settings"
+                ContentTemplate="{DataTemplate local:SettingsPage}"
+                Route="SettingsPage">
+            </ShellContent>
+        </Tab>
+    </TabBar>
+
+</Shell>
