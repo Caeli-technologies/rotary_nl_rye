@@ -5,36 +5,67 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:RotaryYepNL"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
     Title="RotaryYepNL">
 
+    <Shell.Resources>
+        <FontImageSource x:Key="HomeMaterial"
+                         Glyph="{mi:Material Icon=Home}"/>
+        <FontImageSource x:Key="HomeCupertino"
+                         Glyph="{mi:Cupertino Icon=House}"/>
+        <FontImageSource x:Key="AboutMaterial"
+                         Glyph="{mi:Material Icon=Info}"/>
+        <FontImageSource x:Key="AboutCupertino"
+                         Glyph="{mi:Cupertino Icon=InfoCircle}"/>
+        <FontImageSource x:Key="EmergencyMaterial"
+                         Glyph="{mi:Material Icon=Warning}"/>
+        <FontImageSource x:Key="EmergencyCupertino"
+                         Glyph="{mi:Cupertino Icon=ExclamationmarkTriangle}"/>
+        <FontImageSource x:Key="ContactMaterial"
+                         Glyph="{mi:Material Icon=People}"/>
+        <FontImageSource x:Key="ContactCupertino"
+                         Glyph="{mi:Cupertino Icon=Person2}"/>
+        <FontImageSource x:Key="SettingsMaterial"
+                         Glyph="{mi:Material Icon=Settings}"/>
+        <FontImageSource x:Key="SettingsCupertino"
+                         Glyph="{mi:Cupertino Icon=Gear}"/>
+    </Shell.Resources>
+
     <TabBar>
-        <Tab Title="Home">
-            <Tab.Icon>
-                <FontImageSource Glyph="&#xf30c;"
-                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"/>
-            </Tab.Icon>
+        <Tab x:Name="HomeTab"
+             Title="Home">
             <ShellContent
                 Title="Home"
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage">
             </ShellContent>
         </Tab>
-        <Tab Title="About">
-            <Tab.Icon>
-                <FontImageSource Glyph="&#xf129;"
-                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"/>
-            </Tab.Icon>
+        <Tab x:Name="AboutTab"
+             Title="About">
             <ShellContent
                 Title="About"
                 ContentTemplate="{DataTemplate local:AboutPage}"
                 Route="AboutPage">
             </ShellContent>
         </Tab>
-        <Tab Title="Settings">
-            <Tab.Icon>
-                <FontImageSource Glyph="&#xf4fe;"
-                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"/>
-            </Tab.Icon>
+        <Tab x:Name="EmergencyTab"
+             Title="Emergency">
+            <ShellContent
+                Title="Emergency"
+                ContentTemplate="{DataTemplate local:EmergencyPage}"
+                Route="EmergencyPage">
+            </ShellContent>
+        </Tab>
+        <Tab x:Name="ContactTab"
+             Title="Contact">
+            <ShellContent
+                Title="Contact"
+                ContentTemplate="{DataTemplate local:ContactPage}"
+                Route="ContactPage">
+            </ShellContent>
+        </Tab>
+        <Tab x:Name="SettingsTab"
+             Title="Settings">
             <ShellContent
                 Title="Settings"
                 ContentTemplate="{DataTemplate local:SettingsPage}"

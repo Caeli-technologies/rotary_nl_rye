@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RotaryYepNL.NewPage"
+             Title="New Page"
+             Shell.TabBarIsVisible="False">
+
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+        <Label
+            Text="New Page"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1"/>
+
+        <Label
+            Text="This is a new page."
+            Style="{StaticResource SubHeadline}"
+            SemanticProperties.HeadingLevel="Level2"/>
+
+        <!-- add a button with on and off states -->
+        <Button
+            x:Name="ToggleButton"
+            Text="Toggle"
+            Clicked="OnToggleButtonClicked"/>
+    </VerticalStackLayout>
+
+</ContentPage>

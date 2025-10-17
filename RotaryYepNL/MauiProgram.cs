@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using MauiIcons.Material;
+using MauiIcons.Cupertino;
+using Plugin.Maui.SegmentedControl;
 
 namespace RotaryYepNL;
 
@@ -11,6 +14,9 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
+			.UseSegmentedControl()
+			.UseMaterialMauiIcons()
+			.UseCupertinoMauiIcons()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
