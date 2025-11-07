@@ -17,7 +17,7 @@ export const mdjcContacts: Organization[] = [
 		bio: "Sinds 2017 ben ik lid van team Longterm. Ongelofelijk leuk om Nederlandse jongeren te begeleiden in hun avontuur voor jaaruitwisseling en om buitenlandse jongeren vervolgens hier in Nederland te ontvangen die een jaar lang worden ondergedompeld in hagelslag, stroopwafels en (het aller moeilijkst) de Nederlandse taal. Zo gaaf om dit elke keer met ons team te organiseren en te regelen. Begin 2021 ben ik secretaris MDJC – weer een nieuwe avontuur.\n\nIn mijn familie zijn er velen inmiddels op exchange geweest waaronder mijn man en dochter. Een van de gastgezinnen uit Amerika bezoeken we nog jaarlijks. Je krijgt er echt een nieuwe familie bij. Zelf hebben we nu drie keer een exchange student in huis gehad. Dan merk je van dichtbij waar ze tegenaan lopen in een nieuwe omgeving, andere cultuur en met een vreemde taal. Fijn om hen te helpen hun weg te vinden, een verrijking van je eigen leven.",
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/clasine-schepers.png",
-		email: "longtermin@rotaryyep.nl",
+		email: "secretary@rotaryyep.nl",
 		phoneNumber: "+31652710977",
 		club: "RC Huizen",
 		district: "1570 MIDDEN-NEDERLAND",
@@ -54,7 +54,7 @@ export const mdjcContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ernst-ziengs.jpeg",
 		email: "youth@rotary-d1550.org",
-		phoneNumber: undefined,
+		phoneNumber: "+31653985449",
 		club: "RC Weert-Land van Horne",
 		district: "1550",
 		functions: ["DJC 1550"],
@@ -65,17 +65,17 @@ export const mdjcContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/steven-stolp.png",
 		email: "DJC1560@rotaryyep.nl",
-		phoneNumber: undefined,
+		phoneNumber: "+310630569469",
 		club: "RC Bennekom",
 		district: "1560 OOST-NEDERLAND",
-		functions: ["DJC1560"],
+		functions: ["DJC 1560"],
 	},
 	{
 		name: "Erna van Dijk",
 		bio: "Ik ben Erna van Dijk. Sinds 2013 ben ik lid van de Rotary en sinds 1 juli 2023 District Jeugd Commissaris van D1570. In 1987-88 heb ik zelf meegedaan aan een uitwisselingsprogramma en heb ik een jaar in El Paso, Texas gewoond. Ik heb dit als een hele waardevolle periode ervaren en wil graag mijn steentje bijdragen om jongeren ook een fantastische buitenland ervaring te laten hebben.\n\nIn het dagelijks leven ben ik werkzaam als bedrijfsarts. Ik woon samen met mijn vriend, mijn zoon en zijn zoon en 2 dochters. Een samengesteld gezin dus.\n\nRotary is mijn grootste hobby, maar daarnaast ben ik ook lid van toastmasters. Verder vul ik mijn vrije tijd met tuinieren, wandelen, dansen en mijn kippen, katten en hond.",
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg",
-		email: "erna@vandijkmedischadvies.nl",
+		email: "DJC1570@rotaryyep.nl",
 		phoneNumber: "+31612300695",
 		club: "Scherpenzeel- Woudenberg",
 		district: "1570",
@@ -86,8 +86,8 @@ export const mdjcContacts: Organization[] = [
 		bio: "Mijn naam is Mario Meeuwse en ik ben District Jeugd Commissaris van District 1580.\nGedurende mijn Rotaract lidmaatschap en later Rotary heb ik veel uitwisselingen meegemaakt.\nDaarnaast was ik actief in voor de Rotary Youth Leadership Award commissie in District 1610.\nOok heb ik veel internationale activiteiten bijgewoond zoals (wereld)congressen en (district)conferenties.\nZelf heb ik een Group Study Exchange gedaan naar Japan, waar ik met veel dankbaarheid en plezier op terugkijk.\nEen geweldige ervaring naar een land met een heel andere cultuur met enthousiaste mensen binnen de Rotary familie.\nDaarom wil ik ook een steentje bijdragen aan uitwisselingen en de jeugd een onvergetelijke ervaring bezorgen.\n\nIk woon in Aalsmeer met Jikkemine en onze twee zonen.\nWij hebben elkaar leren kennen toen wij Rotaracters waren op weg naar Santiago de Compostella tijdens het 100 jarige bestaan van Rotary.\n\nIn het dagelijks leven ben ik accountmanager Grootzakelijk bij de Rabobank, gespecialiseerd in ICT & Zorg.\nMijn hobby's zijn: reizen, talen, skiën, zeilen & zwemmen.",
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/mario-meeuwse.jpg",
-		email: undefined,
-		phoneNumber: undefined,
+		email: "DJC1580@rotaryyep.nl",
+		phoneNumber: "+31629541915",
 		club: "RC Haarlemmermeer",
 		district: "1580",
 		functions: ["DJC 1580"],
@@ -97,7 +97,7 @@ export const mdjcContacts: Organization[] = [
 		bio: "Mijn naam is Judith Siebring, outbound Coördinator longterm RYE voor de regio's Midden- en Zuid-Amerika.\n\nOp mijn 16e (lang geleden… ;-)) ben ik een jaar naar London, Ontario, Canada geweest op uitwisseling via de Rotary. Ik heb een fantastisch jaar gehad waar ik nog ontzettend vaak aan terugdenk. Het heeft ook veel impact gehad op latere keuzes en ervaringen in mijn leven. Reizen, andere mensen, talen en culturen leren kennen; het zit in mijn bloed. Zo heb ik tijdens mijn studie ook nog een jaar in Uruguay in Zuid-Amerika gestudeerd, en heb ik later nog in Canada en Nieuw-Zeeland gewoond en gewerkt. Inmiddels woon ik alweer een aantal jaar in Emmen en ben daar lid geworden van Rotaryclub Emmen-'t Loo. Ik ben blij dat ik nu mijn steentje kan bijdragen aan het RYE-programma als jeugdcommissaris in mijn club, gastouder én als outbound Coördinator voor de regio's Midden- en Zuid-Amerika. Ik kijk er naar uit om jongeren een stapje op weg te helpen naar en tijdens het jaar van hun leven, met al z'n ups en downs. Daarnaast ben ik blij dat ik de kans krijg om mijn Spaans een beetje te oefenen en contacten te onderhouden met mijn 'Rotary collega's' in het prachtige Zuid-Amerika.",
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg",
-		email: undefined,
+		email: "DJC1590@rotaryyep.nl",
 		phoneNumber: "+31652682275",
 		club: "RC Emmen-'t Loo",
 		district: "1590 NOORD-NEDERLAND",
@@ -109,9 +109,21 @@ export const mdjcContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/elzeline-fischer.png",
 		email: "djc@rotary-d1600.nl",
-		phoneNumber: undefined,
+		phoneNumber: "+31652682275",
 		club: "RC Voorburg",
 		district: "1600",
 		functions: ["DJC 1600"],
+	},
+
+	{
+		name: "Thijs Kaas",
+		bio: "Sinds kort fungeer ik als DJC voor D1610, hierbij moet ik mijn weg nog wel een beetje vinden maar het is een leuke uitdaging. \n\n Al sinds 1999 met heel veel plezier lid van Rotary, en wel club Roosendaal, een organisatie die ook mij veel heeft gebracht onder meer ook door deel te nemen aan diverse programma’s en de verschillende commissies.\n Rotary is een krachtige organisatie waar ik graag mijn bijdrage lever waar mogelijk.\n Ik heb mogen deelnemen aan o.a. jeugd uitwisselingen, dat is toch iets wat mij heeft meeste voldoening heeft gebracht, een GSE-team mogen leiden naar India, Ryla’s, Wandelen voor Water, kleine en grotere fundraisingprojecten van onze club, organiseren van een Discon, NGSE programma’s en voorlichting geven aan clubs over de NGSE.\n\n Vele jaren ben ik werkzaam geweest in managementfuncties, sales en marketing en heb daar veel internationale ervaringen opgedaan. Dit bij zowel grote bedrijven als kleinere familieondernemingen.\n Ruim 20 jaar geleden heb ik het bedrijf overgenomen waar ik werkzaam was en was daarmee de franchisegever voor een groot aantal ondernemers in Nederland en België. Chem-Dry, een organisatie die zijn oorsprong heeft in de Verenigde Staten en in vele landen opereert. Enorm leuk om ondernemers te kunnen helpen succesvol te worden en marktleider te zijn in het segment van vloer en meubelonderhoud.\n\n Recent heb ik het bedrijf verkocht en geniet nu nog meer, want als redelijke Bourgondiër is dat een van mijn karaktertrekken, genieten, relativeren maar wel je verantwoordelijkheid nemen.\n\n Yvonne en ik hebben 4 zonen en 3 kleindochters en we genieten nog iedere dag van hen allemaal.",
+		imageUrl:
+			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/thijs-kaas.jpeg",
+		email: undefined,
+		phoneNumber: undefined,
+		club: "RC Roosendaal",
+		district: "1610",
+		functions: ["DJC 1610"],
 	},
 ];

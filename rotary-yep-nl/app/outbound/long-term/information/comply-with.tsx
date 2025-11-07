@@ -28,7 +28,7 @@ export default function ComplyWithScreen() {
 						<Text style={[styles.text, { color: themeColors.text }]}>
 							Zit je op het VMBO, HAVO of VWO dan kun je na selectie voor deze
 							uitwisseling in aanmerking komen. Je hebt wel een Rotaryclub nodig
-							die jou wil voordragen: een Sponsorclub. Dat betekent niet dat de
+							die jou wil voordragen: een support club. Dat betekent niet dat de
 							club jouw kosten betaalt, maar de club is verantwoordelijk voor de
 							terug ontvangst van een jaarkind uit het buitenland. Als jij
 							weggaat komt er ook een buitenlandse scholier terug. Een diploma

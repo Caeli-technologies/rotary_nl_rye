@@ -9,7 +9,6 @@ import {
 	View,
 	Text,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
@@ -212,86 +211,77 @@ export default function SettingsScreen() {
 	};
 
 	return (
-		<SafeAreaView
-			style={[
-				styles.safeContainer,
-				{ backgroundColor: themeColors.background },
-			]}
-			edges={["bottom"]}
+		<ScrollView
+			style={[styles.container, { backgroundColor: themeColors.background }]}
+			showsVerticalScrollIndicator={false}
+			contentInsetAdjustmentBehavior="automatic"
+			automaticallyAdjustContentInsets={true}
 		>
-			<ScrollView
-				style={[styles.container, { backgroundColor: themeColors.background }]}
-				showsVerticalScrollIndicator={false}
-				contentInsetAdjustmentBehavior="automatic"
-			>
-				<View style={styles.content}>
-					<SettingsSection title="Algemeen">
-						<SettingsItem
-							title="Volg ons op Instagram"
-							subtitle="@rotexnederland"
-							onPress={handleSocialMedia}
-						/>
-						<SettingsItem
-							title="Beoordeel de App"
-							subtitle={
-								Platform.OS === "ios"
-									? "Laat een beoordeling achter in de App Store"
-									: "Laat een beoordeling achter in de Google Play Store"
-							}
-							onPress={handleStoreReview}
-						/>
-					</SettingsSection>
+			<View style={styles.content}>
+				<SettingsSection title="Algemeen">
+					<SettingsItem
+						title="Volg ons op Instagram"
+						subtitle="@rotexnederland"
+						onPress={handleSocialMedia}
+					/>
+					<SettingsItem
+						title="Beoordeel de App"
+						subtitle={
+							Platform.OS === "ios"
+								? "Laat een beoordeling achter in de App Store"
+								: "Laat een beoordeling achter in de Google Play Store"
+						}
+						onPress={handleStoreReview}
+					/>
+				</SettingsSection>
 
-					<SettingsSection title="Ontwikkeling">
-						<SettingsItem
-							title="Bijdragers"
-							subtitle="Bekijk app-bijdragers"
-							onPress={handleContributors}
-						/>
-						<SettingsItem
-							title="App Versie"
-							subtitle={
-								buildVersion ? `${appVersion} (${buildVersion})` : appVersion
-							}
-						/>
-					</SettingsSection>
+				<SettingsSection title="Ontwikkeling">
+					<SettingsItem
+						title="Bijdragers"
+						subtitle="Bekijk app-bijdragers"
+						onPress={handleContributors}
+					/>
+					<SettingsItem
+						title="App Versie"
+						subtitle={
+							buildVersion ? `${appVersion} (${buildVersion})` : appVersion
+						}
+					/>
+				</SettingsSection>
 
-					<SettingsSection title="Juridisch">
-						<SettingsItem title="Privacybeleid" onPress={handlePrivacyPolicy} />
-						<SettingsItem
-							title="Algemene Voorwaarden"
-							onPress={handleTermsAndConditions}
-						/>
-					</SettingsSection>
+				<SettingsSection title="Juridisch">
+					<SettingsItem title="Privacybeleid" onPress={handlePrivacyPolicy} />
+					<SettingsItem
+						title="Algemene Voorwaarden"
+						onPress={handleTermsAndConditions}
+					/>
+				</SettingsSection>
 
-					<View style={styles.footer}>
-						<Text
-							style={[styles.footerText, { color: themeColors.textSecondary }]}
-						>
-							Rotary Youth Exchange Netherlands
-						</Text>
-						<Text
-							style={[styles.footerText, { color: themeColors.textSecondary }]}
-						>
-							Gemaakt met ❤️ voor jonge wereldburgers
-						</Text>
-					</View>
+				<View style={styles.footer}>
+					<Text
+						style={[styles.footerText, { color: themeColors.textSecondary }]}
+					>
+						Rotary Youth Exchange Netherlands
+					</Text>
+					<Text
+						style={[styles.footerText, { color: themeColors.textSecondary }]}
+					>
+						Gemaakt met ❤️ voor jonge wereldburgers
+					</Text>
 				</View>
-			</ScrollView>
-		</SafeAreaView>
+			</View>
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
-	safeContainer: {
-		flex: 1,
-	},
 	container: {
 		flex: 1,
 	},
 	content: {
 		padding: Platform.OS === "ios" ? 16 : 12,
-		paddingBottom: Platform.OS === "android" ? 80 : 30,
+		paddingTop: Platform.OS === "ios" ? 8 : 12,
+		paddingBottom: Platform.OS === "android" ? 100 : 40,
 	},
 	section: {
 		marginBottom: 24,

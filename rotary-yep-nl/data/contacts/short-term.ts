@@ -17,8 +17,8 @@ export const shortTermContacts: Organization[] = [
 		bio: "",
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/marja-hofland.jpg",
-		email: undefined,
-		phoneNumber: undefined,
+		email: "campsandtours@rotaryyep.nl",
+		phoneNumber: "+31610902939",
 		club: undefined,
 		district: undefined,
 		functions: ["Inbound coördinator Zomerkampen"],

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Platform, StyleSheet, View, Text, SectionList } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import { ContactCard } from "@/components/enhanced-contact-card";
 import { contactSections } from "@/data/contacts";
@@ -30,54 +29,6 @@ export default function ContactScreen() {
 
 	if (contacts.length === 0) {
 		return (
-			<SafeAreaView
-				style={[styles.safeArea, { backgroundColor: activeColors.background }]}
-				edges={["bottom"]}
-			>
-				<View
-					style={[
-						styles.container,
-						{ backgroundColor: activeColors.background },
-					]}
-				>
-					<View style={styles.segmentedControlContainer}>
-						<SegmentedControl
-							values={tabValues}
-							selectedIndex={activeTab}
-							onChange={handleSegmentChange}
-							style={styles.segmentedControl}
-							appearance={colorScheme === "dark" ? "dark" : "light"}
-							tintColor={activeColors.primary}
-							fontStyle={{
-								color: activeColors.text,
-							}}
-							activeFontStyle={{
-								color: activeColors.activeText,
-							}}
-						/>
-					</View>
-					<View style={styles.emptyState}>
-						<Text
-							style={[styles.emptyStateTitle, { color: activeColors.primary }]}
-						>
-							No contacts available
-						</Text>
-						<Text
-							style={[styles.emptyStateMessage, { color: activeColors.text }]}
-						>
-							There are no contacts in this section at the moment.
-						</Text>
-					</View>
-				</View>
-			</SafeAreaView>
-		);
-	}
-
-	return (
-		<SafeAreaView
-			style={[styles.safeArea, { backgroundColor: activeColors.background }]}
-			edges={["bottom"]}
-		>
 			<View
 				style={[styles.container, { backgroundColor: activeColors.background }]}
 			>
@@ -97,31 +48,64 @@ export default function ContactScreen() {
 						}}
 					/>
 				</View>
+				<View style={styles.emptyState}>
+					<Text
+						style={[styles.emptyStateTitle, { color: activeColors.primary }]}
+					>
+						No contacts available
+					</Text>
+					<Text
+						style={[styles.emptyStateMessage, { color: activeColors.text }]}
+					>
+						There are no contacts in this section at the moment.
+					</Text>
+				</View>
+			</View>
+		);
+	}
 
-				<SectionList
-					sections={[{ data: contacts }]}
-					renderItem={({ item }) => <ContactCard contact={item} />}
-					keyExtractor={(_item, index) => `${currentSection.id}-${index}`}
-					showsVerticalScrollIndicator={false}
-					ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-					contentContainerStyle={styles.contentContainer}
-					style={styles.sectionList}
+	return (
+		<View
+			style={[styles.container, { backgroundColor: activeColors.background }]}
+		>
+			<View style={styles.segmentedControlContainer}>
+				<SegmentedControl
+					values={tabValues}
+					selectedIndex={activeTab}
+					onChange={handleSegmentChange}
+					style={styles.segmentedControl}
+					appearance={colorScheme === "dark" ? "dark" : "light"}
+					tintColor={activeColors.primary}
+					fontStyle={{
+						color: activeColors.text,
+					}}
+					activeFontStyle={{
+						color: activeColors.activeText,
+					}}
 				/>
 			</View>
-		</SafeAreaView>
+
+			<SectionList
+				sections={[{ data: contacts }]}
+				renderItem={({ item }) => <ContactCard contact={item} />}
+				keyExtractor={(_item, index) => `${currentSection.id}-${index}`}
+				showsVerticalScrollIndicator={false}
+				ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+				contentContainerStyle={styles.contentContainer}
+				style={styles.sectionList}
+				automaticallyAdjustContentInsets={true}
+			/>
+		</View>
 	);
 }
-
 const styles = StyleSheet.create({
-	safeArea: {
-		flex: 1,
-	},
 	container: {
 		flex: 1,
 	},
 	segmentedControlContainer: {
 		paddingHorizontal: 16,
 		paddingVertical: Platform.OS === "ios" ? 12 : 10,
+		paddingTop: Platform.OS === "ios" ? 8 : 10,
 	},
 	segmentedControl: {
 		height: Platform.OS === "ios" ? 32 : 40,
@@ -131,7 +115,7 @@ const styles = StyleSheet.create({
 	},
 	contentContainer: {
 		paddingTop: Platform.OS === "ios" ? 16 : 12,
-		paddingBottom: Platform.OS === "android" ? 80 : 30,
+		paddingBottom: Platform.OS === "android" ? 100 : 40,
 		paddingHorizontal: Platform.OS === "ios" ? 16 : 0,
 	},
 	itemSeparator: {

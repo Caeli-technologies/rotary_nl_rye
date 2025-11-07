@@ -111,7 +111,7 @@ export default function LongTermInboundScreen() {
 	const classOfItems: MenuItem[] = useMemo(
 		() => [
 			{
-				title: "Class of 2024-2025",
+				title: "Class of 2025-26",
 				subtitle: "Meet the incoming exchange students",
 				icon: "users" as keyof typeof FontAwesome5.glyphMap,
 				route: "/inbound/long-term/class-of",

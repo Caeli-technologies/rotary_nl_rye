@@ -13,7 +13,7 @@ export default function InboundClassOfScreen() {
 			countryGroups={countryGroups}
 			studentType="inbound"
 			basePath="/inbound/long-term/class-of"
-			title="Class Of 2024-25"
+			title="Class Of 2025-26"
 		/>
 	);
 }

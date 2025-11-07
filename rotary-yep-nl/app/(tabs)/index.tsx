@@ -16,7 +16,6 @@ import {
 	Dimensions,
 	type LayoutChangeEvent,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
@@ -214,150 +213,146 @@ export default function HomeScreen() {
 	]);
 
 	return (
-		<SafeAreaView
-			style={[styles.container, { backgroundColor: colors.background }]}
-			edges={["top"]}
+		<ScrollView
+			style={[styles.scrollView, { backgroundColor: colors.background }]}
+			showsVerticalScrollIndicator={false}
+			contentInsetAdjustmentBehavior="automatic"
+			automaticallyAdjustContentInsets={true}
 		>
-			<ScrollView
-				style={styles.scrollView}
-				showsVerticalScrollIndicator={false}
-				contentInsetAdjustmentBehavior="automatic"
-			>
-				{/* Logo Section */}
-				<View style={styles.logoContainer}>
-					<Image
-						source={require("@/assets/home/rotary_rye_nl_logo_home.svg")}
-						style={styles.logo}
-						contentFit="contain"
-					/>
-				</View>
+			{/* Logo Section */}
+			<View style={styles.logoContainer}>
+				<Image
+					source={require("@/assets/home/rotary_rye_nl_logo_home.svg")}
+					style={styles.logo}
+					contentFit="contain"
+				/>
+			</View>
 
-				<View style={styles.carouselContainer} onLayout={handleLayoutChange}>
-					{carouselImages.length === 1 ? (
-						<Image
-							source={carouselImages[0]}
-							style={styles.carouselImage}
-							contentFit="cover"
-						/>
-					) : (
-						<>
-							<Animated.View
-								style={[
-									styles.slideContainer,
-									{
-										width: (carouselImages.length + 1) * containerWidth,
-										transform: [{ translateX: slideAnim }],
-									},
-								]}
-							>
-								{carouselImages.map((image, index) => (
-									<View
-										key={`slide-${index}-${image}`}
-										style={[styles.slideItem, { width: containerWidth }]}
-									>
-										<Image
-											source={image}
-											style={styles.carouselImage}
-											contentFit="cover"
-										/>
-									</View>
-								))}
-								{/* Duplicate first image for seamless infinite loop */}
+			<View style={styles.carouselContainer} onLayout={handleLayoutChange}>
+				{carouselImages.length === 1 ? (
+					<Image
+						source={carouselImages[0]}
+						style={styles.carouselImage}
+						contentFit="cover"
+					/>
+				) : (
+					<>
+						<Animated.View
+							style={[
+								styles.slideContainer,
+								{
+									width: (carouselImages.length + 1) * containerWidth,
+									transform: [{ translateX: slideAnim }],
+								},
+							]}
+						>
+							{carouselImages.map((image, index) => (
 								<View
-									key="duplicate"
+									key={`slide-${index}-${image}`}
 									style={[styles.slideItem, { width: containerWidth }]}
 								>
 									<Image
-										source={carouselImages[0]}
+										source={image}
 										style={styles.carouselImage}
 										contentFit="cover"
 									/>
 								</View>
-							</Animated.View>
+							))}
+							{/* Duplicate first image for seamless infinite loop */}
+							<View
+								key="duplicate"
+								style={[styles.slideItem, { width: containerWidth }]}
+							>
+								<Image
+									source={carouselImages[0]}
+									style={styles.carouselImage}
+									contentFit="cover"
+								/>
+							</View>
+						</Animated.View>
 
-							{carouselImages.length > 1 && (
-								<View style={styles.dotIndicators}>
-									{carouselImages.map((image, index) => (
-										<View
-											key={`dot-${image}`}
-											style={[
-												styles.dot,
-												(index === currentImageIndex ||
-													(currentImageIndex === carouselImages.length &&
-														index === 0)) &&
-													styles.activeDot,
-											]}
-										/>
-									))}
-								</View>
-							)}
-						</>
-					)}
+						{carouselImages.length > 1 && (
+							<View style={styles.dotIndicators}>
+								{carouselImages.map((image, index) => (
+									<View
+										key={`dot-${image}`}
+										style={[
+											styles.dot,
+											(index === currentImageIndex ||
+												(currentImageIndex === carouselImages.length &&
+													index === 0)) &&
+												styles.activeDot,
+										]}
+									/>
+								))}
+							</View>
+						)}
+					</>
+				)}
+			</View>
+
+			<View style={styles.gridContainer}>
+				<View style={styles.gridRow}>
+					<HomeCard
+						icon="list-outline"
+						title="Programma"
+						colors={colors}
+						onPress={() => router.push("/programs")}
+					/>
+					<HomeCard
+						icon="newspaper-outline"
+						title="News"
+						colors={colors}
+						onPress={() => router.push("/news")}
+					/>
+					<HomeCard
+						icon="calendar-outline"
+						title="Calendar"
+						colors={colors}
+						onPress={() => router.push("/calendar")}
+					/>
 				</View>
 
-				<View style={styles.gridContainer}>
-					<View style={styles.gridRow}>
-						<HomeCard
-							icon="list-outline"
-							title="Programma"
-							colors={colors}
-							onPress={() => router.push("/programs")}
-						/>
-						<HomeCard
-							icon="newspaper-outline"
-							title="News"
-							colors={colors}
-							onPress={() => router.push("/news")}
-						/>
-						<HomeCard
-							icon="calendar-outline"
-							title="Calendar"
-							colors={colors}
-							onPress={() => router.push("/calendar")}
-						/>
-					</View>
-
-					<View style={styles.gridRow}>
-						<HomeCard
-							materialIcon="airplane-takeoff"
-							title="Op Exchange"
-							colors={colors}
-							onPress={() => router.push("/outbound")}
-						/>
-						<HomeCard
-							materialIcon="airplane-landing"
-							title="To NL"
-							colors={colors}
-							onPress={() => router.push("/inbound")}
-						/>
-						<HomeCard
-							icon="refresh-outline"
-							title="Rebound"
-							colors={colors}
-							onPress={() => router.push("/rebound")}
-						/>
-					</View>
-
-					<View style={styles.gridRowSingle}>
-						<HomeCard
-							fontistoIcon="tent"
-							title="Zomerkampen Lijst"
-							variant="single"
-							colors={colors}
-							onPress={() => router.push("/camps-tours")}
-						/>
-						<HomeCard
-							title="voor Rotary Clubs"
-							variant="single"
-							useSvg={true}
-							colors={colors}
-							svgSource={require("@/assets/logo/rotary-logo-icon.svg")}
-							onPress={() => router.push("/rotary-clubs")}
-						/>
-					</View>
+				<View style={styles.gridRow}>
+					<HomeCard
+						materialIcon="airplane-takeoff"
+						title="Op Exchange"
+						colors={colors}
+						onPress={() => router.push("/outbound")}
+					/>
+					<HomeCard
+						materialIcon="airplane-landing"
+						title="To NL"
+						colors={colors}
+						onPress={() => router.push("/inbound")}
+					/>
+					<HomeCard
+						icon="refresh-outline"
+						title="Rebound"
+						colors={colors}
+						onPress={() => router.push("/rebound")}
+					/>
 				</View>
-			</ScrollView>
-		</SafeAreaView>
+
+				<View style={styles.gridRowSingle}>
+					<HomeCard
+						fontistoIcon="tent"
+						title="Zomerkampen Lijst"
+						variant="single"
+						colors={colors}
+						onPress={() => router.push("/camps-tours")}
+					/>
+					<HomeCard
+						title="voor Rotary Clubs"
+						variant="single"
+						useSvg={true}
+						colors={colors}
+						svgSource={require("@/assets/logo/rotary-logo-icon.svg")}
+						onPress={() => router.push("/rotary-clubs")}
+					/>
+				</View>
+			</View>
+		</ScrollView>
 	);
 }
 
@@ -375,9 +370,6 @@ const shadowStyle = Platform.select({
 });
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
 	scrollView: {
 		flex: 1,
 	},
@@ -385,6 +377,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginBottom: 30,
 		paddingVertical: 20,
+		paddingTop: Platform.OS === "ios" ? 60 : 20,
 		paddingHorizontal: 16,
 	},
 	logo: {
@@ -439,7 +432,7 @@ const styles = StyleSheet.create({
 	},
 	gridContainer: {
 		paddingHorizontal: 16,
-		paddingBottom: Platform.OS === "android" ? 80 : 30,
+		paddingBottom: Platform.OS === "android" ? 100 : 40,
 	},
 	gridRow: {
 		flexDirection: "row",

@@ -21,7 +21,7 @@ export const longTermContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/sandra-cools-wemer.jpeg",
 		email: "longtermin@rotaryyep.nl",
-		phoneNumber: undefined,
+		phoneNumber: "+31625530062",
 		club: "",
 		district: "",
 		functions: ["Inbound coördinator"],
@@ -32,7 +32,7 @@ export const longTermContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/jitte-wigbold.jpg",
 		email: undefined,
-		phoneNumber: undefined,
+		phoneNumber: "+31627908753",
 		club: "",
 		district: "",
 		functions: ["Inbound coördinator"],
@@ -43,7 +43,7 @@ export const longTermContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/jet-bebseler.jpg",
 		email: undefined,
-		phoneNumber: undefined,
+		phoneNumber: "+31640638088",
 		club: "",
 		district: "",
 		functions: ["Inbound coördinator"],
@@ -87,7 +87,7 @@ export const longTermContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/bas-siebring.jpeg",
 		email: "doc@rotaryyep.nl",
-		phoneNumber: undefined,
+		phoneNumber: "+31618022550",
 		club: "",
 		district: "",
 		functions: ["Coördinator Dutch Orientations Course (DOC)"],
@@ -97,8 +97,8 @@ export const longTermContacts: Organization[] = [
 		bio: 'Als scholier had ik geen flauw benul van het bestaan van uitwisselingen. In mijn studententijd heb ik dat ingehaald door mijn eigen exchanges te organiseren, (korter) werken en later studeren in (zuid) Frankrijk en vervolgens langer naar Ouagadougou in Burkina Faso, West-Afrika. Buiten de Nederlandse context ontwikkel je je net wat anders. Dat gun ik iedereen, en de wereld.\n\nIn het dagelijks leven werk ik in de gezondheidszorg als bedrijfskundige in verschillende rollen. De "net iets andere blik" komt daar van pas. Daarnaast sport ik graag en volgens sommigen veel, het liefst met gezinsleden of vrienden.\n\nIn mijn vrije tijd wil ik vooral met plezier aan leuke dingen bijdragen. Daarom ben ik van "de activiteiten". Met het team van de long term exchange, Rotex (oud exchangestudenten) en de uitwisselingsstudenten ondernemen we samen van alles. Daarbij hebben we lol en leren we elke dag weer van alles van elkaar.',
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/steven-stolp.png",
-		email: undefined,
-		phoneNumber: undefined,
+		email: "activiteiten@rotaryyep.nl",
+		phoneNumber: "+310630569469",
 		club: "RC Bennekom",
 		district: "1560 OOST-NEDERLAND",
 		functions: ["Activities inbounds"],
@@ -108,8 +108,8 @@ export const longTermContacts: Organization[] = [
 		bio: "Mijn naam is Hilleke van der Veer en ik ben de landelijke counselor van de inbounds.\n\nOp mijn 17e ben ik zelf op uitwisseling geweest naar een klein plaatsje genaamd Loveland in Colorado. Dit was een geweldige ervaring waar ik met veel plezier op terug kijk en die ik elke jongere gun. En daarom vind ik het zo fijn om deel uit te maken van dit geweldige team dat zich met veel enthousiasme inzet om de uitwisselingsstudenten een onvergetelijke ervaring te bezorgen hier in Nederland.\nIk woon in Enschede samen met Frank en onze drie kinderen. Onze dochter Jasmijn is op uitwisseling geweest naar Barrie in Ontario Canada en heeft daar vrienden gemaakt uit de hele wereld. Sinds 2017 hebben wij 4 exchange studenten uit Italië en Brazilië in ons huis mogen verwelkomen met wie we als gezin nog altijd warme banden onderhouden.\nIn het dagelijks leven werk ik als psycholoog bij een grote ggz instelling en word ik gedetacheerd bij huisartsenpraktijken. Mijn hobby's zijn: wandelen, reizen, stijldansen, lezen, naar het theater gaan en lekker eten.",
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/hilleke-van-der-veer-2.jpg",
-		email: undefined,
-		phoneNumber: undefined,
+		email: "hillekevdveer@gmail.com",
+		phoneNumber: "+31638300427",
 		club: "",
 		district: "",
 		functions: ["Landelijk counselor"],
@@ -119,8 +119,8 @@ export const longTermContacts: Organization[] = [
 		bio: undefined,
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/christian-van-dam.jpg",
-		email: undefined,
-		phoneNumber: undefined,
+		email: "c.vandam@outlook.com",
+		phoneNumber: "+31620956610",
 		club: "",
 		district: "",
 		functions: ["Landelijk counselor"],
@@ -131,7 +131,7 @@ export const longTermContacts: Organization[] = [
 		imageUrl:
 			"https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ruben-talstra.jpg",
 		email: "RubenTalstra1211@outlook.com",
-		phoneNumber: undefined,
+		phoneNumber: "+31611212774",
 		club: "",
 		district: "",
 		functions: ["Web-app master"],

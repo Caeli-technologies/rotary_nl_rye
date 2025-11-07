@@ -6,7 +6,6 @@ import {
 	Platform,
 	Pressable,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { makePhoneCall, sendEmail } from "@/utils/communications";
@@ -141,138 +140,126 @@ export default function EmergencyScreen() {
 	];
 
 	return (
-		<SafeAreaView
-			style={[styles.safeArea, { backgroundColor: themeColors.background }]}
-			edges={["bottom"]}
+		<ScrollView
+			style={[styles.container, { backgroundColor: themeColors.background }]}
+			showsVerticalScrollIndicator={false}
+			contentInsetAdjustmentBehavior="automatic"
+			automaticallyAdjustContentInsets={true}
 		>
-			<ScrollView
-				style={[styles.container, { backgroundColor: themeColors.background }]}
-				showsVerticalScrollIndicator={false}
-				contentInsetAdjustmentBehavior="automatic"
-			>
-				<View style={styles.content}>
-					{/* Emergency 112 Section */}
-					<View
+			<View style={styles.content}>
+				{/* Emergency 112 Section */}
+				<View
+					style={[
+						styles.emergencySection,
+						{
+							backgroundColor: `${themeColors.error}10`,
+							shadowColor: themeColors.shadow,
+							borderColor: themeColors.border,
+						},
+					]}
+				>
+					<View style={styles.emergencyHeader}>
+						<Ionicons name="warning" size={24} color={themeColors.error} />
+						<Text style={[styles.emergencyTitle, { color: themeColors.text }]}>
+							Emergency Services
+						</Text>
+					</View>
+					<Text
 						style={[
-							styles.emergencySection,
-							{
-								backgroundColor: `${themeColors.error}10`,
-								shadowColor: themeColors.shadow,
-								borderColor: themeColors.border,
-							},
+							styles.emergencySubtitle,
+							{ color: themeColors.textSecondary },
 						]}
 					>
-						<View style={styles.emergencyHeader}>
-							<Ionicons name="warning" size={24} color={themeColors.error} />
-							<Text
-								style={[styles.emergencyTitle, { color: themeColors.text }]}
-							>
-								Emergency Services
-							</Text>
-						</View>
-						<Text
-							style={[
-								styles.emergencySubtitle,
-								{ color: themeColors.textSecondary },
-							]}
-						>
-							112 for ambulance, fire brigade or police
-						</Text>
-						<Image
-							source={require("@/assets/emergency/112_logo.png")}
-							style={styles.emergencyImage}
-							contentFit="contain"
-						/>
-					</View>
-
-					{/* Rotary Youth Exchange */}
-					<View style={styles.section}>
-						<View style={styles.sectionHeader}>
-							<Ionicons
-								name="shield-checkmark"
-								size={20}
-								color={themeColors.primary}
-							/>
-							<Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-								Rotary Youth Exchange
-							</Text>
-						</View>
-						{rotaryYouthExchange.map((contact) => (
-							<EmergencyContactCard key={contact.phone} contact={contact} />
-						))}
-					</View>
-
-					{/* Confidants */}
-					<View style={styles.section}>
-						<View style={styles.sectionHeader}>
-							<Ionicons name="heart" size={20} color={themeColors.primary} />
-							<Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-								Independent Confidants
-							</Text>
-						</View>
-						<Text
-							style={[
-								styles.sectionDescription,
-								{ color: themeColors.textSecondary },
-							]}
-						>
-							Not connected to Rotary - In case of f.e. sexual harassment
-						</Text>
-						{confidants.map((contact) => (
-							<EmergencyContactCard key={contact.phone} contact={contact} />
-						))}
-					</View>
-
-					{/* Important Note */}
-					<View
-						style={[
-							styles.noteCard,
-							{
-								backgroundColor: `${themeColors.warning}10`,
-								shadowColor: themeColors.shadow,
-								borderLeftColor: themeColors.warning,
-							},
-						]}
-					>
-						<View style={styles.noteHeader}>
-							<Ionicons
-								name="information-circle"
-								size={24}
-								color={themeColors.warning}
-							/>
-							<Text style={[styles.noteTitle, { color: themeColors.text }]}>
-								Important Reminder
-							</Text>
-						</View>
-						<Text
-							style={[styles.noteText, { color: themeColors.textSecondary }]}
-						>
-							Always keep your host family&apos;s contact information and home
-							address accessible.
-						</Text>
-						<Text
-							style={[styles.noteText, { color: themeColors.textSecondary }]}
-						>
-							Your host parents can assist you with medical appointments,
-							hospital visits, or dental care.
-						</Text>
-					</View>
+						112 for ambulance, fire brigade or police
+					</Text>
+					<Image
+						source={require("@/assets/emergency/112_logo.png")}
+						style={styles.emergencyImage}
+						contentFit="contain"
+					/>
 				</View>
-			</ScrollView>
-		</SafeAreaView>
+
+				{/* Rotary Youth Exchange */}
+				<View style={styles.section}>
+					<View style={styles.sectionHeader}>
+						<Ionicons
+							name="shield-checkmark"
+							size={20}
+							color={themeColors.primary}
+						/>
+						<Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+							Rotary Youth Exchange
+						</Text>
+					</View>
+					{rotaryYouthExchange.map((contact) => (
+						<EmergencyContactCard key={contact.phone} contact={contact} />
+					))}
+				</View>
+
+				{/* Confidants */}
+				<View style={styles.section}>
+					<View style={styles.sectionHeader}>
+						<Ionicons name="heart" size={20} color={themeColors.primary} />
+						<Text style={[styles.sectionTitle, { color: themeColors.text }]}>
+							Independent Confidants
+						</Text>
+					</View>
+					<Text
+						style={[
+							styles.sectionDescription,
+							{ color: themeColors.textSecondary },
+						]}
+					>
+						Not connected to Rotary - In case of f.e. sexual harassment
+					</Text>
+					{confidants.map((contact) => (
+						<EmergencyContactCard key={contact.phone} contact={contact} />
+					))}
+				</View>
+
+				{/* Important Note */}
+				<View
+					style={[
+						styles.noteCard,
+						{
+							backgroundColor: `${themeColors.warning}10`,
+							shadowColor: themeColors.shadow,
+							borderLeftColor: themeColors.warning,
+						},
+					]}
+				>
+					<View style={styles.noteHeader}>
+						<Ionicons
+							name="information-circle"
+							size={24}
+							color={themeColors.warning}
+						/>
+						<Text style={[styles.noteTitle, { color: themeColors.text }]}>
+							Important Reminder
+						</Text>
+					</View>
+					<Text style={[styles.noteText, { color: themeColors.textSecondary }]}>
+						Always keep your host family&apos;s contact information and home
+						address accessible.
+					</Text>
+					<Text style={[styles.noteText, { color: themeColors.textSecondary }]}>
+						Your host parents can assist you with medical appointments, hospital
+						visits, or dental care.
+					</Text>
+				</View>
+			</View>
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
-	safeArea: {
-		flex: 1,
-	},
 	container: {
 		flex: 1,
 	},
 	content: {
 		padding: Platform.OS === "ios" ? 16 : 12,
-		paddingBottom: Platform.OS === "android" ? 80 : 30,
+		paddingTop: Platform.OS === "ios" ? 8 : 12,
+		paddingBottom: Platform.OS === "android" ? 100 : 40,
 	},
 
 	// Emergency Section
