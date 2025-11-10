@@ -7,6 +7,7 @@
     "prebuild": "npx expo prebuild",
     "android": "npx expo prebuild && expo run:android",
     "ios": "npx expo prebuild && expo run:ios",
+    "ios:release": "xed ios",
     "android:release": "cd android && ./gradlew app:bundleRelease",
     "lint": "npx expo lint",
     "clean": "npx expo prebuild --clear"
