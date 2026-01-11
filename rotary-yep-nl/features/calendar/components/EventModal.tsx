@@ -19,6 +19,7 @@ import {
   formatEventTime,
   isMultiDayEvent,
   extractLinksFromDescription,
+  getDisplayEndDate,
 } from "../utils";
 import type { CalendarEvent, EventWithOriginalData } from "../types";
 
@@ -40,7 +41,8 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
   const isMultiDay = isMultiDayEvent(event);
 
   const startDate = formatEventDate(event.start.dateTime);
-  const endDate = formatEventDate(event.end.dateTime);
+  // For all-day events, end date is exclusive in the API, so use getDisplayEndDate for correct display
+  const endDate = formatEventDate(getDisplayEndDate(event));
   const timeDisplay = isAllDay
     ? "Hele dag"
     : formatEventTime(event.start.dateTime, event.end.dateTime);
