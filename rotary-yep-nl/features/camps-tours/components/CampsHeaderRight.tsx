@@ -3,9 +3,8 @@
  * Shows filter count and clear button
  */
 
-import { StyleSheet, View, Pressable } from "react-native";
+import { StyleSheet, View, Pressable, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
 
 interface CampsHeaderRightProps {
@@ -32,7 +31,7 @@ export function CampsHeaderRight({
           style={[styles.activeIndicator, { backgroundColor: colors.primary }]}
         />
       )}
-      <ThemedText
+      <Text
         style={[
           styles.statsText,
           { color: colors.textSecondary },
@@ -43,7 +42,7 @@ export function CampsHeaderRight({
         ]}
       >
         {isLoading ? "Laden..." : `${filteredCount}/${totalCount}`}
-      </ThemedText>
+      </Text>
       {hasActiveFilters && (
         <Pressable
           style={({ pressed }) => [

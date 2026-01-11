@@ -30,8 +30,8 @@ export function ContactCard({ contact, onPress }: ContactCardProps) {
       ]}
     >
       <NetworkImage
-        source={contact.imageUrl}
-        fallbackName={contact.name}
+        imageUrl={contact.imageUrl}
+        name={contact.name}
         size={56}
         style={styles.avatar}
       />

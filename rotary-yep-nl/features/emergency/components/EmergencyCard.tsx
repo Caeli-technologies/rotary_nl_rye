@@ -24,16 +24,16 @@ const shadowStyle = {
 
 export function EmergencyCard({ contact }: EmergencyCardProps) {
   const { colors } = useTheme();
-  const { triggerMedium } = useHaptics();
+  const { mediumImpact } = useHaptics();
 
-  const handleCall = async () => {
-    await triggerMedium();
+  const handleCall = () => {
+    mediumImpact();
     makePhoneCall(contact.phone, contact.name);
   };
 
-  const handleEmail = async () => {
+  const handleEmail = () => {
     if (contact.email) {
-      await triggerMedium();
+      mediumImpact();
       sendEmail(contact.email, contact.name);
     }
   };

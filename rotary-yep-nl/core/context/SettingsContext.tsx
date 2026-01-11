@@ -1,5 +1,12 @@
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  type ReactNode,
+} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface SettingsContextValue {
   // App review state
@@ -17,8 +24,8 @@ interface SettingsContextValue {
 const SettingsContext = createContext<SettingsContextValue | null>(null);
 
 const STORAGE_KEYS = {
-  REVIEW_REQUESTED: 'settings:reviewRequested',
-  APP_OPEN_COUNT: 'settings:appOpenCount',
+  REVIEW_REQUESTED: "settings:reviewRequested",
+  APP_OPEN_COUNT: "settings:appOpenCount",
 } as const;
 
 interface SettingsProviderProps {
@@ -40,7 +47,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         ]);
 
         if (reviewRequested !== null) {
-          setHasRequestedReview(reviewRequested === 'true');
+          setHasRequestedReview(reviewRequested === "true");
         }
         if (openCount !== null) {
           setAppOpenCount(parseInt(openCount, 10));
@@ -68,7 +75,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
   const setReviewRequested = useCallback(async () => {
     setHasRequestedReview(true);
     try {
-      await AsyncStorage.setItem(STORAGE_KEYS.REVIEW_REQUESTED, 'true');
+      await AsyncStorage.setItem(STORAGE_KEYS.REVIEW_REQUESTED, "true");
     } catch {
       // Ignore storage errors
     }
@@ -92,7 +99,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
 export function useSettings(): SettingsContextValue {
   const context = useContext(SettingsContext);
   if (!context) {
-    throw new Error('useSettings must be used within SettingsProvider');
+    throw new Error("useSettings must be used within SettingsProvider");
   }
   return context;
 }

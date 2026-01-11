@@ -2,9 +2,8 @@
  * Camps list component with FlatList
  */
 
-import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
 import { CampCard } from "./CampCard";
 import type { Camp } from "../types";
@@ -40,14 +39,14 @@ export function CampsList({
               color={colors.textSecondary}
             />
           </View>
-          <ThemedText style={[styles.emptyTitle, { color: colors.text }]}>
+          <Text style={[styles.emptyTitle, { color: colors.text }]}>
             Geen Overeenkomende Kampen
-          </ThemedText>
-          <ThemedText
+          </Text>
+          <Text
             style={[styles.emptyText, { color: colors.textSecondary }]}
           >
             Pas je filters aan om meer resultaten te zien.
-          </ThemedText>
+          </Text>
         </View>
       );
     }
@@ -62,12 +61,12 @@ export function CampsList({
             color={colors.textSecondary}
           />
         </View>
-        <ThemedText style={[styles.emptyTitle, { color: colors.text }]}>
+        <Text style={[styles.emptyTitle, { color: colors.text }]}>
           Geen Kampen Beschikbaar
-        </ThemedText>
-        <ThemedText style={[styles.emptyText, { color: colors.textSecondary }]}>
+        </Text>
+        <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
           Er zijn momenteel geen zomerkampen beschikbaar. Kijk later nog eens!
-        </ThemedText>
+        </Text>
       </View>
     );
   };

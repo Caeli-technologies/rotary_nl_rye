@@ -2,13 +2,12 @@
  * Camp card component for displaying camp/tour information
  */
 
-import { StyleSheet, View, Pressable, Platform } from "react-native";
+import { StyleSheet, View, Pressable, Platform, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
-import { getFlagAsset } from "@/utils/flags";
+import { getFlagAsset } from "@/shared/utils/flags";
 import { isCampPast } from "../api";
 import type { Camp } from "../types";
 
@@ -50,12 +49,12 @@ export function CampCard({ camp }: CampCardProps) {
       {/* Header */}
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
-          <ThemedText
+          <Text
             style={[styles.title, { color: colors.text }]}
             numberOfLines={2}
           >
             {camp.title}
-          </ThemedText>
+          </Text>
           <View style={styles.badgeContainer}>
             {isPast && (
               <View
@@ -65,13 +64,13 @@ export function CampCard({ camp }: CampCardProps) {
                 ]}
               >
                 <Ionicons name="time" size={12} color="#fff" />
-                <ThemedText style={styles.pastBadgeText}>AFGELOPEN</ThemedText>
+                <Text style={styles.pastBadgeText}>AFGELOPEN</Text>
               </View>
             )}
             {camp.isFull && (
               <View style={[styles.fullBadge, isPast && styles.badgeSpacing]}>
                 <Ionicons name="warning" size={14} color="#fff" />
-                <ThemedText style={styles.fullBadgeText}>VOL</ThemedText>
+                <Text style={styles.fullBadgeText}>VOL</Text>
               </View>
             )}
           </View>
@@ -102,14 +101,14 @@ export function CampCard({ camp }: CampCardProps) {
             size={16}
             color={isPast ? colors.textSecondary : colors.primary}
           />
-          <ThemedText
+          <Text
             style={[
               styles.dateText,
               { color: isPast ? colors.textSecondary : colors.text },
             ]}
           >
             {camp.startDate} - {camp.endDate}
-          </ThemedText>
+          </Text>
         </View>
 
         {/* Details Grid */}
@@ -122,11 +121,11 @@ export function CampCard({ camp }: CampCardProps) {
                 size={14}
                 color={colors.textSecondary}
               />
-              <ThemedText
+              <Text
                 style={[styles.detailLabel, { color: colors.textSecondary }]}
               >
                 Land
-              </ThemedText>
+              </Text>
             </View>
             <View style={styles.countryContainer}>
               {hostCountries.map((country, index) => {
@@ -165,11 +164,11 @@ export function CampCard({ camp }: CampCardProps) {
                         />
                       </View>
                     )}
-                    <ThemedText
+                    <Text
                       style={[styles.countryText, { color: colors.text }]}
                     >
                       {country.trim()}
-                    </ThemedText>
+                    </Text>
                   </View>
                 );
               })}
@@ -184,15 +183,15 @@ export function CampCard({ camp }: CampCardProps) {
                 size={14}
                 color={colors.textSecondary}
               />
-              <ThemedText
+              <Text
                 style={[styles.detailLabel, { color: colors.textSecondary }]}
               >
                 District
-              </ThemedText>
+              </Text>
             </View>
-            <ThemedText style={[styles.detailValue, { color: colors.text }]}>
+            <Text style={[styles.detailValue, { color: colors.text }]}>
               {camp.hostDistrict}
-            </ThemedText>
+            </Text>
           </View>
 
           {/* Age and Cost */}
@@ -204,15 +203,15 @@ export function CampCard({ camp }: CampCardProps) {
                   size={14}
                   color={colors.textSecondary}
                 />
-                <ThemedText
+                <Text
                   style={[styles.detailLabel, { color: colors.textSecondary }]}
                 >
                   Leeftijd
-                </ThemedText>
+                </Text>
               </View>
-              <ThemedText style={[styles.detailValue, { color: colors.text }]}>
+              <Text style={[styles.detailValue, { color: colors.text }]}>
                 {camp.ageMin}-{camp.ageMax} jr
-              </ThemedText>
+              </Text>
             </View>
 
             <View style={styles.detailItem}>
@@ -222,15 +221,15 @@ export function CampCard({ camp }: CampCardProps) {
                   size={14}
                   color={colors.textSecondary}
                 />
-                <ThemedText
+                <Text
                   style={[styles.detailLabel, { color: colors.textSecondary }]}
                 >
                   Kosten
-                </ThemedText>
+                </Text>
               </View>
-              <ThemedText style={[styles.detailValue, { color: colors.text }]}>
+              <Text style={[styles.detailValue, { color: colors.text }]}>
                 {camp.contribution}
-              </ThemedText>
+              </Text>
             </View>
           </View>
         </View>

@@ -6,7 +6,7 @@ import {
   Label,
 } from "expo-router/unstable-native-tabs";
 import { Platform, DynamicColorIOS } from "react-native";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 
 export default function TabLayout() {
   const { colors: themeColors } = useTheme();

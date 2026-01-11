@@ -2,9 +2,8 @@
  * Reusable filter chip component
  */
 
-import { StyleSheet, Pressable, Platform } from "react-native";
+import { StyleSheet, Pressable, Platform, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
 
 interface FilterChipProps {
@@ -39,11 +38,11 @@ export function FilterChip({
         size={16}
         color={isActive ? "#FFFFFF" : colors.textSecondary}
       />
-      <ThemedText
+      <Text
         style={[styles.chipText, { color: isActive ? "#FFFFFF" : colors.text }]}
       >
         {label}
-      </ThemedText>
+      </Text>
       <Ionicons
         name="chevron-down"
         size={14}

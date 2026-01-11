@@ -10,9 +10,9 @@ import {
   ScrollView,
   Platform,
   Linking,
+  Text,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
 import {
   formatEventDate,
@@ -76,9 +76,9 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
-          <ThemedText style={[styles.headerTitle, { color: colors.text }]}>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>
             Evenement
-          </ThemedText>
+          </Text>
           <Pressable
             onPress={onClose}
             style={({ pressed }) => [
@@ -96,9 +96,9 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           showsVerticalScrollIndicator={false}
         >
           {/* Title */}
-          <ThemedText style={[styles.title, { color: colors.text }]}>
+          <Text style={[styles.title, { color: colors.text }]}>
             {event.summary}
-          </ThemedText>
+          </Text>
 
           {/* Date & Time */}
           <View style={styles.infoRow}>
@@ -113,31 +113,31 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
             <View style={styles.infoContent}>
               {isMultiDay ? (
                 <>
-                  <ThemedText style={[styles.infoText, { color: colors.text }]}>
+                  <Text style={[styles.infoText, { color: colors.text }]}>
                     {startDate} - {endDate}
-                  </ThemedText>
-                  <ThemedText
+                  </Text>
+                  <Text
                     style={[
                       styles.infoSubtext,
                       { color: colors.textSecondary },
                     ]}
                   >
                     Meerdaags evenement
-                  </ThemedText>
+                  </Text>
                 </>
               ) : (
                 <>
-                  <ThemedText style={[styles.infoText, { color: colors.text }]}>
+                  <Text style={[styles.infoText, { color: colors.text }]}>
                     {startDate}
-                  </ThemedText>
-                  <ThemedText
+                  </Text>
+                  <Text
                     style={[
                       styles.infoSubtext,
                       { color: colors.textSecondary },
                     ]}
                   >
                     {timeDisplay}
-                  </ThemedText>
+                  </Text>
                 </>
               )}
             </View>
@@ -161,14 +161,14 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
                 <Ionicons name="location" size={18} color="#FFFFFF" />
               </View>
               <View style={styles.infoContent}>
-                <ThemedText style={[styles.infoText, { color: colors.text }]}>
+                <Text style={[styles.infoText, { color: colors.text }]}>
                   {event.location}
-                </ThemedText>
-                <ThemedText
+                </Text>
+                <Text
                   style={[styles.infoSubtext, { color: colors.primary }]}
                 >
                   Open in Kaarten
-                </ThemedText>
+                </Text>
               </View>
               <Ionicons
                 name="chevron-forward"
@@ -181,23 +181,23 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           {/* Description */}
           {event.description && (
             <View style={styles.descriptionContainer}>
-              <ThemedText style={[styles.sectionTitle, { color: colors.text }]}>
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>
                 Beschrijving
-              </ThemedText>
-              <ThemedText
+              </Text>
+              <Text
                 style={[styles.description, { color: colors.textSecondary }]}
               >
                 {event.description.replace(/<[^>]*>/g, "")}
-              </ThemedText>
+              </Text>
             </View>
           )}
 
           {/* Links */}
           {links.length > 0 && (
             <View style={styles.linksContainer}>
-              <ThemedText style={[styles.sectionTitle, { color: colors.text }]}>
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>
                 Links
-              </ThemedText>
+              </Text>
               {links.map((link, index) => (
                 <Pressable
                   key={index}
@@ -211,12 +211,12 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
                   ]}
                 >
                   <Ionicons name="link" size={18} color={colors.primary} />
-                  <ThemedText
+                  <Text
                     style={[styles.linkText, { color: colors.primary }]}
                     numberOfLines={1}
                   >
                     {link}
-                  </ThemedText>
+                  </Text>
                   <Ionicons
                     name="open-outline"
                     size={16}
@@ -237,9 +237,9 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
               ]}
             >
               <Ionicons name="open-outline" size={18} color="#FFFFFF" />
-              <ThemedText style={styles.calendarButtonText}>
+              <Text style={styles.calendarButtonText}>
                 Bekijk in Google Calendar
-              </ThemedText>
+              </Text>
             </Pressable>
           )}
         </ScrollView>

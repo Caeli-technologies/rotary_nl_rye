@@ -2,13 +2,12 @@
  * Country selection modal for camps filtering
  */
 
-import { StyleSheet, View, Modal, FlatList, Pressable } from 'react-native';
+import { StyleSheet, View, Modal, FlatList, Pressable, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { ThemedText } from '@/components/ThemedText';
 import { useTheme } from '@/core/theme';
-import { getFlagAsset } from '@/utils/flags';
+import { getFlagAsset } from '@/shared/utils/flags';
 import type { CountryWithCode, FilterState } from '../types';
 
 interface CountryModalProps {
@@ -54,7 +53,7 @@ export function CountryModal({
               <Ionicons name="flag-outline" size={16} color={colors.textSecondary} />
             </View>
           )}
-          <ThemedText
+          <Text
             style={[
               styles.itemText,
               { color: colors.text },
@@ -62,7 +61,7 @@ export function CountryModal({
             ]}
           >
             {item.country}
-          </ThemedText>
+          </Text>
         </View>
         {isSelected && <Ionicons name="checkmark" size={20} color={colors.primary} />}
       </Pressable>
@@ -85,7 +84,7 @@ export function CountryModal({
           <View style={[styles.flag, styles.allCountriesIcon]}>
             <Ionicons name="globe-outline" size={14} color={colors.textSecondary} />
           </View>
-          <ThemedText
+          <Text
             style={[
               styles.itemText,
               { color: colors.text },
@@ -93,7 +92,7 @@ export function CountryModal({
             ]}
           >
             Alle landen
-          </ThemedText>
+          </Text>
         </View>
         {isSelected && <Ionicons name="checkmark" size={20} color={colors.primary} />}
       </Pressable>
@@ -109,9 +108,9 @@ export function CountryModal({
     >
       <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
-          <ThemedText style={[styles.title, { color: colors.text }]}>
+          <Text style={[styles.title, { color: colors.text }]}>
             Selecteer Land
-          </ThemedText>
+          </Text>
           <Pressable style={styles.closeButton} onPress={onClose}>
             <Ionicons name="close" size={24} color={colors.textSecondary} />
           </Pressable>

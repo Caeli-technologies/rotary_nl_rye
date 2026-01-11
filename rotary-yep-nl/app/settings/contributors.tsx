@@ -2,8 +2,8 @@ import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { NetworkImage } from "@/components/network-image";
-import { useTheme } from "@/hooks/use-theme";
+import { NetworkImage } from "@/shared/components/media/NetworkImage";
+import { useTheme } from "@/core/theme";
 const shadowStyle = {
   shadowColor: "#000",
   shadowOffset: { width: 0, height: 4 },

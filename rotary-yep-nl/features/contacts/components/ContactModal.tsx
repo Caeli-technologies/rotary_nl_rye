@@ -16,7 +16,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useTheme } from '@/core/theme';
 import { spacing } from '@/core/theme/spacing';
-import { colors as themeColors } from '@/core/theme/colors';
 import { NetworkImage } from '@/shared/components/media/NetworkImage';
 import { useHaptics } from '@/shared/hooks';
 import {
@@ -42,28 +41,28 @@ const SOCIAL_PLATFORMS = [
 
 export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
   const { colors, isDark } = useTheme();
-  const { triggerLight } = useHaptics();
+  const { lightImpact } = useHaptics();
 
-  const handleCall = useCallback(async () => {
+  const handleCall = useCallback(() => {
     if (contact?.phone) {
-      await triggerLight();
+      lightImpact();
       makePhoneCall(contact.phone, contact.name);
     }
-  }, [contact, triggerLight]);
+  }, [contact, lightImpact]);
 
-  const handleEmail = useCallback(async () => {
+  const handleEmail = useCallback(() => {
     if (contact?.email) {
-      await triggerLight();
+      lightImpact();
       sendEmail(contact.email, contact.name);
     }
-  }, [contact, triggerLight]);
+  }, [contact, lightImpact]);
 
   const handleSocialMedia = useCallback(
-    async (url: string) => {
-      await triggerLight();
+    (url: string) => {
+      lightImpact();
       openURL(url);
     },
-    [triggerLight]
+    [lightImpact]
   );
 
   if (!contact) return null;
@@ -135,8 +134,8 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
           >
             <View style={styles.profileImageContainer}>
               <NetworkImage
-                source={contact.imageUrl}
-                fallbackName={contact.name}
+                imageUrl={contact.imageUrl}
+                name={contact.name}
                 size={100}
               />
               {isRotex && (
@@ -164,7 +163,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                     source={require('@/assets/logo/rotary-logo-icon.svg')}
                     style={styles.organizationLogo}
                     contentFit="contain"
-                    tintColor={themeColors.rotary.gold}
+                    tintColor={colors.secondary}
                   />
                 </View>
               )}

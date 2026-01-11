@@ -2,9 +2,8 @@
  * Event card component for calendar events list
  */
 
-import { StyleSheet, View, Pressable, Platform } from "react-native";
+import { StyleSheet, View, Pressable, Platform, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
 import { formatEventTime, isMultiDayEvent } from "../utils";
 import type { CalendarEvent, EventWithOriginalData } from "../types";
@@ -46,24 +45,24 @@ export function EventCard({ event, onPress }: EventCardProps) {
           size={16}
           color={colors.primary}
         />
-        <ThemedText style={[styles.timeText, { color: colors.primary }]}>
+        <Text style={[styles.timeText, { color: colors.primary }]}>
           {timeDisplay}
-        </ThemedText>
+        </Text>
         {isMultiDay && (
           <View
             style={[styles.multiDayBadge, { backgroundColor: colors.primary }]}
           >
-            <ThemedText style={styles.multiDayText}>Meerdaags</ThemedText>
+            <Text style={styles.multiDayText}>Meerdaags</Text>
           </View>
         )}
       </View>
 
-      <ThemedText
+      <Text
         style={[styles.title, { color: colors.text }]}
         numberOfLines={2}
       >
         {event.summary}
-      </ThemedText>
+      </Text>
 
       {event.location && (
         <View style={styles.locationContainer}>
@@ -72,12 +71,12 @@ export function EventCard({ event, onPress }: EventCardProps) {
             size={14}
             color={colors.textSecondary}
           />
-          <ThemedText
+          <Text
             style={[styles.locationText, { color: colors.textSecondary }]}
             numberOfLines={1}
           >
             {event.location}
-          </ThemedText>
+          </Text>
         </View>
       )}
 

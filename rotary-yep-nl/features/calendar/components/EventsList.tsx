@@ -2,9 +2,8 @@
  * Events list component for displaying events on a selected date
  */
 
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/core/theme";
 import { EventCard } from "./EventCard";
 import { getEventsForDay, formatEventDate } from "../utils";
@@ -38,14 +37,14 @@ export function EventsList({
         size={48}
         color={colors.textSecondary}
       />
-      <ThemedText style={[styles.emptyTitle, { color: colors.text }]}>
+      <Text style={[styles.emptyTitle, { color: colors.text }]}>
         Geen evenementen
-      </ThemedText>
-      <ThemedText
+      </Text>
+      <Text
         style={[styles.emptySubtitle, { color: colors.textSecondary }]}
       >
         Er zijn geen evenementen gepland voor {formattedDate}
-      </ThemedText>
+      </Text>
     </View>
   );
 
@@ -53,12 +52,12 @@ export function EventsList({
     <View style={styles.headerContainer}>
       {ListHeaderComponent}
       <View style={styles.dateHeader}>
-        <ThemedText style={[styles.dateText, { color: colors.text }]}>
+        <Text style={[styles.dateText, { color: colors.text }]}>
           {formattedDate}
-        </ThemedText>
-        <ThemedText style={[styles.countText, { color: colors.textSecondary }]}>
+        </Text>
+        <Text style={[styles.countText, { color: colors.textSecondary }]}>
           {events.length} {events.length === 1 ? "evenement" : "evenementen"}
-        </ThemedText>
+        </Text>
       </View>
     </View>
   );

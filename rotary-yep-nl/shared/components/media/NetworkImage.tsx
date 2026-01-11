@@ -32,7 +32,6 @@ interface NetworkImageProps extends Omit<ImageProps, 'source'> {
   expandable?: boolean;
 }
 
-// Check if URL is valid for image loading
 function isValidImageUrl(url?: string): boolean {
   return !!(url && !url.includes('Profile_avatar_placeholder_large.png'));
 }

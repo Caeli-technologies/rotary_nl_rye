@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { Platform, Pressable, Share, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 
 export default function SettingsLayout() {
   const { colors: theme } = useTheme();

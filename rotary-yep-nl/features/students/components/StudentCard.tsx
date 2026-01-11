@@ -53,8 +53,8 @@ export function StudentCard({
     >
       <View style={styles.content}>
         <NetworkImage
-          source={student.imageUrl}
-          fallbackName={student.name}
+          imageUrl={student.imageUrl}
+          name={student.name}
           size={60}
           style={styles.avatar}
         />

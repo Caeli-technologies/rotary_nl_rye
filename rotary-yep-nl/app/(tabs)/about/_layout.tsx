@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { Platform } from "react-native";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 
 export default function AboutLayout() {
   const { colors: theme } = useTheme();

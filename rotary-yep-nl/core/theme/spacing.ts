@@ -18,6 +18,19 @@ export const spacing = {
   xxl: 32,
   /** 48px */
   xxxl: 48,
+  // Border radius aliases for convenience
+  /** 4px border radius */
+  radiusXs: 4,
+  /** 8px border radius */
+  radiusSm: 8,
+  /** 12px border radius */
+  radiusMd: 12,
+  /** 16px border radius */
+  radiusLg: 16,
+  /** 24px border radius */
+  radiusXl: 24,
+  /** Full rounded (large value) */
+  radiusFull: 9999,
 } as const;
 
 export type Spacing = typeof spacing;
