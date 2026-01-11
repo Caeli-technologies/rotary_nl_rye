@@ -6,15 +6,15 @@
 
 // Types
 export type {
-	CampTourData,
-	CsvRow,
-	FilterState,
-	CountryWithCode,
-	ThemeColors,
-	FilterChipProps,
-	TravelCardProps,
-	CountryModalProps,
-	CampsDataState,
+  CampTourData,
+  CsvRow,
+  FilterState,
+  CountryWithCode,
+  ThemeColors,
+  FilterChipProps,
+  TravelCardProps,
+  CountryModalProps,
+  CampsDataState,
 } from "./types";
 
 // Hooks

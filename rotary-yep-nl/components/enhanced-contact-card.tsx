@@ -10,145 +10,145 @@ import { ContactModal } from "./contact-modal";
 import * as Haptics from "expo-haptics";
 
 interface ContactCardProps {
-	contact: Contact | Organization | Rotex;
+  contact: Contact | Organization | Rotex;
 }
 
 // Helper functions for safe data access
 const getOrgClub = (
-	contact: Contact | Organization | Rotex,
+  contact: Contact | Organization | Rotex,
 ): string | undefined => {
-	const orgContact = contact as Organization;
-	return orgContact.club && orgContact.club.trim() !== ""
-		? orgContact.club
-		: undefined;
+  const orgContact = contact as Organization;
+  return orgContact.club && orgContact.club.trim() !== ""
+    ? orgContact.club
+    : undefined;
 };
 
 export function ContactCard({ contact }: ContactCardProps) {
-	const { colors: themeColors } = useTheme();
-	const [showDetails, setShowDetails] = useState(false);
-	const contactInfo = useContactInfo(contact);
+  const { colors: themeColors } = useTheme();
+  const [showDetails, setShowDetails] = useState(false);
+  const contactInfo = useContactInfo(contact);
 
-	const handleCardPress = useCallback(async () => {
-		if (Platform.OS === "ios") {
-			await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-		}
-		setShowDetails(true);
-	}, []);
+  const handleCardPress = useCallback(async () => {
+    if (Platform.OS === "ios") {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    setShowDetails(true);
+  }, []);
 
-	return (
-		<>
-			<Pressable
-				style={({ pressed }) => [
-					styles.card,
-					{
-						backgroundColor: themeColors.card,
-						borderColor: themeColors.border,
-					},
-					pressed && styles.cardPressed,
-				]}
-				onPress={handleCardPress}
-			>
-				<View style={styles.content}>
-					<NetworkImage
-						imageUrl={contact.imageUrl}
-						name={contact.name}
-						size={60}
-						expandable={false}
-						style={styles.contactImage}
-					/>
+  return (
+    <>
+      <Pressable
+        style={({ pressed }) => [
+          styles.card,
+          {
+            backgroundColor: themeColors.card,
+            borderColor: themeColors.border,
+          },
+          pressed && styles.cardPressed,
+        ]}
+        onPress={handleCardPress}
+      >
+        <View style={styles.content}>
+          <NetworkImage
+            imageUrl={contact.imageUrl}
+            name={contact.name}
+            size={60}
+            expandable={false}
+            style={styles.contactImage}
+          />
 
-					<View style={styles.middleSection}>
-						<Text
-							style={[styles.name, { color: themeColors.text }]}
-							numberOfLines={1}
-						>
-							{contact.name}
-						</Text>
-						{contactInfo.primaryFunction && (
-							<Text
-								style={[styles.function, { color: themeColors.textSecondary }]}
-								numberOfLines={1}
-							>
-								{contactInfo.primaryFunction}
-							</Text>
-						)}
-						{contactInfo.isOrg && getOrgClub(contact) && (
-							<Text
-								style={[
-									styles.organization,
-									{ color: themeColors.textTertiary },
-								]}
-								numberOfLines={1}
-							>
-								{getOrgClub(contact)}
-							</Text>
-						)}
-					</View>
+          <View style={styles.middleSection}>
+            <Text
+              style={[styles.name, { color: themeColors.text }]}
+              numberOfLines={1}
+            >
+              {contact.name}
+            </Text>
+            {contactInfo.primaryFunction && (
+              <Text
+                style={[styles.function, { color: themeColors.textSecondary }]}
+                numberOfLines={1}
+              >
+                {contactInfo.primaryFunction}
+              </Text>
+            )}
+            {contactInfo.isOrg && getOrgClub(contact) && (
+              <Text
+                style={[
+                  styles.organization,
+                  { color: themeColors.textTertiary },
+                ]}
+                numberOfLines={1}
+              >
+                {getOrgClub(contact)}
+              </Text>
+            )}
+          </View>
 
-					<Ionicons
-						name={
-							Platform.OS === "ios"
-								? "chevron-forward"
-								: "chevron-forward-outline"
-						}
-						size={Platform.OS === "ios" ? 20 : 24}
-						color={themeColors.textTertiary}
-					/>
-				</View>
-			</Pressable>
+          <Ionicons
+            name={
+              Platform.OS === "ios"
+                ? "chevron-forward"
+                : "chevron-forward-outline"
+            }
+            size={Platform.OS === "ios" ? 20 : 24}
+            color={themeColors.textTertiary}
+          />
+        </View>
+      </Pressable>
 
-			<ContactModal
-				contact={contact}
-				visible={showDetails}
-				onClose={() => setShowDetails(false)}
-			/>
-		</>
-	);
+      <ContactModal
+        contact={contact}
+        visible={showDetails}
+        onClose={() => setShowDetails(false)}
+      />
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
-	card: {
-		borderRadius: Platform.OS === "ios" ? 12 : 8,
-		marginHorizontal: Platform.OS === "ios" ? 0 : 16,
-		marginBottom: Platform.OS === "ios" ? 0 : 12,
-		borderBottomWidth: Platform.OS === "ios" ? 0 : StyleSheet.hairlineWidth,
-		...(Platform.OS === "ios"
-			? {
-					shadowColor: "#000",
-					shadowOffset: { width: 0, height: 4 },
-					shadowOpacity: 0.08,
-					shadowRadius: 20,
-				}
-			: {
-					elevation: 2,
-				}),
-	},
-	cardPressed: {
-		opacity: Platform.OS === "ios" ? 0.8 : 1,
-		transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
-	},
-	content: {
-		flexDirection: "row",
-		alignItems: "center",
-		padding: 16,
-		minHeight: Platform.OS === "ios" ? 80 : 88,
-	},
-	contactImage: {
-		marginRight: 16,
-	},
-	middleSection: {
-		flex: 1,
-	},
-	name: {
-		fontSize: 18,
-		fontWeight: "600",
-		marginBottom: 4,
-	},
-	function: {
-		fontSize: 14,
-		marginBottom: 2,
-	},
-	organization: {
-		fontSize: 12,
-	},
+  card: {
+    borderRadius: Platform.OS === "ios" ? 12 : 8,
+    marginHorizontal: Platform.OS === "ios" ? 0 : 16,
+    marginBottom: Platform.OS === "ios" ? 0 : 12,
+    borderBottomWidth: Platform.OS === "ios" ? 0 : StyleSheet.hairlineWidth,
+    ...(Platform.OS === "ios"
+      ? {
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 20,
+        }
+      : {
+          elevation: 2,
+        }),
+  },
+  cardPressed: {
+    opacity: Platform.OS === "ios" ? 0.8 : 1,
+    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
+  },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 16,
+    minHeight: Platform.OS === "ios" ? 80 : 88,
+  },
+  contactImage: {
+    marginRight: 16,
+  },
+  middleSection: {
+    flex: 1,
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+  function: {
+    fontSize: 14,
+    marginBottom: 2,
+  },
+  organization: {
+    fontSize: 12,
+  },
 });
