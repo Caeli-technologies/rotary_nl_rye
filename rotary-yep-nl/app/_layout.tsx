@@ -66,10 +66,6 @@ function RootLayoutNav() {
           options={{ title: "Inbound", headerBackTitle: "Home" }}
         />
         <Stack.Screen
-          name="students/inbound/student-detail"
-          options={{ title: "Student", headerBackTitle: "Terug" }}
-        />
-        <Stack.Screen
           name="students/inbound/short-term/index"
           options={{ title: "Short Term", headerBackTitle: "Inbound" }}
         />
@@ -84,6 +80,14 @@ function RootLayoutNav() {
         <Stack.Screen
           name="students/inbound/long-term/index"
           options={{ title: "Long Term", headerBackTitle: "Inbound" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/students"
+          options={{ title: "Class of 2025-26", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/student-detail"
+          options={{ title: "Student", headerBackTitle: "Terug" }}
         />
         <Stack.Screen
           name="students/inbound/long-term/welcome"
@@ -112,12 +116,16 @@ function RootLayoutNav() {
           options={{ title: "Outbound", headerBackTitle: "Home" }}
         />
         <Stack.Screen
-          name="students/outbound/student-detail"
-          options={{ title: "Student", headerBackTitle: "Terug" }}
-        />
-        <Stack.Screen
           name="students/outbound/long-term/index"
           options={{ title: "Long Term", headerBackTitle: "Outbound" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/students"
+          options={{ title: "Klas van 25-26", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/student-detail"
+          options={{ title: "Student", headerBackTitle: "Terug" }}
         />
         <Stack.Screen
           name="students/outbound/long-term/how-to-sign-up"

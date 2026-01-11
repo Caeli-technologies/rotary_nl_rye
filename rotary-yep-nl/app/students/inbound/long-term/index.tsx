@@ -88,14 +88,13 @@ export default function LongTermInboundScreen() {
     ],
   );
 
-  // TODO this needs to go to the inbound students from the /students folder data!!!
   const classOfItems: MenuItem[] = useMemo(
     () => [
       {
         title: "Class of 2025-26",
         subtitle: "Meet the incoming exchange students",
         icon: "users" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/students",
+        route: "/students/inbound/long-term/students",
         type: "class",
       },
     ],
@@ -108,35 +107,35 @@ export default function LongTermInboundScreen() {
         title: "Welcome to the Netherlands!",
         subtitle: "Important information for new students",
         icon: "door-open" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/information/welcome-in-the-netherlands",
+        route: "/students/inbound/long-term/welcome",
         type: "info",
       },
       {
         title: "Flight and Arrival",
         subtitle: "Information about traveling to the Netherlands",
         icon: "plane" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/information/flight-and-arrival",
+        route: "/students/inbound/long-term/flight-arrival",
         type: "info",
       },
       {
         title: "Language",
         subtitle: "Learning Dutch and language assistance",
         icon: "language" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/information/language",
+        route: "/students/inbound/long-term/language",
         type: "info",
       },
       {
         title: "Insurance",
         subtitle: "Healthcare and insurance information",
         icon: "umbrella" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/information/insurance",
+        route: "/students/inbound/long-term/insurance",
         type: "info",
       },
       {
         title: "Travel",
         subtitle: "Tips for exploring the Netherlands and Europe",
         icon: "passport" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/information/travel",
+        route: "/students/inbound/long-term/travel",
         type: "info",
       },
     ],
