@@ -2446,7 +2446,7 @@ SPEC CHECKSUMS:
   ExpoVideoThumbnails: 9fccaa03acb8991317d1c26909003ea2bc064d73
   ExpoWebBrowser: 88b116cd378d9609c776c0903fe4070fca461588
   FBLazyVector: e95a291ad2dadb88e42b06e0c5fb8262de53ec12
-  hermes-engine: 9f4dfe93326146a1c99eb535b1cb0b857a3cd172
+  hermes-engine: 8bb0bdb1bf49c3bbc17cf4c2d02dcc2f706ab555
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
@@ -2456,7 +2456,7 @@ SPEC CHECKSUMS:
   React: 914f8695f9bf38e6418228c2ffb70021e559f92f
   React-callinvoker: 1c0808402aee0c6d4a0d8e7220ce6547af9fba71
   React-Core: 4ae98f9e8135b8ddbd7c98730afb6fdae883db90
-  React-Core-prebuilt: 8f4cca589c14e8cf8fc6db4587ef1c2056b5c151
+  React-Core-prebuilt: de0946cae6f691ce28922b0b3fe3926ef1985204
   React-CoreModules: e878a90bb19b8f3851818af997dbae3b3b0a27ac
   React-cxxreact: 28af9844f6dc87be1385ab521fbfb3746f19563c
   React-debug: 6328c2228e268846161f10082e80dc69eac2e90a
