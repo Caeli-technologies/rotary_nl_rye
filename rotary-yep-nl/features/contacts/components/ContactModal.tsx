@@ -4,6 +4,7 @@
 
 import { useCallback } from "react";
 import { Modal, View, Text, ScrollView, Pressable, Platform, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
@@ -75,7 +76,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
       presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
-      <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={["top"]}>
         {/* Modal Handle Bar (iOS style) */}
         {Platform.OS === "ios" && (
           <View style={styles.handleContainer}>
@@ -375,7 +376,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
           {/* Bottom spacing */}
           <View style={{ height: spacing.xl }} />
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 }

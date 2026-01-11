@@ -3,7 +3,8 @@
  * Features: meeting section, recurrence info, attachments, better UX
  */
 
-import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
@@ -51,10 +52,10 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
     <Modal
       visible={visible}
       animationType="slide"
-      presentationStyle="pageSheet"
+      presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
-      <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={["top"]}>
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <Text style={[styles.headerTitle, { color: colors.text }]}>Evenement</Text>
@@ -199,7 +200,7 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           {/* Bottom padding */}
           <View style={styles.bottomPadding} />
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 }
