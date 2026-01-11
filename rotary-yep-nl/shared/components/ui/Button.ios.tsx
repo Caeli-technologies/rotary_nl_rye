@@ -10,67 +10,59 @@ import { useHaptics } from "@/shared/hooks";
 import type { ButtonProps } from "./types";
 
 export function Button({
-	title,
-	onPress,
-	variant = "primary",
-	disabled = false,
-	loading = false,
-	style,
+  title,
+  onPress,
+  variant = "primary",
+  disabled = false,
+  loading = false,
+  style,
 }: ButtonProps) {
-	const { colors } = useTheme();
-	const { lightImpact } = useHaptics();
+  const { colors } = useTheme();
+  const { lightImpact } = useHaptics();
 
-	const getButtonVariant = ():
-		| "default"
-		| "bordered"
-		| "borderless"
-		| "borderedProminent" => {
-		switch (variant) {
-			case "primary":
-				return "borderedProminent";
-			case "secondary":
-				return "bordered";
-			case "destructive":
-				return "borderedProminent";
-			default:
-				return "default";
-		}
-	};
+  const getButtonVariant = (): "default" | "bordered" | "borderless" | "borderedProminent" => {
+    switch (variant) {
+      case "primary":
+        return "borderedProminent";
+      case "secondary":
+        return "bordered";
+      case "destructive":
+        return "borderedProminent";
+      default:
+        return "default";
+    }
+  };
 
-	const handlePress = () => {
-		if (!disabled && !loading) {
-			lightImpact();
-			onPress();
-		}
-	};
+  const handlePress = () => {
+    if (!disabled && !loading) {
+      lightImpact();
+      onPress();
+    }
+  };
 
-	if (loading) {
-		return (
-			<View style={[styles.loadingContainer, style]}>
-				<ActivityIndicator size="small" color={colors.primary} />
-			</View>
-		);
-	}
+  if (loading) {
+    return (
+      <View style={[styles.loadingContainer, style]}>
+        <ActivityIndicator size="small" color={colors.primary} />
+      </View>
+    );
+  }
 
-	return (
-		<Host matchContents style={style}>
-			<ExpoButton
-				variant={getButtonVariant()}
-				disabled={disabled}
-				onPress={handlePress}
-			>
-				{title}
-			</ExpoButton>
-		</Host>
-	);
+  return (
+    <Host matchContents style={style}>
+      <ExpoButton variant={getButtonVariant()} disabled={disabled} onPress={handlePress}>
+        {title}
+      </ExpoButton>
+    </Host>
+  );
 }
 
 const styles = StyleSheet.create({
-	loadingContainer: {
-		paddingVertical: 14,
-		paddingHorizontal: 24,
-		alignItems: "center",
-		justifyContent: "center",
-		minHeight: 50,
-	},
+  loadingContainer: {
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 50,
+  },
 });

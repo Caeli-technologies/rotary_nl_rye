@@ -1,12 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  Pressable,
-  Linking,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/core/theme";
@@ -42,27 +34,11 @@ export default function FamilyToFamilyScreen() {
               },
             ]}
           >
-            <View
-              style={[
-                styles.headerIcon,
-                { backgroundColor: `${themeColors.primary}15` },
-              ]}
-            >
-              <Ionicons
-                name="home-outline"
-                size={32}
-                color={themeColors.primary}
-              />
+            <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
+              <Ionicons name="home-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
-              Family To Family
-            </Text>
-            <Text
-              style={[
-                styles.headerSubtitle,
-                { color: themeColors.textSecondary },
-              ]}
-            >
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Family To Family</Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Short Term Exchange Program (STEP) voor 2x3 of 2x4 weken
             </Text>
           </View>
@@ -70,14 +46,8 @@ export default function FamilyToFamilyScreen() {
           {/* What is it Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="help-circle-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Wat is het?
-              </Text>
+              <Ionicons name="help-circle-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Wat is het?</Text>
             </View>
 
             <View
@@ -90,16 +60,12 @@ export default function FamilyToFamilyScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.infoText, { color: themeColors.textSecondary }]}
-              >
-                De naam zegt het al, Short Term Exchange Program (STEP). Het is
-                een uitwisseling met een leeftijdgenoot in het buitenland voor
-                de korte duur van ongeveer 2x3 weken of 2x4 weken tijdens de
-                zomervakantie. Maar het is ook FAMILY TO FAMILY, wat betekent
-                dat je bij een gezin in het buitenland woont, samen met jouw
-                maatje, en dat jouw maatje samen met jou in Nederland komt
-                wonen.
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
+                De naam zegt het al, Short Term Exchange Program (STEP). Het is een uitwisseling met
+                een leeftijdgenoot in het buitenland voor de korte duur van ongeveer 2x3 weken of
+                2x4 weken tijdens de zomervakantie. Maar het is ook FAMILY TO FAMILY, wat betekent
+                dat je bij een gezin in het buitenland woont, samen met jouw maatje, en dat jouw
+                maatje samen met jou in Nederland komt wonen.
               </Text>
             </View>
           </View>
@@ -118,27 +84,14 @@ export default function FamilyToFamilyScreen() {
               ]}
             >
               <View
-                style={[
-                  styles.ageIconContainer,
-                  { backgroundColor: `${themeColors.accent}15` },
-                ]}
+                style={[styles.ageIconContainer, { backgroundColor: `${themeColors.accent}15` }]}
               >
-                <Ionicons
-                  name="calendar"
-                  size={28}
-                  color={themeColors.accent}
-                />
+                <Ionicons name="calendar" size={28} color={themeColors.accent} />
               </View>
               <View style={styles.ageContent}>
-                <Text style={[styles.ageTitle, { color: themeColors.accent }]}>
-                  15 - 19 jaar
-                </Text>
-                <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>
-                  Voor wie?
-                </Text>
-                <Text
-                  style={[styles.ageNote, { color: themeColors.textSecondary }]}
-                >
+                <Text style={[styles.ageTitle, { color: themeColors.accent }]}>15 - 19 jaar</Text>
+                <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>Voor wie?</Text>
+                <Text style={[styles.ageNote, { color: themeColors.textSecondary }]}>
                   Open minded jongeren die willen leren van anderen
                 </Text>
               </View>
@@ -148,11 +101,7 @@ export default function FamilyToFamilyScreen() {
           {/* Mission Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="flag-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="flag-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Waarom doen we dit?
               </Text>
@@ -170,28 +119,16 @@ export default function FamilyToFamilyScreen() {
             >
               <View style={styles.missionHeader}>
                 <Ionicons name="star" size={20} color={themeColors.secondary} />
-                <Text
-                  style={[
-                    styles.missionTitle,
-                    { color: themeColors.secondary },
-                  ]}
-                >
+                <Text style={[styles.missionTitle, { color: themeColors.secondary }]}>
                   Onze Missie
                 </Text>
               </View>
               <Text style={[styles.missionText, { color: themeColors.text }]}>
-                &ldquo;Jeugd in staat stellen om persoonlijk leiderschap te
-                ontwikkelen&rdquo;
+                &ldquo;Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen&rdquo;
               </Text>
-              <Text
-                style={[
-                  styles.missionSubtext,
-                  { color: themeColors.textSecondary },
-                ]}
-              >
-                Wij geloven dat leiderschap begint met leiding geven aan jezelf
-                om uiteindelijk anderen in staat te stellen zichzelf te
-                ontwikkelen.
+              <Text style={[styles.missionSubtext, { color: themeColors.textSecondary }]}>
+                Wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk
+                anderen in staat te stellen zichzelf te ontwikkelen.
               </Text>
             </View>
           </View>
@@ -199,11 +136,7 @@ export default function FamilyToFamilyScreen() {
           {/* Requirements Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="checkmark-circle-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="checkmark-circle-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Geschikt voor dit programma?
               </Text>
@@ -224,82 +157,32 @@ export default function FamilyToFamilyScreen() {
               </Text>
               <View style={styles.bulletContainer}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Open staat voor anderen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Van anderen wilt leren
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Ervaringen wilt uitwisselen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Uit je vertrouwde omgeving wilt stappen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Anderen zonder vooroordelen wilt ontmoeten
                   </Text>
                 </View>
@@ -310,14 +193,8 @@ export default function FamilyToFamilyScreen() {
           {/* Costs Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="card-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Kosten
-              </Text>
+              <Ionicons name="card-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Kosten</Text>
             </View>
 
             <View
@@ -333,12 +210,7 @@ export default function FamilyToFamilyScreen() {
               <Text style={[styles.costTitle, { color: themeColors.accent }]}>
                 €181,50 incl. BTW
               </Text>
-              <Text
-                style={[
-                  styles.costSubtitle,
-                  { color: themeColors.textSecondary },
-                ]}
-              >
+              <Text style={[styles.costSubtitle, { color: themeColors.textSecondary }]}>
                 Exclusief verzekering, ticket, zakgeld en ziektekosten
               </Text>
             </View>
@@ -347,14 +219,8 @@ export default function FamilyToFamilyScreen() {
           {/* Registration Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="mail-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Aanmelden
-              </Text>
+              <Ionicons name="mail-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Aanmelden</Text>
             </View>
 
             <View
@@ -367,9 +233,7 @@ export default function FamilyToFamilyScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.infoText, { color: themeColors.textSecondary }]}
-              >
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
                 De aanmelding voor Short Term Exchange loopt via email.
               </Text>
             </View>
@@ -384,17 +248,8 @@ export default function FamilyToFamilyScreen() {
               accessibilityRole="button"
               accessibilityLabel="Send email to interesse@rotaryyep.nl"
             >
-              <Ionicons
-                name="mail-outline"
-                size={24}
-                color={themeColors.onPrimary}
-              />
-              <Text
-                style={[
-                  styles.emailButtonText,
-                  { color: themeColors.onPrimary },
-                ]}
-              >
+              <Ionicons name="mail-outline" size={24} color={themeColors.onPrimary} />
+              <Text style={[styles.emailButtonText, { color: themeColors.onPrimary }]}>
                 interesse@rotaryyep.nl
               </Text>
             </Pressable>

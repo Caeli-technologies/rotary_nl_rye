@@ -49,20 +49,12 @@ export function CampCard({ camp }: CampCardProps) {
       {/* Header */}
       <View style={styles.cardHeader}>
         <View style={styles.titleContainer}>
-          <Text
-            style={[styles.title, { color: colors.text }]}
-            numberOfLines={2}
-          >
+          <Text style={[styles.title, { color: colors.text }]} numberOfLines={2}>
             {camp.title}
           </Text>
           <View style={styles.badgeContainer}>
             {isPast && (
-              <View
-                style={[
-                  styles.pastBadge,
-                  { backgroundColor: colors.textSecondary },
-                ]}
-              >
+              <View style={[styles.pastBadge, { backgroundColor: colors.textSecondary }]}>
                 <Ionicons name="time" size={12} color="#fff" />
                 <Text style={styles.pastBadgeText}>AFGELOPEN</Text>
               </View>
@@ -77,11 +69,7 @@ export function CampCard({ camp }: CampCardProps) {
         </View>
         {camp.invitation && camp.invitation.trim() !== "" && (
           <View style={styles.actionIndicator}>
-            <Ionicons
-              name="document-text-outline"
-              size={18}
-              color={colors.textSecondary}
-            />
+            <Ionicons name="document-text-outline" size={18} color={colors.textSecondary} />
           </View>
         )}
       </View>
@@ -101,12 +89,7 @@ export function CampCard({ camp }: CampCardProps) {
             size={16}
             color={isPast ? colors.textSecondary : colors.primary}
           />
-          <Text
-            style={[
-              styles.dateText,
-              { color: isPast ? colors.textSecondary : colors.text },
-            ]}
-          >
+          <Text style={[styles.dateText, { color: isPast ? colors.textSecondary : colors.text }]}>
             {camp.startDate} - {camp.endDate}
           </Text>
         </View>
@@ -116,38 +99,21 @@ export function CampCard({ camp }: CampCardProps) {
           {/* Country */}
           <View style={styles.detailItem}>
             <View style={styles.detailHeader}>
-              <Ionicons
-                name="location-outline"
-                size={14}
-                color={colors.textSecondary}
-              />
-              <Text
-                style={[styles.detailLabel, { color: colors.textSecondary }]}
-              >
-                Land
-              </Text>
+              <Ionicons name="location-outline" size={14} color={colors.textSecondary} />
+              <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Land</Text>
             </View>
             <View style={styles.countryContainer}>
               {hostCountries.map((country, index) => {
                 const countryCode = hostCountryCodes[index];
-                const flagAsset = countryCode
-                  ? getFlagAsset(countryCode.toLowerCase())
-                  : null;
+                const flagAsset = countryCode ? getFlagAsset(countryCode.toLowerCase()) : null;
 
                 return (
                   <View
                     key={`${country.trim()}-${index}`}
-                    style={[
-                      styles.countryItem,
-                      { backgroundColor: colors.backgroundElevated },
-                    ]}
+                    style={[styles.countryItem, { backgroundColor: colors.backgroundElevated }]}
                   >
                     {flagAsset && (
-                      <Image
-                        source={flagAsset}
-                        style={styles.flag}
-                        contentFit="cover"
-                      />
+                      <Image source={flagAsset} style={styles.flag} contentFit="cover" />
                     )}
                     {!flagAsset && countryCode && (
                       <View
@@ -157,11 +123,7 @@ export function CampCard({ camp }: CampCardProps) {
                           { backgroundColor: colors.background },
                         ]}
                       >
-                        <Ionicons
-                          name="flag-outline"
-                          size={10}
-                          color={colors.textSecondary}
-                        />
+                        <Ionicons name="flag-outline" size={10} color={colors.textSecondary} />
                       </View>
                     )}
                     <Text style={[styles.countryText, { color: colors.text }]}>
@@ -176,36 +138,18 @@ export function CampCard({ camp }: CampCardProps) {
           {/* District */}
           <View style={styles.detailItem}>
             <View style={styles.detailHeader}>
-              <Ionicons
-                name="business-outline"
-                size={14}
-                color={colors.textSecondary}
-              />
-              <Text
-                style={[styles.detailLabel, { color: colors.textSecondary }]}
-              >
-                District
-              </Text>
+              <Ionicons name="business-outline" size={14} color={colors.textSecondary} />
+              <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>District</Text>
             </View>
-            <Text style={[styles.detailValue, { color: colors.text }]}>
-              {camp.hostDistrict}
-            </Text>
+            <Text style={[styles.detailValue, { color: colors.text }]}>{camp.hostDistrict}</Text>
           </View>
 
           {/* Age and Cost */}
           <View style={styles.detailRow}>
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons
-                  name="people-outline"
-                  size={14}
-                  color={colors.textSecondary}
-                />
-                <Text
-                  style={[styles.detailLabel, { color: colors.textSecondary }]}
-                >
-                  Leeftijd
-                </Text>
+                <Ionicons name="people-outline" size={14} color={colors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Leeftijd</Text>
               </View>
               <Text style={[styles.detailValue, { color: colors.text }]}>
                 {camp.ageMin}-{camp.ageMax} jr
@@ -214,20 +158,10 @@ export function CampCard({ camp }: CampCardProps) {
 
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons
-                  name="card-outline"
-                  size={14}
-                  color={colors.textSecondary}
-                />
-                <Text
-                  style={[styles.detailLabel, { color: colors.textSecondary }]}
-                >
-                  Kosten
-                </Text>
+                <Ionicons name="card-outline" size={14} color={colors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Kosten</Text>
               </View>
-              <Text style={[styles.detailValue, { color: colors.text }]}>
-                {camp.contribution}
-              </Text>
+              <Text style={[styles.detailValue, { color: colors.text }]}>{camp.contribution}</Text>
             </View>
           </View>
         </View>

@@ -3,12 +3,7 @@
  */
 
 import { useMemo } from "react";
-import {
-  clubSections,
-  getSectionById,
-  getSectionContent,
-  introText,
-} from "../data";
+import { clubSections, getSectionById, getSectionContent, introText } from "../data";
 import type { ClubSectionNavItem, SectionPageContent } from "../types";
 
 /**

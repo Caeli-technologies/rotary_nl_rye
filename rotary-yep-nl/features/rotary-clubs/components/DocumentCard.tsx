@@ -45,18 +45,11 @@ export function DocumentCard({ document, onPress }: DocumentCardProps) {
       accessibilityHint="Tap to view PDF in document viewer"
     >
       <View style={styles.content}>
-        <View
-          style={[
-            styles.iconContainer,
-            { backgroundColor: colors.primary + "15" },
-          ]}
-        >
+        <View style={[styles.iconContainer, { backgroundColor: colors.primary + "15" }]}>
           <FontAwesome5 name={document.icon} size={20} color={colors.link} />
         </View>
         <View style={styles.textContainer}>
-          <Text style={[styles.title, { color: colors.text }]}>
-            {document.title}
-          </Text>
+          <Text style={[styles.title, { color: colors.text }]}>{document.title}</Text>
           <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
             Tik om PDF te openen
           </Text>

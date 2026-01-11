@@ -10,12 +10,7 @@
 export { NewsCard, NewsDetail, NewsList } from "./components";
 
 // Hooks
-export {
-	useNews,
-	useNewsItem,
-	useSearchNews,
-	useNewsFilteredByType,
-} from "./hooks";
+export { useNews, useNewsItem, useSearchNews, useNewsFilteredByType } from "./hooks";
 
 // API
 export { fetchNewsItems, fetchNewsItemById, refreshNews } from "./api";

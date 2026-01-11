@@ -2,14 +2,7 @@
  * Country selection modal for camps filtering
  */
 
-import {
-  StyleSheet,
-  View,
-  Modal,
-  FlatList,
-  Pressable,
-  Text,
-} from "react-native";
+import { StyleSheet, View, Modal, FlatList, Pressable, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -47,14 +40,8 @@ export function CountryModal({
       <Pressable
         style={({ pressed }) => [
           styles.item,
-          isSelected && [
-            styles.itemSelected,
-            { backgroundColor: colors.backgroundElevated },
-          ],
-          pressed && [
-            styles.itemPressed,
-            { backgroundColor: colors.backgroundElevated },
-          ],
+          isSelected && [styles.itemSelected, { backgroundColor: colors.backgroundElevated }],
+          pressed && [styles.itemPressed, { backgroundColor: colors.backgroundElevated }],
         ]}
         onPress={() => handleSelectCountry(item.country)}
       >
@@ -63,26 +50,16 @@ export function CountryModal({
             <Image source={flagAsset} style={styles.flag} contentFit="cover" />
           ) : (
             <View style={[styles.flag, styles.flagPlaceholder]}>
-              <Ionicons
-                name="flag-outline"
-                size={16}
-                color={colors.textSecondary}
-              />
+              <Ionicons name="flag-outline" size={16} color={colors.textSecondary} />
             </View>
           )}
           <Text
-            style={[
-              styles.itemText,
-              { color: colors.text },
-              isSelected && styles.itemTextSelected,
-            ]}
+            style={[styles.itemText, { color: colors.text }, isSelected && styles.itemTextSelected]}
           >
             {item.country}
           </Text>
         </View>
-        {isSelected && (
-          <Ionicons name="checkmark" size={20} color={colors.primary} />
-        )}
+        {isSelected && <Ionicons name="checkmark" size={20} color={colors.primary} />}
       </Pressable>
     );
   };
@@ -94,38 +71,22 @@ export function CountryModal({
       <Pressable
         style={({ pressed }) => [
           styles.item,
-          isSelected && [
-            styles.itemSelected,
-            { backgroundColor: colors.backgroundElevated },
-          ],
-          pressed && [
-            styles.itemPressed,
-            { backgroundColor: colors.backgroundElevated },
-          ],
+          isSelected && [styles.itemSelected, { backgroundColor: colors.backgroundElevated }],
+          pressed && [styles.itemPressed, { backgroundColor: colors.backgroundElevated }],
         ]}
         onPress={() => handleSelectCountry("")}
       >
         <View style={styles.itemContent}>
           <View style={[styles.flag, styles.allCountriesIcon]}>
-            <Ionicons
-              name="globe-outline"
-              size={14}
-              color={colors.textSecondary}
-            />
+            <Ionicons name="globe-outline" size={14} color={colors.textSecondary} />
           </View>
           <Text
-            style={[
-              styles.itemText,
-              { color: colors.text },
-              isSelected && styles.itemTextSelected,
-            ]}
+            style={[styles.itemText, { color: colors.text }, isSelected && styles.itemTextSelected]}
           >
             Alle landen
           </Text>
         </View>
-        {isSelected && (
-          <Ionicons name="checkmark" size={20} color={colors.primary} />
-        )}
+        {isSelected && <Ionicons name="checkmark" size={20} color={colors.primary} />}
       </Pressable>
     );
   };
@@ -137,13 +98,9 @@ export function CountryModal({
       presentationStyle="pageSheet"
       onRequestClose={onClose}
     >
-      <SafeAreaView
-        style={[styles.container, { backgroundColor: colors.background }]}
-      >
+      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
-          <Text style={[styles.title, { color: colors.text }]}>
-            Selecteer Land
-          </Text>
+          <Text style={[styles.title, { color: colors.text }]}>Selecteer Land</Text>
           <Pressable style={styles.closeButton} onPress={onClose}>
             <Ionicons name="close" size={24} color={colors.textSecondary} />
           </Pressable>

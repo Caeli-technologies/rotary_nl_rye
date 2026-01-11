@@ -7,11 +7,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/core/theme";
 import { EventCard } from "./EventCard";
-import {
-  getDisplayDate,
-  getEventsForDay,
-  sortEventsByTime,
-} from "../utils/dateUtils";
+import { getDisplayDate, getEventsForDay, sortEventsByTime } from "../utils/dateUtils";
 import type { CalendarEvent, EventsData } from "../types";
 
 interface EventsListProps {
@@ -38,17 +34,10 @@ export function EventsList({
 
   const renderEmptyState = () => (
     <View style={styles.emptyContainer}>
-      <View
-        style={[
-          styles.emptyIconContainer,
-          { backgroundColor: colors.primary + "15" },
-        ]}
-      >
+      <View style={[styles.emptyIconContainer, { backgroundColor: colors.primary + "15" }]}>
         <Ionicons name="calendar-outline" size={40} color={colors.primary} />
       </View>
-      <Text style={[styles.emptyTitle, { color: colors.text }]}>
-        Geen evenementen
-      </Text>
+      <Text style={[styles.emptyTitle, { color: colors.text }]}>Geen evenementen</Text>
       <Text style={[styles.emptySubtitle, { color: colors.textSecondary }]}>
         Er zijn geen evenementen gepland voor deze dag
       </Text>
@@ -60,14 +49,10 @@ export function EventsList({
       {ListHeaderComponent}
       <View style={[styles.dateHeader, { borderBottomColor: colors.border }]}>
         <View style={styles.dateInfo}>
-          <Text style={[styles.dateText, { color: colors.text }]}>
-            {displayDate}
-          </Text>
+          <Text style={[styles.dateText, { color: colors.text }]}>{displayDate}</Text>
         </View>
         {events.length > 0 && (
-          <View
-            style={[styles.countBadge, { backgroundColor: colors.primary }]}
-          >
+          <View style={[styles.countBadge, { backgroundColor: colors.primary }]}>
             <Text style={styles.countText}>{events.length}</Text>
           </View>
         )}

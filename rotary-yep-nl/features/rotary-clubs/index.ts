@@ -6,12 +6,7 @@
  */
 
 // Components
-export {
-  SectionNavCard,
-  InfoSectionCard,
-  DocumentCard,
-  SectionPageView,
-} from "./components";
+export { SectionNavCard, InfoSectionCard, DocumentCard, SectionPageView } from "./components";
 
 // Hooks
 export { useClubSections, useClubSection, useSectionContent } from "./hooks";
@@ -31,12 +26,7 @@ export {
 } from "./data";
 
 // Types
-export type {
-  ClubSectionNavItem,
-  InfoSection,
-  DocumentItem,
-  SectionPageContent,
-} from "./types";
+export type { ClubSectionNavItem, InfoSection, DocumentItem, SectionPageContent } from "./types";
 
 // Utilities
 export { generateId } from "./types";

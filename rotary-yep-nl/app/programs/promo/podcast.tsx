@@ -1,12 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Pressable, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
@@ -139,25 +132,17 @@ function PodcastRow({
             name={playbackState.buttonIcon}
             size={24}
             color={
-              isActive && !playbackState.isLoaded
-                ? themeColors.textTertiary
-                : themeColors.primary
+              isActive && !playbackState.isLoaded ? themeColors.textTertiary : themeColors.primary
             }
           />
         </View>
 
         <View style={styles.podcastInfo}>
-          <Text
-            style={[styles.podcastTitle, { color: themeColors.text }]}
-            numberOfLines={2}
-          >
+          <Text style={[styles.podcastTitle, { color: themeColors.text }]} numberOfLines={2}>
             {podcast.title}
           </Text>
           <Text
-            style={[
-              styles.podcastDescription,
-              { color: themeColors.textSecondary },
-            ]}
+            style={[styles.podcastDescription, { color: themeColors.textSecondary }]}
             numberOfLines={3}
           >
             {podcast.description}
@@ -167,9 +152,7 @@ function PodcastRow({
             <>
               {/* Status indicator */}
               {playbackState.statusMessage && (
-                <Text
-                  style={[styles.statusText, { color: themeColors.primary }]}
-                >
+                <Text style={[styles.statusText, { color: themeColors.primary }]}>
                   {playbackState.statusMessage}
                 </Text>
               )}
@@ -177,12 +160,7 @@ function PodcastRow({
               {/* Progress bar */}
               {playbackState.showProgress && (
                 <>
-                  <View
-                    style={[
-                      styles.progressBar,
-                      { backgroundColor: themeColors.border },
-                    ]}
-                  >
+                  <View style={[styles.progressBar, { backgroundColor: themeColors.border }]}>
                     <View
                       style={[
                         styles.progressFill,
@@ -194,20 +172,10 @@ function PodcastRow({
                     />
                   </View>
                   <View style={styles.timeInfo}>
-                    <Text
-                      style={[
-                        styles.timeText,
-                        { color: themeColors.textSecondary },
-                      ]}
-                    >
+                    <Text style={[styles.timeText, { color: themeColors.textSecondary }]}>
                       {formatTime(playbackState.currentTime)}
                     </Text>
-                    <Text
-                      style={[
-                        styles.timeText,
-                        { color: themeColors.textSecondary },
-                      ]}
-                    >
+                    <Text style={[styles.timeText, { color: themeColors.textSecondary }]}>
                       {formatTime(playbackState.duration)}
                     </Text>
                   </View>
@@ -267,38 +235,17 @@ export default function PodcastPromo() {
       edges={["bottom"]}
     >
       <ScrollView
-        contentContainerStyle={[
-          styles.container,
-          { backgroundColor: themeColors.background },
-        ]}
+        contentContainerStyle={[styles.container, { backgroundColor: themeColors.background }]}
       >
         {/* Header */}
-        <View
-          style={[styles.headerSection, { backgroundColor: themeColors.card }]}
-        >
-          <View
-            style={[
-              styles.headerIcon,
-              { backgroundColor: `${themeColors.primary}15` },
-            ]}
-          >
-            <Ionicons
-              name="headset-outline"
-              size={32}
-              color={themeColors.primary}
-            />
+        <View style={[styles.headerSection, { backgroundColor: themeColors.card }]}>
+          <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
+            <Ionicons name="headset-outline" size={32} color={themeColors.primary} />
           </View>
-          <Text style={[styles.headerTitle, { color: themeColors.text }]}>
-            Promo Podcast
-          </Text>
-          <Text
-            style={[
-              styles.headerSubtitle,
-              { color: themeColors.textSecondary },
-            ]}
-          >
-            Hoe is het nou om een paar maanden ouders te zijn van een exchange
-            student? Luister naar de ervaringen van gastouders.
+          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Promo Podcast</Text>
+          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
+            Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Luister naar
+            de ervaringen van gastouders.
           </Text>
         </View>
 

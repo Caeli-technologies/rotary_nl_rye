@@ -11,9 +11,7 @@ import type { ConferenceData } from "../types";
 /**
  * Open meeting link in external app
  */
-export async function openMeetingLink(
-  conference: ConferenceData,
-): Promise<boolean> {
+export async function openMeetingLink(conference: ConferenceData): Promise<boolean> {
   const link = conference.meetingLink;
   if (!link) return false;
 
@@ -94,10 +92,7 @@ export function formatPhoneNumber(number: string): string {
 /**
  * Dial phone number
  */
-export async function dialPhoneNumber(
-  number: string,
-  pin?: string,
-): Promise<boolean> {
+export async function dialPhoneNumber(number: string, pin?: string): Promise<boolean> {
   const cleanNumber = number.replace(/[^+\d]/g, "");
 
   // Add pin as DTMF tones if provided (not all phones support this)
@@ -135,20 +130,14 @@ export function getMeetingTypeIcon(conference: ConferenceData): string {
  * Get meeting provider display name
  */
 export function getMeetingProviderName(conference: ConferenceData): string {
-  return (
-    conference.name ||
-    (conference.type === "googleMeet" ? "Google Meet" : "Video Meeting")
-  );
+  return conference.name || (conference.type === "googleMeet" ? "Google Meet" : "Video Meeting");
 }
 
 /**
  * Check if conference has dial-in options
  */
 export function hasDialInOptions(conference: ConferenceData): boolean {
-  return (
-    conference.dialInNumbers.length > 0 ||
-    conference.phoneEntryPoints.length > 0
-  );
+  return conference.dialInNumbers.length > 0 || conference.phoneEntryPoints.length > 0;
 }
 
 /**

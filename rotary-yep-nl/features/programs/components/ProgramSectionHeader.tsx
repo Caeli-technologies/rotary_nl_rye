@@ -2,9 +2,9 @@
  * Program section header component
  */
 
-import { View, Text, StyleSheet } from 'react-native';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
+import { View, Text, StyleSheet } from "react-native";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
 
 interface ProgramSectionHeaderProps {
   title: string;
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: spacing.xs,
   },
   divider: {

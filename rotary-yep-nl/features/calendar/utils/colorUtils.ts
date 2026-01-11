@@ -2,11 +2,7 @@
  * Color utilities for calendar events
  */
 
-import {
-  type CalendarEvent,
-  type EventColor,
-  GOOGLE_CALENDAR_COLORS,
-} from "../types";
+import { type CalendarEvent, type EventColor, GOOGLE_CALENDAR_COLORS } from "../types";
 
 // Default Rotary Royal Blue
 const DEFAULT_EVENT_COLOR = "#17458f";
@@ -59,10 +55,7 @@ export function lightenColor(color: string, amount: number = 0.3): string {
 /**
  * Get unique colors for multi-dot display (max 3)
  */
-export function getUniqueEventColors(
-  events: CalendarEvent[],
-  maxDots: number = 3,
-): string[] {
+export function getUniqueEventColors(events: CalendarEvent[], maxDots: number = 3): string[] {
   const colors = new Set<string>();
 
   for (const event of events) {

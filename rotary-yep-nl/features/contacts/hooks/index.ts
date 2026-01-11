@@ -8,4 +8,4 @@ export {
   useContact,
   useSearchContacts,
   useContactCounts,
-} from './useContacts';
+} from "./useContacts";

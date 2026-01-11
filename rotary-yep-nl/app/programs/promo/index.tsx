@@ -1,12 +1,5 @@
 import { useCallback } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Pressable, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -26,8 +19,7 @@ const items = [
     key: "video",
     title: "Video's",
     subtitle: "Promotievideo's",
-    description:
-      "Bekijk inspirerende video's over het Youth Exchange programma",
+    description: "Bekijk inspirerende video's over het Youth Exchange programma",
     icon: "videocam-outline",
     route: "/programs/promo/video",
   },
@@ -38,8 +30,7 @@ export default function PromoIndex() {
 
   const onPress = useCallback(async (route: string) => {
     try {
-      if (Platform.OS === "ios")
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (Platform.OS === "ios") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
     } catch {
       router.push(route as any);
@@ -52,38 +43,16 @@ export default function PromoIndex() {
       edges={["bottom"]}
     >
       <ScrollView
-        contentContainerStyle={[
-          styles.container,
-          { backgroundColor: themeColors.background },
-        ]}
+        contentContainerStyle={[styles.container, { backgroundColor: themeColors.background }]}
       >
         {/* Header Section */}
-        <View
-          style={[styles.headerSection, { backgroundColor: themeColors.card }]}
-        >
-          <View
-            style={[
-              styles.headerIcon,
-              { backgroundColor: `${themeColors.primary}15` },
-            ]}
-          >
-            <Ionicons
-              name="megaphone-outline"
-              size={32}
-              color={themeColors.primary}
-            />
+        <View style={[styles.headerSection, { backgroundColor: themeColors.card }]}>
+          <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
+            <Ionicons name="megaphone-outline" size={32} color={themeColors.primary} />
           </View>
-          <Text style={[styles.headerTitle, { color: themeColors.text }]}>
-            Promo Materiaal
-          </Text>
-          <Text
-            style={[
-              styles.headerSubtitle,
-              { color: themeColors.textSecondary },
-            ]}
-          >
-            Ontdek inspirerende verhalen en materialen over het Youth Exchange
-            programma
+          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Promo Materiaal</Text>
+          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
+            Ontdek inspirerende verhalen en materialen over het Youth Exchange programma
           </Text>
         </View>
 
@@ -106,41 +75,21 @@ export default function PromoIndex() {
             accessibilityHint="Tap to view details"
           >
             <View style={styles.cardContent}>
-              <View
-                style={[
-                  styles.iconContainer,
-                  { backgroundColor: `${themeColors.primary}15` },
-                ]}
-              >
-                <Ionicons
-                  name={item.icon as any}
-                  size={28}
-                  color={themeColors.primary}
-                />
+              <View style={[styles.iconContainer, { backgroundColor: `${themeColors.primary}15` }]}>
+                <Ionicons name={item.icon as any} size={28} color={themeColors.primary} />
               </View>
               <View style={styles.cardText}>
-                <Text style={[styles.cardTitle, { color: themeColors.text }]}>
-                  {item.title}
-                </Text>
-                <Text
-                  style={[styles.cardSubtitle, { color: themeColors.primary }]}
-                >
+                <Text style={[styles.cardTitle, { color: themeColors.text }]}>{item.title}</Text>
+                <Text style={[styles.cardSubtitle, { color: themeColors.primary }]}>
                   {item.subtitle}
                 </Text>
-                <Text
-                  style={[
-                    styles.cardDescription,
-                    { color: themeColors.textSecondary },
-                  ]}
-                >
+                <Text style={[styles.cardDescription, { color: themeColors.textSecondary }]}>
                   {item.description}
                 </Text>
               </View>
               <View style={styles.chevronContainer}>
                 <Ionicons
-                  name={
-                    Platform.OS === "ios" ? "chevron-forward" : "arrow-forward"
-                  }
+                  name={Platform.OS === "ios" ? "chevron-forward" : "arrow-forward"}
                   size={20}
                   color={themeColors.textTertiary}
                 />

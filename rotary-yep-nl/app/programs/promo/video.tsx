@@ -54,8 +54,7 @@ function VideoRow({
 
   const onPress = async () => {
     try {
-      if (Platform.OS === "ios")
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (Platform.OS === "ios") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       onPlayRequest(video);
     } catch {
       onPlayRequest(video);
@@ -80,43 +79,18 @@ function VideoRow({
       <View style={styles.videoPreview}>
         {thumbnailLoading ? (
           <View
-            style={[
-              styles.thumbnailLoading,
-              { backgroundColor: themeColors.backgroundElevated },
-            ]}
+            style={[styles.thumbnailLoading, { backgroundColor: themeColors.backgroundElevated }]}
           >
-            <Ionicons
-              name="image-outline"
-              size={48}
-              color={themeColors.textTertiary}
-            />
-            <Text
-              style={[
-                styles.loadingThumbnailText,
-                { color: themeColors.textSecondary },
-              ]}
-            >
+            <Ionicons name="image-outline" size={48} color={themeColors.textTertiary} />
+            <Text style={[styles.loadingThumbnailText, { color: themeColors.textSecondary }]}>
               Thumbnail laden...
             </Text>
           </View>
         ) : thumbnailUri ? (
-          <Image
-            source={{ uri: thumbnailUri }}
-            style={styles.thumbnail}
-            resizeMode="cover"
-          />
+          <Image source={{ uri: thumbnailUri }} style={styles.thumbnail} resizeMode="cover" />
         ) : (
-          <View
-            style={[
-              styles.thumbnailFallback,
-              { backgroundColor: themeColors.primary },
-            ]}
-          >
-            <Ionicons
-              name="videocam-outline"
-              size={48}
-              color={themeColors.onPrimary}
-            />
+          <View style={[styles.thumbnailFallback, { backgroundColor: themeColors.primary }]}>
+            <Ionicons name="videocam-outline" size={48} color={themeColors.onPrimary} />
           </View>
         )}
         <View style={styles.playButtonOverlay}>
@@ -126,15 +100,8 @@ function VideoRow({
         </View>
       </View>
       <View style={[styles.videoInfo, { backgroundColor: themeColors.card }]}>
-        <Text style={[styles.videoTitle, { color: themeColors.text }]}>
-          {video.title}
-        </Text>
-        <Text
-          style={[
-            styles.videoDescription,
-            { color: themeColors.textSecondary },
-          ]}
-        >
+        <Text style={[styles.videoTitle, { color: themeColors.text }]}>{video.title}</Text>
+        <Text style={[styles.videoDescription, { color: themeColors.textSecondary }]}>
           {video.description}
         </Text>
       </View>
@@ -145,8 +112,7 @@ function VideoRow({
 const videos: Video[] = [
   {
     title: "Waarom op exchange",
-    description:
-      "Van Rotex - ontdek waarom een exchange ervaring zo waardevol is.",
+    description: "Van Rotex - ontdek waarom een exchange ervaring zo waardevol is.",
     url: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/Rotary_Promo_Short.mp4",
   },
   {
@@ -187,38 +153,16 @@ export default function VideoPromo() {
       edges={["bottom"]}
     >
       <ScrollView
-        contentContainerStyle={[
-          styles.container,
-          { backgroundColor: themeColors.background },
-        ]}
+        contentContainerStyle={[styles.container, { backgroundColor: themeColors.background }]}
       >
         {/* Header Section */}
-        <View
-          style={[styles.headerSection, { backgroundColor: themeColors.card }]}
-        >
-          <View
-            style={[
-              styles.headerIcon,
-              { backgroundColor: themeColors.primary + "15" },
-            ]}
-          >
-            <Ionicons
-              name="videocam-outline"
-              size={32}
-              color={themeColors.primary}
-            />
+        <View style={[styles.headerSection, { backgroundColor: themeColors.card }]}>
+          <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + "15" }]}>
+            <Ionicons name="videocam-outline" size={32} color={themeColors.primary} />
           </View>
-          <Text style={[styles.headerTitle, { color: themeColors.text }]}>
-            Promo Video&apos;s
-          </Text>
-          <Text
-            style={[
-              styles.headerSubtitle,
-              { color: themeColors.textSecondary },
-            ]}
-          >
-            Ontdek inspirerende verhalen en ervaringen van Youth Exchange
-            studenten
+          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Promo Video&apos;s</Text>
+          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
+            Ontdek inspirerende verhalen en ervaringen van Youth Exchange studenten
           </Text>
         </View>
 
@@ -243,16 +187,10 @@ export default function VideoPromo() {
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}
       >
-        <SafeAreaView
-          style={styles.videoModalContainer}
-          edges={["top", "bottom", "left", "right"]}
-        >
+        <SafeAreaView style={styles.videoModalContainer} edges={["top", "bottom", "left", "right"]}>
           <View style={styles.videoModalHeader}>
             <Pressable
-              style={({ pressed }) => [
-                styles.closeButton,
-                pressed && { opacity: 0.8 },
-              ]}
+              style={({ pressed }) => [styles.closeButton, pressed && { opacity: 0.8 }]}
               onPress={handleCloseVideo}
               accessibilityRole="button"
               accessibilityLabel="Close video"
@@ -264,9 +202,7 @@ export default function VideoPromo() {
           <View style={styles.videoContainer}>
             {status === "loading" && (
               <View style={styles.loadingContainer}>
-                <Text style={[styles.loadingText, { color: "white" }]}>
-                  Video laden...
-                </Text>
+                <Text style={[styles.loadingText, { color: "white" }]}>Video laden...</Text>
               </View>
             )}
             <VideoView
@@ -280,12 +216,8 @@ export default function VideoPromo() {
           </View>
 
           <View style={styles.videoInfoModal}>
-            <Text style={[styles.videoTitleModal, { color: "white" }]}>
-              {selectedVideo?.title}
-            </Text>
-            <Text style={styles.videoSubtitleModal}>
-              {selectedVideo?.description}
-            </Text>
+            <Text style={[styles.videoTitleModal, { color: "white" }]}>{selectedVideo?.title}</Text>
+            <Text style={styles.videoSubtitleModal}>{selectedVideo?.description}</Text>
           </View>
         </SafeAreaView>
       </Modal>

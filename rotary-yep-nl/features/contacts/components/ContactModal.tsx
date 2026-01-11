@@ -3,26 +3,14 @@
  */
 
 import { useCallback } from "react";
-import {
-  Modal,
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  Platform,
-  StyleSheet,
-} from "react-native";
+import { Modal, View, Text, ScrollView, Pressable, Platform, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
 import { NetworkImage } from "@/shared/components/media/NetworkImage";
 import { useHaptics } from "@/shared/hooks";
-import {
-  makePhoneCall,
-  sendEmail,
-  openURL,
-} from "@/shared/utils/communications";
+import { makePhoneCall, sendEmail, openURL } from "@/shared/utils/communications";
 import type { Contact } from "../types";
 
 interface ContactModalProps {
@@ -72,14 +60,11 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
   const hasContact = Boolean(contact.email || contact.phone);
   const hasBio = Boolean(contact.bio?.trim());
   const hasSocialMedia =
-    contact.socialMedia &&
-    Object.values(contact.socialMedia).some((v) => v?.trim());
+    contact.socialMedia && Object.values(contact.socialMedia).some((v) => v?.trim());
 
   const validSocialPlatforms = hasSocialMedia
     ? SOCIAL_PLATFORMS.filter((p) =>
-        contact.socialMedia?.[
-          p.key as keyof typeof contact.socialMedia
-        ]?.trim(),
+        contact.socialMedia?.[p.key as keyof typeof contact.socialMedia]?.trim(),
       )
     : [];
 
@@ -94,25 +79,15 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
         {/* Modal Handle Bar (iOS style) */}
         {Platform.OS === "ios" && (
           <View style={styles.handleContainer}>
-            <View
-              style={[
-                styles.handleBar,
-                { backgroundColor: colors.textTertiary },
-              ]}
-            />
+            <View style={[styles.handleBar, { backgroundColor: colors.textTertiary }]} />
           </View>
         )}
 
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>
-            Contact Details
-          </Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Contact Details</Text>
           <Pressable
-            style={({ pressed }) => [
-              styles.closeButton,
-              pressed && styles.closeButtonPressed,
-            ]}
+            style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}
             onPress={onClose}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
@@ -137,11 +112,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
             ]}
           >
             <View style={styles.profileImageContainer}>
-              <NetworkImage
-                imageUrl={contact.imageUrl}
-                name={contact.name}
-                size={100}
-              />
+              <NetworkImage imageUrl={contact.imageUrl} name={contact.name} size={100} />
               {isRotex && (
                 <View
                   style={[
@@ -179,9 +150,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
               )}
             </View>
 
-            <Text style={[styles.profileName, { color: colors.primary }]}>
-              {contact.name}
-            </Text>
+            <Text style={[styles.profileName, { color: colors.primary }]}>{contact.name}</Text>
 
             {contact.functions && contact.functions.length > 0 && (
               <View style={styles.functionsContainer}>
@@ -190,16 +159,9 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                   .map((func) => (
                     <View
                       key={func}
-                      style={[
-                        styles.functionChip,
-                        { backgroundColor: colors.primary },
-                      ]}
+                      style={[styles.functionChip, { backgroundColor: colors.primary }]}
                     >
-                      <Text
-                        style={[styles.functionText, { color: colors.card }]}
-                      >
-                        {func}
-                      </Text>
+                      <Text style={[styles.functionText, { color: colors.card }]}>{func}</Text>
                     </View>
                   ))}
               </View>
@@ -218,29 +180,13 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View
-                style={[
-                  styles.sectionHeader,
-                  { borderBottomColor: colors.border },
-                ]}
-              >
-                <Ionicons
-                  name="business-outline"
-                  size={20}
-                  color={colors.primary}
-                />
-                <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                  Organization
-                </Text>
+              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
+                <Ionicons name="business-outline" size={20} color={colors.primary} />
+                <Text style={[styles.sectionTitle, { color: colors.text }]}>Organization</Text>
               </View>
               <View style={styles.sectionContent}>
                 {contact.club && (
-                  <View
-                    style={[
-                      styles.infoRow,
-                      { backgroundColor: colors.backgroundElevated },
-                    ]}
-                  >
+                  <View style={[styles.infoRow, { backgroundColor: colors.backgroundElevated }]}>
                     <View
                       style={[
                         styles.infoIconContainer,
@@ -255,46 +201,22 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                       />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text
-                        style={[
-                          styles.infoLabel,
-                          { color: colors.textSecondary },
-                        ]}
-                      >
+                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
                         Rotary Club
                       </Text>
-                      <Text style={[styles.infoText, { color: colors.text }]}>
-                        {contact.club}
-                      </Text>
+                      <Text style={[styles.infoText, { color: colors.text }]}>{contact.club}</Text>
                     </View>
                   </View>
                 )}
                 {contact.district && (
-                  <View
-                    style={[
-                      styles.infoRow,
-                      { backgroundColor: colors.backgroundElevated },
-                    ]}
-                  >
+                  <View style={[styles.infoRow, { backgroundColor: colors.backgroundElevated }]}>
                     <View
-                      style={[
-                        styles.infoIconContainer,
-                        { backgroundColor: `${colors.accent}15` },
-                      ]}
+                      style={[styles.infoIconContainer, { backgroundColor: `${colors.accent}15` }]}
                     >
-                      <Ionicons
-                        name="globe-outline"
-                        size={20}
-                        color={colors.accent}
-                      />
+                      <Ionicons name="globe-outline" size={20} color={colors.accent} />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text
-                        style={[
-                          styles.infoLabel,
-                          { color: colors.textSecondary },
-                        ]}
-                      >
+                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
                         District
                       </Text>
                       <Text style={[styles.infoText, { color: colors.text }]}>
@@ -319,17 +241,8 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View
-                style={[
-                  styles.sectionHeader,
-                  { borderBottomColor: colors.border },
-                ]}
-              >
-                <Ionicons
-                  name="call-outline"
-                  size={20}
-                  color={colors.primary}
-                />
+              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
+                <Ionicons name="call-outline" size={20} color={colors.primary} />
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   Contact Information
                 </Text>
@@ -345,31 +258,15 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                     onPress={handleEmail}
                   >
                     <View
-                      style={[
-                        styles.infoIconContainer,
-                        { backgroundColor: `${colors.primary}15` },
-                      ]}
+                      style={[styles.infoIconContainer, { backgroundColor: `${colors.primary}15` }]}
                     >
                       <Ionicons name="mail" size={20} color={colors.primary} />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text
-                        style={[
-                          styles.infoLabel,
-                          { color: colors.textSecondary },
-                        ]}
-                      >
-                        Email
-                      </Text>
-                      <Text style={[styles.infoText, { color: colors.text }]}>
-                        {contact.email}
-                      </Text>
+                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>Email</Text>
+                      <Text style={[styles.infoText, { color: colors.text }]}>{contact.email}</Text>
                     </View>
-                    <Ionicons
-                      name="chevron-forward"
-                      size={16}
-                      color={colors.textTertiary}
-                    />
+                    <Ionicons name="chevron-forward" size={16} color={colors.textTertiary} />
                   </Pressable>
                 )}
                 {contact.phone && (
@@ -382,31 +279,15 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                     onPress={handleCall}
                   >
                     <View
-                      style={[
-                        styles.infoIconContainer,
-                        { backgroundColor: `${colors.primary}15` },
-                      ]}
+                      style={[styles.infoIconContainer, { backgroundColor: `${colors.primary}15` }]}
                     >
                       <Ionicons name="call" size={20} color={colors.primary} />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text
-                        style={[
-                          styles.infoLabel,
-                          { color: colors.textSecondary },
-                        ]}
-                      >
-                        Phone
-                      </Text>
-                      <Text style={[styles.infoText, { color: colors.text }]}>
-                        {contact.phone}
-                      </Text>
+                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>Phone</Text>
+                      <Text style={[styles.infoText, { color: colors.text }]}>{contact.phone}</Text>
                     </View>
-                    <Ionicons
-                      name="chevron-forward"
-                      size={16}
-                      color={colors.textTertiary}
-                    />
+                    <Ionicons name="chevron-forward" size={16} color={colors.textTertiary} />
                   </Pressable>
                 )}
               </View>
@@ -425,25 +306,12 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View
-                style={[
-                  styles.sectionHeader,
-                  { borderBottomColor: colors.border },
-                ]}
-              >
-                <Ionicons
-                  name="person-outline"
-                  size={20}
-                  color={colors.primary}
-                />
-                <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                  Biography
-                </Text>
+              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
+                <Ionicons name="person-outline" size={20} color={colors.primary} />
+                <Text style={[styles.sectionTitle, { color: colors.text }]}>Biography</Text>
               </View>
               <View style={styles.sectionContent}>
-                <Text style={[styles.bioText, { color: colors.text }]}>
-                  {contact.bio}
-                </Text>
+                <Text style={[styles.bioText, { color: colors.text }]}>{contact.bio}</Text>
               </View>
             </View>
           )}
@@ -460,27 +328,14 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View
-                style={[
-                  styles.sectionHeader,
-                  { borderBottomColor: colors.border },
-                ]}
-              >
-                <Ionicons
-                  name="share-social-outline"
-                  size={20}
-                  color={colors.primary}
-                />
-                <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                  Social Media
-                </Text>
+              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
+                <Ionicons name="share-social-outline" size={20} color={colors.primary} />
+                <Text style={[styles.sectionTitle, { color: colors.text }]}>Social Media</Text>
               </View>
               <View style={styles.sectionContent}>
                 {validSocialPlatforms.map((platform) => {
                   const url =
-                    contact.socialMedia?.[
-                      platform.key as keyof typeof contact.socialMedia
-                    ];
+                    contact.socialMedia?.[platform.key as keyof typeof contact.socialMedia];
                   if (!url) return null;
 
                   return (
@@ -499,31 +354,17 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                           { backgroundColor: `${platform.color}15` },
                         ]}
                       >
-                        <Ionicons
-                          name={platform.icon as any}
-                          size={20}
-                          color={platform.color}
-                        />
+                        <Ionicons name={platform.icon as any} size={20} color={platform.color} />
                       </View>
                       <View style={styles.infoTextContainer}>
-                        <Text
-                          style={[
-                            styles.infoLabel,
-                            { color: colors.textSecondary },
-                          ]}
-                        >
+                        <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
                           Follow on
                         </Text>
                         <Text style={[styles.infoText, { color: colors.text }]}>
-                          {platform.key.charAt(0).toUpperCase() +
-                            platform.key.slice(1)}
+                          {platform.key.charAt(0).toUpperCase() + platform.key.slice(1)}
                         </Text>
                       </View>
-                      <Ionicons
-                        name="open-outline"
-                        size={16}
-                        color={colors.textTertiary}
-                      />
+                      <Ionicons name="open-outline" size={16} color={colors.textTertiary} />
                     </Pressable>
                   );
                 })}

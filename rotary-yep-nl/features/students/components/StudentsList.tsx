@@ -2,13 +2,13 @@
  * Students list component with country grouping
  */
 
-import { useCallback } from 'react';
-import { SectionList, View, Text, StyleSheet, Platform } from 'react-native';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
-import { StudentCard } from './StudentCard';
-import { EmptyState } from '@/shared/components/feedback/EmptyState';
-import type { CountryGroup, Student } from '../types';
+import { useCallback } from "react";
+import { SectionList, View, Text, StyleSheet, Platform } from "react-native";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { StudentCard } from "./StudentCard";
+import { EmptyState } from "@/shared/components/feedback/EmptyState";
+import type { CountryGroup, Student } from "../types";
 
 interface StudentsListProps {
   countryGroups: CountryGroup[];
@@ -18,7 +18,7 @@ interface StudentsListProps {
 }
 
 interface SectionData {
-  country: CountryGroup['country'];
+  country: CountryGroup["country"];
   data: Student[];
 }
 
@@ -37,13 +37,9 @@ export function StudentsList({
 
   const renderItem = useCallback(
     ({ item }: { item: Student }) => (
-      <StudentCard
-        student={item}
-        onPress={() => onStudentPress(item)}
-        showExchangeInfo={false}
-      />
+      <StudentCard student={item} onPress={() => onStudentPress(item)} showExchangeInfo={false} />
     ),
-    [onStudentPress]
+    [onStudentPress],
   );
 
   const renderSectionHeader = useCallback(
@@ -57,15 +53,13 @@ export function StudentsList({
           },
         ]}
       >
-        <Text style={[styles.sectionTitle, { color: colors.primary }]}>
-          {section.country.name}
-        </Text>
+        <Text style={[styles.sectionTitle, { color: colors.primary }]}>{section.country.name}</Text>
         <Text style={[styles.sectionCount, { color: colors.textSecondary }]}>
-          {section.data.length} student{section.data.length !== 1 ? 's' : ''}
+          {section.data.length} student{section.data.length !== 1 ? "s" : ""}
         </Text>
       </View>
     ),
-    [colors]
+    [colors],
   );
 
   const keyExtractor = useCallback((item: Student) => item.id, []);
@@ -88,7 +82,7 @@ export function StudentsList({
       keyExtractor={keyExtractor}
       showsVerticalScrollIndicator={false}
       contentInsetAdjustmentBehavior="automatic"
-      stickySectionHeadersEnabled={Platform.OS === 'ios'}
+      stickySectionHeadersEnabled={Platform.OS === "ios"}
       ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
       SectionSeparatorComponent={() => <View style={styles.sectionSeparator} />}
       contentContainerStyle={styles.contentContainer}
@@ -106,26 +100,26 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xl,
   },
   sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: spacing.md,
-    paddingVertical: Platform.OS === 'ios' ? spacing.sm : spacing.md,
-    borderBottomWidth: Platform.OS === 'ios' ? 0 : StyleSheet.hairlineWidth,
+    paddingVertical: Platform.OS === "ios" ? spacing.sm : spacing.md,
+    borderBottomWidth: Platform.OS === "ios" ? 0 : StyleSheet.hairlineWidth,
   },
   sectionTitle: {
-    fontSize: Platform.OS === 'ios' ? 22 : 18,
-    fontWeight: Platform.OS === 'ios' ? '700' : '500',
-    letterSpacing: Platform.OS === 'ios' ? 0.35 : 0,
+    fontSize: Platform.OS === "ios" ? 22 : 18,
+    fontWeight: Platform.OS === "ios" ? "700" : "500",
+    letterSpacing: Platform.OS === "ios" ? 0.35 : 0,
   },
   sectionCount: {
     fontSize: 14,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   itemSeparator: {
-    height: Platform.OS === 'ios' ? spacing.sm : 0,
+    height: Platform.OS === "ios" ? spacing.sm : 0,
   },
   sectionSeparator: {
-    height: Platform.OS === 'ios' ? spacing.lg : spacing.md,
+    height: Platform.OS === "ios" ? spacing.lg : spacing.md,
   },
 });

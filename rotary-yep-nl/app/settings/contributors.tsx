@@ -58,9 +58,7 @@ const ContributorCard = ({
   contributor: Contributor;
   themeColors: any;
 }) => (
-  <View
-    style={[styles.contributorCard, { borderBottomColor: themeColors.border }]}
-  >
+  <View style={[styles.contributorCard, { borderBottomColor: themeColors.border }]}>
     <NetworkImage
       imageUrl={contributor.imageUrl}
       name={contributor.name}
@@ -68,24 +66,13 @@ const ContributorCard = ({
       expandable={false}
     />
     <View style={styles.contributorInfo}>
-      <Text style={[styles.contributorName, { color: themeColors.text }]}>
-        {contributor.name}
-      </Text>
+      <Text style={[styles.contributorName, { color: themeColors.text }]}>{contributor.name}</Text>
       <Text style={[styles.contributorRole, { color: themeColors.accent }]}>
         {contributor.role}
       </Text>
       <View style={styles.locationContainer}>
-        <Ionicons
-          name="location-outline"
-          size={14}
-          color={themeColors.textSecondary}
-        />
-        <Text
-          style={[
-            styles.contributorLocation,
-            { color: themeColors.textSecondary },
-          ]}
-        >
+        <Ionicons name="location-outline" size={14} color={themeColors.textSecondary} />
+        <Text style={[styles.contributorLocation, { color: themeColors.textSecondary }]}>
           {contributor.location}
         </Text>
       </View>
@@ -109,36 +96,18 @@ export default function ContributorsScreen() {
         <View style={styles.content}>
           {/* Header Section */}
           <View style={styles.headerSection}>
-            <View
-              style={[
-                styles.headerIcon,
-                { backgroundColor: `${themeColors.primary}15` },
-              ]}
-            >
-              <Ionicons
-                name="people-outline"
-                size={32}
-                color={themeColors.primary}
-              />
+            <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
+              <Ionicons name="people-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={[styles.pageTitle, { color: themeColors.text }]}>
-              Contributors
-            </Text>
-            <Text
-              style={[
-                styles.pageSubtitle,
-                { color: themeColors.textSecondary },
-              ]}
-            >
+            <Text style={[styles.pageTitle, { color: themeColors.text }]}>Contributors</Text>
+            <Text style={[styles.pageSubtitle, { color: themeColors.textSecondary }]}>
               Thanks to everyone who made this app possible!
             </Text>
           </View>
 
           {/* Contributors List */}
           <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-              Development Team
-            </Text>
+            <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Development Team</Text>
             <View
               style={[
                 styles.contributorsContainer,

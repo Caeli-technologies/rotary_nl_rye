@@ -14,10 +14,7 @@ interface EventTypeBadgeProps {
 /**
  * Displays a badge indicating the event type
  */
-export function EventTypeBadge({
-  eventType,
-  size = "small",
-}: EventTypeBadgeProps) {
+export function EventTypeBadge({ eventType, size = "small" }: EventTypeBadgeProps) {
   if (eventType.type === "default" || !eventType.label) {
     return null;
   }
@@ -40,10 +37,7 @@ export function EventTypeBadge({
         color={eventType.color}
         style={styles.icon}
       />
-      <Text
-        style={[styles.text, { color: eventType.color, fontSize }]}
-        numberOfLines={1}
-      >
+      <Text style={[styles.text, { color: eventType.color, fontSize }]} numberOfLines={1}>
         {eventType.label}
       </Text>
     </View>

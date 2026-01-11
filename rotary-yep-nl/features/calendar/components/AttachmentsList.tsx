@@ -14,9 +14,7 @@ interface AttachmentsListProps {
 /**
  * Get icon name for file type
  */
-function getFileIcon(
-  fileType: EventAttachment["fileType"],
-): keyof typeof Ionicons.glyphMap {
+function getFileIcon(fileType: EventAttachment["fileType"]): keyof typeof Ionicons.glyphMap {
   switch (fileType) {
     case "document":
       return "document-text";
@@ -84,9 +82,7 @@ export function AttachmentsList({ attachments }: AttachmentsListProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.sectionTitle, { color: colors.text }]}>
-        Bijlagen
-      </Text>
+      <Text style={[styles.sectionTitle, { color: colors.text }]}>Bijlagen</Text>
       {attachments.map((attachment) => (
         <Pressable
           key={attachment.id}
@@ -109,23 +105,14 @@ export function AttachmentsList({ attachments }: AttachmentsListProps) {
             />
           </View>
           <View style={styles.attachmentContent}>
-            <Text
-              style={[styles.attachmentTitle, { color: colors.text }]}
-              numberOfLines={1}
-            >
+            <Text style={[styles.attachmentTitle, { color: colors.text }]} numberOfLines={1}>
               {attachment.title}
             </Text>
-            <Text
-              style={[styles.attachmentType, { color: colors.textSecondary }]}
-            >
+            <Text style={[styles.attachmentType, { color: colors.textSecondary }]}>
               {getFileTypeLabel(attachment.fileType)}
             </Text>
           </View>
-          <Ionicons
-            name="open-outline"
-            size={18}
-            color={colors.textSecondary}
-          />
+          <Ionicons name="open-outline" size={18} color={colors.textSecondary} />
         </Pressable>
       ))}
     </View>

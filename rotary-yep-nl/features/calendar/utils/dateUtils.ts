@@ -7,9 +7,7 @@ import type { CalendarEvent, EventsData } from "../types";
 /**
  * Ensures a value is a Date object
  */
-export function ensureDate(
-  date: Date | string | number | undefined | null,
-): Date {
+export function ensureDate(date: Date | string | number | undefined | null): Date {
   if (!date) {
     return new Date();
   }
@@ -46,10 +44,7 @@ export function formatDateKey(date: Date | string | undefined | null): string {
 /**
  * Gets events for a specific day
  */
-export function getEventsForDay(
-  eventsData: EventsData,
-  date: Date,
-): CalendarEvent[] {
+export function getEventsForDay(eventsData: EventsData, date: Date): CalendarEvent[] {
   const dateKey = formatDateKey(date);
   return eventsData[dateKey] || [];
 }
@@ -57,9 +52,7 @@ export function getEventsForDay(
 /**
  * Formats a date for display in Dutch (e.g., "maandag 1 januari 2024")
  */
-export function formatEventDate(
-  date: Date | string | undefined | null,
-): string {
+export function formatEventDate(date: Date | string | undefined | null): string {
   const d = ensureDate(date);
   return new Intl.DateTimeFormat("nl-NL", {
     weekday: "long",
@@ -72,9 +65,7 @@ export function formatEventDate(
 /**
  * Formats a date for display in Dutch with capitalized weekday
  */
-export function formatEventDateCapitalized(
-  date: Date | string | undefined | null,
-): string {
+export function formatEventDateCapitalized(date: Date | string | undefined | null): string {
   const formatted = formatEventDate(date);
   return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 }
@@ -108,9 +99,7 @@ export function formatEventTime(
 /**
  * Format short date (e.g., "ma 15 jan")
  */
-export function formatShortDate(
-  date: Date | string | undefined | null,
-): string {
+export function formatShortDate(date: Date | string | undefined | null): string {
   const d = ensureDate(date);
   return new Intl.DateTimeFormat("nl-NL", {
     weekday: "short",
@@ -122,9 +111,7 @@ export function formatShortDate(
 /**
  * Format date for section header (e.g., "Maandag 15 januari")
  */
-export function formatSectionDate(
-  date: Date | string | undefined | null,
-): string {
+export function formatSectionDate(date: Date | string | undefined | null): string {
   const d = ensureDate(date);
   const formatted = new Intl.DateTimeFormat("nl-NL", {
     weekday: "long",
@@ -137,9 +124,7 @@ export function formatSectionDate(
 /**
  * Get relative date string (Today, Tomorrow, etc.) in Dutch
  */
-export function getRelativeDateString(
-  date: Date | string | undefined | null,
-): string | null {
+export function getRelativeDateString(date: Date | string | undefined | null): string | null {
   const d = ensureDate(date);
   const today = new Date();
   const tomorrow = new Date(today);

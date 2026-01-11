@@ -2,7 +2,7 @@
  * Contact types
  */
 
-export type ContactCategory = 'mdjc' | 'rotex' | 'longterm' | 'shortterm';
+export type ContactCategory = "mdjc" | "rotex" | "longterm" | "shortterm";
 
 export interface SocialMedia {
   instagram?: string;

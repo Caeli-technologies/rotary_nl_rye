@@ -61,10 +61,7 @@ export default function SettingsScreen() {
 
         <SettingsSection title="Juridisch">
           <SettingsItem title="Privacybeleid" onPress={handlePrivacyPolicy} />
-          <SettingsItem
-            title="Algemene Voorwaarden"
-            onPress={handleTermsAndConditions}
-          />
+          <SettingsItem title="Algemene Voorwaarden" onPress={handleTermsAndConditions} />
         </SettingsSection>
 
         <SettingsFooter />

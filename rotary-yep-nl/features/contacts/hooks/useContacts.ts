@@ -2,9 +2,9 @@
  * Hook for accessing contacts data
  */
 
-import { useMemo } from 'react';
-import { contactSections } from '../data';
-import type { Contact, ContactCategory, ContactSection } from '../types';
+import { useMemo } from "react";
+import { contactSections } from "../data";
+import type { Contact, ContactCategory, ContactSection } from "../types";
 
 /**
  * Get all contact sections

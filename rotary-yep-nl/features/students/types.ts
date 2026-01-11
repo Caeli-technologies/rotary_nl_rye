@@ -84,11 +84,7 @@ export interface RawStudent {
 /**
  * Helper to convert raw student to new format
  */
-export function convertRawStudent(
-  raw: RawStudent,
-  type: StudentType,
-  year?: string,
-): Student {
+export function convertRawStudent(raw: RawStudent, type: StudentType, year?: string): Student {
   // Generate ID from name
   const id = `${type}-${raw.name
     .toLowerCase()
@@ -97,11 +93,7 @@ export function convertRawStudent(
 
   // Build social media object
   const socialMedia: SocialMedia | undefined =
-    raw.instagramUrl ||
-    raw.facebookUrl ||
-    raw.snapchatUrl ||
-    raw.linkedinUrl ||
-    raw.websiteUrl
+    raw.instagramUrl || raw.facebookUrl || raw.snapchatUrl || raw.linkedinUrl || raw.websiteUrl
       ? {
           instagram: raw.instagramUrl || undefined,
           facebook: raw.facebookUrl || undefined,
@@ -154,9 +146,7 @@ export function groupByHomeCountry(students: Student[]): CountryGroup[] {
     }
   }
 
-  return Array.from(grouped.values()).sort((a, b) =>
-    a.country.name.localeCompare(b.country.name),
-  );
+  return Array.from(grouped.values()).sort((a, b) => a.country.name.localeCompare(b.country.name));
 }
 
 /**
@@ -179,9 +169,7 @@ export function groupByHostCountry(students: Student[]): CountryGroup[] {
     }
   }
 
-  return Array.from(grouped.values()).sort((a, b) =>
-    a.country.name.localeCompare(b.country.name),
-  );
+  return Array.from(grouped.values()).sort((a, b) => a.country.name.localeCompare(b.country.name));
 }
 
 /**
@@ -205,7 +193,5 @@ export function groupByYear(students: Student[]): YearGroup[] {
   }
 
   // Sort by year descending (newest first)
-  return Array.from(grouped.values()).sort((a, b) =>
-    b.year.localeCompare(a.year),
-  );
+  return Array.from(grouped.values()).sort((a, b) => b.year.localeCompare(a.year));
 }

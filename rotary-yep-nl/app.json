@@ -9,10 +9,7 @@
     "newArchEnabled": true,
     "userInterfaceStyle": "automatic",
     "githubUrl": "https://github.com/Caeli-technologies/rotary_nl_rye",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "ios": {
       "buildNumber": "109",
       "appleTeamId": "A8S2486A44",
@@ -36,10 +33,7 @@
         }
       },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio",
-          "fetch"
-        ],
+        "UIBackgroundModes": ["audio", "fetch"],
         "LSApplicationCategoryType": "public.app-category.education"
       }
     },

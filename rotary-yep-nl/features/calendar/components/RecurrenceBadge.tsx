@@ -15,10 +15,7 @@ interface RecurrenceBadgeProps {
 /**
  * Displays a badge indicating the recurrence pattern of an event
  */
-export function RecurrenceBadge({
-  recurrence,
-  size = "small",
-}: RecurrenceBadgeProps) {
+export function RecurrenceBadge({ recurrence, size = "small" }: RecurrenceBadgeProps) {
   const { colors } = useTheme();
 
   if (!recurrence.isRecurring) {
@@ -37,16 +34,8 @@ export function RecurrenceBadge({
         { backgroundColor: colors.primary + "20" },
       ]}
     >
-      <Ionicons
-        name="repeat"
-        size={iconSize}
-        color={colors.primary}
-        style={styles.icon}
-      />
-      <Text
-        style={[styles.text, { color: colors.primary, fontSize }]}
-        numberOfLines={1}
-      >
+      <Ionicons name="repeat" size={iconSize} color={colors.primary} style={styles.icon} />
+      <Text style={[styles.text, { color: colors.primary, fontSize }]} numberOfLines={1}>
         {recurrence.humanReadableShort}
       </Text>
     </View>

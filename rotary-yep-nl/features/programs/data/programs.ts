@@ -68,10 +68,7 @@ export const programSections: ProgramSection[] = [
 /**
  * Get all programs flat list
  */
-export const allPrograms: ProgramItem[] = [
-  ...infoPromoPrograms,
-  ...exchangePrograms,
-];
+export const allPrograms: ProgramItem[] = [...infoPromoPrograms, ...exchangePrograms];
 
 /**
  * Get program by ID

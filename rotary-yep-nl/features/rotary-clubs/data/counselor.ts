@@ -7,8 +7,7 @@ import type { SectionPageContent } from "../types";
 export const counselorContent: SectionPageContent = {
   id: "counselor",
   title: "Info Counselor",
-  description:
-    "Informatie en handleidingen voor counselors die exchange students begeleiden.",
+  description: "Informatie en handleidingen voor counselors die exchange students begeleiden.",
   type: "documents",
   documents: [
     {

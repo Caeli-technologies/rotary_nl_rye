@@ -11,10 +11,7 @@ export default function CalendarScreen() {
   const { colors } = useTheme();
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={["bottom"]}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
       <CalendarView />
     </SafeAreaView>
   );

@@ -2,14 +2,9 @@
  * Programs hooks for accessing program data
  */
 
-import { useMemo } from 'react';
-import {
-  programSections,
-  allPrograms,
-  getProgramById,
-  introText,
-} from '../data';
-import type { ProgramItem, ProgramSection } from '../types';
+import { useMemo } from "react";
+import { programSections, allPrograms, getProgramById, introText } from "../data";
+import type { ProgramItem, ProgramSection } from "../types";
 
 /**
  * Get all program sections
@@ -23,7 +18,7 @@ export function useProgramSections(): {
       sections: programSections,
       introText,
     }),
-    []
+    [],
   );
 }
 

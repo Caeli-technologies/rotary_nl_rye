@@ -8,4 +8,4 @@ export {
   useFindStudent,
   useSearchStudents,
   useStudentsByCountry,
-} from './useStudents';
+} from "./useStudents";

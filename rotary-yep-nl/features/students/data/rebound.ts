@@ -60,10 +60,7 @@ export function getDestinationCountries(): {
   name: string;
   count: number;
 }[] {
-  const countryMap = new Map<
-    string,
-    { code: string; name: string; count: number }
-  >();
+  const countryMap = new Map<string, { code: string; name: string; count: number }>();
 
   for (const student of reboundStudents) {
     const key = student.hostCountry.code;
@@ -80,18 +77,14 @@ export function getDestinationCountries(): {
     }
   }
 
-  return Array.from(countryMap.values()).sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+  return Array.from(countryMap.values()).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
  * Get students by destination country
  */
 export function getStudentsByCountry(countryCode: string): Student[] {
-  return reboundStudents.filter(
-    (student) => student.hostCountry.code === countryCode,
-  );
+  return reboundStudents.filter((student) => student.hostCountry.code === countryCode);
 }
 
 /**

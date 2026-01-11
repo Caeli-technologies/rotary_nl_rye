@@ -25,11 +25,7 @@ const shadowStyle = {
   elevation: 4,
 };
 
-export function StudentCard({
-  student,
-  onPress,
-  showExchangeInfo = true,
-}: StudentCardProps) {
+export function StudentCard({ student, onPress, showExchangeInfo = true }: StudentCardProps) {
   const { colors } = useTheme();
 
   const fromFlagAsset = getFlagAsset(student.homeCountry.code);
@@ -65,10 +61,7 @@ export function StudentCard({
           </Text>
 
           {student.description && (
-            <Text
-              style={[styles.description, { color: colors.textSecondary }]}
-              numberOfLines={1}
-            >
+            <Text style={[styles.description, { color: colors.textSecondary }]} numberOfLines={1}>
               {student.description}
             </Text>
           )}
@@ -77,28 +70,17 @@ export function StudentCard({
             <View style={styles.exchangeInfo}>
               <View style={styles.countryContainer}>
                 {fromFlagAsset ? (
-                  <Image
-                    source={fromFlagAsset}
-                    style={styles.flag}
-                    contentFit="contain"
-                  />
+                  <Image source={fromFlagAsset} style={styles.flag} contentFit="contain" />
                 ) : (
                   <View
-                    style={[
-                      styles.flagPlaceholder,
-                      { backgroundColor: colors.backgroundElevated },
-                    ]}
+                    style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}
                   >
-                    <Text
-                      style={[styles.flagText, { color: colors.textTertiary }]}
-                    >
+                    <Text style={[styles.flagText, { color: colors.textTertiary }]}>
                       {student.homeCountry.code.toUpperCase()}
                     </Text>
                   </View>
                 )}
-                <Text
-                  style={[styles.countryText, { color: colors.textSecondary }]}
-                >
+                <Text style={[styles.countryText, { color: colors.textSecondary }]}>
                   {student.homeCountry.name}
                 </Text>
               </View>
@@ -112,28 +94,17 @@ export function StudentCard({
 
               <View style={styles.countryContainer}>
                 {toFlagAsset ? (
-                  <Image
-                    source={toFlagAsset}
-                    style={styles.flag}
-                    contentFit="contain"
-                  />
+                  <Image source={toFlagAsset} style={styles.flag} contentFit="contain" />
                 ) : (
                   <View
-                    style={[
-                      styles.flagPlaceholder,
-                      { backgroundColor: colors.backgroundElevated },
-                    ]}
+                    style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}
                   >
-                    <Text
-                      style={[styles.flagText, { color: colors.textTertiary }]}
-                    >
+                    <Text style={[styles.flagText, { color: colors.textTertiary }]}>
                       {student.hostCountry.code.toUpperCase()}
                     </Text>
                   </View>
                 )}
-                <Text
-                  style={[styles.countryText, { color: colors.textSecondary }]}
-                >
+                <Text style={[styles.countryText, { color: colors.textSecondary }]}>
                   {student.hostCountry.name}
                 </Text>
               </View>
@@ -142,11 +113,7 @@ export function StudentCard({
         </View>
 
         <Ionicons
-          name={
-            Platform.OS === "ios"
-              ? "chevron-forward"
-              : "chevron-forward-outline"
-          }
+          name={Platform.OS === "ios" ? "chevron-forward" : "chevron-forward-outline"}
           size={Platform.OS === "ios" ? 20 : 24}
           color={colors.textTertiary}
         />

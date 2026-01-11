@@ -13,11 +13,7 @@ interface FilterBarProps {
   onCountryPress: () => void;
 }
 
-export function FilterBar({
-  filters,
-  setFilters,
-  onCountryPress,
-}: FilterBarProps) {
+export function FilterBar({ filters, setFilters, onCountryPress }: FilterBarProps) {
   const { colors } = useTheme();
 
   const showAvailabilityOptions = () => {
@@ -27,18 +23,15 @@ export function FilterBar({
       [
         {
           text: "Alle kampen",
-          onPress: () =>
-            setFilters((prev) => ({ ...prev, availability: "alle" })),
+          onPress: () => setFilters((prev) => ({ ...prev, availability: "alle" })),
         },
         {
           text: "Alleen niet-volle kampen",
-          onPress: () =>
-            setFilters((prev) => ({ ...prev, availability: "niet-vol" })),
+          onPress: () => setFilters((prev) => ({ ...prev, availability: "niet-vol" })),
         },
         {
           text: "Alleen volle kampen",
-          onPress: () =>
-            setFilters((prev) => ({ ...prev, availability: "vol" })),
+          onPress: () => setFilters((prev) => ({ ...prev, availability: "vol" })),
         },
         { text: "Annuleren", style: "cancel" },
       ],
@@ -57,13 +50,11 @@ export function FilterBar({
         },
         {
           text: "Alleen toekomstige kampen",
-          onPress: () =>
-            setFilters((prev) => ({ ...prev, timing: "toekomstig" })),
+          onPress: () => setFilters((prev) => ({ ...prev, timing: "toekomstig" })),
         },
         {
           text: "Alleen afgelopen kampen",
-          onPress: () =>
-            setFilters((prev) => ({ ...prev, timing: "afgelopen" })),
+          onPress: () => setFilters((prev) => ({ ...prev, timing: "afgelopen" })),
         },
         { text: "Annuleren", style: "cancel" },
       ],

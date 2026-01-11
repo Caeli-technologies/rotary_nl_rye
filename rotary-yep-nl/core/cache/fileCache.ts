@@ -60,11 +60,7 @@ export async function getCached<T>(key: string): Promise<T | null> {
  * @param data - Data to cache
  * @param ttlMinutes - Time to live in minutes (default: 10)
  */
-export async function setCache<T>(
-  key: string,
-  data: T,
-  ttlMinutes: number = 10,
-): Promise<void> {
+export async function setCache<T>(key: string, data: T, ttlMinutes: number = 10): Promise<void> {
   try {
     ensureCacheDir();
 

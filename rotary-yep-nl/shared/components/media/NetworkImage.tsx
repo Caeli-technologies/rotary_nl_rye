@@ -46,9 +46,9 @@ export const NetworkImage = memo(function NetworkImage({
 }: NetworkImageProps) {
   const { colors } = useTheme();
   const { lightImpact } = useHaptics();
-  const [imageState, setImageState] = useState<
-    "loading" | "loaded" | "error" | "placeholder"
-  >(isValidImageUrl(imageUrl) ? "loading" : "placeholder");
+  const [imageState, setImageState] = useState<"loading" | "loaded" | "error" | "placeholder">(
+    isValidImageUrl(imageUrl) ? "loading" : "placeholder",
+  );
   const [showExpandedImage, setShowExpandedImage] = useState(false);
 
   const imageSize = useMemo(
@@ -86,12 +86,7 @@ export const NetworkImage = memo(function NetworkImage({
   const renderPlaceholder = useCallback(() => {
     const placeholder = (
       <View
-        style={[
-          styles.placeholder,
-          imageSize,
-          { backgroundColor: `${colors.primary}20` },
-          style,
-        ]}
+        style={[styles.placeholder, imageSize, { backgroundColor: `${colors.primary}20` }, style]}
       >
         {showInitials && (
           <Text
@@ -131,11 +126,7 @@ export const NetworkImage = memo(function NetworkImage({
   ]);
 
   const renderImage = useCallback(() => {
-    if (
-      !shouldShowImage ||
-      imageState === "error" ||
-      imageState === "placeholder"
-    ) {
+    if (!shouldShowImage || imageState === "error" || imageState === "placeholder") {
       return renderPlaceholder();
     }
 
@@ -183,12 +174,7 @@ export const NetworkImage = memo(function NetworkImage({
   return (
     <>
       {renderImage()}
-      <ImageModal
-        visible={showExpandedImage}
-        onClose={closeModal}
-        source={imageUrl}
-        name={name}
-      />
+      <ImageModal visible={showExpandedImage} onClose={closeModal} source={imageUrl} name={name} />
     </>
   );
 });

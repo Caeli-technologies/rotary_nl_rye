@@ -2,8 +2,8 @@
  * Hook for accessing students data
  */
 
-import { useMemo } from 'react';
-import { inboundStudents, outboundStudents, reboundStudents } from '../data';
+import { useMemo } from "react";
+import { inboundStudents, outboundStudents, reboundStudents } from "../data";
 import {
   groupByHomeCountry,
   groupByHostCountry,
@@ -12,7 +12,7 @@ import {
   type StudentType,
   type CountryGroup,
   type YearGroup,
-} from '../types';
+} from "../types";
 
 /**
  * Get students by type
@@ -20,11 +20,11 @@ import {
 export function useStudents(type: StudentType) {
   const students = useMemo(() => {
     switch (type) {
-      case 'inbound':
+      case "inbound":
         return inboundStudents;
-      case 'outbound':
+      case "outbound":
         return outboundStudents;
-      case 'rebound':
+      case "rebound":
         return reboundStudents;
       default:
         return [];
@@ -32,7 +32,7 @@ export function useStudents(type: StudentType) {
   }, [type]);
 
   const countryGroups = useMemo<CountryGroup[]>(() => {
-    if (type === 'inbound') {
+    if (type === "inbound") {
       // Group by home country (where they come from)
       return groupByHomeCountry(students);
     } else {
@@ -71,18 +71,18 @@ export function useStudent(id: string): Student | undefined {
 export function useFindStudent(
   name: string,
   type: StudentType,
-  year?: string
+  year?: string,
 ): Student | undefined {
   return useMemo(() => {
     let students: Student[];
     switch (type) {
-      case 'inbound':
+      case "inbound":
         students = inboundStudents;
         break;
-      case 'outbound':
+      case "outbound":
         students = outboundStudents;
         break;
-      case 'rebound':
+      case "rebound":
         students = reboundStudents;
         break;
       default:
@@ -109,13 +109,13 @@ export function useSearchStudents(query: string, type?: StudentType): Student[] 
 
     if (type) {
       switch (type) {
-        case 'inbound':
+        case "inbound":
           students = inboundStudents;
           break;
-        case 'outbound':
+        case "outbound":
           students = outboundStudents;
           break;
-        case 'rebound':
+        case "rebound":
           students = reboundStudents;
           break;
         default:
@@ -125,9 +125,7 @@ export function useSearchStudents(query: string, type?: StudentType): Student[] 
       students = [...inboundStudents, ...outboundStudents, ...reboundStudents];
     }
 
-    return students.filter((student) =>
-      student.name.toLowerCase().includes(lowerQuery)
-    );
+    return students.filter((student) => student.name.toLowerCase().includes(lowerQuery));
   }, [query, type]);
 }
 
@@ -138,20 +136,20 @@ export function useStudentsByCountry(countryCode: string, type: StudentType): St
   return useMemo(() => {
     let students: Student[];
     switch (type) {
-      case 'inbound':
+      case "inbound":
         students = inboundStudents;
         break;
-      case 'outbound':
+      case "outbound":
         students = outboundStudents;
         break;
-      case 'rebound':
+      case "rebound":
         students = reboundStudents;
         break;
       default:
         return [];
     }
 
-    if (type === 'inbound') {
+    if (type === "inbound") {
       return students.filter((s) => s.homeCountry.code === countryCode);
     } else {
       return students.filter((s) => s.hostCountry.code === countryCode);

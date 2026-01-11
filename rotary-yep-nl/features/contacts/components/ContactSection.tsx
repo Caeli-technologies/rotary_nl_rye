@@ -13,36 +13,26 @@ interface ContactSectionProps {
   onContactPress: (contact: Contact) => void;
 }
 
-export function ContactSection({
-  section,
-  onContactPress,
-}: ContactSectionProps) {
+export function ContactSection({ section, onContactPress }: ContactSectionProps) {
   const { colors } = useTheme();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={[styles.title, { color: colors.text }]}>
-          {section.title}
-        </Text>
+        <Text style={[styles.title, { color: colors.text }]}>{section.title}</Text>
         {section.description && (
           <Text style={[styles.description, { color: colors.textSecondary }]}>
             {section.description}
           </Text>
         )}
         <Text style={[styles.count, { color: colors.textTertiary }]}>
-          {section.contacts.length}{" "}
-          {section.contacts.length === 1 ? "contact" : "contacts"}
+          {section.contacts.length} {section.contacts.length === 1 ? "contact" : "contacts"}
         </Text>
       </View>
 
       <View style={styles.list}>
         {section.contacts.map((contact) => (
-          <ContactCard
-            key={contact.id}
-            contact={contact}
-            onPress={() => onContactPress(contact)}
-          />
+          <ContactCard key={contact.id} contact={contact} onPress={() => onContactPress(contact)} />
         ))}
       </View>
     </View>

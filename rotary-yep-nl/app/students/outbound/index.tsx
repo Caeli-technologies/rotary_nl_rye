@@ -4,14 +4,7 @@
  */
 
 import { useCallback, useMemo } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -30,21 +23,18 @@ interface ProgramItem {
 export default function OutboundScreen() {
   const { colors } = useTheme();
 
-  const handleProgramPress = useCallback(
-    async (route: string, enabled: boolean = true) => {
-      if (!enabled) return;
+  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
+    if (!enabled) return;
 
-      try {
-        if (Platform.OS === "ios") {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push(route as any);
-      } catch {
-        router.push(route as any);
+    try {
+      if (Platform.OS === "ios") {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    },
-    [],
-  );
+      router.push(route as any);
+    } catch {
+      router.push(route as any);
+    }
+  }, []);
 
   const longTermPrograms: ProgramItem[] = useMemo(
     () => [
@@ -100,12 +90,7 @@ export default function OutboundScreen() {
         disabled={!item.enabled}
       >
         <View style={styles.programContent}>
-          <View
-            style={[
-              styles.iconContainer,
-              { backgroundColor: `${colors.primary}15` },
-            ]}
-          >
+          <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}15` }]}>
             <FontAwesome5
               name={item.icon}
               size={22}
@@ -122,9 +107,7 @@ export default function OutboundScreen() {
             >
               {item.title}
             </Text>
-            <Text
-              style={[styles.programSubtitle, { color: colors.textTertiary }]}
-            >
+            <Text style={[styles.programSubtitle, { color: colors.textTertiary }]}>
               {item.subtitle}
             </Text>
           </View>
@@ -142,13 +125,11 @@ export default function OutboundScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={[styles.introTitle, { color: colors.primary }]}>
-          Kandidaten
-        </Text>
+        <Text style={[styles.introTitle, { color: colors.primary }]}>Kandidaten</Text>
         <Text style={[styles.introText, { color: colors.textSecondary }]}>
-          Wat leuk dat je ge&#239;nteresseerd in de mogelijkheden van Rotary
-          voor uitwisseling. Wereldwijd gaan er jaarlijks zo&apos;n 8.000
-          studenten via Rotary op jaaruitwisseling, een hele organisatie.
+          Wat leuk dat je ge&#239;nteresseerd in de mogelijkheden van Rotary voor uitwisseling.
+          Wereldwijd gaan er jaarlijks zo&apos;n 8.000 studenten via Rotary op jaaruitwisseling, een
+          hele organisatie.
         </Text>
       </View>
     ),
@@ -158,15 +139,8 @@ export default function OutboundScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={[styles.sectionHeaderTitle, { color: colors.primary }]}>
-          {title}
-        </Text>
-        <View
-          style={[
-            styles.sectionHeaderDivider,
-            { backgroundColor: colors.border },
-          ]}
-        />
+        <Text style={[styles.sectionHeaderTitle, { color: colors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: colors.border }]} />
       </View>
     ),
     [colors],

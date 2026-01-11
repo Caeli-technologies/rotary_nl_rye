@@ -59,8 +59,7 @@ export function parseRRULE(rruleString: string): RecurrencePattern {
 
     switch (key) {
       case "FREQ":
-        pattern.frequency =
-          value.toLowerCase() as RecurrencePattern["frequency"];
+        pattern.frequency = value.toLowerCase() as RecurrencePattern["frequency"];
         break;
       case "INTERVAL":
         pattern.interval = parseInt(value, 10);
@@ -297,9 +296,7 @@ export function getRecurrenceBadgeText(pattern: RecurrencePattern): string {
 /**
  * Get icon name for recurrence frequency
  */
-export function getRecurrenceIcon(
-  frequency: RecurrencePattern["frequency"],
-): string {
+export function getRecurrenceIcon(frequency: RecurrencePattern["frequency"]): string {
   switch (frequency) {
     case "daily":
       return "today-outline";

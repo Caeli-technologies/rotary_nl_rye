@@ -23,21 +23,13 @@ export default function ReboundStudentDetailScreen() {
   }, [navigation, student]);
 
   if (!studentId) {
-    return (
-      <ErrorState
-        message="No student ID provided"
-        onRetry={() => navigation.goBack()}
-      />
-    );
+    return <ErrorState message="No student ID provided" onRetry={() => navigation.goBack()} />;
   }
 
   if (!student) {
     return (
       <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <ErrorState
-          message="Student not found"
-          onRetry={() => navigation.goBack()}
-        />
+        <ErrorState message="Student not found" onRetry={() => navigation.goBack()} />
       </View>
     );
   }

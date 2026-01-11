@@ -11,11 +11,7 @@ interface PdfHeaderTitleProps {
   totalPages: number;
 }
 
-export function PdfHeaderTitle({
-  title,
-  currentPage,
-  totalPages,
-}: PdfHeaderTitleProps) {
+export function PdfHeaderTitle({ title, currentPage, totalPages }: PdfHeaderTitleProps) {
   const { colors } = useTheme();
 
   return (

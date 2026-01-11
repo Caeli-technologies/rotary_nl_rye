@@ -111,12 +111,7 @@ export interface GoogleCalendarEvent {
   hangoutLink?: string; // Direct Google Meet link
 
   // Event metadata
-  eventType?:
-    | "default"
-    | "outOfOffice"
-    | "focusTime"
-    | "workingLocation"
-    | "fromGmail";
+  eventType?: "default" | "outOfOffice" | "focusTime" | "workingLocation" | "fromGmail";
   transparency?: "opaque" | "transparent";
   visibility?: "default" | "public" | "private" | "confidential";
 

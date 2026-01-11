@@ -32,9 +32,7 @@ export function Emergency112Section() {
     >
       <View style={styles.header}>
         <Ionicons name="warning" size={24} color={colors.error} />
-        <Text style={[styles.title, { color: colors.text }]}>
-          Emergency Services
-        </Text>
+        <Text style={[styles.title, { color: colors.text }]}>Emergency Services</Text>
       </View>
       <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
         112 for ambulance, fire brigade or police
