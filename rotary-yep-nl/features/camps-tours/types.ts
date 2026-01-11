@@ -3,7 +3,7 @@
  */
 
 /**
- * Camp/Tour data from CSV
+ * Camp/Tour data from XLSX
  */
 export interface Camp {
   id: string;
