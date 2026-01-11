@@ -5,8 +5,8 @@
 
 import { useState, useCallback } from "react";
 import { Platform, StyleSheet, View, Text, SectionList } from "react-native";
-import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import { useTheme } from "@/core/theme";
+import { SegmentedControl } from "@/shared/components/ui";
 import {
   ContactCard,
   ContactModal,
@@ -18,7 +18,7 @@ export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const { colors, isDark } = useTheme();
+  const { colors } = useTheme();
 
   const currentSection = contactSections[activeTab];
   const tabValues = contactSections.map((section) => section.title);
@@ -34,11 +34,9 @@ export default function ContactScreen() {
     setSelectedContact(null);
   }, []);
 
-  const handleSegmentChange = (event: {
-    nativeEvent: { selectedSegmentIndex: number };
-  }) => {
-    setActiveTab(event.nativeEvent.selectedSegmentIndex);
-  };
+  const handleSegmentChange = useCallback((index: number) => {
+    setActiveTab(index);
+  }, []);
 
   if (contacts.length === 0) {
     return (
@@ -49,10 +47,6 @@ export default function ContactScreen() {
             selectedIndex={activeTab}
             onChange={handleSegmentChange}
             style={styles.segmentedControl}
-            appearance={isDark ? "dark" : "light"}
-            tintColor={colors.primary}
-            fontStyle={{ color: colors.textSecondary }}
-            activeFontStyle={{ color: colors.onPrimary }}
           />
         </View>
         <View style={styles.emptyState}>
@@ -82,10 +76,6 @@ export default function ContactScreen() {
           selectedIndex={activeTab}
           onChange={handleSegmentChange}
           style={styles.segmentedControl}
-          appearance={isDark ? "dark" : "light"}
-          tintColor={colors.primary}
-          fontStyle={{ color: colors.textSecondary }}
-          activeFontStyle={{ color: colors.onPrimary }}
         />
       </View>
 

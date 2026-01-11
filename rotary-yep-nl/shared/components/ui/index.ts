@@ -7,9 +7,11 @@
 export { Section } from "./Section";
 export { Card } from "./Card";
 export { Button } from "./Button";
+export { SegmentedControl } from "./SegmentedControl";
 export type {
-  SectionProps,
-  CardProps,
-  ButtonProps,
-  UITextProps,
+	SectionProps,
+	CardProps,
+	ButtonProps,
+	UITextProps,
+	SegmentedControlProps,
 } from "./types";
