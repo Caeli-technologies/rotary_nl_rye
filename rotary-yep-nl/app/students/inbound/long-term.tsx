@@ -11,31 +11,31 @@ import { useTheme } from "@/core/theme";
 import { StudentsList, useStudents, type Student } from "@/features/students";
 
 export default function InboundLongTermScreen() {
-	const { colors } = useTheme();
-	const { countryGroups, totalCount } = useStudents("inbound");
+  const { colors } = useTheme();
+  const { countryGroups, totalCount } = useStudents("inbound");
 
-	const handleStudentPress = useCallback((student: Student) => {
-		router.push({
-			pathname: "/students/inbound/student-detail" as const,
-			params: { studentId: student.id },
-		} as never);
-	}, []);
+  const handleStudentPress = useCallback((student: Student) => {
+    router.push({
+      pathname: "/students/inbound/student-detail" as const,
+      params: { studentId: student.id },
+    } as never);
+  }, []);
 
-	return (
-		<SafeAreaView
-			style={[styles.container, { backgroundColor: colors.background }]}
-		>
-			<StudentsList
-				countryGroups={countryGroups}
-				totalCount={totalCount}
-				onStudentPress={handleStudentPress}
-			/>
-		</SafeAreaView>
-	);
+  return (
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
+      <StudentsList
+        countryGroups={countryGroups}
+        totalCount={totalCount}
+        onStudentPress={handleStudentPress}
+      />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
+  container: {
+    flex: 1,
+  },
 });

@@ -1,12 +1,13 @@
 /**
  * Calendar view component with month calendar and events list
+ * Features: multi-dot marking, color-coded events
  */
 
-import { useState, useCallback } from "react";
-import { StyleSheet, View, RefreshControl } from "react-native";
+import { useCallback, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useTheme } from "@/core/theme";
-import { LoadingState, ErrorState } from "@/shared/components/feedback";
+import { ErrorState, LoadingState } from "@/shared/components/feedback";
 import { useCalendarEvents, useMarkedDates, useSelectedDate } from "../hooks";
 import { EventsList } from "./EventsList";
 import { EventModal } from "./EventModal";
@@ -63,21 +64,14 @@ export function CalendarView() {
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
     null,
   );
-  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const markedDates = useMarkedDates({
     eventsData,
     selectedDate,
-    dotColor: colors.primary,
+    defaultDotColor: colors.primary,
     selectedColor: colors.primary,
     selectedTextColor: "#FFFFFF",
   });
-
-  const handleRefresh = useCallback(async () => {
-    setIsRefreshing(true);
-    await refetch();
-    setIsRefreshing(false);
-  }, [refetch]);
 
   const handleEventPress = useCallback((event: CalendarEvent) => {
     setSelectedEvent(event);
@@ -125,6 +119,7 @@ export function CalendarView() {
         current={selectedDate}
         onDayPress={onDayPress}
         markedDates={markedDates}
+        markingType="multi-dot"
         theme={calendarTheme}
         enableSwipeMonths
         hideExtraDays

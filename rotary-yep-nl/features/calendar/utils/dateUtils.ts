@@ -1,168 +1,263 @@
 /**
- * Calendar date utilities
+ * Calendar date utilities with Dutch locale support
  */
 
-import type {
-	CalendarEvent,
-	EventsData,
-	EventWithOriginalData,
-} from "../types";
+import type { CalendarEvent, EventsData } from "../types";
 
 /**
  * Ensures a value is a Date object
  */
-function ensureDate(date: Date | string | number | undefined | null): Date {
-	if (!date) {
-		return new Date();
-	}
-	if (date instanceof Date) {
-		return date;
-	}
-	return new Date(date);
+export function ensureDate(
+  date: Date | string | number | undefined | null,
+): Date {
+  if (!date) {
+    return new Date();
+  }
+  if (date instanceof Date) {
+    return date;
+  }
+  return new Date(date);
 }
 
 /**
  * Check if two dates are the same day
  */
 export function isSameDay(
-	date1: Date | string | undefined | null,
-	date2: Date | string | undefined | null,
+  date1: Date | string | undefined | null,
+  date2: Date | string | undefined | null,
 ): boolean {
-	const d1 = ensureDate(date1);
-	const d2 = ensureDate(date2);
-	return (
-		d1.getFullYear() === d2.getFullYear() &&
-		d1.getMonth() === d2.getMonth() &&
-		d1.getDate() === d2.getDate()
-	);
+  const d1 = ensureDate(date1);
+  const d2 = ensureDate(date2);
+  return (
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate()
+  );
 }
 
 /**
  * Format a date as YYYY-MM-DD
  */
 export function formatDateKey(date: Date | string | undefined | null): string {
-	const d = ensureDate(date);
-	return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const d = ensureDate(date);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
 /**
  * Gets events for a specific day
  */
 export function getEventsForDay(
-	eventsData: EventsData,
-	date: Date,
+  eventsData: EventsData,
+  date: Date,
 ): CalendarEvent[] {
-	const dateKey = formatDateKey(date);
-	return eventsData[dateKey] || [];
+  const dateKey = formatDateKey(date);
+  return eventsData[dateKey] || [];
 }
 
 /**
- * Formats a date for display (e.g., "Monday, January 1, 2024")
+ * Formats a date for display in Dutch (e.g., "maandag 1 januari 2024")
  */
 export function formatEventDate(
-	date: Date | string | undefined | null,
+  date: Date | string | undefined | null,
 ): string {
-	const d = ensureDate(date);
-	return new Intl.DateTimeFormat("en-US", {
-		weekday: "long",
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	}).format(d);
+  const d = ensureDate(date);
+  return new Intl.DateTimeFormat("nl-NL", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(d);
 }
 
 /**
- * Formats a time for display (e.g., "2:30 PM")
- * If endDate is provided, formats as a time range (e.g., "2:30 PM - 4:00 PM")
+ * Formats a date for display in Dutch with capitalized weekday
+ */
+export function formatEventDateCapitalized(
+  date: Date | string | undefined | null,
+): string {
+  const formatted = formatEventDate(date);
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
+/**
+ * Formats a time for display in Dutch (24-hour format)
+ * If endDate is provided, formats as a time range (e.g., "14:30 - 16:00")
  */
 export function formatEventTime(
-	startDate: Date | string | undefined | null,
-	endDate?: Date | string | undefined | null,
+  startDate: Date | string | undefined | null,
+  endDate?: Date | string | undefined | null,
 ): string {
-	const formatter = new Intl.DateTimeFormat("en-US", {
-		hour: "numeric",
-		minute: "2-digit",
-		hour12: true,
-	});
+  const formatter = new Intl.DateTimeFormat("nl-NL", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 
-	const start = ensureDate(startDate);
-	const startTime = formatter.format(start);
+  const start = ensureDate(startDate);
+  const startTime = formatter.format(start);
 
-	if (endDate) {
-		const end = ensureDate(endDate);
-		const endTime = formatter.format(end);
-		return `${startTime} - ${endTime}`;
-	}
+  if (endDate) {
+    const end = ensureDate(endDate);
+    const endTime = formatter.format(end);
+    return `${startTime} - ${endTime}`;
+  }
 
-	return startTime;
+  return startTime;
 }
 
 /**
- * Check if an event spans multiple days
- *
- * For all-day events: end date is EXCLUSIVE
- *   start="2015-11-13", end="2015-11-16" → 3 days (13, 14, 15) = multi-day
- *   start="2015-11-13", end="2015-11-14" → 1 day (13 only) = NOT multi-day
- *
- * For timed events: compares actual start/end days
+ * Format short date (e.g., "ma 15 jan")
+ */
+export function formatShortDate(
+  date: Date | string | undefined | null,
+): string {
+  const d = ensureDate(date);
+  return new Intl.DateTimeFormat("nl-NL", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  }).format(d);
+}
+
+/**
+ * Format date for section header (e.g., "Maandag 15 januari")
+ */
+export function formatSectionDate(
+  date: Date | string | undefined | null,
+): string {
+  const d = ensureDate(date);
+  const formatted = new Intl.DateTimeFormat("nl-NL", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  }).format(d);
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
+/**
+ * Get relative date string (Today, Tomorrow, etc.) in Dutch
+ */
+export function getRelativeDateString(
+  date: Date | string | undefined | null,
+): string | null {
+  const d = ensureDate(date);
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  if (isSameDay(d, today)) {
+    return "Vandaag";
+  }
+
+  if (isSameDay(d, tomorrow)) {
+    return "Morgen";
+  }
+
+  if (isSameDay(d, yesterday)) {
+    return "Gisteren";
+  }
+
+  return null;
+}
+
+/**
+ * Get display date with relative string if applicable
+ */
+export function getDisplayDate(date: Date | string | undefined | null): string {
+  const relative = getRelativeDateString(date);
+  if (relative) {
+    return relative;
+  }
+  return formatSectionDate(date);
+}
+
+/**
+ * Check if an event spans multiple days (using new CalendarEvent type)
  */
 export function isMultiDayEvent(event: CalendarEvent): boolean {
-	if (!event?.start?.dateTime || !event?.end?.dateTime) {
-		return false;
-	}
+  return event.isMultiDay;
+}
 
-	const eventWithOriginal = event as EventWithOriginalData;
-	const isAllDay =
-		eventWithOriginal._originalStart?.date &&
-		!eventWithOriginal._originalStart?.dateTime;
+/**
+ * Check if an event is all-day (using new CalendarEvent type)
+ */
+export function isAllDayEvent(event: CalendarEvent): boolean {
+  return event.isAllDay;
+}
 
-	const startDate = ensureDate(event.start.dateTime);
-	const endDate = ensureDate(event.end.dateTime);
+/**
+ * Gets the display end date for an event
+ * For all-day events, the API end date is EXCLUSIVE, so we subtract 1 day
+ */
+export function getDisplayEndDate(event: CalendarEvent): Date {
+  const endDate = ensureDate(event.end?.dateTime);
 
-	if (isAllDay) {
-		// For all-day events, end is exclusive, so subtract 1 day to get actual last day
-		const actualEndDate = new Date(endDate.getTime() - 24 * 60 * 60 * 1000);
-		return !isSameDay(startDate, actualEndDate);
-	}
+  if (event.isAllDay) {
+    // For all-day events, subtract 1 day to get the actual last day
+    return new Date(endDate.getTime() - 24 * 60 * 60 * 1000);
+  }
 
-	return !isSameDay(startDate, endDate);
+  return endDate;
+}
+
+/**
+ * Format date range for multi-day events
+ */
+export function formatDateRange(event: CalendarEvent): string {
+  const startStr = formatShortDate(event.start.dateTime);
+  const endStr = formatShortDate(getDisplayEndDate(event));
+  return `${startStr} - ${endStr}`;
 }
 
 /**
  * Extracts URLs from event description
  */
 export function extractLinksFromDescription(description: string): string[] {
-	const urlRegex = /(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+/g;
-	return description.match(urlRegex) || [];
+  const urlRegex = /(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+/g;
+  return description.match(urlRegex) || [];
 }
 
 /**
- * Checks if an event is an all-day event
+ * Sort events by time within a day
  */
-export function isAllDayEvent(event: CalendarEvent): boolean {
-	const eventWithOriginal = event as EventWithOriginalData;
-	return !!(
-		eventWithOriginal._originalStart?.date &&
-		!eventWithOriginal._originalStart?.dateTime
-	);
+export function sortEventsByTime(events: CalendarEvent[]): CalendarEvent[] {
+  return [...events].sort((a, b) => {
+    // All-day events first
+    if (a.isAllDay && !b.isAllDay) return -1;
+    if (!a.isAllDay && b.isAllDay) return 1;
+
+    // Then by start time
+    return a.start.dateTime.getTime() - b.start.dateTime.getTime();
+  });
 }
 
 /**
- * Gets the display end date for an event
- * For all-day events, the API end date is EXCLUSIVE, so we subtract 1 day
- * to show the actual last day of the event
+ * Format time for event display
+ * Returns "Hele dag" for all-day events
  */
-export function getDisplayEndDate(event: CalendarEvent): Date {
-	const endDate = ensureDate(event.end?.dateTime);
-	const eventWithOriginal = event as EventWithOriginalData;
-	const isAllDay =
-		eventWithOriginal._originalStart?.date &&
-		!eventWithOriginal._originalStart?.dateTime;
+export function getEventTimeDisplay(event: CalendarEvent): string {
+  if (event.isAllDay) {
+    return "Hele dag";
+  }
+  return formatEventTime(event.start.dateTime, event.end.dateTime);
+}
 
-	if (isAllDay) {
-		// For all-day events, subtract 1 day to get the actual last day
-		return new Date(endDate.getTime() - 24 * 60 * 60 * 1000);
-	}
+/**
+ * Get the number of days an event spans
+ */
+export function getEventDayCount(event: CalendarEvent): number {
+  if (!event.isMultiDay) return 1;
 
-	return endDate;
+  const startDate = new Date(event.start.dateTime);
+  startDate.setHours(0, 0, 0, 0);
+
+  const endDate = getDisplayEndDate(event);
+  endDate.setHours(0, 0, 0, 0);
+
+  const diffTime = endDate.getTime() - startDate.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return diffDays + 1;
 }

@@ -11,79 +11,79 @@ import { router } from "expo-router";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
 import {
-	useStudents,
-	groupByHostCountry,
-	CountryNavCard,
-	type CountryGroup,
+  useStudents,
+  groupByHostCountry,
+  CountryNavCard,
+  type CountryGroup,
 } from "@/features/students";
 
 export default function ReboundCountriesScreen() {
-	const { colors } = useTheme();
-	const { students } = useStudents("rebound");
+  const { colors } = useTheme();
+  const { students } = useStudents("rebound");
 
-	const countryGroups = useMemo(() => {
-		return groupByHostCountry(students).sort(
-			(a, b) => b.students.length - a.students.length,
-		);
-	}, [students]);
+  const countryGroups = useMemo(() => {
+    return groupByHostCountry(students).sort(
+      (a, b) => b.students.length - a.students.length,
+    );
+  }, [students]);
 
-	const handleCountryPress = useCallback(async (country: CountryGroup) => {
-		try {
-			if (Platform.OS === "ios") {
-				await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-			}
-			router.push({
-				pathname: "/students/rebound/[country]" as const,
-				params: {
-					country: country.country.code,
-					countryName: country.country.name,
-				},
-			} as never);
-		} catch {
-			router.push({
-				pathname: "/students/rebound/[country]" as const,
-				params: {
-					country: country.country.code,
-					countryName: country.country.name,
-				},
-			} as never);
-		}
-	}, []);
+  const handleCountryPress = useCallback(async (country: CountryGroup) => {
+    try {
+      if (Platform.OS === "ios") {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      router.push({
+        pathname: "/students/rebound/[country]" as const,
+        params: {
+          country: country.country.code,
+          countryName: country.country.name,
+        },
+      } as never);
+    } catch {
+      router.push({
+        pathname: "/students/rebound/[country]" as const,
+        params: {
+          country: country.country.code,
+          countryName: country.country.name,
+        },
+      } as never);
+    }
+  }, []);
 
-	const renderCountry = useCallback(
-		({ item }: { item: CountryGroup }) => (
-			<CountryNavCard country={item} onPress={() => handleCountryPress(item)} />
-		),
-		[handleCountryPress],
-	);
+  const renderCountry = useCallback(
+    ({ item }: { item: CountryGroup }) => (
+      <CountryNavCard country={item} onPress={() => handleCountryPress(item)} />
+    ),
+    [handleCountryPress],
+  );
 
-	return (
-		<SafeAreaView
-			style={[styles.container, { backgroundColor: colors.background }]}
-			edges={[]}
-		>
-			<FlatList
-				data={countryGroups}
-				renderItem={renderCountry}
-				keyExtractor={(item) => item.country.code}
-				showsVerticalScrollIndicator={false}
-				contentInsetAdjustmentBehavior="automatic"
-				contentContainerStyle={styles.contentContainer}
-				ItemSeparatorComponent={() => <View style={styles.separator} />}
-			/>
-		</SafeAreaView>
-	);
+  return (
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      edges={[]}
+    >
+      <FlatList
+        data={countryGroups}
+        renderItem={renderCountry}
+        keyExtractor={(item) => item.country.code}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={styles.contentContainer}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+      />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	contentContainer: {
-		paddingTop: spacing.lg,
-		paddingBottom: spacing.xl,
-	},
-	separator: {
-		height: spacing.sm,
-	},
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.xl,
+  },
+  separator: {
+    height: spacing.sm,
+  },
 });
