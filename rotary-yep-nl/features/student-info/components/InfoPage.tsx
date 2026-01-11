@@ -1,13 +1,17 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import {
 	StyleSheet,
 	View,
 	Text,
 	ScrollView,
 	Platform,
+	Pressable,
+	Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
 import { ContentSection } from "./ContentSection";
 import { ContentCard } from "./ContentCard";
@@ -21,6 +25,7 @@ import type {
 	Section,
 	IconName,
 	GridItem,
+	CTABlock,
 } from "../types";
 
 interface InfoPageProps {
@@ -36,6 +41,30 @@ interface InfoPageProps {
  */
 export const InfoPage = memo(function InfoPage({ content }: InfoPageProps) {
 	const { colors } = useTheme();
+
+	const handleCTAPress = useCallback(async (block: CTABlock) => {
+		try {
+			await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+			switch (block.action) {
+				case "email": {
+					const subject = block.subject
+						? `?subject=${encodeURIComponent(block.subject)}`
+						: "";
+					await Linking.openURL(`mailto:${block.target}${subject}`);
+					break;
+				}
+				case "link":
+					await Linking.openURL(block.target);
+					break;
+				case "route":
+					router.push(block.target as any);
+					break;
+			}
+		} catch (error) {
+			console.error("Error handling CTA action:", error);
+		}
+	}, []);
 
 	const renderBlock = (block: ContentBlock) => {
 		switch (block.type) {
@@ -121,17 +150,43 @@ export const InfoPage = memo(function InfoPage({ content }: InfoPageProps) {
 				);
 
 			case "cta":
-				// CTA blocks would be handled here
-				// For now, just render as a card
 				return (
-					<ContentCard
-						key={block.id}
-						icon="mail-outline"
-						iconColor="primary"
-						title={block.label}
-						content={block.description || ""}
-						accentColor="primary"
-					/>
+					<View key={block.id} style={styles.ctaContainer}>
+						<Pressable
+							style={({ pressed }) => [
+								styles.ctaButton,
+								{
+									backgroundColor: colors.primary,
+									shadowColor: colors.shadow,
+								},
+								pressed && styles.ctaButtonPressed,
+							]}
+							onPress={() => handleCTAPress(block)}
+							accessibilityRole="button"
+							accessibilityLabel={block.label}
+							android_ripple={{
+								color: "rgba(255, 255, 255, 0.2)",
+								borderless: false,
+							}}
+						>
+							<Ionicons
+								name={block.action === "email" ? "mail" : "arrow-forward"}
+								size={20}
+								color={colors.card}
+								style={styles.ctaIcon}
+							/>
+							<Text style={[styles.ctaButtonText, { color: colors.card }]}>
+								{block.label}
+							</Text>
+						</Pressable>
+						{block.description && (
+							<Text
+								style={[styles.ctaDescription, { color: colors.textSecondary }]}
+							>
+								{block.description}
+							</Text>
+						)}
+					</View>
 				);
 
 			default:
@@ -274,5 +329,42 @@ const styles = StyleSheet.create({
 	},
 	gridItemTextWithIcon: {
 		marginLeft: 8,
+	},
+
+	// CTA
+	ctaContainer: {
+		alignItems: "center",
+		marginVertical: 16,
+	},
+	ctaButton: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		paddingVertical: 16,
+		paddingHorizontal: 24,
+		borderRadius: 25,
+		minWidth: 200,
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.3,
+		shadowRadius: 4,
+		elevation: 4,
+	},
+	ctaButtonPressed: {
+		opacity: 0.7,
+		transform: [{ scale: 0.98 }],
+	},
+	ctaIcon: {
+		marginRight: 8,
+	},
+	ctaButtonText: {
+		fontSize: 16,
+		fontWeight: "600",
+	},
+	ctaDescription: {
+		fontSize: 14,
+		textAlign: "center",
+		marginTop: 12,
+		paddingHorizontal: 20,
+		lineHeight: 20,
 	},
 });

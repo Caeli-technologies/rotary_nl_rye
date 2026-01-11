@@ -117,6 +117,8 @@ export interface GridBlock extends BaseBlock {
 export interface TipItem {
   /** Tip number */
   number: number;
+  /** Optional tip title */
+  title?: string;
   /** Tip content */
   content: string;
 }
@@ -150,6 +152,8 @@ export interface CTABlock extends BaseBlock {
   target: string;
   /** Button label */
   label: string;
+  /** Optional email subject (for email actions) */
+  subject?: string;
   /** Optional description below button */
   description?: string;
 }

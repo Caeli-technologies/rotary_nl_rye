@@ -38,7 +38,12 @@ export const TipCard = memo(function TipCard({ items }: TipCardProps) {
 						</Text>
 					</View>
 					<View style={styles.tipContent}>
-						<Text style={[styles.tipText, { color: colors.text }]}>
+						{item.title && (
+							<Text style={[styles.tipTitle, { color: colors.text }]}>
+								{item.title}
+							</Text>
+						)}
+						<Text style={[styles.tipText, { color: colors.textSecondary }]}>
 							{item.content}
 						</Text>
 					</View>
@@ -76,6 +81,11 @@ const styles = StyleSheet.create({
 	},
 	tipContent: {
 		flex: 1,
+	},
+	tipTitle: {
+		fontSize: 16,
+		fontWeight: "600",
+		marginBottom: 4,
 	},
 	tipText: {
 		fontSize: 14,
