@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 export default function CampsAndToursInboundScreen() {
   const { colors: themeColors } = useTheme();
 

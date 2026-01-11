@@ -6,7 +6,7 @@ import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 interface MenuItem {
   title: string;
   subtitle?: string;
@@ -88,13 +88,14 @@ export default function LongTermInboundScreen() {
     ],
   );
 
+  // TODO this needs to go to the inbound students from the /students folder data!!!
   const classOfItems: MenuItem[] = useMemo(
     () => [
       {
         title: "Class of 2025-26",
         subtitle: "Meet the incoming exchange students",
         icon: "users" as keyof typeof FontAwesome5.glyphMap,
-        route: "/inbound/long-term/class-of",
+        route: "/inbound/long-term/students",
         type: "class",
       },
     ],

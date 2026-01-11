@@ -70,8 +70,16 @@ function RootLayoutNav() {
           options={{ title: "Student", headerBackTitle: "Terug" }}
         />
         <Stack.Screen
-          name="students/inbound/short-term"
+          name="students/inbound/short-term/index"
           options={{ title: "Short Term", headerBackTitle: "Inbound" }}
+        />
+        <Stack.Screen
+          name="students/inbound/short-term/camps-and-tours/index"
+          options={{ title: "Summer Camps", headerBackTitle: "Short Term" }}
+        />
+        <Stack.Screen
+          name="students/inbound/short-term/family-to-family/index"
+          options={{ title: "Family to Family", headerBackTitle: "Short Term" }}
         />
         <Stack.Screen
           name="students/inbound/long-term/index"
@@ -116,7 +124,7 @@ function RootLayoutNav() {
           options={{ title: "Aanmelden", headerBackTitle: "Long Term" }}
         />
         <Stack.Screen
-          name="students/outbound/long-term/requirements"
+          name="students/outbound/long-term/comply-with"
           options={{ title: "Vereisten", headerBackTitle: "Long Term" }}
         />
         <Stack.Screen
@@ -128,7 +136,7 @@ function RootLayoutNav() {
           options={{ title: "Selectie weekend", headerBackTitle: "Long Term" }}
         />
         <Stack.Screen
-          name="students/outbound/long-term/top-countries"
+          name="students/outbound/long-term/top-3-countries"
           options={{ title: "Top 3 landen", headerBackTitle: "Long Term" }}
         />
         <Stack.Screen
@@ -136,28 +144,36 @@ function RootLayoutNav() {
           options={{ title: "Short Term", headerBackTitle: "Outbound" }}
         />
         <Stack.Screen
-          name="students/outbound/short-term/camps/signup"
-          options={{ title: "Aanmelden", headerBackTitle: "Short Term" }}
+          name="students/outbound/short-term/camps-and-tours/index"
+          options={{ title: "Zomerkampen", headerBackTitle: "Short Term" }}
         />
         <Stack.Screen
-          name="students/outbound/short-term/camps/countries"
-          options={{ title: "Landen", headerBackTitle: "Short Term" }}
+          name="students/outbound/short-term/camps-and-tours/how-to-sign-up"
+          options={{ title: "Aanmelden", headerBackTitle: "Zomerkampen" }}
         />
         <Stack.Screen
-          name="students/outbound/short-term/camps/requirements"
-          options={{ title: "Voor wie?", headerBackTitle: "Short Term" }}
+          name="students/outbound/short-term/camps-and-tours/which-countries"
+          options={{ title: "Landen", headerBackTitle: "Zomerkampen" }}
         />
         <Stack.Screen
-          name="students/outbound/short-term/family-to-family/signup"
-          options={{ title: "Aanmelden", headerBackTitle: "Short Term" }}
+          name="students/outbound/short-term/camps-and-tours/comply-with"
+          options={{ title: "Voor wie?", headerBackTitle: "Zomerkampen" }}
         />
         <Stack.Screen
-          name="students/outbound/short-term/family-to-family/countries"
-          options={{ title: "Landen", headerBackTitle: "Short Term" }}
+          name="students/outbound/short-term/family-to-family/index"
+          options={{ title: "Family to Family", headerBackTitle: "Short Term" }}
         />
         <Stack.Screen
-          name="students/outbound/short-term/family-to-family/requirements"
-          options={{ title: "Vereisten", headerBackTitle: "Short Term" }}
+          name="students/outbound/short-term/family-to-family/how-to-sign-up"
+          options={{ title: "Aanmelden", headerBackTitle: "Family to Family" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/family-to-family/countries-preference"
+          options={{ title: "Landen", headerBackTitle: "Family to Family" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/family-to-family/comply-with"
+          options={{ title: "Vereisten", headerBackTitle: "Family to Family" }}
         />
 
         {/* Students - Rebound */}

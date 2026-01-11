@@ -1,21 +1,20 @@
 import { useCallback, useMemo } from "react";
 import { StyleSheet, View, Text, FlatList, Pressable, Platform } from "react-native";
-import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
+
 interface MenuItem {
   title: string;
   subtitle?: string;
   icon: keyof typeof FontAwesome5.glyphMap;
   route: string;
-  type: "class" | "info";
 }
 
-export default function LongTermExchangeScreen() {
+export default function InboundShortTermScreen() {
   const { colors: themeColors } = useTheme();
 
   const handleItemPress = useCallback(async (route: string) => {
@@ -51,13 +50,7 @@ export default function LongTermExchangeScreen() {
         }}
       >
         <View style={styles.menuContent}>
-          <View
-            style={[
-              styles.iconContainer,
-              { backgroundColor: `${themeColors.primary}15` },
-              item.type === "class" ? styles.classIconContainer : styles.infoIconContainer,
-            ]}
-          >
+          <View style={[styles.iconContainer, { backgroundColor: `${themeColors.primary}15` }]}>
             <FontAwesome5 name={item.icon} size={22} color={themeColors.primary} />
           </View>
           <View style={styles.textContainer}>
@@ -88,55 +81,19 @@ export default function LongTermExchangeScreen() {
     ],
   );
 
-  const classOfItems: MenuItem[] = useMemo(
+  const menuItems: MenuItem[] = useMemo(
     () => [
       {
-        title: "Huidige Studenten",
-        subtitle: "Onze studenten in het buitenland dit jaar",
-        icon: "users" as keyof typeof FontAwesome5.glyphMap,
-        route: "/outbound/long-term/students",
-        type: "class",
-      },
-    ],
-    [],
-  );
-
-  const informationItems: MenuItem[] = useMemo(
-    () => [
-      {
-        title: "Hoe meld ik me aan?",
-        subtitle: "Volledige aanmeldprocedure en vereisten",
-        icon: "edit" as keyof typeof FontAwesome5.glyphMap,
-        route: "/outbound/long-term/how-to-sign-up",
-        type: "info",
+        title: "Summer Camps",
+        subtitle: "Experience Dutch culture through summer programs",
+        icon: "campground" as keyof typeof FontAwesome5.glyphMap,
+        route: "/students/inbound/short-term/camps-and-tours",
       },
       {
-        title: "Selectie dag",
-        subtitle: "Wat je kunt verwachten tijdens het selectieproces",
-        icon: "calendar-day" as keyof typeof FontAwesome5.glyphMap,
-        route: "/outbound/long-term/selection-day",
-        type: "info",
-      },
-      {
-        title: "Selectie weekend",
-        subtitle: "Finale selectieweekend activiteiten en verwachtingen",
-        icon: "calendar-week" as keyof typeof FontAwesome5.glyphMap,
-        route: "/outbound/long-term/selection-weekend",
-        type: "info",
-      },
-      {
-        title: "Goede top 3 van landen",
-        subtitle: "Hoe kies je jouw voorkeursbestemmingen",
-        icon: "globe-americas" as keyof typeof FontAwesome5.glyphMap,
-        route: "/outbound/long-term/top-3-countries",
-        type: "info",
-      },
-      {
-        title: "Waar moet ik aan voldoen?",
-        subtitle: "Regels en richtlijnen voor uitwisselingsstudenten",
-        icon: "shield-alt" as keyof typeof FontAwesome5.glyphMap,
-        route: "/outbound/long-term/comply-with",
-        type: "info",
+        title: "Family to Family",
+        subtitle: "Live with a Dutch host family",
+        icon: "home" as keyof typeof FontAwesome5.glyphMap,
+        route: "/students/inbound/short-term/family-to-family",
       },
     ],
     [],
@@ -145,65 +102,40 @@ export default function LongTermExchangeScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
+        <View style={styles.headerSection}>
+          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Short Term Programs</Text>
+          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
+            Experience the Netherlands through shorter exchange programs
+          </Text>
+        </View>
         <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
-          Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde
-          scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het buitenland een
-          jaar High School volgt. Omgekeerd komen buitenlandse scholieren hier om gedurende een jaar
-          samen met leeftijdgenoten naar school te gaan.
+          Rotary short-term programs offer young people the opportunity to experience Dutch culture
+          through shorter exchange periods. These programs are perfect for students who want to gain
+          international experience and discover what the Netherlands has to offer.
         </Text>
       </View>
     ),
-    [themeColors.textSecondary],
-  );
-
-  const SectionHeader = useCallback(
-    ({ title }: { title: string }) => (
-      <View style={styles.sectionHeaderContainer}>
-        <Text style={[styles.sectionHeaderTitle, { color: themeColors.primary }]}>{title}</Text>
-        <View style={[styles.sectionHeaderDivider, { backgroundColor: themeColors.border }]} />
-      </View>
-    ),
-    [themeColors.border, themeColors.primary],
+    [themeColors.text, themeColors.textSecondary],
   );
 
   const renderContent = useCallback(() => {
-    const allItems = [
-      { type: "image" },
-      { type: "intro" },
-      { type: "sectionHeader", title: "Klas van 25-26" },
-      ...classOfItems.map((item) => ({ type: "menuItem", item })),
-      { type: "spacer" },
-      { type: "sectionHeader", title: "Informatie" },
-      ...informationItems.map((item) => ({ type: "menuItem", item })),
-    ];
+    const allItems = [{ type: "intro" }, ...menuItems.map((item) => ({ type: "menuItem", item }))];
 
     return allItems;
-  }, [classOfItems, informationItems]);
+  }, [menuItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {
       switch (item.type) {
-        case "image":
-          return (
-            <Image
-              source={require("@/assets/pictures/outbound-25-26-group.jpeg")}
-              style={styles.headerImage}
-              contentFit="cover"
-            />
-          );
         case "intro":
           return <IntroSection />;
-        case "sectionHeader":
-          return <SectionHeader title={item.title} />;
         case "menuItem":
           return renderMenuItem({ item: item.item });
-        case "spacer":
-          return <View style={styles.spacer} />;
         default:
           return null;
       }
     },
-    [IntroSection, SectionHeader, renderMenuItem],
+    [IntroSection, renderMenuItem],
   );
 
   return (
@@ -236,37 +168,31 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContainer: {
-    padding: Platform.OS === "ios" ? 20 : 16,
-    paddingBottom: Platform.OS === "ios" ? 40 : 34,
-  },
-  headerImage: {
-    width: "100%",
-    height: 150,
-    marginBottom: 16,
-    borderRadius: 8,
+    padding: 16,
+    paddingBottom: 34,
   },
   introContainer: {
     marginBottom: 32,
   },
-  introText: {
-    fontSize: 16,
-    lineHeight: 24,
-    textAlign: "left",
+  headerSection: {
+    alignItems: "center",
+    marginBottom: 24,
   },
-  sectionHeaderContainer: {
-    marginBottom: 20,
-    marginTop: 12,
-  },
-  sectionHeaderTitle: {
-    fontSize: Platform.OS === "ios" ? 20 : 18,
-    fontWeight: "600",
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: "700",
+    textAlign: "center",
     marginBottom: 8,
-    lineHeight: 24,
   },
-  sectionHeaderDivider: {
-    height: 3,
-    borderRadius: 1.5,
-    opacity: 0.8,
+  headerSubtitle: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 16,
+  },
+  introText: {
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: "left",
   },
   menuItem: {
     borderRadius: 12,
@@ -281,8 +207,8 @@ const styles = StyleSheet.create({
   menuContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: Platform.OS === "ios" ? 20 : 16,
-    minHeight: Platform.OS === "ios" ? 80 : 72,
+    padding: 16,
+    minHeight: 72,
   },
   iconContainer: {
     width: 44,
@@ -292,8 +218,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 16,
   },
-  classIconContainer: {},
-  infoIconContainer: {},
   textContainer: {
     flex: 1,
     marginRight: 8,
@@ -302,14 +226,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     marginBottom: 4,
-    lineHeight: 20,
+    lineHeight: 22,
   },
   menuSubtitle: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "400",
-    lineHeight: 18,
-  },
-  spacer: {
-    height: 16,
   },
 });
