@@ -1,7 +1,8 @@
 /**
- * API for fetching camps and tours data from CSV
+ * API for fetching camps and tours data from XLSX
  */
 
+import * as XLSX from "xlsx";
 import { env } from "@/core/config/env";
 import { getCountryName } from "@/shared/utils/flags";
 import type { Camp, CountryWithCode } from "../types";
@@ -12,43 +13,19 @@ interface FetchCampsResult {
 }
 
 /**
- * Quote-aware CSV parser for handling comma delimiters with quoted fields
- * Handles fields that contain commas within quotes (e.g., "1890,1940")
+ * Parse date from string (DD/MM/YYYY or DD-MM-YYYY) or Excel serial number
  */
-function parseCSVWithQuotes(text: string): string[][] {
-  const lines = text.split(/\r?\n/);
-  const result: string[][] = [];
-
-  for (const line of lines) {
-    if (line.trim() === "") continue;
-
-    const row: string[] = [];
-    let current = "";
-    let inQuotes = false;
-
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === "," && !inQuotes) {
-        row.push(current.trim());
-        current = "";
-      } else {
-        current += char;
-      }
-    }
-    row.push(current.trim());
-    result.push(row);
+function parseDateParts(dateValue: string | number): Date | null {
+  // Handle Excel serial date number
+  if (typeof dateValue === "number") {
+    // Excel serial date: days since 1899-12-30
+    const excelEpoch = new Date(1899, 11, 30);
+    const msPerDay = 24 * 60 * 60 * 1000;
+    return new Date(excelEpoch.getTime() + dateValue * msPerDay);
   }
 
-  return result;
-}
-
-/**
- * Parse date string from DD/MM/YYYY or DD-MM-YYYY format
- */
-function parseDateParts(dateStr: string): Date | null {
-  // Support both DD/MM/YYYY and DD-MM-YYYY
+  // Handle string date format
+  const dateStr = String(dateValue);
   const parts = dateStr.split(/[/\-]/);
   if (parts.length !== 3) return null;
 
@@ -60,12 +37,23 @@ function parseDateParts(dateStr: string): Date | null {
 }
 
 /**
- * Normalize date string to DD/MM/YYYY format
+ * Normalize date to DD/MM/YYYY string format
  */
-function normalizeDateString(dateStr: string): string {
-  const parts = dateStr.split(/[/\-]/);
-  if (parts.length !== 3) return dateStr;
-  return `${parts[0].padStart(2, "0")}/${parts[1].padStart(2, "0")}/${parts[2]}`;
+function normalizeDateString(dateValue: string | number): string {
+  if (dateValue === "" || dateValue === null || dateValue === undefined) {
+    return "";
+  }
+
+  const date = parseDateParts(dateValue);
+  if (!date || isNaN(date.getTime())) {
+    return typeof dateValue === "string" ? dateValue : "";
+  }
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
 }
 
 /**
@@ -108,44 +96,74 @@ function extractCountries(camps: Camp[]): CountryWithCode[] {
 }
 
 /**
- * Fetch and parse camps data from CSV
+ * Get cell value as string, handling undefined/null
+ */
+function getCellString(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  return String(value).trim();
+}
+
+/**
+ * Fetch and parse camps data from XLSX
  *
- * New CSV column mapping (0-indexed):
- * [0] startDate, [1] endDate, [2] title, [3] countryCode,
- * [4] district, [5] ageMin, [6] ageMax, [7] currency,
- * [8] cost, [9] isFull, [10] invitation
+ * XLSX column mapping (0-indexed):
+ * [0] startdatum_dd_mm_jjjj -> startDate
+ * [1] einddatum_dd_mm_jjjj -> endDate
+ * [2] kamp_titel -> title
+ * [3] landcode_iso3166_1_alpha2 -> hostCountryCode
+ * [4] gastdistrict -> hostDistrict
+ * [5] leeftijd_min -> ageMin
+ * [6] leeftijd_max -> ageMax
+ * [7] valuta_iso4217 -> currency
+ * [8] Kosten -> contribution
+ * [9] volgeboekt -> isFull (marked with 'x')
+ * [10] link_pdf_of_website -> invitation
  */
 export async function fetchCamps(): Promise<FetchCampsResult> {
-  const response = await fetch(env.campsCsvUrl, {
+  const response = await fetch(env.campsXlsxUrl, {
     headers: {
       "Cache-Control": "no-cache",
     },
   });
 
   if (!response.ok) {
-    throw new Error("Kan CSV-gegevens niet laden");
+    throw new Error("Kan XLSX-gegevens niet laden");
   }
 
-  const csvText = await response.text();
+  // Fetch as ArrayBuffer for binary XLSX data
+  const arrayBuffer = await response.arrayBuffer();
 
-  // Parse CSV with quote-aware parser for comma delimiter
-  const parsedData = parseCSVWithQuotes(csvText);
+  // Parse the XLSX workbook
+  const workbook = XLSX.read(arrayBuffer, { type: "array" });
 
-  // Skip header row and convert to Camp objects
-  const camps: Camp[] = parsedData.slice(1).map((row, index) => ({
-    id: `camp-${index}-${row[2] || "unknown"}`,
-    startDate: normalizeDateString(row[0] || ""),
-    endDate: normalizeDateString(row[1] || ""),
-    title: row[2]?.trim() || "",
-    hostCountryCode: row[3]?.trim().toLowerCase() || "",
-    hostDistrict: row[4]?.trim() || "",
-    ageMin: row[5]?.trim() || "",
-    ageMax: row[6]?.trim() || "",
-    currency: row[7]?.trim().toUpperCase() || "EUR",
-    contribution: row[8]?.trim() || "",
-    invitation: row[10]?.trim() || "",
-    isFull: Boolean(row[9] && row[9].trim().toLowerCase() === "x"),
-  }));
+  // Get the first sheet
+  const sheetName = workbook.SheetNames[0];
+  const worksheet = workbook.Sheets[sheetName];
+
+  // Convert sheet to array of arrays (each row is an array)
+  const rows: unknown[][] = XLSX.utils.sheet_to_json(worksheet, {
+    header: 1, // Return array of arrays instead of objects
+    defval: "", // Default value for empty cells
+  });
+
+  // Skip header row (index 0) and convert to Camp objects
+  const camps: Camp[] = rows
+    .slice(1)
+    .filter((row) => row.length > 0 && row[2]) // Skip empty rows, require title
+    .map((row, index) => ({
+      id: `camp-${index}-${getCellString(row[2]) || "unknown"}`,
+      startDate: normalizeDateString(row[0] as string | number),
+      endDate: normalizeDateString(row[1] as string | number),
+      title: getCellString(row[2]),
+      hostCountryCode: getCellString(row[3]).toLowerCase(),
+      hostDistrict: getCellString(row[4]),
+      ageMin: getCellString(row[5]),
+      ageMax: getCellString(row[6]),
+      currency: getCellString(row[7]).toUpperCase() || "EUR",
+      contribution: getCellString(row[8]),
+      invitation: getCellString(row[10]),
+      isFull: getCellString(row[9]).toLowerCase() === "x",
+    }));
 
   // Sort camps chronologically
   const sortedCamps = sortCampsByDate(camps);
