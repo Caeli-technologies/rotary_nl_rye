@@ -14,7 +14,7 @@ export default function StudentsLayout() {
         headerStyle: { backgroundColor: colors.background },
         headerTintColor: colors.primary,
         headerShadowVisible: false,
-        headerBackTitleVisible: false,
+        // headerBackTitleVisible: false,
         contentStyle: { backgroundColor: colors.background },
       }}
     >

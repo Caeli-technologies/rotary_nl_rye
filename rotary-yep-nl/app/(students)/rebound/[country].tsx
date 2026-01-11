@@ -50,8 +50,8 @@ function StudentCard({ student, onPress }: StudentCardProps) {
     >
       <View style={styles.studentCardContent}>
         <NetworkImage
-          source={student.imageUrl}
-          fallbackName={student.name}
+          imageUrl={student.imageUrl}
+          name={student.name}
           size={56}
           style={styles.avatar}
         />
