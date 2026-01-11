@@ -4,10 +4,12 @@
 
 import { useCallback } from "react";
 import { SectionList, View, Text, StyleSheet, Platform } from "react-native";
+import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
 import { StudentCard } from "./StudentCard";
 import { EmptyState } from "@/shared/components/feedback/EmptyState";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import type { CountryGroup, Student } from "../types";
 
 interface StudentsListProps {
@@ -18,7 +20,7 @@ interface StudentsListProps {
 }
 
 interface SectionData {
-  country: CountryGroup["country"];
+  countryCode: string;
   data: Student[];
 }
 
@@ -31,7 +33,7 @@ export function StudentsList({
   const { colors } = useTheme();
 
   const sections: SectionData[] = countryGroups.map((group) => ({
-    country: group.country,
+    countryCode: group.countryCode,
     data: group.students,
   }));
 
@@ -43,22 +45,33 @@ export function StudentsList({
   );
 
   const renderSectionHeader = useCallback(
-    ({ section }: { section: SectionData }) => (
-      <View
-        style={[
-          styles.sectionHeader,
-          {
-            backgroundColor: colors.background,
-            borderBottomColor: colors.divider,
-          },
-        ]}
-      >
-        <Text style={[styles.sectionTitle, { color: colors.primary }]}>{section.country.name}</Text>
-        <Text style={[styles.sectionCount, { color: colors.textSecondary }]}>
-          {section.data.length} student{section.data.length !== 1 ? "s" : ""}
-        </Text>
-      </View>
-    ),
+    ({ section }: { section: SectionData }) => {
+      const flagAsset = getFlagAsset(section.countryCode);
+
+      return (
+        <View
+          style={[
+            styles.sectionHeader,
+            {
+              backgroundColor: colors.background,
+              borderBottomColor: colors.divider,
+            },
+          ]}
+        >
+          <View style={styles.sectionTitleContainer}>
+            {flagAsset && (
+              <Image source={flagAsset} style={styles.flagImage} contentFit="contain" />
+            )}
+            <Text style={[styles.sectionTitle, { color: colors.primary }]}>
+              {getCountryName(section.countryCode)}
+            </Text>
+          </View>
+          <Text style={[styles.sectionCount, { color: colors.textSecondary }]}>
+            {section.data.length} student{section.data.length !== 1 ? "s" : ""}
+          </Text>
+        </View>
+      );
+    },
     [colors],
   );
 
@@ -106,6 +119,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: Platform.OS === "ios" ? spacing.sm : spacing.md,
     borderBottomWidth: Platform.OS === "ios" ? 0 : StyleSheet.hairlineWidth,
+  },
+  sectionTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
+  },
+  flagImage: {
+    width: 28,
+    height: 20,
+    borderRadius: 2,
   },
   sectionTitle: {
     fontSize: Platform.OS === "ios" ? 22 : 18,

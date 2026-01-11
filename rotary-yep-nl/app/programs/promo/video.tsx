@@ -9,13 +9,14 @@ import {
   Image,
   Platform,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { useEvent } from "expo";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
+import { IconButton } from "@/shared/components/ui";
 type Video = { title: string; description: string; url: string };
 
 function VideoRow({
@@ -125,6 +126,7 @@ const videos: Video[] = [
 
 export default function VideoPromo() {
   const { colors: themeColors } = useTheme();
+  const insets = useSafeAreaInsets();
 
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
@@ -187,16 +189,15 @@ export default function VideoPromo() {
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}
       >
-        <SafeAreaView style={styles.videoModalContainer} edges={["top", "bottom", "left", "right"]}>
-          <View style={styles.videoModalHeader}>
-            <Pressable
-              style={({ pressed }) => [styles.closeButton, pressed && { opacity: 0.8 }]}
+        <View style={styles.videoModalContainer}>
+          <View style={[styles.videoModalHeader, { paddingTop: insets.top + 16 }]}>
+            <IconButton
+              icon="close"
               onPress={handleCloseVideo}
-              accessibilityRole="button"
-              accessibilityLabel="Close video"
-            >
-              <Ionicons name="close" size={28} color="white" />
-            </Pressable>
+              size="medium"
+              variant="default"
+              color="#FFF"
+            />
           </View>
 
           <View style={styles.videoContainer}>
@@ -215,11 +216,11 @@ export default function VideoPromo() {
             />
           </View>
 
-          <View style={styles.videoInfoModal}>
+          <View style={[styles.videoInfoModal, { paddingBottom: insets.bottom + 20 }]}>
             <Text style={[styles.videoTitleModal, { color: "white" }]}>{selectedVideo?.title}</Text>
             <Text style={styles.videoSubtitleModal}>{selectedVideo?.description}</Text>
           </View>
-        </SafeAreaView>
+        </View>
       </Modal>
     </SafeAreaView>
   );
@@ -348,16 +349,7 @@ const styles = StyleSheet.create({
   videoModalHeader: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    padding: 16,
-    paddingTop: 24,
-  },
-  closeButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 16,
   },
   videoContainer: {
     flex: 1,
@@ -382,7 +374,6 @@ const styles = StyleSheet.create({
   },
   videoInfoModal: {
     padding: 20,
-    paddingBottom: 40,
   },
   videoTitleModal: {
     fontSize: 20,

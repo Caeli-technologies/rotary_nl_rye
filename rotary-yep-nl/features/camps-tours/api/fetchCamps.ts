@@ -3,6 +3,7 @@
  */
 
 import { env } from "@/core/config/env";
+import { getCountryName } from "@/shared/utils/flags";
 import type { Camp, CountryWithCode } from "../types";
 
 interface FetchCampsResult {
@@ -11,33 +12,44 @@ interface FetchCampsResult {
 }
 
 /**
- * Simple CSV parser for React Native
- * Handles basic CSV with configurable delimiter
+ * Quote-aware CSV parser for handling comma delimiters with quoted fields
+ * Handles fields that contain commas within quotes (e.g., "1890,1940")
  */
-function parseCSV(
-  text: string,
-  options: { delimiter?: string; skipEmptyLines?: boolean } = {},
-): string[][] {
-  const { delimiter = ",", skipEmptyLines = true } = options;
-
+function parseCSVWithQuotes(text: string): string[][] {
   const lines = text.split(/\r?\n/);
   const result: string[][] = [];
 
   for (const line of lines) {
-    if (skipEmptyLines && line.trim() === "") {
-      continue;
+    if (line.trim() === "") continue;
+
+    const row: string[] = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === "," && !inQuotes) {
+        row.push(current.trim());
+        current = "";
+      } else {
+        current += char;
+      }
     }
-    result.push(line.split(delimiter));
+    row.push(current.trim());
+    result.push(row);
   }
 
   return result;
 }
 
 /**
- * Parse date string from DD/MM/YYYY format
+ * Parse date string from DD/MM/YYYY or DD-MM-YYYY format
  */
 function parseDateParts(dateStr: string): Date | null {
-  const parts = dateStr.split("/");
+  // Support both DD/MM/YYYY and DD-MM-YYYY
+  const parts = dateStr.split(/[/\-]/);
   if (parts.length !== 3) return null;
 
   const day = parseInt(parts[0], 10);
@@ -45,6 +57,15 @@ function parseDateParts(dateStr: string): Date | null {
   const year = parseInt(parts[2], 10);
 
   return new Date(year, month, day);
+}
+
+/**
+ * Normalize date string to DD/MM/YYYY format
+ */
+function normalizeDateString(dateStr: string): string {
+  const parts = dateStr.split(/[/\-]/);
+  if (parts.length !== 3) return dateStr;
+  return `${parts[0].padStart(2, "0")}/${parts[1].padStart(2, "0")}/${parts[2]}`;
 }
 
 /**
@@ -62,31 +83,37 @@ function sortCampsByDate(camps: Camp[]): Camp[] {
 
 /**
  * Extract unique countries with their codes from camps data
+ * Uses getCountryName to resolve country names from codes
  */
 function extractCountries(camps: Camp[]): CountryWithCode[] {
   const countriesMap = new Map<string, string>();
 
   camps.forEach((camp) => {
-    const countryList = camp.hostCountry.split("/");
-    const codeList = camp.hostCountryCode.split("/");
+    // Country codes can be space or comma separated
+    const codes = camp.hostCountryCode
+      .split(/[\s,]+/)
+      .map((c) => c.trim().toLowerCase())
+      .filter(Boolean);
 
-    countryList.forEach((country, index) => {
-      const trimmedCountry = country.trim();
-      const code = codeList[index]?.trim();
-
-      if (trimmedCountry && code) {
-        countriesMap.set(trimmedCountry, code);
+    codes.forEach((code) => {
+      if (!countriesMap.has(code)) {
+        countriesMap.set(code, getCountryName(code));
       }
     });
   });
 
   return Array.from(countriesMap.entries())
-    .map(([country, code]) => ({ country, code }))
+    .map(([code, country]) => ({ code, country }))
     .sort((a, b) => a.country.localeCompare(b.country));
 }
 
 /**
  * Fetch and parse camps data from CSV
+ *
+ * New CSV column mapping (0-indexed):
+ * [0] startDate, [1] endDate, [2] title, [3] countryCode,
+ * [4] district, [5] ageMin, [6] ageMax, [7] currency,
+ * [8] cost, [9] isFull, [10] invitation
  */
 export async function fetchCamps(): Promise<FetchCampsResult> {
   const response = await fetch(env.campsCsvUrl, {
@@ -101,26 +128,23 @@ export async function fetchCamps(): Promise<FetchCampsResult> {
 
   const csvText = await response.text();
 
-  // Parse CSV with semicolon delimiter
-  const parsedData = parseCSV(csvText, {
-    delimiter: ";",
-    skipEmptyLines: true,
-  });
+  // Parse CSV with quote-aware parser for comma delimiter
+  const parsedData = parseCSVWithQuotes(csvText);
 
   // Skip header row and convert to Camp objects
   const camps: Camp[] = parsedData.slice(1).map((row, index) => ({
     id: `camp-${index}-${row[2] || "unknown"}`,
-    startDate: row[0]?.toString() || "",
-    endDate: row[1]?.toString() || "",
-    title: row[2]?.toString() || "",
-    hostCountryCode: row[3]?.toString() || "",
-    hostCountry: row[4]?.toString() || "",
-    hostDistrict: row[5]?.toString() || "",
-    ageMin: row[6]?.toString() || "",
-    ageMax: row[7]?.toString() || "",
-    contribution: row[8]?.toString() || "",
-    invitation: row[9]?.toString() || "",
-    isFull: Boolean(row[10] && row[10].toString().trim() !== ""),
+    startDate: normalizeDateString(row[0] || ""),
+    endDate: normalizeDateString(row[1] || ""),
+    title: row[2]?.trim() || "",
+    hostCountryCode: row[3]?.trim().toLowerCase() || "",
+    hostDistrict: row[4]?.trim() || "",
+    ageMin: row[5]?.trim() || "",
+    ageMax: row[6]?.trim() || "",
+    currency: row[7]?.trim().toUpperCase() || "EUR",
+    contribution: row[8]?.trim() || "",
+    invitation: row[10]?.trim() || "",
+    isFull: Boolean(row[9] && row[9].trim().toLowerCase() === "x"),
   }));
 
   // Sort camps chronologically

@@ -6,7 +6,7 @@ import { View, Text, StyleSheet, Platform } from "react-native";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
-import { getFlagAsset } from "@/shared/utils/flags";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import { StudentCard } from "./StudentCard";
 import type { CountryGroup, Student } from "../types";
 
@@ -17,7 +17,7 @@ interface CountrySectionProps {
 
 export function CountrySection({ group, onStudentPress }: CountrySectionProps) {
   const { colors } = useTheme();
-  const flagAsset = getFlagAsset(group.country.code);
+  const flagAsset = getFlagAsset(group.countryCode);
 
   return (
     <View style={styles.container}>
@@ -36,11 +36,13 @@ export function CountrySection({ group, onStudentPress }: CountrySectionProps) {
           ) : (
             <View style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}>
               <Text style={[styles.flagText, { color: colors.textTertiary }]}>
-                {group.country.code.toUpperCase()}
+                {group.countryCode.toUpperCase()}
               </Text>
             </View>
           )}
-          <Text style={[styles.title, { color: colors.primary }]}>{group.country.name}</Text>
+          <Text style={[styles.title, { color: colors.primary }]}>
+            {getCountryName(group.countryCode)}
+          </Text>
         </View>
         <Text style={[styles.count, { color: colors.textSecondary }]}>
           {group.students.length} student{group.students.length !== 1 ? "s" : ""}

@@ -1,14 +1,14 @@
 /**
  * ImageModal component
- * Full-screen image preview with close button
+ * Full-screen image preview with platform-native close button
  */
 
 import { Modal, View, StyleSheet, Pressable, Dimensions, Platform, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { getInitials } from "@/shared/utils";
+import { IconButton } from "@/shared/components/ui";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -25,6 +25,7 @@ interface ImageModalProps {
 
 export function ImageModal({ visible, onClose, source, name }: ImageModalProps) {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
   const shouldShowImage =
     source &&
     (typeof source === "string" ? !source.includes("Profile_avatar_placeholder_large.png") : true);
@@ -38,10 +39,8 @@ export function ImageModal({ visible, onClose, source, name }: ImageModalProps) 
       presentationStyle="fullScreen"
       statusBarTranslucent
     >
-      <SafeAreaView style={styles.modalContainer}>
-        <Pressable onPress={onClose} style={styles.closeButton}>
-          <Ionicons name="close" size={30} color="white" />
-        </Pressable>
+      <View style={styles.modalContainer}>
+        {/* Image content */}
         <Pressable style={styles.modalPressable} onPress={onClose}>
           {shouldShowImage ? (
             <Image
@@ -59,7 +58,12 @@ export function ImageModal({ visible, onClose, source, name }: ImageModalProps) 
             </View>
           )}
         </Pressable>
-      </SafeAreaView>
+
+        {/* Close button */}
+        <View style={[styles.header, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
+          <IconButton icon="close" onPress={onClose} size="medium" variant="default" />
+        </View>
+      </View>
     </Modal>
   );
 }
@@ -69,14 +73,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
   },
+  header: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingHorizontal: 16,
+  },
   modalPressable: {
     flex: 1,
-  },
-  closeButton: {
-    position: "absolute",
-    top: 50,
-    right: 20,
-    zIndex: 1,
   },
   fullImage: {
     flex: 1,

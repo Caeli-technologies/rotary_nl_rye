@@ -10,6 +10,7 @@ import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
+import { getCountryName } from "@/shared/utils/flags";
 import {
   useStudents,
   groupByHostCountry,
@@ -33,16 +34,16 @@ export default function ReboundCountriesScreen() {
       router.push({
         pathname: "/students/rebound/[country]" as const,
         params: {
-          country: country.country.code,
-          countryName: country.country.name,
+          country: country.countryCode,
+          countryName: getCountryName(country.countryCode),
         },
       } as never);
     } catch {
       router.push({
         pathname: "/students/rebound/[country]" as const,
         params: {
-          country: country.country.code,
-          countryName: country.country.name,
+          country: country.countryCode,
+          countryName: getCountryName(country.countryCode),
         },
       } as never);
     }
@@ -60,7 +61,7 @@ export default function ReboundCountriesScreen() {
       <FlatList
         data={countryGroups}
         renderItem={renderCountry}
-        keyExtractor={(item) => item.country.code}
+        keyExtractor={(item) => item.countryCode}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={styles.contentContainer}

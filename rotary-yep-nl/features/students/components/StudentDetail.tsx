@@ -11,7 +11,7 @@ import { spacing } from "@/core/theme/spacing";
 import { NetworkImage } from "@/shared/components/media/NetworkImage";
 import { useHaptics } from "@/shared/hooks";
 import { makePhoneCall, sendEmail, openURL } from "@/shared/utils/communications";
-import { getFlagAsset } from "@/shared/utils/flags";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import type { Student } from "../types";
 
 interface StudentDetailProps {
@@ -58,8 +58,8 @@ export function StudentDetail({ student }: StudentDetailProps) {
   const { colors } = useTheme();
   const { lightImpact } = useHaptics();
 
-  const fromFlagAsset = getFlagAsset(student.homeCountry.code);
-  const toFlagAsset = getFlagAsset(student.hostCountry.code);
+  const fromFlagAsset = getFlagAsset(student.homeCountryCode);
+  const toFlagAsset = getFlagAsset(student.hostCountryCode);
 
   const handleCall = useCallback(() => {
     if (student.phone) {
@@ -130,12 +130,12 @@ export function StudentDetail({ student }: StudentDetailProps) {
                   style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}
                 >
                   <Text style={[styles.flagText, { color: colors.textTertiary }]}>
-                    {student.homeCountry.code.toUpperCase()}
+                    {student.homeCountryCode.toUpperCase()}
                   </Text>
                 </View>
               )}
               <Text style={[styles.countryName, { color: colors.text }]}>
-                {student.homeCountry.name}
+                {getCountryName(student.homeCountryCode)}
               </Text>
             </View>
 
@@ -151,12 +151,12 @@ export function StudentDetail({ student }: StudentDetailProps) {
                   style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}
                 >
                   <Text style={[styles.flagText, { color: colors.textTertiary }]}>
-                    {student.hostCountry.code.toUpperCase()}
+                    {student.hostCountryCode.toUpperCase()}
                   </Text>
                 </View>
               )}
               <Text style={[styles.countryName, { color: colors.text }]}>
-                {student.hostCountry.name}
+                {getCountryName(student.hostCountryCode)}
               </Text>
             </View>
           </View>

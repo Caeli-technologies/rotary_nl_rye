@@ -14,7 +14,7 @@ export default function ContactLayout() {
         headerTitleStyle: {
           color: theme.text,
           fontWeight: "600",
-          fontSize: Platform.OS === "ios" ? 20 : 22,
+          fontSize: Platform.OS === "ios" ? 17 : 20,
         },
         headerTintColor: theme.primary,
         headerShadowVisible: Platform.OS === "ios",
@@ -23,7 +23,7 @@ export default function ContactLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Contact List",
+          title: "Contacts",
         }}
       />
     </Stack>

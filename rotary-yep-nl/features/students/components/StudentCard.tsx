@@ -8,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
 import { NetworkImage } from "@/shared/components/media/NetworkImage";
-import { getFlagAsset } from "@/shared/utils/flags";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import type { Student } from "../types";
 
 interface StudentCardProps {
@@ -28,8 +28,8 @@ const shadowStyle = {
 export function StudentCard({ student, onPress, showExchangeInfo = true }: StudentCardProps) {
   const { colors } = useTheme();
 
-  const fromFlagAsset = getFlagAsset(student.homeCountry.code);
-  const toFlagAsset = getFlagAsset(student.hostCountry.code);
+  const fromFlagAsset = getFlagAsset(student.homeCountryCode);
+  const toFlagAsset = getFlagAsset(student.hostCountryCode);
 
   return (
     <Pressable
@@ -76,12 +76,12 @@ export function StudentCard({ student, onPress, showExchangeInfo = true }: Stude
                     style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}
                   >
                     <Text style={[styles.flagText, { color: colors.textTertiary }]}>
-                      {student.homeCountry.code.toUpperCase()}
+                      {student.homeCountryCode.toUpperCase()}
                     </Text>
                   </View>
                 )}
                 <Text style={[styles.countryText, { color: colors.textSecondary }]}>
-                  {student.homeCountry.name}
+                  {getCountryName(student.homeCountryCode)}
                 </Text>
               </View>
 
@@ -100,12 +100,12 @@ export function StudentCard({ student, onPress, showExchangeInfo = true }: Stude
                     style={[styles.flagPlaceholder, { backgroundColor: colors.backgroundElevated }]}
                   >
                     <Text style={[styles.flagText, { color: colors.textTertiary }]}>
-                      {student.hostCountry.code.toUpperCase()}
+                      {student.hostCountryCode.toUpperCase()}
                     </Text>
                   </View>
                 )}
                 <Text style={[styles.countryText, { color: colors.textSecondary }]}>
-                  {student.hostCountry.name}
+                  {getCountryName(student.hostCountryCode)}
                 </Text>
               </View>
             </View>

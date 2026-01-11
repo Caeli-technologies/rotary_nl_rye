@@ -330,6 +330,15 @@ export const countryNames: Record<string, string> = {
   my: "Malaysia",
   sg: "Singapore",
   vn: "Vietnam",
+  // South American countries (used by exchange students)
+  pe: "Peru",
+  cl: "Chile",
+  co: "Colombia",
+  ec: "Ecuador",
+  // Other (used by rebound students)
+  eu: "European Union",
+  // Camps & Tours countries
+  tr: "Turkey",
 };
 
 /**

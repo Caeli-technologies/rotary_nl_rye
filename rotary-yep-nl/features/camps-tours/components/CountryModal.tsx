@@ -2,12 +2,13 @@
  * Country selection modal for camps filtering
  */
 
-import { StyleSheet, View, Modal, FlatList, Pressable, Text } from "react-native";
+import { StyleSheet, View, Modal, FlatList, Pressable, Text, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { getFlagAsset } from "@/shared/utils/flags";
+import { IconButton } from "@/shared/components/ui";
 import type { CountryWithCode, FilterState } from "../types";
 
 interface CountryModalProps {
@@ -33,7 +34,7 @@ export function CountryModal({
   };
 
   const renderCountryItem = ({ item }: { item: CountryWithCode }) => {
-    const isSelected = selectedCountry === item.country;
+    const isSelected = selectedCountry === item.code;
     const flagAsset = item.code ? getFlagAsset(item.code.toLowerCase()) : null;
 
     return (
@@ -43,7 +44,7 @@ export function CountryModal({
           isSelected && [styles.itemSelected, { backgroundColor: colors.backgroundElevated }],
           pressed && [styles.itemPressed, { backgroundColor: colors.backgroundElevated }],
         ]}
-        onPress={() => handleSelectCountry(item.country)}
+        onPress={() => handleSelectCountry(item.code)}
       >
         <View style={styles.itemContent}>
           {flagAsset ? (
@@ -95,21 +96,22 @@ export function CountryModal({
     <Modal
       visible={visible}
       animationType="slide"
-      presentationStyle="pageSheet"
+      presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        edges={["top"]}
+      >
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <Text style={[styles.title, { color: colors.text }]}>Selecteer Land</Text>
-          <Pressable style={styles.closeButton} onPress={onClose}>
-            <Ionicons name="close" size={24} color={colors.textSecondary} />
-          </Pressable>
+          <IconButton icon="close" onPress={onClose} size="small" variant="default" />
         </View>
 
         <FlatList
           data={countries}
           renderItem={renderCountryItem}
-          keyExtractor={(item) => item.country}
+          keyExtractor={(item) => item.code}
           ListHeaderComponent={renderAllCountriesItem}
           showsVerticalScrollIndicator
           contentContainerStyle={styles.list}
@@ -134,9 +136,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "600",
-  },
-  closeButton: {
-    padding: 4,
   },
   list: {
     paddingVertical: 8,

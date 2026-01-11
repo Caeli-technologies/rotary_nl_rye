@@ -1,6 +1,10 @@
 /**
  * News screen route
  * Thin wrapper using the news feature module
+ *
+ * Navigation flow:
+ * - PDF items: Navigate directly to PDF viewer
+ * - Article items: Navigate to detail screen
  */
 
 import { useCallback } from "react";
@@ -15,10 +19,19 @@ export default function NewsScreen() {
   const { items, loading, error, refresh } = useNews();
 
   const handleItemPress = useCallback((item: NewsItem) => {
-    router.push({
-      pathname: "/news/[id]" as const,
-      params: { id: String(item.id) },
-    } as never);
+    if (item.isPdf && item.pdfUrl) {
+      // PDF: Navigate directly to PDF viewer
+      router.push({
+        pathname: "/pdf-viewer",
+        params: { url: item.pdfUrl, title: item.title },
+      });
+    } else {
+      // Article: Navigate to detail screen
+      router.push({
+        pathname: "/news/[id]" as const,
+        params: { id: String(item.id) },
+      } as never);
+    }
   }, []);
 
   if (loading && items.length === 0) {

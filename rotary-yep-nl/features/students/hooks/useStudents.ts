@@ -150,9 +150,9 @@ export function useStudentsByCountry(countryCode: string, type: StudentType): St
     }
 
     if (type === "inbound") {
-      return students.filter((s) => s.homeCountry.code === countryCode);
+      return students.filter((s) => s.homeCountryCode === countryCode);
     } else {
-      return students.filter((s) => s.hostCountry.code === countryCode);
+      return students.filter((s) => s.hostCountryCode === countryCode);
     }
   }, [countryCode, type]);
 }

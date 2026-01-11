@@ -2,10 +2,10 @@
  * Emergency contact card component
  */
 
-import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
+import { IconButton } from "@/shared/components/ui";
 import { useHaptics } from "@/shared/hooks";
 import { makePhoneCall, sendEmail } from "@/shared/utils/communications";
 import type { EmergencyContact } from "../types";
@@ -56,28 +56,22 @@ export function EmergencyCard({ contact }: EmergencyCardProps) {
       </View>
 
       <View style={styles.actions}>
-        <Pressable
-          style={({ pressed }) => [
-            styles.actionButton,
-            { backgroundColor: `${colors.primary}15` },
-            pressed && styles.actionButtonPressed,
-          ]}
+        <IconButton
+          icon="call"
           onPress={handleCall}
-        >
-          <Ionicons name="call" size={20} color={colors.primary} />
-        </Pressable>
+          size="medium"
+          variant="tinted"
+          color={colors.primary}
+        />
 
         {contact.email && (
-          <Pressable
-            style={({ pressed }) => [
-              styles.actionButton,
-              { backgroundColor: `${colors.primary}15` },
-              pressed && styles.actionButtonPressed,
-            ]}
+          <IconButton
+            icon="mail"
             onPress={handleEmail}
-          >
-            <Ionicons name="mail" size={20} color={colors.primary} />
-          </Pressable>
+            size="medium"
+            variant="tinted"
+            color={colors.primary}
+          />
         )}
       </View>
     </View>
@@ -114,16 +108,5 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: "row",
     gap: spacing.sm,
-  },
-  actionButton: {
-    width: Platform.OS === "ios" ? 44 : 48,
-    height: Platform.OS === "ios" ? 44 : 48,
-    borderRadius: Platform.OS === "ios" ? 22 : 24,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  actionButtonPressed: {
-    opacity: 0.8,
-    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
   },
 });

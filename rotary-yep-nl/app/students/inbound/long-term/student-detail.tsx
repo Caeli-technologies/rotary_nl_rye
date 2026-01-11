@@ -1,16 +1,13 @@
-/**
- * Outbound student detail screen
- * Thin wrapper using students feature
- */
-
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import { useLayoutEffect } from "react";
+
 import { useTheme } from "@/core/theme";
 import { StudentDetail, useStudent } from "@/features/students";
-import { ErrorState } from "@/shared/components/feedback/ErrorState";
+import { useLayoutEffect } from "react";
+import { ErrorState } from "@/shared/components";
 
-export default function OutboundStudentDetailScreen() {
+export default function InboundStudentDetailScreen() {
   const { colors } = useTheme();
   const { studentId } = useLocalSearchParams<{ studentId: string }>();
   const navigation = useNavigation();

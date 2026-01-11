@@ -5,6 +5,7 @@
 
 import type { Student, RawStudent } from "../types";
 import { convertRawStudent } from "../types";
+import { getCountryName } from "@/shared/utils/flags";
 
 // TODO: convert the json file to typescript!!
 
@@ -63,15 +64,15 @@ export function getDestinationCountries(): {
   const countryMap = new Map<string, { code: string; name: string; count: number }>();
 
   for (const student of reboundStudents) {
-    const key = student.hostCountry.code;
+    const key = student.hostCountryCode;
     const existing = countryMap.get(key);
 
     if (existing) {
       existing.count++;
     } else {
       countryMap.set(key, {
-        code: student.hostCountry.code,
-        name: student.hostCountry.name,
+        code: student.hostCountryCode,
+        name: getCountryName(student.hostCountryCode),
         count: 1,
       });
     }
@@ -84,7 +85,7 @@ export function getDestinationCountries(): {
  * Get students by destination country
  */
 export function getStudentsByCountry(countryCode: string): Student[] {
-  return reboundStudents.filter((student) => student.hostCountry.code === countryCode);
+  return reboundStudents.filter((student) => student.hostCountryCode === countryCode);
 }
 
 /**
