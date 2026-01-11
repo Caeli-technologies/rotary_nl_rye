@@ -8,7 +8,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
-import { NetworkImage } from "@/shared/components/media/NetworkImage";
 import { useHaptics } from "@/shared/hooks";
 import type { NewsItem, NewsTextBlock } from "../types";
 
@@ -16,14 +15,6 @@ interface NewsDetailProps {
   item: NewsItem;
   onOpenPdf?: () => void;
 }
-
-const shadowStyle = {
-  shadowColor: "#000",
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.08,
-  shadowRadius: 20,
-  elevation: 4,
-};
 
 export function NewsDetail({ item, onOpenPdf }: NewsDetailProps) {
   const { colors } = useTheme();
@@ -42,28 +33,37 @@ export function NewsDetail({ item, onOpenPdf }: NewsDetailProps) {
     >
       {/* Hero Image */}
       <View style={styles.heroContainer}>
-        <NetworkImage imageUrl={item.imageUrl} name={item.title} style={styles.heroImage} />
+        <Image
+          source={{ uri: item.imageUrl }}
+          style={styles.heroImage}
+          contentFit="cover"
+          transition={300}
+        />
       </View>
 
-      <View style={styles.content}>
-        {/* Title Section */}
-        <View
-          style={[
-            styles.titleSection,
-            {
-              backgroundColor: colors.card,
-              borderColor: colors.border,
-              shadowColor: colors.shadow,
-            },
-          ]}
-        >
-          <Text style={[styles.title, { color: colors.text }]}>{item.title}</Text>
-          <Text style={[styles.description, { color: colors.textSecondary }]}>
-            {item.description}
-          </Text>
-        </View>
+      {/* Main Content Card */}
+      <View
+        style={[
+          styles.contentCard,
+          {
+            backgroundColor: colors.card,
+            borderColor: colors.border,
+          },
+          Platform.OS === "ios" && {
+            shadowColor: colors.shadow,
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 8,
+          },
+        ]}
+      >
+        {/* Title & Description */}
+        <Text style={[styles.title, { color: colors.text }]}>{item.title}</Text>
+        <Text style={[styles.description, { color: colors.textSecondary }]}>
+          {item.description}
+        </Text>
 
-        {/* PDF Button */}
+        {/* PDF Button - kept for backwards compatibility (deep links) */}
         {item.isPdf && item.pdfUrl && (
           <Pressable
             style={({ pressed }) => [
@@ -73,27 +73,29 @@ export function NewsDetail({ item, onOpenPdf }: NewsDetailProps) {
             ]}
             onPress={handleOpenPdf}
           >
-            <Ionicons name="document-text" size={24} color="#FFFFFF" />
+            <Ionicons name="document-text" size={24} color={colors.onPrimary} />
             <View style={styles.pdfButtonContent}>
-              <Text style={styles.pdfButtonTitle}>Open PDF</Text>
-              <Text style={styles.pdfButtonSubtitle}>View the full document</Text>
+              <Text style={[styles.pdfButtonTitle, { color: colors.onPrimary }]}>Open PDF</Text>
+              <Text style={[styles.pdfButtonSubtitle, { color: colors.onPrimary, opacity: 0.8 }]}>
+                Bekijk het volledige document
+              </Text>
             </View>
-            <Ionicons name="open-outline" size={20} color="#FFFFFF" />
+            <Ionicons name="open-outline" size={20} color={colors.onPrimary} />
           </Pressable>
         )}
 
-        {/* Text Content */}
+        {/* Text Content - all in one flowing section */}
         {item.textContent && item.textContent.length > 0 && (
-          <View style={styles.textContentContainer}>
+          <View style={styles.textContent}>
             {item.textContent.map((block, blockIndex) => (
               <TextBlockView key={blockIndex} block={block} colors={colors} />
             ))}
           </View>
         )}
-
-        {/* Bottom spacing */}
-        <View style={{ height: spacing.xl }} />
       </View>
+
+      {/* Bottom spacing */}
+      <View style={{ height: spacing.xl }} />
     </ScrollView>
   );
 }
@@ -121,27 +123,16 @@ function VideoBlock({ videoUrl }: VideoBlockProps) {
 
 function TextBlockView({ block, colors }: TextBlockViewProps) {
   return (
-    <View
-      style={[
-        styles.textBlock,
-        {
-          backgroundColor: colors.card,
-          borderColor: colors.border,
-          shadowColor: colors.shadow,
-        },
-      ]}
-    >
+    <View style={styles.textBlock}>
       {/* Section Heading */}
       {block.heading && (
-        <View style={[styles.headingContainer, { borderBottomColor: colors.border }]}>
-          <Text style={[styles.heading, { color: colors.primary }]}>{block.heading}</Text>
-        </View>
+        <Text style={[styles.heading, { color: colors.primary }]}>{block.heading}</Text>
       )}
 
       {/* Body Content */}
       {block.body &&
         block.body.map((bodyItem, bodyIndex) => (
-          <View key={`body-${bodyIndex}`} style={styles.bodyItem}>
+          <View key={`body-${bodyIndex}`}>
             {/* Paragraphs */}
             {bodyItem.paragraph &&
               bodyItem.paragraph.map((para, paraIndex) => (
@@ -181,17 +172,15 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  content: {
-    padding: spacing.md,
+  contentCard: {
+    marginHorizontal: spacing.md,
     marginTop: -spacing.lg,
-  },
-  titleSection: {
-    borderRadius: spacing.radiusLg,
+    borderRadius: 12,
     padding: spacing.lg,
-    marginBottom: spacing.md,
-    ...(Platform.OS === "ios"
-      ? shadowStyle
-      : { elevation: 3, borderWidth: StyleSheet.hairlineWidth }),
+    ...(Platform.OS === "android" && {
+      elevation: 3,
+      borderWidth: StyleSheet.hairlineWidth,
+    }),
   },
   title: {
     fontSize: Platform.OS === "ios" ? 24 : 22,
@@ -202,12 +191,13 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     lineHeight: 24,
+    marginBottom: spacing.md,
   },
   pdfButton: {
     flexDirection: "row",
     alignItems: "center",
     padding: spacing.md,
-    borderRadius: spacing.radiusMd,
+    borderRadius: 12,
     marginBottom: spacing.md,
     gap: spacing.sm,
   },
@@ -219,44 +209,31 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   pdfButtonTitle: {
-    color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "600",
   },
   pdfButtonSubtitle: {
-    color: "rgba(255, 255, 255, 0.8)",
     fontSize: 13,
   },
-  textContentContainer: {
-    gap: spacing.md,
+  textContent: {
+    marginTop: spacing.sm,
   },
   textBlock: {
-    borderRadius: spacing.radiusMd,
-    overflow: "hidden",
-    ...(Platform.OS === "ios"
-      ? shadowStyle
-      : { elevation: 2, borderWidth: StyleSheet.hairlineWidth }),
-  },
-  headingContainer: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: spacing.md,
   },
   heading: {
     fontSize: 18,
     fontWeight: "600",
-  },
-  bodyItem: {
-    padding: spacing.md,
+    marginBottom: spacing.sm,
   },
   paragraph: {
     fontSize: 16,
-    lineHeight: 24,
-    marginBottom: spacing.sm,
+    lineHeight: 26,
+    marginBottom: spacing.md,
   },
   inlineImageContainer: {
-    marginVertical: spacing.sm,
-    borderRadius: spacing.radiusSm,
+    marginVertical: spacing.md,
+    borderRadius: 8,
     overflow: "hidden",
   },
   inlineImage: {
@@ -264,8 +241,8 @@ const styles = StyleSheet.create({
     height: 200,
   },
   videoContainer: {
-    marginVertical: spacing.sm,
-    borderRadius: spacing.radiusSm,
+    marginVertical: spacing.md,
+    borderRadius: 8,
     overflow: "hidden",
     backgroundColor: "#000",
   },
