@@ -8,30 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		32F64A612A0EEEB0E90B5697 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C219DF8424932EC1D1E370 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6F182E0FC2234817FEECBB27 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A32F5AC87CBEFD94AC078051 /* PrivacyInfo.xcprivacy */; };
-		71404A76363F56953C7751CE /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945D8D1AC881504825863E3 /* ExpoModulesProvider.swift */; };
-		A4E76E0F14CB4DDCBFCDD91C /* app.icon in Resources */ = {isa = PBXBuildFile; fileRef = 0BC94F811EA743F29369A2B8 /* app.icon */; };
-		AE482A3852CEBDDF54185DF8 /* libPods-RotaryYEPNL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0603A882995B8E4461A34D51 /* libPods-RotaryYEPNL.a */; };
+		63FFEB48C095D6F5AF495E33 /* libPods-RotaryYEPNL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A86687434847387FF9C5249 /* libPods-RotaryYEPNL.a */; };
+		A265F933289D4823A7CE2969 /* app.icon in Resources */ = {isa = PBXBuildFile; fileRef = E6AE8D3BD22A49969F5F72AC /* app.icon */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		D9BB01A5032551168630EA2C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F471E92AF9BF655873549D5C /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0603A882995B8E4461A34D51 /* libPods-RotaryYEPNL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RotaryYEPNL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BC94F811EA743F29369A2B8 /* app.icon */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = app.icon; path = RotaryYEPNL/app.icon; sourceTree = "<group>"; };
+		08C219DF8424932EC1D1E370 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-RotaryYEPNL/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		0A86687434847387FF9C5249 /* libPods-RotaryYEPNL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RotaryYEPNL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* RotaryYEPNL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotaryYEPNL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RotaryYEPNL/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RotaryYEPNL/Info.plist; sourceTree = "<group>"; };
-		3DBA302944BC32432911DF3E /* Pods-RotaryYEPNL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaryYEPNL.debug.xcconfig"; path = "Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL.debug.xcconfig"; sourceTree = "<group>"; };
-		5945D8D1AC881504825863E3 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-RotaryYEPNL/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		7AF92740B26E3B843C5286C0 /* Pods-RotaryYEPNL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaryYEPNL.release.xcconfig"; path = "Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL.release.xcconfig"; sourceTree = "<group>"; };
-		A32F5AC87CBEFD94AC078051 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RotaryYEPNL/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		57D92B1D343719BACC42CCC5 /* Pods-RotaryYEPNL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaryYEPNL.release.xcconfig"; path = "Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = RotaryYEPNL/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		D33E5906D66187DCDD1FDCE2 /* Pods-RotaryYEPNL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaryYEPNL.debug.xcconfig"; path = "Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL.debug.xcconfig"; sourceTree = "<group>"; };
+		E6AE8D3BD22A49969F5F72AC /* app.icon */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = app.icon; path = RotaryYEPNL/app.icon; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RotaryYEPNL/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* RotaryYEPNL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "RotaryYEPNL-Bridging-Header.h"; path = "RotaryYEPNL/RotaryYEPNL-Bridging-Header.h"; sourceTree = "<group>"; };
+		F471E92AF9BF655873549D5C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RotaryYEPNL/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE482A3852CEBDDF54185DF8 /* libPods-RotaryYEPNL.a in Frameworks */,
+				63FFEB48C095D6F5AF495E33 /* libPods-RotaryYEPNL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,28 +55,28 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				0BC94F811EA743F29369A2B8 /* app.icon */,
-				A32F5AC87CBEFD94AC078051 /* PrivacyInfo.xcprivacy */,
+				E6AE8D3BD22A49969F5F72AC /* app.icon */,
+				F471E92AF9BF655873549D5C /* PrivacyInfo.xcprivacy */,
 			);
 			name = RotaryYEPNL;
-			sourceTree = "<group>";
-		};
-		22C1F6C4D49E6E7BF214960F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3DBA302944BC32432911DF3E /* Pods-RotaryYEPNL.debug.xcconfig */,
-				7AF92740B26E3B843C5286C0 /* Pods-RotaryYEPNL.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				0603A882995B8E4461A34D51 /* libPods-RotaryYEPNL.a */,
+				0A86687434847387FF9C5249 /* libPods-RotaryYEPNL.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6CE588EE120A75BC81E3ABF6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D33E5906D66187DCDD1FDCE2 /* Pods-RotaryYEPNL.debug.xcconfig */,
+				57D92B1D343719BACC42CCC5 /* Pods-RotaryYEPNL.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -93,8 +93,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				A3B322ABFDB92BD82D83A690 /* ExpoModulesProviders */,
-				22C1F6C4D49E6E7BF214960F /* Pods */,
+				6CE588EE120A75BC81E3ABF6 /* Pods */,
+				A009D2B711F5FEE7D0A181C7 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -109,12 +109,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A3B322ABFDB92BD82D83A690 /* ExpoModulesProviders */ = {
+		A009D2B711F5FEE7D0A181C7 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				C2B24FFBC8B63407437A593D /* RotaryYEPNL */,
+				B1778B0CB9085AC85DB5A6DF /* RotaryYEPNL */,
 			);
 			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		B1778B0CB9085AC85DB5A6DF /* RotaryYEPNL */ = {
+			isa = PBXGroup;
+			children = (
+				08C219DF8424932EC1D1E370 /* ExpoModulesProvider.swift */,
+			);
+			name = RotaryYEPNL;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -126,14 +134,6 @@
 			path = RotaryYEPNL/Supporting;
 			sourceTree = "<group>";
 		};
-		C2B24FFBC8B63407437A593D /* RotaryYEPNL */ = {
-			isa = PBXGroup;
-			children = (
-				5945D8D1AC881504825863E3 /* ExpoModulesProvider.swift */,
-			);
-			name = RotaryYEPNL;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,14 +141,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RotaryYEPNL" */;
 			buildPhases = (
-				A6F2E67544F65E514AA0E4A3 /* [CP] Check Pods Manifest.lock */,
-				3129C46FF9505B5850FBBF95 /* [Expo] Configure project */,
+				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
+				39E65C50B4E8A4E5112789DC /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				51FB93C1A85CB83D96BC1785 /* [CP] Embed Pods Frameworks */,
-				C049202473F7FBCE875F47AB /* [CP] Copy Pods Resources */,
+				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
+				DA5DBA398731503D786821CD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,8 +198,8 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				A4E76E0F14CB4DDCBFCDD91C /* app.icon in Resources */,
-				6F182E0FC2234817FEECBB27 /* PrivacyInfo.xcprivacy in Resources */,
+				A265F933289D4823A7CE2969 /* app.icon in Resources */,
+				D9BB01A5032551168630EA2C /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +223,29 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
 		};
-		3129C46FF9505B5850FBBF95 /* [Expo] Configure project */ = {
+		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RotaryYEPNL-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39E65C50B4E8A4E5112789DC /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -247,51 +269,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-RotaryYEPNL/expo-configure-project.sh\"\n";
 		};
-		51FB93C1A85CB83D96BC1785 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A6F2E67544F65E514AA0E4A3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RotaryYEPNL-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C049202473F7FBCE875F47AB /* [CP] Copy Pods Resources */ = {
+		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,6 +303,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DA5DBA398731503D786821CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RotaryYEPNL/Pods-RotaryYEPNL-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -333,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				71404A76363F56953C7751CE /* ExpoModulesProvider.swift in Sources */,
+				32F64A612A0EEEB0E90B5697 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,11 +342,13 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DBA302944BC32432911DF3E /* Pods-RotaryYEPNL.debug.xcconfig */;
+			baseConfigurationReference = D33E5906D66187DCDD1FDCE2 /* Pods-RotaryYEPNL.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = app;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RotaryYEPNL/RotaryYEPNL.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A8S2486A44;
 				ENABLE_BITCODE = NO;
@@ -355,7 +357,6 @@
 					"FB_SONARKIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = RotaryYEPNL/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Rotary YEP NL";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -370,7 +371,8 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.caelitechnologies.rotary-nl-rye";
-				PRODUCT_NAME = "RotaryYEPNL";
+				PRODUCT_NAME = RotaryYEPNL;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RotaryYEPNL/RotaryYEPNL-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -381,15 +383,16 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AF92740B26E3B843C5286C0 /* Pods-RotaryYEPNL.release.xcconfig */;
+			baseConfigurationReference = 57D92B1D343719BACC42CCC5 /* Pods-RotaryYEPNL.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = app;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RotaryYEPNL/RotaryYEPNL.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A8S2486A44;
 				INFOPLIST_FILE = RotaryYEPNL/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Rotary YEP NL";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -404,7 +407,8 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.caelitechnologies.rotary-nl-rye";
-				PRODUCT_NAME = "RotaryYEPNL";
+				PRODUCT_NAME = RotaryYEPNL;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RotaryYEPNL/RotaryYEPNL-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
