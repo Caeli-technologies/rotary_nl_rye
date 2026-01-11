@@ -4,7 +4,7 @@
  */
 
 import { useState, useCallback } from "react";
-import { Platform, StyleSheet, View, Text, SectionList } from "react-native";
+import { Platform, StyleSheet, View, Text, FlatList } from "react-native";
 import { useTheme } from "@/core/theme";
 import { SegmentedControl } from "@/shared/components/ui";
 import { ContactCard, ContactModal, contactSections, type Contact } from "@/features/contacts";
@@ -33,33 +33,23 @@ export default function ContactScreen() {
     setActiveTab(index);
   }, []);
 
-  if (contacts.length === 0) {
-    return (
-      <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <View style={styles.segmentedControlContainer}>
-          <SegmentedControl
-            values={tabValues}
-            selectedIndex={activeTab}
-            onChange={handleSegmentChange}
-            style={styles.segmentedControl}
-          />
-        </View>
-        <View style={styles.emptyState}>
-          <Text style={[styles.emptyStateTitle, { color: colors.primary }]}>
-            Geen contacten beschikbaar
-          </Text>
-          <Text style={[styles.emptyStateMessage, { color: colors.textSecondary }]}>
-            Er zijn momenteel geen contacten in deze sectie.
-          </Text>
-        </View>
-        <ContactModal contact={selectedContact} visible={modalVisible} onClose={handleCloseModal} />
+  const renderEmptyState = useCallback(
+    () => (
+      <View style={styles.emptyState}>
+        <Text style={[styles.emptyStateTitle, { color: colors.primary }]}>
+          Geen contacten beschikbaar
+        </Text>
+        <Text style={[styles.emptyStateMessage, { color: colors.textSecondary }]}>
+          Er zijn momenteel geen contacten in deze sectie.
+        </Text>
       </View>
-    );
-  }
+    ),
+    [colors],
+  );
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <View style={styles.segmentedControlContainer}>
+      <View style={[styles.segmentedControlContainer]}>
         <SegmentedControl
           values={tabValues}
           selectedIndex={activeTab}
@@ -68,17 +58,17 @@ export default function ContactScreen() {
         />
       </View>
 
-      <SectionList
-        sections={[{ data: contacts }]}
+      <FlatList
+        data={contacts}
         renderItem={({ item }) => (
           <ContactCard contact={item} onPress={() => handleContactPress(item)} />
         )}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+        ListEmptyComponent={renderEmptyState}
         contentContainerStyle={styles.contentContainer}
-        style={styles.sectionList}
-        automaticallyAdjustContentInsets={true}
+        style={styles.list}
       />
 
       <ContactModal contact={selectedContact} visible={modalVisible} onClose={handleCloseModal} />
@@ -92,22 +82,22 @@ const styles = StyleSheet.create({
   },
   segmentedControlContainer: {
     paddingHorizontal: 16,
-    paddingVertical: Platform.OS === "ios" ? 12 : 10,
-    paddingTop: Platform.OS === "ios" ? 8 : 10,
+    paddingVertical: 12,
   },
   segmentedControl: {
     height: Platform.OS === "ios" ? 32 : 40,
   },
-  sectionList: {
+  list: {
     flex: 1,
   },
   contentContainer: {
-    paddingTop: Platform.OS === "ios" ? 16 : 12,
+    paddingTop: 12,
     paddingBottom: Platform.OS === "android" ? 100 : 40,
-    paddingHorizontal: Platform.OS === "ios" ? 16 : 0,
+    paddingHorizontal: 16,
+    flexGrow: 1,
   },
   itemSeparator: {
-    height: Platform.OS === "ios" ? 12 : 0,
+    height: 12,
   },
   emptyState: {
     flex: 1,

@@ -5,12 +5,13 @@
 
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { Host, Button as ExpoButton } from "@expo/ui/swift-ui";
+import type { SFSymbol } from "sf-symbols-typescript";
 import { useTheme } from "@/core/theme";
 import { useHaptics } from "@/shared/hooks";
 import type { ActionButtonProps } from "./types";
 
 // Map Ionicons names to SF Symbol names
-const SF_SYMBOL_MAP: Record<string, string> = {
+const SF_SYMBOL_MAP: Record<string, SFSymbol> = {
   mail: "envelope.fill",
   "mail-outline": "envelope",
   call: "phone.fill",
@@ -79,8 +80,8 @@ export function ActionButton({
     );
   }
 
-  // Convert Ionicons name to SF Symbol if available
-  const sfSymbol = icon ? SF_SYMBOL_MAP[icon] || icon : undefined;
+  // Convert Ionicons name to SF Symbol if available (only use mapped symbols)
+  const sfSymbol: SFSymbol | undefined = icon ? SF_SYMBOL_MAP[icon] : undefined;
 
   return (
     <Host matchContents style={style}>
