@@ -2,13 +2,20 @@
  * Country selection modal for camps filtering
  */
 
-import { StyleSheet, View, Modal, FlatList, Pressable, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
-import { useTheme } from '@/core/theme';
-import { getFlagAsset } from '@/shared/utils/flags';
-import type { CountryWithCode, FilterState } from '../types';
+import {
+  StyleSheet,
+  View,
+  Modal,
+  FlatList,
+  Pressable,
+  Text,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { useTheme } from "@/core/theme";
+import { getFlagAsset } from "@/shared/utils/flags";
+import type { CountryWithCode, FilterState } from "../types";
 
 interface CountryModalProps {
   visible: boolean;
@@ -40,8 +47,14 @@ export function CountryModal({
       <Pressable
         style={({ pressed }) => [
           styles.item,
-          isSelected && [styles.itemSelected, { backgroundColor: colors.backgroundElevated }],
-          pressed && [styles.itemPressed, { backgroundColor: colors.backgroundElevated }],
+          isSelected && [
+            styles.itemSelected,
+            { backgroundColor: colors.backgroundElevated },
+          ],
+          pressed && [
+            styles.itemPressed,
+            { backgroundColor: colors.backgroundElevated },
+          ],
         ]}
         onPress={() => handleSelectCountry(item.country)}
       >
@@ -50,7 +63,11 @@ export function CountryModal({
             <Image source={flagAsset} style={styles.flag} contentFit="cover" />
           ) : (
             <View style={[styles.flag, styles.flagPlaceholder]}>
-              <Ionicons name="flag-outline" size={16} color={colors.textSecondary} />
+              <Ionicons
+                name="flag-outline"
+                size={16}
+                color={colors.textSecondary}
+              />
             </View>
           )}
           <Text
@@ -63,26 +80,38 @@ export function CountryModal({
             {item.country}
           </Text>
         </View>
-        {isSelected && <Ionicons name="checkmark" size={20} color={colors.primary} />}
+        {isSelected && (
+          <Ionicons name="checkmark" size={20} color={colors.primary} />
+        )}
       </Pressable>
     );
   };
 
   const renderAllCountriesItem = () => {
-    const isSelected = selectedCountry === '';
+    const isSelected = selectedCountry === "";
 
     return (
       <Pressable
         style={({ pressed }) => [
           styles.item,
-          isSelected && [styles.itemSelected, { backgroundColor: colors.backgroundElevated }],
-          pressed && [styles.itemPressed, { backgroundColor: colors.backgroundElevated }],
+          isSelected && [
+            styles.itemSelected,
+            { backgroundColor: colors.backgroundElevated },
+          ],
+          pressed && [
+            styles.itemPressed,
+            { backgroundColor: colors.backgroundElevated },
+          ],
         ]}
-        onPress={() => handleSelectCountry('')}
+        onPress={() => handleSelectCountry("")}
       >
         <View style={styles.itemContent}>
           <View style={[styles.flag, styles.allCountriesIcon]}>
-            <Ionicons name="globe-outline" size={14} color={colors.textSecondary} />
+            <Ionicons
+              name="globe-outline"
+              size={14}
+              color={colors.textSecondary}
+            />
           </View>
           <Text
             style={[
@@ -94,7 +123,9 @@ export function CountryModal({
             Alle landen
           </Text>
         </View>
-        {isSelected && <Ionicons name="checkmark" size={20} color={colors.primary} />}
+        {isSelected && (
+          <Ionicons name="checkmark" size={20} color={colors.primary} />
+        )}
       </Pressable>
     );
   };
@@ -106,7 +137,9 @@ export function CountryModal({
       presentationStyle="pageSheet"
       onRequestClose={onClose}
     >
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+      >
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <Text style={[styles.title, { color: colors.text }]}>
             Selecteer Land
@@ -134,16 +167,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 16,
     paddingVertical: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   title: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   closeButton: {
     padding: 4,
@@ -152,17 +185,17 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   item: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
   itemSelected: {},
   itemPressed: {},
   itemContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     flex: 1,
   },
   flag: {
@@ -172,18 +205,18 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   flagPlaceholder: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   allCountriesIcon: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   itemText: {
     fontSize: 16,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   itemTextSelected: {
-    fontWeight: '500',
+    fontWeight: "500",
   },
 });

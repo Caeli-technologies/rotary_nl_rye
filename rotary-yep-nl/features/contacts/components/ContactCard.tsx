@@ -2,12 +2,12 @@
  * Contact card component for displaying a contact in a list
  */
 
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
-import { NetworkImage } from '@/shared/components/media/NetworkImage';
-import type { Contact } from '../types';
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { NetworkImage } from "@/shared/components/media/NetworkImage";
+import type { Contact } from "../types";
 
 interface ContactCardProps {
   contact: Contact;
@@ -37,10 +37,7 @@ export function ContactCard({ contact, onPress }: ContactCardProps) {
       />
 
       <View style={styles.content}>
-        <Text
-          style={[styles.name, { color: colors.text }]}
-          numberOfLines={1}
-        >
+        <Text style={[styles.name, { color: colors.text }]} numberOfLines={1}>
           {contact.name}
         </Text>
         <Text
@@ -61,30 +58,36 @@ export function ContactCard({ contact, onPress }: ContactCardProps) {
 
       <View style={styles.actions}>
         {contact.phone && (
-          <View style={[styles.iconBadge, { backgroundColor: colors.primary + '15' }]}>
+          <View
+            style={[
+              styles.iconBadge,
+              { backgroundColor: colors.primary + "15" },
+            ]}
+          >
             <Ionicons name="call" size={16} color={colors.primary} />
           </View>
         )}
         {contact.email && (
-          <View style={[styles.iconBadge, { backgroundColor: colors.primary + '15' }]}>
+          <View
+            style={[
+              styles.iconBadge,
+              { backgroundColor: colors.primary + "15" },
+            ]}
+          >
             <Ionicons name="mail" size={16} color={colors.primary} />
           </View>
         )}
       </View>
 
-      <Ionicons
-        name="chevron-forward"
-        size={20}
-        color={colors.textTertiary}
-      />
+      <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: spacing.md,
     borderRadius: spacing.radiusMd,
     borderWidth: StyleSheet.hairlineWidth,
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 2,
   },
   role: {
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   actions: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: spacing.xs,
     marginRight: spacing.sm,
   },
@@ -118,7 +121,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

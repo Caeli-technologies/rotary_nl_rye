@@ -2,18 +2,21 @@
  * Contact section component for grouping contacts by category
  */
 
-import { View, Text, StyleSheet } from 'react-native';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
-import { ContactCard } from './ContactCard';
-import type { Contact, ContactSection as ContactSectionType } from '../types';
+import { View, Text, StyleSheet } from "react-native";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { ContactCard } from "./ContactCard";
+import type { Contact, ContactSection as ContactSectionType } from "../types";
 
 interface ContactSectionProps {
   section: ContactSectionType;
   onContactPress: (contact: Contact) => void;
 }
 
-export function ContactSection({ section, onContactPress }: ContactSectionProps) {
+export function ContactSection({
+  section,
+  onContactPress,
+}: ContactSectionProps) {
   const { colors } = useTheme();
 
   return (
@@ -28,7 +31,8 @@ export function ContactSection({ section, onContactPress }: ContactSectionProps)
           </Text>
         )}
         <Text style={[styles.count, { color: colors.textTertiary }]}>
-          {section.contacts.length} {section.contacts.length === 1 ? 'contact' : 'contacts'}
+          {section.contacts.length}{" "}
+          {section.contacts.length === 1 ? "contact" : "contacts"}
         </Text>
       </View>
 
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
+    fontWeight: "700",
     marginBottom: spacing.xs,
   },
   description: {
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
   },
   count: {
     fontSize: 12,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   list: {
     gap: spacing.xs,

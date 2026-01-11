@@ -164,9 +164,7 @@ export function CampCard({ camp }: CampCardProps) {
                         />
                       </View>
                     )}
-                    <Text
-                      style={[styles.countryText, { color: colors.text }]}
-                    >
+                    <Text style={[styles.countryText, { color: colors.text }]}>
                       {country.trim()}
                     </Text>
                   </View>

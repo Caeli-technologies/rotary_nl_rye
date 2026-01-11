@@ -42,9 +42,7 @@ export function CampsList({
           <Text style={[styles.emptyTitle, { color: colors.text }]}>
             Geen Overeenkomende Kampen
           </Text>
-          <Text
-            style={[styles.emptyText, { color: colors.textSecondary }]}
-          >
+          <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
             Pas je filters aan om meer resultaten te zien.
           </Text>
         </View>
