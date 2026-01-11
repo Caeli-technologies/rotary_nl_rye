@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f94d0c60-67dc-489a-a276-c89b4b6b4ce7" name="Changes" comment="style: standardize quotation marks and format code for consistency across multiple files">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/eslint-expo.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsonSchemas.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rotary_nl_rye.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/rotary-yep-nl/ios/Podfile.lock" afterDir="false" />
-    </list>
+    <list default="true" id="f94d0c60-67dc-489a-a276-c89b4b6b4ce7" name="Changes" comment="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +148,7 @@
       <workItem from="1759396922682" duration="5780000" />
       <workItem from="1768117715115" duration="16332000" />
       <workItem from="1768134372582" duration="90000" />
-      <workItem from="1768134482514" duration="631000" />
+      <workItem from="1768134482514" duration="940000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Update project configuration files and improve code formatting">
       <option name="closed" value="true" />
@@ -263,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768134341178</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching">
+      <option name="closed" value="true" />
+      <created>1768135264708</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1768135264708</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +273,8 @@
     <MESSAGE value="feat: add public API exports for About, Home, News, and Settings features" />
     <MESSAGE value="feat: implement platform-agnostic SegmentedControl component and update CSV parsing logic" />
     <MESSAGE value="style: standardize quotation marks and format code for consistency across multiple files" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: standardize quotation marks and format code for consistency across multiple files" />
+    <MESSAGE value="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
