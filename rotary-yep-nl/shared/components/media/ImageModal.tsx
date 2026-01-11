@@ -1,14 +1,14 @@
 /**
  * ImageModal component
- * Full-screen image preview with close button
+ * Full-screen image preview with platform-native close button
  */
 
 import { Modal, View, StyleSheet, Pressable, Dimensions, Platform, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { getInitials } from "@/shared/utils";
+import { CloseButton } from "../ui/CloseButton";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -38,10 +38,8 @@ export function ImageModal({ visible, onClose, source, name }: ImageModalProps) 
       presentationStyle="fullScreen"
       statusBarTranslucent
     >
-      <SafeAreaView style={styles.modalContainer}>
-        <Pressable onPress={onClose} style={styles.closeButton}>
-          <Ionicons name="close" size={30} color="white" />
-        </Pressable>
+      <View style={styles.modalContainer}>
+        {/* Image content */}
         <Pressable style={styles.modalPressable} onPress={onClose}>
           {shouldShowImage ? (
             <Image
@@ -59,7 +57,12 @@ export function ImageModal({ visible, onClose, source, name }: ImageModalProps) 
             </View>
           )}
         </Pressable>
-      </SafeAreaView>
+
+        {/* Close button */}
+        <SafeAreaView style={styles.header} edges={["top"]} pointerEvents="box-none">
+          <CloseButton onPress={onClose} />
+        </SafeAreaView>
+      </View>
     </Modal>
   );
 }
@@ -69,14 +72,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
   },
+  header: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingHorizontal: 16,
+    paddingTop: Platform.OS === "android" ? 8 : 0,
+  },
   modalPressable: {
     flex: 1,
-  },
-  closeButton: {
-    position: "absolute",
-    top: 50,
-    right: 20,
-    zIndex: 1,
   },
   fullImage: {
     flex: 1,

@@ -72,3 +72,11 @@ export interface SegmentedControlProps {
   /** Optional style override */
   style?: StyleProp<ViewStyle>;
 }
+
+/**
+ * CloseButton component types
+ */
+export interface CloseButtonProps {
+  /** Callback when button is pressed */
+  onPress: () => void;
+}

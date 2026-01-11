@@ -2,7 +2,7 @@
  * Country selection modal for camps filtering
  */
 
-import { StyleSheet, View, Modal, FlatList, Pressable, Text } from "react-native";
+import { StyleSheet, View, Modal, FlatList, Pressable, Text, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -95,10 +95,10 @@ export function CountryModal({
     <Modal
       visible={visible}
       animationType="slide"
-      presentationStyle="pageSheet"
+      presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={["top"]}>
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <Text style={[styles.title, { color: colors.text }]}>Selecteer Land</Text>
           <Pressable style={styles.closeButton} onPress={onClose}>
