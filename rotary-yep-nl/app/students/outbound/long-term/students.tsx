@@ -1,15 +1,28 @@
-import { useCallback } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { StyleSheet, View, Text, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router } from "expo-router";
-import { Image } from "expo-image";
+import { router, useNavigation } from "expo-router";
 
 import { useTheme } from "@/core/theme";
 import { StudentsList, useStudents, type Student } from "@/features/students";
 
 export default function OutboundStudentsScreen() {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const { countryGroups, totalCount } = useStudents("outbound");
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <View style={styles.headerTitleContainer}>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Klas van 25-26</Text>
+          <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>
+            {totalCount} studenten · {countryGroups.length} landen
+          </Text>
+        </View>
+      ),
+    });
+  }, [navigation, colors, totalCount, countryGroups.length]);
 
   const handleStudentPress = useCallback((student: Student) => {
     router.push({
@@ -36,28 +49,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headerContainer: {
-    marginBottom: 16,
-  },
-  headerImage: {
-    width: "100%",
-    height: 180,
-    borderRadius: 12,
-    marginBottom: 16,
-    marginHorizontal: 16,
-    alignSelf: "center",
-    maxWidth: Platform.OS === "ios" ? "92%" : "100%",
-  },
-  headerTextContainer: {
-    paddingHorizontal: 16,
+  headerTitleContainer: {
+    alignItems: "center",
   },
   headerTitle: {
-    fontSize: Platform.OS === "ios" ? 28 : 24,
-    fontWeight: Platform.OS === "ios" ? "700" : "600",
-    marginBottom: 4,
+    fontSize: Platform.OS === "ios" ? 17 : 20,
+    fontWeight: "600",
   },
   headerSubtitle: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 12,
+    marginTop: 2,
   },
 });
