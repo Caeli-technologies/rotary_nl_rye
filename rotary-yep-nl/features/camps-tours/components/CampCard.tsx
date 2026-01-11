@@ -2,7 +2,7 @@
  * Camp card component for displaying camp/tour information
  */
 
-import { StyleSheet, View, Pressable, Platform, Text } from "react-native";
+import { StyleSheet, View, Pressable, Platform, Text, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Image } from "expo-image";
@@ -44,6 +44,13 @@ function getCurrencyIcon(code: string): string {
   return CURRENCY_ICONS[code] || "cash";
 }
 
+/**
+ * Check if a URL is a PDF file
+ */
+function isPdfUrl(url: string): boolean {
+  return url.toLowerCase().endsWith(".pdf");
+}
+
 export function CampCard({ camp }: CampCardProps) {
   const { colors } = useTheme();
   const isPast = isCampPast(camp);
@@ -54,15 +61,24 @@ export function CampCard({ camp }: CampCardProps) {
     .map((c) => c.trim().toLowerCase())
     .filter(Boolean);
 
+  const hasInvitation = camp.invitation && camp.invitation.trim() !== "";
+  const isPdf = hasInvitation && isPdfUrl(camp.invitation);
+
   const handlePress = () => {
-    if (camp.invitation && camp.invitation.trim() !== "") {
-      router.push({
-        pathname: "/pdf-viewer",
-        params: {
-          url: camp.invitation,
-          title: camp.title,
-        },
-      });
+    if (hasInvitation) {
+      if (isPdf) {
+        // Open PDF in the PDF viewer
+        router.push({
+          pathname: "/pdf-viewer",
+          params: {
+            url: camp.invitation,
+            title: camp.title,
+          },
+        });
+      } else {
+        // Open website in browser
+        Linking.openURL(camp.invitation);
+      }
     }
   };
 
@@ -100,101 +116,128 @@ export function CampCard({ camp }: CampCardProps) {
             )}
           </View>
         </View>
-        {camp.invitation && camp.invitation.trim() !== "" && (
+        {hasInvitation && (
           <View style={styles.actionIndicator}>
-            <Ionicons name="document-text-outline" size={18} color={colors.textSecondary} />
+            <Ionicons
+              name={isPdf ? "document-text-outline" : "globe-outline"}
+              size={18}
+              color={colors.textSecondary}
+            />
           </View>
         )}
       </View>
 
       {/* Body */}
       <View style={styles.cardBody}>
-        {/* Date */}
-        <View
-          style={[
-            styles.dateContainer,
-            { backgroundColor: colors.backgroundElevated },
-            isPast && styles.dateContainerPast,
-          ]}
-        >
-          <Ionicons
-            name="calendar-outline"
-            size={16}
-            color={isPast ? colors.textSecondary : colors.primary}
-          />
-          <Text style={[styles.dateText, { color: isPast ? colors.textSecondary : colors.text }]}>
-            {camp.startDate} - {camp.endDate}
-          </Text>
-        </View>
-
-        {/* Details Grid */}
+        {/* Details Grid - 2x3 symmetric layout */}
         <View style={styles.detailsGrid}>
-          {/* Country */}
-          <View style={styles.detailItem}>
-            <View style={styles.detailHeader}>
-              <Ionicons name="location-outline" size={14} color={colors.textSecondary} />
-              <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Land</Text>
-            </View>
-            <View style={styles.countryContainer}>
-              {hostCountryCodes.map((code, index) => {
-                const flagAsset = getFlagAsset(code);
-                const countryName = getCountryName(code);
-
-                return (
-                  <View
-                    key={`${code}-${index}`}
-                    style={[styles.countryItem, { backgroundColor: colors.backgroundElevated }]}
-                  >
-                    {flagAsset && (
-                      <Image source={flagAsset} style={styles.flag} contentFit="cover" />
-                    )}
-                    {!flagAsset && (
-                      <View
-                        style={[
-                          styles.flag,
-                          styles.flagPlaceholder,
-                          { backgroundColor: colors.background },
-                        ]}
-                      >
-                        <Ionicons name="flag-outline" size={10} color={colors.textSecondary} />
-                      </View>
-                    )}
-                    <Text style={[styles.countryText, { color: colors.text }]}>{countryName}</Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
-          {/* District */}
-          <View style={styles.detailItem}>
-            <View style={styles.detailHeader}>
-              <Ionicons name="business-outline" size={14} color={colors.textSecondary} />
-              <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>District</Text>
-            </View>
-            <Text style={[styles.detailValue, { color: colors.text }]}>{camp.hostDistrict}</Text>
-          </View>
-
-          {/* Age and Cost */}
+          {/* Row 1: Country and District */}
           <View style={styles.detailRow}>
-            {/* Age - only show if we have at least one value */}
-            {(camp.ageMin || camp.ageMax) && (
-              <View style={styles.detailItem}>
-                <View style={styles.detailHeader}>
-                  <Ionicons name="people-outline" size={14} color={colors.textSecondary} />
-                  <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>
-                    Leeftijd
-                  </Text>
-                </View>
-                <Text style={[styles.detailValue, { color: colors.text }]}>
-                  {camp.ageMin && camp.ageMax
-                    ? `${camp.ageMin}-${camp.ageMax} jr`
-                    : camp.ageMin
-                      ? `${camp.ageMin}+ jr`
-                      : `t/m ${camp.ageMax} jr`}
-                </Text>
+            {/* Country */}
+            <View style={styles.detailItem}>
+              <View style={styles.detailHeader}>
+                <Ionicons name="location-outline" size={14} color={colors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Land</Text>
               </View>
-            )}
+              <View style={styles.countryContainer}>
+                {hostCountryCodes.map((code, index) => {
+                  const flagAsset = getFlagAsset(code);
+                  const countryName = getCountryName(code);
+
+                  return (
+                    <View
+                      key={`${code}-${index}`}
+                      style={[styles.countryItem, { backgroundColor: colors.backgroundElevated }]}
+                    >
+                      {flagAsset && (
+                        <Image source={flagAsset} style={styles.flag} contentFit="cover" />
+                      )}
+                      {!flagAsset && (
+                        <View
+                          style={[
+                            styles.flag,
+                            styles.flagPlaceholder,
+                            { backgroundColor: colors.background },
+                          ]}
+                        >
+                          <Ionicons name="flag-outline" size={10} color={colors.textSecondary} />
+                        </View>
+                      )}
+                      <Text style={[styles.countryText, { color: colors.text }]}>{countryName}</Text>
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+
+            {/* District */}
+            <View style={styles.detailItem}>
+              <View style={styles.detailHeader}>
+                <Ionicons name="business-outline" size={14} color={colors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>District</Text>
+              </View>
+              <Text style={[styles.detailValue, { color: camp.hostDistrict ? colors.text : colors.textSecondary }]}>
+                {camp.hostDistrict || "—"}
+              </Text>
+            </View>
+          </View>
+
+          {/* Row 2: Start Date and End Date */}
+          <View style={styles.detailRow}>
+            {/* Start Date */}
+            <View style={styles.detailItem}>
+              <View style={styles.detailHeader}>
+                <Ionicons
+                  name="calendar-outline"
+                  size={14}
+                  color={isPast ? colors.textSecondary : colors.textSecondary}
+                />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Start</Text>
+              </View>
+              <Text style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}>
+                {camp.startDate}
+              </Text>
+            </View>
+
+            {/* End Date */}
+            <View style={styles.detailItem}>
+              <View style={styles.detailHeader}>
+                <Ionicons
+                  name="calendar-outline"
+                  size={14}
+                  color={colors.textSecondary}
+                />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Einde</Text>
+              </View>
+              <Text style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}>
+                {camp.endDate}
+              </Text>
+            </View>
+          </View>
+
+          {/* Row 3: Age and Cost */}
+          <View style={styles.detailRow}>
+            {/* Age */}
+            <View style={styles.detailItem}>
+              <View style={styles.detailHeader}>
+                <Ionicons name="people-outline" size={14} color={colors.textSecondary} />
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Leeftijd</Text>
+              </View>
+              <Text
+                style={[
+                  styles.detailValue,
+                  { color: camp.ageMin || camp.ageMax ? colors.text : colors.textSecondary },
+                ]}
+              >
+                {camp.ageMin && camp.ageMax
+                  ? `${camp.ageMin}-${camp.ageMax} jr`
+                  : camp.ageMin
+                    ? `${camp.ageMin}+ jr`
+                    : camp.ageMax
+                      ? `t/m ${camp.ageMax} jr`
+                      : "—"}
+              </Text>
+            </View>
 
             {/* Cost with currency icon */}
             <View style={styles.detailItem}>
@@ -203,20 +246,24 @@ export function CampCard({ camp }: CampCardProps) {
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Kosten</Text>
               </View>
               <View style={styles.costContainer}>
-                {camp.contribution && camp.contribution !== "0" ? (
-                  <>
-                    <MaterialCommunityIcons
-                      name={getCurrencyIcon(camp.currency) as keyof typeof MaterialCommunityIcons.glyphMap}
-                      size={18}
-                      color={colors.text}
-                      style={styles.currencyIcon}
-                    />
-                    <Text style={[styles.detailValue, { color: colors.text }]}>
-                      {camp.contribution}
-                    </Text>
-                  </>
+                {camp.contribution ? (
+                  camp.contribution === "0" ? (
+                    <Text style={[styles.detailValue, { color: colors.text }]}>Gratis</Text>
+                  ) : (
+                    <>
+                      <MaterialCommunityIcons
+                        name={getCurrencyIcon(camp.currency) as keyof typeof MaterialCommunityIcons.glyphMap}
+                        size={18}
+                        color={colors.text}
+                        style={styles.currencyIcon}
+                      />
+                      <Text style={[styles.detailValue, { color: colors.text }]}>
+                        {camp.contribution}
+                      </Text>
+                    </>
+                  )
                 ) : (
-                  <Text style={[styles.detailValue, { color: colors.textSecondary }]}>Gratis</Text>
+                  <Text style={[styles.detailValue, { color: colors.textSecondary }]}>—</Text>
                 )}
               </View>
             </View>
@@ -322,20 +369,6 @@ const styles = StyleSheet.create({
   cardBody: {
     paddingHorizontal: 16,
     paddingBottom: 16,
-  },
-  dateContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  dateContainerPast: {},
-  dateText: {
-    fontSize: 14,
-    fontWeight: "500",
-    marginLeft: 8,
   },
   detailsGrid: {
     gap: 16,
