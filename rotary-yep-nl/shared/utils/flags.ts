@@ -337,6 +337,8 @@ export const countryNames: Record<string, string> = {
   ec: "Ecuador",
   // Other (used by rebound students)
   eu: "European Union",
+  // Camps & Tours countries
+  tr: "Turkey",
 };
 
 /**

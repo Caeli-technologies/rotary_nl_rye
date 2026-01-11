@@ -4,10 +4,11 @@
 
 import { StyleSheet, View, Pressable, Platform, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useTheme } from "@/core/theme";
-import { getFlagAsset } from "@/shared/utils/flags";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import { isCampPast } from "../api";
 import type { Camp } from "../types";
 
@@ -15,11 +16,43 @@ interface CampCardProps {
   camp: Camp;
 }
 
+/**
+ * Currency icon mapping using MaterialCommunityIcons
+ * Using only verified icon names from the icon set
+ */
+const CURRENCY_ICONS: Record<string, string> = {
+  EUR: "currency-eur",
+  USD: "currency-usd",
+  GBP: "currency-gbp",
+  JPY: "currency-jpy",
+  CHF: "currency-btc", // Swiss Franc - use generic
+  CAD: "currency-usd",
+  AUD: "currency-usd",
+  SEK: "cash", // Scandinavian - use generic cash
+  NOK: "cash",
+  DKK: "cash",
+  BRL: "currency-brl",
+  INR: "currency-inr",
+  TWD: "cash", // Taiwan Dollar - use generic cash
+  TRY: "currency-try",
+};
+
+/**
+ * Get currency icon name for a given currency code
+ */
+function getCurrencyIcon(code: string): string {
+  return CURRENCY_ICONS[code] || "cash";
+}
+
 export function CampCard({ camp }: CampCardProps) {
   const { colors } = useTheme();
   const isPast = isCampPast(camp);
-  const hostCountries = camp.hostCountry.split("/");
-  const hostCountryCodes = camp.hostCountryCode.split("/");
+
+  // Parse country codes and resolve names
+  const hostCountryCodes = camp.hostCountryCode
+    .split(/[\s,]+/)
+    .map((c) => c.trim().toLowerCase())
+    .filter(Boolean);
 
   const handlePress = () => {
     if (camp.invitation && camp.invitation.trim() !== "") {
@@ -103,19 +136,19 @@ export function CampCard({ camp }: CampCardProps) {
               <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Land</Text>
             </View>
             <View style={styles.countryContainer}>
-              {hostCountries.map((country, index) => {
-                const countryCode = hostCountryCodes[index];
-                const flagAsset = countryCode ? getFlagAsset(countryCode.toLowerCase()) : null;
+              {hostCountryCodes.map((code, index) => {
+                const flagAsset = getFlagAsset(code);
+                const countryName = getCountryName(code);
 
                 return (
                   <View
-                    key={`${country.trim()}-${index}`}
+                    key={`${code}-${index}`}
                     style={[styles.countryItem, { backgroundColor: colors.backgroundElevated }]}
                   >
                     {flagAsset && (
                       <Image source={flagAsset} style={styles.flag} contentFit="cover" />
                     )}
-                    {!flagAsset && countryCode && (
+                    {!flagAsset && (
                       <View
                         style={[
                           styles.flag,
@@ -126,9 +159,7 @@ export function CampCard({ camp }: CampCardProps) {
                         <Ionicons name="flag-outline" size={10} color={colors.textSecondary} />
                       </View>
                     )}
-                    <Text style={[styles.countryText, { color: colors.text }]}>
-                      {country.trim()}
-                    </Text>
+                    <Text style={[styles.countryText, { color: colors.text }]}>{countryName}</Text>
                   </View>
                 );
               })}
@@ -146,22 +177,48 @@ export function CampCard({ camp }: CampCardProps) {
 
           {/* Age and Cost */}
           <View style={styles.detailRow}>
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="people-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Leeftijd</Text>
+            {/* Age - only show if we have at least one value */}
+            {(camp.ageMin || camp.ageMax) && (
+              <View style={styles.detailItem}>
+                <View style={styles.detailHeader}>
+                  <Ionicons name="people-outline" size={14} color={colors.textSecondary} />
+                  <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>
+                    Leeftijd
+                  </Text>
+                </View>
+                <Text style={[styles.detailValue, { color: colors.text }]}>
+                  {camp.ageMin && camp.ageMax
+                    ? `${camp.ageMin}-${camp.ageMax} jr`
+                    : camp.ageMin
+                      ? `${camp.ageMin}+ jr`
+                      : `t/m ${camp.ageMax} jr`}
+                </Text>
               </View>
-              <Text style={[styles.detailValue, { color: colors.text }]}>
-                {camp.ageMin}-{camp.ageMax} jr
-              </Text>
-            </View>
+            )}
 
+            {/* Cost with currency icon */}
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons name="card-outline" size={14} color={colors.textSecondary} />
+                <Ionicons name="wallet-outline" size={14} color={colors.textSecondary} />
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Kosten</Text>
               </View>
-              <Text style={[styles.detailValue, { color: colors.text }]}>{camp.contribution}</Text>
+              <View style={styles.costContainer}>
+                {camp.contribution && camp.contribution !== "0" ? (
+                  <>
+                    <MaterialCommunityIcons
+                      name={getCurrencyIcon(camp.currency) as keyof typeof MaterialCommunityIcons.glyphMap}
+                      size={18}
+                      color={colors.text}
+                      style={styles.currencyIcon}
+                    />
+                    <Text style={[styles.detailValue, { color: colors.text }]}>
+                      {camp.contribution}
+                    </Text>
+                  </>
+                ) : (
+                  <Text style={[styles.detailValue, { color: colors.textSecondary }]}>Gratis</Text>
+                )}
+              </View>
             </View>
           </View>
         </View>
@@ -329,5 +386,12 @@ const styles = StyleSheet.create({
   flagPlaceholder: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  costContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  currencyIcon: {
+    marginRight: 4,
   },
 });

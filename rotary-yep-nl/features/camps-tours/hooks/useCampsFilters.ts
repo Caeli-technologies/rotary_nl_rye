@@ -32,11 +32,14 @@ export function useCampsFilters(camps: Camp[]): CampsFilterResult {
       filtered = filtered.filter((camp) => isCampPast(camp));
     }
 
-    // Apply country filter
+    // Apply country filter (by country code)
     if (filters.country) {
-      filtered = filtered.filter((camp) =>
-        camp.hostCountry.toLowerCase().includes(filters.country.toLowerCase()),
-      );
+      filtered = filtered.filter((camp) => {
+        const codes = camp.hostCountryCode
+          .split(/[\s,]+/)
+          .map((c) => c.trim().toLowerCase());
+        return codes.includes(filters.country.toLowerCase());
+      });
     }
 
     return filtered;

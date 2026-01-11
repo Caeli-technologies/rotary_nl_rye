@@ -11,10 +11,10 @@ export interface Camp {
   endDate: string;
   title: string;
   hostCountryCode: string;
-  hostCountry: string;
   hostDistrict: string;
   ageMin: string;
   ageMax: string;
+  currency: string;
   contribution: string;
   invitation: string;
   isFull: boolean;

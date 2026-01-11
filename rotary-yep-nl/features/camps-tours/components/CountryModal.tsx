@@ -33,7 +33,7 @@ export function CountryModal({
   };
 
   const renderCountryItem = ({ item }: { item: CountryWithCode }) => {
-    const isSelected = selectedCountry === item.country;
+    const isSelected = selectedCountry === item.code;
     const flagAsset = item.code ? getFlagAsset(item.code.toLowerCase()) : null;
 
     return (
@@ -43,7 +43,7 @@ export function CountryModal({
           isSelected && [styles.itemSelected, { backgroundColor: colors.backgroundElevated }],
           pressed && [styles.itemPressed, { backgroundColor: colors.backgroundElevated }],
         ]}
-        onPress={() => handleSelectCountry(item.country)}
+        onPress={() => handleSelectCountry(item.code)}
       >
         <View style={styles.itemContent}>
           {flagAsset ? (
@@ -109,7 +109,7 @@ export function CountryModal({
         <FlatList
           data={countries}
           renderItem={renderCountryItem}
-          keyExtractor={(item) => item.country}
+          keyExtractor={(item) => item.code}
           ListHeaderComponent={renderAllCountriesItem}
           showsVerticalScrollIndicator
           contentContainerStyle={styles.list}
