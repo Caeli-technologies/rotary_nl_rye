@@ -2,12 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
     paths:
       - "rotary-yep-nl/**"
       - ".github/workflows/ci.yml"
   pull_request:
-    branches: [main, dev]
+    branches: [main]
     paths:
       - "rotary-yep-nl/**"
       - ".github/workflows/ci.yml"
@@ -176,6 +176,10 @@ jobs:
         with:
           path: rotary-yep-nl/node_modules
           key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+
+      - name: Run Expo Prebuild
+        working-directory: ${{ env.WORKING_DIR }}
+        run: npx expo prebuild
 
       - name: Run Expo Doctor
         working-directory: ${{ env.WORKING_DIR }}
