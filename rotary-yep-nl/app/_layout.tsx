@@ -63,70 +63,107 @@ function RootLayoutNav() {
         {/* Students - Inbound */}
         <Stack.Screen
           name="students/inbound/index"
-          options={{
-            title: "Inbound",
-            headerBackTitle: "Home",
-          }}
-        />
-        <Stack.Screen
-          name="students/inbound/long-term"
-          options={{
-            title: "Long Term",
-            headerBackTitle: "Inbound",
-          }}
-        />
-        <Stack.Screen
-          name="students/inbound/short-term"
-          options={{
-            title: "Short Term",
-            headerBackTitle: "Inbound",
-          }}
+          options={{ title: "Inbound", headerBackTitle: "Home" }}
         />
         <Stack.Screen
           name="students/inbound/student-detail"
-          options={{
-            title: "Student",
-            headerBackTitle: "Terug",
-          }}
+          options={{ title: "Student", headerBackTitle: "Terug" }}
+        />
+        <Stack.Screen
+          name="students/inbound/short-term"
+          options={{ title: "Short Term", headerBackTitle: "Inbound" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/index"
+          options={{ title: "Long Term", headerBackTitle: "Inbound" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/welcome"
+          options={{ title: "Welcome", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/flight-arrival"
+          options={{ title: "Flight & Arrival", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/insurance"
+          options={{ title: "Insurance", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/language"
+          options={{ title: "Language", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term/travel"
+          options={{ title: "Travel", headerBackTitle: "Long Term" }}
         />
 
         {/* Students - Outbound */}
         <Stack.Screen
           name="students/outbound/index"
-          options={{
-            title: "Outbound",
-            headerBackTitle: "Home",
-          }}
-        />
-        <Stack.Screen
-          name="students/outbound/long-term"
-          options={{
-            title: "Long Term",
-            headerBackTitle: "Outbound",
-          }}
-        />
-        <Stack.Screen
-          name="students/outbound/short-term"
-          options={{
-            title: "Short Term",
-            headerBackTitle: "Outbound",
-          }}
+          options={{ title: "Outbound", headerBackTitle: "Home" }}
         />
         <Stack.Screen
           name="students/outbound/student-detail"
-          options={{
-            title: "Student",
-            headerBackTitle: "Terug",
-          }}
+          options={{ title: "Student", headerBackTitle: "Terug" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/index"
+          options={{ title: "Long Term", headerBackTitle: "Outbound" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/how-to-sign-up"
+          options={{ title: "Aanmelden", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/requirements"
+          options={{ title: "Vereisten", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/selection-day"
+          options={{ title: "Selectie dag", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/selection-weekend"
+          options={{ title: "Selectie weekend", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term/top-countries"
+          options={{ title: "Top 3 landen", headerBackTitle: "Long Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/index"
+          options={{ title: "Short Term", headerBackTitle: "Outbound" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/camps/signup"
+          options={{ title: "Aanmelden", headerBackTitle: "Short Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/camps/countries"
+          options={{ title: "Landen", headerBackTitle: "Short Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/camps/requirements"
+          options={{ title: "Voor wie?", headerBackTitle: "Short Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/family-to-family/signup"
+          options={{ title: "Aanmelden", headerBackTitle: "Short Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/family-to-family/countries"
+          options={{ title: "Landen", headerBackTitle: "Short Term" }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term/family-to-family/requirements"
+          options={{ title: "Vereisten", headerBackTitle: "Short Term" }}
         />
 
         {/* Students - Rebound */}
         <Stack.Screen
           name="students/rebound/index"
-          options={{
-            title: "Rebound",
-            headerBackTitle: "Home",
-          }}
+          options={{ title: "Rebound", headerBackTitle: "Home" }}
         />
         <Stack.Screen
           name="students/rebound/[country]"
@@ -137,10 +174,7 @@ function RootLayoutNav() {
         />
         <Stack.Screen
           name="students/rebound/student-detail"
-          options={{
-            title: "Student",
-            headerBackTitle: "Terug",
-          }}
+          options={{ title: "Student", headerBackTitle: "Terug" }}
         />
 
         {/* Settings sub-screen */}
