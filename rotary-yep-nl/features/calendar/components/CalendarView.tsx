@@ -43,15 +43,7 @@ LocaleConfig.locales["nl"] = {
     "Nov",
     "Dec",
   ],
-  dayNames: [
-    "Zondag",
-    "Maandag",
-    "Dinsdag",
-    "Woensdag",
-    "Donderdag",
-    "Vrijdag",
-    "Zaterdag",
-  ],
+  dayNames: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"],
   dayNamesShort: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
   today: "Vandaag",
 };
@@ -61,9 +53,7 @@ export function CalendarView() {
   const { colors, isDark } = useTheme();
   const { eventsData, isLoading, error, refetch } = useCalendarEvents();
   const { selectedDate, onDayPress } = useSelectedDate();
-  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
-    null,
-  );
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
 
   const markedDates = useMarkedDates({
     eventsData,
@@ -112,9 +102,7 @@ export function CalendarView() {
   };
 
   const calendarComponent = (
-    <View
-      style={[styles.calendarContainer, { backgroundColor: colors.background }]}
-    >
+    <View style={[styles.calendarContainer, { backgroundColor: colors.background }]}>
       <Calendar
         current={selectedDate}
         onDayPress={onDayPress}

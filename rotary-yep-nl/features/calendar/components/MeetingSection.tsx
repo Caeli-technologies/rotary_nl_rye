@@ -7,7 +7,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/core/theme";
 import type { ConferenceData } from "../types";
-import { useMeetingActions } from "@/features/calendar";
+import { useMeetingActions } from "../hooks";
 import {
   formatMeetingId,
   getDialInDetails,
@@ -24,8 +24,7 @@ interface MeetingSectionProps {
  */
 export function MeetingSection({ conference }: MeetingSectionProps) {
   const { colors } = useTheme();
-  const { joinMeeting, copyMeetingInfo, copyText, dialIn, copied } =
-    useMeetingActions();
+  const { joinMeeting, copyMeetingInfo, copyText, dialIn, copied } = useMeetingActions();
 
   const providerName = getMeetingProviderName(conference);
   const hasDialIn = hasDialInOptions(conference);
@@ -41,9 +40,7 @@ export function MeetingSection({ conference }: MeetingSectionProps) {
           size={20}
           color={colors.primary}
         />
-        <Text style={[styles.headerText, { color: colors.text }]}>
-          {providerName}
-        </Text>
+        <Text style={[styles.headerText, { color: colors.text }]}>{providerName}</Text>
       </View>
 
       {/* Join Button */}
@@ -70,12 +67,8 @@ export function MeetingSection({ conference }: MeetingSectionProps) {
           ]}
         >
           <View style={styles.infoContent}>
-            <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
-              Meeting ID
-            </Text>
-            <Text style={[styles.infoValue, { color: colors.text }]}>
-              {formattedMeetingId}
-            </Text>
+            <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>Meeting ID</Text>
+            <Text style={[styles.infoValue, { color: colors.text }]}>{formattedMeetingId}</Text>
           </View>
           <Ionicons
             name={copied ? "checkmark" : "copy-outline"}
@@ -88,16 +81,12 @@ export function MeetingSection({ conference }: MeetingSectionProps) {
       {/* Dial-in Numbers */}
       {hasDialIn && (
         <View style={styles.dialInSection}>
-          <Text style={[styles.sectionLabel, { color: colors.textSecondary }]}>
-            Inbelnummers
-          </Text>
+          <Text style={[styles.sectionLabel, { color: colors.textSecondary }]}>Inbelnummers</Text>
           {dialInDetails.map((dialIn, index) => (
             <Pressable
               key={index}
               onPress={() =>
-                dialIn.number && dialIn.pin
-                  ? dialInDetails[index] && dialIn.pin
-                  : null
+                dialIn.number && dialIn.pin ? dialInDetails[index] && dialIn.pin : null
               }
               style={({ pressed }) => [
                 styles.dialInRow,
@@ -115,19 +104,12 @@ export function MeetingSection({ conference }: MeetingSectionProps) {
                   {dialIn.formattedNumber}
                 </Text>
                 {dialIn.region && (
-                  <Text
-                    style={[
-                      styles.dialInRegion,
-                      { color: colors.textSecondary },
-                    ]}
-                  >
+                  <Text style={[styles.dialInRegion, { color: colors.textSecondary }]}>
                     {dialIn.region}
                   </Text>
                 )}
                 {dialIn.pin && (
-                  <Text
-                    style={[styles.dialInPin, { color: colors.textSecondary }]}
-                  >
+                  <Text style={[styles.dialInPin, { color: colors.textSecondary }]}>
                     PIN: {dialIn.pin}
                   </Text>
                 )}
@@ -154,12 +136,7 @@ export function MeetingSection({ conference }: MeetingSectionProps) {
           size={18}
           color={copied ? "#00897B" : colors.primary}
         />
-        <Text
-          style={[
-            styles.copyAllText,
-            { color: copied ? "#00897B" : colors.primary },
-          ]}
-        >
+        <Text style={[styles.copyAllText, { color: copied ? "#00897B" : colors.primary }]}>
           {copied ? "Gekopieerd!" : "Kopieer alle details"}
         </Text>
       </Pressable>
@@ -167,9 +144,7 @@ export function MeetingSection({ conference }: MeetingSectionProps) {
       {/* Notes */}
       {conference.notes && (
         <View style={styles.notesContainer}>
-          <Text style={[styles.notes, { color: colors.textSecondary }]}>
-            {conference.notes}
-          </Text>
+          <Text style={[styles.notes, { color: colors.textSecondary }]}>{conference.notes}</Text>
         </View>
       )}
     </View>

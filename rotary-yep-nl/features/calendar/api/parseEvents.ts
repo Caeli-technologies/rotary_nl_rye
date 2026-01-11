@@ -19,7 +19,7 @@ import type {
   RecurrenceInfo,
 } from "../types";
 import { EVENT_TYPE_CONFIG, GOOGLE_CALENDAR_COLORS } from "../types";
-import { getHumanReadableRecurrence, parseRRULE } from "@/features/calendar";
+import { getHumanReadableRecurrence, parseRRULE } from "../utils/recurrenceUtils";
 
 /**
  * Parse a single Google Calendar event into our internal format
@@ -96,11 +96,7 @@ function parseEventTime(dt: GoogleCalendarDateTime | undefined): EventTime {
 /**
  * Calculate if event spans multiple days
  */
-function calculateIsMultiDay(
-  start: EventTime,
-  end: EventTime,
-  isAllDay: boolean,
-): boolean {
+function calculateIsMultiDay(start: EventTime, end: EventTime, isAllDay: boolean): boolean {
   const startDate = new Date(start.dateTime);
   const endDate = new Date(end.dateTime);
 
@@ -189,9 +185,7 @@ function parseConferenceData(
   const entryPoints = conferenceData.entryPoints || [];
 
   const videoEntry = entryPoints.find((ep) => ep.entryPointType === "video");
-  const phoneEntries = entryPoints.filter(
-    (ep) => ep.entryPointType === "phone",
-  );
+  const phoneEntries = entryPoints.filter((ep) => ep.entryPointType === "phone");
   const sipEntry = entryPoints.find((ep) => ep.entryPointType === "sip");
 
   const dialInNumbers = phoneEntries.map((ep) => ({
@@ -238,10 +232,7 @@ function parseEntryPoint(ep: GoogleConferenceEntryPoint): ConferenceEntryPoint {
  */
 function hasVideoMeeting(raw: GoogleCalendarEvent): boolean {
   if (raw.hangoutLink) return true;
-  if (
-    raw.conferenceData?.entryPoints?.some((ep) => ep.entryPointType === "video")
-  )
-    return true;
+  if (raw.conferenceData?.entryPoints?.some((ep) => ep.entryPointType === "video")) return true;
   return false;
 }
 
@@ -266,9 +257,7 @@ function parseEventType(eventType?: string): EventTypeBadge {
 /**
  * Parse attachments
  */
-function parseAttachments(
-  attachments?: GoogleEventAttachment[],
-): EventAttachment[] {
+function parseAttachments(attachments?: GoogleEventAttachment[]): EventAttachment[] {
   if (!attachments) return [];
 
   return attachments.map((att, index) => ({
@@ -285,12 +274,9 @@ function parseAttachments(
  * Determine file type from mime type
  */
 function getFileType(mimeType: string): EventAttachment["fileType"] {
-  if (mimeType.includes("document") || mimeType.includes("word"))
-    return "document";
-  if (mimeType.includes("spreadsheet") || mimeType.includes("excel"))
-    return "spreadsheet";
-  if (mimeType.includes("presentation") || mimeType.includes("powerpoint"))
-    return "presentation";
+  if (mimeType.includes("document") || mimeType.includes("word")) return "document";
+  if (mimeType.includes("spreadsheet") || mimeType.includes("excel")) return "spreadsheet";
+  if (mimeType.includes("presentation") || mimeType.includes("powerpoint")) return "presentation";
   if (mimeType.includes("pdf")) return "pdf";
   if (mimeType.startsWith("image/")) return "image";
   if (mimeType.startsWith("video/")) return "video";

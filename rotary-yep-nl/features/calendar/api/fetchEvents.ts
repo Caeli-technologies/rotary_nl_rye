@@ -5,29 +5,23 @@
 
 import { fetch } from "expo/fetch";
 import { env } from "@/core/config/env";
-import type {
-  CalendarEvent,
-  EventsData,
-  GoogleCalendarResponse,
-} from "../types";
+import type { CalendarEvent, EventsData, GoogleCalendarResponse } from "../types";
 import { parseEvent } from "./parseEvents";
 
 const TIMEOUT = 30000;
 const MAX_RESULTS = 2500;
-const MONTHS_BEFORE = 6;
+const YEARS_BEFORE = 1;
+const YEARS_AHEAD = 1;
 
 /**
  * Fetches calendar events from Google Calendar API v3
+ * Uses a dynamic rolling window: 1 year behind to 1 year ahead
  */
 export async function fetchCalendarEvents(): Promise<EventsData> {
   try {
     const now = new Date();
-    const timeMin = new Date(
-      now.getFullYear(),
-      now.getMonth() - MONTHS_BEFORE,
-      1,
-    );
-    const timeMax = new Date(now.getFullYear() + 1, now.getMonth(), 0);
+    const timeMin = new Date(now.getFullYear() - YEARS_BEFORE, now.getMonth(), 1);
+    const timeMax = new Date(now.getFullYear() + YEARS_AHEAD, now.getMonth() + 1, 0);
 
     const params = new URLSearchParams({
       key: env.googleApiKey,
@@ -68,9 +62,7 @@ export async function fetchCalendarEvents(): Promise<EventsData> {
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === "AbortError") {
-        throw new Error(
-          "Request timed out. Please check your internet connection.",
-        );
+        throw new Error("Request timed out. Please check your internet connection.");
       }
       throw new Error(`Unable to fetch calendar events: ${error.message}`);
     }
@@ -86,9 +78,7 @@ function parseAndGroupEvents(data: GoogleCalendarResponse): EventsData {
     return {};
   }
 
-  const events = data.items
-    .filter((item) => item?.status !== "cancelled")
-    .map(parseEvent);
+  const events = data.items.filter((item) => item?.status !== "cancelled").map(parseEvent);
 
   return groupEventsByDate(events);
 }

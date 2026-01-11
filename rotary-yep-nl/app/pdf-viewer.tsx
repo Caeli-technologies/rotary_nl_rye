@@ -3,19 +3,14 @@
  * Thin wrapper using the pdf-viewer feature module
  */
 
-import { useLayoutEffect, useCallback } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import PdfRendererView from "react-native-pdf-renderer";
 import { useTheme } from "@/core/theme";
-import { LoadingState, ErrorState } from "@/shared/components/feedback";
-import {
-  usePdfDownload,
-  usePdfShare,
-  PdfHeaderTitle,
-  PdfShareButton,
-} from "@/features/pdf-viewer";
+import { ErrorState, LoadingState } from "@/shared/components/feedback";
+import { PdfHeaderTitle, PdfShareButton, usePdfDownload, usePdfShare } from "@/features/pdf-viewer";
 
 export default function PDFViewerScreen() {
   const { colors } = useTheme();
@@ -62,8 +57,7 @@ export default function PDFViewerScreen() {
           totalPages={totalPages}
         />
       ),
-      headerRight: () =>
-        canShare && !loading ? <PdfShareButton onPress={share} /> : null,
+      headerRight: () => (canShare && !loading ? <PdfShareButton onPress={share} /> : null),
     });
   }, [navigation, title, canShare, loading, currentPage, totalPages, share]);
 

@@ -1,13 +1,13 @@
 /**
  * Enhanced event card component for calendar events list
- * Features: color accent, recurrence badge, meeting button, event type badge
+ * Features: color accent, recurrence badge, event type badge
  */
 
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
-import { useEventDetails, useMeetingActions } from "@/features/calendar";
+import { useEventDetails } from "../hooks";
 import { RecurrenceBadge } from "./RecurrenceBadge";
 import { EventTypeBadge } from "./EventTypeBadge";
 import type { CalendarEvent } from "../types";
@@ -20,18 +20,10 @@ interface EventCardProps {
 export function EventCard({ event, onPress }: EventCardProps) {
   const { colors } = useTheme();
   const details = useEventDetails(event);
-  const { joinMeeting } = useMeetingActions();
 
   const handlePress = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onPress(event);
-  };
-
-  const handleJoinMeeting = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    if (event.conference) {
-      await joinMeeting(event.conference);
-    }
   };
 
   return (
@@ -48,9 +40,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
       ]}
     >
       {/* Color accent bar */}
-      <View
-        style={[styles.accentBar, { backgroundColor: details.accentColor }]}
-      />
+      <View style={[styles.accentBar, { backgroundColor: details.accentColor }]} />
 
       <View style={styles.content}>
         {/* Top row: time and badges */}
@@ -61,25 +51,16 @@ export function EventCard({ event, onPress }: EventCardProps) {
               size={14}
               color={colors.primary}
             />
-            <Text style={[styles.timeText, { color: colors.primary }]}>
-              {details.timeDisplay}
-            </Text>
+            <Text style={[styles.timeText, { color: colors.primary }]}>{details.timeDisplay}</Text>
           </View>
 
           <View style={styles.badgesContainer}>
-            {details.isRecurring && (
-              <RecurrenceBadge recurrence={event.recurrence} size="small" />
-            )}
+            {details.isRecurring && <RecurrenceBadge recurrence={event.recurrence} size="small" />}
             {details.showEventTypeBadge && (
               <EventTypeBadge eventType={event.eventType} size="small" />
             )}
             {details.isMultiDay && (
-              <View
-                style={[
-                  styles.multiDayBadge,
-                  { backgroundColor: colors.primary },
-                ]}
-              >
+              <View style={[styles.multiDayBadge, { backgroundColor: colors.primary }]}>
                 <Text style={styles.multiDayText}>Meerdaags</Text>
               </View>
             )}
@@ -94,44 +75,17 @@ export function EventCard({ event, onPress }: EventCardProps) {
         {/* Location */}
         {event.location && (
           <View style={styles.locationContainer}>
-            <Ionicons
-              name="location-outline"
-              size={14}
-              color={colors.textSecondary}
-            />
-            <Text
-              style={[styles.locationText, { color: colors.textSecondary }]}
-              numberOfLines={1}
-            >
+            <Ionicons name="location-outline" size={14} color={colors.textSecondary} />
+            <Text style={[styles.locationText, { color: colors.textSecondary }]} numberOfLines={1}>
               {event.location}
             </Text>
           </View>
-        )}
-
-        {/* Meeting button */}
-        {details.hasMeeting && (
-          <Pressable
-            onPress={handleJoinMeeting}
-            style={({ pressed }) => [
-              styles.meetingButton,
-              { opacity: pressed ? 0.8 : 1 },
-            ]}
-          >
-            <Ionicons name="videocam" size={16} color="#FFFFFF" />
-            <Text style={styles.meetingButtonText}>
-              {details.meetingButtonText}
-            </Text>
-          </Pressable>
         )}
       </View>
 
       {/* Chevron */}
       <View style={styles.chevronContainer}>
-        <Ionicons
-          name="chevron-forward"
-          size={20}
-          color={colors.textSecondary}
-        />
+        <Ionicons name="chevron-forward" size={20} color={colors.textSecondary} />
       </View>
     </Pressable>
   );
@@ -207,23 +161,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginLeft: 4,
     flex: 1,
-  },
-  meetingButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#00897B",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    marginTop: 10,
-    alignSelf: "flex-start",
-  },
-  meetingButtonText: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#FFFFFF",
-    marginLeft: 6,
   },
   chevronContainer: {
     position: "absolute",

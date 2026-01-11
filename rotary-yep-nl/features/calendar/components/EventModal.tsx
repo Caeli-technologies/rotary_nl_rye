@@ -3,15 +3,7 @@
  * Features: meeting section, recurrence info, attachments, better UX
  */
 
-import {
-  Linking,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
@@ -31,25 +23,23 @@ interface EventModalProps {
 
 export function EventModal({ event, visible, onClose }: EventModalProps) {
   const { colors } = useTheme();
+  const details = useEventDetails(event);
 
   if (!event) return null;
 
-  const details = useEventDetails(event);
-  const links = event.description
-    ? extractLinksFromDescription(event.description)
-    : [];
+  const links = event.description ? extractLinksFromDescription(event.description) : [];
 
   const handleOpenLocation = async () => {
     if (event.location) {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       const url = `https://maps.apple.com/?q=${encodeURIComponent(event.location)}`;
-      Linking.openURL(url);
+      await Linking.openURL(url);
     }
   };
 
   const handleOpenLink = async (url: string) => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    Linking.openURL(url);
+    await Linking.openURL(url);
   };
 
   const handleClose = async () => {
@@ -67,9 +57,7 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>
-            Evenement
-          </Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Evenement</Text>
           <Pressable
             onPress={handleClose}
             style={({ pressed }) => [
@@ -87,12 +75,7 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           showsVerticalScrollIndicator={false}
         >
           {/* Color accent bar at top */}
-          <View
-            style={[
-              styles.colorAccent,
-              { backgroundColor: details.accentColor },
-            ]}
-          />
+          <View style={[styles.colorAccent, { backgroundColor: details.accentColor }]} />
 
           {/* Badges row */}
           {(details.isRecurring || details.showEventTypeBadge) && (
@@ -107,32 +90,18 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           )}
 
           {/* Title */}
-          <Text style={[styles.title, { color: colors.text }]}>
-            {event.summary}
-          </Text>
+          <Text style={[styles.title, { color: colors.text }]}>{event.summary}</Text>
 
           {/* Date & Time */}
           <View style={styles.infoRow}>
-            <View
-              style={[
-                styles.iconContainer,
-                { backgroundColor: colors.primary },
-              ]}
-            >
+            <View style={[styles.iconContainer, { backgroundColor: colors.primary }]}>
               <Ionicons name="calendar" size={18} color="#FFFFFF" />
             </View>
             <View style={styles.infoContent}>
               {details.isMultiDay ? (
                 <>
-                  <Text style={[styles.infoText, { color: colors.text }]}>
-                    {details.dateRange}
-                  </Text>
-                  <Text
-                    style={[
-                      styles.infoSubtext,
-                      { color: colors.textSecondary },
-                    ]}
-                  >
+                  <Text style={[styles.infoText, { color: colors.text }]}>{details.dateRange}</Text>
+                  <Text style={[styles.infoSubtext, { color: colors.textSecondary }]}>
                     Meerdaags evenement
                   </Text>
                 </>
@@ -141,12 +110,7 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
                   <Text style={[styles.infoText, { color: colors.text }]}>
                     {details.relativeDateDisplay || details.dateDisplay}
                   </Text>
-                  <Text
-                    style={[
-                      styles.infoSubtext,
-                      { color: colors.textSecondary },
-                    ]}
-                  >
+                  <Text style={[styles.infoSubtext, { color: colors.textSecondary }]}>
                     {details.timeDisplay}
                   </Text>
                 </>
@@ -157,21 +121,14 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           {/* Recurrence info */}
           {details.isRecurring && details.recurrenceText && (
             <View style={styles.infoRow}>
-              <View
-                style={[
-                  styles.iconContainer,
-                  { backgroundColor: colors.primary + "80" },
-                ]}
-              >
+              <View style={[styles.iconContainer, { backgroundColor: colors.primary + "80" }]}>
                 <Ionicons name="repeat" size={18} color={colors.primary} />
               </View>
               <View style={styles.infoContent}>
                 <Text style={[styles.infoText, { color: colors.text }]}>
                   {details.recurrenceText}
                 </Text>
-                <Text
-                  style={[styles.infoSubtext, { color: colors.textSecondary }]}
-                >
+                <Text style={[styles.infoSubtext, { color: colors.textSecondary }]}>
                   Herhalend evenement
                 </Text>
               </View>
@@ -182,32 +139,16 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           {event.location && (
             <Pressable
               onPress={handleOpenLocation}
-              style={({ pressed }) => [
-                styles.infoRow,
-                { opacity: pressed ? 0.7 : 1 },
-              ]}
+              style={({ pressed }) => [styles.infoRow, { opacity: pressed ? 0.7 : 1 }]}
             >
-              <View
-                style={[
-                  styles.iconContainer,
-                  { backgroundColor: colors.accent },
-                ]}
-              >
+              <View style={[styles.iconContainer, { backgroundColor: colors.accent }]}>
                 <Ionicons name="location" size={18} color="#FFFFFF" />
               </View>
               <View style={styles.infoContent}>
-                <Text style={[styles.infoText, { color: colors.text }]}>
-                  {event.location}
-                </Text>
-                <Text style={[styles.infoSubtext, { color: colors.primary }]}>
-                  Open in Kaarten
-                </Text>
+                <Text style={[styles.infoText, { color: colors.text }]}>{event.location}</Text>
+                <Text style={[styles.infoSubtext, { color: colors.primary }]}>Open in Kaarten</Text>
               </View>
-              <Ionicons
-                name="chevron-forward"
-                size={20}
-                color={colors.textSecondary}
-              />
+              <Ionicons name="chevron-forward" size={20} color={colors.textSecondary} />
             </Pressable>
           )}
 
@@ -217,12 +158,8 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           {/* Description */}
           {event.description && (
             <View style={styles.descriptionContainer}>
-              <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                Beschrijving
-              </Text>
-              <Text
-                style={[styles.description, { color: colors.textSecondary }]}
-              >
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>Beschrijving</Text>
+              <Text style={[styles.description, { color: colors.textSecondary }]}>
                 {event.description.replace(/<[^>]*>/g, "")}
               </Text>
             </View>
@@ -231,9 +168,7 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           {/* Links extracted from description */}
           {links.length > 0 && (
             <View style={styles.linksContainer}>
-              <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                Links
-              </Text>
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>Links</Text>
               {links.map((link, index) => (
                 <Pressable
                   key={index}
@@ -247,17 +182,10 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
                   ]}
                 >
                   <Ionicons name="link" size={18} color={colors.primary} />
-                  <Text
-                    style={[styles.linkText, { color: colors.primary }]}
-                    numberOfLines={1}
-                  >
+                  <Text style={[styles.linkText, { color: colors.primary }]} numberOfLines={1}>
                     {link}
                   </Text>
-                  <Ionicons
-                    name="open-outline"
-                    size={16}
-                    color={colors.textSecondary}
-                  />
+                  <Ionicons name="open-outline" size={16} color={colors.textSecondary} />
                 </Pressable>
               ))}
             </View>
