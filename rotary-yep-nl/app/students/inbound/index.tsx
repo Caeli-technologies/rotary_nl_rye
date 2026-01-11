@@ -21,6 +21,13 @@ interface ProgramItem {
   enabled?: boolean;
 }
 
+interface InfoItem {
+  title: string;
+  subtitle: string;
+  icon: keyof typeof Ionicons.glyphMap;
+  route: string;
+}
+
 export default function InboundScreen() {
   const { colors } = useTheme();
   const [showSandraContact, setShowSandraContact] = useState(false);
@@ -87,6 +94,42 @@ export default function InboundScreen() {
     [],
   );
 
+  const informationItems: InfoItem[] = useMemo(
+    () => [
+      {
+        title: "Welcome to the Netherlands!",
+        subtitle: "Important information for new students",
+        icon: "heart",
+        route: "/students/inbound/long-term/welcome",
+      },
+      {
+        title: "Flight and Arrival",
+        subtitle: "Information about traveling to the Netherlands",
+        icon: "airplane",
+        route: "/students/inbound/long-term/flight-arrival",
+      },
+      {
+        title: "Language",
+        subtitle: "Learning Dutch and language assistance",
+        icon: "chatbubbles",
+        route: "/students/inbound/long-term/language",
+      },
+      {
+        title: "Insurance",
+        subtitle: "Healthcare and insurance information",
+        icon: "shield-checkmark",
+        route: "/students/inbound/long-term/insurance",
+      },
+      {
+        title: "Travel",
+        subtitle: "Tips for exploring the Netherlands and Europe",
+        icon: "map",
+        route: "/students/inbound/long-term/travel",
+      },
+    ],
+    [],
+  );
+
   const renderProgramItem = useCallback(
     ({ item }: { item: ProgramItem }) => (
       <Pressable
@@ -136,6 +179,41 @@ export default function InboundScreen() {
     [colors, handleProgramPress],
   );
 
+  const renderInfoItem = useCallback(
+    ({ item }: { item: InfoItem }) => (
+      <Pressable
+        style={({ pressed }) => [
+          styles.programItem,
+          {
+            backgroundColor: colors.card,
+            borderColor: colors.border,
+            shadowColor: colors.shadow,
+          },
+          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+        ]}
+        onPress={() => handleProgramPress(item.route)}
+      >
+        <View style={styles.programContent}>
+          <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}15` }]}>
+            <Ionicons name={item.icon} size={22} color={colors.primary} />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={[styles.programTitle, { color: colors.text }]}>{item.title}</Text>
+            <Text style={[styles.programSubtitle, { color: colors.textTertiary }]}>
+              {item.subtitle}
+            </Text>
+          </View>
+          <Ionicons
+            name={Platform.OS === "ios" ? "chevron-forward" : "arrow-forward"}
+            size={20}
+            color={colors.textTertiary}
+          />
+        </View>
+      </Pressable>
+    ),
+    [colors, handleProgramPress],
+  );
+
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
@@ -174,10 +252,13 @@ export default function InboundScreen() {
       { type: "sectionHeader", title: "Long Term Exchange Program" },
       ...longTermPrograms.map((item) => ({ type: "program", item })),
       { type: "spacer" },
+      { type: "sectionHeader", title: "Information for Incoming Students" },
+      ...informationItems.map((item) => ({ type: "info", item })),
+      { type: "spacer" },
       { type: "sectionHeader", title: "Short Term Exchange Program" },
       ...shortTermPrograms.map((item) => ({ type: "program", item })),
     ],
-    [longTermPrograms, shortTermPrograms],
+    [longTermPrograms, informationItems, shortTermPrograms],
   );
 
   const renderItem = useCallback(
@@ -189,13 +270,15 @@ export default function InboundScreen() {
           return <SectionHeader title={item.title} />;
         case "program":
           return renderProgramItem({ item: item.item });
+        case "info":
+          return renderInfoItem({ item: item.item });
         case "spacer":
           return <View style={styles.spacer} />;
         default:
           return null;
       }
     },
-    [IntroSection, SectionHeader, renderProgramItem],
+    [IntroSection, SectionHeader, renderProgramItem, renderInfoItem],
   );
 
   return (
