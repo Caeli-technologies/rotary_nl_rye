@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f94d0c60-67dc-489a-a276-c89b4b6b4ce7" name="Changes" comment="style: standardize quotation marks and format code for consistency across multiple files">
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/eslint-expo.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsonSchemas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rotary_nl_rye.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/rotary-yep-nl/ios/Podfile.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="532" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rubentalstra&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Caeli-technologies/rotary_nl_rye.git&quot;,
+    &quot;accountId&quot;: &quot;2a3b5299-c4dd-4b53-a277-7764168902ae&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="33VGgrFECxWYbQPdkzXW8BNxeIx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "React Native.Debug app.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "dev",
+    "ignore_missing_gitignore": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/rubentalstra/Programs/Privat/Rotary/rotary_nl_rye/rotary-yep-nl/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.ios.executor": "Run",
+    "npm.prebuild.executor": "Run",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/Users/rubentalstra/Programs/Privat/Rotary/rotary_nl_rye/rotary-yep-nl/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rotary-yep-nl/assets/images" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+      <recent name="$PROJECT_DIR$/rotary-yep-nl/Documentation" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.ios">
+    <configuration name="Debug app" type="ReactNative" factoryName="React Native">
+      <working-dir value="$PROJECT_DIR$/rotary-yep-nl" />
+      <node-interpreter value="project" />
+      <react-native value="$PROJECT_DIR$/rotary-yep-nl/node_modules/react-native" />
+      <platform value="IOS" />
+      <envs />
+      <only-packager />
+      <browser value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <method v="2">
+        <option name="ReactNativePackager" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ios" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/rotary-yep-nl/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="ios" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="prebuild" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/rotary-yep-nl/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prebuild" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.ios" />
+        <item itemvalue="npm.prebuild" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.242" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f94d0c60-67dc-489a-a276-c89b4b6b4ce7" name="Changes" comment="" />
+      <created>1759394939638</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759394939638</updated>
+      <workItem from="1759394941235" duration="99000" />
+      <workItem from="1759395073921" duration="1803000" />
+      <workItem from="1759396922682" duration="5780000" />
+      <workItem from="1768117715115" duration="16332000" />
+      <workItem from="1768134372582" duration="90000" />
+      <workItem from="1768134482514" duration="631000" />
+    </task>
+    <task id="LOCAL-00001" summary="chore: Update project configuration files and improve code formatting">
+      <option name="closed" value="true" />
+      <created>1759401939012</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759401939012</updated>
+    </task>
+    <task id="LOCAL-00002" summary="chore: add copilot data migration XML and update dependencies in package.json">
+      <option name="closed" value="true" />
+      <created>1768118524871</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1768118524871</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: add Camps &amp; Tours feature components, types, and hooks">
+      <option name="closed" value="true" />
+      <created>1768120298052</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768120298052</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: add .gitignore file and update code formatting for consistency">
+      <option name="closed" value="true" />
+      <created>1768123451209</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1768123451209</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: add public API exports for various features including Camps &amp; Tours, Calendar, News, and Emergency">
+      <option name="closed" value="true" />
+      <created>1768126825389</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768126825389</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: refactor theme imports and enhance students feature screens">
+      <option name="closed" value="true" />
+      <created>1768128214763</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1768128214763</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: update theme imports and replace ThemedText with Text component across multiple files">
+      <option name="closed" value="true" />
+      <created>1768129545951</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1768129545951</updated>
+    </task>
+    <task id="LOCAL-00008" summary="style: format code for consistency and readability across multiple files">
+      <option name="closed" value="true" />
+      <created>1768130101683</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1768130101683</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix: update props for NetworkImage component and comment out headerBackTitleVisible in layout">
+      <option name="closed" value="true" />
+      <created>1768130581196</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1768130581196</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: add public API exports for About, Home, News, and Settings features">
+      <option name="closed" value="true" />
+      <created>1768133077151</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1768133077151</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: implement platform-agnostic SegmentedControl component and update CSV parsing logic">
+      <option name="closed" value="true" />
+      <created>1768134080274</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1768134080274</updated>
+    </task>
+    <task id="LOCAL-00012" summary="style: standardize quotation marks and format code for consistency across multiple files">
+      <option name="closed" value="true" />
+      <created>1768134341178</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1768134341178</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="chore: Update project configuration files and improve code formatting" />
+    <MESSAGE value="chore: add copilot data migration XML and update dependencies in package.json" />
+    <MESSAGE value="feat: add Camps &amp; Tours feature components, types, and hooks" />
+    <MESSAGE value="feat: add .gitignore file and update code formatting for consistency" />
+    <MESSAGE value="feat: add public API exports for various features including Camps &amp; Tours, Calendar, News, and Emergency" />
+    <MESSAGE value="feat: refactor theme imports and enhance students feature screens" />
+    <MESSAGE value="feat: update theme imports and replace ThemedText with Text component across multiple files" />
+    <MESSAGE value="style: format code for consistency and readability across multiple files" />
+    <MESSAGE value="fix: update props for NetworkImage component and comment out headerBackTitleVisible in layout" />
+    <MESSAGE value="feat: add public API exports for About, Home, News, and Settings features" />
+    <MESSAGE value="feat: implement platform-agnostic SegmentedControl component and update CSV parsing logic" />
+    <MESSAGE value="style: standardize quotation marks and format code for consistency across multiple files" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: standardize quotation marks and format code for consistency across multiple files" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
