@@ -40,7 +40,9 @@ export function CountrySection({ group, onStudentPress }: CountrySectionProps) {
               </Text>
             </View>
           )}
-          <Text style={[styles.title, { color: colors.primary }]}>{getCountryName(group.countryCode)}</Text>
+          <Text style={[styles.title, { color: colors.primary }]}>
+            {getCountryName(group.countryCode)}
+          </Text>
         </View>
         <Text style={[styles.count, { color: colors.textSecondary }]}>
           {group.students.length} student{group.students.length !== 1 ? "s" : ""}

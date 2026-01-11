@@ -35,9 +35,7 @@ export function useCampsFilters(camps: Camp[]): CampsFilterResult {
     // Apply country filter (by country code)
     if (filters.country) {
       filtered = filtered.filter((camp) => {
-        const codes = camp.hostCountryCode
-          .split(/[\s,]+/)
-          .map((c) => c.trim().toLowerCase());
+        const codes = camp.hostCountryCode.split(/[\s,]+/).map((c) => c.trim().toLowerCase());
         return codes.includes(filters.country.toLowerCase());
       });
     }

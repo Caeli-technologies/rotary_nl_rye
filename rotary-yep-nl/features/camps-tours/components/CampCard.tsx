@@ -163,7 +163,9 @@ export function CampCard({ camp }: CampCardProps) {
                           <Ionicons name="flag-outline" size={10} color={colors.textSecondary} />
                         </View>
                       )}
-                      <Text style={[styles.countryText, { color: colors.text }]}>{countryName}</Text>
+                      <Text style={[styles.countryText, { color: colors.text }]}>
+                        {countryName}
+                      </Text>
                     </View>
                   );
                 })}
@@ -176,7 +178,12 @@ export function CampCard({ camp }: CampCardProps) {
                 <Ionicons name="business-outline" size={14} color={colors.textSecondary} />
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>District</Text>
               </View>
-              <Text style={[styles.detailValue, { color: camp.hostDistrict ? colors.text : colors.textSecondary }]}>
+              <Text
+                style={[
+                  styles.detailValue,
+                  { color: camp.hostDistrict ? colors.text : colors.textSecondary },
+                ]}
+              >
                 {camp.hostDistrict || "—"}
               </Text>
             </View>
@@ -194,7 +201,9 @@ export function CampCard({ camp }: CampCardProps) {
                 />
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Start</Text>
               </View>
-              <Text style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}>
+              <Text
+                style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}
+              >
                 {camp.startDate}
               </Text>
             </View>
@@ -202,14 +211,12 @@ export function CampCard({ camp }: CampCardProps) {
             {/* End Date */}
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons
-                  name="calendar-outline"
-                  size={14}
-                  color={colors.textSecondary}
-                />
+                <Ionicons name="calendar-outline" size={14} color={colors.textSecondary} />
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Einde</Text>
               </View>
-              <Text style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}>
+              <Text
+                style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}
+              >
                 {camp.endDate}
               </Text>
             </View>
@@ -252,7 +259,11 @@ export function CampCard({ camp }: CampCardProps) {
                   ) : (
                     <>
                       <MaterialCommunityIcons
-                        name={getCurrencyIcon(camp.currency) as keyof typeof MaterialCommunityIcons.glyphMap}
+                        name={
+                          getCurrencyIcon(
+                            camp.currency,
+                          ) as keyof typeof MaterialCommunityIcons.glyphMap
+                        }
                         size={18}
                         color={colors.text}
                         style={styles.currencyIcon}

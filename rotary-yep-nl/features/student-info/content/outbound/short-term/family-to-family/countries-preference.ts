@@ -5,8 +5,7 @@ export const familyCountriesPreferenceContent: InfoPageContent = {
   header: {
     icon: "globe-outline",
     title: "Landenvoorkeur",
-    subtitle:
-      "Kies je voorkeursbestemming voor de Family-to-Family ervaring",
+    subtitle: "Kies je voorkeursbestemming voor de Family-to-Family ervaring",
   },
   sections: [
     {
@@ -53,20 +52,17 @@ export const familyCountriesPreferenceContent: InfoPageContent = {
             {
               number: 1,
               title: "Taal en cultuur",
-              content:
-                "Overweeg landen waar je de taal spreekt of wilt leren",
+              content: "Overweeg landen waar je de taal spreekt of wilt leren",
             },
             {
               number: 2,
               title: "Cultuur",
-              content:
-                "Kies landen waarvan de cultuur en geschiedenis je echt interesseren.",
+              content: "Kies landen waarvan de cultuur en geschiedenis je echt interesseren.",
             },
             {
               number: 3,
               title: "Reiskosten",
-              content:
-                "Houd rekening met reiskosten en afstand, vooral bij kortere programma's.",
+              content: "Houd rekening met reiskosten en afstand, vooral bij kortere programma's.",
             },
           ],
         },

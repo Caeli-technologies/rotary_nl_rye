@@ -29,8 +29,7 @@ export const familyHowToSignUpContent: InfoPageContent = {
           target: "interesse@rotaryyep.nl",
           subject: "Interesse in Family-to-Family programma",
           label: "Verstuur Email",
-          description:
-            "Klik om direct een email te sturen naar interesse@rotaryyep.nl",
+          description: "Klik om direct een email te sturen naar interesse@rotaryyep.nl",
         },
       ],
     },

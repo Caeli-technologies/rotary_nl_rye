@@ -66,7 +66,9 @@ export function CountryNavCard({ country, onPress }: CountryNavCardProps) {
           </View>
         )}
         <View style={styles.info}>
-          <Text style={[styles.countryName, { color: colors.text }]}>{getCountryName(country.countryCode)}</Text>
+          <Text style={[styles.countryName, { color: colors.text }]}>
+            {getCountryName(country.countryCode)}
+          </Text>
           <Text style={[styles.studentCount, { color: colors.textSecondary }]}>
             {country.students.length} student
             {country.students.length !== 1 ? "s" : ""}

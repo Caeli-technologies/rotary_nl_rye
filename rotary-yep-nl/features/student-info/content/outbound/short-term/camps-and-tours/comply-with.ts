@@ -20,8 +20,7 @@ export const campsComplyWithContent: InfoPageContent = {
           iconColor: "primary",
           title: "15 - 21 jaar",
           accentColor: "primary",
-          content:
-            "Perfecte leeftijd voor internationale ervaringen en persoonlijke groei",
+          content: "Perfecte leeftijd voor internationale ervaringen en persoonlijke groei",
         },
       ],
     },
@@ -62,8 +61,7 @@ export const campsComplyWithContent: InfoPageContent = {
           iconColor: "primary",
           title: "Internationale Ervaring",
           accentColor: "primary",
-          content:
-            "Ontdek nieuwe culturen en maak vrienden over de hele wereld",
+          content: "Ontdek nieuwe culturen en maak vrienden over de hele wereld",
         },
         {
           id: "development",
