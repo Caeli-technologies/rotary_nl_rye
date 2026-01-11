@@ -10,6 +10,7 @@ import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
 import { NetworkImage } from "@/shared/components/media/NetworkImage";
+import { IconButton } from "@/shared/components/ui";
 import { useHaptics } from "@/shared/hooks";
 import { makePhoneCall, sendEmail, openURL } from "@/shared/utils/communications";
 import type { Contact } from "../types";
@@ -76,7 +77,10 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
       presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={["top"]}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        edges={["top"]}
+      >
         {/* Modal Handle Bar (iOS style) */}
         {Platform.OS === "ios" && (
           <View style={styles.handleContainer}>
@@ -87,13 +91,7 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <Text style={[styles.headerTitle, { color: colors.text }]}>Contact Details</Text>
-          <Pressable
-            style={({ pressed }) => [styles.closeButton, pressed && styles.closeButtonPressed]}
-            onPress={onClose}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <Ionicons name="close" size={24} color={colors.text} />
-          </Pressable>
+          <IconButton icon="close" onPress={onClose} size="medium" variant="tinted" />
         </View>
 
         <ScrollView
@@ -416,13 +414,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     flex: 1,
     marginRight: spacing.md,
-  },
-  closeButton: {
-    padding: spacing.xs,
-  },
-  closeButtonPressed: {
-    opacity: 0.6,
-    transform: Platform.OS === "ios" ? [{ scale: 0.95 }] : [],
   },
   body: {
     padding: spacing.lg,

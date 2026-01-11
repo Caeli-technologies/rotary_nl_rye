@@ -74,9 +74,41 @@ export interface SegmentedControlProps {
 }
 
 /**
- * CloseButton component types
+ * IconButton component props
  */
-export interface CloseButtonProps {
+export interface IconButtonProps {
+  /** Icon name (Ionicons) */
+  icon: string;
   /** Callback when button is pressed */
   onPress: () => void;
+  /** Button size */
+  size?: "small" | "medium" | "large";
+  /** Button variant */
+  variant?: "default" | "filled" | "tinted";
+  /** Custom icon color */
+  color?: string;
+  /** Whether the button is disabled */
+  disabled?: boolean;
+  /** Optional style override */
+  style?: StyleProp<ViewStyle>;
+}
+
+/**
+ * ActionButton component props
+ */
+export interface ActionButtonProps {
+  /** Button title */
+  title: string;
+  /** Optional icon name (Ionicons) */
+  icon?: string;
+  /** Callback when button is pressed */
+  onPress: () => void;
+  /** Button variant */
+  variant?: "primary" | "secondary";
+  /** Whether the button is disabled */
+  disabled?: boolean;
+  /** Whether the button is in a loading state */
+  loading?: boolean;
+  /** Optional style override */
+  style?: StyleProp<ViewStyle>;
 }

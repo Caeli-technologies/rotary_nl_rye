@@ -3,11 +3,21 @@
  * Features: meeting section, recurrence info, attachments, better UX
  */
 
-import { Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Linking,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
+import { IconButton } from "@/shared/components/ui";
 import { useEventDetails } from "../hooks/useEventDetails";
 import { MeetingSection } from "./MeetingSection";
 import { AttachmentsList } from "./AttachmentsList";
@@ -43,11 +53,6 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
     await Linking.openURL(url);
   };
 
-  const handleClose = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    onClose();
-  };
-
   return (
     <Modal
       visible={visible}
@@ -55,19 +60,16 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
       presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={["top"]}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        edges={["top"]}
+      >
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
           <Text style={[styles.headerTitle, { color: colors.text }]}>Evenement</Text>
-          <Pressable
-            onPress={handleClose}
-            style={({ pressed }) => [
-              styles.closeButton,
-              { backgroundColor: colors.card, opacity: pressed ? 0.7 : 1 },
-            ]}
-          >
-            <Ionicons name="close" size={20} color={colors.text} />
-          </Pressable>
+          <View style={styles.closeButtonContainer}>
+            <IconButton icon="close" onPress={onClose} size="medium" variant="tinted" />
+          </View>
         </View>
 
         <ScrollView
@@ -221,14 +223,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "600",
   },
-  closeButton: {
+  closeButtonContainer: {
     position: "absolute",
     right: 16,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: "center",
-    justifyContent: "center",
   },
   content: {
     flex: 1,

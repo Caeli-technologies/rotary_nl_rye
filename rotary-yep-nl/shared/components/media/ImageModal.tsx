@@ -4,11 +4,11 @@
  */
 
 import { Modal, View, StyleSheet, Pressable, Dimensions, Platform, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { getInitials } from "@/shared/utils";
-import { CloseButton } from "../ui/CloseButton";
+import { IconButton } from "@/shared/components/ui";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -25,6 +25,7 @@ interface ImageModalProps {
 
 export function ImageModal({ visible, onClose, source, name }: ImageModalProps) {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
   const shouldShowImage =
     source &&
     (typeof source === "string" ? !source.includes("Profile_avatar_placeholder_large.png") : true);
@@ -59,9 +60,9 @@ export function ImageModal({ visible, onClose, source, name }: ImageModalProps) 
         </Pressable>
 
         {/* Close button */}
-        <SafeAreaView style={styles.header} edges={["top"]} pointerEvents="box-none">
-          <CloseButton onPress={onClose} />
-        </SafeAreaView>
+        <View style={[styles.header, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
+          <IconButton icon="close" onPress={onClose} size="medium" variant="default" />
+        </View>
       </View>
     </Modal>
   );
@@ -80,7 +81,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     paddingHorizontal: 16,
-    paddingTop: Platform.OS === "android" ? 8 : 0,
   },
   modalPressable: {
     flex: 1,

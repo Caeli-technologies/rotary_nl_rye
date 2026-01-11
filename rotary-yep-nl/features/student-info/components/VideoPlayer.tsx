@@ -1,12 +1,13 @@
 import React, { memo, useState, useEffect } from "react";
 import { StyleSheet, View, Text, Pressable, Modal, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { useEvent } from "expo";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import { useTheme } from "@/core/theme";
+import { IconButton } from "@/shared/components/ui";
 
 interface VideoPlayerProps {
   /** URL to the video file */
@@ -32,6 +33,7 @@ export const VideoPlayer = memo(function VideoPlayer({
   thumbnailTime = 15000,
 }: VideoPlayerProps) {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
 
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
@@ -125,14 +127,9 @@ export const VideoPlayer = memo(function VideoPlayer({
         presentationStyle="fullScreen"
         onRequestClose={handleCloseVideo}
       >
-        <SafeAreaView
-          style={[styles.videoModalContainer, { backgroundColor: "#000" }]}
-          edges={["top", "left", "right"]}
-        >
-          <View style={styles.videoModalHeader}>
-            <Pressable style={styles.closeButton} onPress={handleCloseVideo}>
-              <Ionicons name="close" size={28} color="#FFF" />
-            </Pressable>
+        <View style={[styles.videoModalContainer, { backgroundColor: "#000" }]}>
+          <View style={[styles.videoModalHeader, { top: insets.top + 16 }]}>
+            <IconButton icon="close" onPress={handleCloseVideo} size="medium" variant="default" color="#FFF" />
           </View>
 
           <View style={styles.videoContainer}>
@@ -155,7 +152,7 @@ export const VideoPlayer = memo(function VideoPlayer({
             <Text style={styles.videoTitleModal}>{title}</Text>
             <Text style={styles.videoSubtitleModal}>Rotary Youth Exchange</Text>
           </View>
-        </SafeAreaView>
+        </View>
       </Modal>
     </>
   );
@@ -242,17 +239,8 @@ const styles = StyleSheet.create({
   },
   videoModalHeader: {
     position: "absolute",
-    top: 60,
     right: 20,
     zIndex: 10,
-  },
-  closeButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
   },
   videoContainer: {
     flex: 1,
