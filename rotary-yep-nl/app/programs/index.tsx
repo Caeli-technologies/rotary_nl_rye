@@ -43,7 +43,7 @@ export default function ProgramsScreen() {
         items.push({ type: "spacer" });
       }
       items.push({ type: "sectionHeader", title: section.title });
-      section.programs.forEach((program) => {
+      section.items.forEach((program: ProgramItem) => {
         items.push({ type: "program", program });
       });
     });

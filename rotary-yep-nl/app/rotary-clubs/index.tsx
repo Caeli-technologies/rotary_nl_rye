@@ -37,10 +37,7 @@ export default function RotaryClubsScreen() {
 
   const renderItem = useCallback(
     ({ item }: { item: ClubSectionNavItem }) => (
-      <SectionNavCard
-        section={item}
-        onPress={() => handleSectionPress(item.id)}
-      />
+      <SectionNavCard item={item} onPress={() => handleSectionPress(item.id)} />
     ),
     [handleSectionPress],
   );

@@ -3,14 +3,28 @@
  * Provides persistent caching with TTL support
  */
 
-import * as FileSystem from "expo-file-system";
+import { File, Directory, Paths } from "expo-file-system";
 
-const CACHE_DIR = FileSystem.cacheDirectory + "data/";
+// Cache directory using the new API
+const CACHE_DIR = new Directory(Paths.cache, "data");
 
 interface CacheEntry<T> {
-  data: T;
-  timestamp: number;
-  expiresAt: number;
+	data: T;
+	timestamp: number;
+	expiresAt: number;
+}
+
+/**
+ * Ensure cache directory exists
+ */
+function ensureCacheDir(): void {
+	try {
+		if (!CACHE_DIR.exists) {
+			CACHE_DIR.create();
+		}
+	} catch {
+		// Directory might already exist
+	}
 }
 
 /**
@@ -18,27 +32,26 @@ interface CacheEntry<T> {
  * Returns null if not found or expired
  */
 export async function getCached<T>(key: string): Promise<T | null> {
-  try {
-    const path = CACHE_DIR + key + ".json";
-    const info = await FileSystem.getInfoAsync(path);
+	try {
+		const file = new File(CACHE_DIR, `${key}.json`);
 
-    if (!info.exists) {
-      return null;
-    }
+		if (!file.exists) {
+			return null;
+		}
 
-    const content = await FileSystem.readAsStringAsync(path);
-    const entry: CacheEntry<T> = JSON.parse(content);
+		const content = await file.text();
+		const entry: CacheEntry<T> = JSON.parse(content);
 
-    // Check if expired
-    if (Date.now() > entry.expiresAt) {
-      await FileSystem.deleteAsync(path, { idempotent: true });
-      return null;
-    }
+		// Check if expired
+		if (Date.now() > entry.expiresAt) {
+			file.delete();
+			return null;
+		}
 
-    return entry.data;
-  } catch {
-    return null;
-  }
+		return entry.data;
+	} catch {
+		return null;
+	}
 }
 
 /**
@@ -48,28 +61,24 @@ export async function getCached<T>(key: string): Promise<T | null> {
  * @param ttlMinutes - Time to live in minutes (default: 10)
  */
 export async function setCache<T>(
-  key: string,
-  data: T,
-  ttlMinutes: number = 10,
+	key: string,
+	data: T,
+	ttlMinutes: number = 10,
 ): Promise<void> {
-  try {
-    // Ensure cache directory exists
-    const dirInfo = await FileSystem.getInfoAsync(CACHE_DIR);
-    if (!dirInfo.exists) {
-      await FileSystem.makeDirectoryAsync(CACHE_DIR, { intermediates: true });
-    }
+	try {
+		ensureCacheDir();
 
-    const entry: CacheEntry<T> = {
-      data,
-      timestamp: Date.now(),
-      expiresAt: Date.now() + ttlMinutes * 60 * 1000,
-    };
+		const entry: CacheEntry<T> = {
+			data,
+			timestamp: Date.now(),
+			expiresAt: Date.now() + ttlMinutes * 60 * 1000,
+		};
 
-    const path = CACHE_DIR + key + ".json";
-    await FileSystem.writeAsStringAsync(path, JSON.stringify(entry));
-  } catch (error) {
-    console.warn("Cache write failed:", error);
-  }
+		const file = new File(CACHE_DIR, `${key}.json`);
+		file.write(JSON.stringify(entry));
+	} catch (error) {
+		console.warn("Cache write failed:", error);
+	}
 }
 
 /**
@@ -77,38 +86,40 @@ export async function setCache<T>(
  * @param key - Optional key to clear specific cache
  */
 export async function clearCache(key?: string): Promise<void> {
-  try {
-    if (key) {
-      await FileSystem.deleteAsync(CACHE_DIR + key + ".json", {
-        idempotent: true,
-      });
-    } else {
-      await FileSystem.deleteAsync(CACHE_DIR, { idempotent: true });
-    }
-  } catch {
-    // Ignore errors
-  }
+	try {
+		if (key) {
+			const file = new File(CACHE_DIR, `${key}.json`);
+			if (file.exists) {
+				file.delete();
+			}
+		} else {
+			if (CACHE_DIR.exists) {
+				CACHE_DIR.delete();
+			}
+		}
+	} catch {
+		// Ignore errors
+	}
 }
 
 /**
  * Check if cache exists and is valid
  */
 export async function isCacheValid(key: string): Promise<boolean> {
-  try {
-    const path = CACHE_DIR + key + ".json";
-    const info = await FileSystem.getInfoAsync(path);
+	try {
+		const file = new File(CACHE_DIR, `${key}.json`);
 
-    if (!info.exists) {
-      return false;
-    }
+		if (!file.exists) {
+			return false;
+		}
 
-    const content = await FileSystem.readAsStringAsync(path);
-    const entry: CacheEntry<unknown> = JSON.parse(content);
+		const content = await file.text();
+		const entry: CacheEntry<unknown> = JSON.parse(content);
 
-    return Date.now() <= entry.expiresAt;
-  } catch {
-    return false;
-  }
+		return Date.now() <= entry.expiresAt;
+	} catch {
+		return false;
+	}
 }
 
 /**
@@ -116,19 +127,18 @@ export async function isCacheValid(key: string): Promise<boolean> {
  * Returns null if cache doesn't exist
  */
 export async function getCacheAge(key: string): Promise<number | null> {
-  try {
-    const path = CACHE_DIR + key + ".json";
-    const info = await FileSystem.getInfoAsync(path);
+	try {
+		const file = new File(CACHE_DIR, `${key}.json`);
 
-    if (!info.exists) {
-      return null;
-    }
+		if (!file.exists) {
+			return null;
+		}
 
-    const content = await FileSystem.readAsStringAsync(path);
-    const entry: CacheEntry<unknown> = JSON.parse(content);
+		const content = await file.text();
+		const entry: CacheEntry<unknown> = JSON.parse(content);
 
-    return Date.now() - entry.timestamp;
-  } catch {
-    return null;
-  }
+		return Date.now() - entry.timestamp;
+	} catch {
+		return null;
+	}
 }

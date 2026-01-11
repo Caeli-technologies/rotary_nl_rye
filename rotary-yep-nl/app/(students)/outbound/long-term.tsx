@@ -4,7 +4,8 @@
  */
 
 import { useCallback } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { useTheme } from "@/core/theme";
 import { StudentsList, useStudents, type Student } from "@/features/students";
@@ -15,9 +16,9 @@ export default function OutboundLongTermScreen() {
 
   const handleStudentPress = useCallback((student: Student) => {
     router.push({
-      pathname: "/outbound/student-detail",
+      pathname: "/(students)/outbound/student-detail" as const,
       params: { studentId: student.id },
-    });
+    } as never);
   }, []);
 
   return (

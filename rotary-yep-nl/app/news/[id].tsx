@@ -3,28 +3,20 @@
  * Thin wrapper using the news feature module
  */
 
-import { useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/core/theme";
-import { NewsDetail, convertRawNewsItem } from "@/features/news";
-import type { RawNewsItem } from "@/features/news";
+import { LoadingState } from "@/shared/components/feedback";
+import { NewsDetail, useNewsItem } from "@/features/news";
 
 export default function NewsDetailScreen() {
   const { colors } = useTheme();
-  const { content } = useLocalSearchParams<{ content: string }>();
+  const { id } = useLocalSearchParams<{ id: string }>();
 
-  const newsItem = useMemo(() => {
-    if (!content) return null;
-    try {
-      const raw: RawNewsItem = JSON.parse(content);
-      return convertRawNewsItem(raw);
-    } catch {
-      return null;
-    }
-  }, [content]);
+  const newsId = id ? parseInt(id, 10) : 0;
+  const { item: newsItem, loading, error } = useNewsItem(newsId);
 
   const handleOpenPdf = () => {
     if (newsItem?.pdfUrl) {
@@ -35,7 +27,18 @@ export default function NewsDetailScreen() {
     }
   };
 
-  if (!newsItem) {
+  if (loading) {
+    return (
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: colors.background }}
+        edges={["bottom"]}
+      >
+        <LoadingState message="Artikel laden..." />
+      </SafeAreaView>
+    );
+  }
+
+  if (error || !newsItem) {
     return (
       <SafeAreaView
         style={{ flex: 1, backgroundColor: colors.background }}
@@ -44,7 +47,7 @@ export default function NewsDetailScreen() {
         <View style={styles.centered}>
           <Ionicons name="alert-circle" size={64} color={colors.error} />
           <Text style={[styles.errorText, { color: colors.error }]}>
-            Nieuwsbericht niet gevonden
+            {error || "Nieuwsbericht niet gevonden"}
           </Text>
         </View>
       </SafeAreaView>

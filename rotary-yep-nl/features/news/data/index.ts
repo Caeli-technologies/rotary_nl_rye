@@ -3,8 +3,7 @@
  */
 
 export {
-  newsItems,
-  getNewsItemById,
-  getPdfNewsItems,
-  getTextNewsItems,
-} from './news';
+	getNewsItemById,
+	getPdfNewsItems,
+	getTextNewsItems,
+} from "./news";

@@ -3,21 +3,40 @@
  * Thin wrapper using the contacts feature module
  */
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Platform, StyleSheet, View, Text, SectionList } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import { useTheme } from "@/core/theme";
-import { ContactCard, contactSections } from "@/features/contacts";
+import {
+  ContactCard,
+  ContactModal,
+  contactSections,
+  type Contact,
+} from "@/features/contacts";
 
 export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
   const { colors, isDark } = useTheme();
 
   const currentSection = contactSections[activeTab];
   const tabValues = contactSections.map((section) => section.title);
   const contacts = currentSection?.contacts || [];
 
-  const handleSegmentChange = (event: any) => {
+  const handleContactPress = useCallback((contact: Contact) => {
+    setSelectedContact(contact);
+    setModalVisible(true);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setModalVisible(false);
+    setSelectedContact(null);
+  }, []);
+
+  const handleSegmentChange = (event: {
+    nativeEvent: { selectedSegmentIndex: number };
+  }) => {
     setActiveTab(event.nativeEvent.selectedSegmentIndex);
   };
 
@@ -46,6 +65,11 @@ export default function ContactScreen() {
             Er zijn momenteel geen contacten in deze sectie.
           </Text>
         </View>
+        <ContactModal
+          contact={selectedContact}
+          visible={modalVisible}
+          onClose={handleCloseModal}
+        />
       </View>
     );
   }
@@ -67,13 +91,24 @@ export default function ContactScreen() {
 
       <SectionList
         sections={[{ data: contacts }]}
-        renderItem={({ item }) => <ContactCard contact={item} />}
-        keyExtractor={(_item, index) => `${currentSection.id}-${index}`}
+        renderItem={({ item }) => (
+          <ContactCard
+            contact={item}
+            onPress={() => handleContactPress(item)}
+          />
+        )}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
         contentContainerStyle={styles.contentContainer}
         style={styles.sectionList}
         automaticallyAdjustContentInsets={true}
+      />
+
+      <ContactModal
+        contact={selectedContact}
+        visible={modalVisible}
+        onClose={handleCloseModal}
       />
     </View>
   );

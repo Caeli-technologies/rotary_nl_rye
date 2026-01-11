@@ -3,7 +3,7 @@
  * Thin wrapper using the pdf-viewer feature module
  */
 
-import { useState, useEffect, useLayoutEffect, useCallback } from "react";
+import { useLayoutEffect, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -22,19 +22,35 @@ export default function PDFViewerScreen() {
   const navigation = useNavigation();
   const { url, title } = useLocalSearchParams<{ url: string; title: string }>();
 
-  const { localFilePath, isLoading, error, retry } = usePdfDownload(url);
-  const { handleShare } = usePdfShare(localFilePath, title);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
+  const {
+    localFilePath,
+    loading,
+    error,
+    download,
+    setPageInfo,
+    setError,
+    currentPage,
+    totalPages,
+  } = usePdfDownload({
+    url,
+    autoDownload: true,
+  });
+  const { share, canShare } = usePdfShare({ filePath: localFilePath, title });
 
-  const handlePageChange = useCallback((current: number, total: number) => {
-    setCurrentPage(current);
-    setTotalPages(total);
-  }, []);
+  const handlePageChange = useCallback(
+    (current: number, total: number) => {
+      setPageInfo(current, total);
+    },
+    [setPageInfo],
+  );
 
-  const handleError = useCallback((err?: string) => {
-    console.error("PDF rendering error:", err);
-  }, []);
+  const handleError = useCallback(
+    (err?: string) => {
+      console.error("PDF rendering error:", err);
+      setError(err || "Failed to render PDF");
+    },
+    [setError],
+  );
 
   // Configure navigation header
   useLayoutEffect(() => {
@@ -47,19 +63,9 @@ export default function PDFViewerScreen() {
         />
       ),
       headerRight: () =>
-        localFilePath && !isLoading ? (
-          <PdfShareButton onPress={handleShare} />
-        ) : null,
+        canShare && !loading ? <PdfShareButton onPress={share} /> : null,
     });
-  }, [
-    navigation,
-    title,
-    localFilePath,
-    isLoading,
-    currentPage,
-    totalPages,
-    handleShare,
-  ]);
+  }, [navigation, title, canShare, loading, currentPage, totalPages, share]);
 
   if (error) {
     return (
@@ -67,12 +73,12 @@ export default function PDFViewerScreen() {
         style={[styles.container, { backgroundColor: colors.background }]}
         edges={["bottom"]}
       >
-        <ErrorState message={error} onRetry={retry} />
+        <ErrorState message={error} onRetry={download} />
       </SafeAreaView>
     );
   }
 
-  if (isLoading || !localFilePath) {
+  if (loading || !localFilePath) {
     return (
       <SafeAreaView
         style={[styles.container, { backgroundColor: colors.background }]}

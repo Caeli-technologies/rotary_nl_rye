@@ -1,86 +1,76 @@
 /**
  * Button component for iOS
- * Uses native iOS button styling
+ * Uses SwiftUI Button from @expo/ui for native iOS styling
  */
 
-import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { Host, Button as ExpoButton } from "@expo/ui/swift-ui";
 import { useTheme } from "@/core/theme";
 import { useHaptics } from "@/shared/hooks";
 import type { ButtonProps } from "./types";
 
 export function Button({
-  title,
-  onPress,
-  variant = "primary",
-  disabled = false,
-  loading = false,
-  style,
+	title,
+	onPress,
+	variant = "primary",
+	disabled = false,
+	loading = false,
+	style,
 }: ButtonProps) {
-  const { colors } = useTheme();
-  const { lightImpact } = useHaptics();
+	const { colors } = useTheme();
+	const { lightImpact } = useHaptics();
 
-  const getButtonColors = () => {
-    switch (variant) {
-      case "primary":
-        return {
-          background: colors.primary,
-          text: colors.onPrimary,
-        };
-      case "secondary":
-        return {
-          background: colors.surfaceVariant,
-          text: colors.primary,
-        };
-      case "destructive":
-        return {
-          background: colors.error,
-          text: colors.onPrimary,
-        };
-    }
-  };
+	const getButtonVariant = ():
+		| "default"
+		| "bordered"
+		| "borderless"
+		| "borderedProminent" => {
+		switch (variant) {
+			case "primary":
+				return "borderedProminent";
+			case "secondary":
+				return "bordered";
+			case "destructive":
+				return "borderedProminent";
+			default:
+				return "default";
+		}
+	};
 
-  const buttonColors = getButtonColors();
+	const handlePress = () => {
+		if (!disabled && !loading) {
+			lightImpact();
+			onPress();
+		}
+	};
 
-  const handlePress = () => {
-    if (!disabled && !loading) {
-      lightImpact();
-      onPress();
-    }
-  };
+	if (loading) {
+		return (
+			<View style={[styles.loadingContainer, style]}>
+				<ActivityIndicator size="small" color={colors.primary} />
+			</View>
+		);
+	}
 
-  return (
-    <Pressable
-      onPress={handlePress}
-      disabled={disabled || loading}
-      style={({ pressed }) => [
-        styles.button,
-        {
-          backgroundColor: buttonColors.background,
-          opacity: disabled ? 0.5 : pressed ? 0.8 : 1,
-        },
-        style,
-      ]}
-    >
-      {loading ? (
-        <ActivityIndicator size="small" color={buttonColors.text} />
-      ) : (
-        <Text style={[styles.text, { color: buttonColors.text }]}>{title}</Text>
-      )}
-    </Pressable>
-  );
+	return (
+		<Host matchContents style={style}>
+			<ExpoButton
+				variant={getButtonVariant()}
+				disabled={disabled}
+				onPress={handlePress}
+			>
+				{title}
+			</ExpoButton>
+		</Host>
+	);
 }
 
 const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 14,
-    paddingHorizontal: 24,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: 50,
-  },
-  text: {
-    fontSize: 17,
-    fontWeight: "600",
-  },
+	loadingContainer: {
+		paddingVertical: 14,
+		paddingHorizontal: 24,
+		alignItems: "center",
+		justifyContent: "center",
+		minHeight: 50,
+	},
 });
