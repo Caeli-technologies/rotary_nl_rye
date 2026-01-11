@@ -12,7 +12,7 @@ export { useSettingsActions, useAppVersion } from "./hooks";
 
 // Types
 export type {
-	SettingsSectionData,
-	SettingsItem as SettingsItemType,
-	SettingsAction,
+  SettingsSectionData,
+  SettingsItem as SettingsItemType,
+  SettingsAction,
 } from "./types";

@@ -9,11 +9,11 @@ import type { SectionProps } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const PlatformSection = Platform.select({
-	ios: () => require("./Section.ios").Section,
-	android: () => require("./Section.android").Section,
-	default: () => require("./Section.android").Section,
+  ios: () => require("./Section.ios").Section,
+  android: () => require("./Section.android").Section,
+  default: () => require("./Section.android").Section,
 })();
 
 export function Section(props: SectionProps) {
-	return <PlatformSection {...props} />;
+  return <PlatformSection {...props} />;
 }

@@ -1,26 +1,19 @@
 /**
- * Event detail modal component
+ * Enhanced event detail modal component
+ * Features: meeting section, recurrence info, attachments, better UX
  */
 
-import {
-  StyleSheet,
-  View,
-  Modal,
-  Pressable,
-  ScrollView,
-  Platform,
-  Linking,
-  Text,
-} from "react-native";
+import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
-import {
-  formatEventDate,
-  formatEventTime,
-  isMultiDayEvent,
-  extractLinksFromDescription,
-} from "../utils";
-import type { CalendarEvent, EventWithOriginalData } from "../types";
+import { useEventDetails } from "../hooks/useEventDetails";
+import { MeetingSection } from "./MeetingSection";
+import { AttachmentsList } from "./AttachmentsList";
+import { RecurrenceBadge } from "./RecurrenceBadge";
+import { EventTypeBadge } from "./EventTypeBadge";
+import { extractLinksFromDescription } from "../utils/dateUtils";
+import type { CalendarEvent } from "../types";
 
 interface EventModalProps {
   event: CalendarEvent | null;
@@ -30,40 +23,28 @@ interface EventModalProps {
 
 export function EventModal({ event, visible, onClose }: EventModalProps) {
   const { colors } = useTheme();
+  const details = useEventDetails(event);
 
   if (!event) return null;
 
-  const eventWithOriginal = event as EventWithOriginalData;
-  const isAllDay =
-    eventWithOriginal._originalStart?.date !== undefined &&
-    !eventWithOriginal._originalStart?.dateTime;
-  const isMultiDay = isMultiDayEvent(event);
+  const links = event.description ? extractLinksFromDescription(event.description) : [];
 
-  const startDate = formatEventDate(event.start.dateTime);
-  const endDate = formatEventDate(event.end.dateTime);
-  const timeDisplay = isAllDay
-    ? "Hele dag"
-    : formatEventTime(event.start.dateTime, event.end.dateTime);
-
-  const links = event.description
-    ? extractLinksFromDescription(event.description)
-    : [];
-
-  const handleOpenLocation = () => {
+  const handleOpenLocation = async () => {
     if (event.location) {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       const url = `https://maps.apple.com/?q=${encodeURIComponent(event.location)}`;
-      Linking.openURL(url);
+      await Linking.openURL(url);
     }
   };
 
-  const handleOpenLink = (url: string) => {
-    Linking.openURL(url);
+  const handleOpenLink = async (url: string) => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    await Linking.openURL(url);
   };
 
-  const handleOpenCalendarLink = () => {
-    if (event.htmlLink) {
-      Linking.openURL(event.htmlLink);
-    }
+  const handleClose = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    onClose();
   };
 
   return (
@@ -76,11 +57,9 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>
-            Evenement
-          </Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Evenement</Text>
           <Pressable
-            onPress={onClose}
+            onPress={handleClose}
             style={({ pressed }) => [
               styles.closeButton,
               { backgroundColor: colors.card, opacity: pressed ? 0.7 : 1 },
@@ -95,109 +74,101 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
           contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
+          {/* Color accent bar at top */}
+          <View style={[styles.colorAccent, { backgroundColor: details.accentColor }]} />
+
+          {/* Badges row */}
+          {(details.isRecurring || details.showEventTypeBadge) && (
+            <View style={styles.badgesRow}>
+              {details.isRecurring && (
+                <RecurrenceBadge recurrence={event.recurrence} size="medium" />
+              )}
+              {details.showEventTypeBadge && (
+                <EventTypeBadge eventType={event.eventType} size="medium" />
+              )}
+            </View>
+          )}
+
           {/* Title */}
-          <Text style={[styles.title, { color: colors.text }]}>
-            {event.summary}
-          </Text>
+          <Text style={[styles.title, { color: colors.text }]}>{event.summary}</Text>
 
           {/* Date & Time */}
           <View style={styles.infoRow}>
-            <View
-              style={[
-                styles.iconContainer,
-                { backgroundColor: colors.primary },
-              ]}
-            >
+            <View style={[styles.iconContainer, { backgroundColor: colors.primary }]}>
               <Ionicons name="calendar" size={18} color="#FFFFFF" />
             </View>
             <View style={styles.infoContent}>
-              {isMultiDay ? (
+              {details.isMultiDay ? (
                 <>
-                  <Text style={[styles.infoText, { color: colors.text }]}>
-                    {startDate} - {endDate}
-                  </Text>
-                  <Text
-                    style={[
-                      styles.infoSubtext,
-                      { color: colors.textSecondary },
-                    ]}
-                  >
+                  <Text style={[styles.infoText, { color: colors.text }]}>{details.dateRange}</Text>
+                  <Text style={[styles.infoSubtext, { color: colors.textSecondary }]}>
                     Meerdaags evenement
                   </Text>
                 </>
               ) : (
                 <>
                   <Text style={[styles.infoText, { color: colors.text }]}>
-                    {startDate}
+                    {details.relativeDateDisplay || details.dateDisplay}
                   </Text>
-                  <Text
-                    style={[
-                      styles.infoSubtext,
-                      { color: colors.textSecondary },
-                    ]}
-                  >
-                    {timeDisplay}
+                  <Text style={[styles.infoSubtext, { color: colors.textSecondary }]}>
+                    {details.timeDisplay}
                   </Text>
                 </>
               )}
             </View>
           </View>
 
+          {/* Recurrence info */}
+          {details.isRecurring && details.recurrenceText && (
+            <View style={styles.infoRow}>
+              <View style={[styles.iconContainer, { backgroundColor: colors.primary + "80" }]}>
+                <Ionicons name="repeat" size={18} color={colors.primary} />
+              </View>
+              <View style={styles.infoContent}>
+                <Text style={[styles.infoText, { color: colors.text }]}>
+                  {details.recurrenceText}
+                </Text>
+                <Text style={[styles.infoSubtext, { color: colors.textSecondary }]}>
+                  Herhalend evenement
+                </Text>
+              </View>
+            </View>
+          )}
+
           {/* Location */}
           {event.location && (
             <Pressable
               onPress={handleOpenLocation}
-              style={({ pressed }) => [
-                styles.infoRow,
-                { opacity: pressed ? 0.7 : 1 },
-              ]}
+              style={({ pressed }) => [styles.infoRow, { opacity: pressed ? 0.7 : 1 }]}
             >
-              <View
-                style={[
-                  styles.iconContainer,
-                  { backgroundColor: colors.accent },
-                ]}
-              >
+              <View style={[styles.iconContainer, { backgroundColor: colors.accent }]}>
                 <Ionicons name="location" size={18} color="#FFFFFF" />
               </View>
               <View style={styles.infoContent}>
-                <Text style={[styles.infoText, { color: colors.text }]}>
-                  {event.location}
-                </Text>
-                <Text
-                  style={[styles.infoSubtext, { color: colors.primary }]}
-                >
-                  Open in Kaarten
-                </Text>
+                <Text style={[styles.infoText, { color: colors.text }]}>{event.location}</Text>
+                <Text style={[styles.infoSubtext, { color: colors.primary }]}>Open in Kaarten</Text>
               </View>
-              <Ionicons
-                name="chevron-forward"
-                size={20}
-                color={colors.textSecondary}
-              />
+              <Ionicons name="chevron-forward" size={20} color={colors.textSecondary} />
             </Pressable>
           )}
+
+          {/* Meeting Section */}
+          {event.conference && <MeetingSection conference={event.conference} />}
 
           {/* Description */}
           {event.description && (
             <View style={styles.descriptionContainer}>
-              <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                Beschrijving
-              </Text>
-              <Text
-                style={[styles.description, { color: colors.textSecondary }]}
-              >
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>Beschrijving</Text>
+              <Text style={[styles.description, { color: colors.textSecondary }]}>
                 {event.description.replace(/<[^>]*>/g, "")}
               </Text>
             </View>
           )}
 
-          {/* Links */}
+          {/* Links extracted from description */}
           {links.length > 0 && (
             <View style={styles.linksContainer}>
-              <Text style={[styles.sectionTitle, { color: colors.text }]}>
-                Links
-              </Text>
+              <Text style={[styles.sectionTitle, { color: colors.text }]}>Links</Text>
               {links.map((link, index) => (
                 <Pressable
                   key={index}
@@ -211,37 +182,22 @@ export function EventModal({ event, visible, onClose }: EventModalProps) {
                   ]}
                 >
                   <Ionicons name="link" size={18} color={colors.primary} />
-                  <Text
-                    style={[styles.linkText, { color: colors.primary }]}
-                    numberOfLines={1}
-                  >
+                  <Text style={[styles.linkText, { color: colors.primary }]} numberOfLines={1}>
                     {link}
                   </Text>
-                  <Ionicons
-                    name="open-outline"
-                    size={16}
-                    color={colors.textSecondary}
-                  />
+                  <Ionicons name="open-outline" size={16} color={colors.textSecondary} />
                 </Pressable>
               ))}
             </View>
           )}
 
-          {/* View in Calendar */}
-          {event.htmlLink && (
-            <Pressable
-              onPress={handleOpenCalendarLink}
-              style={({ pressed }) => [
-                styles.calendarButton,
-                { backgroundColor: colors.primary, opacity: pressed ? 0.8 : 1 },
-              ]}
-            >
-              <Ionicons name="open-outline" size={18} color="#FFFFFF" />
-              <Text style={styles.calendarButtonText}>
-                Bekijk in Google Calendar
-              </Text>
-            </Pressable>
+          {/* Attachments */}
+          {event.attachments && event.attachments.length > 0 && (
+            <AttachmentsList attachments={event.attachments} />
           )}
+
+          {/* Bottom padding */}
+          <View style={styles.bottomPadding} />
         </ScrollView>
       </View>
     </Modal>
@@ -279,10 +235,21 @@ const styles = StyleSheet.create({
   contentContainer: {
     padding: 20,
   },
+  colorAccent: {
+    height: 4,
+    borderRadius: 2,
+    marginBottom: 16,
+  },
+  badgesRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+    marginBottom: 12,
+  },
   title: {
     fontSize: 24,
     fontWeight: "700",
-    marginBottom: 24,
+    marginBottom: 20,
   },
   infoRow: {
     flexDirection: "row",
@@ -336,18 +303,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginRight: 8,
   },
-  calendarButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16,
-    borderRadius: 12,
-    marginTop: 32,
-  },
-  calendarButtonText: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#FFFFFF",
-    marginLeft: 8,
+  bottomPadding: {
+    height: 40,
   },
 });

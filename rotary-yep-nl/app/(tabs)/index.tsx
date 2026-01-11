@@ -4,7 +4,7 @@
  */
 
 import { useMemo } from "react";
-import { StyleSheet, View, ScrollView, Platform } from "react-native";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useTheme } from "@/core/theme";
@@ -47,11 +47,7 @@ export default function HomeScreen() {
             title="Programma"
             onPress={() => router.push("/programs")}
           />
-          <HomeCard
-            icon="newspaper-outline"
-            title="News"
-            onPress={() => router.push("/news")}
-          />
+          <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push("/news")} />
           <HomeCard
             icon="calendar-outline"
             title="Calendar"
@@ -63,17 +59,17 @@ export default function HomeScreen() {
           <HomeCard
             materialIcon="airplane-takeoff"
             title="Op Exchange"
-            onPress={() => router.push("/outbound")}
+            onPress={() => router.push("/students/outbound")}
           />
           <HomeCard
             materialIcon="airplane-landing"
             title="To NL"
-            onPress={() => router.push("/inbound")}
+            onPress={() => router.push("/students/inbound")}
           />
           <HomeCard
             icon="refresh-outline"
             title="Rebound"
-            onPress={() => router.push("/rebound")}
+            onPress={() => router.push("/students/rebound")}
           />
         </View>
 

@@ -3,15 +3,7 @@
  * Full-screen image preview with close button
  */
 
-import {
-  Modal,
-  View,
-  StyleSheet,
-  Pressable,
-  Dimensions,
-  Platform,
-  Text,
-} from "react-native";
+import { Modal, View, StyleSheet, Pressable, Dimensions, Platform, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -31,18 +23,11 @@ interface ImageModalProps {
   name?: string;
 }
 
-export function ImageModal({
-  visible,
-  onClose,
-  source,
-  name,
-}: ImageModalProps) {
+export function ImageModal({ visible, onClose, source, name }: ImageModalProps) {
   const { colors } = useTheme();
   const shouldShowImage =
     source &&
-    (typeof source === "string"
-      ? !source.includes("Profile_avatar_placeholder_large.png")
-      : true);
+    (typeof source === "string" ? !source.includes("Profile_avatar_placeholder_large.png") : true);
   const initials = name ? getInitials(name) : "";
 
   return (
@@ -67,16 +52,9 @@ export function ImageModal({
           ) : (
             <View style={styles.placeholderContainer}>
               <View
-                style={[
-                  styles.expandedPlaceholder,
-                  { backgroundColor: `${colors.primary}20` },
-                ]}
+                style={[styles.expandedPlaceholder, { backgroundColor: `${colors.primary}20` }]}
               >
-                <Text
-                  style={[styles.expandedInitials, { color: colors.primary }]}
-                >
-                  {initials}
-                </Text>
+                <Text style={[styles.expandedInitials, { color: colors.primary }]}>{initials}</Text>
               </View>
             </View>
           )}

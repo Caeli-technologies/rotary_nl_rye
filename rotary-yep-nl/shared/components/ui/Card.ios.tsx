@@ -27,10 +27,7 @@ export function Card({ children, style, onPress }: CardProps) {
 
   if (onPress) {
     return (
-      <Pressable
-        onPress={onPress}
-        style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
-      >
+      <Pressable onPress={onPress} style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}>
         {cardContent}
       </Pressable>
     );

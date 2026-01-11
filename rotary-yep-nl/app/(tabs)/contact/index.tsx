@@ -7,12 +7,7 @@ import { useState, useCallback } from "react";
 import { Platform, StyleSheet, View, Text, SectionList } from "react-native";
 import { useTheme } from "@/core/theme";
 import { SegmentedControl } from "@/shared/components/ui";
-import {
-  ContactCard,
-  ContactModal,
-  contactSections,
-  type Contact,
-} from "@/features/contacts";
+import { ContactCard, ContactModal, contactSections, type Contact } from "@/features/contacts";
 
 export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
@@ -53,17 +48,11 @@ export default function ContactScreen() {
           <Text style={[styles.emptyStateTitle, { color: colors.primary }]}>
             Geen contacten beschikbaar
           </Text>
-          <Text
-            style={[styles.emptyStateMessage, { color: colors.textSecondary }]}
-          >
+          <Text style={[styles.emptyStateMessage, { color: colors.textSecondary }]}>
             Er zijn momenteel geen contacten in deze sectie.
           </Text>
         </View>
-        <ContactModal
-          contact={selectedContact}
-          visible={modalVisible}
-          onClose={handleCloseModal}
-        />
+        <ContactModal contact={selectedContact} visible={modalVisible} onClose={handleCloseModal} />
       </View>
     );
   }
@@ -82,10 +71,7 @@ export default function ContactScreen() {
       <SectionList
         sections={[{ data: contacts }]}
         renderItem={({ item }) => (
-          <ContactCard
-            contact={item}
-            onPress={() => handleContactPress(item)}
-          />
+          <ContactCard contact={item} onPress={() => handleContactPress(item)} />
         )}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
@@ -95,11 +81,7 @@ export default function ContactScreen() {
         automaticallyAdjustContentInsets={true}
       />
 
-      <ContactModal
-        contact={selectedContact}
-        visible={modalVisible}
-        onClose={handleCloseModal}
-      />
+      <ContactModal contact={selectedContact} visible={modalVisible} onClose={handleCloseModal} />
     </View>
   );
 }

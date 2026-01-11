@@ -1,10 +1,5 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import {
-  NativeTabs,
-  Icon,
-  VectorIcon,
-  Label,
-} from "expo-router/unstable-native-tabs";
+import { NativeTabs, Icon, VectorIcon, Label } from "expo-router/unstable-native-tabs";
 import { Platform, DynamicColorIOS } from "react-native";
 import { useTheme } from "@/core/theme";
 
@@ -44,12 +39,7 @@ export default function TabLayout() {
       <NativeTabs.Trigger name="index">
         <Label>Home</Label>
         {Platform.select({
-          ios: (
-            <Icon
-              sf={{ default: "house", selected: "house.fill" }}
-              selectedColor={tintColor}
-            />
-          ),
+          ios: <Icon sf={{ default: "house", selected: "house.fill" }} selectedColor={tintColor} />,
           android: (
             <Icon
               src={<VectorIcon family={MaterialIcons} name="home" />}
@@ -119,12 +109,7 @@ export default function TabLayout() {
       <NativeTabs.Trigger name="settings">
         <Label>Settings</Label>
         {Platform.select({
-          ios: (
-            <Icon
-              sf={{ default: "gear", selected: "gear" }}
-              selectedColor={tintColor}
-            />
-          ),
+          ios: <Icon sf={{ default: "gear", selected: "gear" }} selectedColor={tintColor} />,
           android: (
             <Icon
               src={<VectorIcon family={MaterialIcons} name="settings" />}

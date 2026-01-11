@@ -51,10 +51,7 @@ export const mdjcContacts: Contact[] = [
     id: "mdjc-marga-oosterveld",
     name: "Marga Oosterveld",
     role: "Longterm Chair",
-    functions: [
-      "Longterm Chair",
-      "Coördinator Amerika, Canada, Azië en Europa",
-    ],
+    functions: ["Longterm Chair", "Coördinator Amerika, Canada, Azië en Europa"],
     bio: 'Hallo, ik ben een oud uitwisselingsstudent of exchangee zoals dat heet. In het jaar 1988 - 1989 ben ik met Rotary een jaar naar het buitenland geweest. "Class of 89" noemen ze dat in Amerika. Eigenlijk wilde ik graag naar het noordoosten, maar ik kwam terecht in het zuidwesten van de USA. Totaal anders dan Nederland met indianen en cowboys, midden in de woestijn en in de bergen. Het is niet altijd makkelijk en soms best wel even slikken, maar als je dat lukt, heb je de tijd van je leven. Nu ben ik contactpersoon tussen de districten in de USA, Canada en Zuid Afrika om Rotary Clubs te vinden die willen uitwisselen met Nederland voor a lifetime in a year !!',
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/marga-oosterveld.jpg",

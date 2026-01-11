@@ -9,11 +9,11 @@ import type { ButtonProps } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const PlatformButton = Platform.select({
-	ios: () => require("./Button.ios").Button,
-	android: () => require("./Button.android").Button,
-	default: () => require("./Button.android").Button,
+  ios: () => require("./Button.ios").Button,
+  android: () => require("./Button.android").Button,
+  default: () => require("./Button.android").Button,
 })();
 
 export function Button(props: ButtonProps) {
-	return <PlatformButton {...props} />;
+  return <PlatformButton {...props} />;
 }

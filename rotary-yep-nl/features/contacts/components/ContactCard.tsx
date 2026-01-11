@@ -40,17 +40,11 @@ export function ContactCard({ contact, onPress }: ContactCardProps) {
         <Text style={[styles.name, { color: colors.text }]} numberOfLines={1}>
           {contact.name}
         </Text>
-        <Text
-          style={[styles.role, { color: colors.textSecondary }]}
-          numberOfLines={1}
-        >
+        <Text style={[styles.role, { color: colors.textSecondary }]} numberOfLines={1}>
           {contact.role}
         </Text>
         {contact.club && (
-          <Text
-            style={[styles.club, { color: colors.textTertiary }]}
-            numberOfLines={1}
-          >
+          <Text style={[styles.club, { color: colors.textTertiary }]} numberOfLines={1}>
             {contact.club}
           </Text>
         )}
@@ -58,22 +52,12 @@ export function ContactCard({ contact, onPress }: ContactCardProps) {
 
       <View style={styles.actions}>
         {contact.phone && (
-          <View
-            style={[
-              styles.iconBadge,
-              { backgroundColor: colors.primary + "15" },
-            ]}
-          >
+          <View style={[styles.iconBadge, { backgroundColor: colors.primary + "15" }]}>
             <Ionicons name="call" size={16} color={colors.primary} />
           </View>
         )}
         {contact.email && (
-          <View
-            style={[
-              styles.iconBadge,
-              { backgroundColor: colors.primary + "15" },
-            ]}
-          >
+          <View style={[styles.iconBadge, { backgroundColor: colors.primary + "15" }]}>
             <Ionicons name="mail" size={16} color={colors.primary} />
           </View>
         )}

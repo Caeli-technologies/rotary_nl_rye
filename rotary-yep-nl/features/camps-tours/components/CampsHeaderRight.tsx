@@ -27,28 +27,20 @@ export function CampsHeaderRight({
   return (
     <View style={styles.container}>
       {hasActiveFilters && (
-        <View
-          style={[styles.activeIndicator, { backgroundColor: colors.primary }]}
-        />
+        <View style={[styles.activeIndicator, { backgroundColor: colors.primary }]} />
       )}
       <Text
         style={[
           styles.statsText,
           { color: colors.textSecondary },
-          hasActiveFilters && [
-            styles.statsTextActive,
-            { color: colors.primary },
-          ],
+          hasActiveFilters && [styles.statsTextActive, { color: colors.primary }],
         ]}
       >
         {isLoading ? "Laden..." : `${filteredCount}/${totalCount}`}
       </Text>
       {hasActiveFilters && (
         <Pressable
-          style={({ pressed }) => [
-            styles.clearButton,
-            pressed && styles.clearButtonPressed,
-          ]}
+          style={({ pressed }) => [styles.clearButton, pressed && styles.clearButtonPressed]}
           onPress={onClearFilters}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >

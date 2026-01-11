@@ -27,9 +27,7 @@ export default function RotaryClubsScreen() {
   const renderHeader = useCallback(
     () => (
       <View style={styles.header}>
-        <Text style={[styles.introText, { color: colors.textSecondary }]}>
-          {introText}
-        </Text>
+        <Text style={[styles.introText, { color: colors.textSecondary }]}>{introText}</Text>
       </View>
     ),
     [colors.textSecondary, introText],
@@ -45,10 +43,7 @@ export default function RotaryClubsScreen() {
   const keyExtractor = useCallback((item: ClubSectionNavItem) => item.id, []);
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={["bottom"]}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
       <FlatList
         data={sections}
         renderItem={renderItem}

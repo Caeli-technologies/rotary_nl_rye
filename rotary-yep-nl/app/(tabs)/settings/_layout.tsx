@@ -12,17 +12,11 @@ export default function SettingsLayout() {
         message:
           "Check out the Rotary Youth Exchange Netherlands app! 📱✈️\n\nConnect with young global citizens worldwide!",
         title: "Rotary Youth Exchange Netherlands",
-        url:
-          Platform.OS === "ios"
-            ? "https://apps.apple.com/app/rotary-yep-nl"
-            : undefined,
+        url: Platform.OS === "ios" ? "https://apps.apple.com/app/rotary-yep-nl" : undefined,
       });
     } catch (error) {
       console.error("Error sharing:", error);
-      Alert.alert(
-        "Share Error",
-        "Unable to share at this time. Please try again later.",
-      );
+      Alert.alert("Share Error", "Unable to share at this time. Please try again later.");
     }
   };
 
@@ -57,11 +51,7 @@ export default function SettingsLayout() {
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
               <Ionicons
-                name={
-                  Platform.OS === "ios"
-                    ? "share-outline"
-                    : "share-social-outline"
-                }
+                name={Platform.OS === "ios" ? "share-outline" : "share-social-outline"}
                 size={24}
                 color={theme.primary}
               />

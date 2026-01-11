@@ -3,23 +3,50 @@
  */
 
 // Components
-export { CalendarView, EventCard, EventsList, EventModal } from "./components";
+export {
+  CalendarView,
+  EventCard,
+  EventsList,
+  EventModal,
+  MeetingSection,
+  RecurrenceBadge,
+  EventTypeBadge,
+  AttachmentsList,
+} from "./components";
 
 // Hooks
-export { useCalendarEvents, useMarkedDates, useSelectedDate } from "./hooks";
+export {
+  useCalendarEvents,
+  useMarkedDates,
+  useSelectedDate,
+  useMeetingActions,
+  useEventDetails,
+} from "./hooks";
 
 // Types
 export type {
   CalendarEvent,
   EventsData,
   MarkedDates,
+  DotMarking,
   GoogleCalendarEvent,
   GoogleCalendarResponse,
   GoogleCalendarDateTime,
   EventTime,
-  Creator,
-  EventWithOriginalData,
+  RecurrenceInfo,
+  RecurrencePattern,
+  ConferenceData,
+  ConferenceEntryPoint,
+  EventColor,
+  EventTypeBadge as EventTypeBadgeType,
+  EventAttachment,
+  GoogleEventPerson,
+  GoogleConferenceData,
+  GoogleEventAttachment,
 } from "./types";
+
+// Constants
+export { GOOGLE_CALENDAR_COLORS, EVENT_TYPE_CONFIG } from "./types";
 
 // Utils
 export {
@@ -28,8 +55,16 @@ export {
   formatEventDate,
   formatEventTime,
   isMultiDayEvent,
+  isAllDayEvent,
   extractLinksFromDescription,
+  getDisplayDate,
+  getRelativeDateString,
+  sortEventsByTime,
+  getEventColor,
+  getUniqueEventColors,
+  parseRRULE,
+  getHumanReadableRecurrence,
 } from "./utils";
 
 // API
-export { fetchCalendarEvents } from "./api";
+export { fetchCalendarEvents, parseEvent } from "./api";

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 
 /**
  * Contact type for the modal
@@ -97,7 +97,7 @@ export function AppProvider({ children }: AppProviderProps) {
 export function useApp(): AppContextValue {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useApp must be used within AppProvider');
+    throw new Error("useApp must be used within AppProvider");
   }
   return context;
 }

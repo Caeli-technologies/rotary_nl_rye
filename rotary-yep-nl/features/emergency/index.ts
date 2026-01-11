@@ -6,19 +6,10 @@
  */
 
 // Components
-export {
-  EmergencyCard,
-  Emergency112Section,
-  EmergencySection,
-  ImportantNote,
-} from './components';
+export { EmergencyCard, Emergency112Section, EmergencySection, ImportantNote } from "./components";
 
 // Data
-export {
-  rotaryYouthExchangeContacts,
-  confidantContacts,
-  emergencySections,
-} from './data';
+export { rotaryYouthExchangeContacts, confidantContacts, emergencySections } from "./data";
 
 // Types
-export type { EmergencyContact, EmergencySection as EmergencySectionType } from './types';
+export type { EmergencyContact, EmergencySection as EmergencySectionType } from "./types";

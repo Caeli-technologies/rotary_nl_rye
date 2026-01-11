@@ -40,11 +40,7 @@ export function NewsCard({ item, onPress }: NewsCardProps) {
     >
       {/* Image */}
       <View style={styles.imageContainer}>
-        <NetworkImage
-          imageUrl={item.imageUrl}
-          name={item.title}
-          style={styles.image}
-        />
+        <NetworkImage imageUrl={item.imageUrl} name={item.title} style={styles.image} />
         {item.isPdf && (
           <View style={[styles.pdfBadge, { backgroundColor: colors.error }]}>
             <Ionicons name="document-text" size={12} color="#FFFFFF" />
@@ -58,21 +54,13 @@ export function NewsCard({ item, onPress }: NewsCardProps) {
         <Text style={[styles.title, { color: colors.text }]} numberOfLines={2}>
           {item.title}
         </Text>
-        <Text
-          style={[styles.description, { color: colors.textSecondary }]}
-          numberOfLines={3}
-        >
+        <Text style={[styles.description, { color: colors.textSecondary }]} numberOfLines={3}>
           {item.description}
         </Text>
 
         {/* Footer */}
         <View style={styles.footer}>
-          <View
-            style={[
-              styles.typeIndicator,
-              { backgroundColor: colors.primary + "15" },
-            ]}
-          >
+          <View style={[styles.typeIndicator, { backgroundColor: colors.primary + "15" }]}>
             <Ionicons
               name={item.isPdf ? "document-text-outline" : "reader-outline"}
               size={14}
@@ -82,11 +70,7 @@ export function NewsCard({ item, onPress }: NewsCardProps) {
               {item.isPdf ? "PDF Document" : "Article"}
             </Text>
           </View>
-          <Ionicons
-            name="chevron-forward"
-            size={20}
-            color={colors.textTertiary}
-          />
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
         </View>
       </View>
     </Pressable>

@@ -7,8 +7,7 @@ import type { SectionPageContent } from "../types";
 export const jeugdcommissarisContent: SectionPageContent = {
   id: "jeugdcommissaris",
   title: "Info voor de Jeugdcommissaris",
-  description:
-    "Hier vindt u alle belangrijke documenten en informatie voor jeugdcommissarissen.",
+  description: "Hier vindt u alle belangrijke documenten en informatie voor jeugdcommissarissen.",
   type: "documents",
   documents: [
     {

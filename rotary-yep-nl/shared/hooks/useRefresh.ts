@@ -3,7 +3,7 @@
  * Provides state and handlers for pull-to-refresh functionality
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 interface UseRefreshOptions {
   /** Callback function to execute on refresh */
@@ -23,10 +23,7 @@ interface UseRefreshReturn {
  * Hook for pull-to-refresh functionality
  * Handles refresh state and ensures minimum duration for UX
  */
-export function useRefresh({
-  onRefresh,
-  minDuration = 500,
-}: UseRefreshOptions): UseRefreshReturn {
+export function useRefresh({ onRefresh, minDuration = 500 }: UseRefreshOptions): UseRefreshReturn {
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRefresh = useCallback(async () => {

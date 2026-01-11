@@ -22,9 +22,7 @@ export default function ReboundCountriesScreen() {
   const { students } = useStudents("rebound");
 
   const countryGroups = useMemo(() => {
-    return groupByHostCountry(students).sort(
-      (a, b) => b.students.length - a.students.length,
-    );
+    return groupByHostCountry(students).sort((a, b) => b.students.length - a.students.length);
   }, [students]);
 
   const handleCountryPress = useCallback(async (country: CountryGroup) => {
@@ -33,7 +31,7 @@ export default function ReboundCountriesScreen() {
         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
       router.push({
-        pathname: "/(students)/rebound/[country]" as const,
+        pathname: "/students/rebound/[country]" as const,
         params: {
           country: country.country.code,
           countryName: country.country.name,
@@ -41,7 +39,7 @@ export default function ReboundCountriesScreen() {
       } as never);
     } catch {
       router.push({
-        pathname: "/(students)/rebound/[country]" as const,
+        pathname: "/students/rebound/[country]" as const,
         params: {
           country: country.country.code,
           countryName: country.country.name,
@@ -58,10 +56,7 @@ export default function ReboundCountriesScreen() {
   );
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.background }]}
-      edges={[]}
-    >
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={[]}>
       <FlatList
         data={countryGroups}
         renderItem={renderCountry}

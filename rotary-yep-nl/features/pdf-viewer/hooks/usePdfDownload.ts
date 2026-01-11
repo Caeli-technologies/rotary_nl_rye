@@ -72,10 +72,7 @@ export function usePdfDownload({
       }
 
       // Download the PDF
-      const downloadedFile = await File.downloadFileAsync(
-        url,
-        file.parentDirectory,
-      );
+      const downloadedFile = await File.downloadFileAsync(url, file.parentDirectory);
 
       setState((prev) => ({
         ...prev,

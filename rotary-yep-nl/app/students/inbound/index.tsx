@@ -4,14 +4,7 @@
  */
 
 import { useCallback, useMemo, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -33,8 +26,7 @@ export default function InboundScreen() {
   const [showSandraContact, setShowSandraContact] = useState(false);
 
   const sandraCools = useMemo(
-    () =>
-      longTermContacts.find((contact) => contact.name === "Sandra Cools-Wemer"),
+    () => longTermContacts.find((contact) => contact.name === "Sandra Cools-Wemer"),
     [],
   );
 
@@ -49,21 +41,18 @@ export default function InboundScreen() {
     }
   }, []);
 
-  const handleProgramPress = useCallback(
-    async (route: string, enabled: boolean = true) => {
-      if (!enabled) return;
+  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
+    if (!enabled) return;
 
-      try {
-        if (Platform.OS === "ios") {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push(route as any);
-      } catch {
-        router.push(route as any);
+    try {
+      if (Platform.OS === "ios") {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    },
-    [],
-  );
+      router.push(route as any);
+    } catch {
+      router.push(route as any);
+    }
+  }, []);
 
   const longTermPrograms: ProgramItem[] = useMemo(
     () => [
@@ -71,7 +60,7 @@ export default function InboundScreen() {
         title: "Long Term Exchange Program",
         subtitle: "Year Exchange",
         icon: "calendar-alt",
-        route: "/inbound/long-term",
+        route: "/students/inbound/long-term",
         enabled: true,
       },
     ],
@@ -84,14 +73,14 @@ export default function InboundScreen() {
         title: "Zomerkampen",
         subtitle: "Zomerkampen & Culturele Programmas",
         icon: "campground",
-        route: "/inbound/short-term/camps-and-tours",
+        route: "/students/inbound/short-term/camps-and-tours",
         enabled: false,
       },
       {
         title: "Family to Family",
         subtitle: "Exchange between families",
         icon: "home",
-        route: "/inbound/short-term/family-to-family",
+        route: "/students/inbound/short-term/family-to-family",
         enabled: false,
       },
     ],
@@ -115,12 +104,7 @@ export default function InboundScreen() {
         disabled={!item.enabled}
       >
         <View style={styles.programContent}>
-          <View
-            style={[
-              styles.iconContainer,
-              { backgroundColor: `${colors.primary}15` },
-            ]}
-          >
+          <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}15` }]}>
             <FontAwesome5
               name={item.icon}
               size={22}
@@ -137,9 +121,7 @@ export default function InboundScreen() {
             >
               {item.title}
             </Text>
-            <Text
-              style={[styles.programSubtitle, { color: colors.textTertiary }]}
-            >
+            <Text style={[styles.programSubtitle, { color: colors.textTertiary }]}>
               {item.subtitle}
             </Text>
           </View>
@@ -157,16 +139,12 @@ export default function InboundScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={[styles.introTitle, { color: colors.primary }]}>
-          Inbounds
-        </Text>
+        <Text style={[styles.introTitle, { color: colors.primary }]}>Inbounds</Text>
         <Text style={[styles.introText, { color: colors.textSecondary }]}>
-          Wow, we&apos;re so excited that you will be our inbound exchange
-          student for the coming year. For this to happen we will need some
-          extra information so please watch your email inbox on a regular basis.
-          Also you can find some further information in this app. If you have
-          any questions that are not answered, please contact our inbound
-          coordinator{" "}
+          Wow, we&apos;re so excited that you will be our inbound exchange student for the coming
+          year. For this to happen we will need some extra information so please watch your email
+          inbox on a regular basis. Also you can find some further information in this app. If you
+          have any questions that are not answered, please contact our inbound coordinator{" "}
           <Text
             style={[styles.linkText, { color: colors.link }]}
             onPress={handleSandraContactPress}
@@ -183,15 +161,8 @@ export default function InboundScreen() {
   const SectionHeader = useCallback(
     ({ title }: { title: string }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text style={[styles.sectionHeaderTitle, { color: colors.primary }]}>
-          {title}
-        </Text>
-        <View
-          style={[
-            styles.sectionHeaderDivider,
-            { backgroundColor: colors.border },
-          ]}
-        />
+        <Text style={[styles.sectionHeaderTitle, { color: colors.primary }]}>{title}</Text>
+        <View style={[styles.sectionHeaderDivider, { backgroundColor: colors.border }]} />
       </View>
     ),
     [colors],

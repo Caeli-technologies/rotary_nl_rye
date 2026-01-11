@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  Pressable,
-  Linking,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from "react-native";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -53,27 +45,13 @@ export default function LongTermExchangeScreen() {
               },
             ]}
           >
-            <View
-              style={[
-                styles.headerIcon,
-                { backgroundColor: `${themeColors.primary}15` },
-              ]}
-            >
-              <Ionicons
-                name="school-outline"
-                size={32}
-                color={themeColors.primary}
-              />
+            <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
+              <Ionicons name="school-outline" size={32} color={themeColors.primary} />
             </View>
             <Text style={[styles.headerTitle, { color: themeColors.text }]}>
               Long Term Exchange
             </Text>
-            <Text
-              style={[
-                styles.headerSubtitle,
-                { color: themeColors.textSecondary },
-              ]}
-            >
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Een jaar High School in het buitenland via Rotary International
             </Text>
           </View>
@@ -81,11 +59,7 @@ export default function LongTermExchangeScreen() {
           {/* What is it Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="help-circle-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="help-circle-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Wat houdt dat in?
               </Text>
@@ -101,13 +75,10 @@ export default function LongTermExchangeScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.infoText, { color: themeColors.textSecondary }]}
-              >
-                Dit programma van Rotary International is bestemd voor alle
-                hierin geïnteresseerde scholieren uit het Voortgezet Onderwijs.
-                Het is de bedoeling dat je in het buitenland een jaar High
-                School volgt.
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
+                Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde
+                scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het
+                buitenland een jaar High School volgt.
               </Text>
             </View>
           </View>
@@ -126,16 +97,9 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View
-                style={[
-                  styles.ageIconContainer,
-                  { backgroundColor: `${themeColors.accent}15` },
-                ]}
+                style={[styles.ageIconContainer, { backgroundColor: `${themeColors.accent}15` }]}
               >
-                <Ionicons
-                  name="calendar"
-                  size={28}
-                  color={themeColors.accent}
-                />
+                <Ionicons name="calendar" size={28} color={themeColors.accent} />
               </View>
               <View style={styles.ageContent}>
                 <Text style={[styles.ageTitle, { color: themeColors.accent }]}>
@@ -144,9 +108,7 @@ export default function LongTermExchangeScreen() {
                 <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>
                   Indicatieve leeftijdsgrenzen
                 </Text>
-                <Text
-                  style={[styles.ageNote, { color: themeColors.textSecondary }]}
-                >
+                <Text style={[styles.ageNote, { color: themeColors.textSecondary }]}>
                   Selectiedag in oktober + selectieweekend in november
                 </Text>
               </View>
@@ -156,11 +118,7 @@ export default function LongTermExchangeScreen() {
           {/* Countries Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="earth-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="earth-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Met welke landen?
               </Text>
@@ -178,43 +136,23 @@ export default function LongTermExchangeScreen() {
             >
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
-                  <Text
-                    style={[
-                      styles.hemisphereTitle,
-                      { color: themeColors.text },
-                    ]}
-                  >
+                  <Text style={[styles.hemisphereTitle, { color: themeColors.text }]}>
                     Noordelijk halfrond
                   </Text>
                 </View>
-                <Text
-                  style={[
-                    styles.countryText,
-                    { color: themeColors.textSecondary },
-                  ]}
-                >
-                  USA, Canada, Mexico, India, Indonesië, Japan, Thailand, Taiwan
-                  en diverse Europese landen
+                <Text style={[styles.countryText, { color: themeColors.textSecondary }]}>
+                  USA, Canada, Mexico, India, Indonesië, Japan, Thailand, Taiwan en diverse Europese
+                  landen
                 </Text>
               </View>
 
               <View style={styles.hemisphereSection}>
                 <View style={styles.hemisphereHeader}>
-                  <Text
-                    style={[
-                      styles.hemisphereTitle,
-                      { color: themeColors.text },
-                    ]}
-                  >
+                  <Text style={[styles.hemisphereTitle, { color: themeColors.text }]}>
                     Zuidelijk halfrond
                   </Text>
                 </View>
-                <Text
-                  style={[
-                    styles.countryText,
-                    { color: themeColors.textSecondary },
-                  ]}
-                >
+                <Text style={[styles.countryText, { color: themeColors.textSecondary }]}>
                   Brazilië, Chili, Argentinië, Ecuador, Peru
                 </Text>
               </View>
@@ -224,11 +162,7 @@ export default function LongTermExchangeScreen() {
           {/* Gallery Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="images-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="images-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Exchange Pictures
               </Text>
@@ -241,29 +175,13 @@ export default function LongTermExchangeScreen() {
                 style={styles.galleryScroll}
               >
                 {exchangeImages.map((image) => (
-                  <Pressable
-                    key={image.id}
-                    onPress={() => setSelectedImage(image.source)}
-                  >
-                    <Image
-                      source={image.source}
-                      style={styles.galleryImage}
-                      contentFit="cover"
-                    />
+                  <Pressable key={image.id} onPress={() => setSelectedImage(image.source)}>
+                    <Image source={image.source} style={styles.galleryImage} contentFit="cover" />
                   </Pressable>
                 ))}
               </ScrollView>
-              <View
-                style={[
-                  styles.scrollIndicator,
-                  { backgroundColor: themeColors.background },
-                ]}
-              >
-                <Ionicons
-                  name="chevron-forward"
-                  size={20}
-                  color={themeColors.textTertiary}
-                />
+              <View style={[styles.scrollIndicator, { backgroundColor: themeColors.background }]}>
+                <Ionicons name="chevron-forward" size={20} color={themeColors.textTertiary} />
               </View>
             </View>
           </View>
@@ -271,14 +189,8 @@ export default function LongTermExchangeScreen() {
           {/* Costs Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="card-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Kosten
-              </Text>
+              <Ionicons name="card-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Kosten</Text>
             </View>
 
             <View
@@ -291,17 +203,8 @@ export default function LongTermExchangeScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.costTitle, { color: themeColors.secondary }]}
-              >
-                Vanaf €2.400
-              </Text>
-              <Text
-                style={[
-                  styles.costSubtitle,
-                  { color: themeColors.textSecondary },
-                ]}
-              >
+              <Text style={[styles.costTitle, { color: themeColors.secondary }]}>Vanaf €2.400</Text>
+              <Text style={[styles.costSubtitle, { color: themeColors.textSecondary }]}>
                 Exclusief BTW, verzekering, ticket kosten etc.
               </Text>
             </View>
@@ -310,14 +213,8 @@ export default function LongTermExchangeScreen() {
           {/* Registration Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="person-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Aanmelden
-              </Text>
+              <Ionicons name="person-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Aanmelden</Text>
             </View>
 
             <Pressable
@@ -330,17 +227,8 @@ export default function LongTermExchangeScreen() {
               accessibilityRole="button"
               accessibilityLabel="Send email to interesse@rotaryyep.nl"
             >
-              <Ionicons
-                name="mail-outline"
-                size={24}
-                color={themeColors.onPrimary}
-              />
-              <Text
-                style={[
-                  styles.emailButtonText,
-                  { color: themeColors.onPrimary },
-                ]}
-              >
+              <Ionicons name="mail-outline" size={24} color={themeColors.onPrimary} />
+              <Text style={[styles.emailButtonText, { color: themeColors.onPrimary }]}>
                 interesse@rotaryyep.nl
               </Text>
             </Pressable>
@@ -349,11 +237,7 @@ export default function LongTermExchangeScreen() {
           {/* Why Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="heart-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="heart-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Waarom Rotary Youth Exchange?
               </Text>
@@ -372,20 +256,8 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View style={styles.whyHeader}>
-                <View
-                  style={[
-                    styles.whyNumber,
-                    { backgroundColor: themeColors.primary },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.whyNumberText,
-                      { color: themeColors.onPrimary },
-                    ]}
-                  >
-                    1
-                  </Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>1</Text>
                 </View>
                 <Text style={[styles.whyTitle, { color: themeColors.text }]}>
                   Internationale ervaring
@@ -393,35 +265,14 @@ export default function LongTermExchangeScreen() {
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Jongeren leren een nieuwe cultuur, taal en manier van leven
-                    kennen
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Jongeren leren een nieuwe cultuur, taal en manier van leven kennen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Het vergroot hun wereldbeeld en respect voor diversiteit
                   </Text>
                 </View>
@@ -441,20 +292,8 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View style={styles.whyHeader}>
-                <View
-                  style={[
-                    styles.whyNumber,
-                    { backgroundColor: themeColors.primary },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.whyNumberText,
-                      { color: themeColors.onPrimary },
-                    ]}
-                  >
-                    2
-                  </Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>2</Text>
                 </View>
                 <Text style={[styles.whyTitle, { color: themeColors.text }]}>
                   Persoonlijke ontwikkeling
@@ -462,35 +301,14 @@ export default function LongTermExchangeScreen() {
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Zelfstandigheid, zelfvertrouwen en verantwoordelijkheid
-                    nemen
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Zelfstandigheid, zelfvertrouwen en verantwoordelijkheid nemen
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Aanpassen aan nieuwe situaties en omgaan met uitdagingen
                   </Text>
                 </View>
@@ -510,41 +328,17 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View style={styles.whyHeader}>
-                <View
-                  style={[
-                    styles.whyNumber,
-                    { backgroundColor: themeColors.primary },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.whyNumberText,
-                      { color: themeColors.onPrimary },
-                    ]}
-                  >
-                    3
-                  </Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>3</Text>
                 </View>
-                <Text style={[styles.whyTitle, { color: themeColors.text }]}>
-                  Taalontwikkeling
-                </Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>Taalontwikkeling</Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Door dagelijks contact met de taal van het gastland, leren
-                    jongeren snel en effectief communiceren
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Door dagelijks contact met de taal van het gastland, leren jongeren snel en
+                    effectief communiceren
                   </Text>
                 </View>
               </View>
@@ -563,20 +357,8 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View style={styles.whyHeader}>
-                <View
-                  style={[
-                    styles.whyNumber,
-                    { backgroundColor: themeColors.primary },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.whyNumberText,
-                      { color: themeColors.onPrimary },
-                    ]}
-                  >
-                    4
-                  </Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>4</Text>
                 </View>
                 <Text style={[styles.whyTitle, { color: themeColors.text }]}>
                   Onderwijs en culturele verrijking
@@ -584,35 +366,15 @@ export default function LongTermExchangeScreen() {
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Scholing in het gastland én vaak ook het geven van
-                    presentaties over de eigen cultuur
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Scholing in het gastland én vaak ook het geven van presentaties over de eigen
+                    cultuur
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Wederzijdse uitwisseling van kennis en gebruiken
                   </Text>
                 </View>
@@ -632,58 +394,24 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View style={styles.whyHeader}>
-                <View
-                  style={[
-                    styles.whyNumber,
-                    { backgroundColor: themeColors.primary },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.whyNumberText,
-                      { color: themeColors.onPrimary },
-                    ]}
-                  >
-                    5
-                  </Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>5</Text>
                 </View>
-                <Text style={[styles.whyTitle, { color: themeColors.text }]}>
-                  Rotary netwerk
-                </Text>
+                <Text style={[styles.whyTitle, { color: themeColors.text }]}>Rotary netwerk</Text>
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Betrouwbare begeleiding: jongeren verblijven bij
-                    gastgezinnen die door Rotary zorgvuldig zijn geselecteerd
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Betrouwbare begeleiding: jongeren verblijven bij gastgezinnen die door Rotary
+                    zorgvuldig zijn geselecteerd
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Ondersteuning van lokale Rotaryclubs en toegang tot een
-                    wereldwijd netwerk van contacten
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Ondersteuning van lokale Rotaryclubs en toegang tot een wereldwijd netwerk van
+                    contacten
                   </Text>
                 </View>
               </View>
@@ -703,20 +431,8 @@ export default function LongTermExchangeScreen() {
               ]}
             >
               <View style={styles.whyHeader}>
-                <View
-                  style={[
-                    styles.whyNumber,
-                    { backgroundColor: themeColors.primary },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.whyNumberText,
-                      { color: themeColors.onPrimary },
-                    ]}
-                  >
-                    6
-                  </Text>
+                <View style={[styles.whyNumber, { backgroundColor: themeColors.primary }]}>
+                  <Text style={[styles.whyNumberText, { color: themeColors.onPrimary }]}>6</Text>
                 </View>
                 <Text style={[styles.whyTitle, { color: themeColors.text }]}>
                   Vriendschappen voor het leven
@@ -724,38 +440,18 @@ export default function LongTermExchangeScreen() {
               </View>
               <View style={styles.whyBullets}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Contacten met mensen uit het gastland én met andere
-                    uitwisselingsstudenten van over de hele wereld
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Contacten met mensen uit het gastland én met andere uitwisselingsstudenten van
+                    over de hele wereld
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
-                    Kortom: Rotary Youth Exchange draait om vrede, begrip en
-                    vriendschap tussen culturen, en geeft jongeren een kans om
-                    zich persoonlijk én internationaal te ontwikkelen
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
+                    Kortom: Rotary Youth Exchange draait om vrede, begrip en vriendschap tussen
+                    culturen, en geeft jongeren een kans om zich persoonlijk én internationaal te
+                    ontwikkelen
                   </Text>
                 </View>
               </View>

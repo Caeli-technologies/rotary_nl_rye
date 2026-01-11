@@ -2,8 +2,4 @@
  * Emergency data exports
  */
 
-export {
-  rotaryYouthExchangeContacts,
-  confidantContacts,
-  emergencySections,
-} from "./contacts";
+export { rotaryYouthExchangeContacts, confidantContacts, emergencySections } from "./contacts";

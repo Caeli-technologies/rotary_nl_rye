@@ -23,10 +23,7 @@ export default function NewsScreen() {
 
   if (loading && items.length === 0) {
     return (
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background }}
-        edges={[]}
-      >
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={[]}>
         <LoadingState message="Nieuws laden..." />
       </SafeAreaView>
     );
@@ -34,20 +31,14 @@ export default function NewsScreen() {
 
   if (error && items.length === 0) {
     return (
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background }}
-        edges={[]}
-      >
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={[]}>
         <ErrorState message={error} onRetry={refresh} />
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={[]}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={[]}>
       <NewsList
         items={items}
         onItemPress={handleItemPress}

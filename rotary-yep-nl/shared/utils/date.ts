@@ -152,10 +152,7 @@ export function isSameDay(date1: Date | string, date2: Date | string): boolean {
  * @param endDate - End date
  * @returns true if the event spans multiple days
  */
-export function isMultiDayEvent(
-  startDate: Date | string,
-  endDate: Date | string,
-): boolean {
+export function isMultiDayEvent(startDate: Date | string, endDate: Date | string): boolean {
   return !isSameDay(startDate, endDate);
 }
 
@@ -175,9 +172,7 @@ export function getRelativeTime(date: Date | string): string {
     if (diffHours === 0) {
       return "Nu";
     }
-    return diffHours > 0
-      ? `Over ${diffHours} uur`
-      : `${Math.abs(diffHours)} uur geleden`;
+    return diffHours > 0 ? `Over ${diffHours} uur` : `${Math.abs(diffHours)} uur geleden`;
   }
 
   if (diffDays > 0) {

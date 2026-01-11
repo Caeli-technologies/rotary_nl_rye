@@ -1,16 +1,16 @@
 /**
- * Outbound student detail screen
+ * Inbound student detail screen
  * Thin wrapper using students feature
  */
 
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useLayoutEffect } from "react";
 import { useTheme } from "@/core/theme";
 import { StudentDetail, useStudent } from "@/features/students";
 import { ErrorState } from "@/shared/components/feedback/ErrorState";
 
-export default function OutboundStudentDetailScreen() {
+export default function InboundStudentDetailScreen() {
   const { colors } = useTheme();
   const { studentId } = useLocalSearchParams<{ studentId: string }>();
   const navigation = useNavigation();
@@ -23,21 +23,13 @@ export default function OutboundStudentDetailScreen() {
   }, [navigation, student]);
 
   if (!studentId) {
-    return (
-      <ErrorState
-        message="No student ID provided"
-        onRetry={() => navigation.goBack()}
-      />
-    );
+    return <ErrorState message="No student ID provided" onRetry={() => navigation.goBack()} />;
   }
 
   if (!student) {
     return (
       <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <ErrorState
-          message="Student not found"
-          onRetry={() => navigation.goBack()}
-        />
+        <ErrorState message="Student not found" onRetry={() => navigation.goBack()} />
       </View>
     );
   }

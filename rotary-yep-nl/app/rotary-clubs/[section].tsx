@@ -9,11 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/core/theme";
-import {
-  SectionPageView,
-  useClubSection,
-  useSectionContent,
-} from "@/features/rotary-clubs";
+import { SectionPageView, useClubSection, useSectionContent } from "@/features/rotary-clubs";
 
 export default function RotaryClubsSectionScreen() {
   const { colors } = useTheme();
@@ -41,29 +37,18 @@ export default function RotaryClubsSectionScreen() {
 
   if (!content) {
     return (
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background }}
-        edges={["bottom"]}
-      >
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
         <View style={styles.centered}>
           <Ionicons name="alert-circle" size={64} color={colors.error} />
-          <Text style={[styles.errorText, { color: colors.error }]}>
-            Sectie niet gevonden
-          </Text>
+          <Text style={[styles.errorText, { color: colors.error }]}>Sectie niet gevonden</Text>
         </View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={["bottom"]}
-    >
-      <SectionPageView
-        content={content}
-        onDocumentPress={handleDocumentPress}
-      />
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
+      <SectionPageView content={content} onDocumentPress={handleDocumentPress} />
     </SafeAreaView>
   );
 }

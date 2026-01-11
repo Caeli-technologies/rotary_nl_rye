@@ -10,6 +10,7 @@
     "ios:release": "xed ios",
     "android:release": "cd android && ./gradlew app:bundleRelease",
     "lint": "npx expo lint",
+    "lint:fix": "npx expo lint --fix",
     "clean": "npx expo prebuild --clear"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "expo-application": "~7.0.8",
     "expo-asset": "~12.0.12",
     "expo-audio": "~1.1.1",
+    "expo-clipboard": "~8.0.8",
     "expo-constants": "~18.0.13",
     "expo-file-system": "~19.0.21",
     "expo-font": "~14.0.10",

@@ -5,17 +5,17 @@
 /**
  * Tab route names
  */
-export type TabRoute = 'index' | 'about' | 'emergency' | 'contact' | 'settings';
+export type TabRoute = "index" | "about" | "emergency" | "contact" | "settings";
 
 /**
  * Student type for routing
  */
-export type StudentRouteType = 'inbound' | 'outbound' | 'rebound';
+export type StudentRouteType = "inbound" | "outbound" | "rebound";
 
 /**
  * Student term type
  */
-export type StudentTermType = 'long-term' | 'short-term';
+export type StudentTermType = "long-term" | "short-term";
 
 /**
  * PDF viewer params

@@ -13,22 +13,19 @@ import type { NewsItem } from "../types";
  * Get PDF news items from a list
  */
 export function getPdfNewsItems(items: NewsItem[]): NewsItem[] {
-	return items.filter((item) => item.isPdf);
+  return items.filter((item) => item.isPdf);
 }
 
 /**
  * Get text news items from a list
  */
 export function getTextNewsItems(items: NewsItem[]): NewsItem[] {
-	return items.filter((item) => !item.isPdf && item.textContent);
+  return items.filter((item) => !item.isPdf && item.textContent);
 }
 
 /**
  * Get a single news item by ID from a list
  */
-export function getNewsItemById(
-	items: NewsItem[],
-	id: number,
-): NewsItem | undefined {
-	return items.find((item) => item.id === id);
+export function getNewsItemById(items: NewsItem[], id: number): NewsItem | undefined {
+  return items.find((item) => item.id === id);
 }

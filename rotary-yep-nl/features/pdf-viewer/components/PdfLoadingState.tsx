@@ -12,9 +12,7 @@ export function PdfLoadingState() {
   return (
     <View style={styles.container}>
       <ActivityIndicator size="large" color={colors.link} />
-      <Text style={[styles.text, { color: colors.textSecondary }]}>
-        Loading PDF...
-      </Text>
+      <Text style={[styles.text, { color: colors.textSecondary }]}>Loading PDF...</Text>
     </View>
   );
 }

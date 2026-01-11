@@ -7,46 +7,35 @@
 
 // Components
 export {
-	StudentCard,
-	StudentDetail,
-	StudentsList,
-	CountrySection,
-	CountryNavCard,
+  StudentCard,
+  StudentDetail,
+  StudentsList,
+  CountrySection,
+  CountryNavCard,
 } from "./components";
 
 // Hooks
 export {
-	useStudents,
-	useStudent,
-	useFindStudent,
-	useSearchStudents,
-	useStudentsByCountry,
+  useStudents,
+  useStudent,
+  useFindStudent,
+  useSearchStudents,
+  useStudentsByCountry,
 } from "./hooks";
 
 // Data
 export {
-	inboundStudents,
-	outboundStudents,
-	reboundStudents,
-	getAvailableYears,
-	getDestinationCountries,
-	getStudentsByCountry,
-	getStudentsByYear,
+  inboundStudents,
+  outboundStudents,
+  reboundStudents,
+  getAvailableYears,
+  getDestinationCountries,
+  getStudentsByCountry,
+  getStudentsByYear,
 } from "./data";
 
 // Types
-export type {
-	Student,
-	StudentType,
-	Country,
-	CountryGroup,
-	YearGroup,
-} from "./types";
+export type { Student, StudentType, Country, CountryGroup, YearGroup } from "./types";
 
 // Utilities
-export {
-	groupByHomeCountry,
-	groupByHostCountry,
-	groupByYear,
-	convertRawStudent,
-} from "./types";
+export { groupByHomeCountry, groupByHostCountry, groupByYear, convertRawStudent } from "./types";

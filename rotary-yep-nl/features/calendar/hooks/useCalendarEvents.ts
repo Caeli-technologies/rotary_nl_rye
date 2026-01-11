@@ -2,13 +2,13 @@
  * Hook for fetching and managing calendar events with caching
  */
 
-import { useState, useEffect, useCallback } from "react";
-import { getCached, setCache } from "@/core/cache/fileCache";
+import { useCallback, useEffect, useState } from "react";
+import { clearCache, getCached, setCache } from "@/core/cache/fileCache";
 import { fetchCalendarEvents } from "../api";
 import type { EventsData } from "../types";
 
 const CACHE_KEY = "calendar-events";
-const CACHE_TTL_MINUTES = 10;
+const CACHE_TTL_MINUTES = 5; // Reduced for faster updates
 
 interface UseCalendarEventsResult {
   eventsData: EventsData;
@@ -27,10 +27,15 @@ export function useCalendarEvents(): UseCalendarEventsResult {
       setIsLoading(true);
       setError(null);
 
+      // Clear cache if forcing refresh
+      if (forceRefresh) {
+        await clearCache(CACHE_KEY);
+      }
+
       // Try cache first (unless forcing refresh)
       if (!forceRefresh) {
         const cached = await getCached<EventsData>(CACHE_KEY);
-        if (cached) {
+        if (cached && Object.keys(cached).length > 0) {
           setEventsData(cached);
           setIsLoading(false);
           return;
@@ -55,9 +60,9 @@ export function useCalendarEvents(): UseCalendarEventsResult {
     }
   }, []);
 
-  // Initial load
+  // Initial load - always fetch fresh on first mount
   useEffect(() => {
-    loadEvents();
+    loadEvents(true); // Force refresh on initial load to pick up code changes
   }, [loadEvents]);
 
   return {

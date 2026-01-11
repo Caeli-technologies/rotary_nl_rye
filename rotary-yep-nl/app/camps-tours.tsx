@@ -3,23 +3,22 @@
  * Thin wrapper using the camps-tours feature module
  */
 
-import { useLayoutEffect, useCallback } from "react";
+import { useLayoutEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "expo-router";
 import { useTheme } from "@/core/theme";
 import {
-  CampsView,
   CampsHeaderRight,
-  useCampsQuery,
+  CampsView,
   useCampsFilters,
+  useCampsQuery,
 } from "@/features/camps-tours";
 
 export default function CampsToursScreen() {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const { camps, isLoading } = useCampsQuery();
-  const { filters, filteredCamps, hasActiveFilters, clearFilters } =
-    useCampsFilters(camps);
+  const { filters, filteredCamps, hasActiveFilters, clearFilters } = useCampsFilters(camps);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -33,20 +32,10 @@ export default function CampsToursScreen() {
         />
       ),
     });
-  }, [
-    navigation,
-    camps.length,
-    filteredCamps.length,
-    hasActiveFilters,
-    isLoading,
-    clearFilters,
-  ]);
+  }, [navigation, camps.length, filteredCamps.length, hasActiveFilters, isLoading, clearFilters]);
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={["bottom"]}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
       <CampsView />
     </SafeAreaView>
   );

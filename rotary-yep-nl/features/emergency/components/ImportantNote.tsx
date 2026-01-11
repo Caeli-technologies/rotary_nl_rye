@@ -23,17 +23,13 @@ export function ImportantNote() {
     >
       <View style={styles.header}>
         <Ionicons name="information-circle" size={24} color={colors.warning} />
-        <Text style={[styles.title, { color: colors.text }]}>
-          Important Reminder
-        </Text>
+        <Text style={[styles.title, { color: colors.text }]}>Important Reminder</Text>
       </View>
       <Text style={[styles.text, { color: colors.textSecondary }]}>
-        Always keep your host family&apos;s contact information and home address
-        accessible.
+        Always keep your host family&apos;s contact information and home address accessible.
       </Text>
       <Text style={[styles.text, { color: colors.textSecondary }]}>
-        Your host parents can assist you with medical appointments, hospital
-        visits, or dental care.
+        Your host parents can assist you with medical appointments, hospital visits, or dental care.
       </Text>
     </View>
   );

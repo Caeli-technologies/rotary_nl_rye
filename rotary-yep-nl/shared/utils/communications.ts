@@ -29,11 +29,7 @@ export function makePhoneCall(phoneNumber: string, contactName?: string): void {
  * @param contactName - Optional contact name for the dialog
  * @param subject - Optional email subject
  */
-export function sendEmail(
-  email: string,
-  contactName?: string,
-  subject?: string,
-): void {
+export function sendEmail(email: string, contactName?: string, subject?: string): void {
   const title = contactName ? `Email ${contactName}` : "Email versturen";
   const message = `Wil je een email sturen naar ${email}?`;
 
@@ -69,10 +65,7 @@ export function openWhatsApp(phoneNumber: string, message?: string): void {
     if (supported) {
       Linking.openURL(whatsappUrl);
     } else {
-      Alert.alert(
-        "WhatsApp niet gevonden",
-        "Installeer WhatsApp om deze functie te gebruiken",
-      );
+      Alert.alert("WhatsApp niet gevonden", "Installeer WhatsApp om deze functie te gebruiken");
     }
   });
 }

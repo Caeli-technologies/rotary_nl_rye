@@ -13,22 +13,15 @@ export default function InboundShortTermScreen() {
   const { colors } = useTheme();
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.background }]}
-    >
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.content}>
-        <View
-          style={[
-            styles.iconContainer,
-            { backgroundColor: `${colors.primary}15` },
-          ]}
-        >
+        <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}15` }]}>
           <Ionicons name="time-outline" size={48} color={colors.primary} />
         </View>
         <Text style={[styles.title, { color: colors.text }]}>Coming Soon</Text>
         <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
-          Short term inbound exchange programs are not yet available in the app.
-          Check back soon for updates!
+          Short term inbound exchange programs are not yet available in the app. Check back soon for
+          updates!
         </Text>
       </View>
     </SafeAreaView>

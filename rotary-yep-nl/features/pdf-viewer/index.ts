@@ -5,12 +5,7 @@
  */
 
 // Components
-export {
-  PdfLoadingState,
-  PdfErrorState,
-  PdfHeaderTitle,
-  PdfShareButton,
-} from "./components";
+export { PdfLoadingState, PdfErrorState, PdfHeaderTitle, PdfShareButton } from "./components";
 
 // Hooks
 export { usePdfDownload, usePdfShare } from "./hooks";

@@ -6,7 +6,7 @@
  */
 
 // Components
-export { ContactCard, ContactModal, ContactSection } from './components';
+export { ContactCard, ContactModal, ContactSection } from "./components";
 
 // Hooks
 export {
@@ -15,7 +15,7 @@ export {
   useContact,
   useSearchContacts,
   useContactCounts,
-} from './hooks';
+} from "./hooks";
 
 // Data
 export {
@@ -24,7 +24,7 @@ export {
   shortTermContacts,
   mdjcContacts,
   rotexContacts,
-} from './data';
+} from "./data";
 
 // Types
-export type { Contact, ContactCategory, ContactSection as ContactSectionType } from './types';
+export type { Contact, ContactCategory, ContactSection as ContactSectionType } from "./types";

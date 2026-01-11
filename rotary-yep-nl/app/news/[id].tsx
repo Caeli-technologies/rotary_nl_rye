@@ -29,10 +29,7 @@ export default function NewsDetailScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background }}
-        edges={["bottom"]}
-      >
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
         <LoadingState message="Artikel laden..." />
       </SafeAreaView>
     );
@@ -40,10 +37,7 @@ export default function NewsDetailScreen() {
 
   if (error || !newsItem) {
     return (
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background }}
-        edges={["bottom"]}
-      >
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
         <View style={styles.centered}>
           <Ionicons name="alert-circle" size={64} color={colors.error} />
           <Text style={[styles.errorText, { color: colors.error }]}>
@@ -55,10 +49,7 @@ export default function NewsDetailScreen() {
   }
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={["bottom"]}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
       <NewsDetail item={newsItem} onOpenPdf={handleOpenPdf} />
     </SafeAreaView>
   );

@@ -20,9 +20,7 @@ export function EmergencySection({ section }: EmergencySectionProps) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Ionicons name={section.icon as any} size={20} color={colors.primary} />
-        <Text style={[styles.title, { color: colors.text }]}>
-          {section.title}
-        </Text>
+        <Text style={[styles.title, { color: colors.text }]}>{section.title}</Text>
       </View>
 
       {section.description && (

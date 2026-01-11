@@ -13,12 +13,7 @@ interface FilterChipProps {
   onPress: () => void;
 }
 
-export function FilterChip({
-  icon,
-  label,
-  isActive,
-  onPress,
-}: FilterChipProps) {
+export function FilterChip({ icon, label, isActive, onPress }: FilterChipProps) {
   const { colors } = useTheme();
 
   return (
@@ -33,16 +28,8 @@ export function FilterChip({
       ]}
       onPress={onPress}
     >
-      <Ionicons
-        name={icon}
-        size={16}
-        color={isActive ? "#FFFFFF" : colors.textSecondary}
-      />
-      <Text
-        style={[styles.chipText, { color: isActive ? "#FFFFFF" : colors.text }]}
-      >
-        {label}
-      </Text>
+      <Ionicons name={icon} size={16} color={isActive ? "#FFFFFF" : colors.textSecondary} />
+      <Text style={[styles.chipText, { color: isActive ? "#FFFFFF" : colors.text }]}>{label}</Text>
       <Ionicons
         name="chevron-down"
         size={14}

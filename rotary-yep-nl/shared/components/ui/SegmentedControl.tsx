@@ -9,11 +9,11 @@ import type { SegmentedControlProps } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const PlatformSegmentedControl = Platform.select({
-	ios: () => require("./SegmentedControl.ios").SegmentedControl,
-	android: () => require("./SegmentedControl.android").SegmentedControl,
-	default: () => require("./SegmentedControl.android").SegmentedControl,
+  ios: () => require("./SegmentedControl.ios").SegmentedControl,
+  android: () => require("./SegmentedControl.android").SegmentedControl,
+  default: () => require("./SegmentedControl.android").SegmentedControl,
 })();
 
 export function SegmentedControl(props: SegmentedControlProps) {
-	return <PlatformSegmentedControl {...props} />;
+  return <PlatformSegmentedControl {...props} />;
 }

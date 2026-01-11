@@ -1,5 +1,5 @@
 /**
- * Outbound Long Term students list screen
+ * Inbound Long Term students list screen
  * Thin wrapper using students feature
  */
 
@@ -10,21 +10,19 @@ import { router } from "expo-router";
 import { useTheme } from "@/core/theme";
 import { StudentsList, useStudents, type Student } from "@/features/students";
 
-export default function OutboundLongTermScreen() {
+export default function InboundLongTermScreen() {
   const { colors } = useTheme();
-  const { countryGroups, totalCount } = useStudents("outbound");
+  const { countryGroups, totalCount } = useStudents("inbound");
 
   const handleStudentPress = useCallback((student: Student) => {
     router.push({
-      pathname: "/(students)/outbound/student-detail" as const,
+      pathname: "/students/inbound/student-detail" as const,
       params: { studentId: student.id },
     } as never);
   }, []);
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.background }]}
-    >
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <StudentsList
         countryGroups={countryGroups}
         totalCount={totalCount}

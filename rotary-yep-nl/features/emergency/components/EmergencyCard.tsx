@@ -50,15 +50,9 @@ export function EmergencyCard({ contact }: EmergencyCardProps) {
       ]}
     >
       <View style={styles.info}>
-        <Text style={[styles.name, { color: colors.text }]}>
-          {contact.name}
-        </Text>
-        <Text style={[styles.role, { color: colors.textSecondary }]}>
-          {contact.role}
-        </Text>
-        <Text style={[styles.phone, { color: colors.accent }]}>
-          {contact.phone}
-        </Text>
+        <Text style={[styles.name, { color: colors.text }]}>{contact.name}</Text>
+        <Text style={[styles.role, { color: colors.textSecondary }]}>{contact.role}</Text>
+        <Text style={[styles.phone, { color: colors.accent }]}>{contact.phone}</Text>
       </View>
 
       <View style={styles.actions}>

@@ -40,9 +40,7 @@ export function NewsList({
     <FlatList
       data={items}
       keyExtractor={(item) => String(item.id)}
-      renderItem={({ item }) => (
-        <NewsCard item={item} onPress={() => onItemPress(item)} />
-      )}
+      renderItem={({ item }) => <NewsCard item={item} onPress={() => onItemPress(item)} />}
       contentContainerStyle={styles.listContent}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={ListHeaderComponent}

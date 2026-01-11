@@ -33,9 +33,7 @@ export function ErrorState({
           onPress={onRetry}
         >
           <Ionicons name="refresh" size={20} color={colors.onPrimary} />
-          <Text style={[styles.retryText, { color: colors.onPrimary }]}>
-            Opnieuw proberen
-          </Text>
+          <Text style={[styles.retryText, { color: colors.onPrimary }]}>Opnieuw proberen</Text>
         </Pressable>
       )}
     </View>

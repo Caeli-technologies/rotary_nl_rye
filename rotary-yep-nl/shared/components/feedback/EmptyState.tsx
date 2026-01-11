@@ -16,22 +16,14 @@ interface EmptyStateProps {
   icon?: keyof typeof Ionicons.glyphMap;
 }
 
-export function EmptyState({
-  title,
-  message,
-  icon = "folder-open-outline",
-}: EmptyStateProps) {
+export function EmptyState({ title, message, icon = "folder-open-outline" }: EmptyStateProps) {
   const { colors } = useTheme();
 
   return (
     <View style={styles.container}>
       <Ionicons name={icon} size={64} color={colors.textTertiary} />
       <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
-      {message && (
-        <Text style={[styles.message, { color: colors.textSecondary }]}>
-          {message}
-        </Text>
-      )}
+      {message && <Text style={[styles.message, { color: colors.textSecondary }]}>{message}</Text>}
     </View>
   );
 }

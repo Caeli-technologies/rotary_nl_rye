@@ -2,14 +2,7 @@
  * News detail component for displaying full news content
  */
 
-import {
-  ScrollView,
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-  Platform,
-} from "react-native";
+import { ScrollView, View, Text, Pressable, StyleSheet, Platform } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { useVideoPlayer, VideoView } from "expo-video";
@@ -49,11 +42,7 @@ export function NewsDetail({ item, onOpenPdf }: NewsDetailProps) {
     >
       {/* Hero Image */}
       <View style={styles.heroContainer}>
-        <NetworkImage
-          imageUrl={item.imageUrl}
-          name={item.title}
-          style={styles.heroImage}
-        />
+        <NetworkImage imageUrl={item.imageUrl} name={item.title} style={styles.heroImage} />
       </View>
 
       <View style={styles.content}>
@@ -68,9 +57,7 @@ export function NewsDetail({ item, onOpenPdf }: NewsDetailProps) {
             },
           ]}
         >
-          <Text style={[styles.title, { color: colors.text }]}>
-            {item.title}
-          </Text>
+          <Text style={[styles.title, { color: colors.text }]}>{item.title}</Text>
           <Text style={[styles.description, { color: colors.textSecondary }]}>
             {item.description}
           </Text>
@@ -89,9 +76,7 @@ export function NewsDetail({ item, onOpenPdf }: NewsDetailProps) {
             <Ionicons name="document-text" size={24} color="#FFFFFF" />
             <View style={styles.pdfButtonContent}>
               <Text style={styles.pdfButtonTitle}>Open PDF</Text>
-              <Text style={styles.pdfButtonSubtitle}>
-                View the full document
-              </Text>
+              <Text style={styles.pdfButtonSubtitle}>View the full document</Text>
             </View>
             <Ionicons name="open-outline" size={20} color="#FFFFFF" />
           </Pressable>
@@ -129,12 +114,7 @@ function VideoBlock({ videoUrl }: VideoBlockProps) {
 
   return (
     <View style={styles.videoContainer}>
-      <VideoView
-        player={player}
-        style={styles.video}
-        contentFit="contain"
-        nativeControls
-      />
+      <VideoView player={player} style={styles.video} contentFit="contain" nativeControls />
     </View>
   );
 }
@@ -153,15 +133,8 @@ function TextBlockView({ block, colors }: TextBlockViewProps) {
     >
       {/* Section Heading */}
       {block.heading && (
-        <View
-          style={[
-            styles.headingContainer,
-            { borderBottomColor: colors.border },
-          ]}
-        >
-          <Text style={[styles.heading, { color: colors.primary }]}>
-            {block.heading}
-          </Text>
+        <View style={[styles.headingContainer, { borderBottomColor: colors.border }]}>
+          <Text style={[styles.heading, { color: colors.primary }]}>{block.heading}</Text>
         </View>
       )}
 
@@ -172,10 +145,7 @@ function TextBlockView({ block, colors }: TextBlockViewProps) {
             {/* Paragraphs */}
             {bodyItem.paragraph &&
               bodyItem.paragraph.map((para, paraIndex) => (
-                <Text
-                  key={`para-${paraIndex}`}
-                  style={[styles.paragraph, { color: colors.text }]}
-                >
+                <Text key={`para-${paraIndex}`} style={[styles.paragraph, { color: colors.text }]}>
                   {para}
                 </Text>
               ))}

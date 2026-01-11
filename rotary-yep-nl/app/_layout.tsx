@@ -60,8 +60,88 @@ function RootLayoutNav() {
         {/* Main tab navigator */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-        {/* Students route group */}
-        <Stack.Screen name="(students)" options={{ headerShown: false }} />
+        {/* Students - Inbound */}
+        <Stack.Screen
+          name="students/inbound/index"
+          options={{
+            title: "Inbound",
+            headerBackTitle: "Home",
+          }}
+        />
+        <Stack.Screen
+          name="students/inbound/long-term"
+          options={{
+            title: "Long Term",
+            headerBackTitle: "Inbound",
+          }}
+        />
+        <Stack.Screen
+          name="students/inbound/short-term"
+          options={{
+            title: "Short Term",
+            headerBackTitle: "Inbound",
+          }}
+        />
+        <Stack.Screen
+          name="students/inbound/student-detail"
+          options={{
+            title: "Student",
+            headerBackTitle: "Terug",
+          }}
+        />
+
+        {/* Students - Outbound */}
+        <Stack.Screen
+          name="students/outbound/index"
+          options={{
+            title: "Outbound",
+            headerBackTitle: "Home",
+          }}
+        />
+        <Stack.Screen
+          name="students/outbound/long-term"
+          options={{
+            title: "Long Term",
+            headerBackTitle: "Outbound",
+          }}
+        />
+        <Stack.Screen
+          name="students/outbound/short-term"
+          options={{
+            title: "Short Term",
+            headerBackTitle: "Outbound",
+          }}
+        />
+        <Stack.Screen
+          name="students/outbound/student-detail"
+          options={{
+            title: "Student",
+            headerBackTitle: "Terug",
+          }}
+        />
+
+        {/* Students - Rebound */}
+        <Stack.Screen
+          name="students/rebound/index"
+          options={{
+            title: "Rebound",
+            headerBackTitle: "Home",
+          }}
+        />
+        <Stack.Screen
+          name="students/rebound/[country]"
+          options={({ route }) => ({
+            title: (route.params as any)?.countryName || "Students",
+            headerBackTitle: "Rebound",
+          })}
+        />
+        <Stack.Screen
+          name="students/rebound/student-detail"
+          options={{
+            title: "Student",
+            headerBackTitle: "Terug",
+          }}
+        />
 
         {/* Settings sub-screen */}
         <Stack.Screen

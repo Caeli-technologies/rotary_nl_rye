@@ -1,12 +1,13 @@
 /**
  * Calendar view component with month calendar and events list
+ * Features: multi-dot marking, color-coded events
  */
 
-import { useState, useCallback } from "react";
-import { StyleSheet, View, RefreshControl } from "react-native";
+import { useCallback, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useTheme } from "@/core/theme";
-import { LoadingState, ErrorState } from "@/shared/components/feedback";
+import { ErrorState, LoadingState } from "@/shared/components/feedback";
 import { useCalendarEvents, useMarkedDates, useSelectedDate } from "../hooks";
 import { EventsList } from "./EventsList";
 import { EventModal } from "./EventModal";
@@ -42,15 +43,7 @@ LocaleConfig.locales["nl"] = {
     "Nov",
     "Dec",
   ],
-  dayNames: [
-    "Zondag",
-    "Maandag",
-    "Dinsdag",
-    "Woensdag",
-    "Donderdag",
-    "Vrijdag",
-    "Zaterdag",
-  ],
+  dayNames: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"],
   dayNamesShort: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
   today: "Vandaag",
 };
@@ -60,24 +53,15 @@ export function CalendarView() {
   const { colors, isDark } = useTheme();
   const { eventsData, isLoading, error, refetch } = useCalendarEvents();
   const { selectedDate, onDayPress } = useSelectedDate();
-  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
-    null,
-  );
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
 
   const markedDates = useMarkedDates({
     eventsData,
     selectedDate,
-    dotColor: colors.primary,
+    defaultDotColor: colors.primary,
     selectedColor: colors.primary,
     selectedTextColor: "#FFFFFF",
   });
-
-  const handleRefresh = useCallback(async () => {
-    setIsRefreshing(true);
-    await refetch();
-    setIsRefreshing(false);
-  }, [refetch]);
 
   const handleEventPress = useCallback((event: CalendarEvent) => {
     setSelectedEvent(event);
@@ -118,13 +102,12 @@ export function CalendarView() {
   };
 
   const calendarComponent = (
-    <View
-      style={[styles.calendarContainer, { backgroundColor: colors.background }]}
-    >
+    <View style={[styles.calendarContainer, { backgroundColor: colors.background }]}>
       <Calendar
         current={selectedDate}
         onDayPress={onDayPress}
         markedDates={markedDates}
+        markingType="multi-dot"
         theme={calendarTheme}
         enableSwipeMonths
         hideExtraDays

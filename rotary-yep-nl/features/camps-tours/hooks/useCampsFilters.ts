@@ -43,11 +43,7 @@ export function useCampsFilters(camps: Camp[]): CampsFilterResult {
   }, [camps, filters]);
 
   const hasActiveFilters = useMemo(() => {
-    return (
-      filters.availability !== "alle" ||
-      filters.timing !== "alle" ||
-      filters.country !== ""
-    );
+    return filters.availability !== "alle" || filters.timing !== "alle" || filters.country !== "";
   }, [filters]);
 
   const clearFilters = useCallback(() => {

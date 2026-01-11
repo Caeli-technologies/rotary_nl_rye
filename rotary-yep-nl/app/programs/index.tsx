@@ -10,11 +10,7 @@ import { router } from "expo-router";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
-import {
-  ProgramCard,
-  ProgramSectionHeader,
-  useProgramSections,
-} from "@/features/programs";
+import { ProgramCard, ProgramSectionHeader, useProgramSections } from "@/features/programs";
 import type { ProgramItem, ProgramSection } from "@/features/programs";
 
 type ListItem =
@@ -57,9 +53,7 @@ export default function ProgramsScreen() {
         case "intro":
           return (
             <View style={styles.introContainer}>
-              <Text style={[styles.introTitle, { color: colors.primary }]}>
-                Programma&apos;s
-              </Text>
+              <Text style={[styles.introTitle, { color: colors.primary }]}>Programma&apos;s</Text>
               <Text style={[styles.introText, { color: colors.textSecondary }]}>
                 {item.introText}
               </Text>
@@ -83,16 +77,10 @@ export default function ProgramsScreen() {
     [colors.primary, colors.textSecondary, handleProgramPress],
   );
 
-  const keyExtractor = useCallback(
-    (item: ListItem, index: number) => `${item.type}-${index}`,
-    [],
-  );
+  const keyExtractor = useCallback((item: ListItem, index: number) => `${item.type}-${index}`, []);
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={[]}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={[]}>
       <FlatList
         data={listData()}
         renderItem={renderItem}

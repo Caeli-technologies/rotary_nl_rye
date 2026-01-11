@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  Pressable,
-  Linking,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform, Pressable, Linking } from "react-native";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -57,27 +49,11 @@ export default function CampsToursScreen() {
               },
             ]}
           >
-            <View
-              style={[
-                styles.headerIcon,
-                { backgroundColor: themeColors.primary + "15" },
-              ]}
-            >
-              <Ionicons
-                name="sunny-outline"
-                size={32}
-                color={themeColors.primary}
-              />
+            <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + "15" }]}>
+              <Ionicons name="sunny-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
-              Zomerkampen
-            </Text>
-            <Text
-              style={[
-                styles.headerSubtitle,
-                { color: themeColors.textSecondary },
-              ]}
-            >
+            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Zomerkampen</Text>
+            <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Zomerkampen en speciale kampen in Europa, Canada, VS en Taiwan
             </Text>
           </View>
@@ -93,16 +69,12 @@ export default function CampsToursScreen() {
               },
             ]}
           >
-            <Text
-              style={[styles.infoText, { color: themeColors.textSecondary }]}
-            >
-              In veel landen organiseren Rotary clubs in de periode van juni tot
-              en met september zomerkampen. Dit zijn kampen met een thema:
-              cultureel, sportief, water, bergen, fietsen etc. De kosten worden
-              vaak laag gehouden om het voor een ieder mogelijk te maken. Dit
-              geldt niet voor alle kampen. Deze kampen zijn internationaal,
-              voertaal is Engels en vaak is er alleen plaats voor 1 meisje en of
-              1 jongen uit een land.
+            <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
+              In veel landen organiseren Rotary clubs in de periode van juni tot en met september
+              zomerkampen. Dit zijn kampen met een thema: cultureel, sportief, water, bergen,
+              fietsen etc. De kosten worden vaak laag gehouden om het voor een ieder mogelijk te
+              maken. Dit geldt niet voor alle kampen. Deze kampen zijn internationaal, voertaal is
+              Engels en vaak is er alleen plaats voor 1 meisje en of 1 jongen uit een land.
             </Text>
           </View>
 
@@ -120,29 +92,15 @@ export default function CampsToursScreen() {
               ]}
             >
               <View
-                style={[
-                  styles.ageIconContainer,
-                  { backgroundColor: `${themeColors.accent}15` },
-                ]}
+                style={[styles.ageIconContainer, { backgroundColor: `${themeColors.accent}15` }]}
               >
-                <Ionicons
-                  name="calendar"
-                  size={28}
-                  color={themeColors.accent}
-                />
+                <Ionicons name="calendar" size={28} color={themeColors.accent} />
               </View>
               <View style={styles.ageContent}>
-                <Text style={[styles.ageTitle, { color: themeColors.accent }]}>
-                  15 - 21 jaar
-                </Text>
-                <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>
-                  Voor wie?
-                </Text>
-                <Text
-                  style={[styles.ageNote, { color: themeColors.textSecondary }]}
-                >
-                  Deelname mogelijk voor jongeren van Rotarians en
-                  niet-Rotarians
+                <Text style={[styles.ageTitle, { color: themeColors.accent }]}>15 - 21 jaar</Text>
+                <Text style={[styles.ageSubtitle, { color: themeColors.text }]}>Voor wie?</Text>
+                <Text style={[styles.ageNote, { color: themeColors.textSecondary }]}>
+                  Deelname mogelijk voor jongeren van Rotarians en niet-Rotarians
                 </Text>
               </View>
             </View>
@@ -151,11 +109,7 @@ export default function CampsToursScreen() {
           {/* Mission Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="flag-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="flag-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Waarom doen we dit?
               </Text>
@@ -173,28 +127,16 @@ export default function CampsToursScreen() {
             >
               <View style={styles.missionHeader}>
                 <Ionicons name="star" size={20} color={themeColors.secondary} />
-                <Text
-                  style={[
-                    styles.missionTitle,
-                    { color: themeColors.secondary },
-                  ]}
-                >
+                <Text style={[styles.missionTitle, { color: themeColors.secondary }]}>
                   Onze Missie
                 </Text>
               </View>
               <Text style={[styles.missionText, { color: themeColors.text }]}>
-                &ldquo;Jeugd in staat stellen om persoonlijk leiderschap te
-                ontwikkelen&rdquo;
+                &ldquo;Jeugd in staat stellen om persoonlijk leiderschap te ontwikkelen&rdquo;
               </Text>
-              <Text
-                style={[
-                  styles.missionSubtext,
-                  { color: themeColors.textSecondary },
-                ]}
-              >
-                Wij geloven dat leiderschap begint met leiding geven aan jezelf
-                om uiteindelijk anderen in staat te stellen zichzelf te
-                ontwikkelen.
+              <Text style={[styles.missionSubtext, { color: themeColors.textSecondary }]}>
+                Wij geloven dat leiderschap begint met leiding geven aan jezelf om uiteindelijk
+                anderen in staat te stellen zichzelf te ontwikkelen.
               </Text>
             </View>
           </View>
@@ -202,11 +144,7 @@ export default function CampsToursScreen() {
           {/* Countries Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="earth-outline"
-                size={24}
-                color={themeColors.primary}
-              />
+              <Ionicons name="earth-outline" size={24} color={themeColors.primary} />
               <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
                 Met welke landen?
               </Text>
@@ -222,9 +160,7 @@ export default function CampsToursScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.infoText, { color: themeColors.textSecondary }]}
-              >
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
                 Europese landen, maar ook Canada, VS en Taiwan.
               </Text>
             </View>
@@ -233,14 +169,8 @@ export default function CampsToursScreen() {
           {/* Gallery Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="images-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Camp Pictures
-              </Text>
+              <Ionicons name="images-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Camp Pictures</Text>
             </View>
 
             <View style={styles.galleryContainer}>
@@ -250,29 +180,13 @@ export default function CampsToursScreen() {
                 style={styles.galleryScroll}
               >
                 {campImages.map((image) => (
-                  <Pressable
-                    key={image.id}
-                    onPress={() => setSelectedImage(image.source)}
-                  >
-                    <Image
-                      source={image.source}
-                      style={styles.galleryImage}
-                      contentFit="cover"
-                    />
+                  <Pressable key={image.id} onPress={() => setSelectedImage(image.source)}>
+                    <Image source={image.source} style={styles.galleryImage} contentFit="cover" />
                   </Pressable>
                 ))}
               </ScrollView>
-              <View
-                style={[
-                  styles.scrollIndicator,
-                  { backgroundColor: themeColors.background },
-                ]}
-              >
-                <Ionicons
-                  name="chevron-forward"
-                  size={20}
-                  color={themeColors.textTertiary}
-                />
+              <View style={[styles.scrollIndicator, { backgroundColor: themeColors.background }]}>
+                <Ionicons name="chevron-forward" size={20} color={themeColors.textTertiary} />
               </View>
             </View>
           </View>
@@ -280,14 +194,8 @@ export default function CampsToursScreen() {
           {/* Registration Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="mail-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Aanmelden
-              </Text>
+              <Ionicons name="mail-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Aanmelden</Text>
             </View>
 
             <View
@@ -300,12 +208,9 @@ export default function CampsToursScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.infoText, { color: themeColors.textSecondary }]}
-              >
-                Rond december-januari zullen de camps in de app worden gezet.
-                Als je interesse hebt stuur dan een mail naar onderstaand
-                emailadres.
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
+                Rond december-januari zullen de camps in de app worden gezet. Als je interesse hebt
+                stuur dan een mail naar onderstaand emailadres.
               </Text>
             </View>
 
@@ -319,17 +224,8 @@ export default function CampsToursScreen() {
               accessibilityRole="button"
               accessibilityLabel="Send email to zomerkamp@rotaryyep.nl"
             >
-              <Ionicons
-                name="mail-outline"
-                size={24}
-                color={themeColors.onPrimary}
-              />
-              <Text
-                style={[
-                  styles.emailButtonText,
-                  { color: themeColors.onPrimary },
-                ]}
-              >
+              <Ionicons name="mail-outline" size={24} color={themeColors.onPrimary} />
+              <Text style={[styles.emailButtonText, { color: themeColors.onPrimary }]}>
                 zomerkamp@rotaryyep.nl
               </Text>
             </Pressable>
@@ -338,14 +234,8 @@ export default function CampsToursScreen() {
           {/* Costs Section */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons
-                name="card-outline"
-                size={24}
-                color={themeColors.primary}
-              />
-              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>
-                Kosten
-              </Text>
+              <Ionicons name="card-outline" size={24} color={themeColors.primary} />
+              <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Kosten</Text>
             </View>
 
             <View
@@ -357,15 +247,8 @@ export default function CampsToursScreen() {
                 },
               ]}
             >
-              <Text style={[styles.costTitle, { color: themeColors.link }]}>
-                €121 incl. BTW
-              </Text>
-              <Text
-                style={[
-                  styles.costSubtitle,
-                  { color: themeColors.textSecondary },
-                ]}
-              >
+              <Text style={[styles.costTitle, { color: themeColors.link }]}>€121 incl. BTW</Text>
+              <Text style={[styles.costSubtitle, { color: themeColors.textSecondary }]}>
                 Aanmeldingskosten
               </Text>
             </View>
@@ -380,57 +263,25 @@ export default function CampsToursScreen() {
                 },
               ]}
             >
-              <Text
-                style={[styles.infoText, { color: themeColors.textSecondary }]}
-              >
+              <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
                 Daarnaast moet je rekening houden met:
               </Text>
               <View style={styles.bulletContainer}>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Reiskosten naar de kamplocatie
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Zakgeld ter plaatse
                   </Text>
                 </View>
                 <View style={styles.bulletItem}>
-                  <View
-                    style={[
-                      styles.bulletDot,
-                      { backgroundColor: themeColors.primary },
-                    ]}
-                  />
-                  <Text
-                    style={[
-                      styles.bulletText,
-                      { color: themeColors.textSecondary },
-                    ]}
-                  >
+                  <View style={[styles.bulletDot, { backgroundColor: themeColors.primary }]} />
+                  <Text style={[styles.bulletText, { color: themeColors.textSecondary }]}>
                     Eventueel klein deelnamebedrag
                   </Text>
                 </View>

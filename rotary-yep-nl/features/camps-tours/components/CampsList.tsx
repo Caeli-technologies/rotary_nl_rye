@@ -33,11 +33,7 @@ export function CampsList({
       return (
         <View style={styles.emptyContainer}>
           <View style={styles.emptyIcon}>
-            <Ionicons
-              name="search-outline"
-              size={64}
-              color={colors.textSecondary}
-            />
+            <Ionicons name="search-outline" size={64} color={colors.textSecondary} />
           </View>
           <Text style={[styles.emptyTitle, { color: colors.text }]}>
             Geen Overeenkomende Kampen
@@ -53,15 +49,9 @@ export function CampsList({
     return (
       <View style={styles.emptyContainer}>
         <View style={styles.emptyIcon}>
-          <Ionicons
-            name="calendar-outline"
-            size={64}
-            color={colors.textSecondary}
-          />
+          <Ionicons name="calendar-outline" size={64} color={colors.textSecondary} />
         </View>
-        <Text style={[styles.emptyTitle, { color: colors.text }]}>
-          Geen Kampen Beschikbaar
-        </Text>
+        <Text style={[styles.emptyTitle, { color: colors.text }]}>Geen Kampen Beschikbaar</Text>
         <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
           Er zijn momenteel geen zomerkampen beschikbaar. Kijk later nog eens!
         </Text>
@@ -75,10 +65,7 @@ export function CampsList({
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
       style={styles.list}
-      contentContainerStyle={[
-        styles.content,
-        camps.length === 0 && styles.emptyContent,
-      ]}
+      contentContainerStyle={[styles.content, camps.length === 0 && styles.emptyContent]}
       showsVerticalScrollIndicator={false}
       contentInsetAdjustmentBehavior="automatic"
       refreshControl={

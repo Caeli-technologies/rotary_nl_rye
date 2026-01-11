@@ -1,34 +1,27 @@
 /**
- * Calendar API for fetching events from Google Calendar
+ * Calendar API for fetching events from Google Calendar API v3
+ * With full support for conference data, recurrence, colors, and attachments
  */
 
 import { fetch } from "expo/fetch";
 import { env } from "@/core/config/env";
-import type {
-  CalendarEvent,
-  EventsData,
-  EventWithOriginalData,
-  GoogleCalendarDateTime,
-  GoogleCalendarEvent,
-  GoogleCalendarResponse,
-} from "../types";
+import type { CalendarEvent, EventsData, GoogleCalendarResponse } from "../types";
+import { parseEvent } from "./parseEvents";
 
 const TIMEOUT = 30000;
 const MAX_RESULTS = 2500;
-const MONTHS_BEFORE = 6;
+const YEARS_BEFORE = 1;
+const YEARS_AHEAD = 1;
 
 /**
- * Fetches calendar events from Google Calendar API
+ * Fetches calendar events from Google Calendar API v3
+ * Uses a dynamic rolling window: 1 year behind to 1 year ahead
  */
 export async function fetchCalendarEvents(): Promise<EventsData> {
   try {
     const now = new Date();
-    const timeMin = new Date(
-      now.getFullYear(),
-      now.getMonth() - MONTHS_BEFORE,
-      1,
-    );
-    const timeMax = new Date(now.getFullYear() + 1, now.getMonth(), 0);
+    const timeMin = new Date(now.getFullYear() - YEARS_BEFORE, now.getMonth(), 1);
+    const timeMax = new Date(now.getFullYear() + YEARS_AHEAD, now.getMonth() + 1, 0);
 
     const params = new URLSearchParams({
       key: env.googleApiKey,
@@ -61,8 +54,7 @@ export async function fetchCalendarEvents(): Promise<EventsData> {
       }
 
       const data: GoogleCalendarResponse = await response.json();
-      const events = parseEvents(data);
-      return groupEventsByDate(events);
+      return parseAndGroupEvents(data);
     } catch (error) {
       clearTimeout(timeoutId);
       throw error;
@@ -70,9 +62,7 @@ export async function fetchCalendarEvents(): Promise<EventsData> {
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === "AbortError") {
-        throw new Error(
-          "Request timed out. Please check your internet connection.",
-        );
+        throw new Error("Request timed out. Please check your internet connection.");
       }
       throw new Error(`Unable to fetch calendar events: ${error.message}`);
     }
@@ -81,59 +71,25 @@ export async function fetchCalendarEvents(): Promise<EventsData> {
 }
 
 /**
- * Parses raw calendar data into structured Event objects
+ * Parse and group events by date
  */
-function parseEvents(data: GoogleCalendarResponse): CalendarEvent[] {
+function parseAndGroupEvents(data: GoogleCalendarResponse): EventsData {
   if (!data?.items || !Array.isArray(data.items)) {
-    return [];
+    return {};
   }
 
-  return data.items
-    .filter((item: GoogleCalendarEvent) => item?.status !== "cancelled")
-    .map((item: GoogleCalendarEvent) => {
-      const startDateTime = parseDateTime(item.start) || new Date();
-      const endDateTime =
-        parseDateTime(item.end) || new Date(startDateTime.getTime() + 3600000);
+  const events = data.items.filter((item) => item?.status !== "cancelled").map(parseEvent);
 
-      return {
-        id: item.id || "",
-        status: item.status || "confirmed",
-        htmlLink: item.htmlLink || "",
-        created: new Date(item.created || Date.now()),
-        updated: new Date(item.updated || Date.now()),
-        summary: item.summary || "Untitled Event",
-        description: item.description || "No description available",
-        location: item.location || "Location not specified",
-        creator: { email: item.creator?.email || "" },
-        organizer: { email: item.organizer?.email || "" },
-        start: { dateTime: startDateTime },
-        end: { dateTime: endDateTime },
-        _originalStart: item.start,
-        _originalEnd: item.end,
-      } as EventWithOriginalData;
-    })
-    .filter(Boolean);
-}
-
-/**
- * Parses a date/time object from the API
- */
-function parseDateTime(dateObj: GoogleCalendarDateTime): Date | null {
-  if (!dateObj) return null;
-
-  if (dateObj.dateTime) {
-    return new Date(dateObj.dateTime);
-  }
-
-  if (dateObj.date) {
-    return new Date(`${dateObj.date}T00:00:00`);
-  }
-
-  return null;
+  return groupEventsByDate(events);
 }
 
 /**
  * Groups events by date for calendar display
+ *
+ * Google Calendar API behavior:
+ * - All-day events (date field): end date is EXCLUSIVE
+ *   Example: start="2015-11-13", end="2015-11-16" → Nov 13, 14, 15 (NOT 16)
+ * - Timed events (dateTime field): includes the end day
  */
 function groupEventsByDate(events: CalendarEvent[]): EventsData {
   const eventsData: EventsData = {};
@@ -142,17 +98,22 @@ function groupEventsByDate(events: CalendarEvent[]): EventsData {
     const startDate = new Date(event.start.dateTime);
     const endDate = new Date(event.end.dateTime);
 
-    if (isSameDay(startDate, endDate)) {
-      const dateKey = formatDateKey(startDate);
-      if (!eventsData[dateKey]) eventsData[dateKey] = [];
-      eventsData[dateKey].push(event);
-    } else {
-      // Multi-day event - add to all days
-      const actualEndDate = new Date(endDate);
-      actualEndDate.setDate(actualEndDate.getDate() - 1);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
 
-      const currentDate = new Date(startDate);
-      while (currentDate <= actualEndDate) {
+    const currentDate = new Date(startDate);
+
+    if (event.isAllDay) {
+      // All-day events: end date is EXCLUSIVE (don't include it)
+      while (currentDate < endDate) {
+        const dateKey = formatDateKey(currentDate);
+        if (!eventsData[dateKey]) eventsData[dateKey] = [];
+        eventsData[dateKey].push(event);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    } else {
+      // Timed events: include the end day
+      while (currentDate <= endDate) {
         const dateKey = formatDateKey(currentDate);
         if (!eventsData[dateKey]) eventsData[dateKey] = [];
         eventsData[dateKey].push(event);
@@ -162,17 +123,6 @@ function groupEventsByDate(events: CalendarEvent[]): EventsData {
   }
 
   return eventsData;
-}
-
-/**
- * Check if two dates are the same day
- */
-function isSameDay(date1: Date, date2: Date): boolean {
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
 }
 
 /**

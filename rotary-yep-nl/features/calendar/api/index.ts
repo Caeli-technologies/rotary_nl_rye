@@ -3,3 +3,4 @@
  */
 
 export { fetchCalendarEvents } from "./fetchEvents";
+export { parseEvent } from "./parseEvents";
