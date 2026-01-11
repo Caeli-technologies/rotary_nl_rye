@@ -129,7 +129,13 @@ export const VideoPlayer = memo(function VideoPlayer({
       >
         <View style={[styles.videoModalContainer, { backgroundColor: "#000" }]}>
           <View style={[styles.videoModalHeader, { top: insets.top + 16 }]}>
-            <IconButton icon="close" onPress={handleCloseVideo} size="medium" variant="default" color="#FFF" />
+            <IconButton
+              icon="close"
+              onPress={handleCloseVideo}
+              size="medium"
+              variant="default"
+              color="#FFF"
+            />
           </View>
 
           <View style={styles.videoContainer}>

@@ -87,11 +87,7 @@ export function IconButton({
           variant === "filled" && styles.elevated,
         ]}
       >
-        <Ionicons
-          name={icon as any}
-          size={sizeConfig.icon}
-          color={getIconColor()}
-        />
+        <Ionicons name={icon as any} size={sizeConfig.icon} color={getIconColor()} />
       </Pressable>
     </View>
   );

@@ -66,11 +66,7 @@ export function IconButton({
             style={[styles.glassButton, buttonStyle, pressed && styles.pressed]}
             isInteractive
           >
-            <Ionicons
-              name={icon as any}
-              size={sizeConfig.icon}
-              color={getIconColor()}
-            />
+            <Ionicons name={icon as any} size={sizeConfig.icon} color={getIconColor()} />
           </GlassView>
         )}
       </Pressable>
@@ -94,11 +90,7 @@ export function IconButton({
               pressed && styles.pressed,
             ]}
           >
-            <Ionicons
-              name={icon as any}
-              size={sizeConfig.icon}
-              color={getIconColor()}
-            />
+            <Ionicons name={icon as any} size={sizeConfig.icon} color={getIconColor()} />
           </View>
         )}
       </Pressable>
@@ -118,18 +110,12 @@ export function IconButton({
             styles.solidButton,
             buttonStyle,
             {
-              backgroundColor: disabled
-                ? `${colors.textTertiary}15`
-                : `${colors.primary}15`,
+              backgroundColor: disabled ? `${colors.textTertiary}15` : `${colors.primary}15`,
             },
             pressed && styles.pressed,
           ]}
         >
-          <Ionicons
-            name={icon as any}
-            size={sizeConfig.icon}
-            color={getIconColor()}
-          />
+          <Ionicons name={icon as any} size={sizeConfig.icon} color={getIconColor()} />
         </View>
       )}
     </Pressable>

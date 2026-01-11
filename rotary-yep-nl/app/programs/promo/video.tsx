@@ -191,7 +191,13 @@ export default function VideoPromo() {
       >
         <View style={styles.videoModalContainer}>
           <View style={[styles.videoModalHeader, { paddingTop: insets.top + 16 }]}>
-            <IconButton icon="close" onPress={handleCloseVideo} size="medium" variant="default" color="#FFF" />
+            <IconButton
+              icon="close"
+              onPress={handleCloseVideo}
+              size="medium"
+              variant="default"
+              color="#FFF"
+            />
           </View>
 
           <View style={styles.videoContainer}>

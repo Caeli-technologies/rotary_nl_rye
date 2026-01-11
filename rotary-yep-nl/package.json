@@ -11,6 +11,7 @@
     "android:release": "cd android && ./gradlew app:bundleRelease",
     "lint": "npx expo lint",
     "lint:fix": "npx expo lint --fix",
+    "prettier:fix": "npx prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "clean": "npx expo prebuild --clear"
   },
   "dependencies": {
