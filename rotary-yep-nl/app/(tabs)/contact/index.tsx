@@ -1,23 +1,17 @@
+/**
+ * Contact screen route
+ * Thin wrapper using the contacts feature module
+ */
+
 import { useState } from "react";
 import { Platform, StyleSheet, View, Text, SectionList } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
-import { ContactCard } from "@/components/enhanced-contact-card";
-import { contactSections } from "@/data/contacts";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
+import { ContactCard, contactSections } from "@/features/contacts";
 
 export default function ContactScreen() {
   const [activeTab, setActiveTab] = useState(0);
-  const { colors: themeColors, colorScheme } = useTheme();
-
-  // Map theme colors to component-specific colors
-  const activeColors = {
-    primary: themeColors.primary,
-    background: themeColors.background,
-    cardBackground: themeColors.card,
-    text: themeColors.textSecondary,
-    activeText: themeColors.onPrimary,
-    segmentedBg: themeColors.surfaceVariant,
-  };
+  const { colors, isDark } = useTheme();
 
   const currentSection = contactSections[activeTab];
   const tabValues = contactSections.map((section) => section.title);
@@ -29,35 +23,25 @@ export default function ContactScreen() {
 
   if (contacts.length === 0) {
     return (
-      <View
-        style={[styles.container, { backgroundColor: activeColors.background }]}
-      >
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <View style={styles.segmentedControlContainer}>
           <SegmentedControl
             values={tabValues}
             selectedIndex={activeTab}
             onChange={handleSegmentChange}
             style={styles.segmentedControl}
-            appearance={colorScheme === "dark" ? "dark" : "light"}
-            tintColor={activeColors.primary}
-            fontStyle={{
-              color: activeColors.text,
-            }}
-            activeFontStyle={{
-              color: activeColors.activeText,
-            }}
+            appearance={isDark ? "dark" : "light"}
+            tintColor={colors.primary}
+            fontStyle={{ color: colors.textSecondary }}
+            activeFontStyle={{ color: colors.onPrimary }}
           />
         </View>
         <View style={styles.emptyState}>
-          <Text
-            style={[styles.emptyStateTitle, { color: activeColors.primary }]}
-          >
-            No contacts available
+          <Text style={[styles.emptyStateTitle, { color: colors.primary }]}>
+            Geen contacten beschikbaar
           </Text>
-          <Text
-            style={[styles.emptyStateMessage, { color: activeColors.text }]}
-          >
-            There are no contacts in this section at the moment.
+          <Text style={[styles.emptyStateMessage, { color: colors.textSecondary }]}>
+            Er zijn momenteel geen contacten in deze sectie.
           </Text>
         </View>
       </View>
@@ -65,23 +49,17 @@ export default function ContactScreen() {
   }
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: activeColors.background }]}
-    >
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.segmentedControlContainer}>
         <SegmentedControl
           values={tabValues}
           selectedIndex={activeTab}
           onChange={handleSegmentChange}
           style={styles.segmentedControl}
-          appearance={colorScheme === "dark" ? "dark" : "light"}
-          tintColor={activeColors.primary}
-          fontStyle={{
-            color: activeColors.text,
-          }}
-          activeFontStyle={{
-            color: activeColors.activeText,
-          }}
+          appearance={isDark ? "dark" : "light"}
+          tintColor={colors.primary}
+          fontStyle={{ color: colors.textSecondary }}
+          activeFontStyle={{ color: colors.onPrimary }}
         />
       </View>
 
@@ -98,6 +76,7 @@ export default function ContactScreen() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

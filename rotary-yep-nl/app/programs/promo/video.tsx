@@ -15,7 +15,7 @@ import { useVideoPlayer, VideoView } from "expo-video";
 import { useEvent } from "expo";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 type Video = { title: string; description: string; url: string };
 
 function VideoRow({

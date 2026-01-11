@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 const items = [
   {
     key: "podcast",

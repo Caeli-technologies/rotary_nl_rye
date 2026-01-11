@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 const shadowStyle = {
   shadowColor: "#000",
   shadowOffset: { width: 0, height: 4 },

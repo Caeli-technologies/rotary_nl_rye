@@ -1,214 +1,82 @@
-import { useCallback, useMemo } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  Platform,
-} from "react-native";
+/**
+ * Rotary Clubs screen route
+ * Thin wrapper using the rotary-clubs feature module
+ */
+
+import { useCallback } from "react";
+import { FlatList, View, Text, StyleSheet, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
-interface OptionItem {
-  title: string;
-  icon: keyof typeof FontAwesome5.glyphMap;
-  route: string;
-}
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { SectionNavCard, useClubSections } from "@/features/rotary-clubs";
+import type { ClubSectionNavItem } from "@/features/rotary-clubs";
 
 export default function RotaryClubsScreen() {
-  const { colors: themeColors } = useTheme();
+  const { colors } = useTheme();
+  const { sections, introText } = useClubSections();
 
-  const handleOptionPress = useCallback(async (route: string) => {
-    try {
-      if (Platform.OS === "ios") {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
-      router.push(route as any);
-    } catch (error) {
-      console.error("Error navigating to route:", error);
-      // Still navigate even if haptics fail
-      router.push(route as any);
+  const handleSectionPress = useCallback(async (sectionId: string) => {
+    if (Platform.OS === "ios") {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
+    router.push(`/rotary-clubs/${sectionId}` as any);
   }, []);
 
-  const renderOptionItem = useCallback(
-    ({ item }: { item: OptionItem }) => (
-      <Pressable
-        style={({ pressed }) => [
-          styles.optionRow,
-          {
-            backgroundColor: themeColors.card,
-            borderColor: themeColors.border,
-            shadowColor: themeColors.shadow,
-          },
-          pressed && styles.optionRowPressed,
-        ]}
-        onPress={() => handleOptionPress(item.route)}
-        android_ripple={{
-          color: "rgba(0, 122, 255, 0.2)",
-          borderless: false,
-        }}
-        accessibilityRole="button"
-        accessibilityLabel={item.title}
-        accessibilityHint="Tap to view more information"
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      >
-        <View style={styles.optionContent}>
-          <View
-            style={[
-              styles.iconContainer,
-              { backgroundColor: themeColors.primary + "15" },
-            ]}
-          >
-            <FontAwesome5 name={item.icon} size={22} color={themeColors.link} />
-          </View>
-          <Text style={[styles.optionTitle, { color: themeColors.text }]}>
-            {item.title}
-          </Text>
-          <Ionicons
-            name={Platform.OS === "ios" ? "chevron-forward" : "arrow-forward"}
-            size={20}
-            color={themeColors.textTertiary}
-          />
-        </View>
-      </Pressable>
-    ),
-    [
-      handleOptionPress,
-      themeColors.card,
-      themeColors.border,
-      themeColors.shadow,
-      themeColors.primary,
-      themeColors.link,
-      themeColors.text,
-      themeColors.textTertiary,
-    ],
-  );
-
-  const options: OptionItem[] = useMemo(
-    () => [
-      {
-        title: "Algemene Informatie",
-        icon: "info-circle" as keyof typeof FontAwesome5.glyphMap,
-        route: "/rotary-clubs/algemene-informatie",
-      },
-      {
-        title: "Info voor de Jeugdcommissaris",
-        icon: "user-tie" as keyof typeof FontAwesome5.glyphMap,
-        route: "/rotary-clubs/jeugdcommissaris",
-      },
-      {
-        title: "Info Gastgezin",
-        icon: "home" as keyof typeof FontAwesome5.glyphMap,
-        route: "/rotary-clubs/gastgezin",
-      },
-      {
-        title: "Info Counselor",
-        icon: "hands-helping" as keyof typeof FontAwesome5.glyphMap,
-        route: "/rotary-clubs/counselor",
-      },
-      {
-        title: "Belangrijke Documenten",
-        icon: "exclamation-triangle" as keyof typeof FontAwesome5.glyphMap,
-        route: "/rotary-clubs/documenten",
-      },
-    ],
-    [],
-  );
-  const ListHeaderComponent = useCallback(
+  const renderHeader = useCallback(
     () => (
-      <View style={styles.content}>
-        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
-          Wat leuk dat jullie als Rotary club van plan zijn om een jaarstudent
-          te supporten en daarmee dus ook een jaar lang een kind binnen jullie
-          club te ontvangen en te begeleiden. Misschien zijn jullie benaderd
-          door een scholier van buiten jullie of mogelijk vanuit de wens van één
-          van jullie clubleden.
+      <View style={styles.header}>
+        <Text style={[styles.introText, { color: colors.textSecondary }]}>
+          {introText}
         </Text>
       </View>
     ),
-    [themeColors.textSecondary],
+    [colors.textSecondary, introText],
   );
+
+  const renderItem = useCallback(
+    ({ item }: { item: ClubSectionNavItem }) => (
+      <SectionNavCard
+        section={item}
+        onPress={() => handleSectionPress(item.id)}
+      />
+    ),
+    [handleSectionPress],
+  );
+
+  const keyExtractor = useCallback((item: ClubSectionNavItem) => item.id, []);
 
   return (
     <SafeAreaView
-      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      style={{ flex: 1, backgroundColor: colors.background }}
       edges={["bottom"]}
     >
-      <View
-        style={[styles.container, { backgroundColor: themeColors.background }]}
-      >
-        <FlatList
-          data={options}
-          renderItem={renderOptionItem}
-          keyExtractor={useCallback((item: OptionItem) => item.route, [])}
-          ListHeaderComponent={ListHeaderComponent}
-          showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={styles.listContainer}
-          removeClippedSubviews={true}
-          maxToRenderPerBatch={10}
-          windowSize={10}
-        />
-      </View>
+      <FlatList
+        data={sections}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        ListHeaderComponent={renderHeader}
+        contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
+  list: {
+    padding: spacing.md,
+    paddingBottom: spacing.xl,
   },
-  container: {
-    flex: 1,
-  },
-  listContainer: {
-    padding: 16,
-    paddingBottom: 34,
-  },
-  content: {
-    marginBottom: 16,
+  header: {
+    marginBottom: spacing.md,
   },
   introText: {
     fontSize: 15,
     lineHeight: 22,
     textAlign: "left",
-    paddingHorizontal: 16,
-  },
-  optionRow: {
-    borderRadius: 12,
-    marginBottom: 12,
-    overflow: "hidden",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  optionRowPressed: {
-    opacity: Platform.OS === "ios" ? 0.8 : 1,
-    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
-  },
-  optionContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 16,
-    minHeight: 72,
-  },
-  iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 16,
-  },
-  optionTitle: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: "600",
-    marginRight: 8,
+    paddingHorizontal: spacing.md,
   },
 });

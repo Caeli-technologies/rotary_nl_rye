@@ -8,10 +8,9 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
-import { makePhoneCall, sendEmail } from "@/utils/communications";
-
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
+import { makePhoneCall, sendEmail } from "@/shared/utils/communications";
 
 const shadowStyle = {
   shadowColor: "#000",

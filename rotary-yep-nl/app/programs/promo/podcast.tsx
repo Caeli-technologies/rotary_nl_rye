@@ -12,7 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import type { AudioStatus } from "expo-audio";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 type Podcast = { title: string; description: string; url: string };
 
 const podcasts: Podcast[] = [

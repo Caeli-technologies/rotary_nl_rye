@@ -15,7 +15,7 @@ import * as Application from "expo-application";
 import * as Haptics from "expo-haptics";
 import * as StoreReview from "expo-store-review";
 
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 
 const shadowStyle = {
   shadowColor: "#000",

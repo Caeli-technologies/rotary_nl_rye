@@ -1,294 +1,67 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  Alert,
-  Linking,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
-import { Image } from "expo-image";
-import { useLocalSearchParams } from "expo-router";
-import { useTheme } from "@/hooks/use-theme";
-interface NewsText {
-  heading?: string;
-  body?: {
-    paragraph?: string[];
-    videoUrl?: string;
-    imageUrl?: string;
-  }[];
-}
+/**
+ * News detail screen route
+ * Thin wrapper using the news feature module
+ */
 
-interface NewsItem {
-  id: number;
-  images: string;
-  pdf: string | null;
-  title: string;
-  description: string;
-  isPdf: string;
-  text?: NewsText[];
-}
+import { useMemo } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useLocalSearchParams, router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/core/theme";
+import { NewsDetail, convertRawNewsItem } from "@/features/news";
+import type { RawNewsItem } from "@/features/news";
 
 export default function NewsDetailScreen() {
-  const { colors: themeColors } = useTheme();
+  const { colors } = useTheme();
+  const { content } = useLocalSearchParams<{ content: string }>();
 
-  const { content } = useLocalSearchParams<{
-    content: string;
-  }>();
-
-  let newsItem: NewsItem | null = null;
-
-  try {
-    if (content) {
-      newsItem = JSON.parse(content);
+  const newsItem = useMemo(() => {
+    if (!content) return null;
+    try {
+      const raw: RawNewsItem = JSON.parse(content);
+      return convertRawNewsItem(raw);
+    } catch {
+      return null;
     }
-  } catch (error) {
-    console.error("Error parsing news content:", error);
-  }
+  }, [content]);
+
+  const handleOpenPdf = () => {
+    if (newsItem?.pdfUrl) {
+      router.push({
+        pathname: "/pdf-viewer",
+        params: { url: newsItem.pdfUrl, title: newsItem.title },
+      });
+    }
+  };
 
   if (!newsItem) {
     return (
       <SafeAreaView
-        style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+        style={{ flex: 1, backgroundColor: colors.background }}
         edges={["bottom"]}
       >
-        <View
-          style={[
-            styles.container,
-            { backgroundColor: themeColors.background },
-          ]}
-        >
-          <View style={styles.centered}>
-            <Text style={[styles.errorText, { color: themeColors.error }]}>
-              News item not found
-            </Text>
-          </View>
+        <View style={styles.centered}>
+          <Ionicons name="alert-circle" size={64} color={colors.error} />
+          <Text style={[styles.errorText, { color: colors.error }]}>
+            Nieuwsbericht niet gevonden
+          </Text>
         </View>
       </SafeAreaView>
     );
   }
 
-  const handleVideoPress = (videoUrl: string) => {
-    Linking.openURL(videoUrl).catch((err) => {
-      console.error("Error opening video:", err);
-      Alert.alert("Error", "Could not open video");
-    });
-  };
-
   return (
     <SafeAreaView
-      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+      style={{ flex: 1, backgroundColor: colors.background }}
       edges={["bottom"]}
     >
-      <View
-        style={[styles.container, { backgroundColor: themeColors.background }]}
-      >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* Header Image */}
-          <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: newsItem.images }}
-              style={styles.headerImage}
-              contentFit="cover"
-              placeholder="https://via.placeholder.com/400x200/E0E0E0/999999?text=Loading"
-            />
-          </View>
-
-          <View style={styles.contentContainer}>
-            {/* Title */}
-            <Text style={[styles.newsTitle, { color: themeColors.text }]}>
-              {newsItem.title}
-            </Text>
-
-            {/* Description */}
-            {newsItem.description && (
-              <Text
-                style={[
-                  styles.newsDescription,
-                  { color: themeColors.textSecondary },
-                ]}
-              >
-                {newsItem.description}
-              </Text>
-            )}
-
-            {/* Content Sections */}
-            {newsItem.text?.map((section, sectionIndex) => (
-              <View
-                key={`section-${sectionIndex}-${section.heading || "no-heading"}`}
-                style={styles.section}
-              >
-                {section.heading && (
-                  <Text
-                    style={[styles.sectionHeading, { color: themeColors.text }]}
-                  >
-                    {section.heading}
-                  </Text>
-                )}
-
-                {section.body?.map((bodyItem, bodyIndex) => (
-                  <View
-                    key={`section-${sectionIndex}-body-${bodyItem.paragraph?.[0]?.substring(0, 20) || bodyItem.videoUrl || bodyItem.imageUrl || bodyIndex}`}
-                    style={styles.bodyItem}
-                  >
-                    {/* Paragraphs */}
-                    {bodyItem.paragraph?.map((paragraph, paragraphIndex) => (
-                      <Text
-                        key={`section-${sectionIndex}-body-${bodyIndex}-paragraph-${paragraphIndex}-${paragraph.substring(0, 20)}`}
-                        style={[
-                          styles.paragraph,
-                          { color: themeColors.textSecondary },
-                        ]}
-                      >
-                        {paragraph}
-                      </Text>
-                    ))}
-
-                    {/* Video */}
-                    {bodyItem.videoUrl && (
-                      <Pressable
-                        style={[
-                          styles.videoContainer,
-                          { backgroundColor: themeColors.card },
-                        ]}
-                        onPress={() =>
-                          bodyItem.videoUrl &&
-                          handleVideoPress(bodyItem.videoUrl)
-                        }
-                      >
-                        <View
-                          style={[
-                            styles.videoPlaceholder,
-                            {
-                              backgroundColor: themeColors.backgroundElevated,
-                            },
-                          ]}
-                        >
-                          <Ionicons
-                            name="play-circle"
-                            size={64}
-                            color={themeColors.primary}
-                          />
-                          <Text
-                            style={[
-                              styles.videoText,
-                              { color: themeColors.text },
-                            ]}
-                          >
-                            Tap to play video
-                          </Text>
-                        </View>
-                      </Pressable>
-                    )}
-
-                    {/* Image */}
-                    {bodyItem.imageUrl && (
-                      <View
-                        style={[
-                          styles.contentImageContainer,
-                          { backgroundColor: themeColors.card },
-                        ]}
-                      >
-                        <Image
-                          source={{ uri: bodyItem.imageUrl }}
-                          style={styles.contentImage}
-                          contentFit="cover"
-                          placeholder="https://via.placeholder.com/300x200/E0E0E0/999999?text=Loading"
-                        />
-                      </View>
-                    )}
-                  </View>
-                ))}
-              </View>
-            ))}
-          </View>
-        </ScrollView>
-      </View>
+      <NewsDetail item={newsItem} onOpenPdf={handleOpenPdf} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 34,
-  },
-  imageContainer: {
-    height: 200,
-  },
-  headerImage: {
-    width: "100%",
-    height: "100%",
-  },
-  contentContainer: {
-    padding: 20,
-  },
-  newsTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    marginBottom: 16,
-    lineHeight: 32,
-  },
-  newsDescription: {
-    fontSize: 16,
-    fontWeight: "400",
-    lineHeight: 24,
-    marginBottom: 20,
-  },
-  section: {
-    marginBottom: 24,
-  },
-  sectionHeading: {
-    fontSize: 20,
-    fontWeight: "600",
-    marginBottom: 12,
-    lineHeight: 28,
-  },
-  bodyItem: {
-    marginBottom: 16,
-  },
-  paragraph: {
-    fontSize: 16,
-    fontWeight: "400",
-    lineHeight: 24,
-    marginBottom: 12,
-  },
-  videoContainer: {
-    marginVertical: 16,
-    borderRadius: 12,
-    overflow: "hidden",
-    backgroundColor: "#f0f0f0",
-  },
-  videoPlaceholder: {
-    height: 200,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#e8e8e8",
-  },
-  videoText: {
-    marginTop: 8,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  contentImageContainer: {
-    marginVertical: 16,
-    borderRadius: 12,
-    overflow: "hidden",
-  },
-  contentImage: {
-    width: "100%",
-    height: 200,
-  },
   centered: {
     flex: 1,
     justifyContent: "center",
@@ -296,9 +69,9 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   errorText: {
+    marginTop: 16,
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#ff6b6b",
+    fontWeight: "600",
     textAlign: "center",
   },
 });

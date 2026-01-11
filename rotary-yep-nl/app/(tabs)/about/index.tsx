@@ -1,6 +1,6 @@
 import { Platform, ScrollView, StyleSheet, View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
 
 export default function AboutScreen() {
   const { colors: themeColors } = useTheme();

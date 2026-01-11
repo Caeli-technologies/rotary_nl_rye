@@ -11,8 +11,8 @@ import {
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/hooks/use-theme";
-import { ImageModal } from "@/components/image-modal";
+import { useTheme } from "@/core/theme";
+import { ImageModal } from "@/shared/components/media/ImageModal";
 const shadowStyle = {
   shadowColor: "#000",
   shadowOffset: { width: 0, height: 4 },

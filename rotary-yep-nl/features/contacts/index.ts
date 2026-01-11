@@ -18,7 +18,13 @@ export {
 } from './hooks';
 
 // Data
-export { contactSections } from './data';
+export {
+  contactSections,
+  longTermContacts,
+  shortTermContacts,
+  mdjcContacts,
+  rotexContacts,
+} from './data';
 
 // Types
 export type { Contact, ContactCategory, ContactSection as ContactSectionType } from './types';

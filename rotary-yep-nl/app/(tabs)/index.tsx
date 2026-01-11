@@ -20,8 +20,8 @@ import { Ionicons, Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/hooks/use-theme";
-import type { ThemeColors } from "@/hooks/use-theme";
+import { useTheme } from "@/core/theme";
+import type { ThemeColors } from "@/core/theme";
 
 interface HomeCardProps {
   icon?: keyof typeof Ionicons.glyphMap;
