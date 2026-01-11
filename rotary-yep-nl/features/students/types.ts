@@ -20,6 +20,8 @@ export type StudentType = "inbound" | "outbound" | "rebound";
 /**
  * Base student interface
  */
+
+// TODO: remove the [id], and generate IDs dynamically, also rename homeCountry and hostCountry to homeCountryCode and hostCountryCode because we only store the codes internally. and then resolve the names via a country list. because the full names we have in the flags logic already!
 export interface Student {
   id: string;
   name: string;
