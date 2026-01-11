@@ -2,13 +2,35 @@
  * API for fetching camps and tours data from CSV
  */
 
-import { parse } from "csv-parse/sync";
 import { env } from "@/core/config/env";
 import type { Camp, CountryWithCode } from "../types";
 
 interface FetchCampsResult {
 	camps: Camp[];
 	countries: CountryWithCode[];
+}
+
+/**
+ * Simple CSV parser for React Native
+ * Handles basic CSV with configurable delimiter
+ */
+function parseCSV(
+	text: string,
+	options: { delimiter?: string; skipEmptyLines?: boolean } = {},
+): string[][] {
+	const { delimiter = ",", skipEmptyLines = true } = options;
+
+	const lines = text.split(/\r?\n/);
+	const result: string[][] = [];
+
+	for (const line of lines) {
+		if (skipEmptyLines && line.trim() === "") {
+			continue;
+		}
+		result.push(line.split(delimiter));
+	}
+
+	return result;
 }
 
 /**
@@ -80,10 +102,10 @@ export async function fetchCamps(): Promise<FetchCampsResult> {
 	const csvText = await response.text();
 
 	// Parse CSV with semicolon delimiter
-	const parsedData = parse(csvText, {
+	const parsedData = parseCSV(csvText, {
 		delimiter: ";",
-		skip_empty_lines: true,
-	}) as string[][];
+		skipEmptyLines: true,
+	});
 
 	// Skip header row and convert to Camp objects
 	const camps: Camp[] = parsedData.slice(1).map((row, index) => ({

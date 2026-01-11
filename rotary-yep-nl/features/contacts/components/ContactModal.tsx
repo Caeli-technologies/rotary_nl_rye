@@ -2,7 +2,7 @@
  * Contact detail modal component
  */
 
-import { useCallback } from 'react';
+import { useCallback } from "react";
 import {
   Modal,
   View,
@@ -11,19 +11,19 @@ import {
   Pressable,
   Platform,
   StyleSheet,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
-import { NetworkImage } from '@/shared/components/media/NetworkImage';
-import { useHaptics } from '@/shared/hooks';
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { NetworkImage } from "@/shared/components/media/NetworkImage";
+import { useHaptics } from "@/shared/hooks";
 import {
   makePhoneCall,
   sendEmail,
   openURL,
-} from '@/shared/utils/communications';
-import type { Contact } from '../types';
+} from "@/shared/utils/communications";
+import type { Contact } from "../types";
 
 interface ContactModalProps {
   contact: Contact | null;
@@ -32,11 +32,11 @@ interface ContactModalProps {
 }
 
 const SOCIAL_PLATFORMS = [
-  { key: 'instagram', icon: 'logo-instagram', color: '#E4405F' },
-  { key: 'facebook', icon: 'logo-facebook', color: '#1877F2' },
-  { key: 'snapchat', icon: 'logo-snapchat', color: '#FFFC00' },
-  { key: 'linkedin', icon: 'logo-linkedin', color: '#0A66C2' },
-  { key: 'website', icon: 'globe-outline', color: '#6366F1' },
+  { key: "instagram", icon: "logo-instagram", color: "#E4405F" },
+  { key: "facebook", icon: "logo-facebook", color: "#1877F2" },
+  { key: "snapchat", icon: "logo-snapchat", color: "#FFFC00" },
+  { key: "linkedin", icon: "logo-linkedin", color: "#0A66C2" },
+  { key: "website", icon: "globe-outline", color: "#6366F1" },
 ] as const;
 
 export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
@@ -62,12 +62,12 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
       lightImpact();
       openURL(url);
     },
-    [lightImpact]
+    [lightImpact],
   );
 
   if (!contact) return null;
 
-  const isRotex = contact.category === 'rotex';
+  const isRotex = contact.category === "rotex";
   const hasOrgInfo = Boolean(contact.club || contact.district);
   const hasContact = Boolean(contact.email || contact.phone);
   const hasBio = Boolean(contact.bio?.trim());
@@ -76,9 +76,10 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
     Object.values(contact.socialMedia).some((v) => v?.trim());
 
   const validSocialPlatforms = hasSocialMedia
-    ? SOCIAL_PLATFORMS.filter(
-        (p) =>
-          contact.socialMedia?.[p.key as keyof typeof contact.socialMedia]?.trim()
+    ? SOCIAL_PLATFORMS.filter((p) =>
+        contact.socialMedia?.[
+          p.key as keyof typeof contact.socialMedia
+        ]?.trim(),
       )
     : [];
 
@@ -86,15 +87,18 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
     <Modal
       visible={visible}
       animationType="slide"
-      presentationStyle={Platform.OS === 'ios' ? 'pageSheet' : 'fullScreen'}
+      presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
       onRequestClose={onClose}
     >
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         {/* Modal Handle Bar (iOS style) */}
-        {Platform.OS === 'ios' && (
+        {Platform.OS === "ios" && (
           <View style={styles.handleContainer}>
             <View
-              style={[styles.handleBar, { backgroundColor: colors.textTertiary }]}
+              style={[
+                styles.handleBar,
+                { backgroundColor: colors.textTertiary },
+              ]}
             />
           </View>
         )}
@@ -142,11 +146,14 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 <View
                   style={[
                     styles.logoContainer,
-                    { backgroundColor: colors.card, shadowColor: colors.shadow },
+                    {
+                      backgroundColor: colors.card,
+                      shadowColor: colors.shadow,
+                    },
                   ]}
                 >
                   <Image
-                    source={require('@/assets/logo/rotex_logo_light.svg')}
+                    source={require("@/assets/logo/rotex_logo_light.svg")}
                     style={styles.organizationLogo}
                     contentFit="contain"
                   />
@@ -156,11 +163,14 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 <View
                   style={[
                     styles.logoContainer,
-                    { backgroundColor: colors.card, shadowColor: colors.shadow },
+                    {
+                      backgroundColor: colors.card,
+                      shadowColor: colors.shadow,
+                    },
                   ]}
                 >
                   <Image
-                    source={require('@/assets/logo/rotary-logo-icon.svg')}
+                    source={require("@/assets/logo/rotary-logo-icon.svg")}
                     style={styles.organizationLogo}
                     contentFit="contain"
                     tintColor={colors.secondary}
@@ -180,9 +190,14 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                   .map((func) => (
                     <View
                       key={func}
-                      style={[styles.functionChip, { backgroundColor: colors.primary }]}
+                      style={[
+                        styles.functionChip,
+                        { backgroundColor: colors.primary },
+                      ]}
                     >
-                      <Text style={[styles.functionText, { color: colors.card }]}>
+                      <Text
+                        style={[styles.functionText, { color: colors.card }]}
+                      >
                         {func}
                       </Text>
                     </View>
@@ -203,8 +218,17 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
-                <Ionicons name="business-outline" size={20} color={colors.primary} />
+              <View
+                style={[
+                  styles.sectionHeader,
+                  { borderBottomColor: colors.border },
+                ]}
+              >
+                <Ionicons
+                  name="business-outline"
+                  size={20}
+                  color={colors.primary}
+                />
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   Organization
                 </Text>
@@ -212,7 +236,10 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
               <View style={styles.sectionContent}>
                 {contact.club && (
                   <View
-                    style={[styles.infoRow, { backgroundColor: colors.backgroundElevated }]}
+                    style={[
+                      styles.infoRow,
+                      { backgroundColor: colors.backgroundElevated },
+                    ]}
                   >
                     <View
                       style={[
@@ -221,14 +248,19 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                       ]}
                     >
                       <Image
-                        source={require('@/assets/logo/rotary-logo-icon.svg')}
+                        source={require("@/assets/logo/rotary-logo-icon.svg")}
                         style={styles.infoIcon}
                         contentFit="contain"
                         tintColor={colors.secondary}
                       />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
+                      <Text
+                        style={[
+                          styles.infoLabel,
+                          { color: colors.textSecondary },
+                        ]}
+                      >
                         Rotary Club
                       </Text>
                       <Text style={[styles.infoText, { color: colors.text }]}>
@@ -239,7 +271,10 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 )}
                 {contact.district && (
                   <View
-                    style={[styles.infoRow, { backgroundColor: colors.backgroundElevated }]}
+                    style={[
+                      styles.infoRow,
+                      { backgroundColor: colors.backgroundElevated },
+                    ]}
                   >
                     <View
                       style={[
@@ -247,10 +282,19 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                         { backgroundColor: `${colors.accent}15` },
                       ]}
                     >
-                      <Ionicons name="globe-outline" size={20} color={colors.accent} />
+                      <Ionicons
+                        name="globe-outline"
+                        size={20}
+                        color={colors.accent}
+                      />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
+                      <Text
+                        style={[
+                          styles.infoLabel,
+                          { color: colors.textSecondary },
+                        ]}
+                      >
                         District
                       </Text>
                       <Text style={[styles.infoText, { color: colors.text }]}>
@@ -275,8 +319,17 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
-                <Ionicons name="call-outline" size={20} color={colors.primary} />
+              <View
+                style={[
+                  styles.sectionHeader,
+                  { borderBottomColor: colors.border },
+                ]}
+              >
+                <Ionicons
+                  name="call-outline"
+                  size={20}
+                  color={colors.primary}
+                />
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   Contact Information
                 </Text>
@@ -300,14 +353,23 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                       <Ionicons name="mail" size={20} color={colors.primary} />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
+                      <Text
+                        style={[
+                          styles.infoLabel,
+                          { color: colors.textSecondary },
+                        ]}
+                      >
                         Email
                       </Text>
                       <Text style={[styles.infoText, { color: colors.text }]}>
                         {contact.email}
                       </Text>
                     </View>
-                    <Ionicons name="chevron-forward" size={16} color={colors.textTertiary} />
+                    <Ionicons
+                      name="chevron-forward"
+                      size={16}
+                      color={colors.textTertiary}
+                    />
                   </Pressable>
                 )}
                 {contact.phone && (
@@ -328,14 +390,23 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                       <Ionicons name="call" size={20} color={colors.primary} />
                     </View>
                     <View style={styles.infoTextContainer}>
-                      <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
+                      <Text
+                        style={[
+                          styles.infoLabel,
+                          { color: colors.textSecondary },
+                        ]}
+                      >
                         Phone
                       </Text>
                       <Text style={[styles.infoText, { color: colors.text }]}>
                         {contact.phone}
                       </Text>
                     </View>
-                    <Ionicons name="chevron-forward" size={16} color={colors.textTertiary} />
+                    <Ionicons
+                      name="chevron-forward"
+                      size={16}
+                      color={colors.textTertiary}
+                    />
                   </Pressable>
                 )}
               </View>
@@ -354,8 +425,17 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
-                <Ionicons name="person-outline" size={20} color={colors.primary} />
+              <View
+                style={[
+                  styles.sectionHeader,
+                  { borderBottomColor: colors.border },
+                ]}
+              >
+                <Ionicons
+                  name="person-outline"
+                  size={20}
+                  color={colors.primary}
+                />
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   Biography
                 </Text>
@@ -380,8 +460,17 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                 },
               ]}
             >
-              <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
-                <Ionicons name="share-social-outline" size={20} color={colors.primary} />
+              <View
+                style={[
+                  styles.sectionHeader,
+                  { borderBottomColor: colors.border },
+                ]}
+              >
+                <Ionicons
+                  name="share-social-outline"
+                  size={20}
+                  color={colors.primary}
+                />
                 <Text style={[styles.sectionTitle, { color: colors.text }]}>
                   Social Media
                 </Text>
@@ -417,14 +506,24 @@ export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
                         />
                       </View>
                       <View style={styles.infoTextContainer}>
-                        <Text style={[styles.infoLabel, { color: colors.textSecondary }]}>
+                        <Text
+                          style={[
+                            styles.infoLabel,
+                            { color: colors.textSecondary },
+                          ]}
+                        >
                           Follow on
                         </Text>
                         <Text style={[styles.infoText, { color: colors.text }]}>
-                          {platform.key.charAt(0).toUpperCase() + platform.key.slice(1)}
+                          {platform.key.charAt(0).toUpperCase() +
+                            platform.key.slice(1)}
                         </Text>
                       </View>
-                      <Ionicons name="open-outline" size={16} color={colors.textTertiary} />
+                      <Ionicons
+                        name="open-outline"
+                        size={16}
+                        color={colors.textTertiary}
+                      />
                     </Pressable>
                   );
                 })}
@@ -452,7 +551,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   handleContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     paddingVertical: 12,
   },
   handleBar: {
@@ -462,17 +561,17 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: spacing.lg,
-    paddingTop: Platform.OS === 'ios' ? spacing.sm : spacing.lg,
+    paddingTop: Platform.OS === "ios" ? spacing.sm : spacing.lg,
     paddingBottom: spacing.md,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     flex: 1,
     marginRight: spacing.md,
   },
@@ -481,34 +580,38 @@ const styles = StyleSheet.create({
   },
   closeButtonPressed: {
     opacity: 0.6,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.95 }] : [],
+    transform: Platform.OS === "ios" ? [{ scale: 0.95 }] : [],
   },
   body: {
     padding: spacing.lg,
   },
   profileSection: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: spacing.lg,
     padding: spacing.lg,
     borderRadius: spacing.radiusLg,
-    ...(Platform.OS === 'ios'
+    ...(Platform.OS === "ios"
       ? shadowStyle
       : { elevation: 3, borderWidth: StyleSheet.hairlineWidth }),
   },
   profileImageContainer: {
-    position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'center',
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: spacing.md,
   },
   logoContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: -8,
     right: -8,
     borderRadius: 20,
     padding: 6,
-    ...(Platform.OS === 'ios'
-      ? { shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.15, shadowRadius: 4 }
+    ...(Platform.OS === "ios"
+      ? {
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.15,
+          shadowRadius: 4,
+        }
       : { elevation: 4 }),
   },
   organizationLogo: {
@@ -516,15 +619,15 @@ const styles = StyleSheet.create({
     height: 24,
   },
   profileName: {
-    fontSize: Platform.OS === 'ios' ? 28 : 24,
-    fontWeight: Platform.OS === 'ios' ? '700' : '600',
-    textAlign: 'center',
+    fontSize: Platform.OS === "ios" ? 28 : 24,
+    fontWeight: Platform.OS === "ios" ? "700" : "600",
+    textAlign: "center",
     marginBottom: spacing.sm,
   },
   functionsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
     marginTop: spacing.sm,
     gap: spacing.sm,
   },
@@ -535,42 +638,42 @@ const styles = StyleSheet.create({
   },
   functionText: {
     fontSize: 12,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   section: {
     borderRadius: spacing.radiusMd,
     marginBottom: spacing.md,
-    overflow: 'hidden',
-    ...(Platform.OS === 'ios'
+    overflow: "hidden",
+    ...(Platform.OS === "ios"
       ? shadowStyle
       : { elevation: 2, borderWidth: StyleSheet.hairlineWidth }),
   },
   sectionHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     marginLeft: spacing.sm,
   },
   sectionContent: {
     padding: spacing.md,
   },
   infoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
     borderRadius: spacing.radiusMd,
     marginBottom: spacing.sm,
   },
   actionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
     borderRadius: spacing.radiusMd,
@@ -578,14 +681,14 @@ const styles = StyleSheet.create({
   },
   actionRowPressed: {
     opacity: 0.7,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
   },
   infoIconContainer: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginRight: spacing.sm,
   },
   infoIcon: {
@@ -597,12 +700,12 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     fontSize: 12,
-    fontWeight: '500',
+    fontWeight: "500",
     marginBottom: 2,
   },
   infoText: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   bioText: {
     fontSize: 16,

@@ -2,14 +2,14 @@
  * Emergency 112 section component
  */
 
-import { View, Text, StyleSheet, Platform } from 'react-native';
-import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
+import { View, Text, StyleSheet, Platform } from "react-native";
+import { Image } from "expo-image";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
 
 const shadowStyle = {
-  shadowColor: '#000',
+  shadowColor: "#000",
   shadowOffset: { width: 0, height: 4 },
   shadowOpacity: 0.08,
   shadowRadius: 20,
@@ -40,7 +40,7 @@ export function Emergency112Section() {
         112 for ambulance, fire brigade or police
       </Text>
       <Image
-        source={require('@/assets/emergency/112_logo.png')}
+        source={require("@/assets/emergency/112_logo.png")}
         style={styles.image}
         contentFit="contain"
       />
@@ -53,28 +53,28 @@ const styles = StyleSheet.create({
     borderRadius: spacing.radiusLg,
     padding: spacing.lg,
     marginBottom: spacing.lg,
-    alignItems: 'center',
-    ...(Platform.OS === 'ios'
+    alignItems: "center",
+    ...(Platform.OS === "ios"
       ? shadowStyle
       : { elevation: 3, borderWidth: StyleSheet.hairlineWidth }),
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: spacing.sm,
   },
   title: {
-    fontSize: Platform.OS === 'ios' ? 20 : 18,
-    fontWeight: Platform.OS === 'ios' ? '700' : '600',
+    fontSize: Platform.OS === "ios" ? 20 : 18,
+    fontWeight: Platform.OS === "ios" ? "700" : "600",
     marginLeft: spacing.sm,
   },
   subtitle: {
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: spacing.md,
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 100,
     maxWidth: 200,
   },

@@ -2,20 +2,20 @@
  * Emergency contact card component
  */
 
-import { View, Text, Pressable, StyleSheet, Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
-import { useHaptics } from '@/shared/hooks';
-import { makePhoneCall, sendEmail } from '@/shared/utils/communications';
-import type { EmergencyContact } from '../types';
+import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { useHaptics } from "@/shared/hooks";
+import { makePhoneCall, sendEmail } from "@/shared/utils/communications";
+import type { EmergencyContact } from "../types";
 
 interface EmergencyCardProps {
   contact: EmergencyContact;
 }
 
 const shadowStyle = {
-  shadowColor: '#000',
+  shadowColor: "#000",
   shadowOffset: { width: 0, height: 4 },
   shadowOpacity: 0.08,
   shadowRadius: 20,
@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
     borderRadius: spacing.radiusMd,
     padding: spacing.md,
     marginBottom: spacing.sm,
-    flexDirection: 'row',
-    alignItems: 'center',
-    ...(Platform.OS === 'ios'
+    flexDirection: "row",
+    alignItems: "center",
+    ...(Platform.OS === "ios"
       ? shadowStyle
       : { elevation: 2, borderWidth: StyleSheet.hairlineWidth }),
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 4,
   },
   role: {
@@ -115,21 +115,21 @@ const styles = StyleSheet.create({
   },
   phone: {
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   actions: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: spacing.sm,
   },
   actionButton: {
-    width: Platform.OS === 'ios' ? 44 : 48,
-    height: Platform.OS === 'ios' ? 44 : 48,
-    borderRadius: Platform.OS === 'ios' ? 22 : 24,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: Platform.OS === "ios" ? 44 : 48,
+    height: Platform.OS === "ios" ? 44 : 48,
+    borderRadius: Platform.OS === "ios" ? 22 : 24,
+    justifyContent: "center",
+    alignItems: "center",
   },
   actionButtonPressed: {
     opacity: 0.8,
-    transform: Platform.OS === 'ios' ? [{ scale: 0.98 }] : [],
+    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
   },
 });

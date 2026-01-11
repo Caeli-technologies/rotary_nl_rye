@@ -2,12 +2,12 @@
  * News list component for displaying all news items
  */
 
-import { FlatList, View, StyleSheet } from 'react-native';
-import { useTheme } from '@/core/theme';
-import { spacing } from '@/core/theme/spacing';
-import { EmptyState } from '@/shared/components/feedback/EmptyState';
-import { NewsCard } from './NewsCard';
-import type { NewsItem } from '../types';
+import { FlatList, View, StyleSheet } from "react-native";
+import { useTheme } from "@/core/theme";
+import { spacing } from "@/core/theme/spacing";
+import { EmptyState } from "@/shared/components/feedback/EmptyState";
+import { NewsCard } from "./NewsCard";
+import type { NewsItem } from "../types";
 
 interface NewsListProps {
   items: NewsItem[];
