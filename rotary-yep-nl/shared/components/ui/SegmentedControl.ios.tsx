@@ -26,7 +26,7 @@ export function SegmentedControl({
 
 	return (
 		<View style={[styles.container, style]}>
-			<Host style={styles.host}>
+			<Host matchContents style={styles.host}>
 				<Picker
 					variant="segmented"
 					options={values}
@@ -44,6 +44,5 @@ const styles = StyleSheet.create({
 	},
 	host: {
 		width: "100%",
-		minHeight: 32,
 	},
 });

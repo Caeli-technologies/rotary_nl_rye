@@ -4,7 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f94d0c60-67dc-489a-a276-c89b4b6b4ce7" name="Changes" comment="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching" />
+    <list default="true" id="f94d0c60-67dc-489a-a276-c89b4b6b4ce7" name="Changes" comment="chore: update workspace configuration and adjust task summaries for clarity">
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/inbound/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/inbound/long-term.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/inbound/short-term.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/inbound/student-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/outbound/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/outbound/long-term.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/outbound/short-term.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/outbound/student-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/rebound/[country].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/rebound/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotary-yep-nl/app/students/rebound/student-detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/_layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/inbound/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/inbound/long-term.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/inbound/short-term.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/inbound/student-detail.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/outbound/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/outbound/long-term.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/outbound/short-term.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/outbound/student-detail.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/rebound/[country].tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/rebound/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(students)/rebound/student-detail.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/(tabs)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/rotary-yep-nl/app/(tabs)/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/rotary-yep-nl/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rotary-yep-nl/shared/components/ui/SegmentedControl.ios.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/rotary-yep-nl/shared/components/ui/SegmentedControl.ios.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -148,7 +176,7 @@
       <workItem from="1759396922682" duration="5780000" />
       <workItem from="1768117715115" duration="16332000" />
       <workItem from="1768134372582" duration="90000" />
-      <workItem from="1768134482514" duration="940000" />
+      <workItem from="1768134482514" duration="2032000" />
     </task>
     <task id="LOCAL-00001" summary="chore: Update project configuration files and improve code formatting">
       <option name="closed" value="true" />
@@ -254,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768135264708</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="chore: update workspace configuration and adjust task summaries for clarity">
+      <option name="closed" value="true" />
+      <created>1768135484289</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1768135484289</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +310,8 @@
     <MESSAGE value="feat: implement platform-agnostic SegmentedControl component and update CSV parsing logic" />
     <MESSAGE value="style: standardize quotation marks and format code for consistency across multiple files" />
     <MESSAGE value="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: rename ESLint configuration file to CI and enhance workflow with TypeScript checks and caching" />
+    <MESSAGE value="chore: update workspace configuration and adjust task summaries for clarity" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update workspace configuration and adjust task summaries for clarity" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
