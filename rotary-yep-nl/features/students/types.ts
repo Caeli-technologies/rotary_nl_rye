@@ -3,14 +3,7 @@
  */
 
 import type { SocialMedia } from "@/core/types/common";
-
-/**
- * Country information
- */
-export interface Country {
-  code: string; // e.g., "nl", "us", "ar"
-  name: string; // e.g., "Netherlands", "USA", "Argentina"
-}
+import { getCountryName } from "@/shared/utils/flags";
 
 /**
  * Student type: inbound (coming to NL), outbound (going abroad), or rebound (returned)
@@ -18,10 +11,19 @@ export interface Country {
 export type StudentType = "inbound" | "outbound" | "rebound";
 
 /**
- * Base student interface
+ * Generate a unique student ID from name and type
  */
+export function generateStudentId(name: string, type: StudentType): string {
+  return `${type}-${name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")}`;
+}
 
-// TODO: remove the [id], and generate IDs dynamically, also rename homeCountry and hostCountry to homeCountryCode and hostCountryCode because we only store the codes internally. and then resolve the names via a country list. because the full names we have in the flags logic already!
+/**
+ * Base student interface
+ * Country codes are stored internally and resolved via getCountryName() for display
+ */
 export interface Student {
   id: string;
   name: string;
@@ -35,9 +37,9 @@ export interface Student {
   phone?: string;
   socialMedia?: SocialMedia;
 
-  // Exchange info
-  homeCountry: Country;
-  hostCountry: Country;
+  // Exchange info - country codes (e.g., "nl", "us", "ar")
+  homeCountryCode: string;
+  hostCountryCode: string;
   year?: string; // e.g., "2025-2026"
 
   // Type
@@ -48,7 +50,7 @@ export interface Student {
  * Grouped students by country
  */
 export interface CountryGroup {
-  country: Country;
+  countryCode: string;
   students: Student[];
 }
 
@@ -87,12 +89,6 @@ export interface RawStudent {
  * Helper to convert raw student to new format
  */
 export function convertRawStudent(raw: RawStudent, type: StudentType, year?: string): Student {
-  // Generate ID from name
-  const id = `${type}-${raw.name
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")}`;
-
   // Build social media object
   const socialMedia: SocialMedia | undefined =
     raw.instagramUrl || raw.facebookUrl || raw.snapchatUrl || raw.linkedinUrl || raw.websiteUrl
@@ -106,7 +102,7 @@ export function convertRawStudent(raw: RawStudent, type: StudentType, year?: str
       : undefined;
 
   return {
-    id,
+    id: generateStudentId(raw.name, type),
     name: raw.name,
     bio: raw.bio,
     description: raw.description,
@@ -115,14 +111,8 @@ export function convertRawStudent(raw: RawStudent, type: StudentType, year?: str
     email: raw.email || undefined,
     phone: raw.phoneNumber || undefined,
     socialMedia,
-    homeCountry: {
-      code: raw.fromFlag,
-      name: raw.from,
-    },
-    hostCountry: {
-      code: raw.toFlag,
-      name: raw.to,
-    },
+    homeCountryCode: raw.fromFlag,
+    hostCountryCode: raw.toFlag,
     year,
     type,
   };
@@ -135,20 +125,23 @@ export function groupByHomeCountry(students: Student[]): CountryGroup[] {
   const grouped = new Map<string, CountryGroup>();
 
   for (const student of students) {
-    const key = student.homeCountry.code;
+    const key = student.homeCountryCode;
     const existing = grouped.get(key);
 
     if (existing) {
       existing.students.push(student);
     } else {
       grouped.set(key, {
-        country: student.homeCountry,
+        countryCode: student.homeCountryCode,
         students: [student],
       });
     }
   }
 
-  return Array.from(grouped.values()).sort((a, b) => a.country.name.localeCompare(b.country.name));
+  // Sort by country name using the flags utility
+  return Array.from(grouped.values()).sort((a, b) =>
+    getCountryName(a.countryCode).localeCompare(getCountryName(b.countryCode)),
+  );
 }
 
 /**
@@ -158,20 +151,23 @@ export function groupByHostCountry(students: Student[]): CountryGroup[] {
   const grouped = new Map<string, CountryGroup>();
 
   for (const student of students) {
-    const key = student.hostCountry.code;
+    const key = student.hostCountryCode;
     const existing = grouped.get(key);
 
     if (existing) {
       existing.students.push(student);
     } else {
       grouped.set(key, {
-        country: student.hostCountry,
+        countryCode: student.hostCountryCode,
         students: [student],
       });
     }
   }
 
-  return Array.from(grouped.values()).sort((a, b) => a.country.name.localeCompare(b.country.name));
+  // Sort by country name using the flags utility
+  return Array.from(grouped.values()).sort((a, b) =>
+    getCountryName(a.countryCode).localeCompare(getCountryName(b.countryCode)),
+  );
 }
 
 /**

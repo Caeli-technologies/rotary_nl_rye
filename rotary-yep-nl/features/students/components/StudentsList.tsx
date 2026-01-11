@@ -9,7 +9,7 @@ import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
 import { StudentCard } from "./StudentCard";
 import { EmptyState } from "@/shared/components/feedback/EmptyState";
-import { getFlagAsset } from "@/shared/utils/flags";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import type { CountryGroup, Student } from "../types";
 
 interface StudentsListProps {
@@ -20,7 +20,7 @@ interface StudentsListProps {
 }
 
 interface SectionData {
-  country: CountryGroup["country"];
+  countryCode: string;
   data: Student[];
 }
 
@@ -33,7 +33,7 @@ export function StudentsList({
   const { colors } = useTheme();
 
   const sections: SectionData[] = countryGroups.map((group) => ({
-    country: group.country,
+    countryCode: group.countryCode,
     data: group.students,
   }));
 
@@ -46,7 +46,7 @@ export function StudentsList({
 
   const renderSectionHeader = useCallback(
     ({ section }: { section: SectionData }) => {
-      const flagAsset = getFlagAsset(section.country.code);
+      const flagAsset = getFlagAsset(section.countryCode);
 
       return (
         <View
@@ -63,7 +63,7 @@ export function StudentsList({
               <Image source={flagAsset} style={styles.flagImage} contentFit="contain" />
             )}
             <Text style={[styles.sectionTitle, { color: colors.primary }]}>
-              {section.country.name}
+              {getCountryName(section.countryCode)}
             </Text>
           </View>
           <Text style={[styles.sectionCount, { color: colors.textSecondary }]}>

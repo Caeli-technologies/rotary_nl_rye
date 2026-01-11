@@ -9,7 +9,7 @@ import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
-import { getFlagAsset } from "@/shared/utils/flags";
+import { getFlagAsset, getCountryName } from "@/shared/utils/flags";
 import type { CountryGroup } from "../types";
 
 const shadowStyle = {
@@ -27,7 +27,7 @@ interface CountryNavCardProps {
 
 export function CountryNavCard({ country, onPress }: CountryNavCardProps) {
   const { colors } = useTheme();
-  const flagAsset = getFlagAsset(country.country.code);
+  const flagAsset = getFlagAsset(country.countryCode);
 
   const handlePress = async () => {
     if (Platform.OS === "ios") {
@@ -61,12 +61,12 @@ export function CountryNavCard({ country, onPress }: CountryNavCardProps) {
             ]}
           >
             <Text style={[styles.flagText, { color: colors.textTertiary }]}>
-              {country.country.code.toUpperCase()}
+              {country.countryCode.toUpperCase()}
             </Text>
           </View>
         )}
         <View style={styles.info}>
-          <Text style={[styles.countryName, { color: colors.text }]}>{country.country.name}</Text>
+          <Text style={[styles.countryName, { color: colors.text }]}>{getCountryName(country.countryCode)}</Text>
           <Text style={[styles.studentCount, { color: colors.textSecondary }]}>
             {country.students.length} student
             {country.students.length !== 1 ? "s" : ""}

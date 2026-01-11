@@ -35,7 +35,7 @@ export {
 } from "./data";
 
 // Types
-export type { Student, StudentType, Country, CountryGroup, YearGroup } from "./types";
+export type { Student, StudentType, CountryGroup, YearGroup } from "./types";
 
 // Utilities
 export { groupByHomeCountry, groupByHostCountry, groupByYear, convertRawStudent } from "./types";
