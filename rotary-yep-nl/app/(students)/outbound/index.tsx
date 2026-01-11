@@ -43,7 +43,7 @@ export default function OutboundScreen() {
         router.push(route as any);
       }
     },
-    []
+    [],
   );
 
   const longTermPrograms: ProgramItem[] = useMemo(
@@ -56,7 +56,7 @@ export default function OutboundScreen() {
         enabled: true,
       },
     ],
-    []
+    [],
   );
 
   const shortTermPrograms: ProgramItem[] = useMemo(
@@ -76,7 +76,7 @@ export default function OutboundScreen() {
         enabled: true,
       },
     ],
-    []
+    [],
   );
 
   const renderProgramItem = useCallback(
@@ -122,7 +122,9 @@ export default function OutboundScreen() {
             >
               {item.title}
             </Text>
-            <Text style={[styles.programSubtitle, { color: colors.textTertiary }]}>
+            <Text
+              style={[styles.programSubtitle, { color: colors.textTertiary }]}
+            >
               {item.subtitle}
             </Text>
           </View>
@@ -134,7 +136,7 @@ export default function OutboundScreen() {
         </View>
       </Pressable>
     ),
-    [colors, handleProgramPress]
+    [colors, handleProgramPress],
   );
 
   const IntroSection = useCallback(
@@ -144,13 +146,13 @@ export default function OutboundScreen() {
           Kandidaten
         </Text>
         <Text style={[styles.introText, { color: colors.textSecondary }]}>
-          Wat leuk dat je ge&#239;nteresseerd in de mogelijkheden van Rotary voor
-          uitwisseling. Wereldwijd gaan er jaarlijks zo&apos;n 8.000 studenten via
-          Rotary op jaaruitwisseling, een hele organisatie.
+          Wat leuk dat je ge&#239;nteresseerd in de mogelijkheden van Rotary
+          voor uitwisseling. Wereldwijd gaan er jaarlijks zo&apos;n 8.000
+          studenten via Rotary op jaaruitwisseling, een hele organisatie.
         </Text>
       </View>
     ),
-    [colors]
+    [colors],
   );
 
   const SectionHeader = useCallback(
@@ -159,10 +161,15 @@ export default function OutboundScreen() {
         <Text style={[styles.sectionHeaderTitle, { color: colors.primary }]}>
           {title}
         </Text>
-        <View style={[styles.sectionHeaderDivider, { backgroundColor: colors.border }]} />
+        <View
+          style={[
+            styles.sectionHeaderDivider,
+            { backgroundColor: colors.border },
+          ]}
+        />
       </View>
     ),
-    [colors]
+    [colors],
   );
 
   const listData = useMemo(
@@ -174,7 +181,7 @@ export default function OutboundScreen() {
       { type: "sectionHeader", title: "Short Term Exchange Program" },
       ...shortTermPrograms.map((item) => ({ type: "program", item })),
     ],
-    [longTermPrograms, shortTermPrograms]
+    [longTermPrograms, shortTermPrograms],
   );
 
   const renderItem = useCallback(
@@ -192,11 +199,14 @@ export default function OutboundScreen() {
           return null;
       }
     },
-    [IntroSection, SectionHeader, renderProgramItem]
+    [IntroSection, SectionHeader, renderProgramItem],
   );
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]} edges={["bottom"]}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: colors.background }]}
+      edges={["bottom"]}
+    >
       <FlatList
         data={listData}
         renderItem={renderItem}

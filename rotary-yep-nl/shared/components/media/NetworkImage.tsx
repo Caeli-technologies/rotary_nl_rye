@@ -3,7 +3,7 @@
  * Displays a network image with loading state and fallback to initials
  */
 
-import { useState, useMemo, useCallback, memo } from 'react';
+import { useState, useMemo, useCallback, memo } from "react";
 import {
   Image,
   type ImageProps,
@@ -13,13 +13,13 @@ import {
   Pressable,
   Platform,
   Text,
-} from 'react-native';
-import { useTheme } from '@/core/theme';
-import { getInitials } from '@/shared/utils';
-import { useHaptics } from '@/shared/hooks';
-import { ImageModal } from './ImageModal';
+} from "react-native";
+import { useTheme } from "@/core/theme";
+import { getInitials } from "@/shared/utils";
+import { useHaptics } from "@/shared/hooks";
+import { ImageModal } from "./ImageModal";
 
-interface NetworkImageProps extends Omit<ImageProps, 'source'> {
+interface NetworkImageProps extends Omit<ImageProps, "source"> {
   /** URL of the image */
   imageUrl?: string;
   /** Name for initials fallback */
@@ -33,7 +33,7 @@ interface NetworkImageProps extends Omit<ImageProps, 'source'> {
 }
 
 function isValidImageUrl(url?: string): boolean {
-  return !!(url && !url.includes('Profile_avatar_placeholder_large.png'));
+  return !!(url && !url.includes("Profile_avatar_placeholder_large.png"));
 }
 
 export const NetworkImage = memo(function NetworkImage({
@@ -46,9 +46,9 @@ export const NetworkImage = memo(function NetworkImage({
 }: NetworkImageProps) {
   const { colors } = useTheme();
   const { lightImpact } = useHaptics();
-  const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error' | 'placeholder'>(
-    isValidImageUrl(imageUrl) ? 'loading' : 'placeholder'
-  );
+  const [imageState, setImageState] = useState<
+    "loading" | "loaded" | "error" | "placeholder"
+  >(isValidImageUrl(imageUrl) ? "loading" : "placeholder");
   const [showExpandedImage, setShowExpandedImage] = useState(false);
 
   const imageSize = useMemo(
@@ -57,25 +57,25 @@ export const NetworkImage = memo(function NetworkImage({
       height: size,
       borderRadius: size / 2,
     }),
-    [size]
+    [size],
   );
 
   const initials = getInitials(name);
   const shouldShowImage = isValidImageUrl(imageUrl);
 
   const handleImagePress = useCallback(() => {
-    if (expandable && imageState === 'loaded') {
+    if (expandable && imageState === "loaded") {
       lightImpact();
       setShowExpandedImage(true);
     }
   }, [expandable, imageState, lightImpact]);
 
   const handleImageLoad = useCallback(() => {
-    setImageState('loaded');
+    setImageState("loaded");
   }, []);
 
   const handleImageError = useCallback(() => {
-    setImageState('error');
+    setImageState("error");
   }, []);
 
   const closeModal = useCallback(() => {
@@ -119,10 +119,23 @@ export const NetworkImage = memo(function NetworkImage({
     ) : (
       placeholder
     );
-  }, [imageSize, style, showInitials, size, initials, expandable, handleImagePress, colors.primary]);
+  }, [
+    imageSize,
+    style,
+    showInitials,
+    size,
+    initials,
+    expandable,
+    handleImagePress,
+    colors.primary,
+  ]);
 
   const renderImage = useCallback(() => {
-    if (!shouldShowImage || imageState === 'error' || imageState === 'placeholder') {
+    if (
+      !shouldShowImage ||
+      imageState === "error" ||
+      imageState === "placeholder"
+    ) {
       return renderPlaceholder();
     }
 
@@ -130,12 +143,12 @@ export const NetworkImage = memo(function NetworkImage({
       <View style={[imageSize, style]}>
         <Image
           source={{ uri: imageUrl }}
-          style={[imageSize, { position: 'absolute' }]}
+          style={[imageSize, { position: "absolute" }]}
           onLoad={handleImageLoad}
           onError={handleImageError}
           resizeMode="cover"
         />
-        {imageState === 'loading' && (
+        {imageState === "loading" && (
           <View style={[styles.loadingContainer, imageSize]}>
             <ActivityIndicator size="small" color={colors.primary} />
           </View>
@@ -182,17 +195,17 @@ export const NetworkImage = memo(function NetworkImage({
 
 const styles = StyleSheet.create({
   placeholder: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 8,
   },
   initials: {
-    fontWeight: Platform.OS === 'ios' ? '600' : '700',
-    textAlign: 'center',
+    fontWeight: Platform.OS === "ios" ? "600" : "700",
+    textAlign: "center",
   },
   loadingContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
   },
 });

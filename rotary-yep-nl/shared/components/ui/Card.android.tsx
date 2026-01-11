@@ -3,9 +3,9 @@
  * Native-looking card using React Native with Material Design styling
  */
 
-import { Pressable, StyleSheet, View } from 'react-native';
-import { useTheme } from '@/core/theme';
-import type { CardProps } from './types';
+import { Pressable, StyleSheet, View } from "react-native";
+import { useTheme } from "@/core/theme";
+import type { CardProps } from "./types";
 
 export function Card({ children, style, onPress }: CardProps) {
   const { colors } = useTheme();
@@ -28,7 +28,7 @@ export function Card({ children, style, onPress }: CardProps) {
     return (
       <Pressable
         onPress={onPress}
-        android_ripple={{ color: colors.primary + '20' }}
+        android_ripple={{ color: colors.primary + "20" }}
         style={({ pressed }) => [{ opacity: pressed ? 0.9 : 1 }]}
       >
         {cardContent}

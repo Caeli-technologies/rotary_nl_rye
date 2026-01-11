@@ -60,7 +60,10 @@ export default function RotaryClubsSectionScreen() {
       style={{ flex: 1, backgroundColor: colors.background }}
       edges={["bottom"]}
     >
-      <SectionPageView content={content} onDocumentPress={handleDocumentPress} />
+      <SectionPageView
+        content={content}
+        onDocumentPress={handleDocumentPress}
+      />
     </SafeAreaView>
   );
 }

@@ -3,9 +3,9 @@
  * Displays an error message with retry option
  */
 
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/core/theme';
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/core/theme";
 
 interface ErrorStateProps {
   /** Error message to display */
@@ -17,7 +17,7 @@ interface ErrorStateProps {
 }
 
 export function ErrorState({
-  message = 'Er is iets misgegaan',
+  message = "Er is iets misgegaan",
   onRetry,
   showRetry = true,
 }: ErrorStateProps) {
@@ -45,19 +45,19 @@ export function ErrorState({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 24,
   },
   message: {
     marginTop: 16,
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 24,
   },
   retryButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 8,
@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
   },
   retryText: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

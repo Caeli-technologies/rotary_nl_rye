@@ -13,9 +13,16 @@ export default function InboundShortTermScreen() {
   const { colors } = useTheme();
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
       <View style={styles.content}>
-        <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}15` }]}>
+        <View
+          style={[
+            styles.iconContainer,
+            { backgroundColor: `${colors.primary}15` },
+          ]}
+        >
           <Ionicons name="time-outline" size={48} color={colors.primary} />
         </View>
         <Text style={[styles.title, { color: colors.text }]}>Coming Soon</Text>

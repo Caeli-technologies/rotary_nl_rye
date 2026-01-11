@@ -40,7 +40,9 @@ export default function ContactScreen() {
           <Text style={[styles.emptyStateTitle, { color: colors.primary }]}>
             Geen contacten beschikbaar
           </Text>
-          <Text style={[styles.emptyStateMessage, { color: colors.textSecondary }]}>
+          <Text
+            style={[styles.emptyStateMessage, { color: colors.textSecondary }]}
+          >
             Er zijn momenteel geen contacten in deze sectie.
           </Text>
         </View>

@@ -33,8 +33,9 @@ export default function InboundScreen() {
   const [showSandraContact, setShowSandraContact] = useState(false);
 
   const sandraCools = useMemo(
-    () => longTermContacts.find((contact) => contact.name === "Sandra Cools-Wemer"),
-    []
+    () =>
+      longTermContacts.find((contact) => contact.name === "Sandra Cools-Wemer"),
+    [],
   );
 
   const handleSandraContactPress = useCallback(async () => {
@@ -61,7 +62,7 @@ export default function InboundScreen() {
         router.push(route as any);
       }
     },
-    []
+    [],
   );
 
   const longTermPrograms: ProgramItem[] = useMemo(
@@ -74,7 +75,7 @@ export default function InboundScreen() {
         enabled: true,
       },
     ],
-    []
+    [],
   );
 
   const shortTermPrograms: ProgramItem[] = useMemo(
@@ -94,7 +95,7 @@ export default function InboundScreen() {
         enabled: false,
       },
     ],
-    []
+    [],
   );
 
   const renderProgramItem = useCallback(
@@ -136,7 +137,9 @@ export default function InboundScreen() {
             >
               {item.title}
             </Text>
-            <Text style={[styles.programSubtitle, { color: colors.textTertiary }]}>
+            <Text
+              style={[styles.programSubtitle, { color: colors.textTertiary }]}
+            >
               {item.subtitle}
             </Text>
           </View>
@@ -148,19 +151,22 @@ export default function InboundScreen() {
         </View>
       </Pressable>
     ),
-    [colors, handleProgramPress]
+    [colors, handleProgramPress],
   );
 
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={[styles.introTitle, { color: colors.primary }]}>Inbounds</Text>
+        <Text style={[styles.introTitle, { color: colors.primary }]}>
+          Inbounds
+        </Text>
         <Text style={[styles.introText, { color: colors.textSecondary }]}>
-          Wow, we&apos;re so excited that you will be our inbound exchange student
-          for the coming year. For this to happen we will need some extra
-          information so please watch your email inbox on a regular basis. Also you
-          can find some further information in this app. If you have any questions
-          that are not answered, please contact our inbound coordinator{" "}
+          Wow, we&apos;re so excited that you will be our inbound exchange
+          student for the coming year. For this to happen we will need some
+          extra information so please watch your email inbox on a regular basis.
+          Also you can find some further information in this app. If you have
+          any questions that are not answered, please contact our inbound
+          coordinator{" "}
           <Text
             style={[styles.linkText, { color: colors.link }]}
             onPress={handleSandraContactPress}
@@ -171,7 +177,7 @@ export default function InboundScreen() {
         </Text>
       </View>
     ),
-    [colors, handleSandraContactPress]
+    [colors, handleSandraContactPress],
   );
 
   const SectionHeader = useCallback(
@@ -180,10 +186,15 @@ export default function InboundScreen() {
         <Text style={[styles.sectionHeaderTitle, { color: colors.primary }]}>
           {title}
         </Text>
-        <View style={[styles.sectionHeaderDivider, { backgroundColor: colors.border }]} />
+        <View
+          style={[
+            styles.sectionHeaderDivider,
+            { backgroundColor: colors.border },
+          ]}
+        />
       </View>
     ),
-    [colors]
+    [colors],
   );
 
   const listData = useMemo(
@@ -195,7 +206,7 @@ export default function InboundScreen() {
       { type: "sectionHeader", title: "Short Term Exchange Program" },
       ...shortTermPrograms.map((item) => ({ type: "program", item })),
     ],
-    [longTermPrograms, shortTermPrograms]
+    [longTermPrograms, shortTermPrograms],
   );
 
   const renderItem = useCallback(
@@ -213,11 +224,14 @@ export default function InboundScreen() {
           return null;
       }
     },
-    [IntroSection, SectionHeader, renderProgramItem]
+    [IntroSection, SectionHeader, renderProgramItem],
   );
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]} edges={["bottom"]}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: colors.background }]}
+      edges={["bottom"]}
+    >
       <FlatList
         data={listData}
         renderItem={renderItem}

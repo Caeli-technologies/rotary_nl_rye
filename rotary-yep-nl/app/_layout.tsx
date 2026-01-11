@@ -35,7 +35,7 @@ function RootLayoutNav() {
         border: colors.border,
       },
     }),
-    [isDark, colors]
+    [isDark, colors],
   );
 
   const screenOptions = useMemo(
@@ -51,7 +51,7 @@ function RootLayoutNav() {
       headerBackTitle: Platform.OS === "ios" ? "Terug" : undefined,
       contentStyle: { backgroundColor: colors.background },
     }),
-    [colors]
+    [colors],
   );
 
   return (

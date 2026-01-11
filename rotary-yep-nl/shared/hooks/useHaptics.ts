@@ -3,9 +3,9 @@
  * Provides haptic feedback for user interactions
  */
 
-import { useCallback } from 'react';
-import { Platform } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { useCallback } from "react";
+import { Platform } from "react-native";
+import * as Haptics from "expo-haptics";
 
 interface UseHapticsReturn {
   /** Light impact feedback - for selection changes */
@@ -29,7 +29,7 @@ interface UseHapticsReturn {
  * Only provides feedback on iOS (Android has different haptic APIs)
  */
 export function useHaptics(): UseHapticsReturn {
-  const isIOS = Platform.OS === 'ios';
+  const isIOS = Platform.OS === "ios";
 
   const lightImpact = useCallback(() => {
     if (isIOS) {

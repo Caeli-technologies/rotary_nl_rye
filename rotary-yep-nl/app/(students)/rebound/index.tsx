@@ -4,7 +4,14 @@
  */
 
 import { useMemo, useCallback } from "react";
-import { StyleSheet, View, Text, Pressable, FlatList, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  FlatList,
+  Platform,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -12,7 +19,11 @@ import { router } from "expo-router";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
 import { spacing } from "@/core/theme/spacing";
-import { useStudents, groupByHostCountry, type CountryGroup } from "@/features/students";
+import {
+  useStudents,
+  groupByHostCountry,
+  type CountryGroup,
+} from "@/features/students";
 import { getFlagAsset } from "@/shared/utils/flags";
 
 const shadowStyle = {
@@ -47,7 +58,11 @@ function CountryCard({ country, onPress }: CountryCardProps) {
     >
       <View style={styles.countryCardContent}>
         {flagAsset ? (
-          <Image source={flagAsset} style={styles.flagImage} contentFit="contain" />
+          <Image
+            source={flagAsset}
+            style={styles.flagImage}
+            contentFit="contain"
+          />
         ) : (
           <View
             style={[
@@ -65,8 +80,14 @@ function CountryCard({ country, onPress }: CountryCardProps) {
           <Text style={[styles.countryName, { color: colors.text }]}>
             {country.country.name}
           </Text>
-          <Text style={[styles.countryStudentCount, { color: colors.textSecondary }]}>
-            {country.students.length} student{country.students.length !== 1 ? "s" : ""}
+          <Text
+            style={[
+              styles.countryStudentCount,
+              { color: colors.textSecondary },
+            ]}
+          >
+            {country.students.length} student
+            {country.students.length !== 1 ? "s" : ""}
           </Text>
         </View>
         <Ionicons name="chevron-forward" size={20} color={colors.primary} />
@@ -81,7 +102,7 @@ export default function ReboundCountriesScreen() {
 
   const countryGroups = useMemo(() => {
     return groupByHostCountry(students).sort(
-      (a, b) => b.students.length - a.students.length
+      (a, b) => b.students.length - a.students.length,
     );
   }, [students]);
 
@@ -112,11 +133,14 @@ export default function ReboundCountriesScreen() {
     ({ item }: { item: CountryGroup }) => (
       <CountryCard country={item} onPress={() => handleCountryPress(item)} />
     ),
-    [handleCountryPress]
+    [handleCountryPress],
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={[]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      edges={[]}
+    >
       <FlatList
         data={countryGroups}
         renderItem={renderCountry}

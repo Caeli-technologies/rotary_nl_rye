@@ -3,15 +3,15 @@
  * Uses native iOS button styling
  */
 
-import { ActivityIndicator, Pressable, StyleSheet, Text } from 'react-native';
-import { useTheme } from '@/core/theme';
-import { useHaptics } from '@/shared/hooks';
-import type { ButtonProps } from './types';
+import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
+import { useTheme } from "@/core/theme";
+import { useHaptics } from "@/shared/hooks";
+import type { ButtonProps } from "./types";
 
 export function Button({
   title,
   onPress,
-  variant = 'primary',
+  variant = "primary",
   disabled = false,
   loading = false,
   style,
@@ -21,17 +21,17 @@ export function Button({
 
   const getButtonColors = () => {
     switch (variant) {
-      case 'primary':
+      case "primary":
         return {
           background: colors.primary,
           text: colors.onPrimary,
         };
-      case 'secondary':
+      case "secondary":
         return {
           background: colors.surfaceVariant,
           text: colors.primary,
         };
-      case 'destructive':
+      case "destructive":
         return {
           background: colors.error,
           text: colors.onPrimary,
@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     minHeight: 50,
   },
   text: {
     fontSize: 17,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

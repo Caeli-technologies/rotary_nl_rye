@@ -2,8 +2,8 @@
  * Shared UI component types
  */
 
-import type { ReactNode } from 'react';
-import type { StyleProp, ViewStyle, TextStyle } from 'react-native';
+import type { ReactNode } from "react";
+import type { StyleProp, ViewStyle, TextStyle } from "react-native";
 
 /**
  * Section component props
@@ -38,7 +38,7 @@ export interface ButtonProps {
   /** Callback when button is pressed */
   onPress: () => void;
   /** Button variant */
-  variant?: 'primary' | 'secondary' | 'destructive';
+  variant?: "primary" | "secondary" | "destructive";
   /** Whether the button is disabled */
   disabled?: boolean;
   /** Whether the button is in a loading state */
@@ -56,5 +56,5 @@ export interface UITextProps {
   /** Text style */
   style?: StyleProp<TextStyle>;
   /** Text variant */
-  variant?: 'body' | 'headline' | 'subheadline' | 'caption' | 'footnote';
+  variant?: "body" | "headline" | "subheadline" | "caption" | "footnote";
 }

@@ -58,7 +58,7 @@ export default function ProgramsScreen() {
           return (
             <View style={styles.introContainer}>
               <Text style={[styles.introTitle, { color: colors.primary }]}>
-                Programma's
+                Programma&apos;s
               </Text>
               <Text style={[styles.introText, { color: colors.textSecondary }]}>
                 {item.introText}
@@ -80,12 +80,12 @@ export default function ProgramsScreen() {
           return null;
       }
     },
-    [colors.primary, colors.textSecondary, handleProgramPress]
+    [colors.primary, colors.textSecondary, handleProgramPress],
   );
 
   const keyExtractor = useCallback(
     (item: ListItem, index: number) => `${item.type}-${index}`,
-    []
+    [],
   );
 
   return (

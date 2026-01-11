@@ -26,10 +26,7 @@ export default function StudentsLayout() {
           headerLargeTitleStyle: { color: colors.text },
         }}
       />
-      <Stack.Screen
-        name="inbound/long-term"
-        options={{ title: "Long Term" }}
-      />
+      <Stack.Screen name="inbound/long-term" options={{ title: "Long Term" }} />
       <Stack.Screen
         name="inbound/short-term"
         options={{ title: "Short Term" }}
@@ -66,10 +63,7 @@ export default function StudentsLayout() {
           headerLargeTitleStyle: { color: colors.text },
         }}
       />
-      <Stack.Screen
-        name="rebound/[country]"
-        options={{ title: "Students" }}
-      />
+      <Stack.Screen name="rebound/[country]" options={{ title: "Students" }} />
       <Stack.Screen
         name="rebound/student-detail"
         options={{ title: "Student" }}

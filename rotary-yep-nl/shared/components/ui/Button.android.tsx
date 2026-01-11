@@ -3,14 +3,14 @@
  * Uses Material Design button styling
  */
 
-import { ActivityIndicator, Pressable, StyleSheet, Text } from 'react-native';
-import { useTheme } from '@/core/theme';
-import type { ButtonProps } from './types';
+import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
+import { useTheme } from "@/core/theme";
+import type { ButtonProps } from "./types";
 
 export function Button({
   title,
   onPress,
-  variant = 'primary',
+  variant = "primary",
   disabled = false,
   loading = false,
   style,
@@ -19,17 +19,17 @@ export function Button({
 
   const getButtonColors = () => {
     switch (variant) {
-      case 'primary':
+      case "primary":
         return {
           background: colors.primary,
           text: colors.onPrimary,
         };
-      case 'secondary':
+      case "secondary":
         return {
           background: colors.surfaceVariant,
           text: colors.primary,
         };
-      case 'destructive':
+      case "destructive":
         return {
           background: colors.error,
           text: colors.onPrimary,
@@ -43,7 +43,7 @@ export function Button({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
-      android_ripple={{ color: buttonColors.text + '30' }}
+      android_ripple={{ color: buttonColors.text + "30" }}
       style={({ pressed }) => [
         styles.button,
         {
@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     minHeight: 48,
   },
   text: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     letterSpacing: 0.5,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
 });

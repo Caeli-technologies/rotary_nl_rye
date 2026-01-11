@@ -3,9 +3,9 @@
  * Displays when a list is empty
  */
 
-import { StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '@/core/theme';
+import { StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/core/theme";
 
 interface EmptyStateProps {
   /** Title to display */
@@ -19,7 +19,7 @@ interface EmptyStateProps {
 export function EmptyState({
   title,
   message,
-  icon = 'folder-open-outline',
+  icon = "folder-open-outline",
 }: EmptyStateProps) {
   const { colors } = useTheme();
 
@@ -39,20 +39,20 @@ export function EmptyState({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 24,
   },
   title: {
     marginTop: 16,
     fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
+    fontWeight: "600",
+    textAlign: "center",
   },
   message: {
     marginTop: 8,
     fontSize: 14,
-    textAlign: 'center',
+    textAlign: "center",
     lineHeight: 20,
   },
 });

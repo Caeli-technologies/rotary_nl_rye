@@ -4,7 +4,14 @@
  */
 
 import { useCallback, useMemo, useLayoutEffect } from "react";
-import { StyleSheet, View, Text, Pressable, FlatList, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  FlatList,
+  Platform,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useNavigation, router } from "expo-router";
@@ -49,7 +56,10 @@ function StudentCard({ student, onPress }: StudentCardProps) {
           style={styles.avatar}
         />
         <View style={styles.studentInfo}>
-          <Text style={[styles.studentName, { color: colors.text }]} numberOfLines={1}>
+          <Text
+            style={[styles.studentName, { color: colors.text }]}
+            numberOfLines={1}
+          >
             {student.name}
           </Text>
           {student.year && (
@@ -58,12 +68,19 @@ function StudentCard({ student, onPress }: StudentCardProps) {
             </Text>
           )}
           {student.description && (
-            <Text style={[styles.studentBio, { color: colors.textTertiary }]} numberOfLines={1}>
+            <Text
+              style={[styles.studentBio, { color: colors.textTertiary }]}
+              numberOfLines={1}
+            >
               {student.description}
             </Text>
           )}
         </View>
-        <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        <Ionicons
+          name="chevron-forward"
+          size={20}
+          color={colors.textTertiary}
+        />
       </View>
     </Pressable>
   );
@@ -71,7 +88,10 @@ function StudentCard({ student, onPress }: StudentCardProps) {
 
 export default function ReboundStudentsScreen() {
   const { colors } = useTheme();
-  const { country, countryName } = useLocalSearchParams<{ country: string; countryName: string }>();
+  const { country, countryName } = useLocalSearchParams<{
+    country: string;
+    countryName: string;
+  }>();
   const navigation = useNavigation();
 
   const students = useStudentsByCountry(country || "", "rebound");
@@ -82,25 +102,22 @@ export default function ReboundStudentsScreen() {
     }
   }, [navigation, countryName]);
 
-  const handleStudentPress = useCallback(
-    async (student: Student) => {
-      try {
-        if (Platform.OS === "ios") {
-          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        router.push({
-          pathname: "/rebound/student-detail",
-          params: { studentId: student.id },
-        });
-      } catch {
-        router.push({
-          pathname: "/rebound/student-detail",
-          params: { studentId: student.id },
-        });
+  const handleStudentPress = useCallback(async (student: Student) => {
+    try {
+      if (Platform.OS === "ios") {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-    },
-    []
-  );
+      router.push({
+        pathname: "/rebound/student-detail",
+        params: { studentId: student.id },
+      });
+    } catch {
+      router.push({
+        pathname: "/rebound/student-detail",
+        params: { studentId: student.id },
+      });
+    }
+  }, []);
 
   const sortedStudents = useMemo(() => {
     return [...students].sort((a, b) => {
@@ -117,12 +134,15 @@ export default function ReboundStudentsScreen() {
     ({ item }: { item: Student }) => (
       <StudentCard student={item} onPress={() => handleStudentPress(item)} />
     ),
-    [handleStudentPress]
+    [handleStudentPress],
   );
 
   if (students.length === 0) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={[]}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        edges={[]}
+      >
         <EmptyState
           icon="school-outline"
           title="No students found"
@@ -133,7 +153,10 @@ export default function ReboundStudentsScreen() {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={[]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      edges={[]}
+    >
       <FlatList
         data={sortedStudents}
         renderItem={renderStudent}

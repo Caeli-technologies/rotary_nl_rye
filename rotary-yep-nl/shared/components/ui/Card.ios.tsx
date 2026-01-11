@@ -3,9 +3,9 @@
  * Native-looking card using React Native with iOS styling
  */
 
-import { Pressable, StyleSheet, View } from 'react-native';
-import { useTheme } from '@/core/theme';
-import type { CardProps } from './types';
+import { Pressable, StyleSheet, View } from "react-native";
+import { useTheme } from "@/core/theme";
+import type { CardProps } from "./types";
 
 export function Card({ children, style, onPress }: CardProps) {
   const { colors } = useTheme();

@@ -21,7 +21,9 @@ export default function InboundLongTermScreen() {
   }, []);
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
       <StudentsList
         countryGroups={countryGroups}
         totalCount={totalCount}

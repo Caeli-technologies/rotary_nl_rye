@@ -3,6 +3,7 @@
  * Platform-specific components are resolved automatically by bundler
  */
 
+// TODO: fix this because we have the files in the folder!!!
 export { Section } from "./Section";
 export { Card } from "./Card";
 export { Button } from "./Button";

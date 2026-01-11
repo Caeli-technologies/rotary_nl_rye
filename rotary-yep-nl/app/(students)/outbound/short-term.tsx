@@ -57,9 +57,9 @@ export default function OutboundShortTermScreen() {
             Family to Family
           </Text>
           <Text style={[styles.introText, { color: colors.textSecondary }]}>
-            The Family to Family exchange program allows families to host and send
-            students for a short period. This is a great way to experience another
-            culture without the commitment of a full year exchange.
+            The Family to Family exchange program allows families to host and
+            send students for a short period. This is a great way to experience
+            another culture without the commitment of a full year exchange.
           </Text>
         </View>
 
@@ -78,14 +78,21 @@ export default function OutboundShortTermScreen() {
           android_ripple={{ color: `${colors.primary}20`, borderless: false }}
         >
           <View style={styles.cardContent}>
-            <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}15` }]}>
+            <View
+              style={[
+                styles.iconContainer,
+                { backgroundColor: `${colors.primary}15` },
+              ]}
+            >
               <Ionicons name="earth" size={28} color={colors.primary} />
             </View>
             <View style={styles.cardTextContainer}>
               <Text style={[styles.cardTitle, { color: colors.text }]}>
                 Zomerkampen & Tours
               </Text>
-              <Text style={[styles.cardSubtitle, { color: colors.textSecondary }]}>
+              <Text
+                style={[styles.cardSubtitle, { color: colors.textSecondary }]}
+              >
                 View available camps and cultural programs
               </Text>
             </View>
@@ -108,15 +115,19 @@ export default function OutboundShortTermScreen() {
           ]}
         >
           <View style={styles.infoHeader}>
-            <Ionicons name="information-circle" size={24} color={colors.primary} />
+            <Ionicons
+              name="information-circle"
+              size={24}
+              color={colors.primary}
+            />
             <Text style={[styles.infoTitle, { color: colors.text }]}>
               How it works
             </Text>
           </View>
           <Text style={[styles.infoText, { color: colors.textSecondary }]}>
-            Short term exchanges typically last 2-4 weeks. Families agree to host a
-            student from another country while their own child travels to that
-            country to stay with the exchange family.
+            Short term exchanges typically last 2-4 weeks. Families agree to
+            host a student from another country while their own child travels to
+            that country to stay with the exchange family.
           </Text>
         </View>
       </ScrollView>
