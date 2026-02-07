@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		32F64A612A0EEEB0E90B5697 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C219DF8424932EC1D1E370 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		3EE65E53900C101A8E8F3758 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 2A97F84473AB2097211D184F /* PrivacyInfo.xcprivacy */; };
 		8AB9CEF2A880599C715C14A5 /* libPods-RotaryYEPNL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4F5A47F920FACC5AB80C0D /* libPods-RotaryYEPNL.a */; };
 		8C230CFD4984405EAA4BB71B /* app.icon in Resources */ = {isa = PBXBuildFile; fileRef = F409242DA9BA45F08622B719 /* app.icon */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		D9BB01A5032551168630EA2C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F471E92AF9BF655873549D5C /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 		F18D08F0FB8BB99F1C1F03E5 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FB708932F3DEE60B133BB7 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
@@ -116,13 +118,12 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		BB2F792B24A3F905000567C9 /* Supporting */ = {
+		B1778B0CB9085AC85DB5A6DF /* RotaryYEPNL */ = {
 			isa = PBXGroup;
 			children = (
-				BB2F792C24A3F905000567C9 /* Expo.plist */,
+				08C219DF8424932EC1D1E370 /* ExpoModulesProvider.swift */,
 			);
-			name = Supporting;
-			path = RotaryYEPNL/Supporting;
+			name = RotaryYEPNL;
 			sourceTree = "<group>";
 		};
 		CB399A3A4B9186D9DDA749FE /* Pods */ = {
@@ -347,6 +348,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = app;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RotaryYEPNL/RotaryYEPNL.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A8S2486A44;
 				ENABLE_BITCODE = NO;
@@ -385,6 +388,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = app;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RotaryYEPNL/RotaryYEPNL.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A8S2486A44;
 				INFOPLIST_FILE = RotaryYEPNL/Info.plist;
