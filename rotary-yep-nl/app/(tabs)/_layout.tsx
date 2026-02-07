@@ -39,7 +39,12 @@ export default function TabLayout() {
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         {Platform.select({
-          ios: <NativeTabs.Trigger.Icon sf={{ default: "house", selected: "house.fill" }} selectedColor={tintColor} />,
+          ios: (
+            <NativeTabs.Trigger.Icon
+              sf={{ default: "house", selected: "house.fill" }}
+              selectedColor={tintColor}
+            />
+          ),
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="home" />}
@@ -109,7 +114,12 @@ export default function TabLayout() {
       <NativeTabs.Trigger name="settings">
         <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
         {Platform.select({
-          ios: <NativeTabs.Trigger.Icon sf={{ default: "gear", selected: "gear" }} selectedColor={tintColor} />,
+          ios: (
+            <NativeTabs.Trigger.Icon
+              sf={{ default: "gear", selected: "gear" }}
+              selectedColor={tintColor}
+            />
+          ),
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="settings" />}

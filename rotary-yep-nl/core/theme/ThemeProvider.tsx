@@ -22,9 +22,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const themeColors = isDark ? colors.dark : colors.light;
 
   return (
-    <ThemeContext value={{ colors: themeColors, isDark, colorScheme }}>
-      {children}
-    </ThemeContext>
+    <ThemeContext value={{ colors: themeColors, isDark, colorScheme }}>{children}</ThemeContext>
   );
 }
 
