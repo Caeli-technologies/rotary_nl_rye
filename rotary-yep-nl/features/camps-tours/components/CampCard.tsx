@@ -194,11 +194,7 @@ export function CampCard({ camp }: CampCardProps) {
             {/* Start Date */}
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons
-                  name="calendar-outline"
-                  size={14}
-                  color={colors.textSecondary}
-                />
+                <Ionicons name="calendar-outline" size={14} color={colors.textSecondary} />
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Start</Text>
               </View>
               <Text

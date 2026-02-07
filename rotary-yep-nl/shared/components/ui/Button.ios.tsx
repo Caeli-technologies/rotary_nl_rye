@@ -20,19 +20,6 @@ export function Button({
   const { colors } = useTheme();
   const { lightImpact } = useHaptics();
 
-  const getButtonVariant = (): "default" | "bordered" | "borderless" | "borderedProminent" => {
-    switch (variant) {
-      case "primary":
-        return "borderedProminent";
-      case "secondary":
-        return "bordered";
-      case "destructive":
-        return "borderedProminent";
-      default:
-        return "default";
-    }
-  };
-
   const handlePress = () => {
     if (!disabled && !loading) {
       lightImpact();

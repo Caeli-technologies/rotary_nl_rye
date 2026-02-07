@@ -63,7 +63,7 @@ export const VideoPlayer = memo(function VideoPlayer({
     };
 
     generateThumbnail();
-  }, [videoUrl, thumbnailTime]);
+  }, [videoUrl, thumbnailTime, player]);
 
   const handleCloseVideo = () => {
     player.pause();

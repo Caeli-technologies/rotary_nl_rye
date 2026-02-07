@@ -9,4 +9,12 @@ module.exports = defineConfig([
   {
     ignores: ["dist/*", "node_modules/*", ".expo/*", "ios/*", "android/*"],
   },
+  {
+    settings: {
+      "import/resolver": {
+        typescript: true,
+        node: true,
+      },
+    },
+  },
 ]);

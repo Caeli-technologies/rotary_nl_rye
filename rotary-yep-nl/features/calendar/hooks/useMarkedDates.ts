@@ -60,5 +60,5 @@ export function useMarkedDates({
     };
 
     return marked;
-  }, [eventsData, selectedDate, defaultDotColor, selectedColor, selectedTextColor, maxDotsPerDay]);
+  }, [eventsData, selectedDate, selectedColor, selectedTextColor, maxDotsPerDay]);
 }

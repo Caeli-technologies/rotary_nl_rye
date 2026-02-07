@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";

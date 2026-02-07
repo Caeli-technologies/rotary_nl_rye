@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, StyleSheet } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 
 import { useTheme } from "@/core/theme";
