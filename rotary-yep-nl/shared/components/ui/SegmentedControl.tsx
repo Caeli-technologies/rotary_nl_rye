@@ -7,12 +7,13 @@
 import { Platform } from "react-native";
 import type { SegmentedControlProps } from "./types";
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
 const PlatformSegmentedControl = Platform.select({
   ios: () => require("./SegmentedControl.ios").SegmentedControl,
   android: () => require("./SegmentedControl.android").SegmentedControl,
   default: () => require("./SegmentedControl.android").SegmentedControl,
 })();
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 export function SegmentedControl(props: SegmentedControlProps) {
   return <PlatformSegmentedControl {...props} />;

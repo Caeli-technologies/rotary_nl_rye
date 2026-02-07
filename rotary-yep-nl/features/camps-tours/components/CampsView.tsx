@@ -14,8 +14,7 @@ import { CountryModal } from "./CountryModal";
 export function CampsView() {
   const { colors } = useTheme();
   const { camps, countries, isLoading, error, refetch } = useCampsQuery();
-  const { filters, setFilters, filteredCamps, hasActiveFilters, clearFilters } =
-    useCampsFilters(camps);
+  const { filters, setFilters, filteredCamps, hasActiveFilters } = useCampsFilters(camps);
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 

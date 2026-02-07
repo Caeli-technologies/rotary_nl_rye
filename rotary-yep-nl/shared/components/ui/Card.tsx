@@ -7,12 +7,13 @@
 import { Platform } from "react-native";
 import type { CardProps } from "./types";
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
 const PlatformCard = Platform.select({
   ios: () => require("./Card.ios").Card,
   android: () => require("./Card.android").Card,
   default: () => require("./Card.android").Card,
 })();
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 export function Card(props: CardProps) {
   return <PlatformCard {...props} />;

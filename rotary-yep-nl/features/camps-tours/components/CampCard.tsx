@@ -25,7 +25,7 @@ const CURRENCY_ICONS: Record<string, string> = {
   USD: "currency-usd",
   GBP: "currency-gbp",
   JPY: "currency-jpy",
-  CHF: "currency-btc", // Swiss Franc - use generic
+  CHF: "currency-fra", // Swiss Franc
   CAD: "currency-usd",
   AUD: "currency-usd",
   SEK: "cash", // Scandinavian - use generic cash
@@ -194,11 +194,7 @@ export function CampCard({ camp }: CampCardProps) {
             {/* Start Date */}
             <View style={styles.detailItem}>
               <View style={styles.detailHeader}>
-                <Ionicons
-                  name="calendar-outline"
-                  size={14}
-                  color={isPast ? colors.textSecondary : colors.textSecondary}
-                />
+                <Ionicons name="calendar-outline" size={14} color={colors.textSecondary} />
                 <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Start</Text>
               </View>
               <Text

@@ -9,7 +9,7 @@ import { Image } from "expo-image";
 import { useTheme } from "@/core/theme";
 import { getFlagAsset } from "@/shared/utils/flags";
 import { IconButton } from "@/shared/components/ui";
-import type { CountryWithCode, FilterState } from "../types";
+import type { CountryWithCode } from "../types";
 
 interface CountryModalProps {
   visible: boolean;

@@ -18,7 +18,7 @@ export default function CampsToursScreen() {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const { camps, isLoading } = useCampsQuery();
-  const { filters, filteredCamps, hasActiveFilters, clearFilters } = useCampsFilters(camps);
+  const { filteredCamps, hasActiveFilters, clearFilters } = useCampsFilters(camps);
 
   useLayoutEffect(() => {
     navigation.setOptions({

@@ -50,7 +50,7 @@ LocaleConfig.locales["nl"] = {
 LocaleConfig.defaultLocale = "nl";
 
 export function CalendarView() {
-  const { colors, isDark } = useTheme();
+  const { colors } = useTheme();
   const { eventsData, isLoading, error, refetch } = useCalendarEvents();
   const { selectedDate, onDayPress } = useSelectedDate();
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);

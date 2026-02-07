@@ -1,5 +1,5 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { NativeTabs, Icon, VectorIcon, Label } from "expo-router/unstable-native-tabs";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 import { Platform, DynamicColorIOS } from "react-native";
 import { useTheme } from "@/core/theme";
 
@@ -37,12 +37,17 @@ export default function TabLayout() {
       }
     >
       <NativeTabs.Trigger name="index">
-        <Label>Home</Label>
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         {Platform.select({
-          ios: <Icon sf={{ default: "house", selected: "house.fill" }} selectedColor={tintColor} />,
+          ios: (
+            <NativeTabs.Trigger.Icon
+              sf={{ default: "house", selected: "house.fill" }}
+              selectedColor={tintColor}
+            />
+          ),
           android: (
-            <Icon
-              src={<VectorIcon family={MaterialIcons} name="home" />}
+            <NativeTabs.Trigger.Icon
+              src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="home" />}
               selectedColor={themeColors.primary}
             />
           ),
@@ -50,17 +55,17 @@ export default function TabLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="about">
-        <Label>About</Label>
+        <NativeTabs.Trigger.Label>About</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: (
-            <Icon
+            <NativeTabs.Trigger.Icon
               sf={{ default: "info.circle", selected: "info.circle.fill" }}
               selectedColor={tintColor}
             />
           ),
           android: (
-            <Icon
-              src={<VectorIcon family={MaterialIcons} name="info" />}
+            <NativeTabs.Trigger.Icon
+              src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="info" />}
               selectedColor={themeColors.primary}
             />
           ),
@@ -68,10 +73,10 @@ export default function TabLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="emergency">
-        <Label>Emergency</Label>
+        <NativeTabs.Trigger.Label>Emergency</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: (
-            <Icon
+            <NativeTabs.Trigger.Icon
               sf={{
                 default: "exclamationmark.triangle",
                 selected: "exclamationmark.triangle.fill",
@@ -80,8 +85,8 @@ export default function TabLayout() {
             />
           ),
           android: (
-            <Icon
-              src={<VectorIcon family={MaterialIcons} name="warning" />}
+            <NativeTabs.Trigger.Icon
+              src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="warning" />}
               selectedColor={themeColors.primary}
             />
           ),
@@ -89,17 +94,17 @@ export default function TabLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="contact">
-        <Label>Contact</Label>
+        <NativeTabs.Trigger.Label>Contact</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: (
-            <Icon
+            <NativeTabs.Trigger.Icon
               sf={{ default: "person.2", selected: "person.2.fill" }}
               selectedColor={tintColor}
             />
           ),
           android: (
-            <Icon
-              src={<VectorIcon family={MaterialIcons} name="people" />}
+            <NativeTabs.Trigger.Icon
+              src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="people" />}
               selectedColor={themeColors.primary}
             />
           ),
@@ -107,12 +112,17 @@ export default function TabLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="settings">
-        <Label>Settings</Label>
+        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
         {Platform.select({
-          ios: <Icon sf={{ default: "gear", selected: "gear" }} selectedColor={tintColor} />,
+          ios: (
+            <NativeTabs.Trigger.Icon
+              sf={{ default: "gear", selected: "gear" }}
+              selectedColor={tintColor}
+            />
+          ),
           android: (
-            <Icon
-              src={<VectorIcon family={MaterialIcons} name="settings" />}
+            <NativeTabs.Trigger.Icon
+              src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="settings" />}
               selectedColor={themeColors.primary}
             />
           ),

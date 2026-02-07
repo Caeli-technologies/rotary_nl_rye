@@ -1,8 +1,3 @@
-/**
- * Root Layout
- * Sets up providers and main navigation stack
- */
-
 import {
   DarkTheme,
   DefaultTheme,
@@ -191,10 +186,7 @@ function RootLayoutNav() {
         />
         <Stack.Screen
           name="students/rebound/[country]"
-          options={({ route }) => ({
-            title: (route.params as any)?.countryName || "Students",
-            headerBackTitle: "Rebound",
-          })}
+          options={{ title: "Students", headerBackTitle: "Rebound" }}
         />
         <Stack.Screen
           name="students/rebound/student-detail"
@@ -220,10 +212,7 @@ function RootLayoutNav() {
         />
         <Stack.Screen
           name="pdf-viewer"
-          options={({ route }) => ({
-            title: (route.params as any)?.title || "PDF Document",
-            headerBackTitle: "Terug",
-          })}
+          options={{ title: "PDF Document", headerBackTitle: "Terug" }}
         />
 
         {/* Calendar */}
@@ -243,13 +232,7 @@ function RootLayoutNav() {
             headerBackTitle: "Home",
           }}
         />
-        <Stack.Screen
-          name="news/[id]"
-          options={({ route }) => ({
-            title: (route.params as any)?.title || "Nieuws",
-            headerBackTitle: "Nieuws",
-          })}
-        />
+        <Stack.Screen name="news/[id]" options={{ title: "Nieuws", headerBackTitle: "Nieuws" }} />
 
         {/* Rotary Clubs */}
         <Stack.Screen
@@ -261,10 +244,7 @@ function RootLayoutNav() {
         />
         <Stack.Screen
           name="rotary-clubs/[section]"
-          options={({ route }) => ({
-            title: (route.params as any)?.title || "Rotary Clubs",
-            headerBackTitle: "Rotary Clubs",
-          })}
+          options={{ title: "Rotary Clubs", headerBackTitle: "Rotary Clubs" }}
         />
 
         {/* Programs */}

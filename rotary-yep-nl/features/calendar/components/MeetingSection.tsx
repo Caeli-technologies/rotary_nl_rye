@@ -24,7 +24,7 @@ interface MeetingSectionProps {
  */
 export function MeetingSection({ conference }: MeetingSectionProps) {
   const { colors } = useTheme();
-  const { joinMeeting, copyMeetingInfo, copyText, dialIn, copied } = useMeetingActions();
+  const { joinMeeting, copyMeetingInfo, copyText, copied } = useMeetingActions();
 
   const providerName = getMeetingProviderName(conference);
   const hasDialIn = hasDialInOptions(conference);

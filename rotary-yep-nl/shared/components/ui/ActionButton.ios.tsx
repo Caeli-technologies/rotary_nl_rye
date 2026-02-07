@@ -54,17 +54,6 @@ export function ActionButton({
   const { colors } = useTheme();
   const { lightImpact } = useHaptics();
 
-  const getButtonVariant = (): "default" | "bordered" | "borderless" | "borderedProminent" => {
-    switch (variant) {
-      case "primary":
-        return "borderedProminent";
-      case "secondary":
-        return "bordered";
-      default:
-        return "default";
-    }
-  };
-
   const handlePress = () => {
     if (!disabled && !loading) {
       lightImpact();
@@ -85,14 +74,7 @@ export function ActionButton({
 
   return (
     <Host matchContents style={style}>
-      <ExpoButton
-        variant={getButtonVariant()}
-        disabled={disabled}
-        onPress={handlePress}
-        systemImage={sfSymbol}
-      >
-        {title}
-      </ExpoButton>
+      <ExpoButton onPress={handlePress} systemImage={sfSymbol} label={title} />
     </Host>
   );
 }

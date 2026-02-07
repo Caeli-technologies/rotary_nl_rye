@@ -30,7 +30,7 @@ const SOCIAL_PLATFORMS = [
 ] as const;
 
 export function ContactModal({ contact, visible, onClose }: ContactModalProps) {
-  const { colors, isDark } = useTheme();
+  const { colors } = useTheme();
   const { lightImpact } = useHaptics();
 
   const handleCall = useCallback(() => {

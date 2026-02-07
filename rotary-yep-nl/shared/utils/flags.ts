@@ -339,6 +339,9 @@ export const countryNames: Record<string, string> = {
   eu: "European Union",
   // Camps & Tours countries
   tr: "Turkey",
+  eg: "Egypt",
+  hr: "Croatia",
+  sk: "Slovakia",
 };
 
 /**

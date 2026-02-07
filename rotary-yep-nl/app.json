@@ -4,14 +4,16 @@
     "slug": "rotary-yep-nl",
     "description": "The official app for Rotary Youth Exchange Netherlands, providing resources, information, and support for exchange students, families, and Rotary clubs.",
     "owner": "Ruben Talstra",
-    "version": "12.0.0",
+    "version": "12.0.1",
     "scheme": "rotaryyepnl",
-    "newArchEnabled": true,
     "userInterfaceStyle": "automatic",
     "githubUrl": "https://github.com/Caeli-technologies/rotary_nl_rye",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
-      "buildNumber": "110",
+      "buildNumber": "111",
       "appleTeamId": "A8S2486A44",
       "backgroundColor": "#17458f",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
@@ -33,16 +35,18 @@
         }
       },
       "infoPlist": {
-        "UIBackgroundModes": ["audio", "fetch"],
+        "UIBackgroundModes": [
+          "audio",
+          "fetch"
+        ],
         "LSApplicationCategoryType": "public.app-category.education"
       }
     },
     "android": {
-      "versionCode": 110,
+      "versionCode": 111,
       "package": "com.caelitechnologies.rotary_nl_rye",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
       "backgroundColor": "#17458f",
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": true,
       "adaptiveIcon": {
         "backgroundColor": "#17458f",
@@ -91,7 +95,10 @@
       ],
       "expo-audio",
       "expo-web-browser",
-      "expo-asset"
+      "expo-asset",
+      "expo-font",
+      "expo-image",
+      "expo-sharing"
     ],
     "experiments": {
       "typedRoutes": true,
