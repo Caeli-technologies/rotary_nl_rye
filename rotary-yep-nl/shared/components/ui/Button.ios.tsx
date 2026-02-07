@@ -50,9 +50,7 @@ export function Button({
 
   return (
     <Host matchContents style={style}>
-      <ExpoButton variant={getButtonVariant()} disabled={disabled} onPress={handlePress}>
-        {title}
-      </ExpoButton>
+      <ExpoButton onPress={handlePress} label={title} />
     </Host>
   );
 }

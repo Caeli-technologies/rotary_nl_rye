@@ -86,13 +86,10 @@ export function ActionButton({
   return (
     <Host matchContents style={style}>
       <ExpoButton
-        variant={getButtonVariant()}
-        disabled={disabled}
         onPress={handlePress}
         systemImage={sfSymbol}
-      >
-        {title}
-      </ExpoButton>
+        label={title}
+      />
     </Host>
   );
 }

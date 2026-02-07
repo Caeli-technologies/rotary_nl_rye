@@ -88,6 +88,8 @@ export const rotexContacts: Contact[] = [
     role: "Commissielid Inbounds",
     functions: ["Commissielid Inbounds"],
     bio: "Hi! Ik ben Lysanne Smits. Nu ben ik 19 maar heb bijna mijn hele 18 levensjaar in het mooie Italië doorgebracht.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/rotex/lysanne-smits.jpeg",
     phone: "+31614217470",
     category: "rotex",
   },
@@ -97,6 +99,8 @@ export const rotexContacts: Contact[] = [
     role: "Commissiehoofd Extern",
     functions: ["Commissiehoofd Extern"],
     bio: "Heyhoii ik ben Merle en ben momenteel commissiehoofd van de commissie extern!",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/rotex/merle-breijer.jpeg",
     phone: "+31625595557",
     category: "rotex",
   },
@@ -128,6 +132,8 @@ export const rotexContacts: Contact[] = [
     role: "Commissiehoofd Pre-Rebounds",
     functions: ["Commissiehoofd Pre-Rebounds"],
     bio: "Hai! Mijn naam is Floor de Graaf en in 2022/2023 ben ik een jaar naar Amerika geweest.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/rotex/floor-de-graaf.jpeg",
     phone: "+31614952330",
     category: "rotex",
   },
@@ -159,6 +165,8 @@ export const rotexContacts: Contact[] = [
     role: "Commissielid Pre-Rebounds",
     functions: ["Commissielid Pre-Rebounds"],
     bio: "Hii ik ben Bo Heijns. Nu ben ik 19 maar heb bijna mijn hele 18 levensjaar in het mooie Frankrijk doorgebracht.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/rotex/bo-heijns.jpeg",
     phone: "+31638492254",
     category: "rotex",
   },
@@ -168,6 +176,8 @@ export const rotexContacts: Contact[] = [
     role: "Commissielid Pre-Rebounds",
     functions: ["Commissielid Pre-Rebounds"],
     bio: "Hey! Ik ben Tom, 17 jaar en ben nu terug in Nederland in 5V.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/rotex/tom-pellicaan.jpeg",
     phone: "+31620934683",
     category: "rotex",
   },

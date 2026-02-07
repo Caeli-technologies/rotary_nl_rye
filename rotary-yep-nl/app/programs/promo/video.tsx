@@ -6,14 +6,13 @@ import {
   ScrollView,
   Pressable,
   Modal,
-  Image,
   Platform,
 } from "react-native";
+import { Image } from "expo-image";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useVideoPlayer, VideoView } from "expo-video";
+import { useVideoPlayer, VideoView, type VideoThumbnail } from "expo-video";
 import { useEvent } from "expo";
-import * as VideoThumbnails from "expo-video-thumbnails";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/core/theme";
 import { IconButton } from "@/shared/components/ui";
@@ -30,19 +29,20 @@ function VideoRow({
   onPlayRequest: (video: Video) => void;
   themeColors: any;
 }) {
-  const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
+  const [thumbnailUri, setThumbnailUri] = useState<VideoThumbnail | null>(null);
   const [thumbnailLoading, setThumbnailLoading] = useState(true);
+
+  const thumbnailPlayer = useVideoPlayer(video.url);
 
   // Generate video thumbnail
   useEffect(() => {
     const generateThumbnail = async () => {
       try {
         setThumbnailLoading(true);
-        const { uri } = await VideoThumbnails.getThumbnailAsync(video.url, {
-          time: 2000, // 2 seconds into the video
-          quality: 0.7,
-        });
-        setThumbnailUri(uri);
+        const thumbnails = await thumbnailPlayer.generateThumbnailsAsync([2]);
+        if (thumbnails.length > 0) {
+          setThumbnailUri(thumbnails[0]);
+        }
       } catch (error) {
         console.warn("Error generating video thumbnail:", error);
       } finally {
@@ -51,7 +51,7 @@ function VideoRow({
     };
 
     generateThumbnail();
-  }, [video.url]);
+  }, [video.url, thumbnailPlayer]);
 
   const onPress = async () => {
     try {
@@ -88,7 +88,7 @@ function VideoRow({
             </Text>
           </View>
         ) : thumbnailUri ? (
-          <Image source={{ uri: thumbnailUri }} style={styles.thumbnail} resizeMode="cover" />
+          <Image source={thumbnailUri} style={styles.thumbnail} contentFit="cover" />
         ) : (
           <View style={[styles.thumbnailFallback, { backgroundColor: themeColors.primary }]}>
             <Ionicons name="videocam-outline" size={48} color={themeColors.onPrimary} />
@@ -209,7 +209,7 @@ export default function VideoPromo() {
             <VideoView
               style={styles.video}
               player={player}
-              allowsFullscreen
+              fullscreenOptions={{ enable: true }}
               allowsPictureInPicture
               nativeControls
               contentFit="contain"

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { createContext, use, useState, useCallback, type ReactNode } from "react";
 
 /**
  * Contact type for the modal
@@ -77,7 +77,7 @@ export function AppProvider({ children }: AppProviderProps) {
   }, []);
 
   return (
-    <AppContext.Provider
+    <AppContext
       value={{
         contactModalOpen,
         selectedContact,
@@ -90,12 +90,12 @@ export function AppProvider({ children }: AppProviderProps) {
       }}
     >
       {children}
-    </AppContext.Provider>
+    </AppContext>
   );
 }
 
 export function useApp(): AppContextValue {
-  const context = useContext(AppContext);
+  const context = use(AppContext);
   if (!context) {
     throw new Error("useApp must be used within AppProvider");
   }

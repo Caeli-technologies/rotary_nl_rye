@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import { createContext, use, useState, useEffect, useCallback, type ReactNode } from "react";
 import { File, Directory, Paths } from "expo-file-system";
 
 interface SettingsContextValue {
@@ -110,7 +110,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
   }, [appOpenCount]);
 
   return (
-    <SettingsContext.Provider
+    <SettingsContext
       value={{
         hasRequestedReview,
         appOpenCount,
@@ -120,12 +120,12 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       }}
     >
       {children}
-    </SettingsContext.Provider>
+    </SettingsContext>
   );
 }
 
 export function useSettings(): SettingsContextValue {
-  const context = useContext(SettingsContext);
+  const context = use(SettingsContext);
   if (!context) {
     throw new Error("useSettings must be used within SettingsProvider");
   }

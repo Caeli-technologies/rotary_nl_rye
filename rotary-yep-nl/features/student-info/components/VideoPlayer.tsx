@@ -3,9 +3,8 @@ import { StyleSheet, View, Text, Pressable, Modal, Platform } from "react-native
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { useVideoPlayer, VideoView } from "expo-video";
+import { useVideoPlayer, VideoView, type VideoThumbnail } from "expo-video";
 import { useEvent } from "expo";
-import * as VideoThumbnails from "expo-video-thumbnails";
 import { useTheme } from "@/core/theme";
 import { IconButton } from "@/shared/components/ui";
 
@@ -36,7 +35,7 @@ export const VideoPlayer = memo(function VideoPlayer({
   const insets = useSafeAreaInsets();
 
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
-  const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
+  const [thumbnailUri, setThumbnailUri] = useState<VideoThumbnail | null>(null);
   const [thumbnailLoading, setThumbnailLoading] = useState(true);
 
   const player = useVideoPlayer(videoUrl, (p) => {
@@ -52,11 +51,10 @@ export const VideoPlayer = memo(function VideoPlayer({
     const generateThumbnail = async () => {
       try {
         setThumbnailLoading(true);
-        const { uri } = await VideoThumbnails.getThumbnailAsync(videoUrl, {
-          time: thumbnailTime,
-          quality: 0.8,
-        });
-        setThumbnailUri(uri);
+        const thumbnails = await player.generateThumbnailsAsync([thumbnailTime / 1000]);
+        if (thumbnails.length > 0) {
+          setThumbnailUri(thumbnails[0]);
+        }
       } catch (error) {
         console.warn("Error generating video thumbnail:", error);
       } finally {
@@ -95,7 +93,7 @@ export const VideoPlayer = memo(function VideoPlayer({
             </View>
           ) : thumbnailUri ? (
             <Image
-              source={{ uri: thumbnailUri }}
+              source={thumbnailUri}
               style={styles.thumbnail}
               contentFit="cover"
               transition={300}

@@ -2,7 +2,8 @@
  * iOS Segmented Control using @expo/ui SwiftUI Picker
  */
 
-import { Host, Picker } from "@expo/ui/swift-ui";
+import { Host, Picker, Text } from "@expo/ui/swift-ui";
+import { pickerStyle, tag } from "@expo/ui/swift-ui/modifiers";
 import { StyleSheet, View, type ViewStyle } from "react-native";
 
 interface SegmentedControlProps {
@@ -18,19 +19,20 @@ export function SegmentedControl({
   onChange,
   style,
 }: SegmentedControlProps) {
-  const handleOptionSelected = (event: { nativeEvent: { index: number; label: string } }) => {
-    onChange(event.nativeEvent.index);
-  };
-
   return (
     <View style={[styles.container, style]}>
       <Host matchContents style={styles.host}>
         <Picker
-          variant="segmented"
-          options={values}
-          selectedIndex={selectedIndex}
-          onOptionSelected={handleOptionSelected}
-        />
+          selection={selectedIndex}
+          onSelectionChange={(value) => onChange(value as number)}
+          modifiers={[pickerStyle("segmented")]}
+        >
+          {values.map((label, index) => (
+            <Text key={label} modifiers={[tag(index)]}>
+              {label}
+            </Text>
+          ))}
+        </Picker>
       </Host>
     </View>
   );
