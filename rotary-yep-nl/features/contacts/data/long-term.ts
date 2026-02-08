@@ -58,7 +58,7 @@ export const longTermContacts: Contact[] = [
     bio: "Mijn naam is Judith Siebring, outbound Coördinator longterm RYE voor de regio's Midden- en Zuid-Amerika.",
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg",
-    email: "longtermout@rotaryyep.nl",
+    email: "judith@talaria.eu",
     phone: "+31652682275",
     club: "RC Emmen-'t Loo",
     district: "1590 NOORD-NEDERLAND",

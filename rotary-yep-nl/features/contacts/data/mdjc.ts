@@ -69,7 +69,7 @@ export const mdjcContacts: Contact[] = [
     bio: 'Mijn naam is Ernst Ziengs. 53 jaar oud en woon in Weert samen met mijn vrouw Ellen en onze zonen Tijn (16) en Vigo. Ben ongeveer 10 jaar lid van Rotary Weert-Land van Horne. Daar ook voorzitter geweest en via Rotary en rechtstreeks doe ik veel vrijwilligerswerk. Zes jaar geleden heb ik wat tegenslag gehad met mijn gezondheid. Gevolg is dat ik opnieuw moest leren spreken, lopen en veel dingen opnieuw moest leren doen. In dit "terug komen" ben ik enorm geholpen door mijn gezin, vrienden en familie. Bij al die hulpvaardige mensen horen ook zeker mensen van de Rotary.\n\nIn mijn wil terug te komen in het leven speelt jeugd een voorname rol. Ik werk 2 dagen per week bij Fontys in Eindhoven. Jonge mensen iets proberen over te dragen kennis en vaardigheden houdt mijzelf ook jong en actief in deze tijd. Precies mijn ambitie als DJC van district 1550.',
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ernst-ziengs.jpeg",
-    email: "youth@rotary-d1550.org",
+    email: "ernstziengs@icloud.com",
     phone: "+31653985449",
     club: "RC Weert-Land van Horne",
     district: "1550",
@@ -83,7 +83,7 @@ export const mdjcContacts: Contact[] = [
     bio: 'Als scholier had ik geen flauw benul van het bestaan van uitwisselingen. In mijn studententijd heb ik dat ingehaald door mijn eigen exchanges te organiseren, (korter) werken en later studeren in (zuid) Frankrijk en vervolgens langer naar Ouagadougou in Burkina Faso, West-Afrika. Buiten de Nederlandse context ontwikkel je je net wat anders. Dat gun ik iedereen, en de wereld.\n\nIn het dagelijks leven werk ik in de gezondheidszorg als bedrijfskundige in verschillende rollen. De "net iets andere blik" komt daar van pas. Daarnaast sport ik graag en volgens sommigen veel, het liefst met gezinsleden of vrienden.\n\nIn mijn vrije tijd wil ik vooral met plezier aan leuke dingen bijdragen. Daarom ben ik van "de activiteiten". Met het team van de long term exchange, Rotex (oud exchangestudenten) en de uitwisselingsstudenten ondernemen we samen van alles. Daarbij hebben we lol en leren we elke dag weer van alles van elkaar.',
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/steven-stolp.png",
-    email: "DJC1560@rotaryyep.nl",
+    email: "djc@rotary-d1560.nl",
     phone: "+310630569469",
     club: "RC Bennekom",
     district: "1560 OOST-NEDERLAND",
@@ -97,7 +97,7 @@ export const mdjcContacts: Contact[] = [
     bio: "Ik ben Erna van Dijk. Sinds 2013 ben ik lid van de Rotary en sinds 1 juli 2023 District Jeugd Commissaris van D1570. In 1987-88 heb ik zelf meegedaan aan een uitwisselingsprogramma en heb ik een jaar in El Paso, Texas gewoond. Ik heb dit als een hele waardevolle periode ervaren en wil graag mijn steentje bijdragen om jongeren ook een fantastische buitenland ervaring te laten hebben.\n\nIn het dagelijks leven ben ik werkzaam als bedrijfsarts. Ik woon samen met mijn vriend, mijn zoon en zijn zoon en 2 dochters. Een samengesteld gezin dus.\n\nRotary is mijn grootste hobby, maar daarnaast ben ik ook lid van toastmasters. Verder vul ik mijn vrije tijd met tuinieren, wandelen, dansen en mijn kippen, katten en hond.",
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/erna-van-dijk.jpg",
-    email: "DJC1570@rotaryyep.nl",
+    email: "djc@rotary-d1570.nl",
     phone: "+31612300695",
     club: "Scherpenzeel- Woudenberg",
     district: "1570",
@@ -111,7 +111,7 @@ export const mdjcContacts: Contact[] = [
     bio: "Mijn naam is Mario Meeuwse en ik ben District Jeugd Commissaris van District 1580.\nGedurende mijn Rotaract lidmaatschap en later Rotary heb ik veel uitwisselingen meegemaakt.\nDaarnaast was ik actief in voor de Rotary Youth Leadership Award commissie in District 1610.\nOok heb ik veel internationale activiteiten bijgewoond zoals (wereld)congressen en (district)conferenties.\nZelf heb ik een Group Study Exchange gedaan naar Japan, waar ik met veel dankbaarheid en plezier op terugkijk.\nEen geweldige ervaring naar een land met een heel andere cultuur met enthousiaste mensen binnen de Rotary familie.\nDaarom wil ik ook een steentje bijdragen aan uitwisselingen en de jeugd een onvergetelijke ervaring bezorgen.",
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/mario-meeuwse.jpg",
-    email: "DJC1580@rotaryyep.nl",
+    email: "mario.meeuwse@rabobank.nl",
     phone: "+31629541915",
     club: "RC Haarlemmermeer",
     district: "1580",
@@ -125,7 +125,7 @@ export const mdjcContacts: Contact[] = [
     bio: "Mijn naam is Judith Siebring, outbound Coördinator longterm RYE voor de regio's Midden- en Zuid-Amerika.\n\nOp mijn 16e (lang geleden… ;-)) ben ik een jaar naar London, Ontario, Canada geweest op uitwisseling via de Rotary. Ik heb een fantastisch jaar gehad waar ik nog ontzettend vaak aan terugdenk. Het heeft ook veel impact gehad op latere keuzes en ervaringen in mijn leven. Reizen, andere mensen, talen en culturen leren kennen; het zit in mijn bloed. Zo heb ik tijdens mijn studie ook nog een jaar in Uruguay in Zuid-Amerika gestudeerd, en heb ik later nog in Canada en Nieuw-Zeeland gewoond en gewerkt. Inmiddels woon ik alweer een aantal jaar in Emmen en ben daar lid geworden van Rotaryclub Emmen-'t Loo. Ik ben blij dat ik nu mijn steentje kan bijdragen aan het RYE-programma als jeugdcommissaris in mijn club, gastouder én als outbound Coördinator voor de regio's Midden- en Zuid-Amerika. Ik kijk er naar uit om jongeren een stapje op weg te helpen naar en tijdens het jaar van hun leven, met al z'n ups en downs. Daarnaast ben ik blij dat ik de kans krijg om mijn Spaans een beetje te oefenen en contacten te onderhouden met mijn 'Rotary collega's' in het prachtige Zuid-Amerika.",
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/judith-siebring.jpg",
-    email: "DJC1590@rotaryyep.nl",
+    email: "judith@talaria.eu",
     phone: "+31652682275",
     club: "RC Emmen-'t Loo",
     district: "1590 NOORD-NEDERLAND",
@@ -153,6 +153,7 @@ export const mdjcContacts: Contact[] = [
     bio: "Sinds kort fungeer ik als DJC voor D1610, hierbij moet ik mijn weg nog wel een beetje vinden maar het is een leuke uitdaging.\n\nAl sinds 1999 met heel veel plezier lid van Rotary, en wel club Roosendaal, een organisatie die ook mij veel heeft gebracht onder meer ook door deel te nemen aan diverse programma's en de verschillende commissies. Rotary is een krachtige organisatie waar ik graag mijn bijdrage lever waar mogelijk.",
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/thijs-kaas.jpeg",
+    email: "thijs@petillant.nl",
     club: "RC Roosendaal",
     district: "1610",
     category: "mdjc",

@@ -1,7 +1,7 @@
 {
   "name": "rotary-yep-nl",
   "main": "expo-router/entry",
-  "version": "12.0.1",
+  "version": "12.0.2",
   "scripts": {
     "start": "expo start",
     "prebuild": "npx expo prebuild",
