@@ -1,7 +1,7 @@
 {
   "name": "rotary-yep-nl",
   "main": "expo-router/entry",
-  "version": "13.0.4",
+  "version": "13.0.5",
   "description": "Rotary Youth Exchange Netherlands official mobile app.",
   "private": true,
   "packageManager": "pnpm@11.2.2",

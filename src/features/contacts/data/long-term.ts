@@ -24,10 +24,13 @@ export const longTermContacts: Contact[] = [
     name: "Sandra Cools-Wemer",
     role: "Inbound coördinator",
     functions: ["Inbound coördinator"],
+    bio: "Ik ben Sandra Cools, woonachtig in Haalderen met mijn man. Altijd als dierenarts gewerkt, maar in 2024 vervroegd uitgetreden. Vandaar deze nieuwe uitdaging als inboundcoördinator.\n\nIk ben sinds de oprichting van onze club in 2004 al Rotarian, en sindsdien ook ClubJeugdCommissaris. Via samenwerking met 7 andere clubs in onze omgeving hebben wij als kleine club altijd het hele jeugdprogramma kunnen continueren. Vandaar dat ik ook in aanraking ben gekomen met de long term exchange. Mijn zoon Jesse is een jaar in Australië geweest en mijn dochter Maaike een jaar naar Italië, en dat heeft ze veel gebracht. Wij hebben ondertussen twee exchange dames uit Paraguay en één uit Frankrijk gehad, en in 25-26 hebben we Camilla uit Indonesië in huis gehad. Tevens hebben we via NGE en de vroegere GSE veel jonge studenten 2-3 weken lang thuis mogen ontvangen.\n\nIk hou van tennissen, scubadiving, trailrunning en wandelen. Reizen en gezellig samenzijn met vrienden staan ook vaak op de agenda.",
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/sandra-cools-wemer.jpeg",
     email: "longtermin@rotaryyep.nl",
     phone: "+31625530062",
+    club: "Rotaryclub Lingewaard-Bemmel",
+    district: "1550",
     category: "longterm",
   },
   {
